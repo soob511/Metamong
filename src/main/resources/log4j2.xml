@@ -9,7 +9,7 @@
     <Root level="error">
       <AppenderRef ref="Console"/>
     </Root>
-    <Logger name="com.mycompany.Metamong" level="info" additivity="false">
+    <Logger name="com.mycompany.metamong" level="info" additivity="false">
     	  <AppenderRef ref="Console"/>
     </Logger>
     
