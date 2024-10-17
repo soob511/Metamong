@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.8.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<security:http pattern="/resources/**" security="none"/>
+	
+	<security:http>
+		<security:form-login 
+			login-page="/member/loginForm"
+			username-parameter="mId"	
+			password-parameter="mPassword"
+			login-processing-url="/login"
+			authentication-success-handler-ref="authenticationSuccessHandler"
+			authentication-failure-handler-ref="authenticationFailureHandler"/>
+		
+		<security:logout
+				logout-url="/logout"
+				success-handler-ref ="logoutSuccessHandler"/>
+	
+		<security:csrf disabled="true"/>
+		<security:access-denied-handler error-page="/member/error403"/>
+	</security:http>
+	
+	<security:global-method-security secured-annotations="enabled"/>
+	
+	<bean id="authenticationSuccessHandler"
+		class="com.mycompany.metamong.security.AuthenticationSuccessHandler"/>
+
+	<bean id="authenticationFailureHandler"
+		class="com.mycompany.metamong.security.AuthenticationFailureHandler"/>
+		
+	<bean id="logoutSuccessHandler"
+		class="com.mycompany.metamong.security.LogoutSuccessHandler"/>
+		
+	<security:authentication-manager>
+		<security:authentication-provider ref="daoAuthenticationProvider"/>
+	</security:authentication-manager>
+	
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="memberDetailsService"/> 
+		<property name="authoritiesMapper" ref="roleHierarchyAuthoritiesMapper"/>
+	</bean>
+	
+	<bean id="roleHierarchyAuthoritiesMapper"
+		class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper">
+		<constructor-arg ref="roleHierarchyImpl"/>
+	</bean>
+	
+	<bean id="roleHierarchyImpl"
+		class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+		<property name="hierarchy"> 
+			<value>
+				ROLE_ADMIN > ROLE_DBA
+				ROLE_DBA > ROLE_USER
+			</value>
+		</property>
+	</bean>
+	
+</beans>

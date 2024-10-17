@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}.%M()- %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="error">
+      <AppenderRef ref="Console"/>
+    </Root>
+    <Logger name="com.mycompany.Metamong" level="info" additivity="false">
+    	  <AppenderRef ref="Console"/>
+    </Logger>
+    
+     <Logger name="jdbc.sqltiming" level="info" additivity="false">
+    	  <AppenderRef ref="Console"/>
+    </Logger>
+  </Loggers>
+</Configuration>
