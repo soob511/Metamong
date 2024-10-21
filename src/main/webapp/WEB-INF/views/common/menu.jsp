@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" %>
 
 <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-<link	href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/common/menu.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link	href="${pageContext.request.contextPath}/resources/css/common/style.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/common/menu.js"></script>
 
 <div class="menu">
 	<p class="logo"><a href="${pageContext.request.contextPath}/">@meta-mong</a></p>
