@@ -1,0 +1,43 @@
+.code-contrast-header {
+	font-size: 30px;
+	margin-top: 65px;
+	margin-bottom: 20px;
+	margin-left: 45px !important;
+}
+
+.code-contrast-table {
+	width: 650px !important;
+	margin-left: 65px !important;
+	border-radius: 8px;
+	border-collapse: collapse;
+	box-shadow: var(--box-shadow);
+	border: none;
+	overflow: hidden;
+}
+
+.code-contrast-table-header {
+	background-color: #F2F6F9 !important;
+}
+
+.custom-table {
+	
+}
+
+.custom-table th {
+	background-color: #F2F6F9; /* 헤더 배경색 */
+	color: black; /* 헤더 텍스트 색상 */
+	padding: 12px; /* 셀 안쪽 여백 */
+	text-align: center; /* 왼쪽 정렬 */
+}
+
+.custom-table td {
+	padding: 12px; /* 셀 안쪽 여백 */
+	background-color: white; /* 본문 셀 배경색 */
+	color: black; /* 본문 텍스트 색상 */
+	text-align: center; /* 왼쪽 정렬 */
+	border-right: 1px solid #D9D9D9;
+}
+
+.custom-table td:last-child {
+	border-right: none; /* 마지막 열의 오른쪽 경계선 제거 */
+}
