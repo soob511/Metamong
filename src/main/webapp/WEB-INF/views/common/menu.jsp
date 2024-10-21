@@ -7,7 +7,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/common/menu.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<div class="col-2 menu">
+<div class="menu">
 	<p class="logo"><a href="${pageContext.request.contextPath}/">@meta-mong</a></p>
 	<ul>
 		<li class="menu-item menu-active"><a href="${pageContext.request.contextPath}/"><i class="bi bi-house-door"></i>HOME</a></li>
@@ -20,25 +20,17 @@
 		        <li><a href="${pageContext.request.contextPath}/">신청내역</a></li>
 		    </ul>
 		</li>	
-		
 		<li class="menu-item">
 		    <a href="#" class="toggle-menu">
 		        <i class="bi bi-database"></i>DB Object <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-		        <li><a href="${pageContext.request.contextPath}/">코드/항목 내역</a></li> 
-		        <li><a href="${pageContext.request.contextPath}/">신청내역</a></li>
-		    </ul>
-		</li>	
-		
-		<li class="menu-item"><i class="bi bi-database"></i>DB Object <i class="bi bi-chevron-down"></i>
-			<ul>
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/">Table</a></li>
 				<li><a href="${pageContext.request.contextPath}/">Sequence</a></li>
 				<li><a href="${pageContext.request.contextPath}/">Index</a></li>
 				<li><a href="${pageContext.request.contextPath}/">신청내역</a></li>
-			</ul>
-		</li>
+		    </ul>
+		</li>	
 		<li class="menu-item"><a href="${pageContext.request.contextPath}/"><i class="bi bi-check2-square"></i>공지사항</a></li>
 		<li class="menu-item"><a href="${pageContext.request.contextPath}/"><i class="bi bi-clipboard"></i>문의게시판</a></li>
 		<li class="menu-item"><a href="${pageContext.request.contextPath}/"><i class="bi bi-people"></i>직원목록</a></li>
