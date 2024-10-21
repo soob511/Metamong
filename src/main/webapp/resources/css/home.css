@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+
+
+.main-container > .row {
+	height: calc((100vh - 60px) / 2);
+	padding: 40px;
+}
+
+.dash-board {
+	border-radius: 8px;
+	height: 100%;
+	box-shadow: var(--box-shadow);
+}
+
+.summary {
+	border-radius: 8px;
+	box-shadow: var(--box-shadow);
+}
+

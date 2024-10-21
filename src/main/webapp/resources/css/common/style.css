@@ -4,6 +4,7 @@
 
 :root {
   --theme: #003567;
+  --table-header: #F2F6F9;
   --border-color: #74787E;
   --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07); 
 }

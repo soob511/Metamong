@@ -1,0 +1,115 @@
+
+.form-required {
+	color:red;
+} 
+.form-label {
+	
+	width:8%;
+	text-align:center;
+
+}
+
+.fw-bold {
+	margin-top:30px;
+}
+.content {
+	margin-top:30px;
+	margin-left:45px;
+	margin-right:45px;
+	font-size:14px;
+
+}
+.table {
+	margin-top:30px;
+	text-align:center;
+
+	
+}
+.table {
+    border-radius: 8px !important; 
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+.table.table-bordered {
+	text-align:left;
+}
+.table th, .table td {
+   font-size:14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr {
+    height: 50px; 
+}
+
+.table-hover td, .table-hover th {
+    padding: 15px 10px;
+}
+
+thead{
+   height: 45px; 
+    padding: 15px 10px;
+}
+.pagination {
+	position: fixed;
+  bottom: 10px; 
+  left: 50%;
+  z-index: 1000;
+	
+}
+.subtitle {
+	width:8%;
+}
+
+.btn-write {
+
+	border-radius: 8px;
+    border: 1px solid var(--theme); 
+   height: 30px;
+   font-size: 14px;
+}
+
+tr{
+	height:50px;
+}
+td, th{
+	text-align: center; 
+  vertical-align: middle;
+}
+.search-box form {
+   width: 370px;
+   margin-left: 27px;
+   margin-top: 10px;
+   border-radius: 5px;
+   font-size: 22px;
+   position: relative;
+   line-height: 22px;
+}
+
+
+.search-box .form-control {
+  width: 240px;
+  height: 40px;
+}
+
+.search-box .search-btn {
+  border: none;
+  background: white;
+}
+
+.search-box .bi-search {
+   position: absolute;
+   right: 150px;
+   top: 10px;
+   font-size: 20px;
+   color: #343a40;
+}
+.dropdown-toggle {
+	border: 2px solid #EAEAEA !important; 
+  border-radius: 8px; 
+  
+}
+.sub {
+	padding-left:50px;
+}
