@@ -10,7 +10,10 @@
 <div class="container">
 	<div class="row">
 		<jsp:include page="/WEB-INF/views/common/menu.jsp" /> 
-		<div class="col-10">view</div>
+		<div class="col">
+		
+		
+		view</div>
 	</div>
 </div> 
 </body>
