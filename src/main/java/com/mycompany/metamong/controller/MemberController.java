@@ -16,8 +16,8 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	
-	@GetMapping("login")
+	@GetMapping("loginForm")
 	public String navToLogin() {
-		return "member/login";
+		return "member/loginForm";
 	}
 }

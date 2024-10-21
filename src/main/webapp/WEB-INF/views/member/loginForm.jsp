@@ -14,7 +14,7 @@
 	<div class="d-flex vh-100">
 	
 		<div class="flex-fill d-flex flex-column align-items-center left-section">
-			<div class="text-white text-1">
+			<div class="text-white">
 				메타 정보 관리 시스템<br>
 				META-MONG
 			</div>
