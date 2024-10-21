@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOME</title>
+
 </head>
 <body>
 <div class="container">
@@ -16,5 +17,6 @@
 		</div>
 	</div>
 </div> 
+<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 </body>
 </html>

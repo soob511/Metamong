@@ -32,6 +32,7 @@ ul {
 	background-color: var(--theme);
 	height: 100vh;
 	width: 250px !important;
+	position: relative;
 }
 
 p.logo {
@@ -48,31 +49,29 @@ p.logo a {
 	color: white !important;
 }
 
-.menu .menu-item {
+.menu-item, .menu-item.active {
 	color: white;
 	font-size: 18px;
-	display: inline-block;
-	margin: 5px 0 5px 25px;
-	padding: 15px 25px;
 	line-height: 18px;
+}
+
+.menu-item.active .item {
+	display: inline-block;
+	background-color: white;
+	color: var(--theme) !important;
 }
 
 .menu .menu-item a {
 	color: white;
-}
-
-.menu .menu-item i {
-	padding-right: 20px;
-	font-size: 20px
-}
-
-.menu-active {
-	background-color: white;
+	display: inline-block;
+	margin: 5px 0 5px 20px;
+	padding: 15px 25px 15px 10px;
 	border-radius: 30px;
 }
 
-.menu-active a {
-	color: var(--theme) !important;
+.menu .menu-item i {
+	padding: 10px;
+	font-size: 20px
 }
 
 .sub-menu {
@@ -84,11 +83,16 @@ p.logo a {
 }
 
 .sub-menu li {
-	padding: 30px 25px 0 25px;
+	margin: 5px 40px;
+}
+
+.sub-menu .sub-item.active  {
+	background-color: #75829E;
+	border-radius: 30px;
 }
 
 .logout {
-	position: fixed;
+	position: absolute;
 	bottom: 35px;
 	left: 0px;
 }
