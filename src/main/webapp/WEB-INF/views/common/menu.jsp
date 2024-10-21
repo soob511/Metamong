@@ -8,9 +8,9 @@
 <script src="${pageContext.request.contextPath}/resources/js/common/menu.js"></script>
 
 <div class="menu">
-	<p class="logo"><a href="${pageContext.request.contextPath}/">@meta-mong</a></p>
+	<p class="logo"><a href="${pageContext.request.contextPath}/home">@meta-mong</a></p>
 	<ul>
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/"><i class="bi bi-house-door"></i>HOME</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/home"><i class="bi bi-house-door"></i>HOME</a></li>
 		<li class="menu-item">
 		    <a href="#" class="toggle-menu item">
 		        <i class="bi bi-bar-chart-steps"></i>코드/항목 <i class="bi bi-chevron-down"></i>
@@ -21,14 +21,14 @@
 		    </ul>
 		</li>	
 		<li class="menu-item">
-		    <a href="${pageContext.request.contextPath}/table" class="toggle-menu item">
+		    <a href="${pageContext.request.contextPath}/table/tableList" class="toggle-menu item">
 		        <i class="bi bi-database"></i>DB Object <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-				<li class="sub-item"><a href="${pageContext.request.contextPath}/table">Table</a></li>
-				<li><a href="${pageContext.request.contextPath}/">Sequence</a></li>
-				<li><a href="${pageContext.request.contextPath}/">Index</a></li>
-				<li><a href="${pageContext.request.contextPath}/">신청내역</a></li>
+				<li class="sub-item"><a href="${pageContext.request.contextPath}/table/tableList">Table</a></li>
+				<li class="sub-item"><a href="${pageContext.request.contextPath}/">Sequence</a></li>
+				<li class="sub-item"><a href="${pageContext.request.contextPath}/index/indexList">Index</a></li>
+				<li class="sub-item"><a href="${pageContext.request.contextPath}/">신청내역</a></li>
 		    </ul>
 		</li>	
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/"><i class="bi bi-check2-square"></i>공지사항</a></li>
