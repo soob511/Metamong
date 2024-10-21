@@ -10,6 +10,12 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+	
+	@GetMapping("/joinForm")
+	public String joinForm() {
+		return "member/joinForm";
+	}
+	
 	@GetMapping("login")
 	public String navToLogin() {
 		return "member/login";

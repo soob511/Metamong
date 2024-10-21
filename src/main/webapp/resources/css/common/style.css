@@ -1,0 +1,93 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --theme: #003567;
+  --border-color: #74787E;
+}
+
+.container {
+	min-width: 100% !important;
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.row >* {
+	padding: 0 !important;
+}
+
+a {text-decoration: none !important;}
+
+ul {
+	list-style: none;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* menu */
+.menu {
+	background-color: var(--theme);
+	height: 100vh;
+	width: 250px !important;
+}
+
+p.logo {
+	text-align: center;
+	height: 60px;
+	border-bottom: 1px solid var(--border-color);
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 60px;
+	letter-spacing: 2px;
+}
+
+p.logo a {
+	color: white !important;
+}
+
+.menu .menu-item {
+	color: white;
+	font-size: 18px;
+	display: inline-block;
+	margin: 0 0 0 25px;
+	padding: 20px 25px;
+	line-height: 18px;
+}
+
+.menu .menu-item a {
+	color: white;
+}
+
+.menu .menu-item i {
+	padding-right: 20px;
+	font-size: 20px
+}
+
+.menu-active {
+	background-color: white;
+	border-radius: 30px;
+}
+
+.menu-active a {
+	color: var(--theme) !important;
+}
+
+.sub-menu {
+    display: none;
+}
+
+.sub-menu.active {
+    display: block;
+}
+
+.sub-menu li {
+	padding: 30px 25px 0 25px;
+}
+
+.logout {
+	position: fixed;
+	bottom: 35px;
+	left: 0px;
+}
