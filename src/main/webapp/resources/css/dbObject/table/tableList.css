@@ -1,39 +1,37 @@
 @charset "UTF-8";
 
 .table-list-header{
-	margin:30px 20px 0 60px;
-	font-size: 28px;
+	margin:30px 20px 0 40px;
+	font-size: 25px;
 	font-weight: bold;
 }
 
 label{
-	font-size: 20px;
+	font-size: 17px;
 }
 
 .table-list-filters {
     display: flex;
     justify-content: left;
     align-items: center; 
-    margin-left: 30px;
     margin-bottom: 20px; 
 }
 
 .table-search {
 	display: flex;
  	width: 350px;
-   	margin: 0 20px 0 40px;
+   	margin: 0 20px 0 20px;
    	align-items: center; 
 }
 
 .table-search-label{
-	min-width: 200px !important;
-	text-align: center;
+	min-width: 180px !important;
+	text-align: right;
 	align-items: center; 
 }
 
 .search-form input {
     width: 200px; 
-    margin-left: 
 }
 
 .search-form i {
@@ -52,33 +50,38 @@ label{
 
 .schema-filter-label{
 	min-width: 100px;
-	margin-left: 50px;
+	margin:0 12px;
+	text-align: right;
 }
 
 .tables-management{
 	display: flex;
 	justify-content: space-between;
-	margin: 10px 0 0 10px;
+	margin: 10px 0 0 0;
 }
 
 .tables-table{
-	min-width: 860px !important;
-	max-width:860px !important;
-	margin: 20px 20px 20px 60px;	
+	min-width: 660px !important;
+	max-width:660px !important;
+	margin: 20px 20px 20px 45px;	
 }
 
 .table {
-    border-radius: 10px !important; 
+    border-radius: 8px !important; 
     box-shadow: var(--box-shadow);
     overflow: hidden;
 }
 
 .tables-management-title,.column-management-title{
-	font-size:20px;
+	font-size:18px;
 	font-weight: 600 !important;
 }
 
 .tables-management-title{
+	padding-top: 10px;
+}
+
+.tables-buttons{
 	padding-top: 10px;
 }
 
@@ -87,8 +90,9 @@ label{
 	color: white;
 	border-radius: 8px;
 	border: none;
-	width: 60px;
-	height: 35px;
+	width: 50px;
+	height: 30px;
+	font-size: 14px;
 	margin-right: 5px;
 }
 
@@ -97,8 +101,9 @@ label{
 	color:  var(--theme);
 	border-radius: 8px;
 	 border: 1px solid var(--theme); 
-	width: 60px;
-	height: 35px;
+	width: 50px;
+	height: 30px;
+	font-size: 14px;
 }
 
 .column-management{
@@ -106,12 +111,13 @@ label{
 }
 
 .column-table{
-	min-width: 860px !important;
-	max-width:860px !important;
+	min-width: 660px !important;
+	max-width:660px !important;
 	margin: 20px;
 }
 
 .table th, .table td {
+	font-size:13px;
     text-align: center;
     vertical-align: middle;
 }
@@ -125,7 +131,7 @@ label{
 }
 
 thead{
-	height: 50px; 
+	height: 45px; 
 	 padding: 15px 10px;
 }
 
