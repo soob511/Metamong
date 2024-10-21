@@ -18,13 +18,13 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="menu" style="width: 250px">
+			<div class="menu">
 				<p class="logo">
 					<a href="${pageContext.request.contextPath}/">@meta-mong</a>
 				</p>
 			</div>
+			
 			<div class="col">
-
 				<div
 					class="d-flex flex-column justify-content-center align-items-center join-container">
 
