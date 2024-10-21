@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/code")
 public class CodeController {
 	@GetMapping("/codeList")
-	public String navToApplyCode() {
+	public String codeList() {
 		return "code/codeList";
 	}
 }
