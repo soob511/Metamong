@@ -1,20 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableList.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<jsp:include page="/WEB-INF/views/common/menu.jsp" /> 
-		<div class="col">
-		
-		
-		view</div>
+	<div class="container">
+		<div class="row">
+			<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+			<div class="col">
+				<jsp:include page="/WEB-INF/views/common/header.jsp" />
+				<div>view</div>
+			</div>
+		</div>
 	</div>
-</div> 
 </body>
 </html>
