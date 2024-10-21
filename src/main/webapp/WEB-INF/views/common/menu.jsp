@@ -26,7 +26,7 @@
 		    </a>
 		    <ul class="sub-menu">
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/table/tableList">Table</a></li>
-				<li class="sub-item"><a href="${pageContext.request.contextPath}/">Sequence</a></li>
+				<li class="sub-item"><a href="${pageContext.request.contextPath}/sequence/sequenceList">Sequence</a></li>
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/index/indexList">Index</a></li>
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/">신청내역</a></li>
 		    </ul>
