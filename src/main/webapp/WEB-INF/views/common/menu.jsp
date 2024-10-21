@@ -12,12 +12,12 @@
 	<ul>
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/home"><i class="bi bi-house-door"></i>HOME</a></li>
 		<li class="menu-item">
-		    <a href="#" class="toggle-menu item">
+		    <a href="${pageContext.request.contextPath}/code/codeList" class="toggle-menu item">
 		        <i class="bi bi-bar-chart-steps"></i>코드/항목 <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-		        <li><a href="${pageContext.request.contextPath}/">코드/항목 내역</a></li> 
-		        <li><a href="${pageContext.request.contextPath}/">신청내역</a></li>
+		        <li class="sub-item"><a href="${pageContext.request.contextPath}/code/codeList">코드/항목 내역</a></li> 
+		        <li class="sub-item"><a href="${pageContext.request.contextPath}/">신청내역</a></li>
 		    </ul>
 		</li>	
 		<li class="menu-item">
