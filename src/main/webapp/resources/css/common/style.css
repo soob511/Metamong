@@ -5,6 +5,7 @@
 :root {
   --theme: #003567;
   --border-color: #74787E;
+  --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07); 
 }
 
 .container {
@@ -31,6 +32,7 @@ ul {
 	background-color: var(--theme);
 	height: 100vh;
 	width: 250px !important;
+	position: relative;
 }
 
 p.logo {
@@ -47,31 +49,29 @@ p.logo a {
 	color: white !important;
 }
 
-.menu .menu-item {
+.menu-item, .menu-item.active {
 	color: white;
 	font-size: 18px;
-	display: inline-block;
-	margin: 0 0 0 25px;
-	padding: 20px 25px;
 	line-height: 18px;
+}
+
+.menu-item.active .item {
+	display: inline-block;
+	background-color: white;
+	color: var(--theme) !important;
 }
 
 .menu .menu-item a {
 	color: white;
-}
-
-.menu .menu-item i {
-	padding-right: 20px;
-	font-size: 20px
-}
-
-.menu-active {
-	background-color: white;
+	display: inline-block;
+	margin: 5px 0 5px 20px;
+	padding: 15px 25px 15px 10px;
 	border-radius: 30px;
 }
 
-.menu-active a {
-	color: var(--theme) !important;
+.menu .menu-item i {
+	padding: 10px;
+	font-size: 20px
 }
 
 .sub-menu {
@@ -83,11 +83,64 @@ p.logo a {
 }
 
 .sub-menu li {
-	padding: 30px 25px 0 25px;
+	margin: 5px 40px;
+}
+
+.sub-menu .sub-item.active  {
+	background-color: #75829E;
+	border-radius: 30px;
 }
 
 .logout {
-	position: fixed;
+	position: absolute;
 	bottom: 35px;
 	left: 0px;
+}
+
+/* header */
+.header {
+	height: 60px;
+	box-shadow: var(--box-shadow); 
+	padding-right: 45px;
+	padding-top: 10px;
+}
+
+.header .bell {
+	position: relative;
+	padding-top: 3px; 
+}
+
+.header i {
+	font-size: 25px;
+}
+
+.header .alarm {
+	background-color: #DC3F3F;
+	color: white;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+	font-size: 11px;
+	text-align: center;
+	line-height: 15px;
+	position: absolute;
+	top: 3px;
+	left: 13px;
+}
+
+.profile-img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	box-shadow: var(--box-shadow); 
+}
+
+.header p {
+	margin: 5px 0 0;
+	font-size: 16px;
+	line-height: 1;
+}
+
+.header span {
+	font-size: 13px;
 }
