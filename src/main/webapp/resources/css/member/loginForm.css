@@ -1,0 +1,118 @@
+.container {
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+.row {
+    min-height: 100vh;
+}
+
+.main-area {
+ 	background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 30%),
+ 	 radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.12), transparent 30%), #003567;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    height: 100vh;
+    text-align: left;
+}
+
+.content-top {
+     width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start;
+    margin-left: 60px;
+    margin-top: 50px;
+}
+
+.main-title {
+	text-align: center;
+    font-size: 100px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.main-subtitle {
+	text-align: center;
+    font-size: 1.5rem;
+    margin: 0 5px;
+}
+
+.content-bottom {
+    align-self: flex-start; 
+}
+
+.main-paragraph {
+    font-size:45px;
+    font-style: italic;
+    color: #e1e1e1;
+    line-height: 1.2;
+}
+
+.main-paragraph p {
+    margin: 0;
+}
+
+.login-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    min-width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center; 
+    text-align: left; 
+    margin-left: 110px;
+ 
+}
+
+
+#loginForm p,.input-label {
+    color: #999999;
+}
+
+.login-header{
+	margin-bottom: 40px;
+}
+
+.login-header h1{
+	font-size: 60px;
+}
+
+.login-header p{
+	font-size: 20px;
+}
+
+.input-group {
+	width: 450px;
+    flex-direction: column; 
+    margin-bottom: 15px; 
+}
+
+.form-control{
+    min-width: 350px !important;
+    height: 50px;
+    margin:5px 0 !important;
+    border-radius: 10px !important;
+}
+
+.btn-login{
+	width: 350px;
+    height: 60px;
+    margin-top: 10px;
+    margin-right:20px;
+    border-radius: 10px !important;
+    border: none;
+   	font-size: 25px;
+   	background-color: #003567 !important;
+    color: white!important;
+    margin-bottom: 50px;
+}
