@@ -17,5 +17,10 @@ public class TableController {
 	public String tableCompare() {
 		return "dbObject/table/tableCompare";
 	}
+	
+	@GetMapping("/tableApplyList")
+	public String tableApplyList() {
+		return "dbObject/table/tableApplyList";
+	}
 
 }

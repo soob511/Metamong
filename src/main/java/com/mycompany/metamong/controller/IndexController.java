@@ -12,4 +12,10 @@ public class IndexController {
 	public String indexList() {
 		return "dbObject/index/indexList";
 	}
+	
+	@GetMapping("/indexApplyList")
+	public String indexApplyList() {
+		return "dbObject/index/indexApplyList";
+	}
+	
 }
