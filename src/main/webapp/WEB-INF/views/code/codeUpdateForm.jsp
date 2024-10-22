@@ -36,14 +36,14 @@
 								<tr>
 									<td class="table-primary">코드명(물리)</td>
 									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="PRPTINFO" required>
-									</td>
+										class="form-control code-input" placeholder="PRPTINFO"
+										required></td>
 								</tr>
 								<tr>
 									<td class="table-primary">내용</td>
 									<td colspan="5"><input type="text"
-										class="form-control content-input" placeholder="개인의 재산정보에 대한 코드">
-									</td>
+										class="form-control content-input"
+										placeholder="개인의 재산정보에 대한 코드"></td>
 								</tr>
 								<!-- 사용여부 추가 -->
 								<tr>
@@ -70,7 +70,7 @@
 									<td class="table-primary">항목명</td>
 									<td colspan="5"><input type="text"
 										class="form-control code-input" placeholder="자동차" required>
-									</td> 
+									</td>
 								</tr>
 								<tr>
 									<td class="table-primary">내용</td>
@@ -136,9 +136,11 @@
 						</tbody>
 					</table>
 				</div>
-				
+
 				<div class="button-group">
-					<div class="btn-add" type="button">신청</div>
+					<a href="codeApplyList">
+						<div class="btn-add" type="button">신청</div>
+					</a>
 				</div>
 
 				<script

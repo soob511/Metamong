@@ -137,9 +137,11 @@
 						</tbody>
 					</table>
 				</div>
-				
+
 				<div class="button-group">
-					<div class="btn-add" type="button">신청</div>
+					<a href="codeApplyList">
+						<div class="btn-add" type="button">신청</div>
+					</a>
 				</div>
 
 				<script
