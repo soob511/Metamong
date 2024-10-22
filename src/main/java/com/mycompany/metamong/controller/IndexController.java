@@ -17,4 +17,9 @@ public class IndexController {
 	public String addIndexForm() {
 		return "dbObject/index/addIndexForm";
 	}
+	
+	@GetMapping("/deleteIndexForm")
+	public String deleteIndexForm() {
+		return "dbObject/index/deleteIndexForm";
+	}
 }

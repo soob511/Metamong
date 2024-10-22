@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+.index-table {
+    padding: 10px 45px 0;
+}
+
+.table-list-header {
+    margin: 30px 20px 0 40px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+label {
+    font-size: 17px;
+}
+
+.table-list-filters {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-search {
+    display: flex;
+    width: max-content;
+    margin-left: 20px;
+    align-items: center;
+}
+
+.table-search-label {
+    min-width: max-content !important;
+    align-items: center;
+    margin-left: 25px;
+}
+
+.search-form input {
+    width: 200px;
+}
+
+.search-form i {
+    margin-left: -30px;
+    z-index: 1;
+    position: relative;
+    top: 8px;
+}
+
+.schema-filter {
+    display: flex;
+    align-items: center;
+    min-width: 200px !important;
+    margin-left: 10px;
+}
+
+.schema-filter-label {
+    min-width: max-content;
+    margin: 0 12px;
+}
+
+hr {
+    color: var(--border-color) !important;
+}
+
+.table-container {
+    border-radius: 8px !important;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.table-container:first-of-type {
+    height: 600px;
+}
+
+.table th, .table td {
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr {
+    height: 50px;
+}
+
+.table-hover td, .table-hover th {
+    padding: 15px 10px;
+}
+
+thead {
+    height: 45px;
+    padding: 15px 10px;
+}
+
+.index-table {
+    margin: 0 45px;
+}
+
+.form-select {
+    font-size: 13px !important;
+    height: 30px;
+}
+
+.index-apply-title {
+    font-size: 18px;
+    font-weight: 600 !important;
+    padding-top: 10px;
+}
+
+.index-apply-reason {
+    margin-right: 45px;
+}
+
+.index-apply-reason p {
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.index-apply-reason textarea {
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+}
+
+.btn-add {
+    background-color: var(--theme);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 55px;
+    height: 35px;
+    font-size: 14px;
+    margin: 10px 0 0 410px;
+}
