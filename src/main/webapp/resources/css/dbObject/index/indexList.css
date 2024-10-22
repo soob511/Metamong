@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.index-container > div:last-of-type {
+.index-table {
     padding: 10px 45px 0;
 }
 
