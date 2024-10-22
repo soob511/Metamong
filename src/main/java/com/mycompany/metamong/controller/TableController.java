@@ -17,5 +17,10 @@ public class TableController {
 	public String tableCompare() {
 		return "dbObject/table/tableCompare";
 	}
+	
+	@GetMapping("/tableAddForm")
+	public String tableAddForm() {
+		return "dbObject/table/tableAddForm";
+	}
 
 }
