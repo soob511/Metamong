@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>codeContrast</title>
 <link
-	href="${pageContext.request.contextPath}/resources/css/code/codeContrast.css"
+	href="${pageContext.request.contextPath}/resources/css/code/codeCompare.css"
 	rel="stylesheet">
 </head>
 <body>
@@ -18,10 +18,10 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="container table-management">
 					<div class="row">
-						<div class="col-6 tables-table">
+						<div class="col-6 before-table">
 							
-								<div class="tables-management">
-									<p class="tables-management-title">> PPRTINFO 코드 수정전</p>
+								<div class="before-management">
+									<p class="before-management-title">> PPRTINFO 코드 수정전</p>
 
 								</div>
 								<table class="table table-hover">
@@ -61,10 +61,10 @@
 							
 						</div>
 
-						<div class="col-6 column-table">
+						<div class="col-6 after-table">
 							
-								<div class="column-management">
-									<p class="column-management-title">> PPRTINFO 코드 수정후</p>
+								<div class="after-management">
+									<p class="after-management-title">> PPRTINFO 코드 수정후</p>
 
 								</div>
 								<table class="table table-hover">

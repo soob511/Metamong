@@ -11,9 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/code")
 public class CodeController {
 
-	@GetMapping("/codeContrast")
+	@GetMapping("/codeCompare")
 	public String navToApplyCode() {
-		return "code/codeContrast";
-
+		return "code/codeCompare";
 	}
 }
