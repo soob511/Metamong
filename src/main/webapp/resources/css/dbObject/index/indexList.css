@@ -61,10 +61,11 @@ hr {
     color: var(--border-color) !important;
 }
 
-.table {
+.table-container{
     border-radius: 8px !important;
     box-shadow: var(--box-shadow);
     overflow: hidden;
+    height: 600px;
 }
 
 .tables-management {
