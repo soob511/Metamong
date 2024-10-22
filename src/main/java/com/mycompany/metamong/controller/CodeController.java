@@ -10,6 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/code")
 public class CodeController {
+	
+	@GetMapping("/codeList")
+	public String codeList() {
+		return "code/codeList";
+	}
 
 	@GetMapping("/codeCompare")
 	public String navToApplyCode() {
