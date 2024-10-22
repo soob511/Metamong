@@ -23,19 +23,19 @@
 				</div>
 
 				<div class="sequence-list-filters">
-
+					<!-- 시퀀스 검색 영역 -->
 					<div class="sequence-search">
 						<label for="sequenceNameSearch" class="sequence-search-label">시퀀스명</label>
 						<div class="container-fluid">
 							<form class="d-flex search-form">
 								<input class="form-control me-2" type="search"
-									id="sequenceNameSearch" placeholder="Search" aria-label="Search">
-								<i class="bi bi-search"></i>
+									id="sequenceNameSearch" placeholder="Search"
+									aria-label="Search"> <i class="bi bi-search"></i>
 							</form>
 						</div>
 					</div>
 
-
+					<!-- 스키마 필터 -->
 					<div class="schema-filter">
 						<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 						<select id="schemaSelect" class="form-select"
@@ -46,16 +46,16 @@
 							<option value="3">Three</option>
 						</select>
 					</div>
-
 				</div>
 
 				<hr>
 
 				<div class="container sequence-management">
 					<div class="row">
-					
-						<div class="col-6 sequence-table">
-							<div class="sequence-management">
+
+						<!-- 시퀀스 목록 -->
+						<div class="col sequence-table">
+							<div class="sequence-management-header">
 								<p class="sequence-management-title">시퀀스</p>
 							</div>
 							<table class="table table-hover">
@@ -86,13 +86,51 @@
 							</table>
 						</div>
 
+						<div class="col sequence-create-delete">
+								<div class="sequence-create-delete-header">
+									<p class="sequence-create-delete-title">시퀀스 생성/삭제</p>
+								</div>
 
+							<div class="sequence-create-delete-container">
+								<div class="input-group">
+									<label for="seqName" class="input-label">시퀀스명</label> <input
+										type="text" class="form-control" id="seqName"
+										aria-label="seqName" aria-describedby="seqName">
+								</div>
 
+								<div class="schema-input-group">
+									<label for="schemaInput" class="schema-input-label">스키마명</label>
+									<select id="schemaInput" class="form-select"
+										aria-label="Default select example">
+										<option selected>선택</option>
+										<option value="1">One</option>
+										<option value="2">Two</option>
+										<option value="3">Three</option>
+									</select>
+								</div>
+
+								<div class="input-group">
+									<label for="seqReason" class="input-label">신청사유</label> <input
+										type="text" class="form-control" id="seqReason"
+										aria-label="seqReason" aria-describedby="seqReason">
+								</div>
+
+								<div class="input-group mb-3 file-upload-group">
+									<label class="input-file-label">파일업로드</label>
+									<input type="file" class="form-control" id="inputGroupFile">
+								</div>
+
+								<div class="button-group">
+									<button type="button" class="btn-add">신청</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<script
 		src="${pageContext.request.contextPath}/resources/js/dbObject/sequence/sequenceList.js"></script>
 </body>
