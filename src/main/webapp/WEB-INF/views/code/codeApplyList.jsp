@@ -1,22 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>코드/항목 신청내역</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/css/coreui.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/code/codeApplyList.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/css/coreui.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/code/codeApplyList.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet">
 
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<jsp:include page="/WEB-INF/views/common/menu.jsp" /> 
-		<div class="col">
-			<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	<div class="container">
+		<div class="row">
+			<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+			<div class="col">
+				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
 					<div class="fw-bold code-applyList-title">> 코드/항목 신청내역</div>
 					<hr>
@@ -52,7 +63,9 @@
 								<td>admin</td>
 								<td>개발1팀</td>
 								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
+								<td><a href="codeApplyDetail">
+										<button class="btn-history-details">상세보기</button></td>
+								</a>
 								<td class="code-approve">승인</td>
 							</tr>
 							<tr>
@@ -62,7 +75,9 @@
 								<td>admin</td>
 								<td>개발1팀</td>
 								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
+								<td><a href="codeApplyDetail">
+										<button class="btn-history-details">상세보기</button></td>
+								</a>
 								<td class="code-deny">반려</td>
 							</tr>
 							<tr>
@@ -72,7 +87,9 @@
 								<td>admin</td>
 								<td>개발1팀</td>
 								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
+								<td><a href="codeApplyDetail">
+										<button class="btn-history-details">상세보기</button></td>
+								</a>
 								<td class="code-await">승인대기</td>
 							</tr>
 							<tr>
@@ -82,7 +99,9 @@
 								<td>admin</td>
 								<td>개발1팀</td>
 								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
+								<td><a href="codeApplyDetail">
+										<button class="btn-history-details">상세보기</button></td>
+								</a>
 								<td class="code-approve">승인</td>
 							</tr>
 							<tr>
@@ -92,7 +111,9 @@
 								<td>admin</td>
 								<td>개발1팀</td>
 								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
+								<td><a href="codeApplyDetail">
+										<button class="btn-history-details">상세보기</button></td>
+								</a>
 								<td class="code-deny">반려</td>
 							</tr>
 							<tr>
@@ -102,7 +123,9 @@
 								<td>admin</td>
 								<td>개발1팀</td>
 								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
+								<td><a href="codeApplyDetail">
+										<button class="btn-history-details">상세보기</button></td>
+								</a>
 								<td class="code-await">승인대기</td>
 							</tr>
 						</tbody>
@@ -122,9 +145,11 @@
 					</nav>
 				</div>
 			</div>
+		</div>
 	</div>
-</div> 
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/js/coreui.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/code/codeApplyList.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/js/coreui.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/code/codeApplyList.js"></script>
 </body>
 </html>
