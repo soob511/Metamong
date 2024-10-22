@@ -61,42 +61,14 @@ hr {
     color: var(--border-color) !important;
 }
 
-.table {
+.table-container {
     border-radius: 8px !important;
     box-shadow: var(--box-shadow);
     overflow: hidden;
 }
 
-.tables-management {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0 0 0;
-}
-
-.tables-management-title {
-    font-size: 18px;
-    font-weight: 600 !important;
-}
-
-.btn-add {
-    background-color: var(--theme);
-    color: white;
-    border-radius: 8px;
-    border: none;
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
-    margin-right: 5px;
-}
-
-.btn-del {
-    background-color: white;
-    color: var(--theme);
-    border-radius: 8px;
-    border: 1px solid var(--theme);
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
+.table-container:first-of-type {
+    height: 600px;
 }
 
 .table th, .table td {
@@ -116,4 +88,49 @@ hr {
 thead {
     height: 45px;
     padding: 15px 10px;
+}
+
+.index-table {
+    margin: 0 45px;
+}
+
+.form-select {
+    font-size: 13px !important;
+    height: 30px;
+}
+
+.index-apply-title {
+    font-size: 18px;
+    font-weight: 600 !important;
+    padding-top: 10px;
+}
+
+.index-apply-reason {
+    margin-right: 45px;
+}
+
+.index-apply-reason p {
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.index-apply-reason textarea {
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+}
+
+.btn-add {
+    background-color: var(--theme);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 55px;
+    height: 35px;
+    font-size: 14px;
+    margin: 10px 0 0 410px;
 }

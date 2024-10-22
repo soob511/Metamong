@@ -40,13 +40,13 @@
               </div>
             </div>
             <hr>
-            <div>
+            <div class="index-table">
               <div class="tables-table">
                 <div class="tables-management">
                   <p class="tables-management-title">인덱스</p>
                   <div class="tables-buttons">
-                    <button class="btn-add">추가</button>
-                    <button class="btn-del">삭제</button>
+                    <a href="${pageContext.request.contextPath}/index/addIndexForm"><button class="btn-add">추가</button></a>
+                    <a href="${pageContext.request.contextPath}/index/deleteIndexForm"><button class="btn-del">삭제</button></a>
                   </div>
                 </div>
                 <table class="table table-hover">
