@@ -20,4 +20,9 @@ public class MemberController {
 	public String navToLogin() {
 		return "member/loginForm";
 	}
+	
+	@GetMapping("memberList")
+	public String navToMemberList() {
+		return "member/memberList";
+	}
 }
