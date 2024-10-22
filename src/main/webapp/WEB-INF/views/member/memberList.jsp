@@ -161,6 +161,7 @@
 			</div>
 	</div>
 </div> 
+<script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/js/coreui.bundle.min.js"></script>
 </body>
 </html>
