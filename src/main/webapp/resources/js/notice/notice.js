@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    $('.menu-item').removeClass('active');
+    $('.menu-item:eq(3)').addClass('active');
+});
+
 document.querySelector('form').addEventListener('submit', function(event) {
     const title = document.getElementById('title').value;
     const content = document.getElementById('content').value;
