@@ -17,12 +17,12 @@ public class MemberController {
 	}
 	
 	@GetMapping("loginForm")
-	public String navToLogin() {
+	public String loginForm() {
 		return "member/loginForm";
 	}
 	
 	@GetMapping("memberList")
-	public String navToMemberList() {
+	public String memberList() {
 		return "member/memberList";
 	}
 }

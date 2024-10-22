@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 	
 	@GetMapping("/indexList")
-	public String navToIndexList() {
+	public String indexList() {
 		return "dbObject/index/indexList";
 	}
 	
@@ -22,4 +22,10 @@ public class IndexController {
 	public String deleteIndexForm() {
 		return "dbObject/index/deleteIndexForm";
 	}
+	
+	@GetMapping("/indexApplyList")
+	public String indexApplyList() {
+		return "dbObject/index/indexApplyList";
+	}
+	
 }

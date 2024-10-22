@@ -28,11 +28,11 @@
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/table/tableList">Table</a></li>
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/sequence/sequenceList">Sequence</a></li>
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/index/indexList">Index</a></li>
-				<li class="sub-item"><a href="${pageContext.request.contextPath}/">신청내역</a></li>
+				<li class="sub-item"><a href="${pageContext.request.contextPath}/table/tableApplyList">신청내역</a></li>
 		    </ul>
 		</li>	
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square"></i>공지사항</a></li>
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/"><i class="bi bi-people"></i>직원목록</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/member/memberList"><i class="bi bi-people"></i>직원목록</a></li>
 		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/member/loginForm"><i class="bi bi-box-arrow-right"></i>Log out</a></li>
 	</ul>
 </div>

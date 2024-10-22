@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>코드/항목 신청내역</title>
+<title>DB Object 테이블 신청내역</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/css/coreui.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/code/codeApplyList.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/dbObject/common/applyList.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
@@ -18,11 +18,17 @@
 		<div class="col">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
-					<div class="fw-bold code-applyList-title">> 코드/항목 신청내역</div>
+					<div class="fw-bold code-applyList-title">DB Object > 신청내역</div>
 					<hr>
-					<div class="d-flex justify-content-end align-items-center">
+					<ul class="nav nav-underline">
+						<li class="nav-item"><a class="nav-link"
+							aria-current="" href="${pageContext.request.contextPath}/table/tableApplyList">테이블</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/sequence/sequenceApplyList">시퀀스</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/index/indexApplyList">인덱스</a></li>
+					</ul>
+
+					<div class="d-flex justify-content-end align-items-center">						
 						<div class="search-box d-flex align-items-center">
-							<label for="codeNameSearch" class="code-search-label">코드명(논리/물리)</label>
 							<form>
 								<input class="form-control me-2" type="search"
 									id="codeNameSearch" placeholder="Search" aria-label="Search">
@@ -37,8 +43,8 @@
 								<th scope="col">No.</th>
 								<th scope="col">신청일자</th>
 								<th scope="col">신청자</th>
-								<th scope="col">코드명(논리)</th>
-								<th scope="col">코드명(물리)</th>
+								<th scope="col">스키마명</th>
+								<th scope="col">테이블명</th>
 								<th scope="col">분류</th>
 								<th scope="col">상세보기</th>
 								<th scope="col">상태</th>
@@ -46,62 +52,62 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
+								<th scope="row">1</th>
+								<td>2023-10-13</td>
 								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
+								<td>kosa_oti_team_1</td>
+								<td>member</td>
+								<td>테이블</td>
 								<td><button class="btn-history-details">상세보기</button></td>
 								<td class="code-approve">승인</td>
 							</tr>
 							<tr>
 								<th scope="row">10</th>
-								<td>gilju</td>
+								<td>2023-10-13</td>
 								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
+								<td>kosa_oti_team_1</td>
+								<td>member</td>
+								<td>테이블</td>
 								<td><button class="btn-history-details">상세보기</button></td>
 								<td class="code-deny">반려</td>
 							</tr>
 							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
+								<th scope="row">2</th>
+								<td>2023-10-13</td>
 								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
+								<td>kosa_oti_team_1</td>
+								<td>member</td>
+								<td>테이블</td>
 								<td><button class="btn-history-details">상세보기</button></td>
 								<td class="code-await">승인대기</td>
 							</tr>
 							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
+								<th scope="row">3</th>
+								<td>2023-10-13</td>
 								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-approve">승인</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
+								<td>kosa_oti_team_1</td>
+								<td>member</td>
+								<td>테이블</td>
 								<td><button class="btn-history-details">상세보기</button></td>
 								<td class="code-deny">반려</td>
 							</tr>
 							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
+								<th scope="row">4</th>
+								<td>2023-10-13</td>
 								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
+								<td>kosa_oti_team_1</td>
+								<td>member</td>
+								<td>테이블</td>
+								<td><button class="btn-history-details">상세보기</button></td>
+								<td class="code-deny">반려</td>
+							</tr>
+							<tr>
+								<th scope="row">5</th>
+								<td>2023-10-13</td>
+								<td>나길주</td>
+								<td>kosa_oti_team_1</td>
+								<td>member</td>
+								<td>테이블</td>
 								<td><button class="btn-history-details">상세보기</button></td>
 								<td class="code-await">승인대기</td>
 							</tr>
@@ -125,6 +131,6 @@
 	</div>
 </div> 
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/js/coreui.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/code/codeApplyList.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableApplyList.js"></script>
 </body>
 </html>
