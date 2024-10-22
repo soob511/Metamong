@@ -20,6 +20,11 @@ public class CodeController {
 	public String codeAddForm() {
 		return "code/codeAddForm";
 	}
+	
+	@GetMapping("/codeUpdateForm")
+	public String codeUpdateForm() {
+		return "code/codeUpdateForm";
+	}
 
 	@GetMapping("/codeCompare")
 	public String navToApplyCode() {
