@@ -72,13 +72,17 @@ label{
     overflow: hidden;
 }
 
-.sequence-management-title{
+.sequence-management-title,.sequence-create-delete-title{
 	font-size:18px;
 	font-weight: 600 !important;
 }
 
-.sequence-management-title{
+.sequence-management-title,.sequence-create-delete-title{
 	padding-top: 10px;
+}
+
+.sequence-create-delete-title{
+	margin-left: 20px;
 }
 
 .sequence-buttons{
@@ -94,26 +98,7 @@ label{
 	height: 30px;
 	font-size: 14px;
 	margin-right: 5px;
-}
-
-.btn-edit{
-	background-color: white;
-	color:  var(--theme);
-	border-radius: 8px;
-	 border: 1px solid var(--theme); 
-	width: 50px;
-	height: 30px;
-	font-size: 14px;
-}
-
-.column-management{
-	margin: 20px 0 10px 10px;
-}
-
-.column-table{
-	min-width: 660px !important;
-	max-width:660px !important;
-	margin: 20px;
+	
 }
 
 .table th, .table td {
@@ -133,6 +118,50 @@ label{
 thead{
 	height: 45px; 
 	 padding: 15px 10px;
+}
+
+.sequence-create-delete-container{
+	width:500px;
+}
+
+.sequence-create-delete-container{
+	 box-shadow: var(--box-shadow);
+	 min-width: 660px !important;
+	 max-width:660px !important;
+	 height:560px;
+	 margin: 20px;
+	 padding: 30px;
+	 display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.input-group,.schema-input-group{
+	width: 600px !important;
+	display: flex;
+}
+
+.input-label,.schema-input-label,.input-file-label{
+	width:100px;
+	margin:10px 20px !important;
+	font-weight: 600;
+}
+
+#seqName,#seqReason,#inputGroupFile,
+#schemaInput{
+	min-width: 420px;
+	max-width: 420px;
+	margin: 10px;
+}
+
+#seqReason{
+	min-height: 200px;
+}
+
+.button-group {
+     align-self: flex-end;
+    margin-top: auto;
 }
 
 
