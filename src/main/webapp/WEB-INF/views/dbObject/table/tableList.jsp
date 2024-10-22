@@ -54,13 +54,17 @@
 
 				<div class="container table-management">
 					<div class="row">
-						<!-- 테이블 목록 -->
+						
 						<div class="col-6 tables-table">
 							<div class="tables-management">
 								<p class="tables-management-title">테이블</p>
 								<div class="tables-buttons">
+								<a href="tableAddForm">
 									<button class="btn-add">추가</button>
+									</a>
+									<a href="tableUpdateForm">
 									<button class="btn-edit">수정</button>
+									</a>
 								</div>
 							</div>
 							<table class="table table-hover">
