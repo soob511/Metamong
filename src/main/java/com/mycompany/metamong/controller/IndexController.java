@@ -28,4 +28,8 @@ public class IndexController {
 		return "dbObject/index/indexApplyList";
 	}
 	
+	@GetMapping("/indexDetail")
+	public String indexDetail() {
+		return "dbObject/index/indexDetail";
+	}
 }
