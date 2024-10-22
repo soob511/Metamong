@@ -32,5 +32,10 @@ public class TableController {
 	public String tableApplyList() {
 		return "dbObject/table/tableApplyList";
 	}
+	
+	@GetMapping("/tableApplyDetail")
+	public String tableApplyDetail() {
+		return "dbObject/table/tableApplyDetail";
+	}
 
 }
