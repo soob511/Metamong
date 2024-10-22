@@ -15,6 +15,11 @@ public class CodeController {
 	public String codeList() {
 		return "code/codeList";
 	}
+	
+	@GetMapping("/codeAddForm")
+	public String codeAddForm() {
+		return "code/codeAddForm";
+	}
 
 	@GetMapping("/codeCompare")
 	public String navToApplyCode() {
@@ -25,4 +30,5 @@ public class CodeController {
 	public String codeApplyList() {
 		return "code/codeApplyList";
 	}
+	
 }

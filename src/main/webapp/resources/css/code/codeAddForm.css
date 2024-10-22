@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+.codeAdd-header{
+   margin:30px 20px 0 40px;
+   font-size: 25px;
+   font-weight: bold;
+}
+
+
+.code-table{
+   min-width: 660px !important;
+   max-width:660px !important;
+   margin: 5px 20px 20px 40px;   
+}
+
+.table {
+    border-radius: 8px !important; 
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.codeAdd-subtitle,.itemAdd-subtitle,.item-header{
+   font-size:18px;
+   font-weight: 600 !important;
+   margin-left: 20px;
+}
+
+.codeAdd-subtitle{
+	margin-left: 40px;
+}
+
+
+.item-management{
+   margin: 20px 0 10px 10px;
+}
+
+.item-table{
+   min-width: 660px !important;
+   max-width:660px !important;
+   margin: 5px  20px;;
+}
+
+.table th, .table td {
+   font-size:14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr {
+    height: 40px; 
+}
+
+.table-hover td, .table-hover th {
+    padding: 15px 10px;
+}
+
+thead{
+   height: 40px; 
+    padding: 15px 10px;
+}
+
+.content-input{
+	min-height: 120px !important;
+	max-height:120px !important;
+}
+
+.code-buttons{
+   padding-top: 10px;
+}
+
+.item-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.button-group {
+    display: flex;
+    gap: 10px; 
+    margin-right: 45px;
+    justify-content: flex-end;
+}
+.btn-add{
+   background-color: var(--theme);
+   color: white;
+   border-radius: 8px;
+   border: none;
+   width: 70px;
+   height: 30px;
+   font-size: 14px;
+   margin-right: 5px;
+   text-align: center;
+   line-height: 2.1;
+}
+
+.btn-excel{
+   background-color: white;
+   color:  var(--theme);
+   border-radius: 8px;
+   border: 1px solid var(--theme); 
+   width: 70px;
+   height: 30px;
+   font-size: 14px;
+   text-align: center;
+   line-height: 2.1;
+}
+
+.item-header{
+	margin: 5px;
+}
+
+.item-container {
+	min-width:1360px !important;
+	max-width:1360px !important;
+	margin:10px 40px 60px 40px !important;
+}
+
+
+
