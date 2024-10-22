@@ -83,3 +83,7 @@ td, th{
    font-size: 20px;
    color: #343a40;
 }
+
+h4 {
+	font-size: 25px !important;
+}
