@@ -17,7 +17,7 @@ public class CodeController {
 	}
 
 	@GetMapping("/codeCompare")
-	public String navToApplyCode() {
+	public String codeCompare() {
 		return "code/codeCompare";
 	}
 	
