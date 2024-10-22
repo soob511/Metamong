@@ -67,7 +67,7 @@
               </tr>
             </table>
             <div class="d-flex justify-content-end">
-              <a href="${pageContext.request.contextPath}/index/indexList"><button class="btn-list">목록</button></a>
+              <a href="${pageContext.request.contextPath}/index/indexApplyList"><button class="btn-list">목록</button></a>
             </div>
           </div>
         </div>
