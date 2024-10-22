@@ -18,6 +18,10 @@ public class TableController {
 		return "dbObject/table/tableCompare";
 	}
 	
+	@GetMapping("/tableAddForm")
+	public String tableAddForm() {
+		return "dbObject/table/tableAddForm";
+	}
 	@GetMapping("/tableApplyList")
 	public String tableApplyList() {
 		return "dbObject/table/tableApplyList";
