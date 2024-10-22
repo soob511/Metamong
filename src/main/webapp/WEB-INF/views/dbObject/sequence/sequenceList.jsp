@@ -87,9 +87,9 @@
 						</div>
 
 						<div class="col sequence-create-delete">
-								<div class="sequence-create-delete-header">
-									<p class="sequence-create-delete-title">시퀀스 생성/삭제</p>
-								</div>
+							<div class="sequence-create-delete-header">
+								<p class="sequence-create-delete-title">시퀀스 생성/삭제</p>
+							</div>
 
 							<div class="sequence-create-delete-container">
 								<div class="input-group">
@@ -116,13 +116,15 @@
 								</div>
 
 								<div class="input-group mb-3 file-upload-group">
-									<label class="input-file-label">파일업로드</label>
-									<input type="file" class="form-control" id="inputGroupFile">
+									<label class="input-file-label">파일업로드</label> <input
+										type="file" class="form-control" id="inputGroupFile">
 								</div>
 
 								<div class="button-group">
-									<button type="button" class="btn-add">신청</button>
+									<a href="sequenceApplyList">
+										<button type="button" class="btn-add">신청</button>
 								</div>
+								</a>
 							</div>
 						</div>
 					</div>

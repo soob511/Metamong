@@ -177,7 +177,7 @@
 				</div>
 
 				<div class="button-group">
-					<a href="codeApplyList">
+					<a href="tableApplyList">
 						<div class="btn-add" type="button">신청</div>
 					</a>
 				</div>
