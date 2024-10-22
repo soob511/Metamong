@@ -19,8 +19,8 @@
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
 					<div class="fw-bold code-applyList-title">> 코드/항목 신청내역</div>
+					<hr>
 					<div class="d-flex justify-content-end align-items-center">
-						
 						<div class="search-box d-flex align-items-center">
 							<label for="codeNameSearch" class="code-search-label">코드명(논리/물리)</label>
 							<form>
