@@ -1,10 +1,19 @@
 @charset "UTF-8";
 
-
-
 .main-container > .row {
-	height: calc((100vh - 60px) / 2);
-	padding: 40px;
+	padding: 30px 45px 0;
+}
+
+.board-title {
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+/* 신청현황 */
+.col-6 {
+	margin-right: 40px !important;
+	height: 340px;
 }
 
 .dash-board {
@@ -13,8 +22,75 @@
 	box-shadow: var(--box-shadow);
 }
 
-.summary {
-	border-radius: 8px;
-	box-shadow: var(--box-shadow);
+#chart {
+	margin-top: 60px;
 }
 
+.project-title {
+	padding: 60px 20px 10px;
+	font-size: 16px;
+	margin-bottom: 0;
+}
+
+.project-user {
+	padding-left: 20px;	
+	font-size: 28px;
+}
+
+.summary-box {
+	border-radius: 8px;
+	box-shadow: var(--box-shadow);
+	margin: 20px 30px 20px 20px;
+	border: 1px solid #d9d9d9;
+	height: 130px;
+	text-align: center;
+	padding: 30px 10px;
+}
+
+.summary-box div {
+	width: 100%
+}
+
+.summary-box div:not(:last-of-type) {
+	border-right: 1px solid #d9d9d9;
+}
+
+.summary-box p {
+	color: #767676;
+	padding-top: 2px;
+	margin-bottom: 7px;
+	font-size: 18px;
+}
+
+.summary-box h3 {
+	letter-spacing: 2px;
+	margin-bottom: 0;
+}
+
+.notice-box .btn-notice {
+	background: none;
+    border: none;
+    font-size: 12px;
+    padding-top: 12px;
+}
+
+.notice-box table, .table-box, .col-box {
+	border-radius: 8px !important;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+table th, table td {
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-box {
+	height: 100%;
+	margin-right: 40px;
+}
+
+.table-box, .col-box {
+	height: 340px;
+}
