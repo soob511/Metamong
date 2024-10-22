@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>codeContrast</title>
+<title>코드 전후비교</title>
 <link
 	href="${pageContext.request.contextPath}/resources/css/code/codeCompare.css"
 	rel="stylesheet">
