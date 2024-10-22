@@ -10,12 +10,16 @@
 	font-size:14px;
 }
 
-.table {
+.table-container {
 	margin-top:20px;
-	text-align:center;
+	height: 600px;
 	border-radius: 8px !important; 
     box-shadow: var(--box-shadow);
     overflow: hidden;
+}
+
+.table {
+	text-align:center;
 }
 
 .table.table-bordered {

@@ -36,83 +36,84 @@
 							</form>
 						</div>
 					</div>
-
-					<table class="table table-hover">
-						<thead class="table">
-							<tr class="table-primary">
-								<th scope="col">No.</th>
-								<th scope="col">신청일자</th>
-								<th scope="col">신청자</th>
-								<th scope="col">스키마명</th>
-								<th scope="col">테이블명</th>
-								<th scope="col">분류</th>
-								<th scope="col">상세보기</th>
-								<th scope="col">상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member</td>
-								<td>테이블</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-approve">승인</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member</td>
-								<td>테이블</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member</td>
-								<td>테이블</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-await">승인대기</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member</td>
-								<td>테이블</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">4</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member</td>
-								<td>테이블</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">5</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member</td>
-								<td>테이블</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-await">승인대기</td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="table-container">
+						<table class="table table-hover">
+							<thead class="table">
+								<tr class="table-primary">
+									<th scope="col">No.</th>
+									<th scope="col">신청일자</th>
+									<th scope="col">신청자</th>
+									<th scope="col">스키마명</th>
+									<th scope="col">테이블명</th>
+									<th scope="col">분류</th>
+									<th scope="col">상세보기</th>
+									<th scope="col">상태</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">1</th>
+									<td>2023-10-13</td>
+									<td>나길주</td>
+									<td>kosa_oti_team_1</td>
+									<td>member</td>
+									<td>테이블</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-approve">승인</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>2023-10-13</td>
+									<td>나길주</td>
+									<td>kosa_oti_team_1</td>
+									<td>member</td>
+									<td>테이블</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-deny">반려</td>
+								</tr>
+								<tr>
+									<th scope="row">2</th>
+									<td>2023-10-13</td>
+									<td>나길주</td>
+									<td>kosa_oti_team_1</td>
+									<td>member</td>
+									<td>테이블</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-await">승인대기</td>
+								</tr>
+								<tr>
+									<th scope="row">3</th>
+									<td>2023-10-13</td>
+									<td>나길주</td>
+									<td>kosa_oti_team_1</td>
+									<td>member</td>
+									<td>테이블</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-deny">반려</td>
+								</tr>
+								<tr>
+									<th scope="row">4</th>
+									<td>2023-10-13</td>
+									<td>나길주</td>
+									<td>kosa_oti_team_1</td>
+									<td>member</td>
+									<td>테이블</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-deny">반려</td>
+								</tr>
+								<tr>
+									<th scope="row">5</th>
+									<td>2023-10-13</td>
+									<td>나길주</td>
+									<td>kosa_oti_team_1</td>
+									<td>member</td>
+									<td>테이블</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-await">승인대기</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 							<li class="page-item"><a class="page-link" href="#"

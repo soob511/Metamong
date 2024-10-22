@@ -10,10 +10,16 @@
 	margin: 20px 20px 20px 45px;	
 }
 
-.table {
-    border-radius: 8px !important; 
+.table-container {
+	margin-top:20px;
+	height: 600px;
+	border-radius: 8px !important; 
     box-shadow: var(--box-shadow);
     overflow: hidden;
+}
+
+.table {
+	text-align:center;
 }
 
 .before-management-title,.after-management-title{

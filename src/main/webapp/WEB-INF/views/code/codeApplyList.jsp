@@ -30,83 +30,84 @@
 							</form>
 						</div>
 					</div>
-
-					<table class="table table-hover">
-						<thead class="table">
-							<tr class="table-primary">
-								<th scope="col">No.</th>
-								<th scope="col">신청일자</th>
-								<th scope="col">신청자</th>
-								<th scope="col">코드명(논리)</th>
-								<th scope="col">코드명(물리)</th>
-								<th scope="col">분류</th>
-								<th scope="col">상세보기</th>
-								<th scope="col">상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-approve">승인</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-await">승인대기</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-approve">승인</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><button class="btn-history-details">상세보기</button></td>
-								<td class="code-await">승인대기</td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="table-container">
+						<table class="table table-hover">
+							<thead class="table">
+								<tr class="table-primary">
+									<th scope="col">No.</th>
+									<th scope="col">신청일자</th>
+									<th scope="col">신청자</th>
+									<th scope="col">코드명(논리)</th>
+									<th scope="col">코드명(물리)</th>
+									<th scope="col">분류</th>
+									<th scope="col">상세보기</th>
+									<th scope="col">상태</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-approve">승인</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-deny">반려</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-await">승인대기</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-approve">승인</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-deny">반려</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td><button class="btn-history-details">상세보기</button></td>
+									<td class="code-await">승인대기</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 							<li class="page-item"><a class="page-link" href="#"

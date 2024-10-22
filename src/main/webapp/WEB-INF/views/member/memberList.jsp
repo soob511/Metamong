@@ -38,112 +38,113 @@
 							</form>
 						</div>
 					</div>
-
-					<table class="table table-hover">
-						<thead class="table">
-							<tr class="table-primary">
-								<th scope="col">No.</th>
-								<th scope="col">ID</th>
-								<th scope="col">이름</th>
-								<th scope="col">권한</th>
-								<th scope="col">소속</th>
-								<th scope="col">사번</th>
-								<th scope="col">연락처</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td>010-9384-3939</td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="table-container">
+						<table class="table table-hover">
+							<thead class="table">
+								<tr class="table-primary">
+									<th scope="col">No.</th>
+									<th scope="col">ID</th>
+									<th scope="col">이름</th>
+									<th scope="col">권한</th>
+									<th scope="col">소속</th>
+									<th scope="col">사번</th>
+									<th scope="col">연락처</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+								<tr>
+									<th scope="row">10</th>
+									<td>gilju</td>
+									<td>나길주</td>
+									<td>admin</td>
+									<td>개발1팀</td>
+									<td>20230001</td>
+									<td>010-9384-3939</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 							<li class="page-item"><a class="page-link" href="#"
