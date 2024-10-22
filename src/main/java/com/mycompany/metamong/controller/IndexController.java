@@ -13,6 +13,16 @@ public class IndexController {
 		return "dbObject/index/indexList";
 	}
 	
+	@GetMapping("/addIndexForm")
+	public String addIndexForm() {
+		return "dbObject/index/addIndexForm";
+	}
+	
+	@GetMapping("/deleteIndexForm")
+	public String deleteIndexForm() {
+		return "dbObject/index/deleteIndexForm";
+	}
+	
 	@GetMapping("/indexApplyList")
 	public String indexApplyList() {
 		return "dbObject/index/indexApplyList";

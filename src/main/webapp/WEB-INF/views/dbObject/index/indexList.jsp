@@ -40,53 +40,55 @@
               </div>
             </div>
             <hr>
-            <div>
+            <div class="index-table">
               <div class="tables-table">
                 <div class="tables-management">
                   <p class="tables-management-title">인덱스</p>
                   <div class="tables-buttons">
-                    <button class="btn-add">추가</button>
-                    <button class="btn-del">삭제</button>
+                    <a href="${pageContext.request.contextPath}/index/addIndexForm"><button class="btn-add">추가</button></a>
+                    <a href="${pageContext.request.contextPath}/index/deleteIndexForm"><button class="btn-del">삭제</button></a>
                   </div>
                 </div>
-                <table class="table table-hover">
-                  <thead class="table-primary">
-                    <tr>
-                      <th scope="col">No.</th>
-                      <th scope="col">인덱스명</th>
-                      <th scope="col">스키마명</th>
-                      <th scope="col">참조테이블명</th>
-                      <th scope="col">참조컬럼명</th>
-                      <th scope="col">유일성</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th>1</th>
-                      <td>SEQ_CODE</td>
-                      <td>kosa_oracle_server-team1</td>
-                      <td>team_table</td>
-                      <td>team-col desc</td>
-                      <td>Y</td>
-                    </tr>
-                    <tr>
-                      <th>2</th>
-                      <td>SEQ_CODE</td>
-                      <td>kosa_oracle_server-team1</td>
-                      <td>team_table</td>
-                      <td>team-col desc</td>
-                      <td>Y</td>
-                    </tr>
-                    <tr>
-                      <th>3</th>
-                      <td>SEQ_CODE</td>
-                      <td>kosa_oracle_server-team1</td>
-                      <td>team_table</td>
-                      <td>team-col desc</td>
-                      <td>Y</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="table-container">
+	                <table class="table table-hover">
+	                  <thead class="table-primary">
+	                    <tr>
+	                      <th scope="col">No.</th>
+	                      <th scope="col">인덱스명</th>
+	                      <th scope="col">스키마명</th>
+	                      <th scope="col">참조테이블명</th>
+	                      <th scope="col">참조컬럼명</th>
+	                      <th scope="col">유일성</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                    <tr>
+	                      <th>1</th>
+	                      <td>SEQ_CODE</td>
+	                      <td>kosa_oracle_server-team1</td>
+	                      <td>team_table</td>
+	                      <td>team-col desc</td>
+	                      <td>Y</td>
+	                    </tr>
+	                    <tr>
+	                      <th>2</th>
+	                      <td>SEQ_CODE</td>
+	                      <td>kosa_oracle_server-team1</td>
+	                      <td>team_table</td>
+	                      <td>team-col desc</td>
+	                      <td>Y</td>
+	                    </tr>
+	                    <tr>
+	                      <th>3</th>
+	                      <td>SEQ_CODE</td>
+	                      <td>kosa_oracle_server-team1</td>
+	                      <td>team_table</td>
+	                      <td>team-col desc</td>
+	                      <td>Y</td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+                </div>
               </div>
             </div>
           </div>

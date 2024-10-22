@@ -38,8 +38,8 @@
 
 
 					<div class="use-filter">
-						<label for="useSelect" class="use-filter-label">사용여부</label>
-						<select id="useSelect" class="form-select"
+						<label for="useSelect" class="use-filter-label">사용여부</label> <select
+							id="useSelect" class="form-select"
 							aria-label="Default select example">
 							<option selected>선택</option>
 							<option value="1">Y</option>
@@ -58,13 +58,15 @@
 							<div class="code-management">
 								<p class="code-management-title">코드</p>
 								<div class="code-buttons">
-									<button class="btn-add">추가</button>
-									<button class="btn-edit">수정</button>
+									<a href="codeAddForm">
+										<button class="btn-add">추가</button>
+									</a> <a href="codeUpdateForm">
+										<button class="btn-edit">수정</button>
+									</a>
 								</div>
 							</div>
 							<table class="table table-hover">
-								<thead
-									class="table-primary">
+								<thead class="table-primary">
 									<tr>
 										<th scope="col">No.</th>
 										<th scope="col">코드(논리)</th>
@@ -83,14 +85,14 @@
 									</tr>
 									<tr>
 										<th>2</th>
-											<td>재산</td>
+										<td>재산</td>
 										<td>PRPT</td>
 										<td>Y</td>
 										<td></td>
 									</tr>
 									<tr>
 										<th>3</th>
-											<td>재산</td>
+										<td>재산</td>
 										<td>PRPT</td>
 										<td>Y</td>
 										<td></td>

@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+.table-container {
+    border-radius: 8px !important;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.table-container:first-of-type {
+    height: 600px;
+}
+
+.table th, .table td {
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr {
+    height: 50px;
+}
+
+.table-hover td, .table-hover th {
+    padding: 15px 10px;
+}
+
+thead {
+    height: 45px;
+    padding: 15px 10px;
+}
+
+.table-list-header {
+    margin: 30px 20px 0 40px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.table-select {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 45px;
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+.btn-select {
+    background-color: white;
+    color: var(--theme);
+    border-radius: 8px;
+    border: 1px solid var(--theme);
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+hr {
+    color: var(--border-color) !important;
+}
+
+.index-table {
+    margin: 0 45px;
+}
+
+.form-select {
+    font-size: 13px !important;
+    height: 30px;
+}
+
+.index-apply-title {
+    font-size: 18px;
+    font-weight: 600 !important;
+    padding-top: 10px;
+}
+
+.index-col-title span {
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px 5px 5px 0;
+}
+
+.index-col-title input {
+    margin-top: 13px;
+}
+
+.index-btns button {
+    border: 1.5px solid var(--theme);
+    border-radius: 3px;
+    background: none;
+    color: var(--theme);
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    margin: 18px 5px 10px 0;
+    padding: 0;
+}
+
+.index-col-table {
+    margin-right: 45px;
+}
+
+.index-cols {
+    height: 340px;
+}
+
+.index-apply-reason p {
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.index-apply-reason textarea {
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+}
+
+.btn-add {
+    background-color: var(--theme);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 55px;
+    height: 35px;
+    font-size: 14px;
+    margin: 10px 0 0 410px;
+}
