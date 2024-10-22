@@ -17,7 +17,7 @@
 		    </a>
 		    <ul class="sub-menu">
 		        <li class="sub-item"><a href="${pageContext.request.contextPath}/code/codeList">코드/항목 내역</a></li> 
-		        <li class="sub-item"><a href="${pageContext.request.contextPath}/">신청내역</a></li>
+		        <li class="sub-item"><a href="${pageContext.request.contextPath}/code/codeApplyList">신청내역</a></li>
 		    </ul>
 		</li>	
 		<li class="menu-item">

@@ -18,7 +18,7 @@
 		<div class="col">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
-					<h4 class="fw-bold">> 코드/항목 신청내역</h4>
+					<div class="fw-bold code-applyList-title">> 코드/항목 신청내역</div>
 					<div class="d-flex justify-content-end align-items-center">
 						
 						<div class="search-box d-flex align-items-center">
@@ -125,5 +125,6 @@
 	</div>
 </div> 
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/js/coreui.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/code/codeApplyList.js"></script>
 </body>
 </html>
