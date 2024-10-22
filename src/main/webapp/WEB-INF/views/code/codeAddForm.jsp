@@ -96,7 +96,7 @@
 				</div>
 				<div class="button-group">
 					<div class="btn-excel" type="button">EXCEL</div>
-					<div class="btn-add" type="button">추가</div>
+					<div class="btn-add" type="button">추가/수정</div>
 				</div>
 
 
