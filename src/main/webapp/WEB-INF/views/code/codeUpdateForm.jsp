@@ -109,6 +109,7 @@
 								<th scope="col">항목명</th>
 								<th scope="col">사용여부</th>
 								<th scope="col">내용</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -118,6 +119,7 @@
 								<td>CAR</td>
 								<td>Y</td>
 								<td>자동차에 관한 항목</td>
+								<td><i class="bi bi-trash3"></i></td>
 							</tr>
 							<tr>
 								<th>002</th>
@@ -125,6 +127,7 @@
 								<td>building</td>
 								<td>Y</td>
 								<td>건물에 관한 항목</td>
+								<td><i class="bi bi-trash3"></i></td>
 							</tr>
 							<tr>
 								<th>003</th>
@@ -132,6 +135,7 @@
 								<td>mountain</td>
 								<td>N</td>
 								<td>산에 관한 항목</td>
+								<td><i class="bi bi-trash3"></i></td>
 							</tr>
 						</tbody>
 					</table>
