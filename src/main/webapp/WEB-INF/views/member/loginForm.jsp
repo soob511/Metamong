@@ -35,22 +35,21 @@
                         <h1>Login</h1>
                         <p>Sign in to your account</p>
                     </div>
-
-                    <div class="input-group">
-                        <label for="mId" class="input-label">UserName</label> 
-                        <input type="text" class="form-control"  id="mId" aria-label="mId">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="mPassword" class="input-label">Password</label> 
-                        <input type="password" class="form-control"  id="mPassword" aria-label="mPassword">
-                    </div>
-
-                    <div class="login-actions">
-                    <a href="${pageContext.request.contextPath}/homeUser">
-                        <button type="button" class="btn btn-login">Login</button>                    
-                    </a>
-                    </div>
+					<form action="${pageContext.request.contextPath}/login" method="post">
+	                    <div class="input-group">
+	                        <label for="mId" class="input-label">UserName</label> 
+	                        <input type="text" class="form-control"  id="mId" name="mId" aria-label="mId">
+	                    </div>
+	
+	                    <div class="input-group">
+	                        <label for="mPassword" class="input-label">Password</label> 
+	                        <input type="password" class="form-control"  id="mPassword" name="mPassword" aria-label="mPassword">
+	                    </div>
+	
+	                    <div class="login-actions">
+	                        <button type="submit" class="btn btn-login">Login</button>
+	                    </div>					
+					</form>
 
                     <div class="signup-notice mt-3">
                         <p>New User? <a href="${pageContext.request.contextPath}/member/joinForm">Sign up</a></p>
