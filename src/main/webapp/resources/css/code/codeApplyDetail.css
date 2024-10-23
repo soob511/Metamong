@@ -9,6 +9,10 @@
 	justify-content: space-between;
 }
 
+.button-groupDBA{
+	margin-right: 20px!important;
+}
+
 .btn-approve {
 	background-color: var(--theme);
 	color: white;
