@@ -25,22 +25,22 @@
 								</div>
 								<div class="col">							
 									<p class="project-title"># MetaMong 프로젝트</p>
-									<h4 class="project-user">반가워요! <span class="fw-bold">김유저</span><span class="fs-5">님</span></h4>
+									<h4 class="project-user">반가워요! <span class="fw-bold">김DBA</span><span class="fs-5">님</span></h4>
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
-											<p>접수</p>
+											<p>코드/항목</p>
 											<h3><span class="fw-bold">15</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
-											<p>승인</p>
+											<p>테이블</p>
 											<h3><span class="fw-bold">10</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
-											<p>반려</p>
+											<p>시퀀스</p>
 											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
-											<p>반영</p>
+											<p>인덱스</p>
 											<h3><span class="fw-bold">3</span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
@@ -177,6 +177,6 @@
 		</div>
 	</div>
 </div> 
-<script src="${pageContext.request.contextPath}/resources/js/home/homeUser.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/home/homeDBA.js"></script>
 </body>
 </html>
