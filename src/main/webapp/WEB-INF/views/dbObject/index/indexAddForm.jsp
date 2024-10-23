@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>인덱스 신청</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dbObject/index/addIndexForm.css" />
+	href="${pageContext.request.contextPath}/resources/css/dbObject/index/indexAddForm.css" />
 </head>
 <body>
 	<div class="container">

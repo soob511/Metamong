@@ -13,14 +13,14 @@ public class IndexController {
 		return "dbObject/index/indexList";
 	}
 	
-	@GetMapping("/addIndexForm")
-	public String addIndexForm() {
-		return "dbObject/index/addIndexForm";
+	@GetMapping("/indexAddForm")
+	public String indexAddForm() {
+		return "dbObject/index/indexAddForm";
 	}
 	
-	@GetMapping("/deleteIndexForm")
-	public String deleteIndexForm() {
-		return "dbObject/index/deleteIndexForm";
+	@GetMapping("/indexDeleteForm")
+	public String indexDeleteForm() {
+		return "dbObject/index/indexDeleteForm";
 	}
 	
 	@GetMapping("/indexApplyList")
