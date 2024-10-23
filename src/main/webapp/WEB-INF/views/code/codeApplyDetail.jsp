@@ -20,7 +20,12 @@
 
 				<div class="codeApplyInfo-header">
 					<p class="codeApplyInfo-title">&gt; 코드/항목 신청 상세보기</p>
+					<!-- <div class="button-groupDBA">
+						<button class="btn-approve">승인</button>
+						<button class="btn-reject">반려</button>
+					</div> -->
 				</div>
+
 				<hr>
 				<div class="container">
 					<div class="row">
@@ -107,8 +112,8 @@
 
 				</div>
 				<div class="button-group">
-				<a href="codeCompare">
-					<div class="btn-compare" type="button">전/후비교</div>
+					<a href="codeCompare">
+						<div class="btn-compare" type="button">전/후비교</div>
 					</a>
 				</div>
 

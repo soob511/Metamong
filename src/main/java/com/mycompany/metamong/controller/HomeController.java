@@ -21,10 +21,10 @@ public class HomeController {
 		return "home/homeUser";
 	}
 	
-	@GetMapping("/homeDba")
-	public String homeDba() {
+	@GetMapping("/homeDBA")
+	public String homeDBA() {
 		log.info("실행");
-		return "home/homeDba";
+		return "home/homeDBA";
 	}
 	
 	@GetMapping("/homeAdmin")
