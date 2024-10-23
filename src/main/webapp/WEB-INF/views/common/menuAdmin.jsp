@@ -10,17 +10,18 @@
 <div class="menu">
 	<p class="logo"><a href="${pageContext.request.contextPath}/homeAdmin">@meta-mong</a></p>
 	<ul>
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/homeAdmin"><i class="bi bi-house-door"></i>HOME</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/homeAdmin"><i class="bi bi-house-door  pe-2"></i>HOME</a></li>
 		<li class="menu-item">
-		    <a href="${pageContext.request.contextPath}/account/accountManage" class="toggle-menu item">
-		        <i class="bi bi-bar-chart-steps"></i>계정관리<i class="bi bi-chevron-down"></i>
+		    <a href="#" class="toggle-menu item d-flex justify-content-between">
+		        <span><i class="bi bi-bar-chart-steps pe-2"></i>계정관리</span>
+		        <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-		        <li class="sub-item"><a href="${pageContext.request.contextPath}/account/accountManage">계정내역</a></li> 
-		        <li class="sub-item"><a href="${pageContext.request.contextPath}/account/accountApplyList">신청내역</a></li>
+		        <li class="sub-item mt-2 "><a href="${pageContext.request.contextPath}/account/accountManage">계정내역</a></li> 
+		        <li class="sub-item last-item"><a href="${pageContext.request.contextPath}/account/accountApplyList">신청내역</a></li>
 		    </ul>
 		</li>	
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square"></i>공지사항</a></li>
-		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/member/loginForm"><i class="bi bi-box-arrow-right"></i>Log out</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square pe-2"></i>공지사항</a></li>
+		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/member/loginForm"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
 	</ul>
 </div>
