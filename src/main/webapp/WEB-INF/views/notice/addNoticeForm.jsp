@@ -16,11 +16,11 @@
             <div>
                 <div class="content">
                     <h4 class="fw-bold notice-title">> 공지사항 등록</h4>
-                    <form>
+                    <form id="addNotice" action="addNotice" method="post" enctype="multipart/form-data">
                         <table class="table">
                             <tr>
                                 <td class="table-primary form-label">제목<span class="form-required">(*)</span></td>
-                                <td><input type="text" class="form-control" id="title" value="" required></td>
+                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle"  value="" required></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">작성자</td>
@@ -28,15 +28,15 @@
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">등록일</td>
-                                <td><input type="date" class="form-control" id="date" value="sysdate" required></td>
+                                <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" value="sysdate" required></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">내용</td>
-                                <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="12" required></textarea></td>
+                                <td><textarea class="form-control" id="exampleFormControlTextarea1" name="noticeContent" rows="12" required></textarea></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">첨부파일</td>
-                                <td><input class="form-control" type="file" id="file"></td>
+                                <td><input class="form-control" type="file" name="noticeFile" id="noticeFile"></td>
                             </tr>
                         </table>
                         <div class="d-flex justify-content-end mt-3">
