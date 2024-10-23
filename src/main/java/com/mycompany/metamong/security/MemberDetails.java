@@ -24,7 +24,7 @@ public class MemberDetails extends User {
 		this.member = member;
 	}
 	
-	public MemberDto geMember() {
+	public MemberDto getMember() {
 		return member;
 	}
 	
