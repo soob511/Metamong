@@ -6,9 +6,9 @@ $(document).ready(function() {
 	let myChart = new Chart(ctx, {
 	    type: 'doughnut',
 	    data: {
-	    	labels: ['전체', '접수', '승인', '반려'],
+	    	labels: ['접수', '승인', '반려', '반영'],
 	        datasets: [{
-	            data: [15,10, 2, 3],
+	            data: [10, 2, 3, 5],
 	            backgroundColor: [
 	                'rgba(255, 175, 163)',
 	                'rgba(128, 202, 255)',
@@ -26,7 +26,16 @@ $(document).ready(function() {
 	                    beginAtZero: true
 	                }
 	            }]
-	        }
+	        },
+	        plugins: {
+	            legend: {
+	              position: 'top',
+	            },
+	            title: {
+	              display: true,
+	              text: '전체 30건'
+	            }
+	          }
 	    }
 	});
 });
