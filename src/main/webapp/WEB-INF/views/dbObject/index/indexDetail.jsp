@@ -16,6 +16,10 @@
           <div class="index-container">
             <div class="table-list-header">
               <p class="table-list-title">&gt; DB Object &gt; 신청내역 &gt; 인덱스 상세보기</p>
+              	<!-- <div class="button-groupDBA">
+						<button class="btn-approve">승인</button>
+						<button class="btn-reject">반려</button>
+				</div> -->
             </div>
             <hr>
             <table class="table table-bordered">
