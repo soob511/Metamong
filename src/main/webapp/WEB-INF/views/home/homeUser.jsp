@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HOME</title>
-<link	href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet">
+<link	href="${pageContext.request.contextPath}/resources/css/home/home.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.5/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -177,6 +177,6 @@
 		</div>
 	</div>
 </div> 
-<script src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/home/home.js"></script>
 </body>
 </html>

@@ -15,9 +15,21 @@ public class HomeController {
 		return "member/loginForm";
 	}
 	
-	@GetMapping("/home")
-	public String home() {
+	@GetMapping("/homeUser")
+	public String homeUser() {
 		log.info("실행");
-		return "home";
+		return "home/homeUser";
+	}
+	
+	@GetMapping("/homeDba")
+	public String homeDba() {
+		log.info("실행");
+		return "home/homeDba";
+	}
+	
+	@GetMapping("/homeAdmin")
+	public String homeAdmin() {
+		log.info("실행");
+		return "home/homeAdmin";
 	}
 }
