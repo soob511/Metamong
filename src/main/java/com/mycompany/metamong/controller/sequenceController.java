@@ -17,5 +17,10 @@ public class sequenceController {
 	public String sequenceApplyList() {
 		return "dbObject/sequence/sequenceApplyList";
 	}
+	
+	@GetMapping("/sequenceDetail")
+	public String sequenceDetail() {
+		return "dbObject/sequence/sequenceDetail";
+	}
 
 }
