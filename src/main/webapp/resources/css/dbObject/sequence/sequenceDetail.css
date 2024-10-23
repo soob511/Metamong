@@ -1,44 +1,11 @@
 @charset "UTF-8";
 
 .table-list-header {
-	margin: 30px 20px 20px 40px;
-	font-size: 25px;
-	font-weight: bold;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    margin: 30px 20px 20px 40px;
+    font-size: 25px;
+    font-weight: bold;
 }
-
-.button-groupDBA {
-	margin-right: 40px !important;
-}
-
-.btn-approve {
-	background-color: var(--theme);
-	color: white;
-	border-radius: 8px;
-	border: none;
-	width: 70px;
-	height: 30px;
-	font-size: 13px;
-	margin-right: 5px;
-	text-align: center;
-	line-height: 2.4;
-}
-
-.btn-reject {
-	background-color: gray;
-	color: white;
-	border-radius: 8px;
-	border: none;
-	width: 70px;
-	height: 30px;
-	font-size: 13px;
-	margin-right: 5px;
-	text-align: center;
-	line-height: 2.4;
-}
-
+ 
 .table {
 	margin: 45px !important;
 	box-shadow: var(--box-shadow);
@@ -48,40 +15,41 @@
 }
 
 thead {
-	height: 45px;
-	padding: 15px 10px;
+    height: 45px;
+    padding: 15px 10px;
 }
 
 .table th, .table td {
-	font-size: 14px;
-	vertical-align: middle;
-	padding: 15px 20px !important;
-	height: 40px;
+    font-size: 14px;
+    vertical-align: middle;
+    padding: 15px 20px !important;
+    height: 40px;
 }
 
 .table-primary {
 	text-align: center;
 	width: 160px;
 	font-weight: 600;
-}
+} 
 
 .btn-sql {
-	background-color: white;
-	color: var(- -theme);
-	border-radius: 8px;
-	border: 1px solid var(--theme);
-	width: 65px;
-	height: 30px;
-	font-size: 14px;
+    background-color: white;
+    color: var(--theme);
+    border-radius: 8px;
+    border: 1px solid var(--theme);
+    width: 65px;
+    height: 30px;
+    font-size: 14px;
 }
 
 .btn-list {
-	background-color: var(--theme);
-	color: white;
-	border-radius: 8px;
-	border: none;
-	width: 75px;
-	height: 40px;
-	font-size: 14px;
-	margin-right: 60px;
+    background-color: var(--theme);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 75px;
+    height: 40px;
+    font-size: 14px;
+    margin-right: 60px;
 }
+

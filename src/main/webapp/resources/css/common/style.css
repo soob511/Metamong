@@ -62,19 +62,16 @@ p.logo a {
 	color: var(--theme) !important;
 }
 
-.menu .menu-item {
-	display: block;
-	margin: 15px 25px;
-}
-
 .menu .menu-item a {
 	color: white;
 	display: inline-block;
-	padding: 15px 20px;
+	margin: 5px 0 5px 20px;
+	padding: 15px 25px 15px 10px;
 	border-radius: 30px;
 }
 
 .menu .menu-item i {
+	padding: 10px;
 	font-size: 20px
 }
 
@@ -86,8 +83,8 @@ p.logo a {
     display: block;
 }
 
-.sub-menu .sub-item {
-	margin-left: 25px;
+.sub-menu li {
+	margin: 5px 40px;
 }
 
 .sub-menu .sub-item.active  {
@@ -95,14 +92,10 @@ p.logo a {
 	border-radius: 30px;
 }
 
-.last-item {
-	padding-bottom: 0 !;
-}
-
 .logout {
 	position: absolute;
 	bottom: 35px;
-    left: 20px;
+	left: 0px;
 }
 
 /* header */

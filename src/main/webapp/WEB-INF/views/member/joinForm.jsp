@@ -95,9 +95,7 @@
 					</div>
 
 					<div class="col-12 text-center mt-4">
-					<a href="loginForm">
-						<button type="button" class="btn-join btn-lg">Sign Up</button>					
-					</a>
+						<button type="button" class="btn-join btn-lg">Sign Up</button>
 					</div>
 				</div>
 			</div>

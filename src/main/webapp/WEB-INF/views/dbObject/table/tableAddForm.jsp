@@ -141,7 +141,6 @@
 								<th scope="col">길이</th>
 								<th scope="col">NULL</th>
 								<th scope="col">PK</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -153,7 +152,7 @@
 								<td>2</td>
 								<td>NOTNULL</td>
 								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
+
 							</tr>
 							<tr>
 								<th>2</th>
@@ -163,7 +162,6 @@
 								<td>2</td>
 								<td>NOTNULL</td>
 								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
 							</tr>
 							<tr>
 								<th>3</th>
@@ -173,7 +171,6 @@
 								<td>2</td>
 								<td>NOTNULL</td>
 								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
 							</tr>
 						</tbody>
 					</table>

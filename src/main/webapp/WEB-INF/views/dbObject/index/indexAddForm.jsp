@@ -122,7 +122,6 @@
 												<th scope="col">No.</th>
 												<th scope="col">컬럼명(물리)</th>
 												<th scope="col">정렬</th>
-												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -130,13 +129,11 @@
 												<td>1</td>
 												<td>PPRT</td>
 												<td>ASC</td>
-												<td><i class="bi bi-trash3"></i></td>
 											</tr>
 											<tr>
 												<td>2</td>
 												<td>PPRT2</td>
 												<td>ASC</td>
-												<td><i class="bi bi-trash3"></i></td>
 											</tr>
 										</tbody>
 									</table>
