@@ -94,3 +94,10 @@ table th, table td {
 .table-box, .col-box {
 	height: 340px;
 }
+
+#line-chart {
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #d9d9d9;
+	box-shadow: var(--box-shadow);
+}

@@ -68,7 +68,7 @@
 								<td>kosa_oti_team_1</td>
 								<td>member_index</td>
 								<td>인덱스</td>
-								<td><button class="btn-history-details">상세보기</button></td>
+								<td><a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a></td>
 								<td class="code-deny">반려</td>
 							</tr>
 							<tr>

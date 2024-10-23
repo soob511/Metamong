@@ -39,4 +39,7 @@ public class NoticeService {
 		return notice;
 		
 	}
-}
+	public void addHitcount(int noticeId) {
+		noticeDao.updateHitcount(noticeId);	
+	}
+}	

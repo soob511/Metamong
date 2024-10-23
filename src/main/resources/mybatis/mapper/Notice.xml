@@ -47,4 +47,10 @@
 		from notice
 		where notice_id=#{noticeId}
 	</select>
+	
+	<update id="updateHitcount" parameterType="int">
+		update notice set
+			notice_hitcount = notice_hitcount + 1
+		where notice_id=#{noticeId}
+	</update>
 </mapper>
