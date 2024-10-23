@@ -71,6 +71,7 @@ public class NoticeController {
 		model.addAttribute("notice", notice);
 		return "notice/noticeDetail";
 	}
+
 	@GetMapping("/addHitCount")
 	public String addHitCount(int noticeId, Model model) {
 		noticeService.addHitcount(noticeId);
@@ -105,5 +106,5 @@ public class NoticeController {
 		
 		return "notice/applyList";
 	}
-	
+
 }
