@@ -10,29 +10,31 @@
 <div class="menu">
 	<p class="logo"><a href="${pageContext.request.contextPath}/homeUser">@meta-mong</a></p>
 	<ul>
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/homeUser"><i class="bi bi-house-door"></i>HOME</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/homeUser"><i class="bi bi-house-door pe-2"></i>HOME</a></li>
 		<li class="menu-item">
-		    <a href="${pageContext.request.contextPath}/code/codeList" class="toggle-menu item">
-		        <i class="bi bi-bar-chart-steps"></i>코드/항목 <i class="bi bi-chevron-down"></i>
+		    <a href="#" class="toggle-menu item d-flex justify-content-between">
+		        <span><i class="bi bi-bar-chart-steps pe-2"></i>코드/항목</span>
+		        <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-		        <li class="sub-item"><a href="${pageContext.request.contextPath}/code/codeList">코드/항목 내역</a></li> 
-		        <li class="sub-item"><a href="${pageContext.request.contextPath}/code/codeApplyList">신청내역</a></li>
+		        <li class="sub-item mt-2"><a href="${pageContext.request.contextPath}/code/codeList">코드/항목 내역</a></li> 
+		        <li class="sub-item last-item"><a href="${pageContext.request.contextPath}/code/codeApplyList">신청내역</a></li>
 		    </ul>
 		</li>	
 		<li class="menu-item">
-		    <a href="${pageContext.request.contextPath}/table/tableList" class="toggle-menu item">
-		        <i class="bi bi-database"></i>DB Object <i class="bi bi-chevron-down"></i>
+		    <a href="#" class="toggle-menu item d-flex justify-content-between">
+		        <span><i class="bi bi-database pe-2"></i>DB Object</span>
+		        <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-				<li class="sub-item"><a href="${pageContext.request.contextPath}/table/tableList">Table</a></li>
+				<li class="sub-item mt-2"><a href="${pageContext.request.contextPath}/table/tableList">Table</a></li>
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/sequence/sequenceList">Sequence</a></li>
 				<li class="sub-item"><a href="${pageContext.request.contextPath}/index/indexList">Index</a></li>
-				<li class="sub-item"><a href="${pageContext.request.contextPath}/table/tableApplyList">신청내역</a></li>
+				<li class="sub-item last-item"><a href="${pageContext.request.contextPath}/table/tableApplyList">신청내역</a></li>
 		    </ul>
 		</li>	
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square"></i>공지사항</a></li>
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/member/memberList"><i class="bi bi-people"></i>직원목록</a></li>
-		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/member/loginForm"><i class="bi bi-box-arrow-right"></i>Log out</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square pe-2"></i>공지사항</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/member/memberList"><i class="bi bi-people pe-2"></i>직원목록</a></li>
+		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/member/loginForm"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
 	</ul>
 </div>
