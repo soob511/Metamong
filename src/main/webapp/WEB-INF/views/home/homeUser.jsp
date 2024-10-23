@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HOME</title>
-<link	href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet">
+<link	href="${pageContext.request.contextPath}/resources/css/home/home.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.5/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -28,19 +28,19 @@
 									<h4 class="project-user">반가워요! <span class="fw-bold">김유저</span><span class="fs-5">님</span></h4>
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
-											<p>전체</p>
+											<p>접수</p>
 											<h3><span class="fw-bold">15</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
-											<p>접수</p>
+											<p>승인</p>
 											<h3><span class="fw-bold">10</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
-											<p>승인</p>
+											<p>반려</p>
 											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
-											<p>반려</p>
+											<p>반영</p>
 											<h3><span class="fw-bold">3</span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
@@ -177,6 +177,6 @@
 		</div>
 	</div>
 </div> 
-<script src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/home/home.js"></script>
 </body>
 </html>

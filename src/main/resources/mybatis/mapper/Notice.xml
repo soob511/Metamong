@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mycompany.metamong.dao.NoticeDao">
+
+	<insert id="addNotice" parameterType="Notice" >
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+			select seq_notice_Id.nextval from dual
+		</selectKey>
+		insert into notice (
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, 
+        	notice_filename, notice_filetype, notice_filedata
+		) 
+		values (
+			#{noticeId}, #{noticeTitle},#{noticeContent}, #{noticeRegdate}, 1,
+			#{noticeFilename},#{noticeFiletype},#{noticeFiledata}
+		)
+	</insert>
+	
+	<select id="selectList" parameterType="Pager" resultType="Notice">
+		<![CDATA[
+			select rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+			from(
+				select rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+				from (
+		        	select notice_id, notice_title, notice_regdate, notice_hitcount
+		        	from notice
+		        	order by notice_id desc
+				)
+	        	where rownum <= #{endRowNo}
+			)
+			where rnum >= #{startRowNo}	
+		]]>
+	</select>
+	
+	<select id="countRows" resultType="int">
+		select count(*) from notice
+	</select>
+	
+	<select id="selectByNoticeId" parameterType="int" resultType="Notice">
+		select notice_id, notice_title, notice_content,notice_regdate, notice_hitcount, notice_filename
+		from notice
+		where notice_id=#{noticeId}
+	</select>
+	
+	<select id="selectFileByNoticeId" parameterType="int" resultType="Notice">
+		select notice_filename, notice_filetype, notice_filedata
+		from notice
+		where notice_id=#{noticeId}
+	</select>
+</mapper>
