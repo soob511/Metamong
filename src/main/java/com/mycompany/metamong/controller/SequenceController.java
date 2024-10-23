@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/sequence")
-public class sequenceController {
+public class SequenceController {
 	
 	@GetMapping("/sequenceList")
 	public String sequenceList() {
@@ -16,6 +16,11 @@ public class sequenceController {
 	@GetMapping("/sequenceApplyList")
 	public String sequenceApplyList() {
 		return "dbObject/sequence/sequenceApplyList";
+	}
+	
+	@GetMapping("/sequenceDetail")
+	public String sequenceDetail() {
+		return "dbObject/sequence/sequenceDetail";
 	}
 
 }
