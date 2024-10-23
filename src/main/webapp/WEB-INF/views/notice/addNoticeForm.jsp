@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항 등록</title>
-    <link href="${pageContext.request.contextPath}/resources/css/notice.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/notice/notice.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
