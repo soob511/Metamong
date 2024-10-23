@@ -1,26 +1,30 @@
 $(".btn-join").on("click", function() {
-	var mId = $("#mId").val().trim();
-	var mPassword = $("#mPassword").val().trim();
-	var mName = $("#mName").val().trim();
-	var mTeam
-	var mTeam = $("#mTeam").val();
-	var mEmpId = $("#mEmpId").val();
-	var mPhone = $("#mPhone").val();
-	var accountRole = $("input[name='accountRole']:checked").val();
+	var MId = $("#MId").val();
+	var MPassword = $("#MPassword").val();
+	var MName = $("#MName").val();
+	var teamId = parseInt($("#teamId").val());
+	var MEmpId = $("#MEmpId").val();
+	var MTel = parseInt($("#MTel").val());
+	var MRole = $("input[name='MRole']:checked").val();
 	 
 	
 	var joinData = {
-			mId,mPassword,mName,mEmpId,mPhone,accountRole
+			MId,MPassword,MName,teamId,MEmpId,MTel,MRole
 	};
+	
+	console.log(joinData);
 	
 	$.ajax({
 		url : "/Metamong/member/join",
 		type: "POST",
 		contentType : "application/json",
+		 data: JSON.stringify(joinData),
 		success:function(response){
 			
-			if(reponse){
+			if(response>0){
 				console.log("성공");				
+			}else{
+				console.log("실패");
 			}
 		}
 	
