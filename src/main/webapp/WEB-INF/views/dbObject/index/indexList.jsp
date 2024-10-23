@@ -45,8 +45,8 @@
                 <div class="tables-management">
                   <p class="tables-management-title">인덱스</p>
                   <div class="tables-buttons">
-                    <a href="${pageContext.request.contextPath}/index/addIndexForm"><button class="btn-add">추가</button></a>
-                    <a href="${pageContext.request.contextPath}/index/deleteIndexForm"><button class="btn-del">삭제</button></a>
+                    <a href="${pageContext.request.contextPath}/index/indexAddForm"><button class="btn-add">추가</button></a>
+                    <a href="${pageContext.request.contextPath}/index/indexDeleteForm"><button class="btn-del">삭제</button></a>
                   </div>
                 </div>
                 <div class="table-container">

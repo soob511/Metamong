@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>인덱스 신청</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dbObject/index/addIndexForm.css" />
+	href="${pageContext.request.contextPath}/resources/css/dbObject/index/indexAddForm.css" />
 </head>
 <body>
 	<div class="container">
@@ -20,10 +20,26 @@
 						<div class="table-list-header">
 							<p class="table-list-title">&gt; 인덱스 신청</p>
 						</div>
-						<div class="table-select">
-							<span>테이블 선택</span>
-							<button class="btn-select">선택</button>
-						</div>
+						<div class="list-filters">
+			                <div class="filter">
+			                  <label for="schemaSelect" class="filter-label">스키마 선택</label>
+			                  <select id="schemaSelect" class="form-select" aria-label="select example">
+			                    <option selected>선택</option>
+			                    <option value="1">One</option>
+			                    <option value="2">Two</option>
+			                    <option value="3">Three</option>
+			                  </select>
+			                </div>
+			                <div class="filter">
+			                  <label for="tableSelect" class="filter-label">테이블 선택</label>
+			                  <select id="tableSelect" class="form-select" aria-label="select example">
+			                    <option selected>선택</option>
+			                    <option value="1">One</option>
+			                    <option value="2">Two</option>
+			                    <option value="3">Three</option>
+			                  </select>
+			                </div>
+			              </div>
 					</div>
 					<hr>
 					<div class="container index-tables">

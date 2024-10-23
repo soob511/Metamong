@@ -38,88 +38,30 @@
                     </div>
                 </div>
                 <table class="table table-hover">
-                    <thead class="table">
                         <tr class="table-primary">
                             <th scope="col">No.</th>
                             <th scope="col">제목</th>
                             <th scope="col">등록일</th>
                             <th scope="col">조회수</th>
                         </tr>
-                        <c:forEach items="${list}" var="notice">
-                    </thead>
-                    
-                        <tr>
-                            <th scope="row">${notice.noticeId}</th>
-                            <td>${notice.noticeTitle}</td>
-                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
-                            <td>${notice.noticeHitcount}</td>
-                        </tr>
-                      </c:forEach>
-                        <!-- <tr>
-                            <th scope="row">9</th>
-                            <td>인덱스 신청에 관하여</td>
-                            <td>2024-10-20</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>메타정보관리시스템에 대한 공지입니다.</td>
-                            <td>2024-10-18</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>테이블 신청에 관하여 안내합니다.</td>
-                            <td>2024-09-08</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>주요 반려 사유</td>
-                            <td>2024-09-01</td>
-                            <td>70</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>이렇게 신청하지 마십시오.</td>
-                            <td>2024-08-30</td>
-                            <td>82</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>[재공지][중요]해킹위험 사례 안내</td>
-                            <td>2024-08-27</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>[중요]해킹위험 사례 안내</td>
-                            <td>2024-08-26</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>시퀀스 요청에 관한 공지입니다.</td>
-                            <td>2024-08-26</td>
-                            <td>25</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>2024/10/20 시스템 점검 시간</td>
-                            <td>2024-08-23</td>
-                            <td>45</td>
-                        </tr>
-                     -->
+                        <c:forEach items="${list}" var="notice">           
+	                        <tr>
+	                            <th scope="row">${notice.noticeId}</th>
+	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}">${notice.noticeTitle}</a></td>
+	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+	                            <td>${notice.noticeHitcount}</td>
+	                        </tr>
+                      </c:forEach>                      
                 </table>
                 <div class="d-flex justify-content-end">
                 	<div class="btn btn-write">
-                    	<a href="${pageContext.request.contextPath}/notice/addNoticeForm">작성하기</a>
+                    	<a href="${pageContext.request.contextPath}/notice/noticeAddForm">작성하기</a>
                 	</div>
                 </div>
-                <nav aria-label="Page navigation">
+               <!--  <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="boardList?pageNo=1" class="btn btn-outline-primary btn-sm" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -132,7 +74,30 @@
                             </a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
+                <div class="page">
+	           			<a href="noticeList?pageNo=1" class="btn btn-outline-primary btn-sm"><<</a>
+	           			<c:if test="${pager.groupNo>1}">
+	           				<a href="noticeList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm"><</a>
+	           			</c:if>
+	           			
+	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+	           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
+	           			</c:if>
+	           			
+	           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
+	           				<c:if test="${pager.pageNo==i}">
+	           					<a href="noticeList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+	           				</c:if>
+	           				<c:if test="${pager.pageNo!=i}">
+	           					<a href="noticeList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+	           				</c:if>
+	           			</c:forEach>
+	           			
+	           			
+	           			<a href="noticeList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
+	           			
+	           		</div>
             </div>
         </div>
     </div>

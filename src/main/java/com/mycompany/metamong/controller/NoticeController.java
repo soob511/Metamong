@@ -2,8 +2,11 @@ package com.mycompany.metamong.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA_2_3.portable.OutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,15 +30,13 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@GetMapping("/addNoticeForm")
-	public String addNoticeForm() {
-		log.info("실행해");
-		return "notice/addNoticeForm";
+	@GetMapping("/noticeAddForm")
+	public String noticeAddForm() {	
+		return "notice/noticeAddForm";
 	}
 	
 	@PostMapping("/addNotice")
 	public String addNotice(AddNoticeForm form) throws Exception{
-		log.info("실행해");
 		NoticeDto notice = new NoticeDto();
 		notice.setNoticeTitle(form.getNoticeTitle());
 		notice.setNoticeContent(form.getNoticeContent());
@@ -65,10 +66,45 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/noticeDetail")
-	public String noticeDetail() {
-		
+	public String noticeDetail(int noticeId, Model model) {
+		NoticeDto notice = noticeService.getNotice(noticeId);
+		model.addAttribute("notice", notice);
 		return "notice/noticeDetail";
 	}
+
+	@GetMapping("/addHitCount")
+	public String addHitCount(int noticeId, Model model) {
+		noticeService.addHitcount(noticeId);
+		return noticeDetail(noticeId,model);	
+	}
 	
+	@GetMapping("/fileDownload")
+	public void fileDownload(int noticeId, HttpServletResponse response)throws Exception {
+		NoticeDto notice = noticeService.getNoticeFile(noticeId);
+		String contentType = notice.getNoticeFiletype();
+		response.setContentType(contentType);
+		
+		String fileName = notice.getNoticeFilename();
+		String encodingFileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + encodingFileName + "\"");
+		
+		ServletOutputStream out = response.getOutputStream();
+		out.write(notice.getNoticeFiledata());
+		out.flush();
+		out.close();
+	}
 	
+
+
+	@GetMapping("/accountManage")
+	public String accountManage() {
+		
+		return "notice/accountManage";
+	}
+	@GetMapping("/applyList")
+	public String applyList() {
+		
+		return "notice/applyList";
+	}
+
 }

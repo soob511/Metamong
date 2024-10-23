@@ -35,24 +35,32 @@ thead {
     font-weight: bold;
 }
 
-.table-select {
+.list-filters {
     display: flex;
     justify-content: left;
     align-items: center;
-    margin-left: 45px;
     margin-bottom: 20px;
+}
+
+.form-select {
+	 height: 37.3px !important;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    min-width: 250px !important;
+    margin-left: 10px;
     font-size: 17px;
 }
 
-.btn-select {
-    background-color: white;
-    color: var(--theme);
-    border-radius: 8px;
-    border: 1px solid var(--theme);
-    width: 70px;
-    height: 30px;
-    font-size: 14px;
-    margin-left: 10px;
+.filter:first-of-type {
+    margin-left: 30px;
+}
+
+.filter-label {
+    min-width: max-content;
+    margin: 0 12px;
 }
 
 hr {

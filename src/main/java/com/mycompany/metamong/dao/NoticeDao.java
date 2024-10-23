@@ -15,5 +15,6 @@ public interface NoticeDao {
 	public int countRows();
 	public NoticeDto selectByNoticeId(int noticeId);
 	public NoticeDto selectFileByNoticeId(int noticeId);
+	public void updateHitcount(int noticeId);
 
 	}

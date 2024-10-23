@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>인덱스 삭제 신청</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dbObject/index/deleteIndexForm.css" />
+	href="${pageContext.request.contextPath}/resources/css/dbObject/index/indexDeleteForm.css" />
 </head>
 <body>
 	<div class="container">
