@@ -36,4 +36,9 @@ public class CodeController {
 		return "code/codeApplyList";
 	}
 	
+	@GetMapping("/codeApplyDetail")
+	public String codeApplyDetail() {
+		return "code/codeApplyDetail";
+	}
+	
 }

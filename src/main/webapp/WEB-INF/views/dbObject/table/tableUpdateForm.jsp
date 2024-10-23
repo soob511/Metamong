@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>테이블/컬럼 생성</title>
+<title>테이블/컬럼 수정</title>
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableAddForm.css"
 	rel="stylesheet" />
@@ -19,7 +19,7 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 				<div class="codeAdd-header">
-					<p class="codeAdd-title">&gt; 테이블 /컬럼 생성</p>
+					<p class="codeAdd-title">&gt; 테이블 /컬럼 수정</p>
 				</div>
 				<hr>
 				<div class="container">
@@ -37,16 +37,17 @@
 								</tr>
 								<tr>
 									<td class="table-primary">테이블(논리)</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
+									<td colspan="5">
+										<div class="table-text">재산정보</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-primary">테이블(물리)</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
+									<td colspan="5">
+										<div class="table-text">PRPT</div>
 									</td>
 								</tr>
+
 								<tr>
 									<td class="table-primary">신청사유</td>
 									<td colspan="5"><input type="text"
@@ -63,13 +64,13 @@
 								<tr>
 									<td class="table-primary">컬럼(논리)</td>
 									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
+										class="form-control code-input" placeholder="재산구분" required>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-primary">컬럼(물리)</td>
 									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
+										class="form-control code-input" placeholder="PRPT_FG" required>
 									</td>
 								</tr>
 								<tr>
@@ -83,7 +84,7 @@
 								<tr>
 									<td class="table-primary">길이</td>
 									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
+										class="form-control code-input" placeholder="2" required>
 									</td>
 								</tr>
 
@@ -118,14 +119,18 @@
 
 
 				<div class="item-container">
-				<div class="item-icon">
-					<div class="item-header">컬럼</div>
-					<div class="index-btns">
-                      <button><i class="bi bi-caret-up-fill"></i></button>
-                      <button><i class="bi bi-caret-down-fill"></i></button>
-                    </div>
-				
-				</div>
+					<div class="item-icon">
+						<div class="item-header">컬럼</div>
+						<div class="index-btns">
+							<button>
+								<i class="bi bi-caret-up-fill"></i>
+							</button>
+							<button>
+								<i class="bi bi-caret-down-fill"></i>
+							</button>
+						</div>
+
+					</div>
 					<table class="table table-hover bottom-table">
 						<thead class="table-primary">
 							<tr>

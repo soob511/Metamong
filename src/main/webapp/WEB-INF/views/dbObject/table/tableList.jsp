@@ -9,9 +9,6 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableList.css"
 	rel="stylesheet" />
-<link 
-	href="${pageContext.request.contextPath}/resources/css/dbObject/table/codeModal.css" 
-	rel="stylesheet" />
 </head>
 <body>
 	<div class="container table-list-container">
@@ -57,15 +54,17 @@
 
 				<div class="container table-management">
 					<div class="row">
-						<!-- 테이블 목록 -->
+						
 						<div class="col-6 tables-table">
 							<div class="tables-management">
 								<p class="tables-management-title">테이블</p>
 								<div class="tables-buttons">
-									<button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">
-										추가
-									</button>
+								<a href="tableAddForm">
+									<button class="btn-add">추가</button>
+									</a>
+									<a href="tableUpdateForm">
 									<button class="btn-edit">수정</button>
+									</a>
 								</div>
 							</div>
 							<table class="table table-hover">
@@ -156,86 +155,6 @@
 							</table>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="exampleModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-
-				<div class="d-flex align-items-center">
-					<label for="tableNameSearch" class="code-search-label">코드명(논리/물리)</label>
-					<div>
-						<form class="d-flex search-form">
-							<input class="form-control" type="search" id="tableNameSearch"
-								placeholder="Search" aria-label="Search"> <i
-								class="bi bi-search"></i>
-						</form>
-					</div>
-				</div>
-
-				<div class="modal-body">
-					<div class="table-container">
-						<table class="table table-hover">
-							<thead class="table">
-								<tr class="table-primary">
-									<th scope="col">No.</th>
-									<th scope="col">코드(논리)</th>
-									<th scope="col">코드(물리)</th>
-									<th scope="col">내용</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">10</th>
-									<td>재산</td>
-									<td>PPRT</td>
-									<td></td>
-								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>재산</td>
-									<td>PPRT</td>
-									<td></td>
-								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>재산</td>
-									<td>PPRT</td>
-									<td></td>
-								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>재산</td>
-									<td>PPRT</td>
-									<td></td>
-								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>재산</td>
-									<td>PPRT</td>
-									<td></td>
-								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>재산</td>
-									<td>PPRT</td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn-select" data-bs-dismiss="modal">확인</button>
 				</div>
 			</div>
 		</div>

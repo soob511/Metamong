@@ -40,7 +40,9 @@
                             </tr>
                         </table>
                         <div class="d-flex justify-content-end mt-3">
-                            <button type="button" class="btn-cancel me-2">취소</button>
+                        <a href="noticeList">
+                            <button type="button" class="btn-cancel me-2">취소</button>                        
+                        </a>
                             <button type="submit" class="btn-add me-2">등록</button>
                         </div>
                     </form>
