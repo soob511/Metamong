@@ -20,6 +20,10 @@
 
 				<div class="codeApplyInfo-header">
 					<p class="codeApplyInfo-title">&gt; 테이블/컬럼 신청 상세보기</p>
+					<!-- <div class="button-groupDBA">
+						<button class="btn-approve">승인</button>
+						<button class="btn-reject">반려</button>
+					</div> -->
 				</div>
 				<hr>
 				<div class="container">

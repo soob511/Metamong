@@ -58,7 +58,7 @@
 									<td>kosa_oti_team_1</td>
 									<td>notice_id</td>
 									<td>시퀀스</td>
-									<td><button class="btn-history-details">상세보기</button></td>
+									<td><a href="${pageContext.request.contextPath}/sequence/sequenceDetail"><button class="btn-history-details">상세보기</button></a></td>
 									<td class="code-approve">승인</td>
 								</tr>
 								<tr>
@@ -68,7 +68,7 @@
 									<td>kosa_oti_team_1</td>
 									<td>notice_id</td>
 									<td>시퀀스</td>
-									<td><button class="btn-history-details">상세보기</button></td>
+									<td><a href="${pageContext.request.contextPath}/sequence/sequenceDetail"><button class="btn-history-details">상세보기</button></a></td>
 									<td class="code-deny">반려</td>
 								</tr>
 								<tr>
@@ -78,7 +78,7 @@
 									<td>kosa_oti_team_1</td>
 									<td>notice_id</td>
 									<td>시퀀스</td>
-									<td><button class="btn-history-details">상세보기</button></td>
+									<td><a href="${pageContext.request.contextPath}/sequence/sequenceDetail"><button class="btn-history-details">상세보기</button></a></td>
 									<td class="code-await">승인대기</td>
 								</tr>
 								<tr>
@@ -88,7 +88,7 @@
 									<td>kosa_oti_team_1</td>
 									<td>notice_id</td>
 									<td>시퀀스</td>
-									<td><button class="btn-history-details">상세보기</button></td>
+									<td><a href="${pageContext.request.contextPath}/sequence/sequenceDetail"><button class="btn-history-details">상세보기</button></a></td>
 									<td class="code-deny">반려</td>
 								</tr>
 								<tr>
@@ -98,7 +98,7 @@
 									<td>kosa_oti_team_1</td>
 									<td>notice_id</td>
 									<td>시퀀스</td>
-									<td><button class="btn-history-details">상세보기</button></td>
+									<td><a href="${pageContext.request.contextPath}/sequence/sequenceDetail"><button class="btn-history-details">상세보기</button></a></td>
 									<td class="code-deny">반려</td>
 								</tr>
 								<tr>
@@ -108,7 +108,7 @@
 									<td>kosa_oti_team_1</td>
 									<td>notice_id</td>
 									<td>시퀀스</td>
-									<td><button class="btn-history-details">상세보기</button></td>
+									<td><a href="${pageContext.request.contextPath}/sequence/sequenceDetail"><button class="btn-history-details">상세보기</button></a></td>
 									<td class="code-await">승인대기</td>
 								</tr>
 							</tbody>

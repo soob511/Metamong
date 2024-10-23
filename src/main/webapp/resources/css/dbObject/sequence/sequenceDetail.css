@@ -9,8 +9,8 @@
 	justify-content: space-between;
 }
 
-.button-groupDBA{
-	margin-right: 40px!important;
+.button-groupDBA {
+	margin-right: 40px !important;
 }
 
 .btn-approve {
@@ -67,7 +67,7 @@ thead {
 
 .btn-sql {
 	background-color: white;
-	color: var(--theme);
+	color: var(- -theme);
 	border-radius: 8px;
 	border: 1px solid var(--theme);
 	width: 65px;
