@@ -47,7 +47,9 @@
                     </div>
 
                     <div class="login-actions">
-                        <button type="button" class="btn btn-login">Login</button>
+                    <a href="${pageContext.request.contextPath}/homeUser">
+                        <button type="button" class="btn btn-login">Login</button>                    
+                    </a>
                     </div>
 
                     <div class="signup-notice mt-3">
