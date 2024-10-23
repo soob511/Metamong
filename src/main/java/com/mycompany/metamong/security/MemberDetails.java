@@ -15,7 +15,7 @@ public class MemberDetails extends User {
 		super(
 				member.getMId(), 
 				member.getMPassword(), 
-				member.isMIsActive(),
+				true,
 				true,
 				true,
 				true,
