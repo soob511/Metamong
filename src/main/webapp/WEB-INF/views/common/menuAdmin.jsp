@@ -12,12 +12,12 @@
 	<ul>
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/homeAdmin"><i class="bi bi-house-door"></i>HOME</a></li>
 		<li class="menu-item">
-		    <a href="${pageContext.request.contextPath}/code/codeList" class="toggle-menu item">
+		    <a href="${pageContext.request.contextPath}/account/accountManage" class="toggle-menu item">
 		        <i class="bi bi-bar-chart-steps"></i>계정관리<i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-		        <li class="sub-item"><a href="${pageContext.request.contextPath}/code/codeList">계정내역</a></li> 
-		        <li class="sub-item"><a href="${pageContext.request.contextPath}/code/codeApplyList">신청내역</a></li>
+		        <li class="sub-item"><a href="${pageContext.request.contextPath}/account/accountManage">계정내역</a></li> 
+		        <li class="sub-item"><a href="${pageContext.request.contextPath}/account/accountApplyList">신청내역</a></li>
 		    </ul>
 		</li>	
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square"></i>공지사항</a></li>
