@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mycompany.metamong.dao.MemberDao"/>
+<mapper namespace="com.mycompany.metamong.dao.MemberDao">
+	<select id="selectByMId" parameterType="String" resultType="Member">
+		SELECT
+			m_id,
+			m_name,
+			m_password,
+			team_id,
+			m_empid,
+			m_tel,
+			m_role,
+			m_isactive,
+			prof_filename,
+			prof_filetype,
+			prof_filedata,
+			m_applydate,
+			m_isapprove,
+			m_regdate
+		FROM
+			member
+		WHERE
+			m_id = #{mId}
+	</select>
+</mapper>
 	
