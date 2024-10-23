@@ -9,6 +9,9 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableAddForm.css"
 	rel="stylesheet" />
+<link 
+	href="${pageContext.request.contextPath}/resources/css/dbObject/table/codeModal.css" 
+	rel="stylesheet" />
 </head>
 <body>
 	<div class="container codeAdd-container">
@@ -112,7 +115,9 @@
 
 				</div>
 				<div class="button-group">
-					<div class="btn-load" type="button">불러오기</div>
+					<div class="btn-load" data-bs-toggle="modal" data-bs-target="#codeLoadModal" type="button">
+						불러오기
+					</div>
 					<div class="btn-add" type="button">추가/수정</div>
 				</div>
 
@@ -175,6 +180,86 @@
 					<a href="tableApplyList">
 						<div class="btn-add" type="button">신청</div>
 					</a>
+				</div>
+
+				<div class="modal fade" id="codeLoadModal" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+
+							<div class="d-flex align-items-center">
+								<label for="codeNameSearch" class="code-search-label">코드명(논리/물리)</label>
+								<div>
+									<form class="d-flex search-form">
+										<input class="form-control" type="search" id="codeNameSearch"
+											placeholder="Search" aria-label="Search"> <i
+											class="bi bi-search"></i>
+									</form>
+								</div>
+							</div>
+
+							<div class="modal-body">
+								<div class="table-container">
+									<table class="table table-hover">
+										<thead class="table">
+											<tr class="table-primary">
+												<th scope="col">No.</th>
+												<th scope="col">코드(논리)</th>
+												<th scope="col">코드(물리)</th>
+												<th scope="col">내용</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">10</th>
+												<td>재산</td>
+												<td>PPRT</td>
+												<td></td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>재산</td>
+												<td>PPRT</td>
+												<td></td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>재산</td>
+												<td>PPRT</td>
+												<td></td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>재산</td>
+												<td>PPRT</td>
+												<td></td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>재산</td>
+												<td>PPRT</td>
+												<td></td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>재산</td>
+												<td>PPRT</td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn-select" data-bs-dismiss="modal">확인</button>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<script
