@@ -100,6 +100,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 </body>
 </html>
