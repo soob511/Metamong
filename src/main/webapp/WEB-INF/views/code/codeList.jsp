@@ -19,7 +19,7 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 				<div class="code-list-header">
-					<p class="code-list-title">&gt; 코드/항목 내역 관리</p>
+					<p class="code-list-title">&gt; 코드/항목 관리</p>
 				</div>
 
 
@@ -58,9 +58,11 @@
 							<div class="code-management">
 								<p class="code-management-title">코드</p>
 								<div class="code-buttons">
+									<button class="btn-excel">EXCEL 업로드</button>
 									<a href="codeAddForm">
 										<button class="btn-add">추가</button>
-									</a> <a href="codeUpdateForm">
+									</a> 
+									<a href="codeUpdateForm">
 										<button class="btn-edit">수정</button>
 									</a>
 								</div>

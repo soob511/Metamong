@@ -61,15 +61,18 @@ label{
 }
 
 .sequence-table{
-	min-width: 660px !important;
-	max-width:660px !important;
-	margin: 20px 20px 20px 45px;	
+	margin: 20px 45px;	
 }
 
-.table {
-    border-radius: 8px !important; 
+.sequence-list-table {
+	border-radius: 8px !important; 
     box-shadow: var(--box-shadow);
     overflow: hidden;
+    height: 580px;
+}
+
+.sequence-list {
+    width: 1340px !important;
 }
 
 .sequence-management-title,.sequence-create-delete-title{
@@ -80,25 +83,24 @@ label{
 .sequence-management-title,.sequence-create-delete-title{
 	padding-top: 10px;
 }
-
+/* 
 .sequence-create-delete-title{
 	margin-left: 20px;
 }
 
 .sequence-buttons{
 	padding-top: 10px;
-}
+} */
 
-.btn-add{
+.btn-apply {
 	background-color: var(--theme);
 	color: white;
 	border-radius: 8px;
 	border: none;
-	width: 50px;
+	width: 120px;
 	height: 30px;
 	font-size: 14px;
 	margin-right: 5px;
-	
 }
 
 .table th, .table td {
@@ -119,7 +121,7 @@ thead{
 	height: 45px; 
 	 padding: 15px 10px;
 }
-
+/* 
 .sequence-create-delete-container{
 	width:500px;
 }
@@ -162,7 +164,7 @@ thead{
 .button-group {
      align-self: flex-end;
     margin-top: auto;
-}
+} */
 
 
 

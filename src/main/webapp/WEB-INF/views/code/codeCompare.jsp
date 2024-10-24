@@ -95,14 +95,11 @@
 									</tbody>
 								</table>
 						</div>
-						
-						
-						<button></button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 </body>
 </html>

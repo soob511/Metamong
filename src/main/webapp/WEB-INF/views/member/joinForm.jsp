@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,10 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.bundle.min.js"></script>
 <link	href="${pageContext.request.contextPath}/resources/css/common/style.css" rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/resources/css/member/joinForm.css"
 	rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/resources/js/member/joinForm.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 
@@ -33,57 +40,60 @@
 						<div class="input-group">
 							<label for="mId" class="input-label">아이디</label> <input
 								type="text" class="form-control" placeholder="예) oti123"
-								id="mId" aria-label="mId" aria-describedby="mId">
+								id="MId" aria-label="mId" aria-describedby="mId">
 							<button class="btn-confirm" type="submit">중복확인</button>
+							<span class="username-message"></span>
 						</div>
 						<div class="input-group">
 							<label for="mPassword" class="input-label">비밀번호</label> <input
 								type="password" class="form-control"
-								placeholder="영문, 숫자 조합 8~16자" id="mPassword"
+								placeholder="영문, 숫자 조합 8~16자" id="MPassword"
 								aria-label="mPassword" aria-describedby="mPassword">
+						<span class="password-message"></span>
 						</div>
 						<div class="input-group">
-							<label for="mPasswordConfirm" class="input-label">비밀번호 확인</label>
+							<label for="MPasswordConfirm" class="input-label">비밀번호 확인</label>
 							<input type="password" class="form-control"
-								placeholder="비밀번호 재입력" id="mPasswordConfirm"
-								aria-label="mPasswordConfirm"
-								aria-describedby="mPasswordConfirm">
+								placeholder="비밀번호 재입력" id="MPasswordConfirm"
+								aria-label="MPasswordConfirm"
+								aria-describedby="MPasswordConfirm" required>
+						<span class="password-confirm-message"></span>
 						</div>
 						<div class="input-group">
 							<label for="mName" class="input-label">이름</label> <input
-								type="text" class="form-control" placeholder="예) 홍길동" id="mName"
+								type="text" class="form-control" placeholder="예) 홍길동" id="MName"
 								aria-label="mName" aria-describedby="mName">
 						</div>
 						<div class="input-group">
 							<label for="mTeam" class="input-label">소속</label> <select
-								class="form-select" id="mTeam" aria-label="mTeam"
+								class="form-select" id="teamId" aria-label="team_Id"
 								aria-describedby="mTeam">
 								<option selected>소속을 선택하세요</option>
-								<option value="개발1팀">개발1팀</option>
-								<option value="개발2팀">개발2팀</option>
-								<option value="개발3팀">개발3팀</option>
+								<option value="1">개발1팀</option>
+								<option value="2">개발2팀</option>
+								<option value="3">개발3팀</option>
 							</select>
 						</div>
 
 						<div class="input-group">
 							<label for="mEmpId" class="input-label">사번</label> <input
 								type="text" class="form-control" placeholder="예) 123456"
-								id="mEmpId" aria-label="mEmpId" aria-describedby="mEmpId">
+								id="MEmpId" aria-label="mEmpId" aria-describedby="mEmpId">
 						</div>
 						<div class="input-group">
 							<label for="mPhone" class="input-label">연락처</label> <input
 								type="text" class="form-control" placeholder="예) 010-1234-5678"
-								id="mPhone" aria-label="mPhone" aria-describedby="mPhone">
+								id="MTel" aria-label="mPhone" aria-describedby="mPhone">
 						</div>
 						<div class="input-group">
 							<label for="mRole" class="input-label">계정 권한</label>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="accountRole"
+								<input class="form-check-input" type="radio" name="MRole"
 									id="roleUser" value="User" checked> <label
 									class="form-check-label" for="roleUser">User</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="accountRole"
+								<input class="form-check-input" type="radio" name="MRole"
 									id="roleDBA" value="DBA"> <label
 									class="form-check-label" for="roleDBA">DBA</label>
 							</div>
@@ -91,12 +101,11 @@
 					</div>
 
 					<div class="col-12 text-center mt-4">
-					<a href="loginForm">
-						<button type="button" class="btn-join btn-lg">Sign Up</button>					
-					</a>
+						<button id="btn-signup" type="button" class="btn-join btn-lg">Sign Up</button>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="${pageContext.request.contextPath}/resources/js/member/joinForm.js"></script>
 </body>
 </html>

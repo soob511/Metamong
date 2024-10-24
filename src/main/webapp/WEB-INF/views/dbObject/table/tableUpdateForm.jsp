@@ -59,7 +59,11 @@
 						</div>
 
 						<div class="col item">
-							<div class="itemAdd-subtitle">컬럼</div>
+							<div class="btn-load-container">
+								<div class="itemAdd-subtitle">컬럼</div>
+								<div class="btn-load" data-bs-toggle="modal"
+									data-bs-target="#codeLoadModal" type="button">불러오기</div>
+							</div>
 							<table class="table table-bordered item-table">
 								<tr>
 									<td class="table-primary">컬럼(논리)</td>
@@ -113,8 +117,8 @@
 
 				</div>
 				<div class="button-group">
-					<div class="btn-load" type="button">불러오기</div>
-					<div class="btn-add" type="button">추가/수정</div>
+					<div class="btn-add" type="button">추가</div>
+					<div class="btn-update" type="button">수정</div>
 				</div>
 
 
@@ -186,6 +190,6 @@
 				</div>
 
 				<script
-					src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script>
+					src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableList.js"></script>
 </body>
 </html>

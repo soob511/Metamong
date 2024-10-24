@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>테이블 내역 관리</title>
+<title>테이블 관리</title>
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableList.css"
 	rel="stylesheet" />
@@ -19,7 +19,7 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 				<div class="table-list-header">
-					<p class="table-list-title">&gt; 테이블 내역 관리</p>
+					<p class="table-list-title">&gt; 테이블 관리</p>
 				</div>
 
 

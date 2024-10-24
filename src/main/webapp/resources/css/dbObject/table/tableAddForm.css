@@ -1,137 +1,138 @@
 @charset "UTF-8";
 
-.codeAdd-header{
-   margin:30px 20px 0 40px;
-   font-size: 25px;
-   font-weight: bold;
+.codeAdd-header {
+	margin: 30px 20px 0 40px;
+	font-size: 25px;
+	font-weight: bold;
 }
 
-
-.code-table{
-   min-width: 660px !important;
-   max-width:660px !important;
-   margin: 5px 20px 20px 40px;   
+.code-table {
+	min-width: 660px !important;
+	max-width: 660px !important;
+	height:330px;
+	margin: 5px 20px 20px 40px;
 }
 
 .table {
-    border-radius: 8px !important; 
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
+	border-radius: 8px !important;
+	box-shadow: var(--box-shadow);
+	overflow: hidden;
 }
 
-.codeAdd-subtitle,.itemAdd-subtitle,.item-header{
-   font-size:18px;
-   font-weight: 600 !important;
-   margin-left: 20px;
+.codeAdd-subtitle, .itemAdd-subtitle, .item-header {
+	font-size: 18px;
+	font-weight: 600 !important;
+	margin-left: 20px;
 }
 
-.codeAdd-subtitle{
+.codeAdd-subtitle {
 	margin-left: 40px;
 }
 
-
-.item-management{
-   margin: 20px 0 10px 10px;
+.item-management {
+	margin: 20px 0 10px 10px;
 }
 
-.item-table{
-   min-width: 660px !important;
-   max-width:660px !important;
-   margin: 5px  20px;;
+.item-table {
+	min-width: 660px !important;
+	max-width: 660px !important;
+	margin: 5px 20px;;
 }
 
 .table th, .table td {
-   font-size:14px;
-    text-align: center;
-    vertical-align: middle;
+	font-size: 14px;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .table-hover tbody tr {
-    height: 40px; 
+	height: 40px;
 }
 
 .table-hover td, .table-hover th {
-    padding: 15px 10px;
+	padding: 15px 10px;
 }
 
-thead{
-   height: 40px; 
-    padding: 15px 10px;
+thead {
+	height: 40px;
+	padding: 15px 10px;
 }
 
-.content-input{
+.content-input {
 	min-height: 146px !important;
-	max-height:146px !important;
+	max-height: 146px !important;
 }
 
-.code-buttons{
-   padding-top: 10px;
+.code-buttons {
+	padding-top: 10px;
 }
 
 .item-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .button-group {
-    display: flex;
-    gap: 10px; 
-    margin-right: 45px;
-    justify-content: flex-end;
-}
-.btn-add{
-   background-color: var(--theme);
-   color: white;
-   border-radius: 8px;
-   border: none;
-   width: 70px;
-   height: 30px;
-   font-size: 13px;
-   margin-right: 5px;
-   text-align: center;
-   line-height: 2.4;
+	display: flex;
+	gap: 10px;
+	margin-right: 45px;
+	justify-content: flex-end;
 }
 
-.btn-load{
-   background-color: white;
-   color:  var(--theme);
-   border-radius: 8px;
-   border: 1px solid var(--theme); 
-   width: 70px;
-   height: 30px;
-   font-size: 14px;
-   text-align: center;
-   line-height: 2.1;
+.btn-load-container {
+	display: flex;
+	justify-content: space-between;
+	margin-right: 40px; 
 }
 
-.item-header{
+.btn-load {
+	background-color: white;
+	color: var(--theme);
+	border-radius: 8px;
+	border: 1px solid var(--theme);
+	width: 70px;
+	height: 30px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 2.1;
+}
+
+.btn-add, .btn-update {
+	background-color: var(--theme);
+	color: white;
+	border-radius: 8px;
+	border: none;
+	width: 70px;
+	height: 30px;
+	font-size: 13px;
+	text-align: center;
+	line-height: 2.4;
+}
+
+.item-header {
 	margin: 5px;
 }
 
 .item-container {
-	min-width:1360px !important;
-	max-width:1360px !important;
-	margin:10px 40px 60px 40px !important;
+	min-width: 1360px !important;
+	max-width: 1360px !important;
+	margin: 10px 40px 40px 40px !important;
 }
 
-.item-icon{
-	   display: flex;
-	    justify-content: space-between;
+.item-icon {
+	display: flex;
+	justify-content: space-between;
 }
 
 .index-btns button {
-    border: 1.5px solid var(--theme);
-    border-radius: 3px;
-    background: none;
-    color: var(--theme);
-    font-size: 14px;
-    width: 25px;
-    height: 25px;
-    margin: 18px 5px 10px 0;
-    padding: 0;
+	border: 1.5px solid var(--theme);
+	border-radius: 3px;
+	background: none;
+	color: var(- -theme);
+	font-size: 14px;
+	width: 25px;
+	height: 25px;
+	margin: 18px 5px 10px 0;
+	padding: 0;
 }
-
-
-
-

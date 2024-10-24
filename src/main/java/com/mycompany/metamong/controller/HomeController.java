@@ -14,7 +14,7 @@ public class HomeController {
 	public String index() {
 		return "member/loginForm";
 	}
-	
+
 	@GetMapping("/homeUser")
 	public String homeUser() {
 		log.info("실행");
