@@ -85,6 +85,18 @@ label{
    padding-top: 10px;
 }
 
+.btn-excel{
+   background-color: white;
+   color:  var(--theme);
+   border-radius: 8px;
+   border: 1px solid var(--theme); 
+   width: 120px;
+   height: 30px;
+   font-size: 14px;
+   text-align: center;
+   margin-right: 5px;
+}
+
 .btn-add{
    background-color: var(--theme);
    color: white;
@@ -96,14 +108,14 @@ label{
    margin-right: 5px;
 }
 
-.btn-edit{
-   background-color: white;
-   color:  var(--theme);
-   border-radius: 8px;
-    border: 1px solid var(--theme); 
-   width: 50px;
-   height: 30px;
-   font-size: 14px;
+.btn-edit {
+	background-color: var(--theme);
+	color: white;
+	border-radius: 8px;
+	border: none;
+	width: 50px;
+	height: 30px;
+	font-size: 14px;
 }
 
 .item-management{
