@@ -9,6 +9,7 @@
 .code-table {
 	min-width: 660px !important;
 	max-width: 660px !important;
+	height:330px;
 	margin: 5px 20px 20px 40px;
 }
 
