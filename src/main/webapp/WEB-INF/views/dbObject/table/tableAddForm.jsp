@@ -9,8 +9,8 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableAddForm.css"
 	rel="stylesheet" />
-<link 
-	href="${pageContext.request.contextPath}/resources/css/dbObject/table/codeModal.css" 
+<link
+	href="${pageContext.request.contextPath}/resources/css/dbObject/table/codeModal.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -61,7 +61,11 @@
 						</div>
 
 						<div class="col item">
-							<div class="itemAdd-subtitle">컬럼</div>
+							<div class="btn-load-container">
+								<div class="itemAdd-subtitle">컬럼</div>
+								<div class="btn-load" data-bs-toggle="modal"
+									data-bs-target="#codeLoadModal" type="button">불러오기</div>
+							</div>
 							<table class="table table-bordered item-table">
 								<tr>
 									<td class="table-primary">컬럼(논리)</td>
@@ -115,22 +119,23 @@
 
 				</div>
 				<div class="button-group">
-					<div class="btn-load" data-bs-toggle="modal" data-bs-target="#codeLoadModal" type="button">
-						불러오기
-					</div>
-					<div class="btn-add" type="button">추가/수정</div>
+					<div class="btn-add" type="button">추가</div>
+					<div class="btn-update" type="button">수정</div>
 				</div>
-
 
 				<div class="item-container">
-				<div class="item-icon">
-					<div class="item-header">컬럼</div>
-					<div class="index-btns">
-                      <button><i class="bi bi-caret-up-fill"></i></button>
-                      <button><i class="bi bi-caret-down-fill"></i></button>
-                    </div>
-				
-				</div>
+					<div class="item-icon">
+						<div class="item-header">컬럼</div>
+						<div class="index-btns">
+							<button>
+								<i class="bi bi-caret-up-fill"></i>
+							</button>
+							<button>
+								<i class="bi bi-caret-down-fill"></i>
+							</button>
+						</div>
+
+					</div>
 					<table class="table table-hover bottom-table">
 						<thead class="table-primary">
 							<tr>
