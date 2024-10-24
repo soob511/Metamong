@@ -18,9 +18,9 @@ public class SequenceController {
 		return "dbObject/sequence/sequenceApplyList";
 	}
 	
-	@GetMapping("/sequenceDetail")
-	public String sequenceDetail() {
-		return "dbObject/sequence/sequenceDetail";
+	@GetMapping("/sequenceApplyDetail")
+	public String sequenceApplyDetail() {
+		return "dbObject/sequence/sequenceApplyDetail";
 	}
 
 }
