@@ -13,6 +13,9 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/member/joinForm.css"
 	rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/resources/js/member/joinForm.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 
@@ -39,19 +42,22 @@
 								type="text" class="form-control" placeholder="예) oti123"
 								id="MId" aria-label="mId" aria-describedby="mId">
 							<button class="btn-confirm" type="submit">중복확인</button>
+							<span class="username-message"></span>
 						</div>
 						<div class="input-group">
 							<label for="mPassword" class="input-label">비밀번호</label> <input
 								type="password" class="form-control"
 								placeholder="영문, 숫자 조합 8~16자" id="MPassword"
 								aria-label="mPassword" aria-describedby="mPassword">
+						<span class="password-message"></span>
 						</div>
 						<div class="input-group">
-							<label for="mPasswordConfirm" class="input-label">비밀번호 확인</label>
+							<label for="MPasswordConfirm" class="input-label">비밀번호 확인</label>
 							<input type="password" class="form-control"
-								placeholder="비밀번호 재입력" id="mPasswordConfirm"
-								aria-label="mPasswordConfirm"
-								aria-describedby="mPasswordConfirm">
+								placeholder="비밀번호 재입력" id="MPasswordConfirm"
+								aria-label="MPasswordConfirm"
+								aria-describedby="MPasswordConfirm" required>
+						<span class="password-confirm-message"></span>
 						</div>
 						<div class="input-group">
 							<label for="mName" class="input-label">이름</label> <input
@@ -95,7 +101,7 @@
 					</div>
 
 					<div class="col-12 text-center mt-4">
-						<button type="button" class="btn-join btn-lg">Sign Up</button>
+						<button id="btn-signup" type="button" class="btn-join btn-lg">Sign Up</button>
 					</div>
 				</div>
 			</div>

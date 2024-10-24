@@ -74,3 +74,17 @@ h1{
     border: none;
    	font-size: 25px;
 }
+
+.swal2-styled.swal2-confirm {
+	background-color: var(--theme) !important;
+	box-shadow: var(--box-shadow) !important;
+}
+
+.btn-join:disabled {
+    background-color: #ebebeb;
+    color: #ffffff;
+	cursor: not-allowed;
+    display: block;
+}
+
+  
