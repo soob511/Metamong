@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
             <div class="content">
                 <h4 class="fw-bold">> 공지사항</h4>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>총 <span class="form-required">21</span>건의 게시물이 있습니다.</div>
+                    <div>총 <span class="form-required">${totalRows}</span>건의 게시물이 있습니다.</div>
                     <div class="d-flex">
                         <div class="table-list-filters">
                             <div class="schema-filter">
@@ -47,7 +48,7 @@
                         <c:forEach items="${list}" var="notice">           
 	                        <tr>
 	                            <th scope="row">${notice.noticeId}</th>
-	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}">${notice.noticeTitle}</a></td>
+	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 	                            <td>${notice.noticeHitcount}</td>
 	                        </tr>

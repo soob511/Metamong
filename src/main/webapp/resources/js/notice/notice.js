@@ -25,3 +25,12 @@ $(document).ready(function() {
         $(this).next('.notice-sub-menu').toggleClass('active');
     });
 });
+
+$(document).ready(function() {
+    $('#noticeContent').summernote({
+        height: 300,                 
+        minHeight: null,         
+        maxHeight: null,             
+        focus: true             
+    });
+});

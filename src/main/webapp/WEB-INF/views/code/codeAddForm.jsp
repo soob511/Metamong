@@ -58,7 +58,10 @@
 						</div>
 
 						<div class="col item">
-							<div class="itemAdd-subtitle">항목</div>
+							<div class="d-flex item-subtitle justify-content-between align-items-center">
+								<div class="itemAdd-subtitle">항목</div>
+								<div class="btn-init" type="button">초기화</div>							
+							</div>
 							<table class="table table-bordered item-table">
 								<tr>
 									<td class="table-primary">항목코드</td>
@@ -95,8 +98,8 @@
 
 				</div>
 				<div class="button-group">
-					<div class="btn-excel" type="button">EXCEL</div>
-					<div class="btn-add" type="button">추가/수정</div>
+					<div class="btn-add" type="button">추가</div>
+					<div class="btn-edit" type="button">수정</div>
 				</div>
 
 

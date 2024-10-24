@@ -6,7 +6,6 @@
    font-weight: bold;
 }
 
-
 .code-table{
    min-width: 660px !important;
    max-width:660px !important;
@@ -29,6 +28,9 @@
 	margin-left: 40px;
 }
 
+.item-subtitle {
+	margin-right: 45px;
+}
 
 .item-management{
    margin: 20px 0 10px 10px;
@@ -80,7 +82,33 @@ thead{
     margin-right: 45px;
     justify-content: flex-end;
 }
+
+.btn-init {
+   background-color: white;
+   color:  var(--theme);
+   border-radius: 8px;
+   border: 1px solid var(--theme); 
+   width: 70px;
+   height: 30px;
+   font-size: 14px;
+   text-align: center;
+   line-height: 2.1;
+   margin-right: 5px;
+}
+
 .btn-add{
+   background-color: var(--theme);
+   color: white;
+   border-radius: 8px;
+   border: none;
+   width: 70px;
+   height: 30px;
+   font-size: 13px;
+   text-align: center;
+   line-height: 2.4;
+}
+
+.btn-edit{
    background-color: var(--theme);
    color: white;
    border-radius: 8px;
@@ -91,18 +119,6 @@ thead{
    margin-right: 5px;
    text-align: center;
    line-height: 2.4;
-}
-
-.btn-excel{
-   background-color: white;
-   color:  var(--theme);
-   border-radius: 8px;
-   border: 1px solid var(--theme); 
-   width: 70px;
-   height: 30px;
-   font-size: 14px;
-   text-align: center;
-   line-height: 2.1;
 }
 
 .item-header{
