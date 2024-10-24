@@ -186,6 +186,6 @@
 				</div>
 
 				<script
-					src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script>
+					src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableList.js"></script>
 </body>
 </html>
