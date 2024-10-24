@@ -63,8 +63,11 @@
 						<div class="col item">
 							<div class="btn-load-container">
 								<div class="itemAdd-subtitle">컬럼</div>
+								<div class="right-btn">
 								<div class="btn-load" data-bs-toggle="modal"
 									data-bs-target="#codeLoadModal" type="button">불러오기</div>
+								<div class="btn-reset" type="button">초기화</div>
+								</div>
 							</div>
 							<table class="table table-bordered item-table">
 								<tr>
