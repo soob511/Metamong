@@ -51,19 +51,23 @@
 				<hr>
 
 				<div class="container sequence-management">
-					<div class="row">
-
 						<!-- 시퀀스 목록 -->
-						<div class="col sequence-table">
-							<div class="sequence-management-header">
+						<div class="sequence-table">
+							<div class="sequence-management-header d-flex justify-content-between align-items-center">
 								<p class="sequence-management-title">시퀀스</p>
+								<button class="btn-apply" data-bs-toggle="modal" data-bs-target="#sequenceApplyModal" >생성/삭제</button>
 							</div>
-							<table class="table table-hover">
+							<div class="sequence-list-table">
+							<table class="table sequence-list table-hover">
 								<thead class="table-primary">
 									<tr>
 										<th scope="col">No.</th>
 										<th scope="col">시퀀스명</th>
 										<th scope="col">스키마명</th>
+										<th scope="col">최솟값</th>
+										<th scope="col">최댓값</th>
+										<th scope="col">증감값</th>
+										<th scope="col">현재값</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -71,22 +75,46 @@
 										<th>1</th>
 										<td>SEQ_CODE</td>
 										<td>user_2024_oti_final_team1_1</td>
+										<td>1</td>
+										<td>9999</td>
+										<td>1</td>
+										<td>27</td>
 									</tr>
 									<tr>
 										<th>2</th>
 										<td>SEQ_CODE</td>
 										<td>user_2024_oti_final_team1_1</td>
+										<td>1</td>
+										<td>9999</td>
+										<td>1</td>
+										<td>27</td>
 									</tr>
 									<tr>
 										<th>3</th>
 										<td>SEQ_CODE</td>
 										<td>user_2024_oti_final_team1_1</td>
+										<td>1</td>
+										<td>9999</td>
+										<td>1</td>
+										<td>27</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
+						</div>
 
-						<div class="col sequence-create-delete">
+					
+						
+						
+				<div class="modal fade" id="sequenceApplyModal" tabindex="-1"	aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
+							</div>							
+
+							<div class="modal-body">
+								<div class="col sequence-create-delete">
 							<div class="sequence-create-delete-header">
 								<p class="sequence-create-delete-title">시퀀스 생성/삭제</p>
 							</div>
@@ -120,14 +148,18 @@
 										type="file" class="form-control" id="inputGroupFile">
 								</div>
 
-								<div class="button-group">
-									<a href="sequenceApplyList">
-										<button type="button" class="btn-add">신청</button>
-								</div>
-								</a>
+							</div>
+						</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn-select" data-bs-dismiss="modal">신청</button>
 							</div>
 						</div>
 					</div>
+				</div>
+				
+					
 				</div>
 			</div>
 		</div>
