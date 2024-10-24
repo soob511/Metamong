@@ -28,7 +28,7 @@ public class NoticeService {
 	}
 	public void addNotice(NoticeDto notice) {
 		 noticeDao.addNotice(notice);
-		int noticeId = notice.getNoticeId();
+		//int noticeId = notice.getNoticeId();
 	}
 	public int getTotalRows() {
 		int totalRows = noticeDao.countRows();

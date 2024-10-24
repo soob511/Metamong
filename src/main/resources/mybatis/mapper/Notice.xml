@@ -4,52 +4,61 @@
 
 	<insert id="addNotice" parameterType="Notice" >
 		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
-			select seq_notice_Id.nextval from dual
+			SELECT 
+				seq_notice_Id.nextval 
+			FROM DUAL
 		</selectKey>
-		insert into notice (
+		INSERT INTO notice (
 			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, 
         	notice_filename, notice_filetype, notice_filedata
 		) 
-		values (
-			#{noticeId}, #{noticeTitle},#{noticeContent}, #{noticeRegdate}, 1,
+		VALUES (
+			#{noticeId}, #{noticeTitle},#{noticeContent}, #{noticeRegdate}, #{noticeHitcount},
 			#{noticeFilename},#{noticeFiletype},#{noticeFiledata}
 		)
 	</insert>
 	
 	<select id="selectList" parameterType="Pager" resultType="Notice">
 		<![CDATA[
-			select rnum, notice_id, notice_title, notice_regdate, notice_hitcount
-			from(
-				select rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount
-				from (
-		        	select notice_id, notice_title, notice_regdate, notice_hitcount
-		        	from notice
-		        	order by notice_id desc
+			SELECT 
+				rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+			FROM(
+				SELECT 
+					rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+				FROM (
+		        	SELECT 
+		        		notice_id, notice_title, notice_regdate, notice_hitcount
+		        	FROM notice
+		        	ORDER BY notice_id DESC
+					)
+	        	WHERE rownum <= #{endRowNo}
 				)
-	        	where rownum <= #{endRowNo}
-			)
-			where rnum >= #{startRowNo}	
+			WHERE rnum >= #{startRowNo}	
 		]]>
 	</select>
 	
 	<select id="countRows" resultType="int">
-		select count(*) from notice
+		SELECT count(*) 
+		FROM notice
 	</select>
 	
 	<select id="selectByNoticeId" parameterType="int" resultType="Notice">
-		select notice_id, notice_title, notice_content,notice_regdate, notice_hitcount, notice_filename
-		from notice
-		where notice_id=#{noticeId}
+		SELECT 
+			notice_id, notice_title, notice_content,notice_regdate, notice_hitcount, notice_filename
+		FROM notice
+		WHERE notice_id=#{noticeId}
 	</select>
 	
 	<select id="selectFileByNoticeId" parameterType="int" resultType="Notice">
-		select notice_filename, notice_filetype, notice_filedata
-		from notice
-		where notice_id=#{noticeId}
+		SELECT 
+			notice_filename, notice_filetype, notice_filedata
+		FROM notice
+		WHERE notice_id=#{noticeId}
 	</select>
 	
 	<update id="updateHitcount" parameterType="int">
-		update notice set
+		UPDATE notice 
+		SET
 			notice_hitcount = notice_hitcount + 1
 		where notice_id=#{noticeId}
 	</update>
