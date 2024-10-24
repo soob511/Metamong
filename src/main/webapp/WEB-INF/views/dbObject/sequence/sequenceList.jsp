@@ -106,20 +106,18 @@
 					
 						
 						
-				<div class="modal fade" id="sequenceApplyModal" tabindex="-1"	aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="sequenceApplyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
+								<p class="sequence-create-delete-title">시퀀스 생성/삭제</p>
 								<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
 							</div>							
 
 							<div class="modal-body">
 								<div class="col sequence-create-delete">
-							<div class="sequence-create-delete-header">
-								<p class="sequence-create-delete-title">시퀀스 생성/삭제</p>
-							</div>
 
-							<div class="sequence-create-delete-container">
+						
 								<div class="input-group">
 									<label for="seqName" class="input-label">시퀀스명</label> <input
 										type="text" class="form-control" id="seqName"
@@ -148,12 +146,12 @@
 										type="file" class="form-control" id="inputGroupFile">
 								</div>
 
-							</div>
+							
 						</div>
 							</div>
 
 							<div class="modal-footer">
-								<button type="button" class="btn-select" data-bs-dismiss="modal">신청</button>
+								<button type="button" class="btn-apply" data-bs-dismiss="modal">신청</button>
 							</div>
 						</div>
 					</div>
