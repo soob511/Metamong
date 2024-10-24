@@ -94,17 +94,4 @@ public class NoticeController {
 		out.close();
 	}
 	
-
-
-	@GetMapping("/accountManage")
-	public String accountManage() {
-		
-		return "notice/accountManage";
-	}
-	@GetMapping("/applyList")
-	public String applyList() {
-		
-		return "notice/applyList";
-	}
-
 }
