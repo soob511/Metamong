@@ -2,27 +2,27 @@ $(".btn-join").on("click", function () {
   var MId = $("#MId").val();
   var MPassword = $("#MPassword").val();
   var MName = $("#MName").val();
-  var teamId = parseInt($("#teamId").val());
+  var TeamId = parseInt($("#teamId").val());
   var MEmpId = $("#MEmpId").val();
-  var MTel = parseInt($("#MTel").val());
+  var MTel = $("#MTel").val();
   var MRole = $("input[name='MRole']:checked").val();
 
   var joinData = {
-    MId,
-    MPassword,
-    MName,
-    teamId,
-    MEmpId,
-    MTel,
-    MRole,
+    MId: MId,
+    MPassword: MPassword,
+    MName: MName,
+    TeamId: TeamId,
+    MEmpId: MEmpId,
+    MTel: MTel,
+    MRole: MRole,
   };
 
   console.log(joinData);
-
+  console.log(JSON.stringify(joinData));
   $.ajax({
     url: "/Metamong/member/join",
     type: "POST",
-    contentType: "application/json",
+    contentType: "application/json; charset=UTF-8",
     data: JSON.stringify(joinData),
     success: function (response) {
       if (response > 0) {
