@@ -3,37 +3,44 @@
 <mapper namespace="com.mycompany.metamong.daoMain.MemberDao">
 	<select id="selectByMId" parameterType="String"
 		resultType="Member">
-		SELECT 
-			m_id, m_name, m_password, team_id, m_empid, m_tel, m_role, m_isactive, prof_filename,
-			prof_filetype, prof_filedata, m_applydate, m_isapprove, m_regdate
+		SELECT
+		m_id, m_name, m_password, team_id, m_empid, m_tel,
+		m_role, m_isactive,
+		prof_filename,
+		prof_filetype, prof_filedata,
+		m_applydate, m_isapprove, m_regdate
 		FROM
-			member
+		member
 		WHERE
-			m_id = #{mId} AND m_isactive = 1
+		m_id = #{mId} AND
+		m_isactive = 1
 	</select>
 
 	<insert id="insertJoin" parameterType="Member">
-		INSERT INTO member(
-		m_id,
-		m_name,
-		m_password,
-		team_id,
-		m_empid,
-		m_tel,
-		m_role,
-		m_isactive,
-		m_applydate,
-		)VALUES(
-		#{m_id},
-		#{m_name},
-		#{m_password},
- 		#{team_id},
- 		#{m_empid},
- 		#{m_tel},
- 		#{m_role},
- 		#{m_isactive},
- 		#{m_applydate}
-		)
-	</insert>
+    INSERT INTO member (
+        m_id,
+        m_name,
+        m_password,
+        team_id,
+        m_empid,
+        m_tel,
+        m_role,
+        m_isactive,
+        m_applydate,
+        m_ISAPPROVE
+    ) VALUES (
+        #{MId},
+        #{MName},
+        #{MPassword},
+        1,
+        #{MEmpId},
+        #{MTel},
+        #{MRole},
+        1,
+        sysdate,
+        0
+    )
+</insert>
+
 </mapper>
 	

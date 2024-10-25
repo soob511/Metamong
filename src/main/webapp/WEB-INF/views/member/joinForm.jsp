@@ -40,7 +40,7 @@
 						<div class="input-group">
 							<label for="mId" class="input-label">아이디</label> <input
 								type="text" class="form-control" placeholder="예) oti123"
-								id="MId" aria-label="mId" aria-describedby="mId">
+								id="MId" aria-label="mId" aria-describedby="mId" name="MId">
 							<button class="btn-confirm" type="submit">중복확인</button>
 							<span class="username-message"></span>
 						</div>
@@ -48,7 +48,7 @@
 							<label for="mPassword" class="input-label">비밀번호</label> <input
 								type="password" class="form-control"
 								placeholder="영문, 숫자 조합 8~16자" id="MPassword"
-								aria-label="mPassword" aria-describedby="mPassword">
+								aria-label="mPassword" aria-describedby="mPassword"  name="MPassword">
 						<span class="password-message"></span>
 						</div>
 						<div class="input-group">
@@ -62,12 +62,12 @@
 						<div class="input-group">
 							<label for="mName" class="input-label">이름</label> <input
 								type="text" class="form-control" placeholder="예) 홍길동" id="MName"
-								aria-label="mName" aria-describedby="mName">
+								aria-label="mName" aria-describedby="mName" name="MName">
 						</div>
 						<div class="input-group">
 							<label for="mTeam" class="input-label">소속</label> <select
 								class="form-select" id="teamId" aria-label="team_Id"
-								aria-describedby="mTeam">
+								aria-describedby="mTeam" name="teamId">
 								<option selected>소속을 선택하세요</option>
 								<option value="1">개발1팀</option>
 								<option value="2">개발2팀</option>
@@ -78,12 +78,12 @@
 						<div class="input-group">
 							<label for="mEmpId" class="input-label">사번</label> <input
 								type="text" class="form-control" placeholder="예) 123456"
-								id="MEmpId" aria-label="mEmpId" aria-describedby="mEmpId">
+								id="MEmpId" aria-label="mEmpId" aria-describedby="mEmpId" name="MEmpId">
 						</div>
 						<div class="input-group">
 							<label for="mPhone" class="input-label">연락처</label> <input
 								type="text" class="form-control" placeholder="예) 010-1234-5678"
-								id="MTel" aria-label="mPhone" aria-describedby="mPhone">
+								id="MTel" aria-label="mPhone" aria-describedby="mPhone" name="MTel">
 						</div>
 						<div class="input-group">
 							<label for="mRole" class="input-label">계정 권한</label>

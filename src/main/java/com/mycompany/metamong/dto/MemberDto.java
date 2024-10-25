@@ -11,7 +11,7 @@ public class MemberDto {
 	private String MPassword;
 	private int teamId;
 	private String MEmpId;
-	private int MTel;
+	private String MTel;
 	private String MRole;
 	private int MIsActive;
 	private String profFilename;
