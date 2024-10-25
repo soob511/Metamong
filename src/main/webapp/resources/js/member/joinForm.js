@@ -16,7 +16,6 @@ $(".btn-join").on("click", function () {
     MTel,
     MRole,
   };
-
   console.log(joinData);
 
   $.ajax({
