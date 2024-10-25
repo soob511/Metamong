@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mycompany.metamong.dao.NoticeDao;
+import com.mycompany.metamong.daoMain.NoticeDao;
+import com.mycompany.metamong.daoSub1.Sub1TableDao;
 import com.mycompany.metamong.dto.NoticeDto;
 import com.mycompany.metamong.dto.Pager;
 
@@ -17,6 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 public class NoticeService {
 	@Autowired
 	private NoticeDao noticeDao;
+	
+	@Autowired
+	private Sub1TableDao tableDao;
 	
 	public List<NoticeDto> getNoticeList(Pager pager) {
 		List<NoticeDto> list = noticeDao.selectList(pager);

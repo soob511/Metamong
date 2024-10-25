@@ -10,7 +10,7 @@
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableAddForm.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/resources/css/dbObject/table/codeModal.css"
+	href="${pageContext.request.contextPath}/resources/css/dbObject/common/codeModal.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -63,8 +63,11 @@
 						<div class="col item">
 							<div class="btn-load-container">
 								<div class="itemAdd-subtitle">컬럼</div>
+								<div class="right-btn">
 								<div class="btn-load" data-bs-toggle="modal"
 									data-bs-target="#codeLoadModal" type="button">불러오기</div>
+								<div class="btn-reset" type="button">초기화</div>
+								</div>
 							</div>
 							<table class="table table-bordered item-table">
 								<tr>
@@ -191,7 +194,7 @@
 				</div>
 
 				<div class="modal fade" id="codeLoadModal" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					aria-labelledby="codeLoadModal" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">

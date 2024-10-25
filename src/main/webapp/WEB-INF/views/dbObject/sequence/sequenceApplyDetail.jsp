@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <title>시퀀스 상세보기</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/sequence/sequenceDetail.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/sequence/sequenceModal.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/common/sqlModal.css" />
   </head>
   <body>
     <div class="container">
@@ -85,7 +85,7 @@
     </div>
 
 	<div class="modal fade" id="sqlLoadModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		aria-labelledby="sqlLoadModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">

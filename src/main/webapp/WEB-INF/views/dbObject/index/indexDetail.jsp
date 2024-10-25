@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <title>인덱스 상세보기</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/index/indexDetail.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/common/sqlModal.css" />    
   </head>
   <body>
     <div class="container">
@@ -67,7 +68,11 @@
               </tr>
               <tr>
                 <td class="table-primary">쿼리문</td>
-                <td id="table-contents" colspan="3"><button class="btn-sql">SQL</button></td>
+                <td id="table-contents" colspan="3">
+                	<button class="btn-sql" data-bs-toggle="modal" data-bs-target="#sqlLoadModal">
+                		SQL
+               		</button>
+               	</td>
               </tr>
             </table>
             <div class="d-flex justify-content-end">
@@ -77,6 +82,26 @@
         </div>
       </div>
     </div>
-    <script src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexList.js"></script>
+
+	<div class="modal fade" id="sqlLoadModal" tabindex="-1"
+		aria-labelledby="sqlLoadModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="table-container">
+						<div class="table-header d-flex align-items-center">SQL</div>
+						<div class="table-body">CREATE SEQUENCE my_sequence START
+							WITH 1 INCREMENT BY 1 MINVALUE 1 MAXVALUE 1000 NOCYCLE CACHE 20;
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexList.js"></script>
   </body>
 </html>
