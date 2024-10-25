@@ -10,7 +10,7 @@
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableAddForm.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/resources/css/dbObject/table/codeModal.css"
+	href="${pageContext.request.contextPath}/resources/css/dbObject/common/codeModal.css"
 	rel="stylesheet" />
 </head>
 <body>
@@ -194,7 +194,7 @@
 				</div>
 
 				<div class="modal fade" id="codeLoadModal" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					aria-labelledby="codeLoadModal" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
