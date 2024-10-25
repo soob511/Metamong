@@ -57,10 +57,9 @@ $(document).ready(function () {
       checkKor.test(inputId)
     ) {
       msg.text("아이디는 영문 또는 숫자 4~12자로 작성해야 합니다.");
-      msg.css("opacity", "1");
-      msg.css("color", "red");
+      msg.addClass('warn');
     } else {
-      msg.css("opacity", "0");
+    	msg.removeClass('warn');
     }
   });
 
@@ -71,16 +70,14 @@ $(document).ready(function () {
       msg.css("opacity", "0");
     } else if (password.length < 8 || password.length > 16) {
       msg.text("비밀번호는 8~16자로 작성해야 합니다.");
-      msg.css("color", "red");
-      msg.css("opacity", "1");
+      msg.addClass('warn');
     } else if (checkKor.test(password) || !checkPassword.test(password)) {
       msg.text("비밀번호는 영어와 숫자를 포함해야 합니다.");
-      msg.css("color", "red");
-      msg.css("opacity", "1");
+      msg.addClass('warn');
     } else {
       msg.text("사용가능한 비밀번호 입니다.");
-      msg.css("color", "blue");
-      msg.css("opacity", "1");
+      msg.removeClass('warn');
+      msg.addClass('success');
     }
   });
 
@@ -90,16 +87,16 @@ $(document).ready(function () {
     const msg = $(".password-confirm-message");
     if (confirmPassword == password) {
       msg.text("비밀번호가 일치합니다.");
-      msg.css("color", "blue");
-      msg.css("opacity", "1");
+      msg.removeClass('warn');
+      msg.addClass('success');
     } else {
       msg.text("비밀번호가 일치하지 않습니다.");
-      msg.css("color", "red");
-      msg.css("opacity", "1");
+      msg.removeClass('success');
+      msg.addClass('warn');
     }
   });
 
-  $("#MId,#MPassword,#MPasswordConfirm,#MName,#MEmpId,#MPhone").on(
+  $("#MId,#MPassword,#MPasswordConfirm,#MName,#MEmpId,#MTel").on(
     "input",
     function () {
       let id = $("#MId").val().trim();
@@ -107,7 +104,7 @@ $(document).ready(function () {
       let cPassword = $("#MPasswordConfirm").val().trim();
       let name = $("#MName").val().trim();
       let empId = $("#MEmpId").val().trim();
-      let phone = $("#MPhone").val().trim();
+      let tel = $("#MTel").val().trim();
 
       if (
         id !== "" &&
@@ -115,7 +112,7 @@ $(document).ready(function () {
         cPassword !== "" &&
         name !== "" &&
         empId !== "" &&
-        phone !== ""
+        tel !== ""
       ) {
         $("#btn-signup").prop("disabled", false);
       } else {
