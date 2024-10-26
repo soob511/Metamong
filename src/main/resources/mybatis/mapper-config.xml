@@ -9,6 +9,7 @@
 		<typeAlias type="com.mycompany.metamong.dto.MemberDto" alias="Member"/>
 		<typeAlias type="com.mycompany.metamong.dto.NoticeDto" alias="Notice"/>
 		<typeAlias type="com.mycompany.metamong.dto.TeamDto" alias="Team"/>
+		<typeAlias type="com.mycompany.metamong.dto.TableDto" alias="Table"/>
 		<typeAlias type="com.mycompany.metamong.dto.Pager" alias="Pager"/>
 	</typeAliases>
 
