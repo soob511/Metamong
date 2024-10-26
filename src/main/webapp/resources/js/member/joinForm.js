@@ -1,3 +1,21 @@
+$(document).ready(function() {
+    $.ajax({
+        url: "/Metamong/team/getTeamList",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+        		console.log(data);
+        		var selectBox = $('#teamId');
+        		$.each(data, function(index, team) {
+        			selectBox.append($('<option>', {
+        				value: team.teamId,
+        				text: team.teamName
+        			}));
+        		});	
+        }
+    });
+});
+
 $(".btn-join").on("click", function () {
   var MId = $("#MId").val();
   var MPassword = $("#MPassword").val();
