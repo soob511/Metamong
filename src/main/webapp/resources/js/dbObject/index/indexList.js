@@ -24,10 +24,11 @@ $(document).ready(function() {
 			success : function(data) {
 				console.log('성공?: ');
 				 let html = '';
+				 let count = 1;
 		            data.forEach(function(index) {
 		                html += `
 		                    <tr>
-		                        <th></th>
+		                        <th>${count++}</th>
 		                        <td>${index.indexName}</td>
 		                        <td>${index.schemaName}</td>
 		                        <td>${index.tableName}</td>

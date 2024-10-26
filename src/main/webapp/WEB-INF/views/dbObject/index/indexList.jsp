@@ -63,9 +63,9 @@
 	                    </tr>
 	                  </thead>
 	                  <tbody id="indexTableBody">
-	                  	<c:forEach items="${list}" var="index">
+	                  	<c:forEach items="${list}" var="index" varStatus="status">
 	                  		<tr>
-		                      <th></th>
+		                      <th>${status.index + 1}</th>
 		                      <td>${index.indexName}</td>
 		                      <td>${index.schemaName}</td>
 		                      <td>${index.tableName}</td>
