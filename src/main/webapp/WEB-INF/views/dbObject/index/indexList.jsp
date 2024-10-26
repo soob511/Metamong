@@ -31,12 +31,11 @@
                 </div>
                 <div class="schema-filter">
                   <label for="schemaSelect" class="schema-filter-label">스키마명</label>
-                  <select id="schemaSelect" class="form-select" aria-label="Default select example">
-                    <option selected value="MAIN">USER_2024_OTI_FINAL_TEAM1</option>
-                    <option value="SUB1">USER_2024_OTI_FINAL_TEAM1_1</option>
-                    <option value="SUB2">USER_2024_OTI_FINAL_TEAM1_2</option>
-                    <option value="SUB3">USER_2024_OTI_FINAL_TEAM1_3</option>
-                  </select>
+					<select id="schemaSelect" class="form-select" aria-label="Default select example">
+					    <c:forEach var="schemaEnum" items="${schemaEnum}">
+					        <option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>
+					    </c:forEach>
+					</select>
                 </div>
               </div>
             </div>
