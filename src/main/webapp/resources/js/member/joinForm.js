@@ -68,21 +68,20 @@ $(".btn-join").on("click", function () {
     data: JSON.stringify(joinData),
     success: function (response) {
       if (response > 0) {
-        console.log("성공");
-      } else {
-        console.log("실패");
-      }
+    	  Swal.fire({ 
+    		  icon: 'success',
+    		  title: '회원가입 신청이 완료되었습니다.',
+    		  text: '계정 승인 후, 로그인 가능합니다.',
+    		  }).then(result=>{
+    			  location.href="/Metamong/member/loginForm";
+    		  })
+      } 
     }
   });
 });
 
 
 $(document).ready(function () {
-/*
- * $("#btn-signup").click(function () { Swal.fire({ icon: 'success', title:
- * '회원가입 신청이 완료되었습니다.', text: '계정 승인 후, 로그인 가능합니다.', }); });
- */
-
   const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
   const checkPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/;
 
