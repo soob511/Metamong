@@ -42,5 +42,11 @@
     )
 </insert>
 
+<select id="selectMId" parameterType="String" resultType="int">
+	SELECT count(*)
+	FROM member
+	WHERE M_Id = #{MId}
+</select>
+
 </mapper>
 	

@@ -15,5 +15,9 @@ public class MemberService {
 	public int join(MemberDto member) {
 		return memberDao.insertJoin(member);
 	}
+
+	public int getMId(String mId) {
+		return memberDao.selectMId(mId);
+	}
 	
 }

@@ -16,6 +16,32 @@ $(document).ready(function() {
     });
 });
 
+$(".btn-confirm").on("click",function(){
+	const msg = $(".username-message");
+	var MId = $("#MId").val();
+	
+	var data={
+			MId
+	}
+	 $.ajax({
+		    url: "/Metamong/member/idCheck",
+		    type: "POST",
+		    data: data,
+		    success: function (response) {
+		    	if(response>0){
+		     		 msg.text("이미 사용중인 아이디입니다.");
+		    	      msg.removeClass('success');
+		    	      msg.addClass('warn');
+		    	}else{
+		    	      msg.text("사용가능한 아이디 입니다.");
+		    	      msg.removeClass('warn');
+		    	      msg.addClass('success');
+		    	}
+		    }
+		  });
+	
+});
+
 $(".btn-join").on("click", function () {
   var MId = $("#MId").val();
   var MPassword = $("#MPassword").val();
@@ -35,8 +61,6 @@ $(".btn-join").on("click", function () {
     MRole: MRole,
   };
 
-  console.log(joinData);
-  console.log(JSON.stringify(joinData));
   $.ajax({
     url: "/Metamong/member/join",
     type: "POST",
@@ -48,19 +72,16 @@ $(".btn-join").on("click", function () {
       } else {
         console.log("실패");
       }
-    },
+    }
   });
 });
 
 
 $(document).ready(function () {
-/*$("#btn-signup").click(function () {
-	    Swal.fire({
-	      icon: 'success',
-	      title: '회원가입 신청이 완료되었습니다.',
-	      text: '계정 승인 후, 로그인 가능합니다.',
-	    });
-	  });*/
+/*
+ * $("#btn-signup").click(function () { Swal.fire({ icon: 'success', title:
+ * '회원가입 신청이 완료되었습니다.', text: '계정 승인 후, 로그인 가능합니다.', }); });
+ */
 
   const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
   const checkPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/;
