@@ -23,55 +23,56 @@ public class IndexService {
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
-	
+
 	public List<IndexDto> getIndexList() {
-		List<IndexDto> list = indexDao.selectIndex();
+		List<IndexDto> list = new ArrayList<>();
+		list.addAll(indexDao.selectIndex());
 		list.addAll(sub1IndexDao.selectIndex());
 		list.addAll(sub2IndexDao.selectIndex());
 		list.addAll(sub3IndexDao.selectIndex());
 		return list;
 	}
-	
+
 	public List<IndexDto> getIndexList(SchemaEnums schemaName) {
 		List<IndexDto> list = new ArrayList<>();
-		
+
 		switch (schemaName) {
-			case MAIN:
-				list = indexDao.selectIndex();
-				break;
-			case SUB1:
-				list = sub1IndexDao.selectIndex();
-				break;
-			case SUB2:
-				list = sub2IndexDao.selectIndex();
-				break;
-			case SUB3:
-				list = sub3IndexDao.selectIndex();
-				break;
-			default:
-				break;
+		case MAIN:
+			list = indexDao.selectIndex();
+			break;
+		case SUB1:
+			list = sub1IndexDao.selectIndex();
+			break;
+		case SUB2:
+			list = sub2IndexDao.selectIndex();
+			break;
+		case SUB3:
+			list = sub3IndexDao.selectIndex();
+			break;
+		default:
+			break;
 		}
 		return list;
 	}
-	
+
 	public List<IndexDto> getIndexList(SchemaEnums schemaName, String indexName) {
 		List<IndexDto> list = new ArrayList<>();
-		
+
 		switch (schemaName) {
-			case MAIN:
-				list = indexDao.selectIndexByName(indexName);
-				break;
-			case SUB1:
-				list = sub1IndexDao.selectIndexByName(indexName);
-				break;
-			case SUB2:
-				list = sub2IndexDao.selectIndexByName(indexName);
-				break;
-			case SUB3:
-				list = sub3IndexDao.selectIndexByName(indexName);
-				break;
-			default:
-				break;
+		case MAIN:
+			list = indexDao.selectIndexByName(indexName);
+			break;
+		case SUB1:
+			list = sub1IndexDao.selectIndexByName(indexName);
+			break;
+		case SUB2:
+			list = sub2IndexDao.selectIndexByName(indexName);
+			break;
+		case SUB3:
+			list = sub3IndexDao.selectIndexByName(indexName);
+			break;
+		default:
+			break;
 		}
 		return list;
 	}
