@@ -43,7 +43,6 @@ public class IndexController {
 		} else {
 			list = indexService.getIndexList(schemaName);			
 		}
-		log.info("찾아줘" + list);
 		return list;
 	}
 	

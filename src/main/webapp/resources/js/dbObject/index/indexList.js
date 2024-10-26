@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(2)').addClass('active');
     
-	$(document).on('click', '#biSearch', function() { // $(document).on 추가
+	$(document).on('click', '#biSearch', function() {
 
 		const schemaName = $('#schemaSelect').val();
 		const indexName = $('#indexNameSearch').val();
