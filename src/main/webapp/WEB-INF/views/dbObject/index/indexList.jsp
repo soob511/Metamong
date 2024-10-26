@@ -32,7 +32,7 @@
                 <div class="schema-filter">
                   <label for="schemaSelect" class="schema-filter-label">스키마명</label>
 					<select id="schemaSelect" class="form-select" aria-label="Default select example">
-					    <c:forEach var="schemaEnum" items="${schemaEnum}">
+					    <c:forEach items="${schemaEnum}" var="schemaEnum">
 					        <option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>
 					    </c:forEach>
 					</select>
