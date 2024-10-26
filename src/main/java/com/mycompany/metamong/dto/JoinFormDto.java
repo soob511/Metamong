@@ -14,7 +14,8 @@ public class JoinFormDto {
     @JsonProperty("MName")
     private String MName;
 
-    private int TeamId;
+    @JsonProperty("teamId")
+    private int teamId;
 
     @JsonProperty("MEmpId")
     private String MEmpId;

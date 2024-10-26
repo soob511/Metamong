@@ -1,3 +1,47 @@
+$(document).ready(function() {
+    $.ajax({
+        url: "/Metamong/team/getTeamList",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+        		console.log(data);
+        		var selectBox = $('#teamId');
+        		$.each(data, function(index, team) {
+        			selectBox.append($('<option>', {
+        				value: team.teamId,
+        				text: team.teamName
+        			}));
+        		});	
+        }
+    });
+});
+
+$(".btn-confirm").on("click",function(){
+	const msg = $(".username-message");
+	var MId = $("#MId").val();
+	
+	var data={
+			MId
+	}
+	 $.ajax({
+		    url: "/Metamong/member/idCheck",
+		    type: "POST",
+		    data: data,
+		    success: function (response) {
+		    	if(response>0){
+		     		 msg.text("이미 사용중인 아이디입니다.");
+		    	      msg.removeClass('success');
+		    	      msg.addClass('warn');
+		    	}else{
+		    	      msg.text("사용가능한 아이디 입니다.");
+		    	      msg.removeClass('warn');
+		    	      msg.addClass('success');
+		    	}
+		    }
+		  });
+	
+});
+
 $(".btn-join").on("click", function () {
   var MId = $("#MId").val();
   var MPassword = $("#MPassword").val();
@@ -11,14 +55,12 @@ $(".btn-join").on("click", function () {
     MId: MId,
     MPassword: MPassword,
     MName: MName,
-    TeamId: TeamId,
+    teamId: TeamId,
     MEmpId: MEmpId,
     MTel: MTel,
     MRole: MRole,
   };
-
-  console.log(joinData);
-  console.log(JSON.stringify(joinData));
+console.log(joinData);
   $.ajax({
     url: "/Metamong/member/join",
     type: "POST",
@@ -26,24 +68,20 @@ $(".btn-join").on("click", function () {
     data: JSON.stringify(joinData),
     success: function (response) {
       if (response > 0) {
-        console.log("성공");
-      } else {
-        console.log("실패");
-      }
-    },
+    	  Swal.fire({ 
+    		  icon: 'success',
+    		  title: '회원가입 신청이 완료되었습니다.',
+    		  text: '계정 승인 후, 로그인 가능합니다.',
+    		  }).then(result=>{
+    			  location.href="/Metamong/member/loginForm";
+    		  })
+      } 
+    }
   });
 });
 
 
 $(document).ready(function () {
-/*$("#btn-signup").click(function () {
-	    Swal.fire({
-	      icon: 'success',
-	      title: '회원가입 신청이 완료되었습니다.',
-	      text: '계정 승인 후, 로그인 가능합니다.',
-	    });
-	  });*/
-
   const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
   const checkPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/;
 

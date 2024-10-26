@@ -32,7 +32,7 @@
         #{MId},
         #{MName},
         #{MPassword},
-        1,
+        #{teamId},
         #{MEmpId},
         #{MTel},
         #{MRole},
@@ -41,6 +41,12 @@
         0
     )
 </insert>
+
+<select id="selectMId" parameterType="String" resultType="int">
+	SELECT count(*)
+	FROM member
+	WHERE M_Id = #{MId}
+</select>
 
 </mapper>
 	

@@ -10,5 +10,7 @@ public interface MemberDao {
 	public MemberDto selectByMId(String mId);
 
 	public int insertJoin(MemberDto member);
+
+	public int selectMId(String mId);
 	
 }
