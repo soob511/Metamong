@@ -10,7 +10,6 @@
     <script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.bundle.min.js"></script>
     <link href="${pageContext.request.contextPath}/resources/css/common/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/member/joinForm.css" rel="stylesheet" />
-    <script src="${pageContext.request.contextPath}/resources/js/member/joinForm.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
@@ -58,9 +57,6 @@
                             <label for="mTeam" class="input-label">소속</label>
                             <select class="form-select" id="teamId" aria-label="team_Id" aria-describedby="mTeam">
                                 <option selected>소속을 선택하세요</option>
-                                <option value="1">개발1팀</option>
-                                <option value="2">개발2팀</option>
-                                <option value="3">개발3팀</option>
                             </select>
                         </div>
                         <div class="input-group">
