@@ -55,12 +55,12 @@ $(".btn-join").on("click", function () {
     MId: MId,
     MPassword: MPassword,
     MName: MName,
-    TeamId: TeamId,
+    teamId: TeamId,
     MEmpId: MEmpId,
     MTel: MTel,
     MRole: MRole,
   };
-
+console.log(joinData);
   $.ajax({
     url: "/Metamong/member/join",
     type: "POST",
