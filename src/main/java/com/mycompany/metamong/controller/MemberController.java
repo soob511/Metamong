@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.JoinFormDto;
 import com.mycompany.metamong.dto.MemberDto;
 import com.mycompany.metamong.service.MemberService;
 
@@ -22,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	
 	@Autowired
-	private MemberService MemberService;
+	private MemberService memberService;
 	
 	@GetMapping("loginForm")
 	public String loginForm() {
@@ -34,11 +37,20 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	
-	@PostMapping("/join")
-	public int join(@RequestBody MemberDto form) {
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public int idCheck(@RequestParam String MId) {
 		log.info("실행");
-		log.info(form.getMId(),form.getMPassword());
+		return memberService.getMId(MId);
+	}
+	
+	@ResponseBody
+	@PostMapping("/join")
+	public int join(@RequestBody JoinFormDto form) {
+		log.info("실행");
+		log.info(form.toString());
 		MemberDto member = new MemberDto();
+		
 		member.setMId(form.getMId());
 		member.setMName(form.getMName());
 		
@@ -54,7 +66,7 @@ public class MemberController {
 		member.setMIsActive(1);
 		member.setMApplydate(new Date());
 		
-		return MemberService.join(member);
+		return 	memberService.join(member);
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.mycompany.metamong.daoMain;
+package com.mycompany.metamong.dao;
 
 import java.util.List;
 
@@ -9,8 +9,6 @@ import com.mycompany.metamong.dto.Pager;
 
 @Mapper
 public interface NoticeDao {
-
-	public int addNotice(NoticeDto notice);
 	
 	public List<NoticeDto> selectList(Pager pager);
 	
@@ -20,8 +18,10 @@ public interface NoticeDao {
 	
 	public NoticeDto selectFileByNoticeId(int noticeId);
 	
+	public int addNotice(NoticeDto notice);
+	
 	public void updateHitcount(int noticeId);
-
+	
 	public int updateNotice(NoticeDto notice);
 
 	}

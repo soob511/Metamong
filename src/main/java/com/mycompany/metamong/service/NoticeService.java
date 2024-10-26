@@ -26,24 +26,33 @@ public class NoticeService {
 		List<NoticeDto> list = noticeDao.selectList(pager);
 		return list;
 	}
+	
 	public NoticeDto getNotice(int noticeId) {
 		NoticeDto notice = noticeDao.selectByNoticeId(noticeId);
 		return notice;
 	}
-	public void addNotice(NoticeDto notice) {
-		 noticeDao.addNotice(notice);
-		//int noticeId = notice.getNoticeId();
-	}
+	
 	public int getTotalRows() {
 		int totalRows = noticeDao.countRows();
 		return totalRows;
 	}
+	
 	public NoticeDto getNoticeFile(int noticeId) {
 		NoticeDto notice = noticeDao.selectFileByNoticeId(noticeId);
 		return notice;
 		
 	}
+	
+	public void addNotice(NoticeDto notice) {
+		 noticeDao.addNotice(notice);
+		
+	}
+	
 	public void addHitcount(int noticeId) {
 		noticeDao.updateHitcount(noticeId);	
+	}
+	
+	public void updateNotice(NoticeDto notice) {
+		noticeDao.updateNotice(notice);
 	}
 }	

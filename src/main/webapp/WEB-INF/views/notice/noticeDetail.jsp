@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>공지사항 상세</title>
     <link href="${pageContext.request.contextPath}/resources/css/notice/notice.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -37,10 +39,10 @@
                         </c:if>
                         <tr>
                             <td class="table-primary">내용</td>
-                            <td colspan="5">
-                                <textarea class="form-control"  id="exampleFormControlTextarea1" rows="12" required >
+                            <td colspan="5" id="Detailcontents" >
+                                
                                    ${notice.noticeContent}
-                                </textarea>
+                                
                             </td>
                         </tr>
                     </table>
@@ -64,6 +66,9 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/notice/notice.js"></script>
 </body>
 </html>

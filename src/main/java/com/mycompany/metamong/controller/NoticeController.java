@@ -6,7 +6,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA_2_3.portable.OutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mycompany.metamong.dto.AddNoticeForm;
 import com.mycompany.metamong.dto.NoticeDto;
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.UpdateNoticeForm;
 import com.mycompany.metamong.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -58,7 +58,7 @@ public class NoticeController {
 		int totalRows = noticeService.getTotalRows();
 		Pager pager = new Pager(10,5,totalRows,pageNo);
 		session.setAttribute("pager", pager);
-		
+		model.addAttribute("totalRows", totalRows);
 		List<NoticeDto> list = noticeService.getNoticeList(pager);
 		model.addAttribute("list",list);
 		
@@ -68,14 +68,10 @@ public class NoticeController {
 	@GetMapping("/noticeDetail")
 	public String noticeDetail(int noticeId, Model model) {
 		NoticeDto notice = noticeService.getNotice(noticeId);
-		model.addAttribute("notice", notice);
-		return "notice/noticeDetail";
-	}
-
-	@GetMapping("/addHitCount")
-	public String addHitCount(int noticeId, Model model) {
 		noticeService.addHitcount(noticeId);
-		return noticeDetail(noticeId,model);	
+		model.addAttribute("notice", notice);
+		
+		return "notice/noticeDetail";
 	}
 	
 	@GetMapping("/fileDownload")
@@ -92,6 +88,29 @@ public class NoticeController {
 		out.write(notice.getNoticeFiledata());
 		out.flush();
 		out.close();
+	}
+	@GetMapping("/noticeUpdateForm")
+	public String noticeUpdateForm(int noticeId, Model model) {
+		NoticeDto notice = noticeService.getNotice(noticeId);
+		model.addAttribute("notice", notice);
+		return "notice/noticeUpdateForm";
+	}
+	
+	@PostMapping("/updateNotice")
+	public String updateNotice(UpdateNoticeForm form) throws Exception {
+		NoticeDto notice = new NoticeDto();
+		notice.setNoticeId(form.getNoticeId());
+		notice.setNoticeTitle(form.getNoticeTitle());
+		notice.setNoticeRegdate(form.getNoticeRegdate());
+		notice.setNoticeContent(form.getNoticeContent());
+		MultipartFile mf = form.getNoticeFile();
+		if(!mf.isEmpty()) {
+			notice.setNoticeFilename(mf.getOriginalFilename());
+			notice.setNoticeFiletype(mf.getContentType());
+			notice.setNoticeFiledata(mf.getBytes());
+		}
+		noticeService.updateNotice(notice);
+		return "redirect:/notice/noticeDetail?noticeId=" + form.getNoticeId();
 	}
 	
 }
