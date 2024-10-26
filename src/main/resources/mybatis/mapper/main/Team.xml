@@ -4,7 +4,7 @@
 	<select id="selectTeamList" resultType="Team">
 		SELECT team_Id,team_Name,team_Isactive
 		FROM Team
-		WHERE team_Isactive = 1
+		WHERE team_Isactive = 1 AND team_ID>0
 		ORDER BY team_Id
 	</select>
 
