@@ -35,8 +35,8 @@ public class NoticeController {
 		return "notice/noticeAddForm";
 	}
 	
-	@PostMapping("/addNotice")
-	public String addNotice(AddNoticeForm form) throws Exception{
+	@PostMapping("/insertNotice")
+	public String insertNotice(AddNoticeForm form) throws Exception{
 		NoticeDto notice = new NoticeDto();
 		notice.setNoticeTitle(form.getNoticeTitle());
 		notice.setNoticeContent(form.getNoticeContent());
@@ -48,7 +48,7 @@ public class NoticeController {
 			notice.setNoticeFiletype(noticeFile.getContentType());
 			notice.setNoticeFiledata(noticeFile.getBytes());
 		}
-		noticeService.addNotice(notice);
+		noticeService.insertNotice(notice);
 		return "redirect:/notice/noticeList";
 	}
 	
@@ -71,6 +71,8 @@ public class NoticeController {
 		noticeService.addHitcount(noticeId);
 		model.addAttribute("notice", notice);
 		
+		List<NoticeDto> subList = noticeService.getSubList(noticeId);
+		model.addAttribute("subList", subList);
 		return "notice/noticeDetail";
 	}
 	
@@ -111,6 +113,14 @@ public class NoticeController {
 		}
 		noticeService.updateNotice(notice);
 		return "redirect:/notice/noticeDetail?noticeId=" + form.getNoticeId();
+	}
+	@GetMapping("/deleteNotice")
+	public String deleteNotice(int noticeId, HttpSession session) {
+		noticeService.deleteNotice(noticeId);
+		Pager pager = (Pager) session.getAttribute("pager");
+		int pageNo = pager.getPageNo();
+		return "redirect:/notice/noticeList?pageNo=" + pageNo;
+		
 	}
 	
 }

@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="/WEB-INF/views/common/menu.jsp" />
+        <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
         <div class="col-10">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
@@ -39,7 +39,7 @@
                         </c:if>
                         <tr>
                             <td class="table-primary">내용</td>
-                            <td colspan="5" id="Detailcontents" >
+                            <td colspan="5" id="detailContents" >
                                 
                                    ${notice.noticeContent}
                                 
@@ -49,11 +49,11 @@
                     <table class="table table-bordered">
                         <tr>
                             <td class="table-primary">이전글</td>
-                            <td id="table-contents"><a href="noticeDetail?noticeId=2" style="color:black;">코드 추가 요청에 관한 공지입니다.</a></td>
+                            <td id="table-contents"><a href="noticeDetail?noticeId=${notice.noticeId-1}" style="color:black;">이전</a></td>
                         </tr>
                         <tr>
                             <td class="table-primary">다음글</td>
-                            <td id="table-contents"><a href="noticeDetail?noticeId=3" style="color:black;">DB 신청양식 폼</a></td>
+                            <td id="table-contents"><a href="noticeDetail?noticeId=${notice.noticeId+1}" style="color:black;"></a></td>
                         </tr>
                     </table>
                     <div class="d-flex justify-content-end mt-3">

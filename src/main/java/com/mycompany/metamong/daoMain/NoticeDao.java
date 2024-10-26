@@ -10,7 +10,7 @@ import com.mycompany.metamong.dto.Pager;
 @Mapper
 public interface NoticeDao {
 
-	public int addNotice(NoticeDto notice);
+	public int insertNotice(NoticeDto notice);
 	
 	public List<NoticeDto> selectList(Pager pager);
 	
@@ -23,5 +23,9 @@ public interface NoticeDao {
 	public void updateHitcount(int noticeId);
 
 	public int updateNotice(NoticeDto notice);
+
+	public int deleteNotice(int noticeId);
+
+	public List<NoticeDto> selectSubList(int noticeId);
 
 	}

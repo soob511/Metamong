@@ -43,8 +43,8 @@ public class NoticeService {
 		
 	}
 	
-	public void addNotice(NoticeDto notice) {
-		 noticeDao.addNotice(notice);
+	public void insertNotice(NoticeDto notice) {
+		 noticeDao.insertNotice(notice);
 		
 	}
 	
@@ -55,4 +55,16 @@ public class NoticeService {
 	public void updateNotice(NoticeDto notice) {
 		noticeDao.updateNotice(notice);
 	}
+
+	public void deleteNotice(int noticeId) {
+		noticeDao.deleteNotice(noticeId);
+		
+	}
+
+	public List<NoticeDto> getSubList(int noticeId) {
+		List<NoticeDto> subList = noticeDao.selectSubList(noticeId);
+		return subList;
+		
+	}
+	
 }	

@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="/WEB-INF/views/common/menu.jsp" />
+        <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
         <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div class="content">

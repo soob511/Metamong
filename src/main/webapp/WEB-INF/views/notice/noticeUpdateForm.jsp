@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="/WEB-INF/views/common/menu.jsp" />
+        <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
         <div class="col-10">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
@@ -23,7 +23,7 @@
                         <table class="table"> 
                             <tr>
                                 <td class="table-primary form-label">제목<span class="form-required">(*)</span></td>
-                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle" value="${notice.noticeTitle}" required></td>
+                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle" value="${notice.noticeTitle}"></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">작성자</td>
@@ -36,7 +36,7 @@
                             <tr>
                                 <td class="table-primary form-label">내용</td>
                                 <td>                                   
-                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12" required> ${notice.noticeContent}</textarea>
+                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12">${notice.noticeContent}</textarea>
                                 </td>
                             </tr>
                             

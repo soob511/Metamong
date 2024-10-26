@@ -13,17 +13,17 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="/WEB-INF/views/common/menu.jsp" />
+        <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
         <div class="col-10">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
                 <div class="content">
                     <h4 class="fw-bold notice-title">> 공지사항 등록</h4>
-                    <form id="addNotice" action="addNotice" method="post" enctype="multipart/form-data">
+                    <form id="insertNotice" action="insertNotice" method="post" enctype="multipart/form-data">
                         <table class="table">
                             <tr>
                                 <td class="table-primary form-label">제목<span class="form-required">(*)</span></td>
-                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle"  value="" required></td>
+                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle"  value=""></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">작성자</td>
@@ -31,12 +31,12 @@
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">등록일</td>
-                                <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" value="sysdate" required></td>
+                                <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" value="sysdate"></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">내용</td>
                                 <td>                                   
-                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12" required></textarea>
+                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12"></textarea>
                                 </td>
                             </tr>
                             <tr>
