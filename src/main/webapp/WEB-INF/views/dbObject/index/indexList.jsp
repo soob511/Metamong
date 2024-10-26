@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,21 +21,21 @@
               </div>
               <div class="table-list-filters">
                 <div class="table-search">
-                  <label for="tableNameSearch" class="table-search-label">인덱스명</label>
+                  <label for="indexNameSearch" class="table-search-label">인덱스명</label>
                   <div class="container-fluid">
                     <form class="d-flex search-form">
-                      <input class="form-control me-2" type="search" id="tableNameSearch" placeholder="Search" aria-label="Search">
-                      <i class="bi bi-search"></i>
+                      <input class="form-control me-2" type="search" id="indexNameSearch" placeholder="Search" aria-label="Search">
+                      <i id=biSearch class="bi bi-search"></i>
                     </form>
                   </div>
                 </div>
                 <div class="schema-filter">
                   <label for="schemaSelect" class="schema-filter-label">스키마명</label>
                   <select id="schemaSelect" class="form-select" aria-label="Default select example">
-                    <option selected>선택</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected value="MAIN">USER_2024_OTI_FINAL_TEAM1</option>
+                    <option value="SUB1">USER_2024_OTI_FINAL_TEAM1_1</option>
+                    <option value="SUB2">USER_2024_OTI_FINAL_TEAM1_2</option>
+                    <option value="SUB3">USER_2024_OTI_FINAL_TEAM1_3</option>
                   </select>
                 </div>
               </div>
@@ -61,31 +62,17 @@
 	                      <th scope="col">유일성</th>
 	                    </tr>
 	                  </thead>
-	                  <tbody>
-	                    <tr>
-	                      <th>1</th>
-	                      <td>SEQ_CODE</td>
-	                      <td>kosa_oracle_server-team1</td>
-	                      <td>team_table</td>
-	                      <td>team-col desc</td>
-	                      <td>Y</td>
-	                    </tr>
-	                    <tr>
-	                      <th>2</th>
-	                      <td>SEQ_CODE</td>
-	                      <td>kosa_oracle_server-team1</td>
-	                      <td>team_table</td>
-	                      <td>team-col desc</td>
-	                      <td>Y</td>
-	                    </tr>
-	                    <tr>
-	                      <th>3</th>
-	                      <td>SEQ_CODE</td>
-	                      <td>kosa_oracle_server-team1</td>
-	                      <td>team_table</td>
-	                      <td>team-col desc</td>
-	                      <td>Y</td>
-	                    </tr>
+	                  <tbody id="indexTableBody">
+	                  	<c:forEach items="${list}" var="index" varStatus="status">
+	                  		<tr>
+		                      <th>${status.index + 1}</th>
+		                      <td>${index.indexName}</td>
+		                      <td>${index.schemaName}</td>
+		                      <td>${index.tableName}</td>
+		                      <td>${index.columnName}</td>
+		                      <td>${index.uniqueness}</td>
+	                    	</tr>
+	                  	</c:forEach>
 	                  </tbody>
 	                </table>
                 </div>

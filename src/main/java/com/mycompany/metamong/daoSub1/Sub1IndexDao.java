@@ -1,4 +1,4 @@
-package com.mycompany.metamong.daoMain;
+package com.mycompany.metamong.daoSub1;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.mycompany.metamong.dto.IndexDto;
 
 @Mapper
-public interface IndexDao {
+public interface Sub1IndexDao {
 	
 	public List<IndexDto> selectIndex();
 	

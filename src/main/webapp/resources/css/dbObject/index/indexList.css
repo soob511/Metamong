@@ -43,6 +43,7 @@ label {
     z-index: 1;
     position: relative;
     top: 8px;
+    cursor: pointer;
 }
 
 .schema-filter {
@@ -66,6 +67,7 @@ hr {
     box-shadow: var(--box-shadow);
     overflow: hidden;
     height: 600px;
+    overflow-y: auto !important;
 }
 
 .tables-management {
