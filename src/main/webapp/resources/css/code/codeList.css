@@ -35,7 +35,7 @@ label{
 }
 
 .search-form i {
-    margin-left: -30px;
+    margin-left: -35px;
     z-index: 1;
     position: relative;
     top: 8px;
@@ -147,5 +147,11 @@ thead{
     padding: 15px 10px;
 }
 
+ .item-table {
+ 	overflow: hidden;
+ }
 
-
+ .item-table-container {
+	height: 580px !important;
+	overflow-y: scroll;
+}

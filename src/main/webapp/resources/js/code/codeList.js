@@ -5,17 +5,33 @@ $(document).ready(function() {
     $('.sub-menu:eq(0) .sub-item').removeClass('active');
     $('.sub-menu:eq(0) .sub-item:first').addClass('active');
     
-    $('#itemTable tbody tr').hide();
-    $('#itemTable tbody tr').filter(function() {
-        return $(this).find('th').text() == 1;
-    }).show();
+    const codes = $('#codeTable tbody tr');
+    const items = $('#itemTable tbody tr');
+    
+    // codeNo에 따른 항목 내역 출력
+    items.hide();    
+    $('.no-code').show();
     
     $('.code-row').click(function() {
         let clickedCode = $(this).data('code-no'); 
         
-        $('#itemTable tbody tr').hide();
-        $('#itemTable tbody tr').filter(function() {
+        items.hide();
+        items.filter(function() {
             return $(this).find('th').text() == clickedCode;
         }).show();
+    });
+    
+    // 사용여부(Y/N) 필터값에 따른 코드 내역 출력
+    $('#useSelect').change(function() {
+        items.hide();    
+        $('.no-code').show();
+        
+        const useYn = $(this).val();
+        codes.each(function() {
+            const isActive = $(this).data('is-active');
+            if(useYn == '2') codes.show();
+            else {isActive == useYn ? $(this).show() : $(this).hide();}
+            
+        });
     });
 });
