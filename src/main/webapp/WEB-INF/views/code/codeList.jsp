@@ -122,20 +122,5 @@
     </div>
 
     <script src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script>
-    <script>
-$(document).ready(function() {
-    $('.code-row').click(function() {
-        var selectedCodeNo = $(this).data('code-no');
-        
-        // 항목 테이블에서 모든 항목 숨기기
-        $('#itemTable tbody tr').hide();
-        
-        // 선택한 코드와 같은 codeNo를 가진 항목만 표시
-        $('#itemTable tbody tr').filter(function() {
-            return $(this).find('th').text() == selectedCodeNo;
-        }).show();
-    });
-});
-</script>
 </body>
 </html>
