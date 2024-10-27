@@ -8,10 +8,11 @@ $(document).ready(function() {
     const codes = $('#codeTable tbody tr');
     const items = $('#itemTable tbody tr');
     
-    // codeNo에 따른 항목 내역 출력
     items.hide();    
     $('.no-code').show();
+    $('.no-match').hide();
     
+    // codeNo에 따른 항목 내역 출력
     $('.code-row').click(function() {
         let clickedCode = $(this).data('code-no'); 
         
@@ -23,15 +24,42 @@ $(document).ready(function() {
     
     // 사용여부(Y/N) 필터값에 따른 코드 내역 출력
     $('#useSelect').change(function() {
+        const useYn = $(this).val();
         items.hide();    
         $('.no-code').show();
         
-        const useYn = $(this).val();
-        codes.each(function() {
-            const isActive = $(this).data('is-active');
-            if(useYn == '2') codes.show();
-            else {isActive == useYn ? $(this).show() : $(this).hide();}
-            
-        });
+        filterCodes();
     });
+
+    // 검색어에 따른 코드 내역 출력
+    $('#codeNameSearch').on('input', function() {
+    	items.hide();    
+        $('.no-code').show();
+        
+        filterCodes();
+    });
+
+    function filterCodes() {
+        const keyword = $('#codeNameSearch').val().toLowerCase();
+        const useYn = $('#useSelect').val();
+        let result = false;
+        
+        codes.each(function() {
+            const codeNm = $(this).find('td:eq(0)').text().toLowerCase();
+            const codeId = $(this).find('td:eq(1)').text().toLowerCase();
+            const isActive = $(this).data('is-active');
+
+            const isKeyword = codeNm.includes(keyword) || codeId.includes(keyword);
+            const isUseYn = (useYn === '2' || isActive == useYn);
+            
+            if (isKeyword && isUseYn) {
+                $(this).show();
+                result = true;
+            } else {
+                $(this).hide();
+            }
+          
+           !result ? $('.no-match').show(): $('.no-match').hide();
+        });
+    }
 });

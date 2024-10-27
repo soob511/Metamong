@@ -71,6 +71,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                	<tr class="no-match"><th colspan="5">조건에 맞는 코드가 없습니다.</th></tr>
                                 <c:forEach items="${codeList}" var="code">
                                     <tr class="code-row" data-code-no="${code.codeNo}" data-is-active="${code.codeIsActive}">
                                         <th>${code.codeNo}</th>
