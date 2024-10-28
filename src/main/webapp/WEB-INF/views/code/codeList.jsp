@@ -7,7 +7,6 @@
 <meta charset="UTF-8" />
 <title>코드/항목 관리</title>
 <link href="${pageContext.request.contextPath}/resources/css/code/codeList.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for easier DOM manipulation -->
 </head>
 <body>
     <div class="container code-list-container">
