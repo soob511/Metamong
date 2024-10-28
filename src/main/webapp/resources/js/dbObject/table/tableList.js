@@ -59,11 +59,11 @@ function searchTable() {
         			schema:schema},
         success: function(data) {
         	var html = "";
-        	
+        	var cHtml=`<th colspan="7">테이블을 선택해 주세요.</th>`; 
         	if(Object.keys(data).length>0){
         		var count = 0;
         		data.forEach(table => {
-        			html += `<tr>
+        			html += `<tr  onclick="showColumnList(${table.tableNo})">
         				<td>${++count}</td>
         				<td>${table.tableNm}</td>
         				<td>${table.tableId}</td>
@@ -77,8 +77,8 @@ function searchTable() {
     		
     				</tr>`;
         	}
-
             $('#tableList').html(html);
+            $('#columnList').html(cHtml);
         }
     });
 }
