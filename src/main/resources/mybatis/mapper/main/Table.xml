@@ -6,5 +6,27 @@
 	FROM "TABLES"
 </select>
 
+<select id="selectTableSearch" parameterType="map" resultType="Table">
+    SELECT table_no, table_nm, table_id, table_content, schema_nm
+    FROM "TABLES"
+    <where>
+     
+        <if test="content != null and content != '' and (schema == null or schema == '')">
+            (table_nm = #{content} OR table_id = #{content})
+        </if>
+        
+
+        <if test="content != null and content != '' and schema != null and schema != ''">
+            (table_nm = #{content} OR table_id = #{content}) AND schema_nm = #{schema}
+        </if>
+        
+
+        <if test="(content == null or content == '') and schema != null and schema != ''">
+            schema_nm = #{schema}
+        </if>
+    </where>
+</select>
+
+
 </mapper>
 	

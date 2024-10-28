@@ -5,6 +5,7 @@
 		SELECT table_no, col_id, col_nm,data_type,col_length,col_isnullable,col_ispk,col_order
 		FROM "COLUMN"
 		WHERE table_no = #{tableNo}
+		ORDER BY col_order
 	
 	</select>
 
