@@ -96,4 +96,42 @@ $(document).ready(function() {
             }
         });
     }
+    $(".btn-add").on("click", function() {
+        var colNm = $("#colNm").val();
+        var colId = $("#colId").val();
+        var dataType = $("#dataType").val(); 
+        var colLength = parseInt($("#dataLength").val());
+        var colNullable = $("#nullable").val();
+        var colPk = $("#isUse").val();
+        
+        if (colNm === "" || colId === "" || colLength === "") {
+        	Swal.fire({
+        		  icon: 'warning',                  
+        		  title: '내용을 전부 입력해주세요.',    
+        		});
+        }else{
+            var rowCount = $("#columnList tr").length + 1;
+
+            var newRow = `
+                <tr>
+                    <td>${rowCount}</td>
+                    <td>${colNm}</td>
+                    <td>${colId}</td>
+                    <td>${dataType}</td>
+                    <td>${colLength}</td>
+                    <td>${colNullable}</td>
+                    <td>${colPk}</td>
+                    <td><i class="bi bi-trash3 delete-row"></i></td>
+                </tr>
+            `;
+        }
+        $("#columnList").append(newRow); // id 선택자 # 추가
+
+        $("#itemForm")[0].reset(); // 입력 필드 초기화
+    });
+
+    $(document).on("click", ".delete-row", function() {
+        $(this).closest("tr").remove();
+    });
+
 });

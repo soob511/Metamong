@@ -12,6 +12,9 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/codeModal.css"
 	rel="stylesheet" />
+	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+	
 </head>
 <body>
 	<div class="container codeAdd-container">
@@ -86,21 +89,21 @@
 
 									<tr>
 										<td class="table-primary">데이터타입</td>
-										<td colspan="5"><select id="dataType"
+										<td colspan="5"><select  type="text" id="dataType"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
 									
 										</select></td>
 									</tr>
 									<tr>
 										<td class="table-primary">길이</td>
-										<td colspan="5"><input type="text"
+										<td colspan="5"><input type="text" id="dataLength"
 											class="form-control code-input" placeholder="내용 입력" required>
 										</td>
 									</tr>
 
 									<tr>
 										<td class="table-primary">NULL</td>
-										<td colspan="5"><select
+										<td colspan="5"><select id="nullable"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
 												<option value="NULL">NULL</option>
 												<option value="NOTNULL">NOTNULL</option>
@@ -108,7 +111,7 @@
 									</tr>
 									<tr>
 										<td class="table-primary">PK</td>
-										<td colspan="5"><select
+										<td colspan="5"><select id="isUse"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
 												<option value="Y">Y</option>
 												<option value="N">N</option>
@@ -153,37 +156,8 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<th>1</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
-							<tr>
-								<th>3</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
+						<tbody id="columnList">
+						
 						</tbody>
 					</table>
 				</div>
