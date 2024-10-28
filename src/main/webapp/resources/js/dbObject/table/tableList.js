@@ -21,7 +21,7 @@ function showColumnList(tableId) {
                 			<td>${column.colId}</td>
                             <td>${column.dataType}</td>
                             <td>${column.colLength}</td>
-                            <td>${column.colIsnullable==1 ? 'NOT NULL' : 'NULL'}</td>
+                            <td>${column.colIsnullable==0 ? 'NOT NULL' : 'NULL'}</td>
                             <td>${column.colIspk==1 ? 'Y' : 'N'}</td>
                         </tr>`;
             });
