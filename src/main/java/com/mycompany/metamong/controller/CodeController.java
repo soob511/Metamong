@@ -9,11 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.metamong.dto.AddCodeFormDto;
+import com.mycompany.metamong.dto.AddItemDto;
 import com.mycompany.metamong.dto.ApplyCodeDto;
 import com.mycompany.metamong.dto.ApplyDto;
+import com.mycompany.metamong.dto.ApplyItemDto;
 import com.mycompany.metamong.dto.CodeDto;
 import com.mycompany.metamong.dto.ItemDto;
 import com.mycompany.metamong.service.ApplyService;
@@ -56,28 +59,35 @@ public class CodeController {
 	}
 	
 	@PostMapping("/addApplyCode")
-	public String addCode(Authentication auth, AddCodeFormDto form) {
-		
+	public String addCode(Authentication auth, @RequestBody AddCodeFormDto form) {
 		// APPLY_LIST 테이블
-		ApplyDto apply = new ApplyDto();
+		ApplyDto apply = new ApplyDto();	
 		
 		apply.setMId(auth.getName());
-		log.info(auth.getName());
-		apply.setApplyReason(form.getApplyReason());
-		
+		apply.setApplyReason(form.getApplyReason());		
 		applyService.addApply(apply);
+		
 		// APPLY_CODE 테이블
 		ApplyCodeDto code = new ApplyCodeDto();
+		
 		code.setApplyNo(apply.getApplyNo());
 		code.setCodeNm(form.getCodeNm());
 		code.setCodeId(form.getCodeId());
-		code.setCodeContent(form.getCodeContent());
-		
+		code.setCodeContent(form.getCodeContent());		
 		codeService.addApplyCode(code);
 		
 		// APPLY_ITEM 테이블
-		/*itemService.addItem(item);*/
+		List<AddItemDto> inputItems = form.getItems();
 		
+		for (AddItemDto inputItem : inputItems) {
+			ApplyItemDto item = new ApplyItemDto();
+	        item.setApplyNo(apply.getApplyNo());
+	        item.setItemId(inputItem.getItemId());
+	        item.setItemNm(inputItem.getItemNm());
+	        item.setItemContent(inputItem.getItemContent());
+	        
+	        itemService.addApplyItem(item);
+	    }
 		return "성공";
 	}
 	

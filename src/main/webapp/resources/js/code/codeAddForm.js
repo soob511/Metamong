@@ -10,12 +10,35 @@ $(document).ready(function() {
     	const codeId = $('#codeId').val();
     	const codeContent = $('#codeContent').val();
     	const applyReason = $('#applyReason').val();
-    	let codeData = {codeNm: codeNm, codeId: codeId, codeContent: codeContent, applyReason: applyReason};
+    	const items = [];
+    	
+		items.push({
+			itemId: "1",
+    		itemNm: "name1", 
+    		itemContent: "내용1", 
+		})
+		
+		items.push({
+			itemId: "2",
+    		itemNm: "name2", 
+    		itemContent: "내용2", 
+		})
+		
+    		/*$().each(function() {})*/
+
+    	let codeData = {
+			codeNm: codeNm, 
+			codeId: codeId, 
+			codeContent: codeContent, 
+			applyReason: applyReason, 
+			items: items
+		};
 
     	$.ajax({
     		url: "/Metamong/code/addApplyCode",
     		type: "POST",
-    		data: codeData,
+    		contentType: "application/json",
+            data: JSON.stringify(codeData),
     		success: function(data) {
     			console.log("성공");
     			 /* Swal.fire({ 
@@ -29,10 +52,3 @@ $(document).ready(function() {
     	});
     });
 });   	
-    	
-    	
-/*$.ajax({
-	url: "/Metamong/code/addCode",
-    type: "POST",
-    data: codeData
-})*/
