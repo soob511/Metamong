@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.IndexDto;
-import com.mycompany.metamong.enums.SchemaEnums;
+import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.IndexService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,8 @@ public class IndexController {
 	
 	@GetMapping("/indexList")
 	public String indexList(Model model) {
-		List<IndexDto> list = indexService.getIndexList();			
+		List<IndexDto> list = indexService.getIndexList();
+		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexList";
 	}
@@ -34,7 +35,7 @@ public class IndexController {
 	@ResponseBody
 	@GetMapping("/searchIndex")
 	public List<IndexDto> searchIndex(
-			@RequestParam SchemaEnums schemaName,
+			@RequestParam SchemaEnum schemaName,
 			@RequestParam String indexName
 			) {
 		List<IndexDto> list = new ArrayList<>();

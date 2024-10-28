@@ -11,7 +11,7 @@ import com.mycompany.metamong.daoSub1.Sub1IndexDao;
 import com.mycompany.metamong.daoSub2.Sub2IndexDao;
 import com.mycompany.metamong.daoSub3.Sub3IndexDao;
 import com.mycompany.metamong.dto.IndexDto;
-import com.mycompany.metamong.enums.SchemaEnums;
+import com.mycompany.metamong.enums.SchemaEnum;
 
 @Service
 public class IndexService {
@@ -33,7 +33,7 @@ public class IndexService {
 		return list;
 	}
 
-	public List<IndexDto> getIndexList(SchemaEnums schemaName) {
+	public List<IndexDto> getIndexList(SchemaEnum schemaName) {
 		List<IndexDto> list = new ArrayList<>();
 
 		switch (schemaName) {
@@ -55,7 +55,7 @@ public class IndexService {
 		return list;
 	}
 
-	public List<IndexDto> getIndexList(SchemaEnums schemaName, String indexName) {
+	public List<IndexDto> getIndexList(SchemaEnum schemaName, String indexName) {
 		List<IndexDto> list = new ArrayList<>();
 
 		switch (schemaName) {
