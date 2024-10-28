@@ -8,11 +8,11 @@ $(document).ready(function() {
     const codes = $('#codeTable tbody tr');
     const items = $('#itemTable tbody tr');
     
-    items.hide();    
-    $('.no-code').show();
-    $('.no-match').hide();
+    items.hide();
+    $('.no-item').show();
+    $('.no-code').hide();
     
-    // codeNo에 따른 항목 내역 출력
+    // 코드 클릭 시, 항목 내역 출력
     $('.code-row').click(function() {
         let clickedCode = $(this).data('code-no'); 
         
@@ -23,19 +23,12 @@ $(document).ready(function() {
     });
     
     // 사용여부(Y/N) 필터값에 따른 코드 내역 출력
-    $('#useSelect').change(function() {
-        const useYn = $(this).val();
-        items.hide();    
-        $('.no-code').show();
-        
+    $('#useSelect').change(function() {  
         filterCodes();
     });
 
     // 검색어에 따른 코드 내역 출력
     $('#codeNameSearch').on('input', function() {
-    	items.hide();    
-        $('.no-code').show();
-        
         filterCodes();
     });
 
@@ -43,6 +36,9 @@ $(document).ready(function() {
         const keyword = $('#codeNameSearch').val().toLowerCase();
         const useYn = $('#useSelect').val();
         let result = false;
+        
+        items.hide();
+        $('.no-item').show();
         
         codes.each(function() {
             const codeNm = $(this).find('td:eq(0)').text().toLowerCase();
@@ -58,8 +54,7 @@ $(document).ready(function() {
             } else {
                 $(this).hide();
             }
-          
-           !result ? $('.no-match').show(): $('.no-match').hide();
+           !result ? $('.no-code').show() : $('.no-code').hide();
         });
     }
 });

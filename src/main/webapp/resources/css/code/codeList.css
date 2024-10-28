@@ -66,12 +66,6 @@ label{
    margin: 20px 20px 20px 45px;   
 }
 
-.table {
-    border-radius: 8px !important; 
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-}
-
 .code-management-title,.item-management-title{
    font-size:18px;
    font-weight: 600 !important;
@@ -147,11 +141,9 @@ thead{
     padding: 15px 10px;
 }
 
- .item-table {
- 	overflow: hidden;
- }
-
- .item-table-container {
+ .item-table-container, .code-table-container {
 	height: 580px !important;
 	overflow-y: scroll;
+	border-radius: 8px !important; 
+	box-shadow: var(--box-shadow);
 }

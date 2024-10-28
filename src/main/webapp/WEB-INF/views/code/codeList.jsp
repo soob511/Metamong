@@ -60,29 +60,31 @@
                                     </a>
                                 </div>
                             </div>
-                            <table class="table table-hover" id="codeTable">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">코드(논리)</th>
-                                        <th scope="col">코드(물리)</th>
-                                        <th scope="col">사용여부</th>
-                                        <th scope="col">내용</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                	<tr class="no-match"><th colspan="5">조건에 맞는 코드가 없습니다.</th></tr>
-                                <c:forEach items="${codeList}" var="code">
-                                    <tr class="code-row" data-code-no="${code.codeNo}" data-is-active="${code.codeIsActive}">
-                                        <th>${code.codeNo}</th>
-                                        <td>${code.codeNm}</td>
-                                        <td>${code.codeId}</td>
-                                        <td>${code.codeIsActive == 1 ? 'Y' : 'N'}</td>
-                                        <td>${code.codeContent}</td>
-                                    </tr>
-                                </c:forEach>	
-                                </tbody>
-                            </table>
+                            <div class="code-table-container">
+	                            <table class="table table-hover" id="codeTable">
+	                                <thead class="table-primary">
+	                                    <tr>
+	                                        <th scope="col">No.</th>
+	                                        <th scope="col">코드(논리)</th>
+	                                        <th scope="col">코드(물리)</th>
+	                                        <th scope="col">사용여부</th>
+	                                        <th scope="col">내용</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                	<tr class="no-code"><th colspan="5">조건에 맞는 코드가 없습니다.</th></tr>
+	                                <c:forEach items="${codeList}" var="code">
+	                                    <tr class="code-row" data-code-no="${code.codeNo}" data-is-active="${code.codeIsActive}">
+	                                        <th>${code.codeNo}</th>
+	                                        <td>${code.codeNm}</td>
+	                                        <td>${code.codeId}</td>
+	                                        <td>${code.codeIsActive == 1 ? 'Y' : 'N'}</td>
+	                                        <td>${code.codeContent}</td>
+	                                    </tr>
+	                                </c:forEach>	
+	                                </tbody>
+	                            </table>
+                            </div>
                         </div>
 
                         <!-- 항목 목록 -->
@@ -102,7 +104,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>        
-                                <tr class="no-code"><th colspan="5">코드를 선택해 주세요.</th></tr>
+                                <tr class="no-item"><th colspan="5">코드를 선택해 주세요.</th></tr>
                                                         
 	                                <c:forEach items="${itemList}" var="items">
 									    <c:forEach items="${items}" var="item">
