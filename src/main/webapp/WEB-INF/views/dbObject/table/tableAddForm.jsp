@@ -61,60 +61,61 @@
 						</div>
 
 						<div class="col item">
-							<div class="btn-load-container">
-								<div class="itemAdd-subtitle">컬럼</div>
-								<div class="right-btn">
-								<div class="btn-load" data-bs-toggle="modal"
-									data-bs-target="#codeLoadModal" type="button">불러오기</div>
-								<div class="btn-reset" type="button">초기화</div>
+							<form id="itemForm">
+								<div class="btn-load-container">
+									<div class="itemAdd-subtitle">컬럼</div>
+									<div class="right-btn">
+										<div class="btn-load" data-bs-toggle="modal"
+											data-bs-target="#codeLoadModal" type="button">불러오기</div>
+										<div class="btn-reset" type="button">초기화</div>
+									</div>
 								</div>
-							</div>
-							<table class="table table-bordered item-table">
-								<tr>
-									<td class="table-primary">컬럼(논리)</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-primary">컬럼(물리)</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-primary">데이터타입</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="사용 여부 선택">
-											<option value="VARCHAR2">VARCHAR2</option>
-											<option value="NUMBER">NUMBER</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td class="table-primary">길이</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="내용 입력" required>
-									</td>
-								</tr>
+								<table class="table table-bordered item-table">
+									<tr>
+										<td class="table-primary">컬럼(논리)</td>
+										<td colspan="5"><input type="text"
+											class="form-control code-input" placeholder="내용 입력" required>
+										</td>
+									</tr>
+									<tr>
+										<td class="table-primary">컬럼(물리)</td>
+										<td colspan="5"><input type="text"
+											class="form-control code-input" placeholder="내용 입력" required>
+										</td>
+									</tr>
+									<tr>
+										<td class="table-primary">데이터타입</td>
+										<td colspan="5"><select
+											class="form-select use-status-select" aria-label="사용 여부 선택">
+												<option value="VARCHAR2">VARCHAR2</option>
+												<option value="NUMBER">NUMBER</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td class="table-primary">길이</td>
+										<td colspan="5"><input type="text"
+											class="form-control code-input" placeholder="내용 입력" required>
+										</td>
+									</tr>
 
-								<tr>
-									<td class="table-primary">NULL</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="사용 여부 선택">
-											<option value="NULL">NULL</option>
-											<option value="NOTNULL">NOTNULL</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td class="table-primary">PK</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="사용 여부 선택">
-											<option value="Y">Y</option>
-											<option value="N">N</option>
-									</select></td>
-								</tr>
-							</table>
-
+									<tr>
+										<td class="table-primary">NULL</td>
+										<td colspan="5"><select
+											class="form-select use-status-select" aria-label="사용 여부 선택">
+												<option value="NULL">NULL</option>
+												<option value="NOTNULL">NOTNULL</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td class="table-primary">PK</td>
+										<td colspan="5"><select
+											class="form-select use-status-select" aria-label="사용 여부 선택">
+												<option value="Y">Y</option>
+												<option value="N">N</option>
+										</select></td>
+									</tr>
+								</table>
+							</form>
 
 
 						</div>
@@ -274,6 +275,6 @@
 				</div>
 
 				<script
-					src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableList.js"></script>
+					src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableAddForm.js"></script>
 </body>
 </html>
