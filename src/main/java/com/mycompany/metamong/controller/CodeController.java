@@ -85,10 +85,10 @@ public class CodeController {
 	        item.setItemId(inputItem.getItemId());
 	        item.setItemNm(inputItem.getItemNm());
 	        item.setItemContent(inputItem.getItemContent());
-	        
 	        itemService.addApplyItem(item);
 	    }
-		return "성공";
+		
+		return "code/codeApplyList";
 	}
 	
 	@GetMapping("/codeUpdateForm")

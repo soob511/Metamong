@@ -7,6 +7,8 @@
     <meta charset="UTF-8" />
     <title>코드/항목 생성</title>
     <link href="${pageContext.request.contextPath}/resources/css/code/codeAddForm.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
     <div class="container codeAdd-container">
@@ -61,19 +63,19 @@
                                 <tr>
                                     <td class="table-primary">항목코드</td>
                                     <td colspan="5">
-                                        <input type="text" class="form-control code-input" placeholder="내용 입력" required>
+                                        <input type="text" id="itemId" class="form-control code-input" placeholder="내용 입력" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="table-primary">항목명</td>
                                     <td colspan="5">
-                                        <input type="text" class="form-control code-input" placeholder="내용 입력" required>
+                                        <input type="text" id="itemNm" class="form-control code-input" placeholder="내용 입력" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="table-primary">내용</td>
                                     <td colspan="5">
-                                        <input type="text" class="form-control content-input" placeholder="내용 입력">
+                                        <input type="text" id="itemContent" class="form-control content-input" placeholder="내용 입력">
                                     </td>
                                 </tr>
                             </table>
@@ -82,7 +84,7 @@
                 </div>
 
                 <div class="button-group">
-                    <button class="btn-add" type="button">추가</button>
+                    <button id="item-add" class="btn-add" type="button">추가</button>
                     <button class="btn-edit" type="button">수정</button>
                 </div>
 
@@ -99,16 +101,7 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                         <!--    <tr>
-                                <th>001</th>
-                                <td>자동차</td>
-                                <td>CAR</td>
-                                <td>Y</td>
-                                <td>자동차에 관한 항목</td>
-                                <td><i class="bi bi-trash3"></i></td>
-                            </tr> -->
-                        </tbody>
+                        <tbody class="item-list"></tbody>
                     </table>
                 </div>
 
