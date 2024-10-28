@@ -5,7 +5,7 @@
 	<insert id="insertNotice" parameterType="Notice" >
 		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
 			SELECT 
-				setval(seq_notice_Id.nextval )
+				seq_notice_id.nextval
 			FROM DUAL
 		</selectKey>
 		INSERT INTO notice (
@@ -47,6 +47,26 @@
 			notice_id, notice_title, notice_content,notice_regdate, notice_hitcount, notice_filename
 		FROM notice
 		WHERE notice_id=#{noticeId}
+	</select>
+	
+	<select id="selectPrevNoticeId" parameterType="int" resultType="Notice">
+		SELECT
+			notice_id, notice_title
+		FROM notice
+		WHERE #{noticeId} > notice_id
+		ORDER BY notice_id DESC
+		FETCH FIRST 1 ROWS ONLY
+	
+	</select>
+	
+	<select id="selectNextNoticeId" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_id, notice_title
+		FROM notice
+		WHERE notice_id > #{noticeId}
+		ORDER BY notice_id
+		FETCH FIRST 1 ROWS ONLY
+		
 	</select>
 	
 	<select id="selectFileByNoticeId" parameterType="int" resultType="Notice">

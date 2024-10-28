@@ -61,10 +61,18 @@ public class NoticeService {
 		
 	}
 
-	public List<NoticeDto> getSubList(int noticeId) {
-		List<NoticeDto> subList = noticeDao.selectSubList(noticeId);
-		return subList;
+	public NoticeDto getPrevNotice(int noticeId) {
+		return noticeDao.selectPrevNoticeId(noticeId);
+		
 		
 	}
+
+	public NoticeDto getNextNotice(int noticeId) {
+		return noticeDao.selectNextNoticeId(noticeId);
+	
+		
+	}
+
+	
 	
 }	

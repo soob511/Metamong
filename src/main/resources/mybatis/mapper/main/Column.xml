@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mycompany.metamong.daoMain.ColumnDao">
+	<select id="selectColumnList" parameterType="int" resultType="Column">
+		SELECT table_no, col_id, col_nm,data_type,col_length,col_isnullable,col_ispk,col_order
+		FROM "COLUMN"
+		WHERE table_no = #{tableNo}
+	
+	</select>
+
+</mapper>
+	

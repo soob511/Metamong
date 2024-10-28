@@ -26,6 +26,9 @@ public interface NoticeDao {
 
 	public int deleteNotice(int noticeId);
 
-	public List<NoticeDto> selectSubList(int noticeId);
+	public NoticeDto selectPrevNoticeId(int noticeId);
 
+	public NoticeDto selectNextNoticeId(int noticeId);
+
+	
 	}
