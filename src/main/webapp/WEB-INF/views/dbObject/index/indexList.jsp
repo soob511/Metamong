@@ -16,16 +16,16 @@
           <jsp:include page="/WEB-INF/views/common/header.jsp" />
           <div class="index-container">
             <div>
-              <div class="table-list-header">
-                <p class="table-list-title">&gt; 인덱스 관리</p>
+              <div class="index-list-header">
+                <p>&gt; 인덱스 관리</p>
               </div>
-              <div class="table-list-filters">
-                <div class="table-search">
-                  <label for="indexNameSearch" class="table-search-label">인덱스명</label>
+              <div class="index-list-filters">
+                <div class="index-search">
+                  <label for="indexNameSearch" class="index-search-label">인덱스명</label>
                   <div class="container-fluid">
-                    <form class="d-flex search-form">
-                      <input class="form-control me-2" type="search" id="indexNameSearch" placeholder="Search" aria-label="Search">
-                      <i id=biSearch class="bi bi-search"></i>
+                    <form class="d-flex index-form">
+                      <input class="form-control" type="search" id="indexNameSearch" placeholder="Search" aria-label="Search">
+                      	<i id=biSearch class="bi bi-search"></i>
                     </form>
                   </div>
                 </div>
