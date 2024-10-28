@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.CodeDto;
 import com.mycompany.metamong.dto.ItemDto;
@@ -67,6 +68,12 @@ public class CodeController {
 	@GetMapping("/codeApplyDetail")
 	public String codeApplyDetail() {
 		return "code/codeApplyDetail";
+	}
+	
+	@ResponseBody
+	@GetMapping("/codeLoad")
+	public List<CodeDto> codeLoad(){
+		return codeService.getActiveCodes();
 	}
 	
 }

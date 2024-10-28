@@ -6,5 +6,11 @@
 		SELECT code_no, code_nm, code_id, code_content, code_isactive
 		FROM code
 	</select>
+	
+	<select id="selectActiveCodes" resultType="Code">
+		SELECT code_no,code_nm,code_id,code_content,code_isactive
+		FROM code
+		WHERE code_isactive=1
+	</select>
 </mapper>
 	

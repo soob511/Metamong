@@ -225,43 +225,8 @@
 												<th scope="col">내용</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<th scope="row">10</th>
-												<td>재산</td>
-												<td>PPRT</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th scope="row">10</th>
-												<td>재산</td>
-												<td>PPRT</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th scope="row">10</th>
-												<td>재산</td>
-												<td>PPRT</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th scope="row">10</th>
-												<td>재산</td>
-												<td>PPRT</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th scope="row">10</th>
-												<td>재산</td>
-												<td>PPRT</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th scope="row">10</th>
-												<td>재산</td>
-												<td>PPRT</td>
-												<td></td>
-											</tr>
+										<tbody id="codeList">
+											
 										</tbody>
 									</table>
 								</div>

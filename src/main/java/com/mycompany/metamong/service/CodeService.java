@@ -17,4 +17,8 @@ public class CodeService {
 		return codeDao.selectCodeList();
 	}
 
+	public List<CodeDto> getActiveCodes() {
+		return codeDao.selectActiveCodes();
+	}
+
 }
