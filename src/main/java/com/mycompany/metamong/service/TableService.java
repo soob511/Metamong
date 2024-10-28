@@ -15,10 +15,11 @@ public class TableService {
 	private TableDao tableDao;
 
 	public List<TableDto> getTableList() {
-		List<TableDto> list = tableDao.selectTableList();
-		System.out.println(list);
-		return list;
-/*		return tableDao.selectTableList();*/
+		return tableDao.selectTableList();
+	}
+
+	public List<TableDto> getTableSearch(String content, String schema) {
+		return tableDao.selectTableSearch(content,schema);
 	}
 
 }
