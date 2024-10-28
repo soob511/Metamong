@@ -5,6 +5,22 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $.ajax({
+        url: "/Metamong/dataType/dataTypeList",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+        		console.log(data);
+        		var selectBox = $('#dataType');
+        		$.each(data, function(index, dataType) {
+        			selectBox.append($('<option>', {
+        				value: dataType.dataType,
+        				text: dataType.dataType
+        			}));
+        		});	
+        }
+    });
+    
     $(".btn-reset").on("click", function() {
         $("#itemForm")[0].reset(); 
     });

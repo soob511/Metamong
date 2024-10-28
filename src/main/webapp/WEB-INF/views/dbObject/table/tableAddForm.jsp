@@ -86,10 +86,9 @@
 
 									<tr>
 										<td class="table-primary">데이터타입</td>
-										<td colspan="5"><select
+										<td colspan="5"><select id="dataType"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
-												<option value="VARCHAR2">VARCHAR2</option>
-												<option value="NUMBER">NUMBER</option>
+									
 										</select></td>
 									</tr>
 									<tr>
