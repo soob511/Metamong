@@ -18,7 +18,7 @@ $(document).ready(function() {
         
         items.hide();
         items.filter(function() {
-            return $(this).find('th').text() == clickedCode;
+            return $(this).find('th:eq(0)').text() == clickedCode;
         }).show();
     });
     
