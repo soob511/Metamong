@@ -39,13 +39,42 @@ $(document).ready(function() {
             itemList();
         }
     });
+    
+    /* 항목 수정 */
+    let itemIndex, updateItem;
 
+    $('.item-list').on('click', '.item', function() {
+        const itemId = $(this).find('.itemId').text();
+        const itemNm = $(this).find('.itemNm').text();
+        const itemContent = $(this).find('.itemContent').text();
+        
+        $('#itemId').val(itemId);
+        $('#itemNm').val(itemNm);
+        $('#itemContent').val(itemContent);
+        
+        itemIndex = items.findIndex(item => item.itemId === itemId);
+    });
+    
+    $('.btn-edit').on('click', function() {
+    	const itemId = $('#itemId').val();
+        const itemNm = $('#itemNm').val();
+        const itemContent = $('#itemContent').val();
+        
+    	updateItem = { itemId: itemId, itemNm: itemNm, itemContent: itemContent };
+    	items.splice(itemIndex, 1, updateItem);
+        itemList();
+    });
+    
     /* 항목 삭제 */
-    $('.item-list').on('click', '.bi-trash3', function() {
+    $('.item-list').on('click', '.bi-trash3', function(e) {
+    	e.stopPropagation();
         const itemId = $(this).closest('tr').find('.itemId').text();
         const index = items.findIndex(item => item.itemId === itemId);
         items.splice(index, 1);
         itemList();
+        $('#itemId').val('');
+        $('#itemNm').val('');
+        $('#itemContent').val('');
     });
 
     /* 항목 초기화 */
