@@ -3,18 +3,18 @@
 <mapper namespace="com.mycompany.metamong.daoMain.NoticeDao">
 
 	<insert id="insertNotice" parameterType="Notice" >
-		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+		<!-- <selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
 			SELECT 
 				seq_notice_id.nextval
 			FROM DUAL
-		</selectKey>
+		</selectKey> -->
 		INSERT INTO notice (
 			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, 
         	notice_filename, notice_filetype, notice_filedata
 		) 
 		VALUES (
-			#{noticeId}, #{noticeTitle},#{noticeContent}, #{noticeRegdate}, #{noticeHitcount},
-			#{noticeFilename},#{noticeFiletype},#{noticeFiledata}
+			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount},
+			#{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
 		)
 	</insert>
 	
@@ -29,7 +29,7 @@
 		        	SELECT 
 		        		notice_id, notice_title, notice_regdate, notice_hitcount
 		        	FROM notice
-		        	ORDER BY notice_id DESC
+		        	ORDER BY notice_regdate DESC, notice_id DESC
 					)
 	        	WHERE rownum <= #{endRowNo}
 				)
@@ -103,4 +103,19 @@
 		WHERE notice_id=#{noticeId}
 
 	</delete>
+	
+	<select id="selectMinAvailableId" resultType="int">
+	    SELECT 
+	    	MIN(n.notice_id + 1)
+	    FROM notice n
+	    LEFT JOIN notice n2 
+	    	ON n.notice_id + 1 = n2.notice_id
+	    WHERE n2.notice_id IS NULL
+	</select>
+
+	<select id="findNoticesByTitle" resultType="Notice" parameterType="String">
+	 	 SELECT * 
+	 	 FROM notice 
+	 	 WHERE noticeTitle LIKE CONCAT('%', #{keyword}, '%')")
+    </select>
 </mapper>

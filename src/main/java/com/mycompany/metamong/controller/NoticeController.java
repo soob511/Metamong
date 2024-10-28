@@ -125,5 +125,13 @@ public class NoticeController {
 		int pageNo = pager.getPageNo();
 		return "redirect:/notice/noticeList?pageNo=" + pageNo;
 	}
-	
-}
+	@GetMapping("/notice/search")
+	    public String search(@RequestParam("keyword") String keyword, Model model) {
+	        // 검색 결과 리스트 가져오기
+	        List<NoticeDto> searchResults = noticeService.searchNoticesByTitle(keyword);
+	        model.addAttribute("list", searchResults);
+	        model.addAttribute("totalRows", searchResults.size());
+	        return "notice/noticeList";
+	    }
+	}
+

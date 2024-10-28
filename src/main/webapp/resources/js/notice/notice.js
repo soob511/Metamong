@@ -41,4 +41,25 @@ $(document).ready(function() {
         maxHeight: null,             
         focus: true             
     });
+   
 });
+
+$(document).ready(function() {
+    // 새 파일 선택 시 파일명 표시
+    $('#noticeFile').on('change', function() {
+        var fileName = $(this).val().split('\\').pop(); // 파일명만 추출
+        $('#selectedFileName').text("선택된 파일: " + fileName);
+    });
+
+    // 삭제 버튼 클릭 시
+    $('#removeFileBtn').on('click', function() {
+        $('#existingFile').hide(); // 기존 파일명 숨기기
+        $('#noticeFile').show();   // 파일 선택 input 보이기
+        $('#deleteFile').val("true"); // 서버에 파일 삭제 요청
+    });
+});
+
+$('#noticeSearch').on('input', function(){
+	filterNotices();
+});
+

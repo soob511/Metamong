@@ -30,10 +30,11 @@
                         </div>
                         <div class="table-search">
                             <div class="container-fluid">
-                                <form class="d-flex search-form">
-                                    <input class="form-control" type="search" id="tableNameSearch" aria-label="Search">
-                                    <i class="bi bi-search"></i>
-                                </form>
+                                <form class="d-flex search-form" action="${pageContext.request.contextPath}/notice/search" method="get">
+								    <input class="form-control" type="search" id="noticeSearch" name="keyword" placeholder="Search" aria-label="Search">
+								     	<i class="bi bi-search" ></i>
+								</form>
+
                             </div>
                         </div>
                     </div>

@@ -30,5 +30,13 @@ public interface NoticeDao {
 
 	public NoticeDto selectNextNoticeId(int noticeId);
 
+	public void deleteFileById(int noticeId);
+	
+	public int selectMinAvailableId();
+
+	public int selectMaxNoticeId();
+
+	public List<NoticeDto> findNoticesByTitle(String keyword);
+
 	
 	}
