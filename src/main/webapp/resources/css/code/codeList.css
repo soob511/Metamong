@@ -41,6 +41,11 @@ label{
     top: 8px;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
 .use-filter {
     display: flex;
     align-items: center;
@@ -146,4 +151,8 @@ thead{
 	overflow-y: scroll;
 	border-radius: 8px !important; 
 	box-shadow: var(--box-shadow);
+}
+
+.item-codeno {
+	display: none;
 }

@@ -7,7 +7,6 @@
 <meta charset="UTF-8" />
 <title>코드/항목 관리</title>
 <link href="${pageContext.request.contextPath}/resources/css/code/codeList.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for easier DOM manipulation -->
 </head>
 <body>
     <div class="container code-list-container">
@@ -107,9 +106,10 @@
                                 <tr class="no-item"><th colspan="5">코드를 선택해 주세요.</th></tr>
                                                         
 	                                <c:forEach items="${itemList}" var="items">
-									    <c:forEach items="${items}" var="item">
+									    <c:forEach items="${items}" var="item" varStatus="i">
 									        <tr>
-									            <th>${item.codeNo}</th>
+									            <th class="item-codeno">${item.codeNo}</th>
+									            <th>${i.index+1}</th>
 									            <td>${item.itemId}</td>
 									            <td>${item.itemNm}</td>
 									            <td>${item.itemIsActive == 1 ? 'Y' : 'N'}</td>
