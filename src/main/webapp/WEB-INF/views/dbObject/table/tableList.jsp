@@ -67,6 +67,7 @@
 									</a>
 								</div>
 							</div>
+							<div class="table-contanier">
 							<table class="table table-hover">
 								<thead
 									class="table-primary">
@@ -80,7 +81,7 @@
 								</thead>
 								<tbody>
 								<c:forEach items="${list}" var="table" varStatus="status">
-									<tr>
+									   <tr onclick="showColumnList(${table.tableNo})">
 										<th>${status.index+1}</th>
 										<td>${table.tableNm}</td>
 										<td>${table.tableId}</td>
@@ -90,14 +91,15 @@
 								</c:forEach>
 								</tbody>
 							</table>
+							</div>
 						</div>
 
-						<!-- 빈 영역 -->
 						<div class="col-6 column-table">
 							<div class="column-management">
 								<p class="column-management-title">컬럼</p>
 
 							</div>
+							<div class="column-contanier">
 							<table class="table table-hover">
 								<thead class="table-primary">
 									<tr>
@@ -111,36 +113,11 @@
 										
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<th>1</th>
-										<td>자동차번호</td>
-										<td>CAR</td>
-										<td>VARCHAR2</td>
-										<td>10</td>
-										<td>NOT NULL</td>
-										<td>Y</td>
-									</tr>
-									<tr>
-										<th>2</th>
-										<td>자동차이름</td>
-										<td>CAR</td>
-										<td>VARCHAR2</td>
-										<td>10</td>
-										<td>NOT NULL</td>
-										<td>Y</td>
-									</tr>
-									<tr>
-										<th>2</th>
-										<td>자동차색깔</td>
-										<td>CAR</td>
-										<td>VARCHAR2</td>
-										<td>10</td>
-										<td>NOT NULL</td>
-										<td>Y</td>
-									</tr>
+								<tbody id="columnList">
+							
 								</tbody>
 							</table>
+							</div>
 						</div>
 					</div>
 				</div>
