@@ -73,16 +73,17 @@
 								<table class="table table-bordered item-table">
 									<tr>
 										<td class="table-primary">컬럼(논리)</td>
-										<td colspan="5"><input type="text"
+										<td colspan="5"><input type="text" id="colNm"
 											class="form-control code-input" placeholder="내용 입력" required>
 										</td>
 									</tr>
 									<tr>
 										<td class="table-primary">컬럼(물리)</td>
-										<td colspan="5"><input type="text"
+										<td colspan="5"><input type="text" id="colId"
 											class="form-control code-input" placeholder="내용 입력" required>
 										</td>
 									</tr>
+
 									<tr>
 										<td class="table-primary">데이터타입</td>
 										<td colspan="5"><select
@@ -226,14 +227,10 @@
 											</tr>
 										</thead>
 										<tbody id="codeList">
-											
+
 										</tbody>
 									</table>
 								</div>
-							</div>
-
-							<div class="modal-footer">
-								<button type="button" class="btn-select" data-bs-dismiss="modal">확인</button>
 							</div>
 						</div>
 					</div>

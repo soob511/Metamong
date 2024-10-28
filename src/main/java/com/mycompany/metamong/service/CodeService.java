@@ -21,4 +21,8 @@ public class CodeService {
 		return codeDao.selectActiveCodes();
 	}
 
+	public List<CodeDto> getCodeLoadSearch(String keyword) {
+		return codeDao.selectCodeLoadSearch(keyword);
+	}
+
 }

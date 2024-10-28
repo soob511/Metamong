@@ -12,5 +12,13 @@
 		FROM code
 		WHERE code_isactive=1
 	</select>
+	
+	<select id="selectCodeLoadSearch" resultType="Code" parameterType="String">
+		SELECT code_no,code_nm,code_id,code_content,code_isactive
+		FROM code
+		WHERE (code_nm LIKE CONCAT('%', CONCAT(#{keyword}, '%'))AND code_isactive=1)
+  		OR (code_id LIKE CONCAT('%', CONCAT(#{keyword}, '%')) AND code_isactive=1)
+
+	</select>
 </mapper>
 	

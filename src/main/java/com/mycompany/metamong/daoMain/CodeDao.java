@@ -12,5 +12,7 @@ public interface CodeDao {
 	public List<CodeDto> selectCodeList();
 	
 	public List<CodeDto> selectActiveCodes();
+
+	public List<CodeDto> selectCodeLoadSearch(String keyword);
 	
 }
