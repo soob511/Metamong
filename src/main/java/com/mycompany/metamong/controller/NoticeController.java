@@ -71,11 +71,15 @@ public class NoticeController {
 		noticeService.addHitcount(noticeId);
 		model.addAttribute("notice", notice);
 		
-		List<NoticeDto> subList = noticeService.getSubList(noticeId);
-		model.addAttribute("subList", subList);
+		NoticeDto prevNotice = noticeService.getPrevNotice(noticeId);
+		NoticeDto nextNotice = noticeService.getNextNotice(noticeId);
+		
+		model.addAttribute("prevNotice", prevNotice);
+		model.addAttribute("nextNotice", nextNotice);
+		
+		
 		return "notice/noticeDetail";
 	}
-	
 	@GetMapping("/fileDownload")
 	public void fileDownload(int noticeId, HttpServletResponse response)throws Exception {
 		NoticeDto notice = noticeService.getNoticeFile(noticeId);
@@ -120,7 +124,6 @@ public class NoticeController {
 		Pager pager = (Pager) session.getAttribute("pager");
 		int pageNo = pager.getPageNo();
 		return "redirect:/notice/noticeList?pageNo=" + pageNo;
-		
 	}
 	
 }
