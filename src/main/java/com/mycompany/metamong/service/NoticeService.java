@@ -44,12 +44,10 @@ public class NoticeService {
 		
 	}
 	
-	public void insertNotice(NoticeDto notice) {
-		// 빈 번호가 있는지 확인하여 noticeId 설정
+	public void insertNotice(NoticeDto notice) {		
         Integer availableId = noticeDao.selectMinAvailableId();
         notice.setNoticeId(availableId != null ? availableId : (noticeDao.selectMaxNoticeId() + 1)); // 빈 번호가 없으면 최대값 + 1 사용
 
-		
 		 noticeDao.insertNotice(notice);
 		
 	}

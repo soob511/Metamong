@@ -9,7 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class HomeController {
-
+	
+	
 	@RequestMapping("")
 	public String index() {
 		return "member/loginForm";
@@ -20,7 +21,7 @@ public class HomeController {
 		log.info("실행");
 		return "home/homeUser";
 	}
-	
+
 	@GetMapping("/homeDBA")
 	public String homeDBA() {
 		log.info("실행");
