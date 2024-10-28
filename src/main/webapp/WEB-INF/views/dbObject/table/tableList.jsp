@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,27 +79,15 @@
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach items="${list}" var="table" varStatus="status">
 									<tr>
-										<th>1</th>
-										<td>재산</td>
-										<td>PRPT</td>
-										<td>user_2024_oti_final_team1_1</td>
-										<td>재산에관한 테이블입니다.</td>
+										<th>${status.index+1}</th>
+										<td>${table.tableNm}</td>
+										<td>${table.tableId}</td>
+										<td>${table.schemaNm}</td>
+										<td>${table.tableContent}</td>
 									</tr>
-									<tr>
-										<th>2</th>
-										<td>재산</td>
-										<td>PRPT</td>
-										<td>user_2024_oti_final_team1_1</td>
-										<td></td>
-									</tr>
-									<tr>
-										<th>3</th>
-										<td>재산</td>
-										<td>PRPT</td>
-										<td>user_2024_oti_final_team1_1</td>
-										<td></td>
-									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>

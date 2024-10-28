@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,27 +16,26 @@
           <jsp:include page="/WEB-INF/views/common/header.jsp" />
           <div class="index-container">
             <div>
-              <div class="table-list-header">
-                <p class="table-list-title">&gt; 인덱스 관리</p>
+              <div class="index-list-header">
+                <p>&gt; 인덱스 관리</p>
               </div>
-              <div class="table-list-filters">
-                <div class="table-search">
-                  <label for="tableNameSearch" class="table-search-label">인덱스명</label>
+              <div class="index-list-filters">
+                <div class="index-search">
+                  <label for="indexNameSearch" class="index-search-label">인덱스명</label>
                   <div class="container-fluid">
-                    <form class="d-flex search-form">
-                      <input class="form-control me-2" type="search" id="tableNameSearch" placeholder="Search" aria-label="Search">
-                      <i class="bi bi-search"></i>
+                    <form class="d-flex index-form">
+                      <input class="form-control" type="search" id="indexNameSearch" placeholder="Search" aria-label="Search">
+                      	<i id=biSearch class="bi bi-search"></i>
                     </form>
                   </div>
                 </div>
                 <div class="schema-filter">
                   <label for="schemaSelect" class="schema-filter-label">스키마명</label>
-                  <select id="schemaSelect" class="form-select" aria-label="Default select example">
-                    <option selected>선택</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
+					<select id="schemaSelect" class="form-select" aria-label="Default select example">
+					    <c:forEach items="${schemaEnum}" var="schemaEnum">
+					        <option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>
+					    </c:forEach>
+					</select>
                 </div>
               </div>
             </div>
@@ -61,31 +61,17 @@
 	                      <th scope="col">유일성</th>
 	                    </tr>
 	                  </thead>
-	                  <tbody>
-	                    <tr>
-	                      <th>1</th>
-	                      <td>SEQ_CODE</td>
-	                      <td>kosa_oracle_server-team1</td>
-	                      <td>team_table</td>
-	                      <td>team-col desc</td>
-	                      <td>Y</td>
-	                    </tr>
-	                    <tr>
-	                      <th>2</th>
-	                      <td>SEQ_CODE</td>
-	                      <td>kosa_oracle_server-team1</td>
-	                      <td>team_table</td>
-	                      <td>team-col desc</td>
-	                      <td>Y</td>
-	                    </tr>
-	                    <tr>
-	                      <th>3</th>
-	                      <td>SEQ_CODE</td>
-	                      <td>kosa_oracle_server-team1</td>
-	                      <td>team_table</td>
-	                      <td>team-col desc</td>
-	                      <td>Y</td>
-	                    </tr>
+	                  <tbody id="indexTableBody">
+	                  	<c:forEach items="${list}" var="index" varStatus="status">
+	                  		<tr>
+		                      <th>${status.index + 1}</th>
+		                      <td>${index.indexName}</td>
+		                      <td>${index.schemaName}</td>
+		                      <td>${index.tableName}</td>
+		                      <td>${index.columnName}</td>
+		                      <td>${index.uniqueness}</td>
+	                    	</tr>
+	                  	</c:forEach>
 	                  </tbody>
 	                </table>
                 </div>
