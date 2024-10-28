@@ -3,6 +3,7 @@ package com.mycompany.metamong.daoMain;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.NoticeDto;
 import com.mycompany.metamong.dto.Pager;
@@ -32,11 +33,7 @@ public interface NoticeDao {
 
 	public void deleteFileById(int noticeId);
 	
-	public int selectMinAvailableId();
-
-	public int selectMaxNoticeId();
-
-	public List<NoticeDto> findNoticesByTitle(String keyword);
+	public List<NoticeDto> selectNoticeSearch(@Param("keyword")String keyword, @Param("option") String option);
 
 	
 	}

@@ -2,23 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoMain.NoticeDao">
 
-	<insert id="insertNotice" parameterType="Notice" >
-		<!-- <selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
-			SELECT 
-				seq_notice_id.nextval
-			FROM DUAL
-		</selectKey> -->
+	<insert id="insertNotice" parameterType="Notice">
+		<!-- <selectKey keyProperty="noticeId" resultType="int" order="BEFORE"> 
+			SELECT seq_notice_id.nextval FROM DUAL </selectKey> -->
 		INSERT INTO notice (
-			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, 
-        	notice_filename, notice_filetype, notice_filedata
-		) 
+		notice_id, notice_title, notice_content,
+		notice_regdate, notice_hitcount,
+		notice_filename, notice_filetype,
+		notice_filedata
+		)
 		VALUES (
-			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount},
-			#{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
+		#{noticeId}, #{noticeTitle}, #{noticeContent},
+		#{noticeRegdate},
+		#{noticeHitcount},
+		#{noticeFilename},
+		#{noticeFiletype}, #{noticeFiledata}
 		)
 	</insert>
-	
-	<select id="selectList" parameterType="Pager" resultType="Notice">
+
+	<select id="selectList" parameterType="Pager"
+		resultType="Notice">
 		<![CDATA[
 			SELECT 
 				rnum, notice_id, notice_title, notice_regdate, notice_hitcount
@@ -29,93 +32,107 @@
 		        	SELECT 
 		        		notice_id, notice_title, notice_regdate, notice_hitcount
 		        	FROM notice
-		        	ORDER BY notice_regdate DESC, notice_id DESC
+		        	ORDER BY notice_regdate DESC
 					)
 	        	WHERE rownum <= #{endRowNo}
 				)
 			WHERE rnum >= #{startRowNo}	
 		]]>
 	</select>
-	
+
 	<select id="countRows" resultType="int">
-		SELECT count(*) 
+		SELECT count(*)
 		FROM notice
 	</select>
-	
-	<select id="selectByNoticeId" parameterType="int" resultType="Notice">
-		SELECT 
-			notice_id, notice_title, notice_content,notice_regdate, notice_hitcount, notice_filename
-		FROM notice
-		WHERE notice_id=#{noticeId}
-	</select>
-	
-	<select id="selectPrevNoticeId" parameterType="int" resultType="Notice">
+
+	<select id="selectByNoticeId" parameterType="int"
+		resultType="Notice">
 		SELECT
-			notice_id, notice_title
-		FROM notice
-		WHERE #{noticeId} > notice_id
-		ORDER BY notice_id DESC
-		FETCH FIRST 1 ROWS ONLY
-	
-	</select>
-	
-	<select id="selectNextNoticeId" parameterType="int" resultType="Notice">
-		SELECT 
-			notice_id, notice_title
-		FROM notice
-		WHERE notice_id > #{noticeId}
-		ORDER BY notice_id
-		FETCH FIRST 1 ROWS ONLY
-		
-	</select>
-	
-	<select id="selectFileByNoticeId" parameterType="int" resultType="Notice">
-		SELECT 
-			notice_filename, notice_filetype, notice_filedata
-		FROM notice
+		notice_id, notice_title,
+		notice_content,notice_regdate, notice_hitcount,
+		notice_filename
+		FROM
+		notice
 		WHERE notice_id=#{noticeId}
 	</select>
-	
+
+	<select id="selectPrevNoticeId" parameterType="int"
+		resultType="Notice">
+		SELECT
+		notice_id, notice_title
+		FROM notice
+		WHERE #{noticeId} >
+		notice_id
+		ORDER BY
+		notice_id DESC
+		FETCH FIRST 1 ROWS ONLY
+
+	</select>
+
+	<select id="selectNextNoticeId" parameterType="int"
+		resultType="Notice">
+		SELECT
+		notice_id, notice_title
+		FROM notice
+		WHERE notice_id >
+		#{noticeId}
+		ORDER BY
+		notice_id
+		FETCH FIRST 1 ROWS ONLY
+
+	</select>
+
+	<select id="selectFileByNoticeId" parameterType="int"
+		resultType="Notice">
+		SELECT
+		notice_filename, notice_filetype, notice_filedata
+		FROM notice
+		WHERE
+		notice_id=#{noticeId}
+	</select>
+
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE notice
-		SET 
-			notice_title=#{noticeTitle},
-			notice_regdate=#{noticeRegdate},
-			notice_content=#{noticeContent}
-			<if test = "noticeFilename !=null">
-				,
-				notice_filename=#{noticeFilename},
-				notice_filetype=#{noticeFiletype},
-				notice_filedata=#{noticeFiledata}
-			</if>
-			where notice_id=#{noticeId}
-	</update>
-	
-	<update id="updateHitcount" parameterType="int">
-		UPDATE notice 
 		SET
-			notice_hitcount = notice_hitcount + 1
+		notice_title=#{noticeTitle},
+		notice_regdate=#{noticeRegdate},
+		notice_content=#{noticeContent}
+		<if test="noticeFilename !=null">
+			,
+			notice_filename=#{noticeFilename},
+			notice_filetype=#{noticeFiletype},
+			notice_filedata=#{noticeFiledata}
+		</if>
 		where notice_id=#{noticeId}
 	</update>
-	
+
+	<update id="updateHitcount" parameterType="int">
+		UPDATE notice
+		SET
+		notice_hitcount = notice_hitcount + 1
+		where notice_id=#{noticeId}
+	</update>
+
 	<delete id="deleteNotice" parameterType="int">
 		DELETE FROM notice
-		WHERE notice_id=#{noticeId}
+		WHERE
+		notice_id=#{noticeId}
 
 	</delete>
-	
-	<select id="selectMinAvailableId" resultType="int">
-	    SELECT 
-	    	MIN(n.notice_id + 1)
-	    FROM notice n
-	    LEFT JOIN notice n2 
-	    	ON n.notice_id + 1 = n2.notice_id
-	    WHERE n2.notice_id IS NULL
+
+	<select id="selectNoticeSearch" parameterType="map"
+		resultType="Notice">
+		SELECT *
+		FROM notice
+		<where>
+			<if test="keyword != null and keyword != '' and option == '제목'">
+				notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="keyword != null and keyword != '' and option == '내용'">
+				notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
 	</select>
 
-	<select id="findNoticesByTitle" resultType="Notice" parameterType="String">
-	 	 SELECT * 
-	 	 FROM notice 
-	 	 WHERE noticeTitle LIKE CONCAT('%', #{keyword}, '%')")
-    </select>
+
 </mapper>

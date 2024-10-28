@@ -30,7 +30,7 @@
                         </div>
                         <div class="table-search">
                             <div class="container-fluid">
-                                <form class="d-flex search-form" action="${pageContext.request.contextPath}/notice/search" method="get">
+                                <form class="d-flex search-form" action="${pageContext.request.contextPath}/notice/noticeSearch" method="get">
 								    <input class="form-control" type="search" id="noticeSearch" name="keyword" placeholder="Search" aria-label="Search">
 								     	<i class="bi bi-search" ></i>
 								</form>
@@ -40,20 +40,24 @@
                     </div>
                 </div>
                 <table class="table table-hover">
+                	<thead>
                         <tr class="table-primary">
                             <th scope="col">No.</th>
                             <th scope="col">제목</th>
                             <th scope="col">등록일</th>
                             <th scope="col">조회수</th>
                         </tr>
-                        <c:forEach items="${list}" var="notice">           
+                    </thead>
+                    <tbody id="noticeList">
+                        <c:forEach items="${list}" var="notice" varStatus="status">           
 	                        <tr>
-	                            <th scope="row">${notice.noticeId}</th>
+	                            <th scope="row">${status.index+1}</th>
 	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 	                            <td>${notice.noticeHitcount}</td>
 	                        </tr>
-                      </c:forEach>                      
+                      </c:forEach> 
+                   </tbody>                     
                 </table>
                 <div class="d-flex justify-content-end">
                 	<div class="btn btn-write">

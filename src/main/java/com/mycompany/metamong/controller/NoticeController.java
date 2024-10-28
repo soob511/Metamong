@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.metamong.dto.AddNoticeForm;
@@ -125,13 +126,13 @@ public class NoticeController {
 		int pageNo = pager.getPageNo();
 		return "redirect:/notice/noticeList?pageNo=" + pageNo;
 	}
+	@ResponseBody
 	@GetMapping("/noticeSearch")
-	    public String search(@RequestParam("keyword") String keyword, Model model) {
+	    public List<NoticeDto> search(@RequestParam(defaultValue="") String keyword,@RequestParam(defaultValue="") String option) {
 	        // 검색 결과 리스트 가져오기
-	        List<NoticeDto> searchResults = noticeService.searchNoticesByTitle(keyword);
-	        model.addAttribute("list", searchResults);
-	        model.addAttribute("totalRows", searchResults.size());
-	        return "notice/noticeList";
+	        List<NoticeDto> searchResults = noticeService.searchNotice(keyword,option);
+	    
+	        return searchResults;
 	    }
 	}
 

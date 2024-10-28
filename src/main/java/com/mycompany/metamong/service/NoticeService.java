@@ -45,9 +45,6 @@ public class NoticeService {
 	}
 	
 	public void insertNotice(NoticeDto notice) {		
-        Integer availableId = noticeDao.selectMinAvailableId();
-        notice.setNoticeId(availableId != null ? availableId : (noticeDao.selectMaxNoticeId() + 1)); // 빈 번호가 없으면 최대값 + 1 사용
-
 		 noticeDao.insertNotice(notice);
 		
 	}
@@ -93,8 +90,8 @@ public class NoticeService {
 	    
 	    noticeDao.updateNotice(notice);
 	}
- 	public List<NoticeDto> searchNoticesByTitle(String keyword) {
-	        return noticeDao.findNoticesByTitle(keyword);
+ 	public List<NoticeDto> searchNotice(String keyword, String option) {
+	        return noticeDao.selectNoticeSearch(keyword,option);
 	    }
  	
  }
