@@ -35,7 +35,7 @@ label{
 }
 
 .search-form i {
-    margin-left: -30px;
+    margin-left: -35px;
     z-index: 1;
     position: relative;
     top: 8px;
@@ -64,12 +64,6 @@ label{
    min-width: 660px !important;
    max-width:660px !important;
    margin: 20px 20px 20px 45px;   
-}
-
-.table {
-    border-radius: 8px !important; 
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
 }
 
 .code-management-title,.item-management-title{
@@ -147,5 +141,9 @@ thead{
     padding: 15px 10px;
 }
 
-
-
+ .item-table-container, .code-table-container {
+	height: 580px !important;
+	overflow-y: scroll;
+	border-radius: 8px !important; 
+	box-shadow: var(--box-shadow);
+}
