@@ -12,6 +12,8 @@
 		<typeAlias type="com.mycompany.metamong.dto.TableDto" alias="Table"/>
 		<typeAlias type="com.mycompany.metamong.dto.Pager" alias="Pager"/>
 		<typeAlias type="com.mycompany.metamong.dto.IndexDto" alias="Index"/>
+		<typeAlias type="com.mycompany.metamong.dto.CodeDto" alias="Code"/>
+		<typeAlias type="com.mycompany.metamong.dto.ItemDto" alias="Item"/>
 	</typeAliases>
 
 </configuration>
