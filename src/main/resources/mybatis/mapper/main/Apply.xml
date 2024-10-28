@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mycompany.metamong.daoMain.ApplyDao">
+
+	<insert id="insertApply" parameterType="Apply">
+		<selectKey keyProperty="applyNo" resultType="int" order="BEFORE">
+			SELECT seq_apply_no.nextval FROM dual
+		</selectKey>
+		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason, approval_status, apply_obj, apply_type)
+		VALUES (#{applyNo}, #{mId}, sysdate, #{applyReason}, 0, 'CODE', 'INSERT')
+	</insert>
+</mapper>
+
+	

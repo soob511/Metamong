@@ -54,9 +54,6 @@
                                     <a href="codeAddForm">
                                         <button class="btn-add">추가</button>
                                     </a>
-                                    <a href="codeUpdateForm">
-                                        <button class="btn-edit">수정</button>
-                                    </a>
                                 </div>
                             </div>
                             <div class="code-table-container">
@@ -68,6 +65,7 @@
 	                                        <th scope="col">코드(물리)</th>
 	                                        <th scope="col">사용여부</th>
 	                                        <th scope="col">내용</th>
+	                                        <th scope="col"></th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
@@ -79,6 +77,9 @@
 	                                        <td>${code.codeId}</td>
 	                                        <td>${code.codeIsActive == 1 ? 'Y' : 'N'}</td>
 	                                        <td>${code.codeContent}</td>
+	                                        <td><a href="codeUpdateForm">
+                                        		<button class="btn-edit">수정</button>
+                                   			</a></td>
 	                                    </tr>
 	                                </c:forEach>	
 	                                </tbody>

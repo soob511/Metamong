@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.CodeDao;
+import com.mycompany.metamong.dto.ApplyCodeDto;
 import com.mycompany.metamong.dto.CodeDto;
 
 @Service
@@ -17,4 +18,16 @@ public class CodeService {
 		return codeDao.selectCodeList();
 	}
 
+	public List<CodeDto> getActiveCodes() {
+		return codeDao.selectActiveCodes();
+	}
+
+	public List<CodeDto> getCodeLoadSearch(String keyword) {
+		return codeDao.selectCodeLoadSearch(keyword);
+	}
+
+	public void addApplyCode(ApplyCodeDto code) {
+		codeDao.insertApplyCode(code);
+		
+	}
 }
