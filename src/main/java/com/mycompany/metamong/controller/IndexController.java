@@ -1,19 +1,26 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.ColumnDto;
 import com.mycompany.metamong.dto.IndexDto;
+import com.mycompany.metamong.dto.TableDto;
 import com.mycompany.metamong.enums.SchemaEnum;
+import com.mycompany.metamong.service.ColumnService;
 import com.mycompany.metamong.service.IndexService;
+import com.mycompany.metamong.service.TableService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +30,10 @@ import lombok.extern.slf4j.Slf4j;
 public class IndexController {
 	@Autowired
 	private IndexService indexService;
+	@Autowired
+	private TableService tableService;
+	@Autowired
+	private ColumnService columnService;
 	
 	@GetMapping("/indexList")
 	public String indexList(Model model) {
@@ -47,9 +58,35 @@ public class IndexController {
 		return list;
 	}
 	
+	@ResponseBody
+	@GetMapping("/searchTable")
+	public List<TableDto> searchTable(
+			@RequestParam SchemaEnum schemaName
+			) {
+		return tableService.getTableName(schemaName.getSchemaName());			
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchColumn")
+	public List<ColumnDto> searchColumn(
+			@RequestParam SchemaEnum schemaName,
+			@RequestParam int tableNo
+			) {
+		HashMap<String, Object> colParams = new HashMap<>();
+		colParams.put("tableNo", tableNo);
+		colParams.put("schemaName", schemaName.getSchemaName());
+		return columnService.getColumnList(colParams);
+	}
+	
 	@GetMapping("/indexAddForm")
-	public String indexAddForm() {
+	public String indexAddForm(Model model) {
+		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/index/indexAddForm";
+	}
+	
+	@PostMapping("/indexAdd")
+	public void indexAdd(@RequestBody IndexDto index) {
+		
 	}
 	
 	@GetMapping("/indexDeleteForm")
