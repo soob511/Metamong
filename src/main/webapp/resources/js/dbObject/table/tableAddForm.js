@@ -104,8 +104,8 @@ $(document).ready(function() {
         var colLength = parseInt($("#dataLength").val());
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
-        
-        if (colNm === "" || colId === "" || colLength === "") {
+        console.log(colLength);
+        if (colNm === "" || colId === ""||isNaN(colLength)|| colLength === "") {
         	Swal.fire({
         		  icon: 'warning',                  
         		  title: '추가할 내용을 전부 입력해주세요.',    
@@ -182,11 +182,11 @@ $(document).ready(function() {
             var colNm = $("#colNm").val();
             var colId = $("#colId").val();
             var dataType = $("#dataType").val();
-            var colLength = $("#dataLength").val();
+            var colLength = parseInt($("#dataLength").val());
             var colNullable = $("#nullable").val();
             var colPk = $("#isUse").val();
 
-            if (colNm === "" || colId === "" || colLength === "") {
+            if (colNm === "" || colId === "" ||isNaN(colLength)|| colLength === "") {
                 Swal.fire({
                     icon: 'warning',
                     title: '수정할 내용을 전부 입력해주세요.'
