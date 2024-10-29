@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +12,11 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/codeModal.css"
 	rel="stylesheet" />
-	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-	
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
 </head>
 <body>
 	<div class="container codeAdd-container">
@@ -37,8 +39,11 @@
 									<td class="table-primary">스키마명</td>
 									<td colspan="5"><select
 										class="form-select use-status-select" aria-label="스키마명">
-											<option value="oti_user1">oti_user1</option>
-											<option value="oti_user2">oti_user2</option>
+										<c:forEach items="${schemaEnum}" var="schemaEnum">
+												<option value="${schemaEnum.name()}"
+													data-name="${schemaEnum.getSchemaName()}">
+													${schemaEnum.getSchemaName()}</option>
+										</c:forEach>
 									</select></td>
 								</tr>
 								<tr>
@@ -89,9 +94,9 @@
 
 									<tr>
 										<td class="table-primary">데이터타입</td>
-										<td colspan="5"><select  type="text" id="dataType"
+										<td colspan="5"><select type="text" id="dataType"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
-									
+
 										</select></td>
 									</tr>
 									<tr>
@@ -157,7 +162,7 @@
 							</tr>
 						</thead>
 						<tbody id="columnList">
-						
+
 						</tbody>
 					</table>
 				</div>
@@ -208,8 +213,10 @@
 						</div>
 					</div>
 				</div>
-
-				<script
-					src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableAddForm.js"></script>
+			</div>
+		</div>
+	</div>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableAddForm.js"></script>
 </body>
 </html>
