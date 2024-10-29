@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.metamong.daoMain.TeamService;
 import com.mycompany.metamong.dto.team.TeamDto;
+import com.mycompany.metamong.service.TeamService;
 
 import lombok.extern.slf4j.Slf4j;
 
