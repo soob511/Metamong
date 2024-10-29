@@ -16,13 +16,10 @@ public class NoticeService {
 	
 
 	public List<NoticeDto> getNoticeList(Pager pager) {
-		return noticeDao.selectNoticeList(pager);
-		
+		return noticeDao.selectNoticeList(pager);	
 	}
-
-
+	
 	public int getTotalRows() {
 		return noticeDao.countRows();
 	}
-
 }

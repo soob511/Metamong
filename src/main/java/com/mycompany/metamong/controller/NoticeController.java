@@ -27,14 +27,16 @@ public class NoticeController {
 	
 	@GetMapping("/noticeList")
 	public String noticeList(Model model, @RequestParam(defaultValue="1")int pageNo, HttpSession session) {
+		
 		int totalRows = noticeService.getTotalRows();
 		Pager pager = new Pager(10,5,totalRows,pageNo);
+		
 		session.setAttribute("pager", pager);
 		model.addAttribute("totalRows", totalRows);
+		
 		List<NoticeDto> list = noticeService.getNoticeList(pager);
 		model.addAttribute("list", list);
 		
 		return "notice/noticeList";
-	}
-	
+	}	
 }
