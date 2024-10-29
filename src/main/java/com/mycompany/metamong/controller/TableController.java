@@ -74,6 +74,7 @@ public class TableController {
 		applyList.setSchemaName(form.getSchemaName());
 		applyList.setApplyReason(form.getApplyReason());
 		applyList.setApplyObj("TABLE");
+		applyList.setApplyType("CREATE");
 		log.info(applyList.toString());
 		applyListService.addApplyList(applyList);
 
