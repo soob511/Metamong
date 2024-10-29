@@ -45,7 +45,8 @@ public class TableController {
 	}
 	
 	@GetMapping("/tableAddForm")
-	public String tableAddForm() {
+	public String tableAddForm(Model model) {
+		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/table/tableAddForm";
 	}
 	

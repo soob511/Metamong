@@ -96,6 +96,7 @@ $(document).ready(function() {
             }
         });
     }
+    
     $(".btn-add").on("click", function() {
         var colNm = $("#colNm").val();
         var colId = $("#colId").val();
@@ -107,7 +108,7 @@ $(document).ready(function() {
         if (colNm === "" || colId === "" || colLength === "") {
         	Swal.fire({
         		  icon: 'warning',                  
-        		  title: '내용을 전부 입력해주세요.',    
+        		  title: '추가할 내용을 전부 입력해주세요.',    
         		});
         }else{
             var rowCount = $("#columnList tr").length + 1;
@@ -125,13 +126,88 @@ $(document).ready(function() {
                 </tr>
             `;
         }
-        $("#columnList").append(newRow); // id 선택자 # 추가
+        $("#columnList").append(newRow); 
 
-        $("#itemForm")[0].reset(); // 입력 필드 초기화
+        $("#itemForm")[0].reset(); 
     });
 
-    $(document).on("click", ".delete-row", function() {
+    $(document).on("click", ".delete-row", function () {
         $(this).closest("tr").remove();
+        updateRowNumbers();
+    });
+
+    $("#move-up").on("click", function () {
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length && selectedRow.prev().length) {
+            selectedRow.prev().before(selectedRow);
+            updateRowNumbers();
+        }
+    });
+
+    $("#move-down").on("click", function () {
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length && selectedRow.next().length) {
+            selectedRow.next().after(selectedRow);
+            updateRowNumbers();
+        }
+    });
+
+    $(document).on("click", "#columnList tr", function () {
+        $("#columnList tr").removeClass("selected");
+        $(this).addClass("selected");
+        const colNm = $(this).find("td:eq(1)").text();
+        const colId = $(this).find("td:eq(2)").text();
+        const dataType = $(this).find("td:eq(3)").text();
+        const colLength = $(this).find("td:eq(4)").text();
+        const colNullable = $(this).find("td:eq(5)").text();
+        const colPk = $(this).find("td:eq(6)").text();
+
+        $("#colNm").val(colNm);
+        $("#colId").val(colId);
+        $("#dataType").val(dataType);
+        $("#dataLength").val(colLength);
+        $("#nullable").val(colNullable);
+        $("#isUse").val(colPk);
+    });
+
+    function updateRowNumbers() {
+        $("#columnList tr").each(function (index) {
+            $(this).find("td:first").text(index + 1);
+        });
+    }
+    
+    $(".btn-update").on("click", function () {
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length) {
+            var colNm = $("#colNm").val();
+            var colId = $("#colId").val();
+            var dataType = $("#dataType").val();
+            var colLength = $("#dataLength").val();
+            var colNullable = $("#nullable").val();
+            var colPk = $("#isUse").val();
+
+            if (colNm === "" || colId === "" || colLength === "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '수정할 내용을 전부 입력해주세요.'
+                });
+            } else {
+                selectedRow.find("td:eq(1)").text(colNm);
+                selectedRow.find("td:eq(2)").text(colId);
+                selectedRow.find("td:eq(3)").text(dataType);
+                selectedRow.find("td:eq(4)").text(colLength);
+                selectedRow.find("td:eq(5)").text(colNullable);
+                selectedRow.find("td:eq(6)").text(colPk);
+
+                $("#itemForm")[0].reset();
+                selectedRow.removeClass("selected"); 
+            }
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: '수정할 행을 선택해주세요.'
+            });
+        }
     });
 
 });
