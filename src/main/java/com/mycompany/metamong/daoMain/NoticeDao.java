@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.notice.NoticeDto;
 
 @Mapper
 public interface NoticeDao {
 	
-	public List<NoticeDto> selectNoticeList();
+	public List<NoticeDto> selectNoticeList(Pager pager);
+
+	public int countRows();
 
 }
