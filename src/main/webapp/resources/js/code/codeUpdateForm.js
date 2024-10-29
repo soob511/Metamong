@@ -170,18 +170,18 @@ $(document).ready(function() {
     function itemList() {
         $('.item-list').empty();
 
-        items.forEach((item, index) => {
+        for (let i = 0; i < items.length; i++) {
             $('.item-list').append(
                 `<tr class="item">
-                    <th>${index + 1}</th>
-                    <td class="itemId">${item.itemId}</td>
-                    <td class="itemNm">${item.itemNm}</td>
-                    <td class="itemIsActive">${item.itemIsActive == 1 ? 'Y' : 'N'}</td>
-                    <td class="itemContent">${item.itemContent ? item.itemContent : '-'}</td>
-                    <td><i class="bi bi-trash3"></i></td>
+                    <th>i+1</th>
+                    <td class="itemId">${items[i].itemId}</td>
+                    <td class="itemNm">${items[i].itemNm}</td>
+                    <td class="itemIsActive">${items[i].itemIsActive == 1 ? 'Y' : 'N'}</td>
+                    <td class="itemContent">${items[i].itemContent ? items[i].itemContent : '-'}</td>
+                    <td>${i < num ? '-' : '<i class="bi bi-trash3"></i>'}</td>              
                 </tr>`
             );
-        });
+        }
         refresh();
     }
 });
