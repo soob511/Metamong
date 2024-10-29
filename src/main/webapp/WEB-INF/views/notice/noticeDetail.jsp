@@ -34,7 +34,7 @@
                         <c:if test=${notice.noticeFilename != null}>
                         <tr>
                             <td class="table-primary">첨부파일</td>
-                            <td id="table-contents" colspan="5"><a href="fileDownload?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeFilename}</a></td>
+                            <td id="table-contents" colspan="5"><a href="fileDownload?noticeId=${notice.noticeId}" style="color:blue;">${notice.noticeFilename}</a></td>
                         </tr>
                         </c:if>
                         <tr>

@@ -53,7 +53,7 @@ $(document).ready(function() {
 	$('#removeFileBtn').on('click', function() {
 		$('#existingFile').hide(); // 기존 파일명 숨기기
 		$('#noticeFile').show(); // 파일 선택 input 보이기
-		$('#deleteFile').val("true"); // 서버에 파일 삭제 요청
+		$('deleteFile').val("true"); // 서버에 파일 삭제 요청
 	});
 });
 
@@ -72,6 +72,18 @@ $('.bi-search').on('click', function() {
 	noticeSearch();
 });
 
+function showDetail(noticeId) {
+	$.ajax({
+		url: "/Metamong/notice/noticeDetail",
+		type: "GET",
+		data:{ noticeId : noticeId },
+		success: function(data) {
+			location.href = "/Metamong/notice/noticeDetail?noticeId=" + noticeId;
+			
+		}
+	})
+}
+
 function noticeSearch(){
 	var option = $('#schemaSelect').val();
 	var keyword = $('#noticeSearch').val();
@@ -88,7 +100,7 @@ function noticeSearch(){
 			if(Object.keys(data).length>0){
 				var count=0;
 				data.forEach(notice => {
-					html += `<tr>
+					html += `<tr onclick="showDetail(${notice.noticeId})">
 						<td>${++count}</td>
 						<td>${notice.noticeTitle}</td>
 						<td>${new Date(notice.noticeRegdate).toISOString().slice(0, 10)}</td>
@@ -104,5 +116,6 @@ function noticeSearch(){
 			
 			$('#noticeList').html(html);
 			}
+		
 	});
 }

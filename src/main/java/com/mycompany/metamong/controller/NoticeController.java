@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mycompany.metamong.dto.AddNoticeForm;
-import com.mycompany.metamong.dto.NoticeDto;
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.UpdateNoticeForm;
+import com.mycompany.metamong.dto.notice.AddNoticeForm;
+import com.mycompany.metamong.dto.notice.NoticeDto;
+import com.mycompany.metamong.dto.notice.UpdateNoticeForm;
 import com.mycompany.metamong.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -68,6 +68,7 @@ public class NoticeController {
 	
 	@GetMapping("/noticeDetail")
 	public String noticeDetail(int noticeId, Model model) {
+		log.info("실행");
 		NoticeDto notice = noticeService.getNotice(noticeId);
 		noticeService.addHitcount(noticeId);
 		model.addAttribute("notice", notice);
@@ -116,6 +117,7 @@ public class NoticeController {
 			notice.setNoticeFiletype(mf.getContentType());
 			notice.setNoticeFiledata(mf.getBytes());
 		}
+		
 		noticeService.updateNotice(notice);
 		return "redirect:/notice/noticeDetail?noticeId=" + form.getNoticeId();
 	}

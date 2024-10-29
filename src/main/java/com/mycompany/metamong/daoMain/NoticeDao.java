@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.mycompany.metamong.dto.NoticeDto;
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.notice.NoticeDto;
 
 @Mapper
 public interface NoticeDao {
@@ -31,7 +31,7 @@ public interface NoticeDao {
 
 	public NoticeDto selectNextNoticeId(int noticeId);
 
-	public void deleteFileById(int noticeId);
+	public NoticeDto deleteFileById(int noticeId);
 	
 	public List<NoticeDto> selectNoticeSearch(@Param("keyword")String keyword, @Param("option") String option);
 

@@ -8,8 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.metamong.daoMain.NoticeDao;
 import com.mycompany.metamong.daoSub1.Sub1TableDao;
-import com.mycompany.metamong.dto.NoticeDto;
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.notice.NoticeDto;
 
 import lombok.extern.slf4j.Slf4j;
 

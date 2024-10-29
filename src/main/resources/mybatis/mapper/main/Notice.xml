@@ -3,8 +3,9 @@
 <mapper namespace="com.mycompany.metamong.daoMain.NoticeDao">
 
 	<insert id="insertNotice" parameterType="Notice">
-		<!-- <selectKey keyProperty="noticeId" resultType="int" order="BEFORE"> 
-			SELECT seq_notice_id.nextval FROM DUAL </selectKey> -->
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE"> 
+			SELECT seq_notice_id.nextval FROM DUAL 
+		</selectKey>
 		INSERT INTO notice (
 		notice_id, notice_title, notice_content,
 		notice_regdate, notice_hitcount,
@@ -113,11 +114,19 @@
 		where notice_id=#{noticeId}
 	</update>
 
-	<delete id="deleteNotice" parameterType="int">
+	<delete id="deleteNotice" parameterType="int" >
 		DELETE FROM notice
 		WHERE
 		notice_id=#{noticeId}
 
+	</delete>
+	
+	<delete id="deleteFileById" parameterType="int">
+		DELETE notice_filename, notice_filetype, notice_filedata
+		FROM notice
+		WHERE
+		notice_id=#{noticeId}
+		
 	</delete>
 
 	<select id="selectNoticeSearch" parameterType="map"

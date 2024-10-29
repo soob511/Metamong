@@ -51,7 +51,7 @@
                     <tbody id="noticeList">
                         <c:forEach items="${list}" var="notice" varStatus="status">           
 	                        <tr>
-	                            <th scope="row">${status.index+1}</th>
+	                            <th scope="row">${totalRows - (pager.pageNo-1) * 10 - status.index}</th>                          
 	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 	                            <td>${notice.noticeHitcount}</td>
