@@ -45,7 +45,7 @@ function searchCode() {
         			    <td>${code.codeIsActive == 1 ? 'Y' : 'N'}</td>
         			    <td>${code.codeContent}</td>
         			    <td>
-        			        <a href="codeUpdateForm">
+        			        <a href="codeUpdateForm?codeNo=${code.codeNo}">
         			            <button class="btn-edit">수정</button>
         			        </a>
         			    </td>

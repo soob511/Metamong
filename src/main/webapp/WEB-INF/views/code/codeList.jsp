@@ -76,7 +76,7 @@
 	                                        <td>${code.codeId}</td>
 	                                        <td>${code.codeIsActive == 1 ? 'Y' : 'N'}</td>
 	                                        <td>${code.codeContent}</td>
-	                                        <td><a href="codeUpdateForm">
+	                                        <td><a href="codeUpdateForm?codeNo=${code.codeNo}">
                                         		<button class="btn-edit">수정</button>
                                    			</a></td>
 	                                    </tr>

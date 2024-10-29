@@ -100,10 +100,21 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeUpdateForm")
-	public String codeUpdateForm() {
+	public String codeUpdateForm(Model model, @RequestParam int codeNo) {
+		CodeDto code = codeService.getCodeByNo(codeNo);
+		List<ItemDto> items = itemService.getItemList(codeNo);
+		
+		model.addAttribute("code", code);
+		model.addAttribute("items", items);
+		
 		return "code/codeUpdateForm";
 	}
 
+	@PostMapping("/codeUpdate")
+	public String codeUpdate(Authentication auth) {
+		return "";
+	}
+	
 	@GetMapping("/codeCompare")
 	public String codeCompare() {
 		return "code/codeCompare";
