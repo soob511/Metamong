@@ -51,10 +51,14 @@
                     <tbody id="noticeList">
                         <c:forEach items="${list}" var="notice" varStatus="status">           
 	                        <tr>
-	                            <th scope="row">${totalRows - (pager.pageNo-1) * 10 - status.index}</th>                          
+	                        <th scope="row">${notice.noticeId}</th>                          
 	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 	                            <td>${notice.noticeHitcount}</td>
+	                            <%-- <th scope="row">${totalRows - (pager.pageNo-1) * 10 - status.index}</th>                          
+	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
+	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+	                            <td>${notice.noticeHitcount}</td> --%>
 	                        </tr>
                       </c:forEach> 
                    </tbody>                     
