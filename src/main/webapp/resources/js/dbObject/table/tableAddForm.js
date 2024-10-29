@@ -108,7 +108,7 @@ $(document).ready(function() {
         if (colNm === "" || colId === ""|| colLength === "") {
         	Swal.fire({
         		  icon: 'warning',                  
-        		  title: '추가할 내용을 전부 입력해주세요.',    
+        		  title: '추가할 내용을 <br/>전부 입력해주세요.',    
         		});
         }else{
             var rowCount = $("#columnList tr").length + 1;
@@ -189,7 +189,7 @@ $(document).ready(function() {
             if (colNm === "" || colId === "" || colLength === "") {
                 Swal.fire({
                     icon: 'warning',
-                    title: '수정할 내용을 전부 입력해주세요.'
+                    title: '수정할 내용을 <br/>전부 입력해주세요.'
                 });
             } else {
                 selectedRow.find("td:eq(1)").text(colNm);
@@ -205,7 +205,7 @@ $(document).ready(function() {
         } else {
             Swal.fire({
                 icon: 'warning',
-                title: '수정할 행을 선택해주세요.'
+                title: '수정할 행을<br/> 선택해주세요.'
             });
         }
     });
@@ -258,13 +258,10 @@ $(document).ready(function() {
                 success: function(data) {
                     Swal.fire({
                         icon: 'success',
-                        title: '신청이 완료되었습니다.'
-                    });
-                },
-                error: function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '신청 중 오류가 발생했습니다.'
+                        title: '테이블 생성 신청이<br/>완료되었습니다.',
+                        text: '신청 승인 후, 코드 사용가능합니다.'
+                    }).then(result => {
+                        location.href = "/Metamong/table/tableApplyList";
                     });
                 }
             });
