@@ -27,6 +27,11 @@
     </where>
 </select>
 
+<insert id="insertApplyTable" parameterType="ApplyTable">
+    INSERT INTO apply_table (apply_no, table_no, table_nm, table_id, table_content)
+    VALUES (#{applyNo}, seq_table_no.NEXTVAL, #{tableNm}, #{tableId}, #{tableContent})
+</insert>
+
 
 </mapper>
 	

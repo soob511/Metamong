@@ -48,19 +48,25 @@
 								</tr>
 								<tr>
 									<td class="table-primary">테이블(논리)</td>
-									<td colspan="5"><input type="text"
+									<td colspan="5"><input type="text" id="tableNm"
 										class="form-control code-input" placeholder="내용 입력" required>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-primary">테이블(물리)</td>
-									<td colspan="5"><input type="text"
+									<td colspan="5"><input type="text"  id="tableId"
 										class="form-control code-input" placeholder="내용 입력" required>
 									</td>
 								</tr>
 								<tr>
+									<td class="table-primary">내용</td>
+									<td colspan="5"><input type="text"  id="tableContent"
+										class="form-control content-input" placeholder="내용 입력">
+									</td>
+								</tr>
+								<tr>
 									<td class="table-primary">신청사유</td>
-									<td colspan="5"><input type="text"
+									<td colspan="5"><input type="text"  id="applyReason"
 										class="form-control content-input" placeholder="내용 입력">
 									</td>
 								</tr>
@@ -168,9 +174,7 @@
 				</div>
 
 				<div class="button-group">
-					<a href="tableApplyList">
-						<div class="btn-add" type="button">신청</div>
-					</a>
+						<div class="btn-apply" type="button">신청</div>
 				</div>
 
 				<div class="modal fade" id="codeLoadModal" tabindex="-1"
