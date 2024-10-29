@@ -50,6 +50,8 @@ $(".btn-join").on("click", function () {
   var MEmpId = $("#MEmpId").val();
   var MTel = $("#MTel").val();
   var MRole = $("input[name='MRole']:checked").val();
+  
+  MRole = MRole=="User"?"ROLE_USER":"ROLE_DBA";
 
   var joinData = {
     MId: MId,
