@@ -128,9 +128,16 @@ thead{
 .item-container {
 	min-width:1360px !important;
 	max-width:1360px !important;
-	margin:10px 40px 60px 40px !important;
+	margin:10px 40px 30px 40px !important;
 }
 
+
+.item-table-container {
+	border-radius: 8px !important; 
+    box-shadow: var(--box-shadow);
+    overflow-y: scroll;
+    height: 280px;
+}
 
 
 

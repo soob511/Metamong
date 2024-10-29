@@ -79,30 +79,31 @@
                                     </td>
                                 </tr>
                             </table>
+                            <div class="button-group">
+			                    <button id="item-add" class="btn-add" type="button">추가</button>
+			                    <button class="btn-edit" type="button">수정</button>
+			                </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="button-group">
-                    <button id="item-add" class="btn-add" type="button">추가</button>
-                    <button class="btn-edit" type="button">수정</button>
-                </div>
-
                 <div class="item-container">
                     <div class="item-header">항목</div>
-                    <table class="table table-hover bottom-table">
-                        <thead class="table-primary">
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">항목코드</th>
-                                <th scope="col">항목명</th>
-                                <th scope="col">사용여부</th>
-                                <th scope="col">내용</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="item-list"></tbody>
-                    </table>
+                    <div class="item-table-container">
+	                    <table class="table table-hover bottom-table">
+	                        <thead class="table-primary">
+	                            <tr>
+	                                <th scope="col">No.</th>
+	                                <th scope="col">항목코드</th>
+	                                <th scope="col">항목명</th>
+	                                <th scope="col">사용여부</th>
+	                                <th scope="col">내용</th>
+	                                <th></th>
+	                            </tr>
+	                        </thead>
+	                        <tbody class="item-list"></tbody>
+	                    </table>
+                    </div>
                 </div>
 
                 <div class="button-group">   
