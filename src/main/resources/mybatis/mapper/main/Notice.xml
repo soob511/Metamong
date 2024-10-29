@@ -26,4 +26,43 @@
 		FROM notice
 	</select>
 	
+	<select id="selectNoticeDetail" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_filename
+		FROM notice
+		WHERE notice_id = #{noticeId}
+	</select>
+	
+	<update id="updateHitcount" parameterType="int">
+		UPDATE notice
+		SET 
+			notice_hitcount = notice_hitcount + 1
+		WHERE notice_id = #{noticeId}
+	</update>
+	
+	<select id="selectPrevNotice" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_id, notice_title
+		FROM notice
+		WHERE #{noticeId} > notice_id
+		ORDER BY notice_id DESC
+		FETCH FIRST ROWS ONLY
+	</select>
+	
+	<select id="selectNextNotice" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_id, notice_title
+		FROM notice
+		WHERE notice_id > #{noticeId}
+		ORDER BY notice_id
+		FETCH FIRST ROWS ONLY
+	</select>
+	
+	<select id="selectNoticeFile" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_filename, notice_filetype, notice_filedata
+		FROM notice
+		WHERE notice_id = #{noticeId}
+	
+	</select>
 </mapper>

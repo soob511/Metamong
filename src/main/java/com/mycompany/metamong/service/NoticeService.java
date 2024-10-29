@@ -22,4 +22,25 @@ public class NoticeService {
 	public int getTotalRows() {
 		return noticeDao.countRows();
 	}
+
+	public NoticeDto getNoticeDetail(int noticeId) {
+		return noticeDao.selectNoticeDetail(noticeId);
+	}
+
+	public int addHitcount(int noticeId) {
+		return noticeDao.updateHitcount(noticeId);
+	}
+		
+
+	public NoticeDto getPrevNotice(int noticeId) {
+		return noticeDao.selectPrevNotice(noticeId);
+	}
+
+	public NoticeDto getNextNotice(int noticeId) {
+		return noticeDao.selectNextNotice(noticeId);
+	}
+
+	public NoticeDto getNoticeFile(int noticeId) {
+		return noticeDao.selectNoticeFile(noticeId);
+	}
 }
