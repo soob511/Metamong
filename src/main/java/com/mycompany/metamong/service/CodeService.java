@@ -17,6 +17,10 @@ public class CodeService {
 	public List<CodeDto> getCodeList() {
 		return codeDao.selectCodeList();
 	}
+	
+	public List<CodeDto> getCodeSearch(String keyword, int option) {
+		return codeDao.selectCodeSearch(keyword, option);
+	}
 
 	public List<CodeDto> getActiveCodes() {
 		return codeDao.selectActiveCodes();
@@ -28,6 +32,7 @@ public class CodeService {
 
 	public void addApplyCode(ApplyCodeDto code) {
 		codeDao.insertApplyCode(code);
-		
 	}
+
+	
 }

@@ -34,7 +34,7 @@
                     <div class="use-filter">
                         <label for="useSelect" class="use-filter-label">사용여부</label>
                         <select id="useSelect" class="form-select" aria-label="Default select">
-                            <option selected value="2">선택</option>
+                            <option value="2" selected>전체</option>
                             <option value="1">Y</option>
                             <option value="0">N</option>
                         </select>
@@ -65,13 +65,12 @@
 	                                        <th scope="col">코드(물리)</th>
 	                                        <th scope="col">사용여부</th>
 	                                        <th scope="col">내용</th>
-	                                        <th scope="col"></th>
+	                                        <th scope="col">수정</th>
 	                                    </tr>
 	                                </thead>
-	                                <tbody>
-	                                	<tr class="no-code"><th colspan="5">조건에 맞는 코드가 없습니다.</th></tr>
+	                                <tbody id="codeList">
 	                                <c:forEach items="${codeList}" var="code">
-	                                    <tr class="code-row" data-code-no="${code.codeNo}" data-is-active="${code.codeIsActive}">
+	                                    <tr class="code-row"  onclick="showItemList(${code.codeNo})">
 	                                        <th>${code.codeNo}</th>
 	                                        <td>${code.codeNm}</td>
 	                                        <td>${code.codeId}</td>
@@ -81,7 +80,7 @@
                                         		<button class="btn-edit">수정</button>
                                    			</a></td>
 	                                    </tr>
-	                                </c:forEach>	
+	                                </c:forEach>
 	                                </tbody>
 	                            </table>
                             </div>
@@ -103,21 +102,8 @@
                                         <th scope="col">내용</th>
                                     </tr>
                                 </thead>
-                                <tbody>        
-                                <tr class="no-item"><th colspan="5">코드를 선택해 주세요.</th></tr>
-                                                        
-	                                <c:forEach items="${itemList}" var="items">
-									    <c:forEach items="${items}" var="item" varStatus="i">
-									        <tr>
-									            <th class="item-codeno">${item.codeNo}</th>
-									            <th>${i.index+1}</th>
-									            <td>${item.itemId}</td>
-									            <td>${item.itemNm}</td>
-									            <td>${item.itemIsActive == 1 ? 'Y' : 'N'}</td>
-									            <td>${item.itemContent}</td>
-									        </tr>
-									    </c:forEach>
-									</c:forEach>
+                                <tbody id="itemList">                        
+	                                <tr><th colspan="5">코드를 선택해 주세요.</th></tr>
                                 </tbody>
                             </table>
                             </div>
@@ -127,7 +113,6 @@
             </div>
         </div>
     </div>
-
     <script src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script>
 </body>
 </html>

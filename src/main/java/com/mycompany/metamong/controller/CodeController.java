@@ -55,6 +55,12 @@ public class CodeController {
 		return "code/codeList";
 	}
 	
+	@ResponseBody
+	@GetMapping("/codeSearch")
+	public List<CodeDto> codeSearch(@RequestParam String keyword, @RequestParam int option) {
+		return codeService.getCodeSearch(keyword, option);
+	}
+	
 	@GetMapping("/codeAddForm")
 	public String codeAddForm() {
 		return "code/codeAddForm";
