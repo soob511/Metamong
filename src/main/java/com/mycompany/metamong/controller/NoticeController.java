@@ -46,7 +46,7 @@ public class NoticeController {
 	@GetMapping("/noticeDetail")
 	public String noticeDetail(int noticeId, Model model) {
 		
-		NoticeDto notice = noticeService.getNotice(noticeId);
+		NoticeDto notice = noticeService.getNoticeDetail(noticeId);
 		model.addAttribute("notice", notice);
 		
 		noticeService.addHitcount(noticeId);

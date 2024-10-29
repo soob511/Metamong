@@ -23,7 +23,7 @@ public class NoticeService {
 		return noticeDao.countRows();
 	}
 
-	public NoticeDto getNotice(int noticeId) {
+	public NoticeDto getNoticeDetail(int noticeId) {
 		return noticeDao.selectNoticeDetail(noticeId);
 	}
 
