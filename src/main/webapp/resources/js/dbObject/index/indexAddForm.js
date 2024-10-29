@@ -42,6 +42,59 @@ $(document).ready(function() {
     
 });
 
+let indexCount = 1;
+
+$('#columnTableBody').on('click', '.form-check-input', function() {
+    var row = $(this).closest('tr');
+    var colId = row.find('td[name="colId"]').text();
+    var colOrder = row.find('td[name="colOrder"] select').val();
+
+    if ($(this).is(':checked')) {
+        const newRow = `
+            <tr data-value="${colId}">
+                <td name="indexCount" data-value="${indexCount}">${indexCount++}</td>
+                <td name="colId" data-value="${colId}">${colId}</td>
+                <td name="colOrder" data-value="${colOrder}">${colOrder}</td>
+                <td><i class="bi bi-trash3"></i></td>
+            </tr>
+        `;
+        $('#indexApplyColumn').append(newRow);
+    } else {
+        var rowColId = $(`#indexApplyColumn td[data-value="${colId}"]`).closest('tr');
+        rowColId.remove();
+        updateCount();
+        if (indexCount > 1) {
+            --indexCount;    	
+        }
+    }
+});
+
+$('#flexCheckDefault').change(function() {
+    const isChecked = $(this).is(':checked');
+
+    $('#columnTableBody .form-check-input').prop('checked', isChecked);
+
+    if (isChecked) {
+        $('#columnTableBody .form-check-input').each(function() {
+            var row = $(this).closest('tr');
+            var colId = row.find('td[name="colId"]').text();
+            var colOrder = row.find('td[name="colOrder"] select').val();
+
+            const newRow = `
+                <tr data-value="${colId}">
+                    <td name="indexCount">${indexCount++}</td>
+                    <td data-value="${colId}">${colId}</td>
+                    <td data-value="${colOrder}">${colOrder}</td>
+                    <td><i class="bi bi-trash3"></i></td>
+                </tr>
+            `;
+            $('#indexApplyColumn').append(newRow);
+        });
+    } else {
+        $('#indexApplyColumn').empty();
+        indexCount = 1; // 초기화
+    }
+});
 
 function moveUp() {
     var selectedRow = $('#indexApplyColumn tr.colSelect');
