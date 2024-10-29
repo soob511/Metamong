@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.mycompany.metamong.dto.TableDto;
+import com.mycompany.metamong.dto.table.TableDto;
 
 @Mapper
 public interface TableDao {

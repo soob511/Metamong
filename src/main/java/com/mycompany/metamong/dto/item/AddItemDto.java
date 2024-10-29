@@ -1,4 +1,4 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.item;
 
 import lombok.Data;
 

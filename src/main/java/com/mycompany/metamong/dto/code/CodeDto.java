@@ -1,10 +1,9 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.code;
 
 import lombok.Data;
 
 @Data
-public class ApplyCodeDto {
-	private int applyNo;
+public class CodeDto {
 	private int codeNo;
 	private String codeNm;
 	private String codeId;

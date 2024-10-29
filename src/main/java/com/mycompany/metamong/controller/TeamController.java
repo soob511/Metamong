@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.daoMain.TeamService;
-import com.mycompany.metamong.dto.TeamDto;
+import com.mycompany.metamong.dto.member.TeamDto;
 
 import lombok.extern.slf4j.Slf4j;
 

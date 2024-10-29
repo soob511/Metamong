@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.metamong.dto.IndexDto;
+import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.IndexService;
 

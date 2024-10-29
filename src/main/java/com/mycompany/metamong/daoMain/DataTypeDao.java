@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.mycompany.metamong.dto.DataTypeDto;
+import com.mycompany.metamong.dto.column.DataTypeDto;
 
 @Mapper
 public interface DataTypeDao {

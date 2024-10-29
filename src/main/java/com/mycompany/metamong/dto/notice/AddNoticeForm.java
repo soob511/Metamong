@@ -1,4 +1,4 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.notice;
 
 import java.util.Date;
 
@@ -8,8 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class UpdateNoticeForm {	
-	private int noticeId;
+public class AddNoticeForm {	
 	private String noticeTitle;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date noticeRegdate;

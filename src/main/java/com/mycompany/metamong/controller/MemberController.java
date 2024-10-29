@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.metamong.dto.JoinFormDto;
-import com.mycompany.metamong.dto.MemberDto;
+import com.mycompany.metamong.dto.member.JoinFormDto;
+import com.mycompany.metamong.dto.member.MemberDto;
 import com.mycompany.metamong.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.ColumnDao;
-import com.mycompany.metamong.dto.ColumnDto;
+import com.mycompany.metamong.dto.column.ColumnDto;
 
 @Service
 public class ColumnService {

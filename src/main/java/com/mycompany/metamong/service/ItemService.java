@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.ItemDao;
-import com.mycompany.metamong.dto.ApplyItemDto;
-import com.mycompany.metamong.dto.ItemDto;
+import com.mycompany.metamong.dto.item.ApplyItemDto;
+import com.mycompany.metamong.dto.item.ItemDto;
 
 @Service
 public class ItemService {

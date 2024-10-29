@@ -1,6 +1,8 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.code;
 
 import java.util.List;
+
+import com.mycompany.metamong.dto.item.AddItemDto;
 
 import lombok.Data;
 

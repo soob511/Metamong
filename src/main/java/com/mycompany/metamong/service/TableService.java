@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.TableDao;
-import com.mycompany.metamong.dto.TableDto;
+import com.mycompany.metamong.dto.table.TableDto;
 
 @Service
 public class TableService {

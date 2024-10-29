@@ -2,7 +2,7 @@ package com.mycompany.metamong.daoMain;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.mycompany.metamong.dto.MemberDto;
+import com.mycompany.metamong.dto.member.MemberDto;
 
 @Mapper
 public interface MemberDao {

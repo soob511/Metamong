@@ -10,7 +10,7 @@ import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoSub1.Sub1IndexDao;
 import com.mycompany.metamong.daoSub2.Sub2IndexDao;
 import com.mycompany.metamong.daoSub3.Sub3IndexDao;
-import com.mycompany.metamong.dto.IndexDto;
+import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 
 @Service

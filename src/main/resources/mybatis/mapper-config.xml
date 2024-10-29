@@ -6,19 +6,19 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.mycompany.metamong.dto.MemberDto" alias="Member"/>
-		<typeAlias type="com.mycompany.metamong.dto.NoticeDto" alias="Notice"/>
-		<typeAlias type="com.mycompany.metamong.dto.TeamDto" alias="Team"/>
-		<typeAlias type="com.mycompany.metamong.dto.DataTypeDto" alias="DataType"/>
-		<typeAlias type="com.mycompany.metamong.dto.TableDto" alias="Table"/>
-		<typeAlias type="com.mycompany.metamong.dto.ColumnDto" alias="Column"/>
+		<typeAlias type="com.mycompany.metamong.dto.member.MemberDto" alias="Member"/>
+		<typeAlias type="com.mycompany.metamong.dto.notice.NoticeDto" alias="Notice"/>
+		<typeAlias type="com.mycompany.metamong.dto.member.TeamDto" alias="Team"/>
+		<typeAlias type="com.mycompany.metamong.dto.column.DataTypeDto" alias="DataType"/>
+		<typeAlias type="com.mycompany.metamong.dto.table.TableDto" alias="Table"/>
+		<typeAlias type="com.mycompany.metamong.dto.column.ColumnDto" alias="Column"/>
 		<typeAlias type="com.mycompany.metamong.dto.Pager" alias="Pager"/>
-		<typeAlias type="com.mycompany.metamong.dto.IndexDto" alias="Index"/>
-		<typeAlias type="com.mycompany.metamong.dto.CodeDto" alias="Code"/>
-		<typeAlias type="com.mycompany.metamong.dto.ItemDto" alias="Item"/>
+		<typeAlias type="com.mycompany.metamong.dto.index.IndexDto" alias="Index"/>
+		<typeAlias type="com.mycompany.metamong.dto.code.CodeDto" alias="Code"/>
+		<typeAlias type="com.mycompany.metamong.dto.item.ItemDto" alias="Item"/>
 		<typeAlias type="com.mycompany.metamong.dto.ApplyDto" alias="Apply"/>
-		<typeAlias type="com.mycompany.metamong.dto.ApplyCodeDto" alias="ApplyCode"/>
-		<typeAlias type="com.mycompany.metamong.dto.ApplyItemDto" alias="ApplyItem"/>
+		<typeAlias type="com.mycompany.metamong.dto.code.ApplyCodeDto" alias="ApplyCode"/>
+		<typeAlias type="com.mycompany.metamong.dto.item.ApplyItemDto" alias="ApplyItem"/>
 	</typeAliases>
 
 </configuration>
