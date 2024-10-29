@@ -9,4 +9,5 @@ public class IndexDto {
 	private String tableName;
 	private String columnName;
 	private String uniqueness;
+	private String indexOrder;
 }

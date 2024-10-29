@@ -12,4 +12,6 @@ public interface IndexDao {
 	public List<IndexDto> selectIndex();
 	
 	public List<IndexDto> selectIndexByName(String indexName);
+	
+	public int insertIndex(String sqlSyn);
 }
