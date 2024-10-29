@@ -4,7 +4,6 @@ $(document).ready(function() {
     $('.sub-menu:eq(1)').addClass('active');
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(2)').addClass('active');
-    filterTable();
     
     $('#schemaSelect').change(function() {
     	filterTable();
@@ -13,8 +12,6 @@ $(document).ready(function() {
     $('#tableSelect').change(function() {
     	filterColumn();
     });
-    
-    columnAddAndRemove();
     
     $('#upButton').on('click', function() {
     	moveUp();
@@ -41,7 +38,10 @@ $(document).ready(function() {
     	getIndexValues();
     });
     
+    
+    
 });
+
 
 function moveUp() {
     var selectedRow = $('#indexApplyColumn tr.colSelect');
@@ -63,52 +63,40 @@ function moveDown() {
     }
 }
 
-function swapTdValues(row1, row2, tdIndex) {
-    var tempValue1 = row1.find('td').eq(tdIndex).text();
-    var tempValue2 = row2.find('td').eq(tdIndex).text();
+function swapTdValues(row1, row2, index) {
+    var td1 = row1.find('td').eq(index);
+    var td2 = row2.find('td').eq(index);
 
-    row1.find('td').eq(tdIndex).text(tempValue2);
-    row2.find('td').eq(tdIndex).text(tempValue1);
+    var tempValue = td1.html();
+    td1.html(td2.html());
+    td2.html(tempValue);
 }
+	
+$(document).on('click', '.bi-trash3', function() {
+    var row = $(this).closest('tr');
+    var rowValue = row.data('value');
 
-function columnAddAndRemove() {
-	let count = 1;
+    $('#columnTableBody .form-check-input').each(function() {
+        var colRow = $(this).closest('tr');
+        var colRowValue = colRow.data('value');
 
-	$(document).on('click', '#columnTableBody .form-check-input', function() {
-		var row = $(this).closest('tr');
-		var colId = row.find('td[name="colId"]').text();
-		var colOrder = row.find('td[name="colOrder"] select').val();
-		
-	    if ($(this).is(':checked')) {
-	    	const newRow = `
-	    		<tr>
-	    		<td>${count++}</td>
-	    		<td value="${colId}">${colId}</td>
-	    		<td value="${colOrder}">${colOrder}</td>
-	    		<td><i class="bi bi-trash3"></i></td>
-	    		</tr>
-	    		`;
-	    	$('#indexApplyColumn').append(newRow);
-	    } else {
-	    	var rowColId = $(`#indexApplyColumn td:contains(${colId})`).closest('tr');
-	    	rowColId.remove();
-	        if (count > 1) {
-	        	--count;    	
-	        }
-	    }
+        if (rowValue === colRowValue) {
+            $(this).prop('checked', false);
+        }
+    });
+    row.remove();
+    updateCount();
 
-	});
+    if (indexCount > 1) {
+        --indexCount;
+    }
+});
 
-	$(document).on('click', '.bi-trash3', function() {
-	    var row = $(this).closest('tr');
-	    row.remove();
-	    
-	    if (count > 1) {
-	    	--count;    	
-	    }
-	});
+function updateCount() {
+    $('#indexApplyColumn tr').each(function(index) {
+        $(this).find('td[name="indexCount"]').text(index + 1);
+    });
 }
-
 
 function filterTable() {
 	const schemaName = $('#schemaSelect').val();
@@ -149,16 +137,17 @@ function filterColumn() {
 			tableNo : tableNo
 		},
 		success : function(data) {
+			let count = 1;
 			let html = '';
 
 			data.forEach(function(column) {
 				html += `
-					<tr>
+					<tr data-value="${column.colId}">
 						<th>
-							<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"></th>
-	                        <th>${column.colOrder}</th>
+							<input class="form-check-input" type="checkbox" value=""></th>
+	                        <th>${count++}</th>
 	                        <td>${column.colNm}</td>
-	                        <td name="colId">${column.colId}</td>
+	                        <td name="colId" data-value="${column.colId}">${column.colId}</td>
 	                        <td>${column.dataType}</td>
 	                        <td>${column.colLength}</td>
 	                        <td>${column.colIsnullable}</td>
@@ -173,8 +162,9 @@ function filterColumn() {
                     `;
 				console.log(column.colId);
 			});
-			
 			$('#columnTableBody').html(html);
+			$('#indexApplyColumn').html('');
+			indexCount = 1;
 		},
 		error : function(xhr, status, error) {
 			console.log('오류: ' + xhr.responseText);
@@ -182,76 +172,73 @@ function filterColumn() {
 	});
 }
 
-function applyIndex() {
-	const schemaName = $('#schemaSelect').val();
-	const tableNo = $('#tableSelect').val();
-	const columnName = $()
-	
-	$.ajax({
-		type : 'GET',
-		url : 'searchTable',
-		data : {
-			schemaName : schemaName
-		},
-		success : function(data) {
-			let html = '<option>선택</option>';
+//function applyIndex() {
+//	const schemaName = $('#schemaSelect').val();
+//	const tableNo = $('#tableSelect').val();
+//	const columnName = $()
+//	
+//	$.ajax({
+//		type : 'GET',
+//		url : 'searchTable',
+//		data : {
+//			schemaName : schemaName
+//		},
+//		success : function(data) {
+//			let html = '<option>선택</option>';
+//
+//			data.forEach(function(table) {
+//				html += `
+//					<option value="${table.tableNo}">${table.tableId}</option>`
+//			});
+//			$('#tableSelect').html(html);
+//		},
+//		error : function(xhr, status, error) {
+//			console.log('오류: ' + xhr.responseText);
+//		}
+//	});
+//}
 
-			data.forEach(function(table) {
-				html += `
-					<option value="${table.tableNo}">${table.tableId}</option>`
-			});
-			$('#tableSelect').html(html);
-		},
-		error : function(xhr, status, error) {
-			console.log('오류: ' + xhr.responseText);
-		}
-	});
-}
 
-
-    function getIndexValues() {
-        const tableValues = [];
-        
-        $('#indexApplyColumn tr').each(function() {
-            const rowValues = {}; // 객체 형태로 초기화
-            
-            $(this).find('td').each(function() {
-                const cellValue = $(this).attr('value'); // 각 셀의 value 속성 값
-                const cellText = $(this).text().trim(); // 각 셀의 텍스트 값
-                
-                if (cellValue) { // value가 있는 경우에만 추가
-                    rowValues[cellValue] = cellText; // value를 키로 하고 텍스트를 값으로 저장
-                }
-            });
-            
-            if (Object.keys(rowValues).length > 0) { // rowValues가 비어있지 않은 경우에만 추가
-                tableValues.push(rowValues);
-            }
-        });
-//        const values = getTableValues();
-        console.log(tableValues);
-//        return tableValues;
-        
-        $.ajax({
-    		type : 'GET',
-    		url : 'searchTable',
-    		data : {
-    			tableValues
-    		},
-    		success : function(data) {
-    			let html = '<option>선택</option>';
-
-    			data.forEach(function(table) {
-    				html += `
-    					<option value="${table.tableNo}">${table.tableId}</option>`
-    			});
-    			$('#tableSelect').html(html);
-    		},
-    		error : function(xhr, status, error) {
-    			console.log('오류: ' + xhr.responseText);
-    		}
-    	});
-    }
+//function getIndexValues() {
+//    const tableValues = [];
+//    
+//    $('#indexApplyColumn tr').each(function() {
+//        const rowValues = {}; // 객체 형태로 초기화
+//        
+//        $(this).find('td').each(function() {
+//            const cellValue = $(this).attr('value'); // 각 셀의 value 속성 값
+//            const cellText = $(this).text().trim(); // 각 셀의 텍스트 값
+//            
+//            if (cellValue) { // value가 있는 경우에만 추가
+//                rowValues[cellValue] = cellText; // value를 키로 하고 텍스트를 값으로 저장
+//            }
+//        });
+//        
+//        if (Object.keys(rowValues).length > 0) { // rowValues가 비어있지 않은 경우에만 추가
+//            tableValues.push(rowValues);
+//        }
+//    });
+//    
+//    $.ajax({
+//		type : 'GET',
+//		url : 'searchTable',
+//		data : {
+//			tableValues
+//		},
+//		success : function(data) {
+//			let html = '<option>선택</option>';
+//
+//			data.forEach(function(table) {
+//				html += `
+//					<option value="${table.tableNo}">${table.tableId}</option>`
+//			});
+//			$('#tableSelect').html(html);
+//		},
+//		error : function(xhr, status, error) {
+//			console.log('오류: ' + xhr.responseText);
+//		}
+//	});
+//}
     
 
     

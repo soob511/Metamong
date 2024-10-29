@@ -63,54 +63,7 @@
 											</tr>
 										</thead>
 										<tbody id="columnTableBody">
-											<tr>
-												<th><input class="form-check-input" type="checkbox"
-													value="" id="flexCheckChecked" checked></th>
-												<td>1</td>
-												<td>재산관리</td>
-												<td>PPRT</td>
-												<td>VARCHAR2</td>
-												<td>8</td>
-												<td>N</td>
-												<td>Y</td>
-												<td><select class="form-select"
-													aria-label="Default select">
-														<option selected>ASC</option>
-														<option>DESC</option>
-												</select></td>
-											</tr>
-											<tr>
-												<th><input class="form-check-input" type="checkbox"
-													value="" id="flexCheckChecked" checked></th>
-												<td>2</td>
-												<td>재산관리</td>
-												<td>PPRT2</td>
-												<td>VARCHAR2</td>
-												<td>8</td>
-												<td>N</td>
-												<td>Y</td>
-												<td><select class="form-select"
-													aria-label="Default select">
-														<option selected>ASC</option>
-														<option>DESC</option>
-												</select></td>
-											</tr>
-											<tr>
-												<th><input class="form-check-input" type="checkbox"
-													value="" id="flexCheckChecked"></th>
-												<td>3</td>
-												<td>재산관리</td>
-												<td>PPRT</td>
-												<td>VARCHAR2</td>
-												<td>8</td>
-												<td>N</td>
-												<td>Y</td>
-												<td><select class="form-select"
-													aria-label="Default select">
-														<option>ASC</option>
-														<option selected>DESC</option>
-												</select></td>
-											</tr>
+											
 										</tbody>
 									</table>
 								</div>
@@ -131,7 +84,7 @@
 										</button>
 									</div>
 								</div>
-								<div class="index-cols table-container">
+								<div class="index-cols table-container index-apply-table">
 									<table class="table table-hover">
 										<thead class="table-primary">
 											<tr>
@@ -142,18 +95,7 @@
 											</tr>
 										</thead>
 										<tbody id="indexApplyColumn">
-											<tr>
-												<td>1</td>
-												<td>PPRT</td>
-												<td>ASC</td>
-												<td><i class="bi bi-trash3"></i></td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>PPRT2</td>
-												<td>ASC</td>
-												<td><i class="bi bi-trash3"></i></td>
-											</tr>
+											
 										</tbody>
 									</table>
 								</div>
@@ -167,7 +109,11 @@
 									<textarea id="indexApplyReason"></textarea>
 									<!-- <a href="indexApplyList">
 									</a> -->
-									<button id="btn-apply" class="btn-add">신청</button>
+									<div class="d-flex justify-content-end">
+										<button id="btn-apply" class="btn-add">
+											신청
+										</button>									
+									</div>
 								</div>
 							</div>
 						</div>

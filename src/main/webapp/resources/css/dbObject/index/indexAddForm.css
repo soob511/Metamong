@@ -4,10 +4,11 @@
     border-radius: 8px !important;
     box-shadow: var(--box-shadow);
     overflow: hidden;
+    overflow-y: auto !important;
 }
 
 .table-container:first-of-type {
-    height: 600px;
+    height: 550px;
 }
 
 .table th, .table td {
@@ -114,7 +115,7 @@ hr {
 
 .index-apply-reason p {
     font-size: 16px;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
@@ -140,9 +141,13 @@ hr {
     width: 55px;
     height: 35px;
     font-size: 14px;
-    margin: 10px 0 0 410px;
+    margin: 10px 0 0 0px;
 }
 
 .colSelect td {
 	background-color: rgba(0, 0, 0, 0.075) !important;
+}
+
+.index-apply-table {
+	height: 250px;
 }
