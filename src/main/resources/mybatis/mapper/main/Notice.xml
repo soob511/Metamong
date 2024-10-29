@@ -62,7 +62,21 @@
 		SELECT 
 			notice_filename, notice_filetype, notice_filedata
 		FROM notice
-		WHERE notice_id = #{noticeId}
-	
+		WHERE notice_id = #{noticeId}	
 	</select>
+	
+	<insert id="insertNotice" parameterType="Notice">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE"> 
+			SELECT seq_notice_id.nextval 
+			FROM DUAL 
+		</selectKey>
+		INSERT INTO notice (
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount,
+			notice_filename, notice_filetype, notice_filedata
+		)
+		VALUES (
+			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount},
+			#{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
+		)
+	</insert>
 </mapper>

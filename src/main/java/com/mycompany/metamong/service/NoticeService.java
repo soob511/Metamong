@@ -43,4 +43,9 @@ public class NoticeService {
 	public NoticeDto getNoticeFile(int noticeId) {
 		return noticeDao.selectNoticeFile(noticeId);
 	}
+
+	public void insertNotice(NoticeDto notice) {
+		 noticeDao.insertNotice(notice);
+		 int noticeId = notice.getNoticeId();
+	}
 }

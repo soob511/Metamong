@@ -9,6 +9,8 @@
     <link href="${pageContext.request.contextPath}/resources/css/notice/notice.css"  rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    
 </head>
 <body>
 <div class="container">
@@ -23,7 +25,7 @@
                         <table class="table">
                             <tr>
                                 <td class="table-primary form-label">제목<span class="form-required">(*)</span></td>
-                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle"  value=""></td>
+                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle"  value="" required></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">작성자</td>
@@ -31,12 +33,12 @@
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">등록일</td>
-                                <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" value="sysdate"></td>
+                                <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" value="sysdate" required></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label">내용</td>
                                 <td>                                   
-                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12"></textarea>
+                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12" required></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -48,7 +50,7 @@
                         <a href="noticeList">
                             <button type="button" class="btn-cancel me-2">취소</button>                        
                         </a>
-                            <button type="submit" class="btn-add me-2">등록</button>
+                            <button type="submit" class="btn-add me-2" >등록</button>
                         </div>
                     </form>
                 </div>
