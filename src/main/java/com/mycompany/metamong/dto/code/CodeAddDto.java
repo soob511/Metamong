@@ -2,15 +2,15 @@ package com.mycompany.metamong.dto.code;
 
 import java.util.List;
 
-import com.mycompany.metamong.dto.item.AddItemDto;
+import com.mycompany.metamong.dto.item.ItemAddDto;
 
 import lombok.Data;
 
 @Data
-public class AddCodeFormDto {
+public class CodeAddDto {
 	private String codeNm;
 	private String codeId;
 	private String codeContent;
 	private String applyReason;
-	private List<AddItemDto> items;
+	private List<ItemAddDto> items;
 }

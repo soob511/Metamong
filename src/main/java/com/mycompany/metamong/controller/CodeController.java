@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
-import com.mycompany.metamong.dto.code.AddCodeFormDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
+import com.mycompany.metamong.dto.code.CodeAddDto;
 import com.mycompany.metamong.dto.code.CodeDto;
-import com.mycompany.metamong.dto.item.AddItemDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
+import com.mycompany.metamong.dto.item.ItemAddDto;
 import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.service.ApplyListService;
 import com.mycompany.metamong.service.CodeService;
@@ -67,7 +67,7 @@ public class CodeController {
 	}
 	
 	@PostMapping("/addApplyCode")
-	public String addCode(Authentication auth, @RequestBody AddCodeFormDto form) {
+	public String addCode(Authentication auth, @RequestBody CodeAddDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
 		
@@ -85,9 +85,9 @@ public class CodeController {
 		codeService.addApplyCode(code);
 		
 		// APPLY_ITEM 테이블
-		List<AddItemDto> inputItems = form.getItems();
+		List<ItemAddDto> inputItems = form.getItems();
 		
-		for (AddItemDto inputItem : inputItems) {
+		for (ItemAddDto inputItem : inputItems) {
 			ApplyItemDto item = new ApplyItemDto();
 	        item.setApplyNo(apply.getApplyNo());
 	        item.setItemId(inputItem.getItemId());
