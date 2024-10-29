@@ -1,5 +1,6 @@
 package com.mycompany.metamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class ColumnService {
 
 	public List<ColumnDto> getColumnList(int tableId) {
 		return columnDao.selectColumnList(tableId);
+	}
+	
+	public List<ColumnDto> getColumnList(HashMap<String, Object> colParams) {
+		return columnDao.selectColumnByTable(colParams);
 	}
 
 }

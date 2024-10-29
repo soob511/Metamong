@@ -1,8 +1,10 @@
 package com.mycompany.metamong.daoMain;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.ColumnDto;
 
@@ -11,4 +13,5 @@ public interface ColumnDao {
 
 	public List<ColumnDto> selectColumnList(int tableId);
 
+	public List<ColumnDto> selectColumnByTable(HashMap<String, Object> colParams);
 }

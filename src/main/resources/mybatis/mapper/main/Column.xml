@@ -7,6 +7,13 @@
 		WHERE table_no = #{tableNo}
 	
 	</select>
+	
+	<select id="selectColumnByTable" parameterType="map" resultType="Column">
+		SELECT c.table_no, c.col_id, c.col_nm, c.data_type, c.col_length, c.col_isnullable, c.col_ispk, c.col_order
+		FROM "COLUMN" c
+		JOIN tables t ON c.table_no =  t.table_no
+		WHERE c.table_no = #{tableNo} AND t."SCHEMA_NM" = #{schemaName}
+	</select>
 
 </mapper>
 	
