@@ -11,4 +11,5 @@ public interface TableDao {
 
 	public List<TableDto> selectTableList();
 
+	public List<TableDto> selectTableListBySchema(String schemaName);
 }

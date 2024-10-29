@@ -6,5 +6,11 @@
 	FROM "TABLES"
 </select>
 
+	<select id="selectTableListBySchema" resultType="Table">
+		SELECT table_no, table_id, schema_nm
+		FROM tables
+		WHERE schema_nm = #{schemaName}
+	</select>
+
 </mapper>
 	
