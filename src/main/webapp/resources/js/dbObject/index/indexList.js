@@ -13,11 +13,19 @@ $(document).ready(function() {
 		filterIndex()
 	});
 	
+	$('#indexNameSearch').on('keyup', function() {
+		if (event.key != "Enter") {
+			return;
+		}
+		filterIndex();
+		console.log("실행")
+	});
+	
 });
 
 function filterIndex() {
 	const schemaName = $('#schemaSelect').val();
-	const indexName = $('#indexNameSearch').val();
+	const indexName = $('#indexNameSearch').val().toUpperCase();
 
 	$.ajax({
 		type : 'GET',
