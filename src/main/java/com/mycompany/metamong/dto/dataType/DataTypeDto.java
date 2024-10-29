@@ -1,4 +1,4 @@
-package com.mycompany.metamong.dto.column;
+package com.mycompany.metamong.dto.dataType;
 
 import lombok.Data;
 

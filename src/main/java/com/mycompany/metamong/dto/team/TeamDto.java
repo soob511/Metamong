@@ -1,4 +1,4 @@
-package com.mycompany.metamong.dto.member;
+package com.mycompany.metamong.dto.team;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,6 +1,8 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.table;
 
 import java.util.List;
+
+import com.mycompany.metamong.dto.column.ColumnAddDto;
 
 import lombok.Data;
 

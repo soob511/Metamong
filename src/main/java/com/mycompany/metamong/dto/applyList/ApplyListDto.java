@@ -1,4 +1,4 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.applyList;
 
 import java.util.Date;
 

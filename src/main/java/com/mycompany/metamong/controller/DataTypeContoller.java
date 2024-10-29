@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.metamong.dto.column.DataTypeDto;
+import com.mycompany.metamong.dto.dataType.DataTypeDto;
 import com.mycompany.metamong.service.DataTypeService;
 
 import lombok.extern.slf4j.Slf4j;
