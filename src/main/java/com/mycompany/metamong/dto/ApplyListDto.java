@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ApplyDto {
+public class ApplyListDto {
 	private int applyNo;
 	private String mId;
 	private Date applyDate;

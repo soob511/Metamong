@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.metamong.dto.AddCodeFormDto;
 import com.mycompany.metamong.dto.AddItemDto;
 import com.mycompany.metamong.dto.ApplyCodeDto;
-import com.mycompany.metamong.dto.ApplyDto;
+import com.mycompany.metamong.dto.ApplyListDto;
 import com.mycompany.metamong.dto.ApplyItemDto;
 import com.mycompany.metamong.dto.CodeDto;
 import com.mycompany.metamong.dto.ItemDto;
-import com.mycompany.metamong.service.ApplyService;
+import com.mycompany.metamong.service.ApplyListService;
 import com.mycompany.metamong.service.CodeService;
 import com.mycompany.metamong.service.ItemService;
 
@@ -36,7 +36,7 @@ public class CodeController {
 	@Autowired
 	private ItemService itemService;
 	@Autowired
-	private ApplyService applyService;
+	private ApplyListService applyService;
 	
 	@GetMapping("/codeList")
 	public String codeList(Model model) {
@@ -63,16 +63,15 @@ public class CodeController {
 	@PostMapping("/addApplyCode")
 	public String addCode(Authentication auth, @RequestBody AddCodeFormDto form) {
 		// APPLY_LIST 테이블
-		ApplyDto apply = new ApplyDto();	
+		ApplyListDto apply = new ApplyListDto();	
 		
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());		
-		applyService.addApply(apply);
 		apply.setApplyObj("CODE");
+		applyService.addApplyList(apply);
 		
 		// APPLY_CODE 테이블
 		ApplyCodeDto code = new ApplyCodeDto();
-		
 		code.setApplyNo(apply.getApplyNo());
 		code.setCodeNm(form.getCodeNm());
 		code.setCodeId(form.getCodeId());
