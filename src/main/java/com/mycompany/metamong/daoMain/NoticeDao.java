@@ -14,4 +14,14 @@ public interface NoticeDao {
 
 	public int countRows();
 
+	public NoticeDto selectNoticeDetail(int noticeId);
+
+	public int updateHitcount(int noticeId);
+
+	public NoticeDto selectPrevNotice(int noticeId);
+
+	public NoticeDto selectNextNotice(int noticeId);
+
+	public NoticeDto selectNoticeFile(int noticeId);
+
 }
