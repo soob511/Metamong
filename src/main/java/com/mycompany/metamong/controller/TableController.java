@@ -73,6 +73,7 @@ public class TableController {
 		applyList.setMId(auth.getName());
 		applyList.setApplyReason(form.getApplyReason());
 		applyList.setApplyObj("TABLE");
+		applyList.setApplyType("CREATE");
 		log.info(applyList.toString());
 		applyListService.addApplyList(applyList);
 
