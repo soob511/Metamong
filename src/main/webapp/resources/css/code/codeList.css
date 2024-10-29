@@ -41,6 +41,10 @@ label{
     top: 8px;
 }
 
+.bi-search:hover {
+	cursor: pointer;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
