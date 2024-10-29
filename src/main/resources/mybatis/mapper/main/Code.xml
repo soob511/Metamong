@@ -7,6 +7,20 @@
 		FROM code
 	</select>
 	
+	<select id="selectCodeSearch" resultType="Code">
+	    SELECT code_no, code_nm, code_id, code_content, code_isactive
+	    FROM code
+	    <where>
+	        <if test="keyword != null and keyword != ''">
+	            (LOWER(code_nm) LIKE '%' || LOWER(#{keyword}) || '%' OR LOWER(code_id) LIKE '%' || LOWER(#{keyword}) || '%')
+	            <if test="option != 2">AND code_isactive = #{option}</if>
+	        </if>
+	        <if test="keyword == null or keyword == ''">
+	            <if test="option != 2">AND code_isactive = #{option}</if>
+	        </if>
+	    </where>
+	</select>
+
 	<select id="selectActiveCodes" resultType="Code">
 		SELECT code_no,code_nm,code_id,code_content,code_isactive
 		FROM code
