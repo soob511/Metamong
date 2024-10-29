@@ -101,11 +101,11 @@ $(document).ready(function() {
         var colNm = $("#colNm").val();
         var colId = $("#colId").val();
         var dataType = $("#dataType").val(); 
-        var colLength = parseInt($("#dataLength").val());
+        var colLength = $("#dataLength").val();
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
         console.log(colLength);
-        if (colNm === "" || colId === ""||isNaN(colLength)|| colLength === "") {
+        if (colNm === "" || colId === ""|| colLength === "") {
         	Swal.fire({
         		  icon: 'warning',                  
         		  title: '추가할 내용을 전부 입력해주세요.',    
@@ -182,11 +182,11 @@ $(document).ready(function() {
             var colNm = $("#colNm").val();
             var colId = $("#colId").val();
             var dataType = $("#dataType").val();
-            var colLength = parseInt($("#dataLength").val());
+            var colLength =$("#dataLength").val();
             var colNullable = $("#nullable").val();
             var colPk = $("#isUse").val();
 
-            if (colNm === "" || colId === "" ||isNaN(colLength)|| colLength === "") {
+            if (colNm === "" || colId === "" || colLength === "") {
                 Swal.fire({
                     icon: 'warning',
                     title: '수정할 내용을 전부 입력해주세요.'
@@ -209,5 +209,67 @@ $(document).ready(function() {
             });
         }
     });
+    
+    $(".btn-apply").on("click", function() {
+        var tableNm = $("#tableNm").val();
+        var tableId = $("#tableId").val();
+        var applyReason = $("#applyReason").val();
+        var tableContent = $("#tableContent").val();
+        var columns = [];
+
+        $("#columnList tr").each(function() {
+            var column = {
+                colNm: $(this).find("td:eq(1)").text(),
+                colId: $(this).find("td:eq(2)").text(),
+                dataType: $(this).find("td:eq(3)").text(),
+                colLength: $(this).find("td:eq(4)").text(),
+                colNullable: $(this).find("td:eq(5)").text(),
+                colPk: $(this).find("td:eq(6)").text()
+            };
+            columns.push(column);
+        });
+
+        if (tableNm === "" || tableId === "" || applyReason === "") {
+            Swal.fire({
+                icon: 'warning',
+                title: '테이블에 관한 내용을 전부 입력해주세요'
+            });
+        } else if (columns.length === 0) {
+            Swal.fire({
+                icon: 'warning',
+                title: '컬럼을 추가해주세요'
+            });
+        } else {
+        	
+        	var tableInfo={
+        		tableNm:tableNm,
+        		tableId:tableId,
+        		applyReason:applyReason,
+        		tableContent:tableContent,
+        		columns:columns
+        	}
+        	console.log(tableInfo);
+            $.ajax({
+                url: "/Metamong/table/applyTable",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(tableInfo), 
+                traditional: true,
+                success: function(data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '신청이 완료되었습니다.'
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '신청 중 오류가 발생했습니다.'
+                    });
+                }
+            });
+        }
+    });
+
 
 });
