@@ -25,28 +25,34 @@
                 <div class="container">
                     <div class="row">
                         <div class="col code">
-                            <div class="codeAdd-subtitle">코드</div>
+                            <div class="codeAdd-subtitle" data-code-no="${code.codeNo}">코드</div>
                             <table class="table table-bordered code-table">
                                 <tr>
                                     <td class="table-primary">코드명(논리)</td>
-                                    <td colspan="5"><input type="text" class="form-control code-input" value="${code.codeNm}" required></td>
+                                    <td colspan="5"><input type="text" id="codeNm" class="form-control code-input" value="${code.codeNm}" required></td>
                                 </tr>
                                 <tr>
                                     <td class="table-primary">코드명(물리)</td>
-                                    <td colspan="5"><input type="text" class="form-control code-input" value="${code.codeId}" required></td>
+                                    <td colspan="5"><input type="text" id="codeId" class="form-control code-input" value="${code.codeId}" required></td>
                                 </tr>
                                 <tr>
                                     <td class="table-primary">내용</td>
-                                    <td colspan="5"><input type="text" value="${code.codeContent}" class="form-control content-input"></td>
+                                    <td colspan="5"><input type="text" id="codeContent" value="${code.codeContent}" class="form-control content-input"></td>
                                 </tr>
                                 <tr>
                                     <td class="table-primary">사용여부</td>
                                     <td colspan="5">
-                                        <select class="form-select use-status-select" aria-label="사용 여부 선택">
+                                        <select id="codeIsActive" class="form-select use-status-select" aria-label="사용 여부 선택">
                                             <option value="1" ${code.codeIsActive == 1 ? 'selected' : null}>Y</option>
                                             <option value="0" ${code.codeIsActive == 0 ? 'selected' : null}>N</option>
                                         </select>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td class="table-primary">신청사유</td>
+                                    <td colspan="5">
+                                    	<input type="text" id="applyReason" class="form-control code-input" required>
+                                   	</td>
                                 </tr>
                             </table>
                         </div>
@@ -79,14 +85,15 @@
                                     </td>
                                 </tr>
                             </table>
+                            <div class="button-group">
+                    <button id="item-add" class="btn-add" type="button">추가</button>
+                    <button class="btn-edit" type="button">수정</button>
+                </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="button-group">
-                    <button id="item-add" class="btn-add" type="button">추가</button>
-                    <button class="btn-edit" type="button">수정</button>
-                </div>
+                
 
                 <div class="item-container">
                     <div class="item-header">항목</div>
@@ -109,7 +116,7 @@
 	                                <td class="itemNm">${item.itemNm}</td>
 	                                <td class="itemIsActive">${item.itemIsActive == 1 ? 'Y' : 'N'}</td>
 	                                <td class="itemContent">${item.itemContent}</td>
-	                                <td><i class="bi bi-trash3"></i></td>
+	                                <td>-</td>
 	                            </tr>
 	                        </c:forEach>
                         </tbody>
@@ -117,9 +124,7 @@
                 </div>
 
                 <div class="button-group">
-                    <a href="codeApplyList">
-                        <button class="btn-add" type="button">신청</button>
-                    </a>
+                 <button id="code-apply" class="btn-add" type="button">신청</button>
                 </div>
 
                 <script src="${pageContext.request.contextPath}/resources/js/code/codeUpdateForm.js"></script>

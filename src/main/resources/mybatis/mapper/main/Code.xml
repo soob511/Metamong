@@ -48,5 +48,10 @@
 		INSERT INTO apply_code (apply_no, code_no, code_nm, code_id, code_content, code_isactive)
 		VALUES (#{applyNo}, #{codeNo}, #{codeNm}, #{codeId}, #{codeContent}, 1)
 	</insert>
+	
+	<insert id="updateApplyCode" parameterType="ApplyCode">
+		INSERT INTO apply_code (apply_no, code_no, code_nm, code_id, code_content, code_isactive)
+		VALUES (#{applyNo}, #{codeNo}, #{codeNm}, #{codeId}, #{codeContent}, ${codeIsActive})
+	</insert>
 </mapper>
 	

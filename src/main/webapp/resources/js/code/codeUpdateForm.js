@@ -13,7 +13,8 @@ $(document).ready(function() {
         	itemId: $('.item-list .itemId').eq(i).text(), 
         	itemNm: $('.item-list .itemNm').eq(i).text(), 
         	itemIsActive: $('.item-list .itemIsActive').eq(i).text() == 'Y' ? 1 : 0, 
-        	itemContent: $('.item-list .itemContent').eq(i).text()
+        	itemContent: $('.item-list .itemContent').eq(i).text(),
+        	itemIsUpdate: 0
     	});
     }
 
@@ -23,6 +24,7 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val();
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
+
         let isExist = false;
            
         for (let item of items) {
@@ -43,7 +45,7 @@ $(document).ready(function() {
                 title: '동일한 이름의 항목코드가<br/>존재합니다.'
             });
         } else {
-            items.push({ itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent });
+            items.push({ itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 });
             itemList();
         }
     });
@@ -72,7 +74,7 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val();
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
-        
+
         let isExist = false;
         for (let i = 0; i <  items.length; i++) {
         	if(itemId == items[i].itemId && i != itemIndex)
@@ -93,7 +95,7 @@ $(document).ready(function() {
                 title: '동일한 이름의 항목코드가<br/>존재합니다.'
             });
         } else {
-	    	updateItem = { itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent };
+	    	updateItem = { itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 };
 	    	items.splice(itemIndex, 1, updateItem);
 	        itemList();
         }
@@ -113,39 +115,50 @@ $(document).ready(function() {
     	refresh();
     });
 
-    /* 코드, 항목 생성 신청 */
-   /* $('#code-apply').click(function() {
-        const codeNm = $('#codeNm').val();
+    /* 코드, 항목 수정 신청 */
+    $('#code-apply').click(function() {
+    	const codeNo = $('.codeAdd-subtitle').data('code-no');
+    	const codeNm = $('#codeNm').val();
         const codeId = $('#codeId').val();
         const codeContent = $('#codeContent').val();
+        const codeIsActive = $("#codeIsActive option:selected").val();
         const applyReason = $('#applyReason').val();
 
         let codeData = {
+        	codeNo: codeNo,
             codeNm: codeNm,
             codeId: codeId,
             codeContent: codeContent,
+            codeIsActive: codeIsActive,
             applyReason: applyReason,
             items: items
         };
+        
+        if (!applyReason) {
+            Swal.fire({
+                icon: 'warning',
+                title: '신청 사유를<br/>입력해주세요.'
+            });
+            return;
+        }
 
         $.ajax({
-            url: "/Metamong/code/addApplyCode",
+            url: "/Metamong/code/updateApplyCode",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(codeData),
             traditional: true,
             success: function(data) {
-                console.log(data);
                 Swal.fire({
                     icon: 'success',
-                    title: '코드 생성 신청이<br/>완료되었습니다.',
+                    title: '코드/항목 수정 신청이<br/>완료되었습니다.',
                     text: '신청 승인 후, 코드 사용가능합니다.'
                 }).then(result => {
                     location.href = "/Metamong/code/codeApplyList";
                 });
             }
         });
-    });*/
+    });
     
     function refresh() {
     	$('#itemId').val('');

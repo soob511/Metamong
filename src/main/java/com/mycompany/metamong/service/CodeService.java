@@ -38,6 +38,10 @@ public class CodeService {
 		codeDao.insertApplyCode(code);
 	}
 
+	public void updateApplyCode(ApplyCodeDto code) {
+		codeDao.updateApplyCode(code);
+	}
+
 	
 
 	
