@@ -127,6 +127,11 @@ hr {
     border: 1px solid #d9d9d9;
 }
 
+.index-apply-reason-title {
+    min-height: 50px !important;
+    max-height: 50px !important;
+}
+
 .btn-add {
     background-color: var(--theme);
     color: white;
@@ -136,4 +141,8 @@ hr {
     height: 35px;
     font-size: 14px;
     margin: 10px 0 0 410px;
+}
+
+.colSelect td {
+	background-color: rgba(0, 0, 0, 0.075) !important;
 }

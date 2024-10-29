@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,8 @@
 <title>인덱스 신청</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dbObject/index/indexAddForm.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -23,20 +25,18 @@
 						<div class="list-filters">
 			                <div class="filter">
 			                  <label for="schemaSelect" class="filter-label">스키마 선택</label>
-			                  <select id="schemaSelect" class="form-select" aria-label="select example">
-			                    <option selected>선택</option>
-			                    <option value="1">One</option>
-			                    <option value="2">Two</option>
-			                    <option value="3">Three</option>
-			                  </select>
+			                  	<select id="schemaSelect" class="form-select" aria-label="select example">
+									<c:forEach items="${schemaEnum}" var="schemaEnum">
+										<c:if test="${schemaEnum.getSchemaName() != '전체'}">
+											<option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>										
+										</c:if>
+									</c:forEach>
+								</select>
 			                </div>
 			                <div class="filter">
 			                  <label for="tableSelect" class="filter-label">테이블 선택</label>
 			                  <select id="tableSelect" class="form-select" aria-label="select example">
-			                    <option selected>선택</option>
-			                    <option value="1">One</option>
-			                    <option value="2">Two</option>
-			                    <option value="3">Three</option>
+			      				
 			                  </select>
 			                </div>
 			              </div>
@@ -62,7 +62,7 @@
 												<th scope="col">정렬</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="columnTableBody">
 											<tr>
 												<th><input class="form-check-input" type="checkbox"
 													value="" id="flexCheckChecked" checked></th>
@@ -120,13 +120,13 @@
 									class="index-col-title d-flex justify-content-between align-items-end">
 									<div>
 										<span>UNIQUE</span> <input class="form-check-input"
-											type="checkbox" value="" id="flexCheckChecked">
+											type="checkbox" value="1" id="uniqueCheckBox">
 									</div>
 									<div class="index-btns">
-										<button>
+										<button id="upButton">
 											<i class="bi bi-caret-up-fill"></i>
 										</button>
-										<button>
+										<button id="downButton">
 											<i class="bi bi-caret-down-fill"></i>
 										</button>
 									</div>
@@ -141,7 +141,7 @@
 												<th></th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="indexApplyColumn">
 											<tr>
 												<td>1</td>
 												<td>PPRT</td>
@@ -157,12 +157,17 @@
 										</tbody>
 									</table>
 								</div>
+								
+								<div class="index-apply-reason">
+									<p>인덱스제목</p>
+									<textarea class="index-apply-reason-title" id="indexName"></textarea>
+								</div>
 								<div class="index-apply-reason">
 									<p>신청사유</p>
-									<textarea></textarea>
-									<a href="indexApplyList">
-										<button class="btn-add">신청</button>
-									</a>
+									<textarea id="indexApplyReason"></textarea>
+									<!-- <a href="indexApplyList">
+									</a> -->
+									<button id="btn-apply" class="btn-add">신청</button>
 								</div>
 							</div>
 						</div>
@@ -172,6 +177,6 @@
 		</div>
 	</div>
 	<script
-		src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexList.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexAddForm.js"></script>
 </body>
 </html>
