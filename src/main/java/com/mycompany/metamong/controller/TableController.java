@@ -53,7 +53,7 @@ public class TableController {
 	@ResponseBody
 	@GetMapping("/tableSearch")
 	public List<TableDto> tableSearch(@RequestParam String content,@RequestParam String schema){
-		log.info("실행");
+			content = content != null ? content.toUpperCase() : null;
 		return tableService.getTableSearch(content,schema);
 	}
 	
