@@ -68,6 +68,7 @@ public class CodeController {
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());		
 		applyService.addApply(apply);
+		apply.setApplyObj("CODE");
 		
 		// APPLY_CODE 테이블
 		ApplyCodeDto code = new ApplyCodeDto();
