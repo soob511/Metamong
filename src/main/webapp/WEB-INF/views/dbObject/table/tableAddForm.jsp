@@ -139,10 +139,10 @@
 					<div class="item-icon">
 						<div class="item-header">컬럼</div>
 						<div class="index-btns">
-							<button>
+							<button id="move-up">
 								<i class="bi bi-caret-up-fill"></i>
 							</button>
-							<button>
+							<button id="move-down">
 								<i class="bi bi-caret-down-fill"></i>
 							</button>
 						</div>

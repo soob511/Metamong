@@ -96,6 +96,7 @@ $(document).ready(function() {
             }
         });
     }
+    
     $(".btn-add").on("click", function() {
         var colNm = $("#colNm").val();
         var colId = $("#colId").val();
@@ -125,13 +126,42 @@ $(document).ready(function() {
                 </tr>
             `;
         }
-        $("#columnList").append(newRow); // id 선택자 # 추가
+        $("#columnList").append(newRow); 
 
-        $("#itemForm")[0].reset(); // 입력 필드 초기화
+        $("#itemForm")[0].reset(); 
     });
 
-    $(document).on("click", ".delete-row", function() {
+    $(document).on("click", ".delete-row", function () {
         $(this).closest("tr").remove();
+        updateRowNumbers();
     });
+
+    $("#move-up").on("click", function () {
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length && selectedRow.prev().length) {
+            selectedRow.prev().before(selectedRow);
+            updateRowNumbers();
+        }
+    });
+
+    $("#move-down").on("click", function () {
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length && selectedRow.next().length) {
+            selectedRow.next().after(selectedRow);
+            updateRowNumbers();
+        }
+    });
+
+    $(document).on("click", "#columnList tr", function () {
+        $("#columnList tr").removeClass("selected");
+        $(this).addClass("selected");
+        console.log(this);
+    });
+
+    function updateRowNumbers() {
+        $("#columnList tr").each(function (index) {
+            $(this).find("td:first").text(index + 1);
+        });
+    }
 
 });
