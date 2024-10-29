@@ -2,9 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoMain.NoticeDao">
 
-	<select id="selectNoticeList" resultType="Notice">
-		SELECT notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, 
-				notice_filename, notice_filetype, notice_filedata
+	<select id="selectNoticeList"  parameterType="Pager" resultType="Notice">
+		<![CDATA[
+			SELECT 
+				rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+			FROM(
+				SELECT 
+					rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+				FROM (
+		        	SELECT 
+		        		notice_id, notice_title, notice_regdate, notice_hitcount
+		        	FROM notice
+		        	ORDER BY notice_regdate DESC
+					)
+	        	WHERE rownum <= #{endRowNo}
+				)
+			WHERE rnum >= #{startRowNo}	
+		]]>
+	</select>
+	
+	<select id="countRows" resultType="int">
+		SELECT count(*)
 		FROM notice
 	</select>
+	
 </mapper>
