@@ -37,8 +37,8 @@
 							<table class="table table-bordered code-table">
 								<tr>
 									<td class="table-primary">스키마명</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="스키마명">
+									<td colspan="5">
+									<select id="schemaSelect" class="form-select" aria-label="스키마명">
 										<c:forEach items="${schemaEnum}" var="schemaEnum">
 												<option value="${schemaEnum.name()}"
 													data-name="${schemaEnum.getSchemaName()}">

@@ -211,11 +211,13 @@ $(document).ready(function() {
     });
     
     $(".btn-apply").on("click", function() {
+    	var schemaName = $("#schemaSelect option:selected").data("name");
         var tableNm = $("#tableNm").val();
         var tableId = $("#tableId").val();
         var applyReason = $("#applyReason").val();
         var tableContent = $("#tableContent").val();
         var columns = [];
+        
 
         $("#columnList tr").each(function() {
             var column = {
@@ -240,8 +242,8 @@ $(document).ready(function() {
                 title: '컬럼을 추가해주세요'
             });
         } else {
-        	
         	var tableInfo={
+        		schemaName:schemaName,
         		tableNm:tableNm,
         		tableId:tableId,
         		applyReason:applyReason,

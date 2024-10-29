@@ -71,6 +71,7 @@ public class TableController {
 		//신청내역	
 		ApplyListDto applyList = new ApplyListDto();
 		applyList.setMId(auth.getName());
+		applyList.setSchemaName(form.getSchemaName());
 		applyList.setApplyReason(form.getApplyReason());
 		applyList.setApplyObj("TABLE");
 		log.info(applyList.toString());
