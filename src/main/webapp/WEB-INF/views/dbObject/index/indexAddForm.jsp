@@ -27,9 +27,7 @@
 			                  <label for="schemaSelect" class="filter-label">스키마 선택</label>
 			                  	<select id="schemaSelect" class="form-select" aria-label="select example">
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
-										<c:if test="${schemaEnum.getSchemaName() != '전체'}">
-											<option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>										
-										</c:if>
+										<option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>										
 									</c:forEach>
 								</select>
 			                </div>
