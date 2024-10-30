@@ -13,7 +13,7 @@
 		        	SELECT 
 		        		notice_id, notice_title, notice_regdate, notice_hitcount
 		        	FROM notice
-		        	ORDER BY notice_regdate DESC
+		        	ORDER BY notice_regdate DESC, notice_id DESC
 					)
 	        	WHERE rownum <= #{endRowNo}
 				)

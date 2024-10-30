@@ -19,40 +19,6 @@ $(document).ready(function() {
 	});
 });
 
-/*$(".btn-add").on("click", function () {
-	
-	  var noticeTitle = $("#noticeTitle").val();
-	  var noticeRegdate = $("#noticeRegdate").val();
-	  var noticeContent = $("#noticeContent").val();
-	  var noticeFile = $("#noticeFile").val();
-  
-	  var NoticeAddData = {
-	    noticeTitle : noticeTitle,
-	    noticeRegdate : noticeRegdate,
-	    noticeContent : noticeContent,
-	    noticeFile : noticeFile,
-	  };
-	  
-	console.log(NoticeAddData);
-	  $.ajax({
-	    url: "/Metamong/notice/insertNotice",
-	    type: "POST",
-	    contentType: "application/json; charset=UTF-8",
-	    data: JSON.stringify(NoticeAddData),
-	    success: function (data) {
-	      if (data>0) {
-	    	  Swal.fire({ 
-	    		  icon: 'success',
-	    		  title: '글 등록이 완료되었습니다.',
-	    		  text: '등록하신 글은 목록에서 확인가능합니다.',
-	    		  }).then(result=>{
-	    			  location.href="/Metamong/notice/noticeList";
-	    		  })
-	      } 
-	    }
-	  });
-	});*/
-
 $(".btn-add").on("click", function (e) {
     e.preventDefault(); // 기본 form 제출 방지
 
