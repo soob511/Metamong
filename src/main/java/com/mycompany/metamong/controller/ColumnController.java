@@ -1,5 +1,6 @@
 package com.mycompany.metamong.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.ColumnDto;
+import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ColumnService;
 
 @Controller
@@ -25,4 +27,15 @@ public class ColumnController {
 		return columnService.getColumnList(tableId);
 	}
 
+	@ResponseBody
+	@GetMapping("/searchColumnBySchema")
+	public List<ColumnDto> searchColumn(
+			@RequestParam SchemaEnum schemaName,
+			@RequestParam int tableNo
+			) {
+		HashMap<String, Object> colParams = new HashMap<>();
+		colParams.put("tableNo", tableNo);
+		colParams.put("schemaName", schemaName.getSchemaName());
+		return columnService.getColumnList(colParams);
+	}
 }
