@@ -6,15 +6,19 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA_2_3.portable.OutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.notice.NoticeAddForm;
 import com.mycompany.metamong.dto.notice.NoticeDto;
 import com.mycompany.metamong.service.NoticeService;
 
@@ -76,4 +80,28 @@ public class NoticeController {
 		os.flush();
 		os.close();
 		}
+	
+	@GetMapping("/noticeAddForm")
+	public String noticeAddForm() {
+		return "notice/noticeAddForm";
+	}
+	
+	@ResponseBody
+	@PostMapping("/insertNotice")
+	public int insertNotice(NoticeAddForm form) throws Exception {
+		NoticeDto notice = new NoticeDto();
+		
+		notice.setNoticeTitle(form.getNoticeTitle());
+		notice.setNoticeContent(form.getNoticeContent());
+		notice.setNoticeRegdate(form.getNoticeRegdate());
+
+		MultipartFile noticeFile = form.getNoticeFile();
+		if(noticeFile!=null && !noticeFile.isEmpty()) {
+			notice.setNoticeFilename(noticeFile.getOriginalFilename());
+			notice.setNoticeFiletype(noticeFile.getContentType());
+			notice.setNoticeFiledata(noticeFile.getBytes());
+		}
+		
+		return noticeService.insertNotice(notice);	
+	}
 }
