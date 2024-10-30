@@ -41,8 +41,8 @@
 									<select id="schemaSelect" class="form-select" aria-label="스키마명">
 										<c:forEach items="${schemaEnum}" var="schemaEnum">
 												<option value="${schemaEnum.name()}"
-													data-name="${schemaEnum.getSchemaName()}">
-													${schemaEnum.getSchemaName()}</option>
+													data-name="${schemaEnum.name()}">
+													${schemaEnum.name()}</option>
 										</c:forEach>
 									</select></td>
 								</tr>

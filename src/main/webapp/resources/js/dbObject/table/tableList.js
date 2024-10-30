@@ -55,7 +55,7 @@ function showColumnList(tableId) {
 
 function searchTable() {
     var content = $("#tableNameSearch").val().trim();
-    var schema= $("#schemaSelect option:selected").data("name");
+    var schema= $("#schemaSelect").val();
 
     $.ajax({
         url: "/Metamong/table/tableSearch",

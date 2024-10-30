@@ -29,7 +29,7 @@ $(document).ready(function() {
     function tableSearch(){
 
     	var keyword = $("#tableNameSearch").val().toUpperCase();
-    	var schema= $("#schemaSelect option:selected").data("name");
+        var schema= $("#schemaSelect").val();
     	var status= $("#statusSelect option:selected").data("name");
     	
     	var searchData = {
