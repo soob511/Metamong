@@ -40,13 +40,13 @@ public class IndexService {
 		case MAIN:
 			list = indexDao.selectIndex();
 			break;
-		case SUB1:
+		case SPM:
 			list = sub1IndexDao.selectIndex();
 			break;
-		case SUB2:
+		case PMS:
 			list = sub2IndexDao.selectIndex();
 			break;
-		case SUB3:
+		case HR:
 			list = sub3IndexDao.selectIndex();
 			break;
 		default:
@@ -62,13 +62,13 @@ public class IndexService {
 		case MAIN:
 			list = indexDao.selectIndexByName(indexName);
 			break;
-		case SUB1:
+		case SPM:
 			list = sub1IndexDao.selectIndexByName(indexName);
 			break;
-		case SUB2:
+		case PMS:
 			list = sub2IndexDao.selectIndexByName(indexName);
 			break;
-		case SUB3:
+		case HR:
 			list = sub3IndexDao.selectIndexByName(indexName);
 			break;
 		default:
