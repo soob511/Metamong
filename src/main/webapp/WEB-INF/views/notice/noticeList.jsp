@@ -87,10 +87,6 @@
 	           				<a href="noticeList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm"><</a>
 	           			</c:if>
 	           			
-	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
-	           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
-	           			</c:if>
-	           			
 	           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
 	           				<c:if test="${pager.pageNo==i}">
 	           					<a href="noticeList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
@@ -100,7 +96,9 @@
 	           				</c:if>
 	           			</c:forEach>
 	           			
-	           			
+	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+	           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
+	           			</c:if>
 	           			<a href="noticeList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
 	           			
 	           		</div>
