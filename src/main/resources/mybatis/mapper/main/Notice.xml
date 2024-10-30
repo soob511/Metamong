@@ -74,13 +74,13 @@
 			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
 			<if test="noticeFilename != null">
             , notice_filename, notice_filetype, notice_filedata
-        </if>
+        	</if>
 		)
 		VALUES (
 			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount}
 			<if test="noticeFilename != null">
             , #{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
-        </if>
+        	</if>
 		)
 	</insert>
 </mapper>

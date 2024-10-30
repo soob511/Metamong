@@ -14,7 +14,6 @@ public class NoticeService {
 	@Autowired 
 	private NoticeDao noticeDao;
 	
-
 	public List<NoticeDto> getNoticeList(Pager pager) {
 		return noticeDao.selectNoticeList(pager);	
 	}
@@ -31,7 +30,6 @@ public class NoticeService {
 		return noticeDao.updateHitcount(noticeId);
 	}
 		
-
 	public NoticeDto getPrevNotice(int noticeId) {
 		return noticeDao.selectPrevNotice(noticeId);
 	}
@@ -46,8 +44,5 @@ public class NoticeService {
 
 	public int insertNotice(NoticeDto notice) {
 		 return noticeDao.insertNotice(notice);
-		 
 	}
-
-	
 }
