@@ -22,8 +22,7 @@ public class TableService {
 	}
 	
 	public List<TableDto> getTableName(String schemaName) {
-		List<TableDto> list = tableDao.selectTableListBySchema(schemaName);
-		return list;
+		return tableDao.selectTableListBySchema(schemaName);
 	}
 	
 }

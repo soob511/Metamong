@@ -34,7 +34,7 @@ public class TableController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/searchTable")
+	@GetMapping("/searchTableBySchema")
 	public List<TableDto> searchTable(
 			@RequestParam SchemaEnum schemaName
 			) {
