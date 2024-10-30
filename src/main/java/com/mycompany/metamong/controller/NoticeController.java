@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.metamong.dto.Pager;
@@ -84,20 +86,22 @@ public class NoticeController {
 		return "notice/noticeAddForm";
 	}
 	
+	@ResponseBody
 	@PostMapping("/insertNotice")
-	public String insertNotice(NoticeAddForm form) throws Exception {
+	public int insertNotice(NoticeAddForm form) throws Exception {
 		NoticeDto notice = new NoticeDto();
+		
 		notice.setNoticeTitle(form.getNoticeTitle());
 		notice.setNoticeContent(form.getNoticeContent());
 		notice.setNoticeRegdate(form.getNoticeRegdate());
 
 		MultipartFile noticeFile = form.getNoticeFile();
-		if(!noticeFile.isEmpty()) {
+		if(noticeFile!=null && !noticeFile.isEmpty()) {
 			notice.setNoticeFilename(noticeFile.getOriginalFilename());
 			notice.setNoticeFiletype(noticeFile.getContentType());
 			notice.setNoticeFiledata(noticeFile.getBytes());
 		}
-		noticeService.insertNotice(notice);
-		return "redirect:/notice/noticeList";
+		
+		return noticeService.insertNotice(notice);	
 	}
 }

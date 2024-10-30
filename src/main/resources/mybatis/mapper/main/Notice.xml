@@ -71,12 +71,16 @@
 			FROM DUAL 
 		</selectKey>
 		INSERT INTO notice (
-			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount,
-			notice_filename, notice_filetype, notice_filedata
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
+			<if test="noticeFilename != null">
+            , notice_filename, notice_filetype, notice_filedata
+        </if>
 		)
 		VALUES (
-			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount},
-			#{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
+			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount}
+			<if test="noticeFilename != null">
+            , #{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
+        </if>
 		)
 	</insert>
 </mapper>

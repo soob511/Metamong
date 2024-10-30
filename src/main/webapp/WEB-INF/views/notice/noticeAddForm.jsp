@@ -9,7 +9,8 @@
     <link href="${pageContext.request.contextPath}/resources/css/notice/notice.css"  rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     
 </head>
 <body>
@@ -50,7 +51,7 @@
                         <a href="noticeList">
                             <button type="button" class="btn-cancel me-2">취소</button>                        
                         </a>
-                            <button type="submit" class="btn-add me-2" >등록</button>
+                            <button type="button" class="btn-add me-2" >등록</button>
                         </div>
                     </form>
                 </div>
