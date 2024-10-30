@@ -34,13 +34,13 @@
 							<div class="codeApplyInfo-subtitle">신청정보</div>
 							<table class="table table-bordered codeApplyInfo-table">
 								<tr>
-									<td class="table-primary">No.</td>
+									<td class="table-secondary">No.</td>
 									<td colspan="5">
 										<div class="table-text">${indexNo}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">신청일자</td>
+									<td class="table-secondary">신청일자</td>
 									<td colspan="3">
 										<div class="table-text">
 											<fmt:formatDate value="${applyList.applyDate}"
@@ -48,23 +48,23 @@
 										</div>
 									</td>
 
-									<td class="table-primary">신청자</td>
+									<td class="table-secondary">신청자</td>
 									<td>
 										<div class="table-text">${applyList.MName}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">처리일자</td>
+									<td class="table-secondary">처리일자</td>
 									<td colspan="3"><fmt:formatDate
 											value="${applyList.complDate}" pattern="yyyy-MM-dd" /></td>
 
-									<td class="table-primary">처리자</td>
+									<td class="table-secondary">처리자</td>
 									<td>
 										<div class="table-text">${applyList.dbaName}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">승인상태</td>
+									<td class="table-secondary">승인상태</td>
 									<td colspan="5">
 										<div class="table-text">
 											<c:choose>
@@ -78,7 +78,7 @@
 
 								</tr>
 								<tr>
-									<td class="table-primary">반려사유</td>
+									<td class="table-secondary">반려사유</td>
 									<td colspan="5">
 										<div class="table-text" id="table-content">${applyList.rejectReason}</div>
 									</td>
@@ -89,26 +89,25 @@
 							<div class="codeAdd-subtitle">테이블</div>
 							<table class="table table-bordered code-table">
 								<tr>
-									<td class="table-primary">스키마명</td>
+									<td class="table-secondary">스키마명</td>
 									<td colspan="5">
 										<div class="table-text">${applyList.schemaName}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">테이블(논리)</td>
+									<td class="table-secondary">테이블(논리)</td>
 									<td colspan="5">
 										<div class="table-text">${applyTable.tableNm}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">테이블(물리)</td>
+									<td class="table-secondary">테이블(물리)</td>
 									<td colspan="5">
 										<div class="table-text">${applyTable.tableId}</div>
 									</td>
 								</tr>
-								<!-- 사용여부 추가 -->
 								<tr>
-									<td class="table-primary">신청사유</td>
+									<td class="table-secondary">신청사유</td>
 									<td colspan="5">
 										<div class="table-text" id="table-content">${applyList.applyReason}</div>
 									</td>
@@ -128,8 +127,8 @@
 
 				<div class="item-container">
 					<div class="item-header">컬럼</div>
-					<table class="table table-hover bottom-table">
-						<thead class="table-primary">
+					<table class="table table-hover  bottom-table">
+						<thead class="table-secondary">
 							<tr>
 								<th scope="col">No.</th>
 								<th scope="col">컬럼(논리)</th>

@@ -65,8 +65,8 @@
 					</div>
 					<div class="table-container">
 						<table class="table table-hover">
-							<thead class="table">
-								<tr class="table-primary">
+							<thead class="table-secondary">
+								<tr>
 									<th scope="col">No.</th>
 									<th scope="col">신청일자</th>
 									<th scope="col">신청자</th>
