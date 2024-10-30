@@ -98,7 +98,6 @@ public class CodeController {
 	        item.setItemContent(inputItem.getItemContent());
 	        itemService.addApplyItem(item);
 	    }
-		
 		return "code/codeApplyList";
 	}
 	
@@ -115,8 +114,6 @@ public class CodeController {
 
 	@PostMapping("/updateApplyCode")
 	public String updateApplyCode(Authentication auth, @RequestBody CodeUpdateDto form) {
-		log.info(form.toString());
-		
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
 		

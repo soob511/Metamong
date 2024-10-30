@@ -24,7 +24,5 @@ public class ItemService {
 
 	public void updateApplyItem(ApplyItemDto item) {
 		itemDao.updateApplyItem(item);
-		
 	}
-
 }

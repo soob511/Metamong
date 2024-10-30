@@ -41,8 +41,4 @@ public class CodeService {
 	public void updateApplyCode(ApplyCodeDto code) {
 		codeDao.updateApplyCode(code);
 	}
-
-	
-
-	
 }
