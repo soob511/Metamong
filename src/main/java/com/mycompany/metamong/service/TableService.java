@@ -26,5 +26,9 @@ public class TableService {
 	public void addApplyTable(ApplyTableDto applyTable) {
 		tableDao.insertApplyTable(applyTable);
 	}
-
+	
+	public List<TableDto> getTableName(String schemaName) {
+		return tableDao.selectTableListBySchema(schemaName);
+	}
+	
 }

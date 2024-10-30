@@ -4,10 +4,11 @@
     border-radius: 8px !important;
     box-shadow: var(--box-shadow);
     overflow: hidden;
+    overflow-y: auto !important;
 }
 
 .table-container:first-of-type {
-    height: 600px;
+    height: 550px;
 }
 
 .table th, .table td {
@@ -114,7 +115,7 @@ hr {
 
 .index-apply-reason p {
     font-size: 16px;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
@@ -127,6 +128,11 @@ hr {
     border: 1px solid #d9d9d9;
 }
 
+.index-apply-reason-title {
+    min-height: 50px !important;
+    max-height: 50px !important;
+}
+
 .btn-add {
     background-color: var(--theme);
     color: white;
@@ -135,5 +141,31 @@ hr {
     width: 55px;
     height: 35px;
     font-size: 14px;
-    margin: 10px 0 0 410px;
+    margin: 10px 0 0 0px;
+}
+
+.colSelect td {
+	background-color: rgba(0, 0, 0, 0.075) !important;
+}
+
+.index-apply-table {
+	height: 250px;
+}
+
+.msg {
+    font-size: 11px;
+    display: block;
+    opacity: 0;
+    margin: 0 !important;
+    padding: 2px 0 0 0px !important;
+}
+
+.msg.warn {
+    opacity: 1;
+    color: red;
+}
+
+.msg.success {
+    opacity: 1;
+    color: blue;
 }

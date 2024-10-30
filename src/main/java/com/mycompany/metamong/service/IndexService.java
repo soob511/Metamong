@@ -37,22 +37,16 @@ public class IndexService {
 		List<IndexDto> list = new ArrayList<>();
 
 		switch (schemaName) {
-		case ALL:
-			list = indexDao.selectIndex();
-			list = sub1IndexDao.selectIndex();
-			list = sub2IndexDao.selectIndex();
-			list = sub3IndexDao.selectIndex();
-			break;
 		case MAIN:
 			list = indexDao.selectIndex();
 			break;
-		case SUB1:
+		case SPM:
 			list = sub1IndexDao.selectIndex();
 			break;
-		case SUB2:
+		case PMS:
 			list = sub2IndexDao.selectIndex();
 			break;
-		case SUB3:
+		case HR:
 			list = sub3IndexDao.selectIndex();
 			break;
 		default:
@@ -65,22 +59,16 @@ public class IndexService {
 		List<IndexDto> list = new ArrayList<>();
 
 		switch (schemaName) {
-		case ALL:
-			list = indexDao.selectIndexByName(indexName);
-			list = sub1IndexDao.selectIndexByName(indexName);
-			list = sub2IndexDao.selectIndexByName(indexName);
-			list = sub3IndexDao.selectIndexByName(indexName);
-			break;
 		case MAIN:
 			list = indexDao.selectIndexByName(indexName);
 			break;
-		case SUB1:
+		case SPM:
 			list = sub1IndexDao.selectIndexByName(indexName);
 			break;
-		case SUB2:
+		case PMS:
 			list = sub2IndexDao.selectIndexByName(indexName);
 			break;
-		case SUB3:
+		case HR:
 			list = sub3IndexDao.selectIndexByName(indexName);
 			break;
 		default:

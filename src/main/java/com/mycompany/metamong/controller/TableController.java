@@ -42,14 +42,20 @@ public class TableController {
 	@Autowired
 	private ColumnService columnService;
 	
-	
-	
 	@GetMapping("/tableList")
 	public String tableList(Model model) {
 		List<TableDto> list = tableService.getTableList();
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/table/tableList";
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchTableBySchema")
+	public List<TableDto> searchTable(
+			@RequestParam SchemaEnum schemaName
+			) {
+		return tableService.getTableName(schemaName.getSchemaName());			
 	}
 	
 	@ResponseBody

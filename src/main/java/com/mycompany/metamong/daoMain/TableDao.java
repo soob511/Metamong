@@ -17,6 +17,5 @@ public interface TableDao {
 
 	public int insertApplyTable(ApplyTableDto applyTable);
 
-
-
+	public List<TableDto> selectTableListBySchema(String schemaName);
 }
