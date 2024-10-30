@@ -63,9 +63,8 @@
                         </tr>
                     </table>
                     <div class="d-flex justify-content-end mt-3">
-                        <%-- <button type="button" class="btn-cancel me-2"><a href="deleteNotice?noticeId=${notice.noticeId}" style="color:#003567;">삭제</a></button> --%>
                         <button type="button" class="btn-delete me-2" data-notice-id="${notice.noticeId}">삭제</button>
-                        <button type="submit" class="btn-add me-2"><a href="noticeUpdateForm?noticeId=${notice.noticeId}" style="color:white;"> 수정</a></button>
+                        <button type="submit" class="btn-add me-2"><a href="noticeUpdateForm?noticeId=${notice.noticeId}" style="color:white;">수정</a></button>
                         <button type="button" class="btn-list" data-page-no="${pager.pageNo}"><a href="noticeList?pageNo=${pager.pageNo}" style="color:white;">목록</a></button>
                     </div>                 
                 </div>
