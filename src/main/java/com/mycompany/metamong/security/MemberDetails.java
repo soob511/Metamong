@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import com.mycompany.metamong.dto.MemberDto;
+import com.mycompany.metamong.dto.member.MemberDto;
 
 public class MemberDetails extends User {
 	

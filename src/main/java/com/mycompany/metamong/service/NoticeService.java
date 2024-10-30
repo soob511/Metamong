@@ -6,73 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.NoticeDao;
-import com.mycompany.metamong.daoSub1.Sub1TableDao;
-import com.mycompany.metamong.dto.NoticeDto;
 import com.mycompany.metamong.dto.Pager;
-
-import lombok.extern.slf4j.Slf4j;
+import com.mycompany.metamong.dto.notice.NoticeDto;
 
 @Service
-@Slf4j
-
 public class NoticeService {
-	@Autowired
+	@Autowired 
 	private NoticeDao noticeDao;
 	
-	@Autowired
-	private Sub1TableDao tableDao;
-	
 	public List<NoticeDto> getNoticeList(Pager pager) {
-		List<NoticeDto> list = noticeDao.selectList(pager);
-		return list;
-	}
-	
-	public NoticeDto getNotice(int noticeId) {
-		NoticeDto notice = noticeDao.selectByNoticeId(noticeId);
-		return notice;
+		return noticeDao.selectNoticeList(pager);	
 	}
 	
 	public int getTotalRows() {
-		int totalRows = noticeDao.countRows();
-		return totalRows;
-	}
-	
-	public NoticeDto getNoticeFile(int noticeId) {
-		NoticeDto notice = noticeDao.selectFileByNoticeId(noticeId);
-		return notice;
-		
-	}
-	
-	public void insertNotice(NoticeDto notice) {
-		 noticeDao.insertNotice(notice);
-		
-	}
-	
-	public void addHitcount(int noticeId) {
-		noticeDao.updateHitcount(noticeId);	
-	}
-	
-	public void updateNotice(NoticeDto notice) {
-		noticeDao.updateNotice(notice);
+		return noticeDao.countRows();
 	}
 
-	public void deleteNotice(int noticeId) {
-		noticeDao.deleteNotice(noticeId);
-		
+	public NoticeDto getNoticeDetail(int noticeId) {
+		return noticeDao.selectNoticeDetail(noticeId);
 	}
 
+	public int addHitcount(int noticeId) {
+		return noticeDao.updateHitcount(noticeId);
+	}
+		
 	public NoticeDto getPrevNotice(int noticeId) {
-		return noticeDao.selectPrevNoticeId(noticeId);
-		
-		
+		return noticeDao.selectPrevNotice(noticeId);
 	}
 
 	public NoticeDto getNextNotice(int noticeId) {
-		return noticeDao.selectNextNoticeId(noticeId);
-	
-		
+		return noticeDao.selectNextNotice(noticeId);
 	}
 
-	
-	
-}	
+	public NoticeDto getNoticeFile(int noticeId) {
+		return noticeDao.selectNoticeFile(noticeId);
+	}
+
+	public int insertNotice(NoticeDto notice) {
+		 return noticeDao.insertNotice(notice);
+	}
+}

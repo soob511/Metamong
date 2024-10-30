@@ -59,8 +59,8 @@ thead {
 }
 
 .content-input {
-	min-height: 146px !important;
-	max-height: 146px !important;
+	min-height: 48x !important;
+	max-height: 48px !important;
 }
 
 .code-buttons {
@@ -106,7 +106,7 @@ thead {
 	line-height: 2.1;
 }
 
-.btn-add, .btn-update {
+.btn-add, .btn-update,.btn-apply {
 	background-color: var(--theme);
 	color: white;
 	border-radius: 8px;

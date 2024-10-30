@@ -34,16 +34,12 @@
                         <c:if test=${notice.noticeFilename != null}>
                         <tr>
                             <td class="table-primary">첨부파일</td>
-                            <td id="table-contents" colspan="5"><a href="fileDownload?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeFilename}</a></td>
+                            <td id="table-contents" colspan="5"><a href="fileDownload?noticeId=${notice.noticeId}" style="color:blue;">${notice.noticeFilename}</a></td>
                         </tr>
                         </c:if>
                         <tr>
                             <td class="table-primary">내용</td>
-                            <td colspan="5" id="detailContents" >
-
-                                   ${notice.noticeContent}
-                                
-                            </td>
+                            <td colspan="5" id="detailContents" >${notice.noticeContent}</td>
                         </tr>
                     </table>
                     <table class="table table-bordered">
@@ -51,27 +47,16 @@
                             <td class="table-primary">이전글</td>
                             <td id="table-contents">
 	                            <c:if test=${prevNotice.noticeId != null}>
-	                            	<a href="noticeDetail?noticeId=${prevNotice.noticeId}" style="color:black;">${prevNotice.noticeTitle}</a>
-	                            
-	                            </c:if>
-	                            
-	                           	
+	                            	<a href="noticeDetail?noticeId=${prevNotice.noticeId}" style="color:black;">${prevNotice.noticeTitle}</a>	                           
+	                        </c:if>
                            </td>
-                           
-                            
-                   
-                           
                         </tr>
                         <tr>
                             <td class="table-primary">다음글</td>
                             <td id="table-contents">
                             <c:if test= ${nextNotice.noticeId != null}>
-                            
                             	<a href="noticeDetail?noticeId=${nextNotice.noticeId}" style="color:black;">${nextNotice.noticeTitle}</a>	
-                            
                             </c:if>
-                            
-                             
                            	</td>                    
                         </tr>
                     </table>
