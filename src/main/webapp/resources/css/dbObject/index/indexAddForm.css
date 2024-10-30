@@ -151,3 +151,21 @@ hr {
 .index-apply-table {
 	height: 250px;
 }
+
+.msg {
+    font-size: 11px;
+    display: block;
+    opacity: 0;
+    margin: 0 !important;
+    padding: 2px 0 0 0px !important;
+}
+
+.msg.warn {
+    opacity: 1;
+    color: red;
+}
+
+.msg.success {
+    opacity: 1;
+    color: blue;
+}

@@ -38,9 +38,7 @@ $(document).ready(function() {
     	var indexApplyReason = $('#indexApplyReason').val();
     	getIndexValues();
     });
-    
-    
-    
+
 });
 
 let indexCount = 1;
@@ -152,12 +150,39 @@ function updateCount() {
     });
 }
 
+const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+const checkFirstChar = /^[A-Za-z]/;
+const checkInvalidChars = /[^A-Za-z0-9_]/;
+
+$(document).on("input", "#indexName", function () {
+  let inputId = $("#indexName").val().trim();
+  const msg = $("#indexValidMessage");
+
+  if (!checkFirstChar.test(inputId)) {
+    msg.text("첫 글자는 영문이어야 합니다.");
+    msg.addClass('warn');
+  } else if (inputId.length < 1 || inputId.length > 30) {
+    msg.text("1~30자 이내로 작성해야 합니다.");
+    msg.addClass('warn');
+  } else if (checkKor.test(inputId)) {
+    msg.text("한글을 사용할 수 없습니다.");
+    msg.addClass('warn');
+  } else if (checkInvalidChars.test(inputId)) {
+    msg.text("특수문자는 언더스코어(_)만 사용할 수 있습니다.");
+    msg.addClass('warn');
+  } else {
+    msg.text("");
+    msg.removeClass('warn');
+  }
+});
+
+
 function filterTable() {
 	const schemaName = $('#schemaSelect').val();
 
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/table/searchTable',
+		url : '/Metamong/table/searchTableBySchema',
 		data : {
 			schemaName : schemaName
 		},
@@ -188,7 +213,7 @@ function filterColumn() {
 
 	$.ajax({
 		type : 'GET',
-		url : 'searchColumn',
+		url : '/Metamong/column/searchColumnBySchema',
 		data : {
 			schemaName : schemaName,
 			tableNo : tableNo

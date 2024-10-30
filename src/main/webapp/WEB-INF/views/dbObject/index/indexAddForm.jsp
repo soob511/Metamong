@@ -102,8 +102,8 @@
 								
 								<div class="index-apply-reason">
 									<p>인덱스제목</p>
-									<textarea class="index-apply-reason-title" id="indexName"></textarea>
-									<span id="index-name-validation"></span>
+									<input class="index-apply-reason-title" id="indexName"></input>
+									<div class="msg d-flex" id="indexValidMessage"></div>
 								</div>
 								<div class="index-apply-reason">
 									<p>신청사유</p>
