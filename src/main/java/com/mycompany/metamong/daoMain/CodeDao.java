@@ -12,6 +12,8 @@ import com.mycompany.metamong.dto.code.CodeDto;
 public interface CodeDao {
 	
 	public List<CodeDto> selectCodeList();
+	
+	public CodeDto selectCodeByNo(int codeNo);
 
 	public List<CodeDto> selectCodeSearch(@Param(value="keyword") String keyword, @Param(value="option") int option);
 	
@@ -20,5 +22,7 @@ public interface CodeDao {
 	public List<CodeDto> selectCodeLoadSearch(String keyword);
 
 	public int insertApplyCode(ApplyCodeDto code);
-	
+
+	public int updateApplyCode(ApplyCodeDto code);
+
 }

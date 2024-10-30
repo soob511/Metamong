@@ -22,4 +22,7 @@ public class ItemService {
 		itemDao.insertApplyItem(item);
 	}
 
+	public void updateApplyItem(ApplyItemDto item) {
+		itemDao.updateApplyItem(item);
+	}
 }
