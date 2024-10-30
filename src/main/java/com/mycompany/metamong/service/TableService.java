@@ -27,4 +27,8 @@ public class TableService {
 		tableDao.insertApplyTable(applyTable);
 	}
 
+	public TableDto getTableByApplyNo(int applyNo) {
+		return tableDao.selectTableByApplyNo(applyNo);
+	}
+
 }

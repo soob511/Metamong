@@ -6,7 +6,6 @@ $(document).ready(function() {
     $('.sub-menu:eq(1)').addClass('active');
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(3)').addClass('active');
-
     
     $(".bi-search").on("click",function(){
     	tableSearch();
@@ -95,4 +94,12 @@ $(document).ready(function() {
     		}
     	})	
     }
-});
+
+    
+    });
+
+function tableListDetail(applyNo,indexNo) {
+	console.log(indexNo);
+	location.href = "/Metamong/table/tableListDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+
+}

@@ -17,6 +17,8 @@ public interface TableDao {
 
 	public int insertApplyTable(ApplyTableDto applyTable);
 
+	public TableDto selectTableByApplyNo(int applyNo);
+
 
 
 }

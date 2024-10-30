@@ -14,4 +14,6 @@ public interface ColumnDao {
 
 	public int insertApplyColumn(ApplyColumnDto applyColumn);
 
+	public List<ColumnDto> selectColumnByApplyNo(int applyNo);
+
 }

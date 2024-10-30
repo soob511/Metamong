@@ -10,7 +10,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/applyList.css"
 	rel="stylesheet">
-
+ 
 </head>
 <body>
 	<div class="container">
@@ -87,8 +87,8 @@
 										<td>${tableList.schemaName}</td>
 										<td>${tableList.tableId}</td>
 										<td>${tableList.applyObj}</td>
-										<td><a href="tableApplyDetail"><button
-													class="btn-history-details">상세보기</button></a></td>
+										<td><button
+													class="btn-history-details" onclick="tableListDetail(${tableList.applyNo},${status.index+1})">상세보기</button></td>
 										<td class="code-approve"><c:choose>
 												<c:when test="${tableList.approvalStatus == 0}">
 													<span id="status-await">승인대기</span>
