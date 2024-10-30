@@ -25,4 +25,6 @@ public interface NoticeDao {
 	public NoticeDto selectNoticeFile(int noticeId);
 
 	public int insertNotice(NoticeDto notice);
+
+	public int deleteNotice(int noticeId);
 }

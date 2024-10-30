@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class NoticeAddForm {
+public class NoticeAddFormDto {
 	private String noticeTitle;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date noticeRegdate;
