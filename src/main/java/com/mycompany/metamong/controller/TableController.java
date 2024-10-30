@@ -53,8 +53,14 @@ public class TableController {
 	@ResponseBody
 	@GetMapping("/tableSearch")
 	public List<TableDto> tableSearch(@RequestParam String content,@RequestParam String schema){
-		log.info("실행");
+			content = content != null ? content.toUpperCase() : null;
 		return tableService.getTableSearch(content,schema);
+	}
+	
+	@GetMapping("/tableAddForm")
+	public String tableAddForm(Model model) {
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		return "dbObject/table/tableAddForm";
 	}
 	
 	@ResponseBody
@@ -65,16 +71,13 @@ public class TableController {
 		//신청내역	
 		ApplyListDto applyList = new ApplyListDto();
 		applyList.setMId(auth.getName());
+		applyList.setSchemaName(form.getSchemaName());
 		applyList.setApplyReason(form.getApplyReason());
 		applyList.setApplyObj("TABLE");
+		applyList.setApplyType("CREATE");
 		log.info(applyList.toString());
 		applyListService.addApplyList(applyList);
-		
-		//sql문 생성
-		/*String query = "";
-		applyList.setQuery(query);*/
-		
-		
+
 		//테이블 신청내역
 		ApplyTableDto applyTable = new ApplyTableDto();
 		applyTable.setApplyNo(applyList.getApplyNo());
@@ -100,8 +103,6 @@ public class TableController {
 			applyColumn.setColOrder(order);
 			columnService.addApplyColumn(applyColumn);
 		}
-		
-		
 		return "dbObject/table/tableApplyList";
 	}
 	
@@ -110,19 +111,15 @@ public class TableController {
 		return "dbObject/table/tableCompare";
 	}
 	
-	@GetMapping("/tableAddForm")
-	public String tableAddForm(Model model) {
-		model.addAttribute("schemaEnum", SchemaEnum.values());
-		return "dbObject/table/tableAddForm";
-	}
-	
 	@GetMapping("/tableUpdateForm")
 	public String tableUpdateForm() {
 		return "dbObject/table/tableUpdateForm";
 	}
 	
 	@GetMapping("/tableApplyList")
-	public String tableApplyList() {
+	public String tableApplyList(Model model) {
+		List<ApplyTableDto> list = applyListService.getApplyTableList();
+		model.addAttribute("list", list);
 		return "dbObject/table/tableApplyList";
 	}
 	

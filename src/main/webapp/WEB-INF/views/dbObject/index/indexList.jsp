@@ -23,10 +23,10 @@
                 <div class="index-search">
                   <label for="indexNameSearch" class="index-search-label">인덱스명</label>
                   <div class="container-fluid">
-                    <form class="d-flex index-form">
+                    <div class="d-flex index-form">
                       <input class="form-control" type="search" id="indexNameSearch" placeholder="Search" aria-label="Search">
                       	<i id=biSearch class="bi bi-search"></i>
-                    </form>
+                    </div>
                   </div>
                 </div>
                 <div class="schema-filter">

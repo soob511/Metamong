@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mycompany.metamong.daoMain.NoticeDao">
+
+	<select id="selectNoticeList"  parameterType="Pager" resultType="Notice">
+		<![CDATA[
+			SELECT 
+				rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+			FROM(
+				SELECT 
+					rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+				FROM (
+		        	SELECT 
+		        		notice_id, notice_title, notice_regdate, notice_hitcount
+		        	FROM notice
+		        	ORDER BY notice_regdate DESC, notice_id DESC
+					)
+	        	WHERE rownum <= #{endRowNo}
+				)
+			WHERE rnum >= #{startRowNo}	
+		]]>
+	</select>
+	
+	<select id="countRows" resultType="int">
+		SELECT count(*)
+		FROM notice
+	</select>
+	
+	<select id="selectNoticeDetail" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_filename
+		FROM notice
+		WHERE notice_id = #{noticeId}
+	</select>
+	
+	<update id="updateHitcount" parameterType="int">
+		UPDATE notice
+		SET 
+			notice_hitcount = notice_hitcount + 1
+		WHERE notice_id = #{noticeId}
+	</update>
+	
+	<select id="selectPrevNotice" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_id, notice_title
+		FROM notice
+		WHERE #{noticeId} > notice_id
+		ORDER BY notice_id DESC
+		FETCH FIRST ROWS ONLY
+	</select>
+	
+	<select id="selectNextNotice" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_id, notice_title
+		FROM notice
+		WHERE notice_id > #{noticeId}
+		ORDER BY notice_id
+		FETCH FIRST ROWS ONLY
+	</select>
+	
+	<select id="selectNoticeFile" parameterType="int" resultType="Notice">
+		SELECT 
+			notice_filename, notice_filetype, notice_filedata
+		FROM notice
+		WHERE notice_id = #{noticeId}	
+	</select>
+	
+	<insert id="insertNotice" parameterType="Notice">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE"> 
+			SELECT seq_notice_id.nextval 
+			FROM DUAL 
+		</selectKey>
+		INSERT INTO notice (
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
+			<if test="noticeFilename != null">
+            , notice_filename, notice_filetype, notice_filedata
+        	</if>
+		)
+		VALUES (
+			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount}
+			<if test="noticeFilename != null">
+            , #{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
+        	</if>
+		)
+	</insert>
+</mapper>

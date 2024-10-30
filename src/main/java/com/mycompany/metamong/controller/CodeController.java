@@ -178,7 +178,7 @@ public class CodeController {
 	@ResponseBody
 	@GetMapping("/codeLoadSearch")
 	public List<CodeDto> codeLoadSearch(@RequestParam String keyword){
-		log.info("실행");
+		keyword = keyword != null ? keyword.toUpperCase() : null;
 		return codeService.getCodeLoadSearch(keyword);
 	}
 }
