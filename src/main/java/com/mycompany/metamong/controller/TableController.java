@@ -1,6 +1,8 @@
 package com.mycompany.metamong.controller;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -120,8 +122,19 @@ public class TableController {
 	public String tableApplyList(Model model) {
 		List<ApplyTableDto> list = applyListService.getApplyTableList();
 		model.addAttribute("list", list);
+		model.addAttribute("schemaEnum",SchemaEnum.values());
 		return "dbObject/table/tableApplyList";
 	}
+	
+	@ResponseBody
+	@GetMapping("/applyTableSearch")
+	public List<ApplyTableDto> applyTableSearch(@RequestParam Map<String, String> form) {
+		log.info("실행");
+		List<ApplyTableDto> list= applyListService.getApplyTableSearch(form);
+		log.info(list.toString());
+	    return list;
+	}
+
 	
 	@GetMapping("/tableApplyDetail")
 	public String tableApplyDetail() {

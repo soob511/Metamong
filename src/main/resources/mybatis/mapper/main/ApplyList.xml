@@ -3,21 +3,60 @@
 <mapper namespace="com.mycompany.metamong.daoMain.ApplyListDao">
 
 	<insert id="insertApplyList" parameterType="ApplyList">
-		<selectKey keyProperty="applyNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="applyNo" resultType="int"
+			order="BEFORE">
 			SELECT seq_apply_no.nextval FROM dual
 		</selectKey>
-		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason, approval_status,schema_name,apply_obj, apply_type)
-		VALUES (#{applyNo}, #{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj}, #{applyType})
+		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
+		approval_status,schema_name,apply_obj, apply_type)
+		VALUES (#{applyNo},
+		#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
+		#{applyType})
 	</insert>
-	
+
 	<select id="selectApplyTableList" resultType="ApplyTableList">
-    SELECT a.apply_no,m.m_name, a.apply_date,a.approval_status,a.schema_name,t.table_id,a.apply_obj           
-    FROM apply_list a
-    JOIN member m ON a.m_id = m.m_id   
-    JOIN apply_table t ON a.apply_no = t.apply_no 
-    WHERE a.apply_obj = 'TABLE'
-    ORDER BY a.apply_date DESC
+		SELECT
+		a.apply_no,m.m_name,
+		a.apply_date,a.approval_status,a.schema_name,t.table_id,a.apply_obj
+		FROM apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		JOIN apply_table t ON
+		a.apply_no = t.apply_no
+		WHERE a.apply_obj = 'TABLE'
+		ORDER BY
+		a.apply_date DESC
 	</select>
+
+	<select id="selectApplyTableSearch" parameterType="map"
+		resultType="ApplyTableList">
+		SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status,
+		a.schema_name, t.table_id, a.apply_obj
+		FROM apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		JOIN apply_table t ON a.apply_no = t.apply_no
+		<where>
+			a.apply_obj = 'TABLE'
+
+			<if test="keyword != null and keyword != ''">
+				AND (
+				m.m_name LIKE '%' || #{keyword} || '%'
+				OR t.table_id LIKE '%' || #{keyword} || '%'
+				)
+			</if>
+			
+			<if test="schema != null and schema != ''">
+				AND a.schema_name = #{schema}
+			</if>
+
+			<if test="status != null and status != ''">
+				AND a.approval_status = #{status}
+			</if>
+		</where>
+		ORDER BY a.apply_date DESC
+	</select>
+
+
+
 
 </mapper>
 
