@@ -70,7 +70,7 @@
 							</div>
 							<div class="table-contanier">
 								<table class="table table-hover">
-									<thead class="table-primary">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">테이블(논리)</th>
@@ -81,7 +81,8 @@
 									</thead>
 									<tbody id="tableList">
 										<c:forEach items="${list}" var="table" varStatus="status">
-											<tr onclick="showColumnList(${table.tableNo})">
+											<tr class="tableListTr"
+												onclick="showColumnList(${table.tableNo})">
 												<th>${status.index+1}</th>
 												<td>${table.tableNm}</td>
 												<td>${table.tableId}</td>
@@ -90,6 +91,7 @@
 											</tr>
 										</c:forEach>
 									</tbody>
+
 								</table>
 							</div>
 						</div>
@@ -101,7 +103,7 @@
 							</div>
 							<div class="column-contanier">
 								<table class="table table-hover">
-									<thead class="table-primary">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">컬럼(논리)</th>

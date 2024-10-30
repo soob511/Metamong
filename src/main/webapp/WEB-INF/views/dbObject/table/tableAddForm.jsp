@@ -36,7 +36,7 @@
 							<div class="codeAdd-subtitle">테이블</div>
 							<table class="table table-bordered code-table">
 								<tr>
-									<td class="table-primary">스키마명</td>
+									<td class="table-secondary">스키마명</td>
 									<td colspan="5">
 									<select id="schemaSelect" class="form-select" aria-label="스키마명">
 										<c:forEach items="${schemaEnum}" var="schemaEnum">
@@ -47,25 +47,25 @@
 									</select></td>
 								</tr>
 								<tr>
-									<td class="table-primary">테이블(논리)</td>
+									<td class="table-secondary">테이블(논리)</td>
 									<td colspan="5"><input type="text" id="tableNm"
 										class="form-control code-input" placeholder="내용 입력" required>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">테이블(물리)</td>
+									<td class="table-secondary">테이블(물리)</td>
 									<td colspan="5"><input type="text"  id="tableId"
 										class="form-control code-input" placeholder="내용 입력" required>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">내용</td>
+									<td class="table-secondary">내용</td>
 									<td colspan="5"><input type="text"  id="tableContent"
 										class="form-control content-input" placeholder="내용 입력">
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">신청사유</td>
+									<td class="table-secondary">신청사유</td>
 									<td colspan="5"><input type="text"  id="applyReason"
 										class="form-control content-input" placeholder="내용 입력">
 									</td>
@@ -86,34 +86,34 @@
 								</div>
 								<table class="table table-bordered item-table">
 									<tr>
-										<td class="table-primary">컬럼(논리)</td>
+										<td class="table-secondary">컬럼(논리)</td>
 										<td colspan="5"><input type="text" id="colNm"
 											class="form-control code-input" placeholder="내용 입력" required>
 										</td>
 									</tr>
 									<tr>
-										<td class="table-primary">컬럼(물리)</td>
+										<td class="table-secondary">컬럼(물리)</td>
 										<td colspan="5"><input type="text" id="colId"
 											class="form-control code-input" placeholder="내용 입력" required>
 										</td>
 									</tr>
 
 									<tr>
-										<td class="table-primary">데이터타입</td>
+										<td class="table-secondary">데이터타입</td>
 										<td colspan="5"><select type="text" id="dataType"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
 
 										</select></td>
 									</tr>
 									<tr>
-										<td class="table-primary">길이</td>
+										<td class="table-secondary">길이</td>
 										<td colspan="5"><input type="text" id="dataLength"
 											class="form-control code-input" placeholder="내용 입력" required>
 										</td>
 									</tr>
 
 									<tr>
-										<td class="table-primary">NULL</td>
+										<td class="table-secondary">NULL</td>
 										<td colspan="5"><select id="nullable"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
 												<option value="NULL">NULL</option>
@@ -121,7 +121,7 @@
 										</select></td>
 									</tr>
 									<tr>
-										<td class="table-primary">PK</td>
+										<td class="table-secondary">PK</td>
 										<td colspan="5"><select id="isUse"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
 												<option value="Y">Y</option>
@@ -155,7 +155,7 @@
 
 					</div>
 					<table class="table table-hover bottom-table">
-						<thead class="table-primary">
+						<thead class="table-secondary">
 							<tr>
 								<th scope="col">No.</th>
 								<th scope="col">컬럼(논리)</th>
@@ -201,7 +201,7 @@
 								<div class="table-container">
 									<table class="table table-hover">
 										<thead class="table">
-											<tr class="table-primary">
+											<tr class="table-secondary">
 												<th scope="col">No.</th>
 												<th scope="col">코드(논리)</th>
 												<th scope="col">코드(물리)</th>

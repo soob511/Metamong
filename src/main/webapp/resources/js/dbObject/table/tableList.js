@@ -5,6 +5,11 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $("#tableList").on("click", ".tableListTr", function() {
+	    $(".tableListTr").removeClass("table-active");
+	    $(this).addClass("table-active");
+	});
+    
     $(".bi-search").on("click", function() {
         searchTable();
     });
