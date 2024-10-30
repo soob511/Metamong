@@ -121,6 +121,12 @@ thead{
    line-height: 2.4;
 }
 
+.btn-edit:disabled {
+    background-color: #ebebeb;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
 .item-header{
 	margin: 5px;
 }
@@ -132,12 +138,13 @@ thead{
 }
 
 
-.item-table-container {
+.item-table-container, .update-table-container {
 	border-radius: 8px !important; 
     box-shadow: var(--box-shadow);
     overflow-y: scroll;
     height: 280px;
 }
 
-
-
+.update-table-container {
+	height: 240px;
+}

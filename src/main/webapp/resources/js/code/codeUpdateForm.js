@@ -24,27 +24,8 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val();
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
-
-        let isExist = false;
-           
-        for (let item of items) {
-            itemId == item.itemId && (isExist = true);
-        }
-
-        if (!itemId || !itemNm) {
-            Swal.fire({
-                icon: 'warning',
-                title: '항목코드 또는 항목명을<br/>입력해주세요.'
-            });
-            return;
-        }
-
-        if (isExist) {
-            Swal.fire({
-                icon: 'warning',
-                title: '동일한 이름의 항목코드가<br/>존재합니다.'
-            });
-        } else {
+        
+        if(itemCheck() != 0) {
             items.push({ itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 });
             itemList();
         }
@@ -61,12 +42,11 @@ $(document).ready(function() {
         
         $('#itemId').val(itemId);
         $('#itemNm').val(itemNm);
-        
-        (itemIsActive == 'Y') ?  $('#itemIsActive option:first').prop("selected", true) : $('#itemIsActive option:last').prop("selected", true);
-              
+        (itemIsActive == 'Y') ? $('#itemIsActive option:first').prop("selected", true) : $('#itemIsActive option:last').prop("selected", true);   
         $('#itemContent').val(itemContent);
         
         itemIndex = items.findIndex(item => item.itemId === itemId);
+        $(".btn-edit").prop("disabled", false);
     });
     
     $('.btn-edit').on('click', function() {
@@ -74,27 +54,8 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val();
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
-
-        let isExist = false;
-        for (let i = 0; i <  items.length; i++) {
-        	if(itemId == items[i].itemId && i != itemIndex)
-              isExist = true;
-        }
         
-        if (!itemId || !itemNm) {
-            Swal.fire({
-                icon: 'warning',
-                title: '항목코드 또는 항목명을<br/>입력해주세요.'
-            });
-            return;
-        }
-
-        if (isExist) {
-            Swal.fire({
-                icon: 'warning',
-                title: '동일한 이름의 항목코드가<br/>존재합니다.'
-            });
-        } else {
+        if(itemCheck() != 0) {
 	    	updateItem = { itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 };
 	    	items.splice(itemIndex, 1, updateItem);
 	        itemList();
@@ -134,10 +95,11 @@ $(document).ready(function() {
             items: items
         };
         
-        if (!applyReason) {
+        if (!codeNm || !codeId || !applyReason) {
             Swal.fire({
                 icon: 'warning',
-                title: '신청 사유를<br/>입력해주세요.'
+                title: '필수내역을 공란없이<br/>입력해 주세요.',
+                text: '필수입력사항: 코드명(논리/물리), 신청사유'
             });
             return;
         }
@@ -152,7 +114,7 @@ $(document).ready(function() {
                 Swal.fire({
                     icon: 'success',
                     title: '코드/항목 수정 신청이<br/>완료되었습니다.',
-                    text: '신청 승인 후, 코드 사용가능합니다.'
+                    text: '신청 승인 후, 코드 사용이 가능합니다.'
                 }).then(result => {
                     location.href = "/Metamong/code/codeApplyList";
                 });
@@ -160,11 +122,40 @@ $(document).ready(function() {
         });
     });
     
+    function itemCheck() {
+    	const itemId = $('#itemId').val().trim();
+    	const itemNm = $('#itemNm').val().trim();
+    	
+    	 let isExist = false;
+         for (let i = 0; i <  items.length; i++) {
+         	if(itemId == items[i].itemId && i != itemIndex)
+               isExist = true;
+         }
+         
+         if (!itemId || !itemNm) {
+             Swal.fire({
+                 icon: 'warning',
+                 title: '항목코드 또는 항목명을<br/>입력해주세요.'
+             });
+             return 0;
+         } 
+         
+         if (isExist) {
+             Swal.fire({
+                 icon: 'warning',
+                 title: '동일한 이름의 항목코드가<br/>존재합니다.'
+             });
+             return 0;
+         };
+    };
+    
     function refresh() {
     	$('#itemId').val('');
         $('#itemNm').val('');
         $('#itemContent').val('');
         $('#itemIsActive option:first').prop("selected", true);
+        $(".btn-edit").prop("disabled", true);
+        itemIndex = null;
     };
 
     function itemList() {
@@ -173,7 +164,7 @@ $(document).ready(function() {
         for (let i = 0; i < items.length; i++) {
             $('.item-list').append(
                 `<tr class="item">
-                    <th>i+1</th>
+                    <th>${i+1}</th>
                     <td class="itemId">${items[i].itemId}</td>
                     <td class="itemNm">${items[i].itemNm}</td>
                     <td class="itemIsActive">${items[i].itemIsActive == 1 ? 'Y' : 'N'}</td>

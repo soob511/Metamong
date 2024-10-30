@@ -81,7 +81,7 @@
                             </table>
                             <div class="button-group">
 			                    <button id="item-add" class="btn-add" type="button">추가</button>
-			                    <button class="btn-edit" type="button">수정</button>
+			                    <button class="btn-edit" type="button" disabled>수정</button>
 			                </div>
                         </div>
                     </div>

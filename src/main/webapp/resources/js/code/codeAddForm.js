@@ -32,6 +32,7 @@ $(document).ready(function() {
         $('#itemContent').val(itemContent);
         
         itemIndex = items.findIndex(item => item.itemId === itemId);
+        $(".btn-edit").prop("disabled", false);
     });
     
     $('.btn-edit').on('click', function() {
@@ -75,10 +76,11 @@ $(document).ready(function() {
             items: items
         };
         
-        if (!applyReason) {
+        if (!codeNm || !codeId || !applyReason) {
             Swal.fire({
                 icon: 'warning',
-                title: '신청 사유를<br/>입력해주세요.'
+                title: '필수내역을 공란없이<br/>입력해 주세요.',
+                text: '필수입력사항: 코드명(논리/물리), 신청사유'
             });
             return;
         }
@@ -133,6 +135,8 @@ $(document).ready(function() {
     	$('#itemId').val('');
         $('#itemNm').val('');
         $('#itemContent').val('');
+        $(".btn-edit").prop("disabled", true);
+        itemIndex = null;
     };
 
     function itemList() {
