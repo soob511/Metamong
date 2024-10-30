@@ -33,9 +33,6 @@ public class ColumnController {
 			@RequestParam SchemaEnum schemaName,
 			@RequestParam int tableNo
 			) {
-		HashMap<String, Object> colParams = new HashMap<>();
-		colParams.put("tableNo", tableNo);
-		colParams.put("schemaName", schemaName.getSchemaName());
-		return columnService.getColumnList(colParams);
+		return columnService.getColumnList(schemaName.getSchemaName(), tableNo);
 	}
 }

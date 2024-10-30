@@ -20,8 +20,8 @@ public class ColumnService {
 		return columnDao.selectColumnList(tableId);
 	}
 	
-	public List<ColumnDto> getColumnList(HashMap<String, Object> colParams) {
-		return columnDao.selectColumnByTable(colParams);
+	public List<ColumnDto> getColumnList(String schemaName, int tableNo) {
+		return columnDao.selectColumnByTable(schemaName, tableNo);
 	}
 
 	public void addApplyColumn(ApplyColumnDto applyColumn) {
