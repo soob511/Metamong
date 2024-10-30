@@ -31,4 +31,9 @@ public class TableService {
 		return tableDao.selectTableListBySchema(schemaName);
 	}
 	
+
+	public TableDto getTableByApplyNo(int applyNo) {
+		return tableDao.selectTableByApplyNo(applyNo);
+	}
+
 }

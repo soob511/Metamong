@@ -1,6 +1,5 @@
 package com.mycompany.metamong.controller;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnAddDto;
+import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableDto;
@@ -130,6 +131,23 @@ public class TableController {
 		model.addAttribute("list", list);
 		model.addAttribute("schemaEnum",SchemaEnum.values());
 		return "dbObject/table/tableApplyList";
+	}
+	
+	@GetMapping("/tableListDetail")
+	public String tableListDetail(int applyNo,int indexNo,Model model) {
+		
+		ApplyTableDeatilDto applyList = applyListService.getTableListDetail(applyNo); 
+		model.addAttribute("applyList",applyList);
+		model.addAttribute("indexNo",indexNo);
+		
+		TableDto applyTable = tableService.getTableByApplyNo(applyNo);
+		model.addAttribute("applyTable",applyTable);
+		
+		List<ColumnDto> applyColumnList = columnService.getColumnByApplyNo(applyNo);
+		model.addAttribute("applyColumn",applyColumnList);
+		
+		return "dbObject/table/tableApplyDetail";                      
+		
 	}
 	
 	@ResponseBody
