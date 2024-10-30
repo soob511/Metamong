@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('.sub-menu:eq(1)').addClass('active');
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(2)').addClass('active');
+    filterTable();
     
     $('#schemaSelect').change(function() {
     	filterTable();
@@ -92,7 +93,7 @@ $('#flexCheckDefault').change(function() {
         });
     } else {
         $('#indexApplyColumn').empty();
-        indexCount = 1; // 초기화
+        indexCount = 1;
     }
 });
 
@@ -156,7 +157,7 @@ function filterTable() {
 
 	$.ajax({
 		type : 'GET',
-		url : 'searchTable',
+		url : '/Metamong/table/searchTable',
 		data : {
 			schemaName : schemaName
 		},
@@ -168,6 +169,9 @@ function filterTable() {
 					<option value="${table.tableNo}">${table.tableId}</option>`
 			});
 			$('#tableSelect').html(html);
+			$('#indexApplyColumn').html('');
+			$('#columnTableBody').html('');
+			$('#flexCheckDefault').prop('checked', false);
 		},
 		error : function(xhr, status, error) {
 			console.log('오류: ' + xhr.responseText);
@@ -217,6 +221,7 @@ function filterColumn() {
 			});
 			$('#columnTableBody').html(html);
 			$('#indexApplyColumn').html('');
+			$('#flexCheckDefault').prop('checked', false);
 			indexCount = 1;
 		},
 		error : function(xhr, status, error) {

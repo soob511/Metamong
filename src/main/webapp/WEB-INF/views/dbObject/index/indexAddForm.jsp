@@ -103,16 +103,17 @@
 								<div class="index-apply-reason">
 									<p>인덱스제목</p>
 									<textarea class="index-apply-reason-title" id="indexName"></textarea>
+									<span id="index-name-validation"></span>
 								</div>
 								<div class="index-apply-reason">
 									<p>신청사유</p>
 									<textarea id="indexApplyReason"></textarea>
-									<!-- <a href="indexApplyList">
-									</a> -->
 									<div class="d-flex justify-content-end">
-										<button id="btn-apply" class="btn-add">
-											신청
-										</button>									
+										<a href="indexApplyList">
+											<button id="btn-apply" class="btn-add">
+												신청
+											</button>									
+										</a>
 									</div>
 								</div>
 							</div>
