@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.TableDto;
+import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.TableService;
 
 import lombok.extern.java.Log;
@@ -28,6 +31,14 @@ public class TableController {
 		model.addAttribute("list", list);
 		log.info(list.toString());
 		return "dbObject/table/tableList";
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchTable")
+	public List<TableDto> searchTable(
+			@RequestParam SchemaEnum schemaName
+			) {
+		return tableService.getTableName(schemaName.getSchemaName());			
 	}
 	
 	@GetMapping("/tableCompare")

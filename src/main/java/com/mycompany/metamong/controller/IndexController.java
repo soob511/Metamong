@@ -59,14 +59,6 @@ public class IndexController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/searchTable")
-	public List<TableDto> searchTable(
-			@RequestParam SchemaEnum schemaName
-			) {
-		return tableService.getTableName(schemaName.getSchemaName());			
-	}
-	
-	@ResponseBody
 	@GetMapping("/searchColumn")
 	public List<ColumnDto> searchColumn(
 			@RequestParam SchemaEnum schemaName,
