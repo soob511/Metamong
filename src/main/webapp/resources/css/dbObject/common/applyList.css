@@ -103,16 +103,20 @@ td, th{
 	font-size: 14px;
 }
 
-.code-approve {
-	color: #32ADE6 !important;
+#status-approve {
+	color: #1db868 !important;
 }
 
-.code-deny {
+#status-rejected {
 	color: #DC3F3F !important;
 }
 
-.code-await {
-	color: #000000 !important;
+#status-await{
+	color: #A5A5A5 !important;
+}
+
+#status-applied{
+	color: #32ADE6 !important;
 }
 
 .nav-item {

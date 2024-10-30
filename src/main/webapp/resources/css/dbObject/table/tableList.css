@@ -60,17 +60,20 @@ label{
 	margin: 10px 0 0 0;
 }
 
+.table-contanier,.column-contanier{
+	 border-radius: 8px !important; 
+    box-shadow: var(--box-shadow);
+    overflow-y:scroll;
+    height: 580px !important;
+    
+}
+
 .tables-table{
 	min-width: 660px !important;
 	max-width:660px !important;
 	margin: 20px 20px 20px 45px;	
 }
 
-.table {
-    border-radius: 8px !important; 
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-}
 
 .tables-management-title,.column-management-title{
 	font-size:18px;
@@ -135,5 +138,8 @@ thead{
 	 padding: 15px 10px;
 }
 
-
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
 

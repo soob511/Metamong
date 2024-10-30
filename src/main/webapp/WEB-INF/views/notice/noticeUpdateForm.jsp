@@ -43,10 +43,21 @@
 							    <tr>
 							        <td class="table-primary form-label">첨부파일</td>
 							        <td>
-						        	  <input id="noticeFile" type="file" name="noticeFile" class="form-control">
-						                <c:if test="${notice.noticeFilename != null}">
+							        	<c:if test="${notice.noticeFilename != null}">
+								            <div id="existingFile">
+								                <span>${notice.noticeFilename}</span>
+								                <button type="button" id="removeFileBtn" class="btn btn-sm btn-outline-danger">삭제</button>
+								            </div>
+								        </c:if>
+							        	
+						    
+						        	  <input id="noticeFile" type="file" name="noticeFile" class="form-control" style="display: ${notice.noticeFilename != null ? 'none' : 'block'};">
+						        	   <div id="selectedFileName" style="margin-top: 5px;"></div>
+						        	   <input type="hidden" id="deleteFile" name="deleteFile" value="false">
+						        	  
+						                <%-- <c:if test="${notice.noticeFilename != null}">
 						                   ${notice.noticeFilename}
-						                </c:if>
+						                </c:if> --%>
 							        </td>
 							    </tr>
 							

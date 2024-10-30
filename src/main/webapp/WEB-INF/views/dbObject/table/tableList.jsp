@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +41,12 @@
 						<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 						<select id="schemaSelect" class="form-select"
 							aria-label="Default select example">
-							<option selected>선택</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
+							<option value="All" data-name="">전체</option>
+							<c:forEach items="${schemaEnum}" var="schemaEnum">
+								<option value="${schemaEnum.name()}"
+									data-name="${schemaEnum.getSchemaName()}">
+									${schemaEnum.getSchemaName()}</option>
+							</c:forEach>
 						</select>
 					</div>
 
@@ -54,93 +56,68 @@
 
 				<div class="container table-management">
 					<div class="row">
-						
+
 						<div class="col-6 tables-table">
 							<div class="tables-management">
 								<p class="tables-management-title">테이블</p>
 								<div class="tables-buttons">
-								<a href="tableAddForm">
-									<button class="btn-add">추가</button>
-									</a>
-									<a href="tableUpdateForm">
-									<button class="btn-edit">수정</button>
+									<a href="tableAddForm">
+										<button class="btn-add">추가</button>
+									</a> <a href="tableUpdateForm">
+										<button class="btn-edit">수정</button>
 									</a>
 								</div>
 							</div>
-							<table class="table table-hover">
-								<thead
-									class="table-primary">
-									<tr>
-										<th scope="col">No.</th>
-										<th scope="col">테이블(논리)</th>
-										<th scope="col">테이블(물리)</th>
-										<th scope="col">스키마</th>
-										<th scope="col">내용</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach items="${list}" var="table" varStatus="status">
-									<tr>
-										<th>${status.index+1}</th>
-										<td>${table.tableNm}</td>
-										<td>${table.tableId}</td>
-										<td>${table.schemaNm}</td>
-										<td>${table.tableContent}</td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
+							<div class="table-contanier">
+								<table class="table table-hover">
+									<thead class="table-primary">
+										<tr>
+											<th scope="col">No.</th>
+											<th scope="col">테이블(논리)</th>
+											<th scope="col">테이블(물리)</th>
+											<th scope="col">스키마</th>
+											<th scope="col">내용</th>
+										</tr>
+									</thead>
+									<tbody id="tableList">
+										<c:forEach items="${list}" var="table" varStatus="status">
+											<tr onclick="showColumnList(${table.tableNo})">
+												<th>${status.index+1}</th>
+												<td>${table.tableNm}</td>
+												<td>${table.tableId}</td>
+												<td>${table.schemaNm}</td>
+												<td>${table.tableContent}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
 						</div>
 
-						<!-- 빈 영역 -->
 						<div class="col-6 column-table">
 							<div class="column-management">
 								<p class="column-management-title">컬럼</p>
 
 							</div>
-							<table class="table table-hover">
-								<thead class="table-primary">
-									<tr>
-										<th scope="col">No.</th>
-										<th scope="col">컬럼(논리)</th>
-										<th scope="col">컬럼(물리)</th>
-										<th scope="col">타입</th>
-										<th scope="col">길이</th>
-										<th scope="col">NULL</th>
-										<th scope="col">PK</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th>1</th>
-										<td>자동차번호</td>
-										<td>CAR</td>
-										<td>VARCHAR2</td>
-										<td>10</td>
-										<td>NOT NULL</td>
-										<td>Y</td>
-									</tr>
-									<tr>
-										<th>2</th>
-										<td>자동차이름</td>
-										<td>CAR</td>
-										<td>VARCHAR2</td>
-										<td>10</td>
-										<td>NOT NULL</td>
-										<td>Y</td>
-									</tr>
-									<tr>
-										<th>2</th>
-										<td>자동차색깔</td>
-										<td>CAR</td>
-										<td>VARCHAR2</td>
-										<td>10</td>
-										<td>NOT NULL</td>
-										<td>Y</td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="column-contanier">
+								<table class="table table-hover">
+									<thead class="table-primary">
+										<tr>
+											<th scope="col">No.</th>
+											<th scope="col">컬럼(논리)</th>
+											<th scope="col">컬럼(물리)</th>
+											<th scope="col">타입</th>
+											<th scope="col">길이</th>
+											<th scope="col">NULL</th>
+											<th scope="col">PK</th>
+
+										</tr>
+									</thead>
+									<tbody id="columnList">
+										<th colspan="7">테이블을 선택해 주세요.</th>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>

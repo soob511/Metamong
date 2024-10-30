@@ -119,3 +119,8 @@ thead {
     height: 45px;
     padding: 15px 10px;
 }
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}

@@ -63,7 +63,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <th scope="row">10</th>
                             <td>회원정보 변경신청</td>
                             <td>2024-10-21</td>
@@ -110,7 +110,15 @@
                             <td>[중요]해킹위험 사례 안내</td>
                             <td>2024-08-26</td>
                             <td>12</td>
-                        </tr>
+                        </tr> -->
+                        <c:forEach items="${list}" var="notice">           
+	                        <tr>
+	                            <th scope="row">${notice.noticeId}</th>
+	                            <td>${notice.noticeTitle}</td>
+	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+	                            <td>${notice.noticeHitcount}</td>
+	                        </tr>
+                      </c:forEach>    
                     </tbody>
                 </table>
 					</div>

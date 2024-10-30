@@ -1,13 +1,12 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.item;
 
 import lombok.Data;
 
 @Data
-public class ApplyItemDto {
-	private int applyNo;
+public class ItemUpdateDto {
 	private String itemId;
 	private String itemNm;
-	private String itemContent;
 	private int itemIsActive;
+	private String itemContent;
 	private int itemIsUpdate;
 }

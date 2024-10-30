@@ -30,29 +30,34 @@
                         </div>
                         <div class="table-search">
                             <div class="container-fluid">
-                                <form class="d-flex search-form">
-                                    <input class="form-control" type="search" id="tableNameSearch" aria-label="Search">
-                                    <i class="bi bi-search"></i>
-                                </form>
+                                <form class="d-flex search-form" action="${pageContext.request.contextPath}/notice/noticeSearch" method="get">
+								    <input class="form-control" type="search" id="noticeSearch" name="keyword" placeholder="Search" aria-label="Search">
+								     	<i class="bi bi-search" ></i>
+								</form>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <table class="table table-hover">
+                	<thead>
                         <tr class="table-primary">
                             <th scope="col">No.</th>
                             <th scope="col">제목</th>
                             <th scope="col">등록일</th>
                             <th scope="col">조회수</th>
                         </tr>
-                        <c:forEach items="${list}" var="notice">           
+                    </thead>
+                    <tbody id="noticeList">
+                        <c:forEach items="${list}" var="notice" varStatus="status">           
 	                        <tr>
-	                            <th scope="row">${notice.noticeId}</th>
+	                            <th scope="row">${totalRows - (pager.pageNo-1) * 10 - status.index}</th>                          
 	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 	                            <td>${notice.noticeHitcount}</td>
 	                        </tr>
-                      </c:forEach>                      
+                      </c:forEach> 
+                   </tbody>                     
                 </table>
                 <div class="d-flex justify-content-end">
                 	<div class="btn btn-write">
@@ -82,10 +87,6 @@
 	           				<a href="noticeList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm"><</a>
 	           			</c:if>
 	           			
-	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
-	           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
-	           			</c:if>
-	           			
 	           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
 	           				<c:if test="${pager.pageNo==i}">
 	           					<a href="noticeList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
@@ -95,7 +96,9 @@
 	           				</c:if>
 	           			</c:forEach>
 	           			
-	           			
+	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+	           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
+	           			</c:if>
 	           			<a href="noticeList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
 	           			
 	           		</div>

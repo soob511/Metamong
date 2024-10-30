@@ -152,3 +152,11 @@ p.logo a {
 .header span {
 	font-size: 13px;
 }
+
+.table-hover:hover {
+	--bs-table-hover-bg: #F8F9FA !important;
+} 
+
+.table-active  td, .table-active  th {
+	--bs-table-bg-state: #F2F6F9 !important;
+}

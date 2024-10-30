@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.mycompany.metamong.dto.IndexDto;
+import com.mycompany.metamong.dto.index.IndexDto;
 
 @Mapper
 public interface Sub2IndexDao {

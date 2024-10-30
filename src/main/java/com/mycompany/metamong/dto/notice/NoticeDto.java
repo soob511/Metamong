@@ -1,4 +1,4 @@
-package com.mycompany.metamong.dto;
+package com.mycompany.metamong.dto.notice;
 
 import java.util.Date;
 
@@ -14,4 +14,6 @@ public class NoticeDto {
 	private String noticeFilename;
 	private String noticeFiletype;
 	private byte[] noticeFiledata;
+
 }
+

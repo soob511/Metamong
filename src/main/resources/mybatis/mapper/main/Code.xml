@@ -7,12 +7,51 @@
 		FROM code
 	</select>
 	
+	<select id="selectCodeByNo" resultType="Code">
+		SELECT code_no, code_nm, code_id, code_content, code_isactive
+		FROM code
+		WHERE code_no = #{codeNo}
+	</select>
+	
+	<select id="selectCodeSearch" resultType="Code">
+	    SELECT code_no, code_nm, code_id, code_content, code_isactive
+	    FROM code
+	    <where>
+	        <if test="keyword != null and keyword != ''">
+	            (LOWER(code_nm) LIKE '%' || LOWER(#{keyword}) || '%' OR LOWER(code_id) LIKE '%' || LOWER(#{keyword}) || '%')
+	            <if test="option != 2">AND code_isactive = #{option}</if>
+	        </if>
+	        <if test="keyword == null or keyword == ''">
+	            <if test="option != 2">AND code_isactive = #{option}</if>
+	        </if>
+	    </where>
+	</select>
+
+	<select id="selectActiveCodes" resultType="Code">
+		SELECT code_no,code_nm,code_id,code_content,code_isactive
+		FROM code
+		WHERE code_isactive=1
+	</select>
+	
+	<select id="selectCodeLoadSearch" resultType="Code" parameterType="String">
+		SELECT code_no,code_nm,code_id,code_content,code_isactive
+		FROM code
+		WHERE (code_nm LIKE CONCAT('%', CONCAT(#{keyword}, '%'))AND code_isactive=1)
+  		OR (code_id LIKE CONCAT('%', CONCAT(#{keyword}, '%')) AND code_isactive=1)
+
+	</select>
+	
 	<insert id="insertApplyCode" parameterType="ApplyCode">
 		<selectKey keyProperty="codeNo" resultType="int" order="BEFORE">
 			SELECT seq_code_no.nextval FROM dual
 		</selectKey>
 		INSERT INTO apply_code (apply_no, code_no, code_nm, code_id, code_content, code_isactive)
 		VALUES (#{applyNo}, #{codeNo}, #{codeNm}, #{codeId}, #{codeContent}, 1)
+	</insert>
+	
+	<insert id="updateApplyCode" parameterType="ApplyCode">
+		INSERT INTO apply_code (apply_no, code_no, code_nm, code_id, code_content, code_isactive)
+		VALUES (#{applyNo}, #{codeNo}, #{codeNm}, #{codeId}, #{codeContent}, ${codeIsActive})
 	</insert>
 </mapper>
 	
