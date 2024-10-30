@@ -25,25 +25,25 @@
                     <form id="insertNotice" action="insertNotice" method="post" enctype="multipart/form-data">
                         <table class="table">
                             <tr>
-                                <td class="table-primary form-label">제목<span class="form-required">(*)</span></td>
+                                <td class="table-primary form-label" id="tdth">제목<span class="form-required">(*)</span></td>
                                 <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle"  value="" required></td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label">작성자</td>
+                                <td class="table-primary form-label" id="tdth">작성자</td>
                                 <td id="author"><span>관리자</span></td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label">등록일</td>
+                                <td class="table-primary form-label" id="tdth">등록일</td>
                                 <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" value="sysdate" required></td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label">내용</td>
-                                <td>                                   
+                                <td class="table-primary form-label" id="tdth">내용</td>
+                                <td id="noticeContentTd">                                   
                                     <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12" required></textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label">첨부파일</td>
+                                <td class="table-primary form-label" id="tdth">첨부파일</td>
                                 <td><input class="form-control" type="file" name="noticeFile" id="noticeFile"></td>
                             </tr>
                         </table>

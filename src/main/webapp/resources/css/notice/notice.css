@@ -4,6 +4,7 @@
 .form-label {
     width: 8%;
     text-align: center;
+    
 }
 .fw-bold {
     margin-top: 30px;
@@ -123,7 +124,7 @@ h4 {
     margin-top: 10px;
 }
 
-.btn-cancel {
+.btn-delete {
     background-color: white;
     color: var(--theme);
     border-radius: 8px;
@@ -157,4 +158,10 @@ h4 {
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
+}
+#noticeContentTd {
+	text-align:left;
+}
+#tdth{
+	vertical-align:middle;
 }
