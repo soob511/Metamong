@@ -32,11 +32,35 @@
 
 					<div class="d-flex justify-content-end align-items-center">
 						<div class="search-box d-flex align-items-center">
-							<form>
+							<div class="schema-filter">
+								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
+								<select id="schemaSelect" class="form-select"
+									aria-label="Default select example">
+									<option value="All" data-name="">전체</option>
+									<c:forEach items="${schemaEnum}" var="schemaEnum">
+										<option value="${schemaEnum.name()}"
+											data-name="${schemaEnum.getSchemaName()}">
+											${schemaEnum.getSchemaName()}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="schema-filter">
+								<label for="statusSelect" class="status-filter-label">상태</label>
+								<select id="statusSelect" class="form-select"
+									aria-label="Default select example">
+									<option value="All" data-name="">전체</option>
+									<option value="wait" data-name="0">승인대기</option>
+									<option value="approve" data-name="1">승인</option>
+									<option value="reject" data-name="2">반려</option>
+									<option value="reflect" data-name="3">반영</option>
+								</select>
+							</div>
+							<div class="schema-filter">
+							<label for="tableNameSearch" class="table-search-label">테이블명/신청자</label>
 								<input class="form-control me-2" type="search"
-									id="codeNameSearch" placeholder="Search" aria-label="Search">
+									id="tableNameSearch" placeholder="Search" aria-label="Search">
 								<i class="bi bi-search"></i>
-							</form>
+							</div>
 						</div>
 					</div>
 					<div class="table-container">
@@ -53,12 +77,12 @@
 									<th scope="col">상태</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="applyTableList">
 								<c:forEach items="${list}" var="tableList" varStatus="status">
 									<tr>
 										<th scope="row">${status.index+1}</th>
 										<td><fmt:formatDate value="${tableList.applyDate}"
-											pattern="yyyy-MM-dd" /></td>
+												pattern="yyyy-MM-dd" /></td>
 										<td>${tableList.MName}</td>
 										<td>${tableList.schemaName}</td>
 										<td>${tableList.tableId}</td>
@@ -78,8 +102,7 @@
 												<c:when test="${tableList.approvalStatus == 3}">
 													<span id="status-applied">반영</span>
 												</c:when>
-											</c:choose>
-										</td>
+											</c:choose></td>
 									</tr>
 								</c:forEach>
 							</tbody>
