@@ -122,6 +122,38 @@ $(document).ready(function() {
         });
     });
     
+    $('.btn-compare').click(function() {
+    	const codeNo = $('.codeAdd-subtitle').data('code-no');
+    	const codeNm = $('#codeNm').val();
+        const codeId = $('#codeId').val();
+        const codeContent = $('#codeContent').val();
+        const codeIsActive = $("#codeIsActive option:selected").val();
+        const applyReason = $('#applyReason').val();
+
+        let codeData = {
+        	codeNo: codeNo,
+            codeNm: codeNm,
+            codeId: codeId,
+            codeContent: codeContent,
+            codeIsActive: codeIsActive,
+            applyReason: applyReason,
+            items: items
+        };
+
+        $.ajax({
+            url: "/Metamong/code/codeCompare",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(codeData),
+            traditional: true,
+            success: function(data) {
+            	console.log(data);
+            	location.href = "/Metamong/code/codeCompareForm?codeNo=" + codeNo;
+               
+            }
+        });
+    });
+    
     function itemCheck() {
     	const itemId = $('#itemId').val().trim();
     	const itemNm = $('#itemNm').val().trim();

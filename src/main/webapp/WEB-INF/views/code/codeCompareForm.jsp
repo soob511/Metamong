@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
 					<div class="row">
 						<div class="col-6 before-table">
 								<div class="before-management">
-									<p class="before-management-title">> PPRTINFO 코드 수정전</p>
+									<p class="before-management-title">> ${oldCode.codeId}(${oldCode.codeNm}) 코드 수정전</p>
 								</div>
 								<table class="table table-hover">
 									<thead class="table-primary">
@@ -32,33 +33,22 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${oldItems}" var="item" varStatus="i">
 										<tr>
-											<td>1</td>
-											<td>재산</td>
-											<td>PPRT</td>
-											<td>Y</td>
-											<td>좋아요</td>
+											<td>${i.index + 1}</td>
+											<td>${item.itemId}</td>
+											<td>${item.itemNm}</td>
+											<td>${item.itemIsActive == 1 ? 'Y' : 'N' }</td>
+											<td>${item.itemContent}</td>
 										</tr>
-										<tr>
-											<td>1</td>
-											<td>재산</td>
-											<td>PPRT</td>
-											<td>Y</td>
-											<td>좋아요</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>재산</td>
-											<td>PPRT</td>
-											<td>Y</td>
-											<td>좋아요</td>
-										</tr>
+									</c:forEach>
+										
 									</tbody>
 								</table>
 						</div>
 						<div class="col-6 after-table">
 								<div class="after-management">
-									<p class="after-management-title">> PPRTINFO 코드 수정후</p>
+									<p class="after-management-title">> ${newCode.codeId}(${newCode.codeNm}) 코드 수정후</p>
 								</div>
 								<table class="table table-hover">
 									<thead class="table-primary">
@@ -71,27 +61,15 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${newItems}" var="item" varStatus="i">
 										<tr>
-											<td>1</td>
-											<td>재산</td>
-											<td>PPRT</td>
-											<td>Y</td>
-											<td>좋아요</td>
+											<td>${i.index + 1}</td>
+											<td>${item.itemId}</td>
+											<td>${item.itemNm}</td>
+											<td>${item.itemIsActive == 1 ? 'Y' : 'N' }</td>
+											<td>${item.itemContent}</td>
 										</tr>
-										<tr>
-											<td>1</td>
-											<td>재산</td>
-											<td>PPRT</td>
-											<td>Y</td>
-											<td>좋아요</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>재산</td>
-											<td>PPRT</td>
-											<td>Y</td>
-											<td>좋아요</td>
-										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 						</div>
@@ -100,6 +78,6 @@
 			</div>
 		</div>
 	</div>
-<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/code/codeCompare.js" ></script>
 </body>
 </html>

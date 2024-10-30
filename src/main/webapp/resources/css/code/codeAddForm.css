@@ -83,7 +83,7 @@ thead{
     justify-content: flex-end;
 }
 
-.btn-init {
+.btn-init, .btn-compare {
    background-color: white;
    color:  var(--theme);
    border-radius: 8px;
@@ -94,6 +94,10 @@ thead{
    text-align: center;
    line-height: 2.1;
    margin-right: 5px;
+}
+
+.btn-compare {
+	width: 100px;
 }
 
 .btn-add{

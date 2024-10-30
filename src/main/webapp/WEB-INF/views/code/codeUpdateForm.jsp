@@ -124,7 +124,8 @@
                 </div>
 
                 <div class="button-group">
-                 <button id="code-apply" class="btn-add" type="button">신청</button>
+               		<button class="btn-compare" type="button">전/후 비교</button>
+                 	<button id="code-apply" class="btn-add" type="button">신청</button>
                 </div>
 
                 <script src="${pageContext.request.contextPath}/resources/js/code/codeUpdateForm.js"></script>

@@ -1,7 +1,11 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -151,9 +155,28 @@ public class CodeController {
 		return "code/codeApplyList";
 	}
 	
-	@GetMapping("/codeCompare")
-	public String codeCompare() {
-		return "code/codeCompare";
+	@GetMapping("/codeCompareForm") 
+	public String codeCompare(int codeNo) {
+		return "code/codeCompareForm";
+	}
+	
+	@PostMapping("/codeCompare")
+	public String codeCompare(@RequestBody CodeUpdateDto form, HttpSession session) {
+		Map<String, Object> newCode = new HashMap<>();
+		newCode.put("codeId", form.getCodeId());
+		newCode.put("codeNm", form.getCodeNm());
+
+		session.setAttribute("newCode", newCode);
+		session.setAttribute("newItems", form.getItems());
+		
+		int codeNo = form.getCodeNo();
+		CodeDto oldCode = codeService.getCodeByNo(codeNo);
+        List<ItemDto> oldItems = itemService.getItemList(codeNo);
+        
+        session.setAttribute("oldCode", oldCode);
+        session.setAttribute("oldItems", oldItems);
+		
+		return "code/codeCompareForm";
 	}
 	
 	@GetMapping("/codeApplyList")
