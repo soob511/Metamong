@@ -88,6 +88,7 @@ $(document).ready(function() {
     	const codeNo = $('.codeAdd-subtitle').data('code-no');
     	const codeNm = $('#codeNm').val();
         const codeId = $('#codeId').val();
+        const codeLength = $('#codeLength').val();
         const codeContent = $('#codeContent').val();
         const codeIsActive = $("#codeIsActive option:selected").val();
         const applyReason = $('#applyReason').val();
@@ -96,17 +97,18 @@ $(document).ready(function() {
         	codeNo: codeNo,
             codeNm: codeNm,
             codeId: codeId,
+            codeLength: codeLength,
             codeContent: codeContent,
             codeIsActive: codeIsActive,
             applyReason: applyReason,
             items: items
         };
         
-        if (!codeNm || !codeId || !applyReason) {
+        if (!codeNm || !codeId || !codeLength || !applyReason) {
             Swal.fire({
                 icon: 'warning',
                 title: '필수내역을 공란없이<br/>입력해 주세요.',
-                text: '필수입력사항: 코드명(논리/물리), 신청사유'
+                text: '필수입력사항: 코드명(논리/물리), 코드길이, 신청사유'
             });
             return;
         }

@@ -36,6 +36,10 @@
                                     <td colspan="5"><input type="text" id="codeId" class="form-control code-input" value="${code.codeId}" required></td>
                                 </tr>
                                 <tr>
+                                    <td class="table-secondary">코드길이</td>
+                                    <td colspan="5"><input type="text" id="codeLength" class="form-control code-input" value="${code.codeLength}" required></td>
+                                </tr>
+                                <tr>
                                     <td class="table-secondary">내용</td>
                                     <td colspan="5"><input type="text" id="codeContent" value="${code.codeContent}" class="form-control content-input"></td>
                                 </tr>

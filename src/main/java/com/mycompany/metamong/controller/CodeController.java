@@ -74,7 +74,6 @@ public class CodeController {
 	public String addCode(Authentication auth, @RequestBody CodeAddDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
-		
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());		
 		apply.setApplyObj("CODE");
@@ -92,7 +91,6 @@ public class CodeController {
 		
 		// APPLY_ITEM 테이블
 		List<ItemAddDto> inputItems = form.getItems();
-		
 		for (ItemAddDto inputItem : inputItems) {
 			ApplyItemDto item = new ApplyItemDto();
 	        item.setApplyNo(apply.getApplyNo());
@@ -123,7 +121,6 @@ public class CodeController {
 	public String updateApplyCode(Authentication auth, @RequestBody CodeUpdateDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
-		
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());		
 		apply.setApplyObj("CODE");
@@ -132,10 +129,10 @@ public class CodeController {
 				
 		// APPLY_CODE 테이블
 		ApplyCodeDto code = new ApplyCodeDto();
-
 		code.setApplyNo(apply.getApplyNo());
 		code.setCodeNo(form.getCodeNo());
 		code.setCodeNm(form.getCodeNm());
+		code.setCodeLength(form.getCodeLength());
 		code.setCodeId(form.getCodeId());
 		code.setCodeContent(form.getCodeContent());
 		code.setCodeIsActive(form.getCodeIsActive());		
@@ -143,10 +140,8 @@ public class CodeController {
 		
 		// APPLY_ITEM 테이블
 		List<ItemUpdateDto> inputItems = form.getItems();
-			
 		for (ItemUpdateDto inputItem : inputItems) {
 			ApplyItemDto item = new ApplyItemDto();
-			
 	        item.setApplyNo(apply.getApplyNo());
 	        item.setItemId(inputItem.getItemId());
 	        item.setItemNm(inputItem.getItemNm());

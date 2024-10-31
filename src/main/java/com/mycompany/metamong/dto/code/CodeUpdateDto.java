@@ -11,6 +11,7 @@ public class CodeUpdateDto {
 	private int codeNo;
 	private String codeNm;
 	private String codeId;
+	private int codeLength;
 	private String codeContent;
 	private int codeIsActive;
 	private String applyReason;
