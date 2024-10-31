@@ -294,7 +294,9 @@ function applyIndex() {
 				  icon: 'success',
 				  title: '인덱스 신청이 완료되었습니다.',
 				  text: '인덱스 승인 후, 사용이 가능합니다.',
-				  })
+				  }).then(result=>{
+	    			  location.href="/Metamong/index/indexApplyList";
+	    		  })
 		},
 		error : function(xhr, status, error) {
 			Swal.fire({ 
