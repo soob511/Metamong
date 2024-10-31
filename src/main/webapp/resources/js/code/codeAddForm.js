@@ -13,7 +13,7 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val().trim();
         const itemContent = $('#itemContent').val().trim();
 
-        if(itemCheck() != 0) {
+        if(itemCheck(0) != 0) {
             items.push({ itemId: itemId, itemNm: itemNm, itemContent: itemContent });
             itemList();
         }
@@ -40,7 +40,7 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val().trim();
         const itemContent = $('#itemContent').val().trim();
 
-        if(itemCheck() != 0) {
+        if(itemCheck(1) != 0) {
 	        updateItem = { itemId: itemId, itemNm: itemNm, itemContent: itemContent };
 	    	items.splice(itemIndex, 1, updateItem);
 	        itemList();
@@ -106,15 +106,20 @@ $(document).ready(function() {
         });
     });
     
-    function itemCheck() {
+    function itemCheck(isEdit) {
     	const itemId = $('#itemId').val().trim();
     	const itemNm = $('#itemNm').val().trim();
     	
-    	 let isExist = false;
-         for (let i = 0; i <  items.length; i++) {
-         	if(itemId == items[i].itemId && i != itemIndex)
-               isExist = true;
-         }
+    	let isExist = false;
+        for (let i = 0; i <  items.length; i++) {
+       	 if(isEdit == 0) {
+       		 if(itemId == items[i].itemId)
+                    isExist = true;
+       	 } else {
+       		 if(itemId == items[i].itemId && i != itemIndex)
+                    isExist = true;
+       	 }
+        }
          
          if (!itemId || !itemNm) {
              Swal.fire({
