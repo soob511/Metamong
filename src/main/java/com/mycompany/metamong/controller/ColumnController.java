@@ -33,6 +33,6 @@ public class ColumnController {
 			@RequestParam SchemaEnum schemaName,
 			@RequestParam int tableNo
 			) {
-		return columnService.getColumnList(schemaName.getSchemaName(), tableNo);
+		return columnService.getColumnList(schemaName, tableNo);
 	}
 }

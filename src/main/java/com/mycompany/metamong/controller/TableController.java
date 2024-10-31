@@ -55,7 +55,7 @@ public class TableController {
 	public List<TableDto> searchTable(
 			@RequestParam SchemaEnum schemaName
 			) {
-		return tableService.getTableName(schemaName.getSchemaName());			
+		return tableService.getTableName(schemaName);			
 	}
 	
 	@ResponseBody

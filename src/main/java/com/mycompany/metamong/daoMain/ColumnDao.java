@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
+import com.mycompany.metamong.enums.SchemaEnum;
 
 @Mapper
 public interface ColumnDao {
@@ -15,5 +16,5 @@ public interface ColumnDao {
 
 	public int insertApplyColumn(ApplyColumnDto applyColumn);
 
-	public List<ColumnDto> selectColumnByTable(@Param("schemaName") String schemaName, @Param("tableNo") int tableNo);
+	public List<ColumnDto> selectColumnByTable(@Param("schemaName") SchemaEnum schemaName, @Param("tableNo") int tableNo);
 }
