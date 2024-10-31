@@ -80,8 +80,7 @@ public class IndexService {
 		return list;
 	}
 	
-	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
-		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
+	public void addApplyIndex(ApplyIndexDto applyIndexDto) {
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
 
