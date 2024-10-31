@@ -45,8 +45,8 @@
 		<selectKey keyProperty="codeNo" resultType="int" order="BEFORE">
 			SELECT seq_code_no.nextval FROM dual
 		</selectKey>
-		INSERT INTO apply_code (apply_no, code_no, code_nm, code_id, code_content, code_isactive)
-		VALUES (#{applyNo}, #{codeNo}, #{codeNm}, #{codeId}, #{codeContent}, 1)
+		INSERT INTO apply_code (apply_no, code_no, code_nm, code_id, code_content, code_isactive, code_length)
+		VALUES (#{applyNo}, #{codeNo}, #{codeNm}, #{codeId}, #{codeContent}, 1, #{codeLength})
 	</insert>
 	
 	<insert id="updateApplyCode" parameterType="ApplyCode">

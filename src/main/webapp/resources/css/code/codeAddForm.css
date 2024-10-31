@@ -61,9 +61,9 @@ thead{
     padding: 15px 10px;
 }
 
-.content-input{
-	min-height: 120px !important;
-	max-height:120px !important;
+.item .content-input{
+	min-height: 145px !important;
+	max-height:145px !important;
 }
 
 .code-buttons{
