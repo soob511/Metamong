@@ -56,7 +56,7 @@ public class TableController {
 	public List<TableDto> searchTable(
 			@RequestParam SchemaEnum schemaName
 			) {
-		return tableService.getTableName(schemaName.getSchemaName());			
+		return tableService.getTableName(schemaName);			
 	}
 	
 	@ResponseBody
@@ -115,15 +115,23 @@ public class TableController {
 		return "dbObject/table/tableApplyList";
 	}
 	
+	@GetMapping("/tableUpdateForm")
+	public String tableUpdateForm(@RequestParam int tableNo, Model model) {
+		TableDto table = tableService.getTable(tableNo);
+		model.addAttribute("table", table);
+		
+		List<ColumnDto> column = columnService.getColumnList(tableNo);
+		log.info(column.toString());
+		model.addAttribute("column", column);
+		
+		return "dbObject/table/tableUpdateForm";
+	}
+	
 	@GetMapping("/tableCompare")
 	public String tableCompare() {
 		return "dbObject/table/tableCompare";
 	}
 	
-	@GetMapping("/tableUpdateForm")
-	public String tableUpdateForm() {
-		return "dbObject/table/tableUpdateForm";
-	}
 	
 	@GetMapping("/tableApplyList")
 	public String tableApplyList(Model model) {

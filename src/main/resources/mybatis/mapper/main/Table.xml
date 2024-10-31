@@ -44,5 +44,11 @@
      WHERE apply_no = #{applyNo}
 </select>
 
+<select id="selectTable" parameterType="int" resultType="Table">
+	SELECT table_no,table_nm,table_id,table_content,schema_nm
+	FROM tables
+	WHERE table_no = #{tableNo}
+</select>
+
 </mapper>
 	

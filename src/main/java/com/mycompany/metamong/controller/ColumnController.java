@@ -1,6 +1,5 @@
 package com.mycompany.metamong.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,6 @@ public class ColumnController {
 			@RequestParam SchemaEnum schemaName,
 			@RequestParam int tableNo
 			) {
-		return columnService.getColumnList(schemaName.getSchemaName(), tableNo);
+		return columnService.getColumnList(schemaName, tableNo);
 	}
 }

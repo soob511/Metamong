@@ -62,9 +62,8 @@
 								<div class="tables-buttons">
 									<a href="tableAddForm">
 										<button class="btn-add">추가</button>
-									</a> <a href="tableUpdateForm">
-										<button class="btn-edit">수정</button>
 									</a>
+										<button class="btn-edit">수정</button>
 								</div>
 							</div>
 							<div class="table-contanier">
@@ -80,7 +79,7 @@
 									</thead>
 									<tbody id="tableList">
 										<c:forEach items="${list}" var="table" varStatus="status">
-											<tr class="tableListTr"
+											<tr class="tableListTr" data-table-no="${table.tableNo}"
 												onclick="showColumnList(${table.tableNo})">
 												<th>${status.index+1}</th>
 												<td>${table.tableNm}</td>

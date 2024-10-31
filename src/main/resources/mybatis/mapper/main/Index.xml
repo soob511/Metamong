@@ -24,6 +24,17 @@
 		ORDER BY i.index_name, ic.column_position
 	</select>
 	
+	<insert id="insertApplyIndex" parameterType="ApplyIndex">
+		INSERT INTO apply_index (
+			apply_no, table_no, idx_name, 
+			is_unique, ref_column
+			)
+		VALUES (
+			#{applyNo}, #{tableNo}, #{idxName}, 
+			#{isUnique}, #{refColumn}
+		)	
+	</insert>
+	
     <insert id="insertIndex" parameterType="String">
         ${sqlSyn}
     </insert>
