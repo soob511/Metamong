@@ -5,6 +5,11 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $("#tableList").on("click", ".tableListTr", function() {
+	    $(".tableListTr").removeClass("table-active");
+	    $(this).addClass("table-active");
+	});
+    
     $(".bi-search").on("click", function() {
         searchTable();
     });
@@ -50,7 +55,7 @@ function showColumnList(tableId) {
 
 function searchTable() {
     var content = $("#tableNameSearch").val().trim();
-    var schema= $("#schemaSelect option:selected").data("name");
+    var schema= $("#schemaSelect").val();
 
     $.ajax({
         url: "/Metamong/table/tableSearch",

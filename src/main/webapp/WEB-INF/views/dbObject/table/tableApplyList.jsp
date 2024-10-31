@@ -10,7 +10,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/applyList.css"
 	rel="stylesheet">
-
+ 
 </head>
 <body>
 	<div class="container">
@@ -36,11 +36,10 @@
 								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 								<select id="schemaSelect" class="form-select"
 									aria-label="Default select example">
-									<option value="All" data-name="">전체</option>
+									<option value="">전체</option>
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
-										<option value="${schemaEnum.name()}"
-											data-name="${schemaEnum.getSchemaName()}">
-											${schemaEnum.getSchemaName()}</option>
+										<option value="${schemaEnum.name()}">
+											${schemaEnum.name()}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -65,8 +64,8 @@
 					</div>
 					<div class="table-container">
 						<table class="table table-hover">
-							<thead class="table">
-								<tr class="table-primary">
+							<thead class="table-secondary">
+								<tr>
 									<th scope="col">No.</th>
 									<th scope="col">신청일자</th>
 									<th scope="col">신청자</th>
@@ -87,8 +86,8 @@
 										<td>${tableList.schemaName}</td>
 										<td>${tableList.tableId}</td>
 										<td>${tableList.applyObj}</td>
-										<td><a href="tableApplyDetail"><button
-													class="btn-history-details">상세보기</button></a></td>
+										<td><button
+													class="btn-history-details" onclick="tableListDetail(${tableList.applyNo},${status.index+1})">상세보기</button></td>
 										<td class="code-approve"><c:choose>
 												<c:when test="${tableList.approvalStatus == 0}">
 													<span id="status-await">승인대기</span>

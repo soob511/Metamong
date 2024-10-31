@@ -29,4 +29,8 @@ public class ColumnService {
 		columnDao.insertApplyColumn(applyColumn);	
 	}
 
+	public List<ColumnDto> getColumnByApplyNo(int applyNo) {
+		return columnDao.selectColumnByApplyNo(applyNo);
+	}
+
 }

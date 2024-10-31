@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Service
@@ -25,5 +26,9 @@ public class ApplyListService {
 
 	public List<ApplyTableDto> getApplyTableSearch(Map<String, String> form) {
 		return applyListDao.selectApplyTableSearch(form);
+	}
+
+	public ApplyTableDeatilDto getTableListDetail(int applyNo) {
+		return applyListDao.selectTableListDetail(applyNo);
 	}
 }

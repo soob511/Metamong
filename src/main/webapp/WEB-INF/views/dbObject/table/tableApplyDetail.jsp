@@ -1,6 +1,8 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,41 +34,53 @@
 							<div class="codeApplyInfo-subtitle">신청정보</div>
 							<table class="table table-bordered codeApplyInfo-table">
 								<tr>
-									<td class="table-primary">No.</td>
+									<td class="table-secondary">No.</td>
 									<td colspan="5">
-										<div class="table-text">12345</div>
+										<div class="table-text">${indexNo}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">신청일자</td>
+									<td class="table-secondary">신청일자</td>
 									<td colspan="3">
-										<div class="table-text">2024-10-22</div>
+										<div class="table-text">
+											<fmt:formatDate value="${applyList.applyDate}"
+												pattern="yyyy-MM-dd" />
+										</div>
 									</td>
-									<td class="table-primary">신청자</td>
+
+									<td class="table-secondary">신청자</td>
 									<td>
-										<div class="table-text">홍길동</div>
+										<div class="table-text">${applyList.MName}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">처리일자</td>
-									<td colspan="3">
-										<div class="table-text">2024-10-25</div>
-									</td>
-									<td class="table-primary">처리자</td>
+									<td class="table-secondary">처리일자</td>
+									<td colspan="3"><fmt:formatDate
+											value="${applyList.complDate}" pattern="yyyy-MM-dd" /></td>
+
+									<td class="table-secondary">처리자</td>
 									<td>
-										<div class="table-text">김철수</div>
+										<div class="table-text">${applyList.dbaName}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">승인여부</td>
+									<td class="table-secondary">승인상태</td>
 									<td colspan="5">
-										<div class="table-text">Y</div>
+										<div class="table-text">
+											<c:choose>
+												<c:when test="${applyList.approvalStatus == 0}">승인대기</c:when>
+												<c:when test="${applyList.approvalStatus == 1}">승인</c:when>
+												<c:when test="${applyList.approvalStatus == 2}">반려</c:when>
+												<c:when test="${applyList.approvalStatus == 3}">반영</c:when>
+											</c:choose>
+										</div>
 									</td>
+
 								</tr>
 								<tr>
-									<td class="table-primary">사유</td>
+									<td class="table-secondary">반려사유</td>
 									<td colspan="5">
-										<div class="table-text" id="table-content">코드 재작성 필요</div>
+										<div class="table-text" id="table-content">${applyList.rejectReason}</div>
 									</td>
 								</tr>
 							</table>
@@ -75,28 +89,27 @@
 							<div class="codeAdd-subtitle">테이블</div>
 							<table class="table table-bordered code-table">
 								<tr>
-									<td class="table-primary">스키마명</td>
+									<td class="table-secondary">스키마명</td>
 									<td colspan="5">
-										<div class="table-text">EMP</div>
+										<div class="table-text">${applyList.schemaName}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">테이블(논리)</td>
+									<td class="table-secondary">테이블(논리)</td>
 									<td colspan="5">
-										<div class="table-text">재산정보</div>
+										<div class="table-text">${applyTable.tableNm}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">테이블(물리)</td>
+									<td class="table-secondary">테이블(물리)</td>
 									<td colspan="5">
-										<div class="table-text">PRPT_INFO</div>
+										<div class="table-text">${applyTable.tableId}</div>
 									</td>
 								</tr>
-								<!-- 사용여부 추가 -->
 								<tr>
-									<td class="table-primary">신청사유</td>
+									<td class="table-secondary">신청사유</td>
 									<td colspan="5">
-										<div class="table-text" id="table-content">긴히 쓸일이 있어용</div>
+										<div class="table-text" id="table-content">${applyList.applyReason}</div>
 									</td>
 								</tr>
 							</table>
@@ -106,16 +119,16 @@
 
 				</div>
 				<div class="button-group">
-				<a href="tableCompare">
-					<div class="btn-compare" type="button">전/후비교</div>
+					<a href="tableCompare">
+						<div class="btn-compare" type="button">전/후비교</div>
 					</a>
 				</div>
 
 
 				<div class="item-container">
 					<div class="item-header">컬럼</div>
-					<table class="table table-hover bottom-table">
-						<thead class="table-primary">
+					<table class="table table-hover  bottom-table">
+						<thead class="table-secondary">
 							<tr>
 								<th scope="col">No.</th>
 								<th scope="col">컬럼(논리)</th>
@@ -127,33 +140,26 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th>001</th>
-								<td>자동차</td>
-								<td>CARNO</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NULL</td>
-								<td>Y</td>	
-							</tr>
-							<tr>
-									<th>002</th>
-								<td>자동차</td>
-								<td>CARNO</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NULL</td>
-								<td>N</td>	
-							</tr>
-							<tr>
-							<th>003</th>
-								<td>자동차</td>
-								<td>CARNO</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NULL</td>
-								<td>N</td>	
-							</tr>
+							<c:forEach items="${applyColumn}" var="applyColumn"
+								varStatus="status">
+								<tr>
+									<th>${status.index+1}</th>
+									<td>${applyColumn.colNm}</td>
+									<td>${applyColumn.colId}</td>
+									<td>${applyColumn.dataType}</td>
+									<td>${applyColumn.colLength}</td>
+									<td><c:choose>
+											<c:when test="${applyColumn.colIsnullable == 1}">NULL</c:when>
+											<c:otherwise>NOT NULL</c:otherwise>
+										</c:choose></td>
+
+									<td><c:choose>
+											<c:when test="${applyColumn.colIspk == 1}">Y</c:when>
+											<c:otherwise>N</c:otherwise>
+										</c:choose></td>
+
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -163,8 +169,12 @@
 						<div class="btn-list" type="button">목록</div>
 					</a>
 				</div>
+			</div>
+		</div>
+	</div>
 
-				<script
-					src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableApplyList.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableApplyList.js"></script>
 </body>
+
 </html>

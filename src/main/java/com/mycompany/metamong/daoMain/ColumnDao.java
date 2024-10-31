@@ -17,4 +17,7 @@ public interface ColumnDao {
 	public int insertApplyColumn(ApplyColumnDto applyColumn);
 
 	public List<ColumnDto> selectColumnByTable(@Param("schemaName") SchemaEnum schemaName, @Param("tableNo") int tableNo);
+	
+	public List<ColumnDto> selectColumnByApplyNo(int applyNo);
+
 }

@@ -19,4 +19,9 @@ public interface TableDao {
 	public int insertApplyTable(ApplyTableDto applyTable);
 
 	public List<TableDto> selectTableListBySchema(SchemaEnum schemaName);
+	
+	public TableDto selectTableByApplyNo(int applyNo);
+
+
+
 }

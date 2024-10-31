@@ -41,11 +41,10 @@
 						<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 						<select id="schemaSelect" class="form-select"
 							aria-label="Default select example">
-							<option value="All" data-name="">전체</option>
+							<option value="" >전체</option>
 							<c:forEach items="${schemaEnum}" var="schemaEnum">
-								<option value="${schemaEnum.name()}"
-									data-name="${schemaEnum.getSchemaName()}">
-									${schemaEnum.getSchemaName()}</option>
+								<option value="${schemaEnum.name()}">
+									${schemaEnum.name()}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -70,7 +69,7 @@
 							</div>
 							<div class="table-contanier">
 								<table class="table table-hover">
-									<thead class="table-primary">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">테이블(논리)</th>
@@ -81,7 +80,8 @@
 									</thead>
 									<tbody id="tableList">
 										<c:forEach items="${list}" var="table" varStatus="status">
-											<tr onclick="showColumnList(${table.tableNo})">
+											<tr class="tableListTr"
+												onclick="showColumnList(${table.tableNo})">
 												<th>${status.index+1}</th>
 												<td>${table.tableNm}</td>
 												<td>${table.tableId}</td>
@@ -90,6 +90,7 @@
 											</tr>
 										</c:forEach>
 									</tbody>
+
 								</table>
 							</div>
 						</div>
@@ -101,7 +102,7 @@
 							</div>
 							<div class="column-contanier">
 								<table class="table table-hover">
-									<thead class="table-primary">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">컬럼(논리)</th>
