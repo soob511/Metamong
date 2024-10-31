@@ -79,6 +79,11 @@ public class IndexService {
 		}
 		return list;
 	}
+	
+	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
+		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
+		indexDao.insertApplyIndex(applyIndexDto);
+	}
 
 	public void createIndex(IndexDto indexdto) {
 		
