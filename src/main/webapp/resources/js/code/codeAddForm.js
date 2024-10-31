@@ -13,7 +13,7 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val().trim();
         const itemContent = $('#itemContent').val().trim();
 
-        if(itemCheck() != 0) {
+        if(itemCheck(0) != 0) {
             items.push({ itemId: itemId, itemNm: itemNm, itemContent: itemContent });
             itemList();
         }
@@ -40,7 +40,7 @@ $(document).ready(function() {
         const itemNm = $('#itemNm').val().trim();
         const itemContent = $('#itemContent').val().trim();
 
-        if(itemCheck() != 0) {
+        if(itemCheck(1) != 0) {
 	        updateItem = { itemId: itemId, itemNm: itemNm, itemContent: itemContent };
 	    	items.splice(itemIndex, 1, updateItem);
 	        itemList();
@@ -65,22 +65,24 @@ $(document).ready(function() {
     $('#code-apply').click(function() {
         const codeNm = $('#codeNm').val().trim();
         const codeId = $('#codeId').val().trim();
+        const codeLength = $('#codeLength').val().trim();
         const codeContent = $('#codeContent').val().trim();
         const applyReason = $('#applyReason').val().trim();
 
         let codeData = {
             codeNm: codeNm,
             codeId: codeId,
+            codeLength: codeLength,
             codeContent: codeContent,
             applyReason: applyReason,
             items: items
         };
         
-        if (!codeNm || !codeId || !applyReason) {
+        if (!codeNm || !codeId || !codeLength || !applyReason) {
             Swal.fire({
                 icon: 'warning',
                 title: '필수내역을 공란없이<br/>입력해 주세요.',
-                text: '필수입력사항: 코드명(논리/물리), 신청사유'
+                text: '필수입력사항: 코드명(논리/물리), 코드길이, 신청사유'
             });
             return;
         }
@@ -104,15 +106,20 @@ $(document).ready(function() {
         });
     });
     
-    function itemCheck() {
+    function itemCheck(isEdit) {
     	const itemId = $('#itemId').val().trim();
     	const itemNm = $('#itemNm').val().trim();
     	
-    	 let isExist = false;
-         for (let i = 0; i <  items.length; i++) {
-         	if(itemId == items[i].itemId && i != itemIndex)
-               isExist = true;
-         }
+    	let isExist = false;
+        for (let i = 0; i <  items.length; i++) {
+       	 if(isEdit == 0) {
+       		 if(itemId == items[i].itemId)
+                    isExist = true;
+       	 } else {
+       		 if(itemId == items[i].itemId && i != itemIndex)
+                    isExist = true;
+       	 }
+        }
          
          if (!itemId || !itemNm) {
              Swal.fire({
