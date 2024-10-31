@@ -119,7 +119,7 @@ public class NoticeController {
 	@PostMapping("/updateNotice")
 	public int updateNotice(
 			@ModelAttribute NoticeUpdateFormDto form) throws Exception {
-		log.info("실행돼?");
+		log.info("실행");
 		NoticeDto notice = new NoticeDto();
 		
 		notice.setNoticeId(form.getNoticeId());
