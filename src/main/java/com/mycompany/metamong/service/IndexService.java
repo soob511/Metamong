@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoSub1.Sub1IndexDao;
 import com.mycompany.metamong.daoSub2.Sub2IndexDao;
 import com.mycompany.metamong.daoSub3.Sub3IndexDao;
+import com.mycompany.metamong.dto.applyList.ApplyListDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 
@@ -23,6 +26,8 @@ public class IndexService {
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
+	@Autowired
+	private ApplyListService applyListService;
 
 	public List<IndexDto> getIndexList() {
 		List<IndexDto> list = new ArrayList<>();
@@ -76,9 +81,11 @@ public class IndexService {
 		}
 		return list;
 	}
-	
-	public void createIndexApply() {
-		
+	@Transactional
+	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
+		applyListService.addApplyList(applyListDto);
+		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
+		indexDao.insertApplyIndex(applyIndexDto);
 	}
 	
 	public void createIndex(IndexDto indexdto) {
