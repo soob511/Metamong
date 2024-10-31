@@ -17,7 +17,6 @@ public class ApplyService {
 	@Transactional
 	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
 		applyListService.addApplyList(applyListDto);
-		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
 		indexService.addApplyIndex(applyListDto, applyIndexDto);
 	}
 	
