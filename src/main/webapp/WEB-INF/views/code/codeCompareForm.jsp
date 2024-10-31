@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>코드 전후비교</title>
 <link
-	href="${pageContext.request.contextPath}/resources/css/code/codeCompare.css"
+	href="${pageContext.request.contextPath}/resources/css/code/codeCompareForm.css"
 	rel="stylesheet">
 </head>
 <body>
@@ -17,67 +17,76 @@
 			<div class="col">
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="container table-management">
+				<div>
+				<a href="codeUpdateForm?codeNo=${oldCode.codeNo}&isUpdated=1">
+					<button class="btn-back">뒤로가기</button>
+				</a>
+					
+				</div>
 					<div class="row">
 						<div class="col-6 before-table">
 								<div class="before-management">
 									<p class="before-management-title">> ${oldCode.codeId}(${oldCode.codeNm}) 코드 수정전</p>
 								</div>
-								<table class="table table-hover">
-									<thead class="table-primary">
-										<tr>
-											<th scope="col">No.</th>
-											<th scope="col">항목코드</th>
-											<th scope="col">항목명</th>
-											<th scope="col">사용여부</th>
-											<th scope="col">내용</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach items="${oldItems}" var="item" varStatus="i">
-										<tr>
-											<td>${i.index + 1}</td>
-											<td>${item.itemId}</td>
-											<td>${item.itemNm}</td>
-											<td>${item.itemIsActive == 1 ? 'Y' : 'N' }</td>
-											<td>${item.itemContent}</td>
-										</tr>
-									</c:forEach>
-										
-									</tbody>
-								</table>
+								<div class="table-container">
+									<table class="table">
+										<thead class="table-secondary">
+											<tr>
+												<th scope="col">No.</th>
+												<th scope="col">항목코드</th>
+												<th scope="col">항목명</th>
+												<th scope="col">사용여부</th>
+												<th scope="col">내용</th>
+											</tr>
+										</thead>
+										<tbody>
+										<c:forEach items="${oldItems}" var="item" varStatus="i">
+											<tr>
+												<td>${i.index + 1}</td>
+												<td>${item.itemId}</td>
+												<td>${item.itemNm}</td>
+												<td>${item.itemIsActive == 1 ? 'Y' : 'N' }</td>
+												<td>${item.itemContent}</td>
+											</tr>
+										</c:forEach>
+										</tbody>
+									</table>
+								</div>
 						</div>
 						<div class="col-6 after-table">
 								<div class="after-management">
 									<p class="after-management-title">> ${newCode.codeId}(${newCode.codeNm}) 코드 수정후</p>
 								</div>
-								<table class="table table-hover">
-									<thead class="table-primary">
-										<tr>
-											<th scope="col">No.</th>
-											<th scope="col">항목코드</th>
-											<th scope="col">항목명</th>
-											<th scope="col">사용여부</th>
-											<th scope="col">내용</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach items="${newItems}" var="item" varStatus="i">
-										<tr>
-											<td>${i.index + 1}</td>
-											<td>${item.itemId}</td>
-											<td>${item.itemNm}</td>
-											<td>${item.itemIsActive == 1 ? 'Y' : 'N' }</td>
-											<td>${item.itemContent}</td>
-										</tr>
-									</c:forEach>
-									</tbody>
-								</table>
+								<div class="table-container">
+									<table class="table">
+										<thead class="table-secondary">
+											<tr>
+												<th scope="col">No.</th>
+												<th scope="col">항목코드</th>
+												<th scope="col">항목명</th>
+												<th scope="col">사용여부</th>
+												<th scope="col">내용</th>
+											</tr>
+										</thead>
+										<tbody>
+										<c:forEach items="${newItems}" var="item" varStatus="i">
+											<tr class="${item.itemIsUpdate == 1 ? 'updated' : null}">
+												<td>${i.index + 1}</td>
+												<td>${item.itemId}</td>
+												<td>${item.itemNm}</td>
+												<td>${item.itemIsActive == 1 ? 'Y' : 'N' }</td>
+												<td>${item.itemContent}</td>
+											</tr>
+										</c:forEach>
+										</tbody>
+									</table>
+								</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/code/codeCompare.js" ></script>
+	<script src="${pageContext.request.contextPath}/resources/js/code/codeCompareForm.js" ></script>
 </body>
 </html>

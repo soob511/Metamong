@@ -1,9 +1,7 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -106,13 +104,17 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeUpdateForm")
-	public String codeUpdateForm(Model model, @RequestParam int codeNo) {
-		CodeDto code = codeService.getCodeByNo(codeNo);
+	public String codeUpdateForm(Model model, HttpSession session, @RequestParam int codeNo, @RequestParam int isUpdated) {
 		List<ItemDto> items = itemService.getItemList(codeNo);
-		
-		model.addAttribute("code", code);
-		model.addAttribute("items", items);
-		
+		if(isUpdated == 0) {
+			CodeDto code = codeService.getCodeByNo(codeNo);
+			model.addAttribute("code", code);
+			model.addAttribute("items", items);
+		} else {
+			model.addAttribute("code", session.getAttribute("newCode"));
+			model.addAttribute("items", session.getAttribute("newItems"));
+		}
+		model.addAttribute("itemLength", items.size());
 		return "code/codeUpdateForm";
 	}
 
@@ -162,9 +164,12 @@ public class CodeController {
 	
 	@PostMapping("/codeCompare")
 	public String codeCompare(@RequestBody CodeUpdateDto form, HttpSession session) {
-		Map<String, Object> newCode = new HashMap<>();
-		newCode.put("codeId", form.getCodeId());
-		newCode.put("codeNm", form.getCodeNm());
+		CodeDto newCode = new CodeDto();
+		newCode.setCodeNo(form.getCodeNo());
+		newCode.setCodeNm(form.getCodeNm());
+		newCode.setCodeId(form.getCodeId());
+		newCode.setCodeContent(form.getCodeContent());
+		newCode.setCodeIsActive(form.getCodeIsActive());
 
 		session.setAttribute("newCode", newCode);
 		session.setAttribute("newItems", form.getItems());

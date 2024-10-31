@@ -5,18 +5,25 @@ $(document).ready(function() {
     $('.sub-menu:eq(0) .sub-item').removeClass('active');
     $('.sub-menu:eq(0) .sub-item:first').addClass('active');
 
+    console.log("js 실행");
+    
     const items = [];
-    let num = $('.item-list th:last').text();
+    let num = $('.item-list').data('item-length');
 
+    console.log("items: ", items);
+    console.log("num: ", num);
+    
     for(let i = 0; i < num; i++) {
     	items.push({ 
         	itemId: $('.item-list .itemId').eq(i).text(), 
         	itemNm: $('.item-list .itemNm').eq(i).text(), 
         	itemIsActive: $('.item-list .itemIsActive').eq(i).text() == 'Y' ? 1 : 0, 
         	itemContent: $('.item-list .itemContent').eq(i).text(),
-        	itemIsUpdate: 0
+        	itemIsUpdate: $('.item-index').data('isupdate')
     	});
     }
+    
+    console.log(items);
 
     /* 항목 추가 */
     $('#item-add').click(function() {
@@ -25,7 +32,7 @@ $(document).ready(function() {
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
         
-        if(itemCheck() != 0) {
+        if(itemCheck(0) != 0) {
             items.push({ itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 });
             itemList();
         }
@@ -55,7 +62,7 @@ $(document).ready(function() {
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
         
-        if(itemCheck() != 0) {
+        if(itemCheck(1) != 0) {
 	    	updateItem = { itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 };
 	    	items.splice(itemIndex, 1, updateItem);
 	        itemList();
@@ -154,14 +161,19 @@ $(document).ready(function() {
         });
     });
     
-    function itemCheck() {
+    function itemCheck(isEdit) {
     	const itemId = $('#itemId').val().trim();
     	const itemNm = $('#itemNm').val().trim();
     	
     	 let isExist = false;
          for (let i = 0; i <  items.length; i++) {
-         	if(itemId == items[i].itemId && i != itemIndex)
-               isExist = true;
+        	 if(isEdit == 0) {
+        		 if(itemId == items[i].itemId)
+                     isExist = true;
+        	 } else {
+        		 if(itemId == items[i].itemId && i != itemIndex)
+                     isExist = true;
+        	 }
          }
          
          if (!itemId || !itemNm) {
@@ -201,7 +213,7 @@ $(document).ready(function() {
                     <td class="itemNm">${items[i].itemNm}</td>
                     <td class="itemIsActive">${items[i].itemIsActive == 1 ? 'Y' : 'N'}</td>
                     <td class="itemContent">${items[i].itemContent ? items[i].itemContent : '-'}</td>
-                    <td>${i < num ? '-' : '<i class="bi bi-trash3"></i>'}</td>              
+                    <td>${i < num ? '-' : '<i class="bi bi-trash3"></i>'}</td>
                 </tr>`
             );
         }

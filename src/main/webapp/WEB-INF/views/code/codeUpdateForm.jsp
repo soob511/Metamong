@@ -107,15 +107,15 @@
 	                                <th></th>
 	                            </tr>
 	                        </thead>
-	                        <tbody class="item-list">
+	                        <tbody class="item-list" data-item-length="${itemLength}">
 		                        <c:forEach items="${items}" var="item" varStatus="i">
 		                            <tr class="item">
-		                                <th>${i.index+1}</th>
+		                                <th class="item-index" data-isupdate="${item.itemIsActive}">${i.index+1}</th>
 		                                <td class="itemId">${item.itemId}</td>
 		                                <td class="itemNm">${item.itemNm}</td>
 		                                <td class="itemIsActive">${item.itemIsActive == 1 ? 'Y' : 'N'}</td>
 		                                <td class="itemContent">${item.itemContent}</td>
-		                                <td>-</td>
+		                                <td>${i.index < itemLength ? '-' : '<i class="bi bi-trash3"></i>'}</td>
 		                            </tr>
 		                        </c:forEach>
 	                        </tbody>
