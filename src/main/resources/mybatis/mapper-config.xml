@@ -23,5 +23,6 @@
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto" alias="ApplyTableDetail"/>
 		<typeAlias type="com.mycompany.metamong.dto.code.ApplyCodeDto" alias="ApplyCode"/>
 		<typeAlias type="com.mycompany.metamong.dto.item.ApplyItemDto" alias="ApplyItem"/>
+		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDto" alias="ApplyIndex"/>
 	</typeAliases>
 </configuration>

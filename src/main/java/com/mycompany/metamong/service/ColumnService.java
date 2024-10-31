@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
+import com.mycompany.metamong.enums.SchemaEnum;
 
 @Service
 public class ColumnService {
@@ -20,7 +21,7 @@ public class ColumnService {
 		return columnDao.selectColumnList(tableId);
 	}
 	
-	public List<ColumnDto> getColumnList(String schemaName, int tableNo) {
+	public List<ColumnDto> getColumnList(SchemaEnum schemaName, int tableNo) {
 		return columnDao.selectColumnByTable(schemaName, tableNo);
 	}
 
