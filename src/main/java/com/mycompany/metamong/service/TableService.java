@@ -37,4 +37,8 @@ public class TableService {
 		return tableDao.selectTableByApplyNo(applyNo);
 	}
 
+	public TableDto getTable(int tableNo) {
+		return tableDao.selectTable(tableNo);
+	}
+
 }
