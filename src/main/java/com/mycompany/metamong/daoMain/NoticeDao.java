@@ -27,4 +27,6 @@ public interface NoticeDao {
 	public int insertNotice(NoticeDto notice);
 
 	public int deleteNotice(int noticeId);
+
+	public int updateNotice(NoticeDto notice);
 }

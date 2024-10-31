@@ -60,8 +60,9 @@
                    </tbody>                     
                 </table>
                 <div class="d-flex justify-content-end">
-                	<div class="btn btn-write">
+                	<div class="btn btn-write" id="btn-write">
                     	<a href="${pageContext.request.contextPath}/notice/noticeAddForm">작성하기</a>
+                    	
                 	</div>
                 </div>
                <!--  <nav aria-label="Page navigation">

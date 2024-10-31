@@ -84,6 +84,20 @@
 		)
 	</insert>
 	
+	<update id="updateNotice" parameterType="Notice">
+	    UPDATE notice
+	    SET 
+	        notice_title = #{noticeTitle},
+	        notice_regdate = #{noticeRegdate},
+	        notice_content = #{noticeContent}
+	        <if test="noticeFilename != null">
+	            , notice_filename = #{noticeFilename},
+	            notice_filetype = #{noticeFiletype},
+	            notice_filedata = #{noticeFiledata}
+	        </if>
+	    WHERE notice_id = #{noticeId}
+	</update>
+	
 	<delete id="deleteNotice" parameterType="int">
 		DELETE FROM notice
 		WHERE notice_id = #{noticeId}

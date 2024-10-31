@@ -49,4 +49,8 @@ public class NoticeService {
 	public int deleteNotice(int noticeId) {		
 		 return noticeDao.deleteNotice(noticeId);
 	}
+
+	public int updateNotice(NoticeDto notice) {
+		return noticeDao.updateNotice(notice);
+	}
 }

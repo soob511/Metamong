@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.notice.NoticeAddFormDto;
 import com.mycompany.metamong.dto.notice.NoticeDto;
+import com.mycompany.metamong.dto.notice.NoticeUpdateFormDto;
 import com.mycompany.metamong.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -92,8 +94,8 @@ public class NoticeController {
 		NoticeDto notice = new NoticeDto();
 		
 		notice.setNoticeTitle(form.getNoticeTitle());
-		notice.setNoticeContent(form.getNoticeContent());
 		notice.setNoticeRegdate(form.getNoticeRegdate());
+		notice.setNoticeContent(form.getNoticeContent());
 
 		MultipartFile noticeFile = form.getNoticeFile();
 		if(noticeFile!=null && !noticeFile.isEmpty()) {
@@ -103,6 +105,35 @@ public class NoticeController {
 		}
 		
 		return noticeService.insertNotice(notice);	
+	}
+	
+	@GetMapping("/noticeUpdateForm")
+	public String noticeUpdateForm(Model model, int noticeId) {
+		NoticeDto notice = noticeService.getNoticeDetail(noticeId);
+		model.addAttribute("notice", notice);
+		
+		return "notice/noticeUpdateForm";
+	}
+	
+	@ResponseBody
+	@PostMapping("/updateNotice")
+	public int updateNotice(
+			@ModelAttribute NoticeUpdateFormDto form) throws Exception {
+		log.info("실행");
+		NoticeDto notice = new NoticeDto();
+		
+		notice.setNoticeId(form.getNoticeId());
+		notice.setNoticeTitle(form.getNoticeTitle());
+		notice.setNoticeRegdate(form.getNoticeRegdate());
+		notice.setNoticeContent(form.getNoticeContent());
+
+		MultipartFile updateFile = form.getNoticeFile();
+		if(updateFile!=null && !updateFile.isEmpty()) {
+			notice.setNoticeFilename(updateFile.getOriginalFilename());
+			notice.setNoticeFiletype(updateFile.getContentType());
+			notice.setNoticeFiledata(updateFile.getBytes());
+		}    
+		return noticeService.updateNotice(notice);
 	}
 	
 	@ResponseBody
