@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,25 +29,30 @@
 							<table class="table table-bordered code-table">
 								<tr>
 									<td class="table-primary">스키마명</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="스키마명">
-											<option value="oti_user1">oti_user1</option>
-											<option value="oti_user2">oti_user2</option>
-									</select></td>
+									<td colspan="5">
+											<div class="table-text">${table.schemaNm}</div>
+									</td>
 								</tr>
 								<tr>
 									<td class="table-primary">테이블(논리)</td>
 									<td colspan="5">
-										<div class="table-text">재산정보</div>
+										<div class="table-text">${table.tableNm}</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-primary">테이블(물리)</td>
 									<td colspan="5">
-										<div class="table-text">PRPT</div>
+										<div class="table-text">${table.tableId}</div>
 									</td>
 								</tr>
 
+								<tr>
+									<td class="table-primary">내용</td>
+									<td colspan="5"><input type="text"
+										class="form-control content-input" placeholder="${table.tableContent}">
+									</td>
+								</tr>
+								
 								<tr>
 									<td class="table-primary">신청사유</td>
 									<td colspan="5"><input type="text"
@@ -71,13 +76,13 @@
 								<tr>
 									<td class="table-primary">컬럼(논리)</td>
 									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="재산구분" required>
+										class="form-control code-input"  required>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-primary">컬럼(물리)</td>
 									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="PRPT_FG" required>
+										class="form-control code-input"  required>
 									</td>
 								</tr>
 								<tr>
@@ -91,7 +96,7 @@
 								<tr>
 									<td class="table-primary">길이</td>
 									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="2" required>
+										class="form-control code-input" required>
 									</td>
 								</tr>
 
@@ -152,36 +157,18 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="${column}" var="column" varStatus="status">
 							<tr>
-								<th>1</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
+								<th>${status.index+1}</th>
+								<td>${column.colNm}</td>
+								<td>${column.colId}</td>
+								<td>${column.dataType}</td>
+								<td>${column.colLength}</td>
+								<td>${column.colIsnullable}</td>
+								<td>${column.colIspk}</td>
+								<td>-</td>
 							</tr>
-							<tr>
-								<th>2</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
-							<tr>
-								<th>3</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>
