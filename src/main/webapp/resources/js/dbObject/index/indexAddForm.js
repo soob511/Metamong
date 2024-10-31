@@ -34,9 +34,7 @@ $(document).ready(function() {
     });
     
     $('#btn-apply').click(function() {
-    	var indexName = $('#indexName').val();
-    	var indexApplyReason = $('#indexApplyReason').val();
-    	getIndexValues();
+    	applyIndex();
     });
 
 });
@@ -45,15 +43,15 @@ let indexCount = 1;
 
 $('#columnTableBody').on('click', '.form-check-input', function() {
     var row = $(this).closest('tr');
-    var colId = row.find('td[name="colId"]').text();
-    var colOrder = row.find('td[name="colOrder"] select').val();
+    var colId = row.find('td[data-name="colId"]').text();
+    var colOrder = row.find('td[data-name="colOrder"] select').val();
 
     if ($(this).is(':checked')) {
         const newRow = `
-            <tr data-value="${colId}">
-                <td name="indexCount" data-value="${indexCount}">${indexCount++}</td>
-                <td name="colId" data-value="${colId}">${colId}</td>
-                <td name="colOrder" data-value="${colOrder}">${colOrder}</td>
+            <tr>
+                <td data-name="indexCount" data-value="${indexCount}">${indexCount++}</td>
+                <td data-name="colId" data-value="${colId}">${colId}</td>
+                <td data-name="colOrder" data-value="${colOrder}">${colOrder}</td>
                 <td><i class="bi bi-trash3"></i></td>
             </tr>
         `;
@@ -76,12 +74,12 @@ $('#flexCheckDefault').change(function() {
     if (isChecked) {
         $('#columnTableBody .form-check-input').each(function() {
             var row = $(this).closest('tr');
-            var colId = row.find('td[name="colId"]').text();
-            var colOrder = row.find('td[name="colOrder"] select').val();
+            var colId = row.find('td[data-name="colId"]').text();
+            var colOrder = row.find('td[data-name="colOrder"] select').val();
 
             const newRow = `
                 <tr data-value="${colId}">
-                    <td name="indexCount">${indexCount++}</td>
+                    <td data-name="indexCount">${indexCount++}</td>
                     <td data-value="${colId}">${colId}</td>
                     <td data-value="${colOrder}">${colOrder}</td>
                     <td><i class="bi bi-trash3"></i></td>
@@ -146,7 +144,7 @@ $(document).on('click', '.bi-trash3', function() {
 
 function updateCount() {
     $('#indexApplyColumn tr').each(function(index) {
-        $(this).find('td[name="indexCount"]').text(index + 1);
+        $(this).find('td[data-name="indexCount"]').text(index + 1);
     });
 }
 
@@ -229,12 +227,12 @@ function filterColumn() {
 							<input class="form-check-input" type="checkbox" value=""></th>
 	                        <th>${count++}</th>
 	                        <td>${column.colNm}</td>
-	                        <td name="colId" data-value="${column.colId}">${column.colId}</td>
+	                        <td data-name="colId" data-value="${column.colId}">${column.colId}</td>
 	                        <td>${column.dataType}</td>
 	                        <td>${column.colLength}</td>
 	                        <td>${column.colIsnullable}</td>
 							<td>${column.colIspk}</td>
-							<td name="colOrder">
+							<td data-name="colOrder">
 								<select class="form-select" aria-label="Default select">
 									<option selected>ASC</option>
 									<option>DESC</option>
@@ -255,73 +253,55 @@ function filterColumn() {
 	});
 }
 
-//function applyIndex() {
-//	const schemaName = $('#schemaSelect').val();
-//	const tableNo = $('#tableSelect').val();
-//	const columnName = $()
-//	
-//	$.ajax({
-//		type : 'GET',
-//		url : 'searchTable',
-//		data : {
-//			schemaName : schemaName
-//		},
-//		success : function(data) {
-//			let html = '<option>선택</option>';
-//
-//			data.forEach(function(table) {
-//				html += `
-//					<option value="${table.tableNo}">${table.tableId}</option>`
-//			});
-//			$('#tableSelect').html(html);
-//		},
-//		error : function(xhr, status, error) {
-//			console.log('오류: ' + xhr.responseText);
-//		}
-//	});
-//}
-
-
-//function getIndexValues() {
-//    const tableValues = [];
-//    
-//    $('#indexApplyColumn tr').each(function() {
-//        const rowValues = {}; // 객체 형태로 초기화
-//        
-//        $(this).find('td').each(function() {
-//            const cellValue = $(this).attr('value'); // 각 셀의 value 속성 값
-//            const cellText = $(this).text().trim(); // 각 셀의 텍스트 값
-//            
-//            if (cellValue) { // value가 있는 경우에만 추가
-//                rowValues[cellValue] = cellText; // value를 키로 하고 텍스트를 값으로 저장
-//            }
-//        });
-//        
-//        if (Object.keys(rowValues).length > 0) { // rowValues가 비어있지 않은 경우에만 추가
-//            tableValues.push(rowValues);
-//        }
-//    });
-//    
-//    $.ajax({
-//		type : 'GET',
-//		url : 'searchTable',
-//		data : {
-//			tableValues
-//		},
-//		success : function(data) {
-//			let html = '<option>선택</option>';
-//
-//			data.forEach(function(table) {
-//				html += `
-//					<option value="${table.tableNo}">${table.tableId}</option>`
-//			});
-//			$('#tableSelect').html(html);
-//		},
-//		error : function(xhr, status, error) {
-//			console.log('오류: ' + xhr.responseText);
-//		}
-//	});
-//}
+function applyIndex() {
+	var refColumn = [];
     
+    $('#indexApplyColumn tr').each(function() {
+        var dataObject = {
+            colId: $(this).find('td').eq(1).data('value'),
+            colOrder: $(this).find('td').eq(2).data('value')										
+        };
+        refColumn.push(dataObject);
+    });
+	
+	var applyListDto = {
+		applyReason: $('#indexApplyReason').val(),
+		approvalStatus: 0,
+		schemaName: $('#schemaSelect').val(),
+		applyObj: 'INDEX',
+		applyType: 'CREATE'
+	};
 
-    
+	var applyIndexDto = {
+			tableNo: $('#tableSelect').val(),
+			idxName: $('#indexName').val(),
+			isUnique: $('#uniqueCheckBox').is(':checked') ? 1 : 0			
+	};
+	
+	var applyRequestDto = {
+		    applyListDto: applyListDto,
+		    applyIndexDto: applyIndexDto,
+		    refColumn: refColumn
+		};
+	
+	$.ajax({
+		type : 'POST',
+		url : 'applyIndex',
+	    contentType: 'application/json',
+	    data: JSON.stringify(applyRequestDto),
+		success : function(data) {
+			Swal.fire({ 
+				  icon: 'success',
+				  title: '인덱스 신청이 완료되었습니다.',
+				  text: '인덱스 승인 후, 사용이 가능합니다.',
+				  })
+		},
+		error : function(xhr, status, error) {
+			Swal.fire({ 
+				  icon: 'error',
+				  title: '인덱스 신청을 실패하였습니다.',
+				  text: '확인 후 다시 신청해주세요.',
+				  })
+		}
+	});
+}    

@@ -8,7 +8,7 @@
 }
 
 .table-container:first-of-type {
-    height: 550px;
+    height: 545px;
 }
 
 .table th, .table td {
@@ -128,9 +128,13 @@ hr {
     border: 1px solid #d9d9d9;
 }
 
-.index-apply-reason-title {
-    min-height: 50px !important;
-    max-height: 50px !important;
+.index-name-title {
+    min-height: 45px !important;
+    max-height: 45px !important;
+    width: 100%;
+	box-shadow: var(- -box-shadow);
+	border-radius: 5px;
+	border: 1px solid #d9d9d9;
 }
 
 .btn-add {

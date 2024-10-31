@@ -71,7 +71,7 @@
 									class="index-col-title d-flex justify-content-between align-items-end">
 									<div>
 										<span>UNIQUE</span> <input class="form-check-input"
-											type="checkbox" value="1" id="uniqueCheckBox">
+											type="checkbox" id="uniqueCheckBox">
 									</div>
 									<div class="index-btns">
 										<button id="upButton">
@@ -100,18 +100,16 @@
 								
 								<div class="index-apply-reason">
 									<p>인덱스제목</p>
-									<input class="index-apply-reason-title" id="indexName"></input>
+									<input class="index-name-title" id="indexName"></input>
 									<div class="msg d-flex" id="indexValidMessage"></div>
 								</div>
 								<div class="index-apply-reason">
 									<p>신청사유</p>
 									<textarea id="indexApplyReason"></textarea>
 									<div class="d-flex justify-content-end">
-										<a href="indexApplyList">
 											<button id="btn-apply" class="btn-add">
 												신청
-											</button>									
-										</a>
+											</button>
 									</div>
 								</div>
 							</div>
