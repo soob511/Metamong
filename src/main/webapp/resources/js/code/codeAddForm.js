@@ -65,22 +65,24 @@ $(document).ready(function() {
     $('#code-apply').click(function() {
         const codeNm = $('#codeNm').val().trim();
         const codeId = $('#codeId').val().trim();
+        const codeLength = $('#codeLength').val().trim();
         const codeContent = $('#codeContent').val().trim();
         const applyReason = $('#applyReason').val().trim();
 
         let codeData = {
             codeNm: codeNm,
             codeId: codeId,
+            codeLength: codeLength,
             codeContent: codeContent,
             applyReason: applyReason,
             items: items
         };
         
-        if (!codeNm || !codeId || !applyReason) {
+        if (!codeNm || !codeId || !codeLength || !applyReason) {
             Swal.fire({
                 icon: 'warning',
                 title: '필수내역을 공란없이<br/>입력해 주세요.',
-                text: '필수입력사항: 코드명(논리/물리), 신청사유'
+                text: '필수입력사항: 코드명(논리/물리), 코드길이, 신청사유'
             });
             return;
         }

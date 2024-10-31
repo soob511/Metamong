@@ -40,6 +40,12 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="table-secondary">코드 길이</td>
+                                    <td colspan="5">
+                                        <input type="text" id="codeLength" class="form-control code-input" placeholder="내용 입력" required>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="table-secondary">내용</td>
                                     <td colspan="5">
                                         <input type="text" id="codeContent" class="form-control content-input" placeholder="내용 입력">
