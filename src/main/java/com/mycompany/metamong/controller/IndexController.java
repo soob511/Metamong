@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
-import com.mycompany.metamong.dto.index.ApplyIndexRequest;
+import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
-import com.mycompany.metamong.dto.index.RefColumn;
+import com.mycompany.metamong.dto.index.RefColumnDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.IndexService;
 
@@ -64,15 +64,15 @@ public class IndexController {
 	@ResponseBody
 	@PostMapping("/applyIndex")
 	public void applyIndex(
-			@RequestBody ApplyIndexRequest applyIndexRequest,
+			@RequestBody ApplyIndexRequestDto applyIndexRequest,
 			Authentication authentication
 			) {
 		StringJoiner joiner = new StringJoiner(", ");
-		for (RefColumn refColumn : applyIndexRequest.getRefColumn()) {
+		for (RefColumnDto refColumn : applyIndexRequest.getRefColumn()) {
 		    joiner.add(refColumn.getColId() + " " + refColumn.getColOrder());
 		}
 		String combineRefColumn = joiner.toString();
-		applyIndexRequest.getApplyListDto().setMId("gilju");
+		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyIndexRequest.getApplyIndexDto().setRefColumn(combineRefColumn);
 		indexService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
 	}
