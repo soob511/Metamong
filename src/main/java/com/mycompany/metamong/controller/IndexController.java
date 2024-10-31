@@ -21,6 +21,7 @@ import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.dto.index.RefColumnDto;
 import com.mycompany.metamong.enums.SchemaEnum;
+import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.IndexService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 public class IndexController {
 	@Autowired
 	private IndexService indexService;
+	@Autowired
+	private ApplyService applyService;
 	
 	@GetMapping("/indexList")
 	public String indexList(Model model) {
@@ -74,7 +77,7 @@ public class IndexController {
 		String combineRefColumn = joiner.toString();
 		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyIndexRequest.getApplyIndexDto().setRefColumn(combineRefColumn);
-		indexService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
+		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
 	}
 	
 	@GetMapping("/indexDeleteForm")

@@ -26,8 +26,6 @@ public class IndexService {
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
-	@Autowired
-	private ApplyListService applyListService;
 
 	public List<IndexDto> getIndexList() {
 		List<IndexDto> list = new ArrayList<>();
@@ -81,13 +79,7 @@ public class IndexService {
 		}
 		return list;
 	}
-	@Transactional
-	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
-		applyListService.addApplyList(applyListDto);
-		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
-		indexDao.insertApplyIndex(applyIndexDto);
-	}
-	
+
 	public void createIndex(IndexDto indexdto) {
 		
 	}
