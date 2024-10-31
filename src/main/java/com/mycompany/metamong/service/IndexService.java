@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoSub1.Sub1IndexDao;
 import com.mycompany.metamong.daoSub2.Sub2IndexDao;
 import com.mycompany.metamong.daoSub3.Sub3IndexDao;
+import com.mycompany.metamong.dto.applyList.ApplyListDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 
@@ -37,22 +40,16 @@ public class IndexService {
 		List<IndexDto> list = new ArrayList<>();
 
 		switch (schemaName) {
-		case ALL:
-			list = indexDao.selectIndex();
-			list = sub1IndexDao.selectIndex();
-			list = sub2IndexDao.selectIndex();
-			list = sub3IndexDao.selectIndex();
-			break;
 		case MAIN:
 			list = indexDao.selectIndex();
 			break;
-		case SUB1:
+		case SPM:
 			list = sub1IndexDao.selectIndex();
 			break;
-		case SUB2:
+		case PMS:
 			list = sub2IndexDao.selectIndex();
 			break;
-		case SUB3:
+		case HR:
 			list = sub3IndexDao.selectIndex();
 			break;
 		default:
@@ -65,22 +62,16 @@ public class IndexService {
 		List<IndexDto> list = new ArrayList<>();
 
 		switch (schemaName) {
-		case ALL:
-			list = indexDao.selectIndexByName(indexName);
-			list = sub1IndexDao.selectIndexByName(indexName);
-			list = sub2IndexDao.selectIndexByName(indexName);
-			list = sub3IndexDao.selectIndexByName(indexName);
-			break;
 		case MAIN:
 			list = indexDao.selectIndexByName(indexName);
 			break;
-		case SUB1:
+		case SPM:
 			list = sub1IndexDao.selectIndexByName(indexName);
 			break;
-		case SUB2:
+		case PMS:
 			list = sub2IndexDao.selectIndexByName(indexName);
 			break;
-		case SUB3:
+		case HR:
 			list = sub3IndexDao.selectIndexByName(indexName);
 			break;
 		default:
@@ -89,10 +80,10 @@ public class IndexService {
 		return list;
 	}
 	
-	public void createIndexApply() {
-		
+	public void addApplyIndex(ApplyIndexDto applyIndexDto) {
+		indexDao.insertApplyIndex(applyIndexDto);
 	}
-	
+
 	public void createIndex(IndexDto indexdto) {
 		
 	}

@@ -5,6 +5,11 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $("#tableList").on("click", ".tableListTr", function() {
+	    $(".tableListTr").removeClass("table-active");
+	    $(this).addClass("table-active");
+	});
+    
     $(".bi-search").on("click", function() {
         searchTable();
     });
@@ -20,7 +25,29 @@ $(document).ready(function() {
     $("#schemaSelect").on("change", function() {
         searchTable();
     });
-
+    
+    
+    $(".btn-edit").on("click", function() {
+        var selectedRow = $("#tableList .table-active");
+        var tableNo = selectedRow.data("table-no");
+        
+        if (tableNo) {
+            $.ajax({
+                url: "/Metamong/table/tableUpdateForm",
+                type: "Get",
+                data: { tableNo: tableNo },
+                success: function(response) {
+                	location.href="/Metamong/table/tableUpdateForm?tableNo=" + tableNo;
+                }
+           });
+            
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: '수정할 테이블을 선택해 주세요.'
+            });
+        }
+    });
 });
 
 function showColumnList(tableId) {
@@ -50,7 +77,7 @@ function showColumnList(tableId) {
 
 function searchTable() {
     var content = $("#tableNameSearch").val().trim();
-    var schema= $("#schemaSelect option:selected").data("name");
+    var schema= $("#schemaSelect").val();
 
     $.ajax({
         url: "/Metamong/table/tableSearch",

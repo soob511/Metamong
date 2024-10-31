@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.column.ColumnDto;
+import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ColumnService;
 
 @Controller
@@ -25,4 +26,12 @@ public class ColumnController {
 		return columnService.getColumnList(tableId);
 	}
 
+	@ResponseBody
+	@GetMapping("/searchColumnBySchema")
+	public List<ColumnDto> searchColumn(
+			@RequestParam SchemaEnum schemaName,
+			@RequestParam int tableNo
+			) {
+		return columnService.getColumnList(schemaName, tableNo);
+	}
 }

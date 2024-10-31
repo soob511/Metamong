@@ -32,6 +32,23 @@
     VALUES (#{applyNo}, seq_table_no.NEXTVAL, #{tableNm}, #{tableId}, #{tableContent})
 </insert>
 
+<select id="selectTableListBySchema" resultType="Table">
+    SELECT table_no, table_id, schema_nm
+    FROM tables
+    WHERE schema_nm = #{schemaName}
+</select>
+
+<select id="selectTableByApplyNo" resultType="Table" parameterType="int">
+	 SELECT table_no, table_nm, table_id, table_content
+     FROM apply_table
+     WHERE apply_no = #{applyNo}
+</select>
+
+<select id="selectTable" parameterType="int" resultType="Table">
+	SELECT table_no,table_nm,table_id,table_content,schema_nm
+	FROM tables
+	WHERE table_no = #{tableNo}
+</select>
 
 </mapper>
 	

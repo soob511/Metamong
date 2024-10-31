@@ -10,15 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.notice.NoticeAddForm;
+import com.mycompany.metamong.dto.notice.NoticeAddFormDto;
 import com.mycompany.metamong.dto.notice.NoticeDto;
 import com.mycompany.metamong.service.NoticeService;
 
@@ -88,7 +88,7 @@ public class NoticeController {
 	
 	@ResponseBody
 	@PostMapping("/insertNotice")
-	public int insertNotice(NoticeAddForm form) throws Exception {
+	public int insertNotice(@RequestBody NoticeAddFormDto form) throws Exception {
 		NoticeDto notice = new NoticeDto();
 		
 		notice.setNoticeTitle(form.getNoticeTitle());
@@ -103,5 +103,16 @@ public class NoticeController {
 		}
 		
 		return noticeService.insertNotice(notice);	
+	}
+	
+	@ResponseBody
+	@GetMapping("/deleteNotice")
+	public int deleteNotice(@RequestParam("noticeId") int noticeId, HttpSession session) {
+		 noticeService.deleteNotice(noticeId);
+		 
+		 Pager pager = (Pager)session.getAttribute("pager");
+		 int pageNo = pager.getPageNo();
+	 
+		 return pageNo;	
 	}
 }

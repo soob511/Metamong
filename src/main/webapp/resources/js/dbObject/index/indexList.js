@@ -26,7 +26,11 @@ $(document).ready(function() {
 function filterIndex() {
 	const schemaName = $('#schemaSelect').val();
 	const indexName = $('#indexNameSearch').val().toUpperCase();
-
+	if (schemaName == 'ALL') {
+		location.reload();
+		return;
+	}
+	console.log(schemaName);
 	$.ajax({
 		type : 'GET',
 		url : 'searchIndex',

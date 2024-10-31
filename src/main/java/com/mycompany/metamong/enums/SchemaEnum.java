@@ -1,11 +1,10 @@
 package com.mycompany.metamong.enums;
 
 public enum SchemaEnum {
-	ALL("전체"),
 	MAIN("USER_2024_OTI_FINAL_TEAM1"),
-	SUB1("USER_2024_OTI_FINAL_TEAM1_1"),
-	SUB2("USER_2024_OTI_FINAL_TEAM1_2"),
-	SUB3("USER_2024_OTI_FINAL_TEAM1_3");
+	SPM("USER_2024_OTI_FINAL_TEAM1_1"),
+	PMS("USER_2024_OTI_FINAL_TEAM1_2"),
+	HR("USER_2024_OTI_FINAL_TEAM1_3");
 	
     private final String schemaName;
 

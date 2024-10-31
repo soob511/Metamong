@@ -83,4 +83,9 @@
         	</if>
 		)
 	</insert>
+	
+	<delete id="deleteNotice" parameterType="int">
+		DELETE FROM notice
+		WHERE notice_id = #{noticeId}
+	</delete>
 </mapper>

@@ -45,4 +45,8 @@ public class NoticeService {
 	public int insertNotice(NoticeDto notice) {
 		 return noticeDao.insertNotice(notice);
 	}
+
+	public int deleteNotice(int noticeId) {		
+		 return noticeDao.deleteNotice(noticeId);
+	}
 }

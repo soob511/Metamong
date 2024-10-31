@@ -31,7 +31,7 @@ $(".btn-add").on("click", function (e) {
     if (fileInput.length>0) {
         formData.append("noticeFile", fileInput[0]);
     }
-
+    console.log(formData);
     $.ajax({
         url: "/Metamong/notice/insertNotice",
         type: "POST",

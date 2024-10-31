@@ -107,7 +107,7 @@ $(document).ready(function () {
     let password = $("#MPassword").val().trim();
     const msg = $(".password-message");
     if (!password) {
-      msg.css("opacity", "0");
+      msg.css("opacity", "1");
     } else if (password.length < 8 || password.length > 16) {
       msg.text("비밀번호는 8~16자로 작성해야 합니다.");
       msg.addClass('warn');

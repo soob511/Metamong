@@ -106,6 +106,6 @@
         </div>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/resources/js/notice/notice.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
 </body>
 </html>

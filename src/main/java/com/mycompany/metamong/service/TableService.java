@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.metamong.daoMain.TableDao;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableDto;
+import com.mycompany.metamong.enums.SchemaEnum;
 
 @Service
 public class TableService {
@@ -25,6 +26,19 @@ public class TableService {
 
 	public void addApplyTable(ApplyTableDto applyTable) {
 		tableDao.insertApplyTable(applyTable);
+	}
+	
+	public List<TableDto> getTableName(SchemaEnum schemaName) {
+		return tableDao.selectTableListBySchema(schemaName);
+	}
+	
+
+	public TableDto getTableByApplyNo(int applyNo) {
+		return tableDao.selectTableByApplyNo(applyNo);
+	}
+
+	public TableDto getTable(int tableNo) {
+		return tableDao.selectTable(tableNo);
 	}
 
 }

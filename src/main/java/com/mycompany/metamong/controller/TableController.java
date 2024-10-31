@@ -1,6 +1,5 @@
 package com.mycompany.metamong.controller;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnAddDto;
+import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableDto;
@@ -42,14 +43,20 @@ public class TableController {
 	@Autowired
 	private ColumnService columnService;
 	
-	
-	
 	@GetMapping("/tableList")
 	public String tableList(Model model) {
 		List<TableDto> list = tableService.getTableList();
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/table/tableList";
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchTableBySchema")
+	public List<TableDto> searchTable(
+			@RequestParam SchemaEnum schemaName
+			) {
+		return tableService.getTableName(schemaName);			
 	}
 	
 	@ResponseBody
@@ -108,15 +115,23 @@ public class TableController {
 		return "dbObject/table/tableApplyList";
 	}
 	
+	@GetMapping("/tableUpdateForm")
+	public String tableUpdateForm(@RequestParam int tableNo, Model model) {
+		TableDto table = tableService.getTable(tableNo);
+		model.addAttribute("table", table);
+		
+		List<ColumnDto> column = columnService.getColumnList(tableNo);
+		log.info(column.toString());
+		model.addAttribute("column", column);
+		
+		return "dbObject/table/tableUpdateForm";
+	}
+	
 	@GetMapping("/tableCompare")
 	public String tableCompare() {
 		return "dbObject/table/tableCompare";
 	}
 	
-	@GetMapping("/tableUpdateForm")
-	public String tableUpdateForm() {
-		return "dbObject/table/tableUpdateForm";
-	}
 	
 	@GetMapping("/tableApplyList")
 	public String tableApplyList(Model model) {
@@ -124,6 +139,23 @@ public class TableController {
 		model.addAttribute("list", list);
 		model.addAttribute("schemaEnum",SchemaEnum.values());
 		return "dbObject/table/tableApplyList";
+	}
+	
+	@GetMapping("/tableListDetail")
+	public String tableListDetail(int applyNo,int indexNo,Model model) {
+		
+		ApplyTableDeatilDto applyList = applyListService.getTableListDetail(applyNo); 
+		model.addAttribute("applyList",applyList);
+		model.addAttribute("indexNo",indexNo);
+		
+		TableDto applyTable = tableService.getTableByApplyNo(applyNo);
+		model.addAttribute("applyTable",applyTable);
+		
+		List<ColumnDto> applyColumnList = columnService.getColumnByApplyNo(applyNo);
+		model.addAttribute("applyColumn",applyColumnList);
+		
+		return "dbObject/table/tableApplyDetail";                      
+		
 	}
 	
 	@ResponseBody

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableDto;
+import com.mycompany.metamong.enums.SchemaEnum;
 
 @Mapper
 public interface TableDao {
@@ -16,6 +17,12 @@ public interface TableDao {
 	public List<TableDto> selectTableSearch(@Param(value = "content") String content,@Param(value = "schema") String schema);
 
 	public int insertApplyTable(ApplyTableDto applyTable);
+
+	public List<TableDto> selectTableListBySchema(SchemaEnum schemaName);
+	
+	public TableDto selectTableByApplyNo(int applyNo);
+
+	public TableDto selectTable(int tableNo);
 
 
 

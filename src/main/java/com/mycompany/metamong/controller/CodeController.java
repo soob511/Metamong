@@ -86,6 +86,7 @@ public class CodeController {
 		code.setApplyNo(apply.getApplyNo());
 		code.setCodeNm(form.getCodeNm());
 		code.setCodeId(form.getCodeId());
+		code.setCodeLength(form.getCodeLength());
 		code.setCodeContent(form.getCodeContent());		
 		codeService.addApplyCode(code);
 		
