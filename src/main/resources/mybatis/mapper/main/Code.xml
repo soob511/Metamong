@@ -3,7 +3,7 @@
 <mapper namespace="com.mycompany.metamong.daoMain.CodeDao">
 
 	<select id="selectCodeList" resultType="Code">
-		SELECT code_no, code_nm, code_id, code_content, code_isactive
+		SELECT code_no, code_nm, code_id, code_content, code_isactive, code_length
 		FROM code
 	</select>
 	
