@@ -105,6 +105,8 @@ public class CodeController {
 	@GetMapping("/codeUpdateForm")
 	public String codeUpdateForm(Model model, HttpSession session, @RequestParam int codeNo, @RequestParam int isUpdated) {
 		List<ItemDto> items = itemService.getItemList(codeNo);
+		model.addAttribute("itemLength", items.size());
+		
 		if(isUpdated == 0) {
 			CodeDto code = codeService.getCodeByNo(codeNo);
 			model.addAttribute("code", code);
@@ -113,7 +115,6 @@ public class CodeController {
 			model.addAttribute("code", session.getAttribute("newCode"));
 			model.addAttribute("items", session.getAttribute("newItems"));
 		}
-		model.addAttribute("itemLength", items.size());
 		return "code/codeUpdateForm";
 	}
 
@@ -160,16 +161,19 @@ public class CodeController {
 	
 	@PostMapping("/codeCompare")
 	public String codeCompare(@RequestBody CodeUpdateDto form, HttpSession session) {
+		// newCode
 		CodeDto newCode = new CodeDto();
 		newCode.setCodeNo(form.getCodeNo());
 		newCode.setCodeNm(form.getCodeNm());
 		newCode.setCodeId(form.getCodeId());
+		newCode.setCodeLength(form.getCodeLength());
 		newCode.setCodeContent(form.getCodeContent());
 		newCode.setCodeIsActive(form.getCodeIsActive());
 
 		session.setAttribute("newCode", newCode);
 		session.setAttribute("newItems", form.getItems());
 		
+		// oldCode
 		int codeNo = form.getCodeNo();
 		CodeDto oldCode = codeService.getCodeByNo(codeNo);
         List<ItemDto> oldItems = itemService.getItemList(codeNo);

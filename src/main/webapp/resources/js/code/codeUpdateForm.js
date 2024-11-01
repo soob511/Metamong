@@ -9,6 +9,7 @@ $(document).ready(function() {
     
     const items = [];
     let num = $('.item-list').data('item-length');
+    let isUpdated = $('.item').data('item-isupdate');
 
     console.log("items: ", items);
     console.log("num: ", num);
@@ -19,7 +20,7 @@ $(document).ready(function() {
         	itemNm: $('.item-list .itemNm').eq(i).text(), 
         	itemIsActive: $('.item-list .itemIsActive').eq(i).text() == 'Y' ? 1 : 0, 
         	itemContent: $('.item-list .itemContent').eq(i).text(),
-        	itemIsUpdate: $('.item-index').data('isupdate')
+        	itemIsUpdate: isUpdated
     	});
     }
     
@@ -135,6 +136,7 @@ $(document).ready(function() {
     	const codeNo = $('.codeAdd-subtitle').data('code-no');
     	const codeNm = $('#codeNm').val();
         const codeId = $('#codeId').val();
+        const codeLength = $('#codeLength').val();
         const codeContent = $('#codeContent').val();
         const codeIsActive = $("#codeIsActive option:selected").val();
         const applyReason = $('#applyReason').val();
@@ -143,6 +145,7 @@ $(document).ready(function() {
         	codeNo: codeNo,
             codeNm: codeNm,
             codeId: codeId,
+            codeLength: codeLength,
             codeContent: codeContent,
             codeIsActive: codeIsActive,
             applyReason: applyReason,

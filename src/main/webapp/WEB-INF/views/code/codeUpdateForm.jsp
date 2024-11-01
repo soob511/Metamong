@@ -113,8 +113,9 @@
 	                        </thead>
 	                        <tbody class="item-list" data-item-length="${itemLength}">
 		                        <c:forEach items="${items}" var="item" varStatus="i">
-		                            <tr class="item">
-		                                <th class="item-index" data-isupdate="${item.itemIsActive}">${i.index+1}</th>
+		                            <tr class="item" 
+		                            data-item-isupdate="${!item.itemIsUpdate ? item.itemIsUpdate : 0}">
+		                                <th class="item-index">${i.index+1}</th>
 		                                <td class="itemId">${item.itemId}</td>
 		                                <td class="itemNm">${item.itemNm}</td>
 		                                <td class="itemIsActive">${item.itemIsActive == 1 ? 'Y' : 'N'}</td>
