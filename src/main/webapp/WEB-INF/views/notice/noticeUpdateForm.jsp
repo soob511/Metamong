@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,20 +26,29 @@
                         <table class="table"> 
                             <tr>
                                 <td class="table-primary form-label" id="tdth">제목<span class="form-required">(*)</span></td>
-                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle" value="${notice.noticeTitle}" required></td>
+                                <td><input type="text" class="form-control" id="noticeTitle" name ="noticeTitle" value="${notice.noticeTitle}"></td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label" id="tdth">작성자</td>
                                 <td id="author"><span>관리자</span></td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label" id="tdth">등록일</td>
-                                <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" required></td>
+                                <td class="table-primary form-label" id="tdth">수정일</td>
+                                <td>
+                                	<c:if test="${notice.noticeRegdate !=null}">
+                                		<div id="existingRegdate">
+                                			<span><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></span>
+                                			 <button type="button" id="removeDateBtn" class="btn btn-sm btn-outline-secondary">재설정</button>
+                                		</div>
+                               		</c:if>
+                                	<input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" style="display: ${notice.noticeRegdate != null ? 'none' : 'block'};">
+                                	<input type="hidden" id="updateDate" name="updateDate" value="false">
+                                </td>
                             </tr>
                             <tr>
                                 <td class="table-primary form-label" id="tdth">내용</td>
                                 <td id="noticeContentTd">                                   
-                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12" required>${notice.noticeContent}</textarea>
+                                    <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12">${notice.noticeContent}</textarea>
                                 </td>
                             </tr>
 						    <tr>
@@ -50,9 +60,8 @@
 							                <button type="button" id="removeFileBtn" class="btn btn-sm btn-outline-danger">삭제</button>
 							            </div>
 							        </c:if>
-					        	  <input id="noticeFile" type="file" name="noticeFile" class="form-control" style="display: ${notice.noticeFilename != null ? 'none' : 'block'};">
-					        	   <div id="selectedFileName" style="margin-top: 5px;"></div>
-					        	   <input type="hidden" id="deleteFile" name="deleteFile" value="false">
+					        	  <input id="noticeFile" type="file" name="noticeFile" class="form-control" style="display: ${notice.noticeFilename != null ? 'none' : 'block'};">					        	   
+					        	  <input type="hidden" id="deleteFile" name="deleteFile" value="false">
 					           </td>
 						    </tr>
                         </table>
