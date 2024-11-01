@@ -14,5 +14,5 @@ public class TableAddDto {
 	private String applyReason;
 	private String tableContent;
 	private List<ColumnAddDto> columns;
-
+	private String applyType;
 }
