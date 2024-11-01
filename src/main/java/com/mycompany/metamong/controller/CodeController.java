@@ -3,6 +3,8 @@ package com.mycompany.metamong.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -72,7 +74,6 @@ public class CodeController {
 	public String addCode(Authentication auth, @RequestBody CodeAddDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
-		
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());		
 		apply.setApplyObj("CODE");
@@ -90,7 +91,6 @@ public class CodeController {
 		
 		// APPLY_ITEM 테이블
 		List<ItemAddDto> inputItems = form.getItems();
-		
 		for (ItemAddDto inputItem : inputItems) {
 			ApplyItemDto item = new ApplyItemDto();
 	        item.setApplyNo(apply.getApplyNo());
@@ -103,13 +103,30 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeUpdateForm")
-	public String codeUpdateForm(Model model, @RequestParam int codeNo) {
-		CodeDto code = codeService.getCodeByNo(codeNo);
+	public String codeUpdateForm(Model model, HttpSession session, @RequestParam int codeNo, @RequestParam int isUpdated) {
 		List<ItemDto> items = itemService.getItemList(codeNo);
+		model.addAttribute("itemLength", items.size());
 		
-		model.addAttribute("code", code);
-		model.addAttribute("items", items);
-		
+		if(isUpdated == 0) {
+			CodeDto code = codeService.getCodeByNo(codeNo);			
+			List<ItemUpdateDto> tmpItems = new ArrayList<ItemUpdateDto>();
+
+			for(ItemDto item : items) {
+				ItemUpdateDto tmpItem = new ItemUpdateDto();
+				tmpItem.setItemId(item.getItemId());
+				tmpItem.setItemNm(item.getItemNm());
+				tmpItem.setItemIsActive(item.getItemIsActive());
+				tmpItem.setItemContent(item.getItemContent());
+				tmpItem.setItemIsUpdate(0);
+				tmpItems.add(tmpItem);
+			}
+			
+			model.addAttribute("code", code);
+			model.addAttribute("items", tmpItems);
+		} else {
+			model.addAttribute("code", session.getAttribute("newCode"));
+			model.addAttribute("items", session.getAttribute("newItems"));
+		}
 		return "code/codeUpdateForm";
 	}
 
@@ -117,7 +134,6 @@ public class CodeController {
 	public String updateApplyCode(Authentication auth, @RequestBody CodeUpdateDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
-		
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());		
 		apply.setApplyObj("CODE");
@@ -126,21 +142,19 @@ public class CodeController {
 				
 		// APPLY_CODE 테이블
 		ApplyCodeDto code = new ApplyCodeDto();
-
 		code.setApplyNo(apply.getApplyNo());
 		code.setCodeNo(form.getCodeNo());
 		code.setCodeNm(form.getCodeNm());
+		code.setCodeLength(form.getCodeLength());
 		code.setCodeId(form.getCodeId());
 		code.setCodeContent(form.getCodeContent());
-		code.setCodeIsActive(form.getCodeIsActive());		
+		code.setCodeIsActive(form.getCodeIsActive());
 		codeService.updateApplyCode(code);
 		
 		// APPLY_ITEM 테이블
 		List<ItemUpdateDto> inputItems = form.getItems();
-			
 		for (ItemUpdateDto inputItem : inputItems) {
 			ApplyItemDto item = new ApplyItemDto();
-			
 	        item.setApplyNo(apply.getApplyNo());
 	        item.setItemId(inputItem.getItemId());
 	        item.setItemNm(inputItem.getItemNm());
@@ -152,9 +166,34 @@ public class CodeController {
 		return "code/codeApplyList";
 	}
 	
-	@GetMapping("/codeCompare")
-	public String codeCompare() {
-		return "code/codeCompare";
+	@GetMapping("/codeCompareForm") 
+	public String codeCompare(int codeNo) {
+		return "code/codeCompareForm";
+	}
+	
+	@PostMapping("/codeCompare")
+	public String codeCompare(@RequestBody CodeUpdateDto form, HttpSession session) {
+		// newCode
+		CodeDto newCode = new CodeDto();
+		newCode.setCodeNo(form.getCodeNo());
+		newCode.setCodeNm(form.getCodeNm());
+		newCode.setCodeId(form.getCodeId());
+		newCode.setCodeLength(form.getCodeLength());
+		newCode.setCodeContent(form.getCodeContent());
+		newCode.setCodeIsActive(form.getCodeIsActive());
+
+		session.setAttribute("newCode", newCode);
+		session.setAttribute("newItems", form.getItems());
+		
+		// oldCode
+		int codeNo = form.getCodeNo();
+		CodeDto oldCode = codeService.getCodeByNo(codeNo);
+        List<ItemDto> oldItems = itemService.getItemList(codeNo);
+        
+        session.setAttribute("oldCode", oldCode);
+        session.setAttribute("oldItems", oldItems);
+		
+		return "code/codeCompareForm";
 	}
 	
 	@GetMapping("/codeApplyList")

@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="selectCodeByNo" resultType="Code">
-		SELECT code_no, code_nm, code_id, code_content, code_isactive
+		SELECT code_no, code_nm, code_id, code_content, code_isactive, code_length
 		FROM code
 		WHERE code_no = #{codeNo}
 	</select>
