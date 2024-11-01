@@ -101,11 +101,12 @@
 								<div class="index-apply-reason">
 									<p>인덱스제목</p>
 									<input class="index-name-title" id="indexName"></input>
-									<div class="msg d-flex" id="indexValidMessage"></div>
+									<div class="msg" id="nameValidMessage"></div>
 								</div>
 								<div class="index-apply-reason">
 									<p>신청사유</p>
 									<textarea id="indexApplyReason"></textarea>
+									<div class="msg" id="reasonValidMessage"></div>
 									<div class="d-flex justify-content-end">
 											<button id="btn-apply" class="btn-add">
 												신청

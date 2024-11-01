@@ -25,7 +25,7 @@ import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.item.ItemAddDto;
 import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.dto.item.ItemUpdateDto;
-import com.mycompany.metamong.service.ApplyListService;
+import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.CodeService;
 import com.mycompany.metamong.service.ItemService;
 
@@ -40,7 +40,7 @@ public class CodeController {
 	@Autowired
 	private ItemService itemService;
 	@Autowired
-	private ApplyListService applyService;
+	private ApplyService applyService;
 	
 	@GetMapping("/codeList")
 	public String codeList(Model model) {
