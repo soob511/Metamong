@@ -10,5 +10,4 @@ public class CodeDto {
 	private String codeLength;
 	private String codeContent;
 	private int codeIsActive;
-	private String codeLength;
 }
