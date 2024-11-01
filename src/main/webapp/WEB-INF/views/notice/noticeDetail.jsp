@@ -31,7 +31,7 @@
                             <td class="table-primary" style="width:16.66%">작성일자</td>
                             <td id="table-contents" style="width:16.66%"><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
                             <td class="table-primary" style="width:16.66%">조회수</td>
-                            <td id="table-contents" style="width:16.66%">${notice.noticeHitcount}</td>
+                            <td id="table-contents" style="width:16.66%">${notice.noticeHitcount+1}</td>
                         </tr>
                         <c:if test=${notice.noticeFilename != null}>
                         <tr>
