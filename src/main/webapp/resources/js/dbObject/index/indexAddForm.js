@@ -157,7 +157,7 @@ const checkInvalidChars = /[^A-Za-z0-9_]/;
 
 $(document).on("input", "#indexName", function () {
   let inputId = $("#indexName").val().trim();
-  const msg = $("#indexValidMessage");
+  const msg = $("#nameValidMessage");
 
   if (!checkFirstChar.test(inputId)) {
     msg.text("첫 글자는 영문이어야 합니다.");
@@ -177,6 +177,18 @@ $(document).on("input", "#indexName", function () {
   }
 });
 
+$(document).on("input", "#indexApplyReason", function () {
+	let inputId = $("#indexApplyReason").val().trim();
+	const msg = $("#reasonValidMessage");
+
+	if (inputId.length < 10 || inputId.length > 200) {
+	    msg.text("10~200자 이내로 작성해야 합니다.");
+	    msg.addClass('warn');
+	} else {
+	    msg.text("");
+	    msg.removeClass('warn');
+	}
+});
 
 function filterTable() {
 	const schemaName = $('#schemaSelect').val();
