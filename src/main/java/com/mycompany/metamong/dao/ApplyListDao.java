@@ -1,4 +1,4 @@
-package com.mycompany.metamong.daoMain;
+package com.mycompany.metamong.dao;
 
 import java.util.List;
 import java.util.Map;

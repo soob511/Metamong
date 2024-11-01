@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mycompany.metamong.daoMain.TeamDao">
+<mapper namespace="com.mycompany.metamong.dao.TeamDao">
 	<select id="selectTeamList" resultType="Team">
 		SELECT team_Id,team_Name,team_Isactive
 		FROM Team

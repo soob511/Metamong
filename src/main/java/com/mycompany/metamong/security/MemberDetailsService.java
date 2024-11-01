@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.mycompany.metamong.daoMain.MemberDao;
+import com.mycompany.metamong.dao.MemberDao;
 import com.mycompany.metamong.dto.member.MemberDto;
 
 import lombok.extern.java.Log;

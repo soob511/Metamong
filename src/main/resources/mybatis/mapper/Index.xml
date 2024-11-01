@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mycompany.metamong.daoSub2.Sub2IndexDao">
+<mapper namespace="com.mycompany.metamong.dao.IndexDao">
 
 	<select id="selectIndex" resultType="Index">
 		SELECT 
@@ -11,7 +11,7 @@
 			user_ind_columns ic ON i.index_name = ic.index_name
 		ORDER BY i.index_name, ic.column_position
 	</select>
-	
+
 	<select id="selectIndexByName" parameterType="String" resultType="Index">
 		SELECT
 			i.index_name, user schema_name,i.table_name, ic.column_name, i.uniqueness
@@ -23,5 +23,20 @@
 			i.index_name = #{indexName}
 		ORDER BY i.index_name, ic.column_position
 	</select>
+	
+	<insert id="insertApplyIndex" parameterType="ApplyIndex">
+		INSERT INTO apply_index (
+			apply_no, table_no, idx_name, 
+			is_unique, ref_column
+			)
+		VALUES (
+			#{applyNo}, #{tableNo}, #{idxName}, 
+			#{isUnique}, #{refColumn}
+		)	
+	</insert>
+	
+    <insert id="insertIndex" parameterType="String">
+        ${sqlSyn}
+    </insert>
 
 </mapper>

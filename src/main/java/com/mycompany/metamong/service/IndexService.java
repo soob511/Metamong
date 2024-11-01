@@ -5,13 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.mycompany.metamong.daoMain.IndexDao;
-import com.mycompany.metamong.daoSub1.Sub1IndexDao;
-import com.mycompany.metamong.daoSub2.Sub2IndexDao;
-import com.mycompany.metamong.daoSub3.Sub3IndexDao;
-import com.mycompany.metamong.dto.applyList.ApplyListDto;
+import com.mycompany.metamong.dao.IndexDao;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.enums.SchemaEnum;
@@ -20,19 +15,19 @@ import com.mycompany.metamong.enums.SchemaEnum;
 public class IndexService {
 	@Autowired
 	private IndexDao indexDao;
-	@Autowired
+/*	@Autowired
 	private Sub1IndexDao sub1IndexDao;
 	@Autowired
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
-
+*/
 	public List<IndexDto> getIndexList() {
 		List<IndexDto> list = new ArrayList<>();
 		list.addAll(indexDao.selectIndex());
-		list.addAll(sub1IndexDao.selectIndex());
+/*		list.addAll(sub1IndexDao.selectIndex());
 		list.addAll(sub2IndexDao.selectIndex());
-		list.addAll(sub3IndexDao.selectIndex());
+		list.addAll(sub3IndexDao.selectIndex());*/
 		return list;
 	}
 
@@ -43,7 +38,7 @@ public class IndexService {
 		case MAIN:
 			list = indexDao.selectIndex();
 			break;
-		case SPM:
+/*		case SPM:
 			list = sub1IndexDao.selectIndex();
 			break;
 		case PMS:
@@ -51,7 +46,7 @@ public class IndexService {
 			break;
 		case HR:
 			list = sub3IndexDao.selectIndex();
-			break;
+			break;*/
 		default:
 			break;
 		}
@@ -65,7 +60,7 @@ public class IndexService {
 		case MAIN:
 			list = indexDao.selectIndexByName(indexName);
 			break;
-		case SPM:
+		/*case SPM:
 			list = sub1IndexDao.selectIndexByName(indexName);
 			break;
 		case PMS:
@@ -73,7 +68,7 @@ public class IndexService {
 			break;
 		case HR:
 			list = sub3IndexDao.selectIndexByName(indexName);
-			break;
+			break;*/
 		default:
 			break;
 		}
