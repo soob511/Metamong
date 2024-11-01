@@ -18,7 +18,7 @@
             <div class="content">
                 <h4 class="fw-bold">> 공지사항</h4>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>총 <span class="form-required">${totalRows}</span>건의 게시물이 있습니다.</div>
+                    <div>총 <span class="form-required" id="noticeCount">${totalRows}</span>건의 게시물이 있습니다.</div>
                     <div class="d-flex">
                         <div class="table-list-filters">
                             <div class="schema-filter">

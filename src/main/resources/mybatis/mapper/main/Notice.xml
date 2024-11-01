@@ -65,6 +65,20 @@
 		WHERE notice_id = #{noticeId}	
 	</select>
 	
+	<select id="selectNoticeSearch" parameterType="map" resultType="Notice">
+		SELECT 
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
+		FROM notice
+		<where>
+			<if test="keyword != null and keyword != '' and option == '제목'">
+				notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="keyword != null and keyword != '' and option == '내용'">
+				notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
+	</select>
+	
 	<insert id="insertNotice" parameterType="Notice">
 		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE"> 
 			SELECT seq_notice_id.nextval 
@@ -102,4 +116,6 @@
 		DELETE FROM notice
 		WHERE notice_id = #{noticeId}
 	</delete>
+	
+	
 </mapper>
