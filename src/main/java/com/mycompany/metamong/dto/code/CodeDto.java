@@ -7,6 +7,8 @@ public class CodeDto {
 	private int codeNo;
 	private String codeNm;
 	private String codeId;
+	private String codeLength;
 	private String codeContent;
 	private int codeIsActive;
+	private String codeLength;
 }

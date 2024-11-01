@@ -9,3 +9,7 @@ $(document).ready(function() {
 		$(this).next('.notice-sub-menu').toggleClass('active');
 	});
 });
+
+$(".btn-write").click(function () {
+	location.href = "/Metamong/notice/noticeAddForm";
+});

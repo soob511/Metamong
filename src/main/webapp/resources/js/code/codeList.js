@@ -27,7 +27,6 @@ $(document).ready(function () {
   
   $(".btn-edit").on('click', function() {
 	  let codeNo = $('.table-active').data('code-no');
-	  console.log(codeNo);
 	  if(!codeNo) {
 		  Swal.fire({
               icon: 'warning',
@@ -37,9 +36,9 @@ $(document).ready(function () {
 		  $.ajax({
 			url: "/Metamong/code/codeUpdateForm",
 			type: "GET",
-			data: { codeNo: codeNo },
+			data: { codeNo: codeNo, isUpdated: 0 },
 			success: function (data) {
-				location.href = "/Metamong/code/codeUpdateForm?codeNo=" + codeNo;
+				location.href = "/Metamong/code/codeUpdateForm?codeNo=" + codeNo + "&isUpdated=0";
 			}
 		  })
 	  };

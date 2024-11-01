@@ -9,6 +9,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableList.css"
 	rel="stylesheet" />
+	<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container table-list-container">
@@ -62,9 +66,8 @@
 								<div class="tables-buttons">
 									<a href="tableAddForm">
 										<button class="btn-add">추가</button>
-									</a> <a href="tableUpdateForm">
-										<button class="btn-edit">수정</button>
 									</a>
+										<button class="btn-edit">수정</button>
 								</div>
 							</div>
 							<div class="table-contanier">
@@ -80,7 +83,7 @@
 									</thead>
 									<tbody id="tableList">
 										<c:forEach items="${list}" var="table" varStatus="status">
-											<tr class="tableListTr"
+											<tr class="tableListTr" data-table-no="${table.tableNo}"
 												onclick="showColumnList(${table.tableNo})">
 												<th>${status.index+1}</th>
 												<td>${table.tableNm}</td>

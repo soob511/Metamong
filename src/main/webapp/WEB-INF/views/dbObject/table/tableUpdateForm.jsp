@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,13 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableAddForm.css"
 	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/dbObject/common/codeModal.css"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container codeAdd-container">
@@ -28,91 +35,96 @@
 							<div class="codeAdd-subtitle">테이블</div>
 							<table class="table table-bordered code-table">
 								<tr>
-									<td class="table-primary">스키마명</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="스키마명">
-											<option value="oti_user1">oti_user1</option>
-											<option value="oti_user2">oti_user2</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td class="table-primary">테이블(논리)</td>
+									<td class="table-secondary">스키마명</td>
 									<td colspan="5">
-										<div class="table-text">재산정보</div>
+										<div class="table-text" id="schemaName">${table.schemaNm}</div>
 									</td>
 								</tr>
 								<tr>
-									<td class="table-primary">테이블(물리)</td>
+									<td class="table-secondary">테이블(논리)</td>
 									<td colspan="5">
-										<div class="table-text">PRPT</div>
+										<div class="table-text" id="tableNm">${table.tableNm}</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="table-secondary">테이블(물리)</td>
+									<td colspan="5">
+										<div class="table-text" id="tableId">${table.tableId}</div>
 									</td>
 								</tr>
 
 								<tr>
-									<td class="table-primary">신청사유</td>
-									<td colspan="5"><input type="text"
-										class="form-control content-input" placeholder="내용 입력">
-									</td>
+									<td class="table-secondary">내용</td>
+									<td colspan="5"><input type="text" id="tableContent"
+										class="form-control content-input"
+										placeholder="${table.tableContent}"></td>
 								</tr>
+								<tr>
+									<td class="table-secondary">신청사유</td>
+									<td colspan="5"><input type="text" id="applyReason"
+										class="form-control content-input" placeholder="내용 입력"></td>
+								</tr>
+
 
 							</table>
 						</div>
 
 						<div class="col item">
-							<div class="btn-load-container">
-								<div class="itemAdd-subtitle">컬럼</div>
-								<div class="right-btn">
-								<div class="btn-load" data-bs-toggle="modal"
-									data-bs-target="#codeLoadModal" type="button">불러오기</div>
-								<div class="btn-reset" type="button">초기화</div>
+							<form id="itemForm">
+								<div class="btn-load-container">
+									<div class="itemAdd-subtitle">컬럼</div>
+									<div class="right-btn">
+										<div class="btn-load" data-bs-toggle="modal"
+											data-bs-target="#codeLoadModal" type="button">불러오기</div>
+										<div class="btn-reset" type="button">초기화</div>
+									</div>
 								</div>
-							</div>
-							<table class="table table-bordered item-table">
-								<tr>
-									<td class="table-primary">컬럼(논리)</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="재산구분" required>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-primary">컬럼(물리)</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="PRPT_FG" required>
-									</td>
-								</tr>
-								<tr>
-									<td class="table-primary">데이터타입</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="사용 여부 선택">
-											<option value="VARCHAR2">VARCHAR2</option>
-											<option value="NUMBER">NUMBER</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td class="table-primary">길이</td>
-									<td colspan="5"><input type="text"
-										class="form-control code-input" placeholder="2" required>
-									</td>
-								</tr>
+								<table class="table table-bordered item-table">
+									<tr>
+										<td class="table-secondary">컬럼(논리)</td>
+										<td colspan="5"><input type="text" id="colNm"
+											class="form-control code-input" placeholder="내용 입력" required>
+										</td>
+									</tr>
+									<tr>
+										<td class="table-secondary">컬럼(물리)</td>
+										<td colspan="5"><input type="text" id="colId"
+											class="form-control code-input" placeholder="내용 입력" required>
+										</td>
+									</tr>
 
-								<tr>
-									<td class="table-primary">NULL</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="사용 여부 선택">
-											<option value="NULL">NULL</option>
-											<option value="NOTNULL">NOTNULL</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td class="table-primary">PK</td>
-									<td colspan="5"><select
-										class="form-select use-status-select" aria-label="사용 여부 선택">
-											<option value="Y">Y</option>
-											<option value="N">N</option>
-									</select></td>
-								</tr>
-							</table>
+									<tr>
+										<td class="table-secondary">데이터타입</td>
+										<td colspan="5"><select type="text" id="dataType"
+											class="form-select use-status-select" aria-label="사용 여부 선택">
 
+										</select></td>
+									</tr>
+									<tr>
+										<td class="table-secondary">길이</td>
+										<td colspan="5"><input type="text" id="dataLength"
+											class="form-control code-input" placeholder="내용 입력" required>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="table-secondary">NULL</td>
+										<td colspan="5"><select id="nullable"
+											class="form-select use-status-select" aria-label="사용 여부 선택">
+												<option value="NULL">NULL</option>
+												<option value="NOTNULL">NOTNULL</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td class="table-secondary">PK</td>
+										<td colspan="5"><select id="isUse"
+											class="form-select use-status-select" aria-label="사용 여부 선택">
+												<option value="Y">Y</option>
+												<option value="N">N</option>
+										</select></td>
+									</tr>
+								</table>
+							</form>
 
 
 						</div>
@@ -129,17 +141,17 @@
 					<div class="item-icon">
 						<div class="item-header">컬럼</div>
 						<div class="index-btns">
-							<button>
+							<button id="move-up">
 								<i class="bi bi-caret-up-fill"></i>
 							</button>
-							<button>
+							<button id="move-down">
 								<i class="bi bi-caret-down-fill"></i>
 							</button>
 						</div>
 
 					</div>
 					<table class="table table-hover bottom-table">
-						<thead class="table-primary">
+						<thead class="table-secondary">
 							<tr>
 								<th scope="col">No.</th>
 								<th scope="col">컬럼(논리)</th>
@@ -151,48 +163,70 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<th>1</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
-							<tr>
-								<th>2</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
-							<tr>
-								<th>3</th>
-								<td>재산구분</td>
-								<td>PRPT_FG</td>
-								<td>VARCHAR2</td>
-								<td>2</td>
-								<td>NOTNULL</td>
-								<td>Y</td>
-								<td><i class="bi bi-trash3"></i></td>
-							</tr>
+						<tbody id="columnList">
+							<c:forEach items="${column}" var="column" varStatus="status">
+								<tr>
+									<td>${status.index+1}</td>
+									<td>${column.colNm}</td>
+									<td>${column.colId}</td>
+									<td>${column.dataType}</td>
+									<td>${column.colLength}</td>
+									<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
+									<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
+									<td>-</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 
 				<div class="button-group">
-					<a href="tableApplyList">
-						<div class="btn-add" type="button">신청</div>
-					</a>
+						<div class="btn-apply" type="button">신청</div>
 				</div>
 
-				<script
-					src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableList.js"></script>
+				<div class="modal fade" id="codeLoadModal" tabindex="-1"
+					aria-labelledby="codeLoadModal" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+
+							<div class="d-flex align-items-center">
+								<label for="codeNameSearch" class="code-search-label">코드명(논리/물리)</label>
+								<div>
+									<form class="d-flex search-form">
+										<input class="form-control" type="search" id="codeNameSearch"
+											placeholder="Search" aria-label="Search"> <i
+											class="bi bi-search"></i>
+									</form>
+								</div>
+							</div>
+
+							<div class="modal-body">
+								<div class="table-container">
+									<table class="table table-hover">
+										<thead class="table">
+											<tr class="table-secondary">
+												<th scope="col">No.</th>
+												<th scope="col">코드(논리)</th>
+												<th scope="col">코드(물리)</th>
+												<th scope="col">길이</th>
+												<th scope="col">내용</th>
+											</tr>
+										</thead>
+										<tbody id="codeList">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<script
+						src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableUpdateForm.js"></script>
 </body>
 </html>

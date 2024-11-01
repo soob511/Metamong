@@ -5,18 +5,18 @@ $(document).ready(function() {
     $('.sub-menu:eq(0) .sub-item').removeClass('active');
     $('.sub-menu:eq(0) .sub-item:first').addClass('active');
 
-    const items = [];
-    let num = $('.item-list th:last').text();
+    let num = $('.item-list').data('item-length');
+    let items = [];
 
-    for(let i = 0; i < num; i++) {
-    	items.push({ 
-        	itemId: $('.item-list .itemId').eq(i).text(), 
-        	itemNm: $('.item-list .itemNm').eq(i).text(), 
-        	itemIsActive: $('.item-list .itemIsActive').eq(i).text() == 'Y' ? 1 : 0, 
-        	itemContent: $('.item-list .itemContent').eq(i).text(),
-        	itemIsUpdate: 0
-    	});
-    }
+    $('.item-list .item').each(function() {
+        items.push({ 
+            itemId: $(this).find('.itemId').text(), 
+            itemNm: $(this).find('.itemNm').text(), 
+            itemIsActive: $(this).find('.itemIsActive').text() === 'Y' ? 1 : 0, 
+            itemContent: $(this).find('.itemContent').text(),
+            itemIsUpdate: $(this).data('item-isupdate')
+        });
+    });
 
     /* 항목 추가 */
     $('#item-add').click(function() {
@@ -25,7 +25,7 @@ $(document).ready(function() {
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
         
-        if(itemCheck() != 0) {
+        if(itemCheck(0) != 0) {
             items.push({ itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 });
             itemList();
         }
@@ -55,7 +55,7 @@ $(document).ready(function() {
         const itemIsActive = $("#itemIsActive option:selected").val();
         const itemContent = $('#itemContent').val();
         
-        if(itemCheck() != 0) {
+        if(itemCheck(1) != 0) {
 	    	updateItem = { itemId: itemId, itemNm: itemNm, itemIsActive: itemIsActive, itemContent: itemContent, itemIsUpdate: 1 };
 	    	items.splice(itemIndex, 1, updateItem);
 	        itemList();
@@ -81,6 +81,7 @@ $(document).ready(function() {
     	const codeNo = $('.codeAdd-subtitle').data('code-no');
     	const codeNm = $('#codeNm').val();
         const codeId = $('#codeId').val();
+        const codeLength = $('#codeLength').val();
         const codeContent = $('#codeContent').val();
         const codeIsActive = $("#codeIsActive option:selected").val();
         const applyReason = $('#applyReason').val();
@@ -89,17 +90,18 @@ $(document).ready(function() {
         	codeNo: codeNo,
             codeNm: codeNm,
             codeId: codeId,
+            codeLength: codeLength,
             codeContent: codeContent,
             codeIsActive: codeIsActive,
             applyReason: applyReason,
             items: items
         };
         
-        if (!codeNm || !codeId || !applyReason) {
+        if (!codeNm || !codeId || !codeLength || !applyReason) {
             Swal.fire({
                 icon: 'warning',
                 title: '필수내역을 공란없이<br/>입력해 주세요.',
-                text: '필수입력사항: 코드명(논리/물리), 신청사유'
+                text: '필수입력사항: 코드명(논리/물리), 코드길이, 신청사유'
             });
             return;
         }
@@ -122,14 +124,53 @@ $(document).ready(function() {
         });
     });
     
-    function itemCheck() {
+    $('.btn-compare').click(function() {
+    	const codeNo = $('.codeAdd-subtitle').data('code-no');
+    	const codeNm = $('#codeNm').val();
+        const codeId = $('#codeId').val();
+        const codeLength = $('#codeLength').val();
+        const codeContent = $('#codeContent').val();
+        const codeIsActive = $("#codeIsActive option:selected").val();
+        const applyReason = $('#applyReason').val();
+
+        let codeData = {
+        	codeNo: codeNo,
+            codeNm: codeNm,
+            codeId: codeId,
+            codeLength: codeLength,
+            codeContent: codeContent,
+            codeIsActive: codeIsActive,
+            applyReason: applyReason,
+            items: items
+        };
+
+        $.ajax({
+            url: "/Metamong/code/codeCompare",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(codeData),
+            traditional: true,
+            success: function(data) {
+            	console.log(data);
+            	location.href = "/Metamong/code/codeCompareForm?codeNo=" + codeNo;
+               
+            }
+        });
+    });
+    
+    function itemCheck(isEdit) {
     	const itemId = $('#itemId').val().trim();
     	const itemNm = $('#itemNm').val().trim();
     	
     	 let isExist = false;
          for (let i = 0; i <  items.length; i++) {
-         	if(itemId == items[i].itemId && i != itemIndex)
-               isExist = true;
+        	 if(isEdit == 0) {
+        		 if(itemId == items[i].itemId)
+                     isExist = true;
+        	 } else {
+        		 if(itemId == items[i].itemId && i != itemIndex)
+                     isExist = true;
+        	 }
          }
          
          if (!itemId || !itemNm) {

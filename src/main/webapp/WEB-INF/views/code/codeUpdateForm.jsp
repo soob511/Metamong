@@ -36,6 +36,10 @@
                                     <td colspan="5"><input type="text" id="codeId" class="form-control code-input" value="${code.codeId}" required></td>
                                 </tr>
                                 <tr>
+                                    <td class="table-secondary">코드길이</td>
+                                    <td colspan="5"><input type="text" id="codeLength" class="form-control code-input" value="${code.codeLength}" required></td>
+                                </tr>
+                                <tr>
                                     <td class="table-secondary">내용</td>
                                     <td colspan="5"><input type="text" id="codeContent" value="${code.codeContent}" class="form-control content-input"></td>
                                 </tr>
@@ -107,15 +111,15 @@
 	                                <th></th>
 	                            </tr>
 	                        </thead>
-	                        <tbody class="item-list">
+	                        <tbody class="item-list" data-item-length="${itemLength}">
 		                        <c:forEach items="${items}" var="item" varStatus="i">
-		                            <tr class="item">
-		                                <th>${i.index+1}</th>
+		                            <tr class="item" data-item-isupdate="${item.itemIsUpdate}">
+		                                <th class="item-index">${i.index+1}</th>
 		                                <td class="itemId">${item.itemId}</td>
 		                                <td class="itemNm">${item.itemNm}</td>
 		                                <td class="itemIsActive">${item.itemIsActive == 1 ? 'Y' : 'N'}</td>
 		                                <td class="itemContent">${item.itemContent}</td>
-		                                <td>-</td>
+		                                <td>${i.index < itemLength ? '-' : '<i class="bi bi-trash3"></i>'}</td>
 		                            </tr>
 		                        </c:forEach>
 	                        </tbody>
@@ -124,7 +128,8 @@
                 </div>
 
                 <div class="button-group">
-                 <button id="code-apply" class="btn-add" type="button">신청</button>
+               		<button class="btn-compare" type="button">전/후 비교</button>
+                 	<button id="code-apply" class="btn-add" type="button">신청</button>
                 </div>
 
                 <script src="${pageContext.request.contextPath}/resources/js/code/codeUpdateForm.js"></script>
