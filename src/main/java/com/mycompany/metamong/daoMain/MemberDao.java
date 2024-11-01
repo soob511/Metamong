@@ -1,4 +1,4 @@
-package com.mycompany.metamong.dao;
+package com.mycompany.metamong.daoMain;
 
 import org.apache.ibatis.annotations.Mapper;
 

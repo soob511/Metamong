@@ -10,7 +10,7 @@
 	
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"></property>
+		<property name="mapperLocations" value="classpath:mybatis/mapper/main/*.xml"></property>
 		
 	</bean>
 	
@@ -21,11 +21,11 @@
 
    
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mycompany.metamong.dao"/>
-		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+		<property name="basePackage" value="com.mycompany.metamong.daoMain"/>
+		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplateMain"/>
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.mycompany.metamong.dao"
+	<mybatis-spring:scan base-package="com.mycompany.metamong.daoMain"
 		annotation = "org.apache.ibatis.annotations.Mapper"/> 
 
 </beans>
