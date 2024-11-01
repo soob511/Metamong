@@ -33,10 +33,11 @@ $(document).ready(function() {
                 var html = "";
                 var count = 0;
                 data.forEach(code => {
-                    html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}">
+                    html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}" data-code-length="${code.codeLength}">
                                 <td>${++count}</td>
                                 <td>${code.codeNm}</td>
                                 <td>${code.codeId}</td>
+                                <td>${code.codeLength}</td>
                                 <td>${code.codeContent}</td>
                              </tr>`;
                 });
@@ -59,9 +60,11 @@ $(document).ready(function() {
     $(document).on("click", ".code-row", function() {
         const codeNm = $(this).data("code-nm");
         const codeId = $(this).data("code-id");
+        const codeLength = $(this).data("code-length");
         
         $("#colNm").val(codeNm);
         $("#colId").val(codeId);
+        $("#dataLength").val(codeLength);
         $('#codeLoadModal').modal('hide');
     });
 
@@ -79,10 +82,11 @@ $(document).ready(function() {
                 if (Object.keys(data).length > 0) {
                     var count = 0;
                     data.forEach(code => {
-                        html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}">
+                        html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}" data-code-length="${code.codeLength}">
                                     <td>${++count}</td>
                                     <td>${code.codeNm}</td>
                                     <td>${code.codeId}</td>
+                                    <td>${code.codeLength}</td>
                                     <td>${code.codeContent}</td>
                                  </tr>`;
                     });
@@ -136,21 +140,6 @@ $(document).ready(function() {
         updateRowNumbers();
     });
 
-    $("#move-up").on("click", function () {
-        var selectedRow = $("#columnList tr.selected");
-        if (selectedRow.length && selectedRow.prev().length) {
-            selectedRow.prev().before(selectedRow);
-            updateRowNumbers();
-        }
-    });
-
-    $("#move-down").on("click", function () {
-        var selectedRow = $("#columnList tr.selected");
-        if (selectedRow.length && selectedRow.next().length) {
-            selectedRow.next().after(selectedRow);
-            updateRowNumbers();
-        }
-    });
 
     $(document).on("click", "#columnList tr", function () {
         $("#columnList tr").removeClass("selected");
@@ -168,6 +157,22 @@ $(document).ready(function() {
         $("#dataLength").val(colLength);
         $("#nullable").val(colNullable);
         $("#isUse").val(colPk);
+    });
+    
+    $("#move-up").on("click", function () {
+    	var selectedRow = $("#columnList tr.selected");
+    	if (selectedRow.length && selectedRow.prev().length) {
+    		selectedRow.prev().before(selectedRow);
+    		updateRowNumbers();
+    	}
+    });
+    
+    $("#move-down").on("click", function () {
+    	var selectedRow = $("#columnList tr.selected");
+    	if (selectedRow.length && selectedRow.next().length) {
+    		selectedRow.next().after(selectedRow);
+    		updateRowNumbers();
+    	}
     });
 
     function updateRowNumbers() {
@@ -211,14 +216,14 @@ $(document).ready(function() {
     });
     
     $(".btn-apply").on("click", function() {
-    	var schemaName = $("#schemaSelect option:selected").data("name");
-        var tableNm = $("#tableNm").val();
-        var tableId = $("#tableId").val();
+    	var schemaName = $("#schemaName").text();
+    	var tableNm = $("#tableNm").text();
+    	var tableId = $("#tableId").text();
         var applyReason = $("#applyReason").val();
         var tableContent = $("#tableContent").val();
         var columns = [];
+        var applyType = "UPDATE";
         
-
         $("#columnList tr").each(function() {
             var column = {
                 colNm: $(this).find("td:eq(1)").text(),
@@ -231,7 +236,7 @@ $(document).ready(function() {
             columns.push(column);
         });
 
-        if (tableNm === "" || tableId === "" || applyReason === "") {
+        if (applyReason === "") {
             Swal.fire({
                 icon: 'warning',
                 title: '테이블에 관한 내용을 전부 입력해주세요'
@@ -248,7 +253,8 @@ $(document).ready(function() {
         		tableId:tableId,
         		applyReason:applyReason,
         		tableContent:tableContent,
-        		columns:columns
+        		columns:columns,
+        		applyType:applyType	
         	}
         	console.log(tableInfo);
             $.ajax({
@@ -260,8 +266,8 @@ $(document).ready(function() {
                 success: function(data) {
                     Swal.fire({
                         icon: 'success',
-                        title: '테이블 생성 신청이<br/>완료되었습니다.',
-                        text: '신청 승인 후, 코드 사용가능합니다.'
+                        title: '테이블 수정 신청이<br/>완료되었습니다.',
+                        text: '신청 승인 후, 테이블이 반영됩니다.'
                     }).then(result => {
                         location.href = "/Metamong/table/tableApplyList";
                     });

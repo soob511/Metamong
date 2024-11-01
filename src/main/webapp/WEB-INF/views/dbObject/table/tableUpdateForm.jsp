@@ -37,35 +37,34 @@
 								<tr>
 									<td class="table-secondary">스키마명</td>
 									<td colspan="5">
-										<div class="table-text">${table.schemaNm}</div>
+										<div class="table-text" id="schemaName">${table.schemaNm}</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-secondary">테이블(논리)</td>
 									<td colspan="5">
-										<div class="table-text">${table.tableNm}</div>
+										<div class="table-text" id="tableNm">${table.tableNm}</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-secondary">테이블(물리)</td>
 									<td colspan="5">
-										<div class="table-text">${table.tableId}</div>
+										<div class="table-text" id="tableId">${table.tableId}</div>
 									</td>
 								</tr>
 
 								<tr>
 									<td class="table-secondary">내용</td>
-									<td colspan="5"><input type="text"
+									<td colspan="5"><input type="text" id="tableContent"
 										class="form-control content-input"
 										placeholder="${table.tableContent}"></td>
 								</tr>
-
 								<tr>
 									<td class="table-secondary">신청사유</td>
-									<td colspan="5"><input type="text"
-										class="form-control content-input" placeholder="내용 입력">
-									</td>
+									<td colspan="5"><input type="text" id="applyReason"
+										class="form-control content-input" placeholder="내용 입력"></td>
 								</tr>
+
 
 							</table>
 						</div>
@@ -167,14 +166,13 @@
 						<tbody id="columnList">
 							<c:forEach items="${column}" var="column" varStatus="status">
 								<tr>
-									<th>${status.index+1}</th>
+									<td>${status.index+1}</td>
 									<td>${column.colNm}</td>
 									<td>${column.colId}</td>
 									<td>${column.dataType}</td>
 									<td>${column.colLength}</td>
 									<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
 									<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
-
 									<td>-</td>
 								</tr>
 							</c:forEach>
@@ -183,9 +181,7 @@
 				</div>
 
 				<div class="button-group">
-					<a href="tableApplyList">
-						<div class="btn-add" type="button">신청</div>
-					</a>
+						<div class="btn-apply" type="button">신청</div>
 				</div>
 
 				<div class="modal fade" id="codeLoadModal" tabindex="-1"
@@ -216,6 +212,7 @@
 												<th scope="col">No.</th>
 												<th scope="col">코드(논리)</th>
 												<th scope="col">코드(물리)</th>
+												<th scope="col">길이</th>
 												<th scope="col">내용</th>
 											</tr>
 										</thead>

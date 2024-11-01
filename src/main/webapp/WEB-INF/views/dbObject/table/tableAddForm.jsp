@@ -205,6 +205,7 @@
 												<th scope="col">No.</th>
 												<th scope="col">코드(논리)</th>
 												<th scope="col">코드(물리)</th>
+												<th scope="col">길이</th>
 												<th scope="col">내용</th>
 											</tr>
 										</thead>

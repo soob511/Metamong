@@ -9,4 +9,5 @@ public class CodeDto {
 	private String codeId;
 	private String codeContent;
 	private int codeIsActive;
+	private String codeLength;
 }

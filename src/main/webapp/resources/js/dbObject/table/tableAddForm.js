@@ -33,10 +33,11 @@ $(document).ready(function() {
                 var html = "";
                 var count = 0;
                 data.forEach(code => {
-                    html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}">
+                    html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}" data-code-length="${code.codeLength}">
                                 <td>${++count}</td>
                                 <td>${code.codeNm}</td>
                                 <td>${code.codeId}</td>
+                                 <td>${code.codeLength}</td>
                                 <td>${code.codeContent}</td>
                              </tr>`;
                 });
@@ -57,12 +58,14 @@ $(document).ready(function() {
     });
     
     $(document).on("click", ".code-row", function() {
-        const codeNm = $(this).data("code-nm");
-        const codeId = $(this).data("code-id");
-        
-        $("#colNm").val(codeNm);
-        $("#colId").val(codeId);
-        $('#codeLoadModal').modal('hide');
+    	 const codeNm = $(this).data("code-nm");
+         const codeId = $(this).data("code-id");
+         const codeLength = $(this).data("code-length");
+         
+         $("#colNm").val(codeNm);
+         $("#colId").val(codeId);
+         $("#dataLength").val(codeLength);
+         $('#codeLoadModal').modal('hide');
     });
 
     function searchCode() {
@@ -79,10 +82,11 @@ $(document).ready(function() {
                 if (Object.keys(data).length > 0) {
                     var count = 0;
                     data.forEach(code => {
-                        html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}">
+                        html += `<tr class="code-row" data-code-nm="${code.codeNm}" data-code-id="${code.codeId}" data-code-length="${code.codeLength}">
                                     <td>${++count}</td>
                                     <td>${code.codeNm}</td>
                                     <td>${code.codeId}</td>
+                                    <td>${code.codeLength}</td>
                                     <td>${code.codeContent}</td>
                                  </tr>`;
                     });
@@ -218,6 +222,8 @@ $(document).ready(function() {
         var tableContent = $("#tableContent").val();
         var columns = [];
         
+        var applyType = "CREATE";
+        
 
         $("#columnList tr").each(function() {
             var column = {
@@ -248,7 +254,8 @@ $(document).ready(function() {
         		tableId:tableId,
         		applyReason:applyReason,
         		tableContent:tableContent,
-        		columns:columns
+        		columns:columns,
+        		applyType:applyType	
         	}
         	console.log(tableInfo);
             $.ajax({
@@ -261,7 +268,7 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'success',
                         title: '테이블 생성 신청이<br/>완료되었습니다.',
-                        text: '신청 승인 후, 코드 사용가능합니다.'
+                        text: '신청 승인 후, 테이블이 반영됩니다.'
                     }).then(result => {
                         location.href = "/Metamong/table/tableApplyList";
                     });
