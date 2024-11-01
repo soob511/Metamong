@@ -69,27 +69,30 @@ $('#columnTableBody').on('click', '.form-check-input', function() {
 $('#flexCheckDefault').change(function() {
     const isChecked = $(this).is(':checked');
 
-    $('#columnTableBody .form-check-input').prop('checked', isChecked);
-
     if (isChecked) {
         $('#columnTableBody .form-check-input').each(function() {
-            var row = $(this).closest('tr');
-            var colId = row.find('td[data-name="colId"]').text();
-            var colOrder = row.find('td[data-name="colOrder"] select').val();
-
-            const newRow = `
-                <tr data-value="${colId}">
-                    <td data-name="indexCount">${indexCount++}</td>
-                    <td data-value="${colId}">${colId}</td>
-                    <td data-value="${colOrder}">${colOrder}</td>
-                    <td><i class="bi bi-trash3"></i></td>
-                </tr>
-            `;
-            $('#indexApplyColumn').append(newRow);
+        	if (!$(this).is(':checked')) {
+        		$(this).prop('checked', true);
+            
+	            var row = $(this).closest('tr');
+	            var colId = row.find('td[data-name="colId"]').text();
+	            var colOrder = row.find('td[data-name="colOrder"] select').val();
+	
+	            const newRow = `
+	                <tr data-value="${colId}">
+	                    <td data-name="indexCount">${indexCount++}</td>
+	                    <td data-value="${colId}">${colId}</td>
+	                    <td data-value="${colOrder}">${colOrder}</td>
+	                    <td><i class="bi bi-trash3"></i></td>
+	                </tr>
+	            `;
+	            $('#indexApplyColumn').append(newRow);
+        	}
         });
     } else {
         $('#indexApplyColumn').empty();
         indexCount = 1;
+        $('#columnTableBody .form-check-input').prop('checked', false);
     }
 });
 
