@@ -10,7 +10,7 @@ import lombok.Data;
 public class CodeAddDto {
 	private String codeNm;
 	private String codeId;
-	private int codeLength;
+	private String codeLength;
 	private String codeContent;
 	private String applyReason;
 	private List<ItemAddDto> items;

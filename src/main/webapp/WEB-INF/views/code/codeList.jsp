@@ -57,6 +57,7 @@
                                             <th scope="col">No.</th>
                                             <th scope="col">코드(논리)</th>
                                             <th scope="col">코드(물리)</th>
+                                            <th scope="col">코드길이</th>
                                             <th scope="col">사용여부</th>
                                             <th scope="col">내용</th>
                                         </tr>
@@ -67,6 +68,7 @@
                                                 <th>${code.codeNo}</th>
                                                 <td>${code.codeNm}</td>
                                                 <td>${code.codeId}</td>
+                                                <td>${code.codeLength}</td>
                                                 <td>${code.codeIsActive == 1 ? 'Y' : 'N'}</td>
                                                 <td>${code.codeContent}</td>
                                             </tr>
