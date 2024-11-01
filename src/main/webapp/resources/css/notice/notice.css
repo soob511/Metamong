@@ -185,6 +185,8 @@ h4 {
 }
 #detailContents {
 	height:300px;
+	text-align:left;
+	
 }
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
@@ -197,5 +199,8 @@ input[type="search"]::-webkit-search-cancel-button {
 	vertical-align:middle;
 }
 #existingFile {
+	text-align:left;
+}
+#existingRegdate {
 	text-align:left;
 }

@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -90,7 +89,7 @@ public class NoticeController {
 	
 	@ResponseBody
 	@PostMapping("/insertNotice")
-	public int insertNotice(@RequestBody NoticeAddFormDto form) throws Exception {
+	public int insertNotice(@ModelAttribute NoticeAddFormDto form) throws Exception {
 		NoticeDto notice = new NoticeDto();
 		
 		notice.setNoticeTitle(form.getNoticeTitle());
@@ -146,4 +145,12 @@ public class NoticeController {
 	 
 		 return pageNo;	
 	}
+	
+	@ResponseBody
+	@GetMapping("/noticeSearch")
+	    public List<NoticeDto> search(@RequestParam(defaultValue="") String option, @RequestParam(defaultValue="") String keyword) {
+	        List<NoticeDto> searchResults = noticeService.searchNotice(option,keyword);
+
+	        return searchResults;
+	    }
 }
