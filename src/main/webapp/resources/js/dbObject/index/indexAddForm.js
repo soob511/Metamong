@@ -154,7 +154,6 @@ function updateCount() {
 const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 const checkFirstChar = /^[A-Za-z]/;
 const checkInvalidChars = /[^A-Za-z0-9_]/;
-var idxNameValidResult = false;
 
 $(document).on("input", "#indexName", function () {
   let inputId = $("#indexName").val().trim();
@@ -175,7 +174,6 @@ $(document).on("input", "#indexName", function () {
   } else {
     msg.text("");
     msg.removeClass('warn');
-    idxNameValidResult = true;
   }
 });
 
@@ -307,26 +305,14 @@ function applyIndex() {
 		    refColumn: refColumn
 	};
 	
-	if (refColumn.length === 0) {
+	if (refColumn.length === 0 || applyIndexDto.idxName === '' || 
+			applyListDto.applyReason === '') {
 		Swal.fire({
   		  	icon: 'warning',                  
   		  	title: '필수내역을 공란없이<br/>입력해 주세요.',
-  		  	text: '필수입력사항: 컬럼 선택'
+  		  	text: '필수입력사항: 컬럼 선택, 인덱스 제목, 신청사유'
   		});
-	} else if (applyIndexDto.idxName === '') {
-		console.log(typeof applyListDto.idxName)
-		Swal.fire({
-			icon: 'warning',                  
-			title: '필수내역을 공란없이<br/>입력해 주세요.',
-			text: '필수입력사항: 인덱스 제목'
-  		});
-	} else if (applyListDto.applyReason === '') {
-		Swal.fire({
-			icon: 'warning',                  
-			title: '필수내역을 공란없이<br/>입력해 주세요.',
-			text: '필수입력사항: 신청사유'
-		});
-	} else if (!idxNameValidResult) {
+	} else if ($("#nameValidMessage").hasClass("warn")) {
 		Swal.fire({
 			icon: 'warning',                  
 			title: '인덱스 제목을<br/>확인해 주세요.',
@@ -346,7 +332,6 @@ function applyIndex() {
 				}).then(result=>{
 					location.href="/Metamong/index/indexApplyList";
 				})
-				idxNameValidResult = false;
 			},
 			error : function(xhr, status, error) {
 				Swal.fire({ 
@@ -354,7 +339,6 @@ function applyIndex() {
 					title: '인덱스 신청을 실패하였습니다.',
 					text: '확인 후 다시 신청해주세요.',
 				})
-				idxNameValidResult = false;
 			}
 		});
 	}
