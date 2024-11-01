@@ -5,93 +5,27 @@
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<bean id="sqlSessionFactoryMain"
+	<bean id="sqlSessionFactory"
 	class="org.mybatis.spring.SqlSessionFactoryBean">
 	
-		<property name="dataSource" ref="dataSourceMain"></property>
+		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
 		<property name="mapperLocations" value="classpath:mybatis/mapper/main/*.xml"></property>
 		
 	</bean>
 	
-	<bean id="sqlSessionFactory1"
-	class="org.mybatis.spring.SqlSessionFactoryBean">
-	
-		<property name="dataSource" ref="dataSource1"></property>
-		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mybatis/mapper/sub1/*.xml"></property>
-		
-	</bean>
-	
-	<bean id="sqlSessionFactory2"
-	class="org.mybatis.spring.SqlSessionFactoryBean">
-	
-		<property name="dataSource" ref="dataSource2"></property>
-		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mybatis/mapper/sub2/*.xml"></property>
-		
-	</bean>
-	
-	<bean id="sqlSessionFactory3"
-	class="org.mybatis.spring.SqlSessionFactoryBean">
-	
-		<property name="dataSource" ref="dataSource3"></property>
-		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mybatis/mapper/sub3/*.xml"></property>
-		
-	</bean>
-	
-	<bean id="sqlSessionTemplateMain"
+	<bean id="sqlSessionTemplate"
           class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryMain"/>
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
-    <bean id="sqlSessionTemplate1"
-          class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactory1"/>
-    </bean>
-
-    <bean id="sqlSessionTemplate2"
-          class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactory2"/>
-    </bean>
-
-    <bean id="sqlSessionTemplate3"
-          class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactory3"/>
-    </bean>
-    
+   
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.mycompany.metamong.daoMain"/>
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplateMain"/>
 	</bean>
 	
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mycompany.metamong.daoSub1"/>
-		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate1"/>
-	</bean>
-	
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mycompany.metamong.daoSub2"/>
-		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate2"/>
-	</bean>
-	
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mycompany.metamong.daoSub3"/>
-		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate3"/>
-	</bean>
-	
 	<mybatis-spring:scan base-package="com.mycompany.metamong.daoMain"
 		annotation = "org.apache.ibatis.annotations.Mapper"/> 
-		
-	<mybatis-spring:scan base-package="com.mycompany.metamong.daoSub1"
-		annotation = "org.apache.ibatis.annotations.Mapper"/> 
-		
-	<mybatis-spring:scan base-package="com.mycompany.metamong.daoSub2"
-		annotation = "org.apache.ibatis.annotations.Mapper"/> 
-		
-	<mybatis-spring:scan base-package="com.mycompany.metamong.daoSub3"
-		annotation = "org.apache.ibatis.annotations.Mapper"/> 
-
 
 </beans>

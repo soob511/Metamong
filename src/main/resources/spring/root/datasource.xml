@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="dataSourceMain"
+	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 
@@ -20,53 +20,4 @@
 		<property name="maxIdle" value="2"></property>
 	</bean>
 	
-	<bean id="dataSource1"
-		class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.DriverSpy" />
-		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl" />
-		<property name="username" value="user_2024_oti_final_team1_1" />
-		<property name="password" value="oracle" />
-
-		<property name="initialSize" value="2"></property>
-		<property name="maxTotal" value="4"></property>
-		<property name="maxIdle" value="2"></property>
-	</bean>
-	
-	<bean id="dataSource2"
-		class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.DriverSpy" />
-		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl" />
-		<property name="username" value="user_2024_oti_final_team1_2" />
-		<property name="password" value="oracle" />
-
-		<property name="initialSize" value="2"></property>
-		<property name="maxTotal" value="4"></property>
-		<property name="maxIdle" value="2"></property>
-	</bean>
-	
-	<bean id="dataSource3"
-		class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.DriverSpy" />
-		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl" />
-		<property name="username" value="user_2024_oti_final_team1_3" />
-		<property name="password" value="oracle" />
-
-		<property name="initialSize" value="2"></property>
-		<property name="maxTotal" value="4"></property>
-		<property name="maxIdle" value="2"></property>
-	</bean>
-
-
 </beans>
