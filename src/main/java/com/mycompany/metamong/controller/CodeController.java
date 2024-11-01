@@ -108,9 +108,21 @@ public class CodeController {
 		model.addAttribute("itemLength", items.size());
 		
 		if(isUpdated == 0) {
-			CodeDto code = codeService.getCodeByNo(codeNo);
+			CodeDto code = codeService.getCodeByNo(codeNo);			
+			List<ItemUpdateDto> tmpItems = new ArrayList<ItemUpdateDto>();
+
+			for(ItemDto item : items) {
+				ItemUpdateDto tmpItem = new ItemUpdateDto();
+				tmpItem.setItemId(item.getItemId());
+				tmpItem.setItemNm(item.getItemNm());
+				tmpItem.setItemIsActive(item.getItemIsActive());
+				tmpItem.setItemContent(item.getItemContent());
+				tmpItem.setItemIsUpdate(0);
+				tmpItems.add(tmpItem);
+			}
+			
 			model.addAttribute("code", code);
-			model.addAttribute("items", items);
+			model.addAttribute("items", tmpItems);
 		} else {
 			model.addAttribute("code", session.getAttribute("newCode"));
 			model.addAttribute("items", session.getAttribute("newItems"));
@@ -136,7 +148,7 @@ public class CodeController {
 		code.setCodeLength(form.getCodeLength());
 		code.setCodeId(form.getCodeId());
 		code.setCodeContent(form.getCodeContent());
-		code.setCodeIsActive(form.getCodeIsActive());		
+		code.setCodeIsActive(form.getCodeIsActive());
 		codeService.updateApplyCode(code);
 		
 		// APPLY_ITEM 테이블

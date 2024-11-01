@@ -5,26 +5,18 @@ $(document).ready(function() {
     $('.sub-menu:eq(0) .sub-item').removeClass('active');
     $('.sub-menu:eq(0) .sub-item:first').addClass('active');
 
-    console.log("js 실행");
-    
-    const items = [];
     let num = $('.item-list').data('item-length');
-    let isUpdated = $('.item').data('item-isupdate');
+    let items = [];
 
-    console.log("items: ", items);
-    console.log("num: ", num);
-    
-    for(let i = 0; i < num; i++) {
-    	items.push({ 
-        	itemId: $('.item-list .itemId').eq(i).text(), 
-        	itemNm: $('.item-list .itemNm').eq(i).text(), 
-        	itemIsActive: $('.item-list .itemIsActive').eq(i).text() == 'Y' ? 1 : 0, 
-        	itemContent: $('.item-list .itemContent').eq(i).text(),
-        	itemIsUpdate: isUpdated
-    	});
-    }
-    
-    console.log(items);
+    $('.item-list .item').each(function() {
+        items.push({ 
+            itemId: $(this).find('.itemId').text(), 
+            itemNm: $(this).find('.itemNm').text(), 
+            itemIsActive: $(this).find('.itemIsActive').text() === 'Y' ? 1 : 0, 
+            itemContent: $(this).find('.itemContent').text(),
+            itemIsUpdate: $(this).data('item-isupdate')
+        });
+    });
 
     /* 항목 추가 */
     $('#item-add').click(function() {
@@ -218,7 +210,7 @@ $(document).ready(function() {
                     <td class="itemNm">${items[i].itemNm}</td>
                     <td class="itemIsActive">${items[i].itemIsActive == 1 ? 'Y' : 'N'}</td>
                     <td class="itemContent">${items[i].itemContent ? items[i].itemContent : '-'}</td>
-                    <td>${i < num ? '-' : '<i class="bi bi-trash3"></i>'}</td>
+                    <td>${i < num ? '-' : '<i class="bi bi-trash3"></i>'}</td>              
                 </tr>`
             );
         }
