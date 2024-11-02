@@ -52,7 +52,6 @@ public class CodeController {
 	        List<ItemDto> items = itemService.getItemList(codeNo);
 	        itemList.add(items); 
 	    }	
-		
 		model.addAttribute("codeList", codeList);
 		model.addAttribute("itemList",itemList);
 
@@ -103,8 +102,6 @@ public class CodeController {
 	        item.setItemIsUpdate(inputItem.getItemIsUpdate());
 	        applyService.addApplyItem(item);
 	    }
-				
-		
 		return "code/codeApplyList";
 	}
 	
@@ -126,11 +123,9 @@ public class CodeController {
 				tmpItem.setItemIsUpdate(0);
 				tmpItems.add(tmpItem);
 			}
-			
 			model.addAttribute("code", code);
 			model.addAttribute("items", tmpItems);
 		} else { 
-			// 뒤로가기 버튼
 			model.addAttribute("code", session.getAttribute("newCode"));
 			model.addAttribute("items", session.getAttribute("newItems"));
 		}
