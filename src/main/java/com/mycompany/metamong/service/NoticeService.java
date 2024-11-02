@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.metamong.daoMain.NoticeDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.notice.NoticeDto;
+import com.mycompany.metamong.dto.notice.NoticeUpdateFormDto;
 
 @Service
 public class NoticeService {
@@ -52,6 +53,10 @@ public class NoticeService {
 
 	public int updateNotice(NoticeDto notice) {
 		return noticeDao.updateNotice(notice);
+	}
+	
+	public int deleteFile(NoticeUpdateFormDto form) {
+		return noticeDao.deleteFile(form);
 	}
 
 	public List<NoticeDto> searchNotice(String option, String keyword) {

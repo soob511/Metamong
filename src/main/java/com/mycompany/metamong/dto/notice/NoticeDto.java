@@ -11,9 +11,10 @@ public class NoticeDto {
 	private String noticeContent;
 	private Date noticeRegdate;
 	private int noticeHitcount;
+	private int noticeIsimp;
 	private String noticeFilename;
 	private String noticeFiletype;
 	private byte[] noticeFiledata;
-
+	public int deleteFile;
 }
 

@@ -93,7 +93,7 @@ public class NoticeController {
 		NoticeDto notice = new NoticeDto();
 		
 		notice.setNoticeTitle(form.getNoticeTitle());
-		notice.setNoticeRegdate(form.getNoticeRegdate());
+		notice.setNoticeIsimp(form.getNoticeIsimp());
 		notice.setNoticeContent(form.getNoticeContent());
 
 		MultipartFile noticeFile = form.getNoticeFile();
@@ -123,16 +123,36 @@ public class NoticeController {
 		
 		notice.setNoticeId(form.getNoticeId());
 		notice.setNoticeTitle(form.getNoticeTitle());
-		notice.setNoticeRegdate(form.getNoticeRegdate());
+		notice.setNoticeIsimp(form.getNoticeIsimp());
 		notice.setNoticeContent(form.getNoticeContent());
-
-		MultipartFile updateFile = form.getNoticeFile();
-		if(updateFile!=null && !updateFile.isEmpty()) {
-			notice.setNoticeFilename(updateFile.getOriginalFilename());
-			notice.setNoticeFiletype(updateFile.getContentType());
-			notice.setNoticeFiledata(updateFile.getBytes());
-		}    
+		
+		MultipartFile noticeFile = form.getNoticeFile();
+        if(noticeFile != null && !noticeFile.isEmpty()) {
+            notice.setNoticeFilename(noticeFile.getOriginalFilename());
+            notice.setNoticeFiletype(noticeFile.getContentType());
+            notice.setNoticeFiledata(noticeFile.getBytes());
+        }
 		return noticeService.updateNotice(notice);
+	}
+	
+	@ResponseBody
+	@PostMapping("/deleteFile")
+	public int deleteFile(
+			@ModelAttribute NoticeUpdateFormDto form) throws Exception {
+		log.info("실행");
+		NoticeDto notice = new NoticeDto();
+		
+		notice.setNoticeId(form.getNoticeId());
+		notice.setNoticeTitle(form.getNoticeTitle());
+		notice.setNoticeIsimp(form.getNoticeIsimp());
+		notice.setNoticeContent(form.getNoticeContent());
+		
+		if (form.getDeleteFile() == 1) { 
+	        notice.setNoticeFilename(null);
+	        notice.setNoticeFiletype(null);
+	        notice.setNoticeFiledata(null);
+	    } 
+		return noticeService.deleteFile(form);
 	}
 	
 	@ResponseBody

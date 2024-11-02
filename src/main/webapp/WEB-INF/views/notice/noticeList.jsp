@@ -51,7 +51,17 @@
                     <tbody id="noticeList">
                         <c:forEach items="${list}" var="notice" varStatus="status">           
 	                        <tr>
-	                            <th scope="row">${totalRows - (pager.pageNo-1) * 10 - status.index}</th>                          
+	                            <td scope="row">
+	                            <c:choose>
+								<c:when test="${notice.noticeIsimp == '1'}">
+									<img
+										src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
+										alt="중요도" style="width:33px; height:33px ">
+								</c:when>
+								<c:otherwise>
+						${totalRows - (pager.pageNo-1) * 10 - status.index}
+					</c:otherwise>
+							</c:choose></td>                          
 	                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 	                            <td>${notice.noticeHitcount}</td>
