@@ -5,15 +5,15 @@
 	<select id="selectNoticeList"  parameterType="Pager" resultType="Notice">
 		<![CDATA[
 			SELECT 
-				rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+				rnum, notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp
 			FROM(
 				SELECT 
-					rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount
+					rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp
 				FROM (
 		        	SELECT 
-		        		notice_id, notice_title, notice_regdate, notice_hitcount
+		        		notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp
 		        	FROM notice
-		        	ORDER BY notice_regdate DESC, notice_id DESC
+		        	ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
 					)
 	        	WHERE rownum <= #{endRowNo}
 				)
@@ -77,6 +77,7 @@
 				notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 		</where>
+		ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_id DESC
 	</select>
 	
 	<insert id="insertNotice" parameterType="Notice">
@@ -85,13 +86,13 @@
 			FROM DUAL 
 		</selectKey>
 		INSERT INTO notice (
-			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp
 			<if test="noticeFilename != null">
             , notice_filename, notice_filetype, notice_filedata
         	</if>
 		)
 		VALUES (
-			#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeRegdate}, #{noticeHitcount}
+			#{noticeId}, #{noticeTitle}, #{noticeContent}, sysdate, #{noticeHitcount},#{noticeIsimp}
 			<if test="noticeFilename != null">
             , #{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
         	</if>
@@ -102,20 +103,39 @@
 	    UPDATE notice
 	    SET 
 	        notice_title = #{noticeTitle},
-	        notice_regdate = #{noticeRegdate},
+	        notice_regdate = sysdate,
+	        notice_isimp = #{noticeIsimp},
 	        notice_content = #{noticeContent}
+	        
 	        <if test="noticeFilename != null">
 	            , notice_filename = #{noticeFilename},
-	            notice_filetype = #{noticeFiletype},
-	            notice_filedata = #{noticeFiledata}
-	        </if>
+	              notice_filetype = #{noticeFiletype},
+	              notice_filedata = #{noticeFiledata}
+	        	</if>
+	        
 	    WHERE notice_id = #{noticeId}
+	</update>
+	
+	<update id="deleteFile" parameterType="NoticeUpdate">
+	 UPDATE notice
+	    SET 
+	     notice_title = #{noticeTitle},
+	        notice_regdate = sysdate,
+	        notice_isimp = #{noticeIsimp},
+	        notice_content = #{noticeContent}
+	        
+	        <if test="deleteFile == 'true'">
+            , notice_filename = NULL,
+              notice_filetype = NULL,
+              notice_filedata = NULL
+	        </if>
+	        
+	         WHERE notice_id = #{noticeId}
 	</update>
 	
 	<delete id="deleteNotice" parameterType="int">
 		DELETE FROM notice
 		WHERE notice_id = #{noticeId}
 	</delete>
-	
 	
 </mapper>
