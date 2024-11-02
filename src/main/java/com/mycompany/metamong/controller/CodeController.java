@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
@@ -171,7 +172,17 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeApplyDetail")
-	public String codeApplyDetail() {
+	public String codeApplyDetail(Model model, int applyNo, int indexNo) {
+		ApplyCodeDeatilDto applyList = applyService.getCodeApplyDetail(applyNo); 
+		model.addAttribute("applyList", applyList);
+		model.addAttribute("indexNo", indexNo);
+		
+		CodeDto applyCode = codeService.getCodeApplyByNo(applyNo);
+		model.addAttribute("applyCode", applyCode);
+		
+		List<ItemDto> applyItems = itemService.getItemsApplyByNo(applyNo);
+		model.addAttribute("applyItems",applyItems);
+		
 		return "code/codeApplyDetail";
 	}
 	

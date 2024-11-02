@@ -12,6 +12,7 @@ import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
+import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
@@ -32,6 +33,10 @@ public class ApplyService {
 
 	public List<ApplyCodeDto> getApplyCodeList() {
 		return applyListDao.selectApplyCodeList();
+	}
+	
+	public ApplyCodeDeatilDto getCodeApplyDetail(int applyNo) {
+		return applyListDao.selectCodeApplyDetail(applyNo);
 	}
 
 	public List<ApplyTableDto> getApplyTableList() {
@@ -64,5 +69,4 @@ public class ApplyService {
 		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
-
 }

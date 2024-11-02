@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
@@ -14,6 +15,8 @@ import com.mycompany.metamong.dto.table.ApplyTableDto;
 public interface ApplyListDao {
 
 	public List<ApplyCodeDto> selectApplyCodeList();
+	
+	public ApplyCodeDeatilDto selectCodeApplyDetail(int applyNo);
 
 	public List<ApplyTableDto> selectApplyTableList();
 

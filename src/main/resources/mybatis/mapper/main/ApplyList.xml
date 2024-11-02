@@ -15,6 +15,14 @@
 		a.apply_date DESC
 	</select>
 	
+	<select id="selectCodeApplyDetail" parameterType="int" resultType="ApplyCodeDeatil">
+		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name, a.apply_reason,
+		 a.reject_reason, a.approval_status
+		FROM apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		WHERE apply_no =#{applyNo}
+	</select>
+	
 	<select id="selectApplyTableList" resultType="ApplyTableList">
 		SELECT
 		a.apply_no,m.m_name,

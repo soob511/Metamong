@@ -55,22 +55,24 @@
 									<td>${code.codeNm}</td>
 									<td>${code.codeId}</td>
 									<td>${code.applyObj}</td>
-									<td><button
-													class="btn-history-details">상세보기</button></td>
-										<td class="code-approve"><c:choose>
-												<c:when test="${code.approvalStatus == 0}">
-													<span id="status-await">승인대기</span>
-												</c:when>
-												<c:when test="${code.approvalStatus == 1}">
-													<span id="status-approve">승인</span>
-												</c:when>
-												<c:when test="${code.approvalStatus == 2}">
-													<span id="status-rejected">반려</span>
-												</c:when>
-												<c:when test="${code.approvalStatus == 3}">
-													<span id="status-applied">반영</span>
-												</c:when>
-											</c:choose></td>
+									<td>
+										<button	 class="btn-history-details" onclick="codeApplyDetail(${code.applyNo},${status.index+1})">상세보기</button>
+									</td>
+									<td class="code-approve"><c:choose>
+											<c:when test="${code.approvalStatus == 0}">
+												<span id="status-await">승인대기</span>
+											</c:when>
+											<c:when test="${code.approvalStatus == 1}">
+												<span id="status-approve">승인</span>
+											</c:when>
+											<c:when test="${code.approvalStatus == 2}">
+												<span id="status-rejected">반려</span>
+											</c:when>
+											<c:when test="${code.approvalStatus == 3}">
+												<span id="status-applied">반영</span>
+											</c:when>
+										</c:choose>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
