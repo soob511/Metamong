@@ -35,6 +35,15 @@ public class IndexService {
 		list.addAll(sub3IndexDao.selectIndex());
 		return list;
 	}
+	
+	public List<IndexDto> getIndexList(String indexName) {
+		List<IndexDto> list = new ArrayList<>();
+		list.addAll(indexDao.selectIndexByName(indexName));
+		list.addAll(sub1IndexDao.selectIndexByName(indexName));
+		list.addAll(sub2IndexDao.selectIndexByName(indexName));
+		list.addAll(sub3IndexDao.selectIndexByName(indexName));
+		return list;
+	}
 
 	public List<IndexDto> getIndexList(SchemaEnum schemaName) {
 		List<IndexDto> list = new ArrayList<>();
