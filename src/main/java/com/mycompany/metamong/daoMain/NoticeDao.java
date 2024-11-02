@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.notice.NoticeDto;
+import com.mycompany.metamong.dto.notice.NoticeUpdateFormDto;
 
 @Mapper
 public interface NoticeDao {
@@ -31,5 +32,8 @@ public interface NoticeDao {
 
 	public int updateNotice(NoticeDto notice);
 
+	public int deleteFile(NoticeUpdateFormDto form);
+	
 	public List<NoticeDto> selectNoticeSearch(@Param("option")String option, @Param("keyword")String keyword);
+
 }

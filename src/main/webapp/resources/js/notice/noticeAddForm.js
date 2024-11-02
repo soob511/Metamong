@@ -60,12 +60,14 @@ $(document).ready(function() {
 
 $(".btn-add").on("click", function () {  
     var noticeTitle = $("#noticeTitle").val();
-    var noticeRegdate = $("#noticeRegdate").val();
+    var noticeIsimp = $("#noticeIsimp").val();
+    var noticeRegdate = $(this).data('notice-regdate'); 
     var noticeContent = $("#noticeContent").val();
     var fileInput = $("#noticeFile")[0].files;
 
     var formData = new FormData();
     formData.append("noticeTitle", noticeTitle);
+    formData.append("noticeIsimp", noticeIsimp);
     formData.append("noticeRegdate", noticeRegdate);
     formData.append("noticeContent", noticeContent);
  
@@ -73,11 +75,11 @@ $(".btn-add").on("click", function () {
         formData.append("noticeFile", fileInput[0]);
     }
     
-    if (!noticeTitle || !noticeRegdate || !noticeContent) {
+    if (!noticeTitle ||  !noticeContent || !noticeIsimp) {
         Swal.fire({
           icon: "warning",
           title: "필수내역을 공란없이<br/>입력해 주세요.",
-          text: "필수입력사항: 제목, 등록일, 내용",
+          text: "필수입력사항: 제목, 중요도, 내용",
         });
         return;
       }
