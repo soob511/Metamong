@@ -147,7 +147,7 @@ public class NoticeController {
 		notice.setNoticeIsimp(form.getNoticeIsimp());
 		notice.setNoticeContent(form.getNoticeContent());
 		
-		if ("true".equals(form.getDeleteFile())) { 
+		if (form.getDeleteFile() == 1) { 
 	        notice.setNoticeFilename(null);
 	        notice.setNoticeFiletype(null);
 	        notice.setNoticeFiledata(null);

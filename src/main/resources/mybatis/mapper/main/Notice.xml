@@ -124,7 +124,7 @@
 	        notice_isimp = #{noticeIsimp},
 	        notice_content = #{noticeContent}
 	        
-	        <if test="deleteFile == 'true'">
+	        <if test="deleteFile == 1">
             , notice_filename = NULL,
               notice_filetype = NULL,
               notice_filedata = NULL

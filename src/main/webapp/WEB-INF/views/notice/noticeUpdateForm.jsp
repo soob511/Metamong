@@ -57,7 +57,7 @@
                                         </div>
                                     </c:if>
                                     <input id="noticeFile" type="file" name="noticeFile" class="form-control" style="display: ${notice.noticeFilename != null ? 'none' : 'block'};">                     
-                                    <input type="hidden" id="deleteFile" name="deleteFile" value="${notice.noticeFilename != null ? 'false' : 'true'}">
+                                    <input type="hidden" id="deleteFile" name="deleteFile" value="${notice.noticeFilename != null ? 0 : 1}">
                                 </td>
                             </tr>
                         </table>

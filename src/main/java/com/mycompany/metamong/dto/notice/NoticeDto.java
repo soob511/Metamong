@@ -15,6 +15,6 @@ public class NoticeDto {
 	private String noticeFilename;
 	private String noticeFiletype;
 	private byte[] noticeFiledata;
-	public String deleteFile;
+	public int deleteFile;
 }
 

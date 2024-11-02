@@ -14,5 +14,5 @@ public class NoticeUpdateFormDto {
 	private String noticeFiletype;
 	private byte[] noticeFiledata;
 	private MultipartFile noticeFile;
-	public String deleteFile;
+	public int deleteFile;
 }

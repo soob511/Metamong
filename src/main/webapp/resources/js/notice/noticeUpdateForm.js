@@ -116,13 +116,13 @@ $(".btn-update").on("click", function () {
 
 $(document).ready(function() {
 	$('#noticeFile').on('change', function() {
-		$('#deleteFile').val("true");
+		$('#deleteFile').val("1");
 		
 	});	
 	$('#removeFileBtn').on('click', function() {
 		$('#existingFile').hide(); 
 		$('#noticeFile').show(); 
-		$('#deleteFile').val("true");
+		$('#deleteFile').val("1");
 	});
 });
 
@@ -180,7 +180,7 @@ $(document).ready(function() {
 	$('#removeFileBtn').on('click', function() {
 		$('#existingFile').hide(); 
 		$('#noticeFile').show(); 
-		$('#deleteFile').val("true");
+		$('#deleteFile').val("1");
 		
 	});
 });
