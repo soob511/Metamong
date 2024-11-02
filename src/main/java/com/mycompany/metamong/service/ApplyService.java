@@ -3,9 +3,10 @@ package com.mycompany.metamong.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
@@ -15,6 +16,10 @@ import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
+import com.mycompany.metamong.daoMain.IndexDao;
+import com.mycompany.metamong.dto.applyList.ApplyListDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Service
@@ -29,6 +34,8 @@ public class ApplyService {
 	private ApplyService applyListService;
 	@Autowired
 	private IndexService indexService;
+	@Autowired
+	private IndexDao indexDao;
 
 	public void addApplyList(ApplyListDto apply) {
 		applyListDao.insertApplyList(apply);	
@@ -56,8 +63,8 @@ public class ApplyService {
 	
 	@Transactional
 	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
-		applyListService.addApplyList(applyListDto);
+		applyListDao.insertApplyList(applyListDto);
 		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
-		indexService.addApplyIndex(applyIndexDto);
+		indexDao.insertApplyIndex(applyIndexDto);
 	}
 }

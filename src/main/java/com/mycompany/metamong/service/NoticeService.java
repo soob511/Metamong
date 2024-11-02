@@ -53,4 +53,8 @@ public class NoticeService {
 	public int updateNotice(NoticeDto notice) {
 		return noticeDao.updateNotice(notice);
 	}
+
+	public List<NoticeDto> searchNotice(String option, String keyword) {
+		return noticeDao.selectNoticeSearch(option, keyword);
+	}
 }

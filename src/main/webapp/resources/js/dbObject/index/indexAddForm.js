@@ -27,19 +27,20 @@ $(document).ready(function() {
     	$(this).addClass('colSelect');
     });
     
-    $('#uniqueCheckBox').change(function() {
-        if ($(this).is(':checked')) {
-            const value = $(this).val();
-        }
-    });
-    
     $('#btn-apply').click(function() {
     	applyIndex();
     });
 
 });
-
 let indexCount = 1;
+
+$('#columnTableBody').on('change', 'select.form-select', function() {
+    const selectedOrder = $(this).val();
+    const colId = $(this).closest('tr').data('value');
+    const targetRow = $('#indexApplyColumn').find(`tr td[data-name="colId"][data-value="${colId}"]`).closest('tr');
+    const colOrderCell = targetRow.find('td[data-name="colOrder"]');
+    colOrderCell.attr('data-value', selectedOrder).text(selectedOrder);
+});
 
 $('#columnTableBody').on('click', '.form-check-input', function() {
     var row = $(this).closest('tr');
@@ -48,8 +49,8 @@ $('#columnTableBody').on('click', '.form-check-input', function() {
 
     if ($(this).is(':checked')) {
         const newRow = `
-            <tr>
-                <td data-name="indexCount" data-value="${indexCount}">${indexCount++}</td>
+            <tr data-value="${colId}">
+                <td data-name="indexCount">${indexCount++}</td>
                 <td data-name="colId" data-value="${colId}">${colId}</td>
                 <td data-name="colOrder" data-value="${colOrder}">${colOrder}</td>
                 <td><i class="bi bi-trash3"></i></td>
@@ -81,8 +82,8 @@ $('#flexCheckDefault').change(function() {
 	            const newRow = `
 	                <tr data-value="${colId}">
 	                    <td data-name="indexCount">${indexCount++}</td>
-	                    <td data-value="${colId}">${colId}</td>
-	                    <td data-value="${colOrder}">${colOrder}</td>
+	                    <td data-name="colId" data-value="${colId}">${colId}</td>
+	                    <td data-name="colOrder" data-value="${colOrder}">${colOrder}</td>
 	                    <td><i class="bi bi-trash3"></i></td>
 	                </tr>
 	            `;
@@ -157,7 +158,7 @@ const checkInvalidChars = /[^A-Za-z0-9_]/;
 
 $(document).on("input", "#indexName", function () {
   let inputId = $("#indexName").val().trim();
-  const msg = $("#indexValidMessage");
+  const msg = $("#nameValidMessage");
 
   if (!checkFirstChar.test(inputId)) {
     msg.text("첫 글자는 영문이어야 합니다.");
@@ -177,6 +178,24 @@ $(document).on("input", "#indexName", function () {
   }
 });
 
+$(document).on('click', '#indexApplyReason', function () {
+	const msg = $("#reasonValidMessage");
+	msg.text("신청사유를 입력해주세요.");
+	msg.addClass('warn');
+});
+
+$(document).on("input", "#indexApplyReason", function () {
+	let inputId = $("#indexApplyReason").val().trim();
+	const msg = $("#reasonValidMessage");
+
+	if (inputId.length === 0) {
+	    msg.text("신청사유를 입력해주세요.");
+	    msg.addClass('warn');
+	} else {
+	    msg.text("");
+	    msg.removeClass('warn');
+	}
+});
 
 function filterTable() {
 	const schemaName = $('#schemaSelect').val();
@@ -227,23 +246,23 @@ function filterColumn() {
 				html += `
 					<tr data-value="${column.colId}">
 						<th>
-							<input class="form-check-input" type="checkbox" value=""></th>
-	                        <th>${count++}</th>
-	                        <td>${column.colNm}</td>
-	                        <td data-name="colId" data-value="${column.colId}">${column.colId}</td>
-	                        <td>${column.dataType}</td>
-	                        <td>${column.colLength}</td>
-	                        <td>${column.colIsnullable}</td>
-							<td>${column.colIspk}</td>
-							<td data-name="colOrder">
-								<select class="form-select" aria-label="Default select">
-									<option selected>ASC</option>
-									<option>DESC</option>
-								</select>
+							<input class="form-check-input" type="checkbox" value="">
+						</th>
+                        <td>${count++}</td>
+                        <td>${column.colNm}</td>
+                        <td data-name="colId" data-value="${column.colId}">${column.colId}</td>
+                        <td>${column.dataType}</td>
+                        <td>${column.colLength}</td>
+                        <td>${column.colIsnullable}</td>
+						<td>${column.colIspk}</td>
+						<td data-name="colOrder">
+							<select class="form-select" aria-label="Default select">
+								<option selected>ASC</option>
+								<option>DESC</option>
+							</select>
 						</td>
                     </tr>
                     `;
-				console.log(column.colId);
 			});
 			$('#columnTableBody').html(html);
 			$('#indexApplyColumn').html('');
@@ -285,28 +304,43 @@ function applyIndex() {
 		    applyListDto: applyListDto,
 		    applyIndexDto: applyIndexDto,
 		    refColumn: refColumn
-		};
+	};
 	
-	$.ajax({
-		type : 'POST',
-		url : 'applyIndex',
-	    contentType: 'application/json',
-	    data: JSON.stringify(applyRequestDto),
-		success : function(data) {
-			Swal.fire({ 
-				  icon: 'success',
-				  title: '인덱스 신청이 완료되었습니다.',
-				  text: '인덱스 승인 후, 사용이 가능합니다.',
-				  }).then(result=>{
-	    			  location.href="/Metamong/index/indexApplyList";
-	    		  })
-		},
-		error : function(xhr, status, error) {
-			Swal.fire({ 
-				  icon: 'error',
-				  title: '인덱스 신청을 실패하였습니다.',
-				  text: '확인 후 다시 신청해주세요.',
-				  })
-		}
-	});
+	if (refColumn.length === 0 || applyIndexDto.idxName === '' || 
+			applyListDto.applyReason === '') {
+		Swal.fire({
+  		  	icon: 'warning',                  
+  		  	title: '필수내역을 공란없이<br/>입력해 주세요.',
+  		  	text: '필수입력사항: 컬럼 선택, 인덱스 제목, 신청사유'
+  		});
+	} else if ($("#nameValidMessage").hasClass("warn")) {
+		Swal.fire({
+			icon: 'warning',                  
+			title: '인덱스 제목을<br/>확인해 주세요.',
+			text: '오류입력사항: 인덱스 제목'
+		});
+	} else {		
+		$.ajax({
+			type : 'POST',
+			url : 'applyIndex',
+			contentType: 'application/json',
+			data: JSON.stringify(applyRequestDto),
+			success : function(data) {
+				Swal.fire({ 
+					icon: 'success',
+					title: '인덱스 신청이 완료되었습니다.',
+					text: '인덱스 승인 후, 사용이 가능합니다.',
+				}).then(result=>{
+					location.href="/Metamong/index/indexApplyList";
+				})
+			},
+			error : function(xhr, status, error) {
+				Swal.fire({ 
+					icon: 'error',
+					title: '인덱스 신청을 실패하였습니다.',
+					text: '확인 후 다시 신청해주세요.',
+				})
+			}
+		});
+	}
 }    

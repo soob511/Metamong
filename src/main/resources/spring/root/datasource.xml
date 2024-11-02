@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
 	<bean id="dataSourceMain"
@@ -20,6 +22,13 @@
 		<property name="maxIdle" value="2"></property>
 	</bean>
 	
+	<bean 
+		id="transactionManagerMain"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceMain"/>
+	</bean>	
+	<tx:annotation-driven transaction-manager="transactionManagerMain"/>
+	
 	<bean id="dataSource1"
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
@@ -35,6 +44,14 @@
 		<property name="maxTotal" value="4"></property>
 		<property name="maxIdle" value="2"></property>
 	</bean>
+	
+	<bean 
+		id="transactionManager1"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource1"/>
+	</bean>	
+	<tx:annotation-driven transaction-manager="transactionManager1"/>	
+	
 	
 	<bean id="dataSource2"
 		class="org.apache.commons.dbcp2.BasicDataSource"
@@ -52,6 +69,13 @@
 		<property name="maxIdle" value="2"></property>
 	</bean>
 	
+	<bean 
+		id="transactionManager2"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource2"/>
+	</bean>	
+	<tx:annotation-driven transaction-manager="transactionManager2"/>		
+	
 	<bean id="dataSource3"
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
@@ -68,5 +92,10 @@
 		<property name="maxIdle" value="2"></property>
 	</bean>
 
-
+	<bean 
+		id="transactionManager3"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource3"/>
+	</bean>	
+	<tx:annotation-driven transaction-manager="transactionManager3"/>	
 </beans>

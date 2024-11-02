@@ -44,6 +44,13 @@ public class IndexController {
 	}
 	
 	@ResponseBody
+	@GetMapping("/searchIndexAll")
+	public List<IndexDto> searchIndexAll(@RequestParam String indexName) {
+		List<IndexDto> list = indexService.getIndexList(indexName);
+		return list;
+	}
+	
+	@ResponseBody
 	@GetMapping("/searchIndex")
 	public List<IndexDto> searchIndex(
 			@RequestParam SchemaEnum schemaName,
