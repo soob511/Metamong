@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -44,78 +46,33 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><a href="codeApplyDetail">
-										<button class="btn-history-details">상세보기</button></td>
-								</a>
-								<td class="code-approve">승인</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><a href="codeApplyDetail">
-										<button class="btn-history-details">상세보기</button></td>
-								</a>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><a href="codeApplyDetail">
-										<button class="btn-history-details">상세보기</button></td>
-								</a>
-								<td class="code-await">승인대기</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><a href="codeApplyDetail">
-										<button class="btn-history-details">상세보기</button></td>
-								</a>
-								<td class="code-approve">승인</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><a href="codeApplyDetail">
-										<button class="btn-history-details">상세보기</button></td>
-								</a>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>gilju</td>
-								<td>나길주</td>
-								<td>admin</td>
-								<td>개발1팀</td>
-								<td>20230001</td>
-								<td><a href="codeApplyDetail">
-										<button class="btn-history-details">상세보기</button></td>
-								</a>
-								<td class="code-await">승인대기</td>
-							</tr>
+							<c:forEach items="${list}" var="code" varStatus="status">
+								<tr>
+									<th scope="row">${status.index+1}</th>
+									<td><fmt:formatDate value="${code.applyDate}"
+												pattern="yyyy-MM-dd" /></td>
+									<td>${code.MName}</td>
+									<td>${code.codeNm}</td>
+									<td>${code.codeId}</td>
+									<td>${code.applyObj}</td>
+									<td><button
+													class="btn-history-details">상세보기</button></td>
+										<td class="code-approve"><c:choose>
+												<c:when test="${code.approvalStatus == 0}">
+													<span id="status-await">승인대기</span>
+												</c:when>
+												<c:when test="${code.approvalStatus == 1}">
+													<span id="status-approve">승인</span>
+												</c:when>
+												<c:when test="${code.approvalStatus == 2}">
+													<span id="status-rejected">반려</span>
+												</c:when>
+												<c:when test="${code.approvalStatus == 3}">
+													<span id="status-applied">반영</span>
+												</c:when>
+											</c:choose></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					</div>

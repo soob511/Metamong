@@ -164,7 +164,9 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeApplyList")
-	public String codeApplyList() {
+	public String codeApplyList(Model model) {
+		List<ApplyCodeDto> list = applyService.getApplyCodeList();
+		model.addAttribute("list", list);
 		return "code/codeApplyList";
 	}
 	

@@ -2,18 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoMain.ApplyListDao">
 
-	<insert id="insertApplyList" parameterType="ApplyList">
-		<selectKey keyProperty="applyNo" resultType="int"
-			order="BEFORE">
-			SELECT seq_apply_no.nextval FROM dual
-		</selectKey>
-		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
-		approval_status,schema_name,apply_obj, apply_type)
-		VALUES (#{applyNo},
-		#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
-		#{applyType})
-	</insert>
-
+	<select id="selectApplyCodeList" resultType="ApplyCodeList">
+		SELECT
+		a.apply_no,m.m_name,
+		a.apply_date,a.approval_status,c.code_id,c.code_nm,a.apply_obj
+		FROM apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		JOIN apply_code c ON
+		a.apply_no = c.apply_no
+		WHERE a.apply_obj = 'CODE'
+		ORDER BY
+		a.apply_date DESC
+	</select>
+	
 	<select id="selectApplyTableList" resultType="ApplyTableList">
 		SELECT
 		a.apply_no,m.m_name,
@@ -63,7 +64,17 @@
 		WHERE apply_no =#{applyNo}
 	</select>
 
-
+	<insert id="insertApplyList" parameterType="ApplyList">
+		<selectKey keyProperty="applyNo" resultType="int"
+			order="BEFORE">
+			SELECT seq_apply_no.nextval FROM dual
+		</selectKey>
+		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
+		approval_status,schema_name,apply_obj, apply_type)
+		VALUES (#{applyNo},
+		#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
+		#{applyType})
+	</insert>
 
 
 </mapper>

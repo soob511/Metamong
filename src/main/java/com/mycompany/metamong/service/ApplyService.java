@@ -30,8 +30,8 @@ public class ApplyService {
 	@Autowired
 	private IndexDao indexDao;
 
-	public void addApplyList(ApplyListDto apply) {
-		applyListDao.insertApplyList(apply);	
+	public List<ApplyCodeDto> getApplyCodeList() {
+		return applyListDao.selectApplyCodeList();
 	}
 
 	public List<ApplyTableDto> getApplyTableList() {
@@ -44,6 +44,10 @@ public class ApplyService {
 
 	public ApplyTableDeatilDto getTableListDetail(int applyNo) {
 		return applyListDao.selectTableListDetail(applyNo);
+	}
+	
+	public void addApplyList(ApplyListDto apply) {
+		applyListDao.insertApplyList(apply);	
 	}
 	
 	public void addApplyCode(ApplyCodeDto code) {
@@ -60,4 +64,5 @@ public class ApplyService {
 		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
+
 }
