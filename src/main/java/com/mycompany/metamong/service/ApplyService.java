@@ -10,16 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
+import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
-import com.mycompany.metamong.daoMain.IndexDao;
-import com.mycompany.metamong.dto.applyList.ApplyListDto;
-import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
-import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Service
@@ -30,10 +27,6 @@ public class ApplyService {
 	private CodeDao codeDao;
 	@Autowired
 	private ItemDao itemDao;
-	@Autowired
-	private ApplyService applyListService;
-	@Autowired
-	private IndexService indexService;
 	@Autowired
 	private IndexDao indexDao;
 
