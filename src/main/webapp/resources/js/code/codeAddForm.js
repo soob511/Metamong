@@ -14,7 +14,13 @@ $(document).ready(function () {
     const itemContent = $("#itemContent").val().trim();
 
     if (itemCheck(0) != 0) {
-      items.push({ itemId: itemId, itemNm: itemNm, itemContent: itemContent });
+      items.push({ 
+    	  itemId: itemId, 
+    	  itemNm: itemNm, 
+    	  itemIsActive: 1, 
+    	  itemContent: itemContent,
+    	  itemIsUpdate: 0
+	  });
       itemList();
     }
   });
@@ -41,7 +47,13 @@ $(document).ready(function () {
     const itemContent = $("#itemContent").val().trim();
 
     if (itemCheck(1) != 0) {
-      updateItem = { itemId: itemId, itemNm: itemNm, itemContent: itemContent };
+      updateItem = { 
+		  itemId: itemId, 
+		  itemNm: itemNm,
+		  itemIsActive: 1, 
+		  itemContent: itemContent,
+    	  itemIsUpdate: 0
+	  };
       items.splice(itemIndex, 1, updateItem);
       itemList();
     }
@@ -70,10 +82,13 @@ $(document).ready(function () {
     const applyReason = $("#applyReason").val().trim();
 
     let codeData = {
+	  codeNo: 0,
       codeNm: codeNm,
       codeId: codeId,
       codeLength: codeLength,
       codeContent: codeContent,
+      codeIsActive: 1,
+      applyType: 'CREATE',
       applyReason: applyReason,
       items: items,
     };
@@ -88,7 +103,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: "/Metamong/code/addApplyCode",
+      url: "/Metamong/code/codeApply",
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(codeData),

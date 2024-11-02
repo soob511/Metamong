@@ -23,7 +23,7 @@ import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableDto;
 import com.mycompany.metamong.enums.SchemaEnum;
-import com.mycompany.metamong.service.ApplyListService;
+import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.ColumnService;
 import com.mycompany.metamong.service.TableService;
 
@@ -38,7 +38,7 @@ public class TableController {
 	private TableService tableService;
 	
 	@Autowired
-	private ApplyListService applyListService;
+	private ApplyService applyListService;
 	
 	@Autowired
 	private ColumnService columnService;

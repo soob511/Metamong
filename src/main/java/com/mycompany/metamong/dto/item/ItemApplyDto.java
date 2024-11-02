@@ -3,7 +3,7 @@ package com.mycompany.metamong.dto.item;
 import lombok.Data;
 
 @Data
-public class ItemUpdateDto {
+public class ItemApplyDto {
 	private String itemId;
 	private String itemNm;
 	private int itemIsActive;

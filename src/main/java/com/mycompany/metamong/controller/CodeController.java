@@ -1,7 +1,9 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,14 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
-import com.mycompany.metamong.dto.code.CodeAddDto;
+import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
-import com.mycompany.metamong.dto.code.CodeUpdateDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
-import com.mycompany.metamong.dto.item.ItemAddDto;
+import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
-import com.mycompany.metamong.dto.item.ItemUpdateDto;
-import com.mycompany.metamong.service.ApplyListService;
+import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.CodeService;
 import com.mycompany.metamong.service.ItemService;
 
@@ -40,7 +40,7 @@ public class CodeController {
 	@Autowired
 	private ItemService itemService;
 	@Autowired
-	private ApplyListService applyService;
+	private ApplyService applyService;
 	
 	@GetMapping("/codeList")
 	public String codeList(Model model) {
@@ -70,35 +70,41 @@ public class CodeController {
 		return "code/codeAddForm";
 	}
 	
-	@PostMapping("/addApplyCode")
-	public String addCode(Authentication auth, @RequestBody CodeAddDto form) {
+	@PostMapping("/codeApply")
+	public String applyCode(Authentication auth, @RequestBody CodeApplyDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());		
 		apply.setApplyObj("CODE");
-		apply.setApplyType("CREATE");
+		apply.setApplyType(form.getApplyType());
 		applyService.addApplyList(apply);
-		
+
 		// APPLY_CODE 테이블
 		ApplyCodeDto code = new ApplyCodeDto();
 		code.setApplyNo(apply.getApplyNo());
-		code.setCodeNm(form.getCodeNm());
+		code.setCodeNo(form.getCodeNo());
 		code.setCodeId(form.getCodeId());
+		code.setCodeNm(form.getCodeNm());
 		code.setCodeLength(form.getCodeLength());
-		code.setCodeContent(form.getCodeContent());		
-		codeService.addApplyCode(code);
+		code.setCodeContent(form.getCodeContent());
+		code.setCodeIsActive(form.getCodeIsActive());
+		applyService.addApplyCode(code);
 		
 		// APPLY_ITEM 테이블
-		List<ItemAddDto> inputItems = form.getItems();
-		for (ItemAddDto inputItem : inputItems) {
+		List<ItemApplyDto> inputItems = form.getItems();
+		for (ItemApplyDto inputItem : inputItems) {
 			ApplyItemDto item = new ApplyItemDto();
 	        item.setApplyNo(apply.getApplyNo());
 	        item.setItemId(inputItem.getItemId());
 	        item.setItemNm(inputItem.getItemNm());
 	        item.setItemContent(inputItem.getItemContent());
-	        itemService.addApplyItem(item);
+	        item.setItemIsActive(inputItem.getItemIsActive());
+	        item.setItemIsUpdate(inputItem.getItemIsUpdate());
+	        applyService.addApplyItem(item);
 	    }
+				
+		
 		return "code/codeApplyList";
 	}
 	
@@ -108,11 +114,11 @@ public class CodeController {
 		model.addAttribute("itemLength", items.size());
 		
 		if(isUpdated == 0) {
-			CodeDto code = codeService.getCodeByNo(codeNo);			
-			List<ItemUpdateDto> tmpItems = new ArrayList<ItemUpdateDto>();
+			CodeDto code = codeService.getCodeByNo(codeNo);
+			List<ItemApplyDto> tmpItems = new ArrayList<ItemApplyDto>();
 
 			for(ItemDto item : items) {
-				ItemUpdateDto tmpItem = new ItemUpdateDto();
+				ItemApplyDto tmpItem = new ItemApplyDto();
 				tmpItem.setItemId(item.getItemId());
 				tmpItem.setItemNm(item.getItemNm());
 				tmpItem.setItemIsActive(item.getItemIsActive());
@@ -123,47 +129,12 @@ public class CodeController {
 			
 			model.addAttribute("code", code);
 			model.addAttribute("items", tmpItems);
-		} else {
+		} else { 
+			// 뒤로가기 버튼
 			model.addAttribute("code", session.getAttribute("newCode"));
 			model.addAttribute("items", session.getAttribute("newItems"));
 		}
 		return "code/codeUpdateForm";
-	}
-
-	@PostMapping("/updateApplyCode")
-	public String updateApplyCode(Authentication auth, @RequestBody CodeUpdateDto form) {
-		// APPLY_LIST 테이블
-		ApplyListDto apply = new ApplyListDto();	
-		apply.setMId(auth.getName());
-		apply.setApplyReason(form.getApplyReason());		
-		apply.setApplyObj("CODE");
-		apply.setApplyType("UPDATE");		
-		applyService.addApplyList(apply);
-				
-		// APPLY_CODE 테이블
-		ApplyCodeDto code = new ApplyCodeDto();
-		code.setApplyNo(apply.getApplyNo());
-		code.setCodeNo(form.getCodeNo());
-		code.setCodeNm(form.getCodeNm());
-		code.setCodeLength(form.getCodeLength());
-		code.setCodeId(form.getCodeId());
-		code.setCodeContent(form.getCodeContent());
-		code.setCodeIsActive(form.getCodeIsActive());
-		codeService.updateApplyCode(code);
-		
-		// APPLY_ITEM 테이블
-		List<ItemUpdateDto> inputItems = form.getItems();
-		for (ItemUpdateDto inputItem : inputItems) {
-			ApplyItemDto item = new ApplyItemDto();
-	        item.setApplyNo(apply.getApplyNo());
-	        item.setItemId(inputItem.getItemId());
-	        item.setItemNm(inputItem.getItemNm());
-	        item.setItemContent(inputItem.getItemContent());
-	        item.setItemIsActive(inputItem.getItemIsActive());
-	        item.setItemIsUpdate(inputItem.getItemIsUpdate());
-	        itemService.updateApplyItem(item);
-	    }
-		return "code/codeApplyList";
 	}
 	
 	@GetMapping("/codeCompareForm") 
@@ -172,15 +143,16 @@ public class CodeController {
 	}
 	
 	@PostMapping("/codeCompare")
-	public String codeCompare(@RequestBody CodeUpdateDto form, HttpSession session) {
+	public String codeCompare(@RequestBody CodeApplyDto form, HttpSession session) {
 		// newCode
-		CodeDto newCode = new CodeDto();
-		newCode.setCodeNo(form.getCodeNo());
-		newCode.setCodeNm(form.getCodeNm());
-		newCode.setCodeId(form.getCodeId());
-		newCode.setCodeLength(form.getCodeLength());
-		newCode.setCodeContent(form.getCodeContent());
-		newCode.setCodeIsActive(form.getCodeIsActive());
+		Map<String, Object> newCode = new HashMap<>();
+		newCode.put("codeNo", form.getCodeNo());
+		newCode.put("codeId", form.getCodeId());
+		newCode.put("codeNm", form.getCodeNm());
+		newCode.put("codeLength", form.getCodeLength());
+		newCode.put("codeContent", form.getCodeContent());
+		newCode.put("codeIsActive", form.getCodeIsActive());
+		newCode.put("applyReason", form.getApplyReason());
 
 		session.setAttribute("newCode", newCode);
 		session.setAttribute("newItems", form.getItems());

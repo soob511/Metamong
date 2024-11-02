@@ -2,7 +2,7 @@ package com.mycompany.metamong.dto.code;
 
 import java.util.List;
 
-import com.mycompany.metamong.dto.item.ItemUpdateDto;
+import com.mycompany.metamong.dto.item.ItemApplyDto;
 
 import lombok.Data;
 
@@ -15,5 +15,5 @@ public class CodeUpdateDto {
 	private String codeContent;
 	private int codeIsActive;
 	private String applyReason;
-	private List<ItemUpdateDto> items;
+	private List<ItemApplyDto> items;
 }

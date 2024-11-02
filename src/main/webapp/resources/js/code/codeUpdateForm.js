@@ -93,6 +93,7 @@ $(document).ready(function() {
             codeLength: codeLength,
             codeContent: codeContent,
             codeIsActive: codeIsActive,
+            applyType: 'UPDATE',
             applyReason: applyReason,
             items: items
         };
@@ -107,7 +108,7 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            url: "/Metamong/code/updateApplyCode",
+            url: "/Metamong/code/codeApply",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(codeData),
@@ -140,6 +141,7 @@ $(document).ready(function() {
             codeLength: codeLength,
             codeContent: codeContent,
             codeIsActive: codeIsActive,
+            applyType: 'UPDATE',
             applyReason: applyReason,
             items: items
         };
@@ -151,9 +153,7 @@ $(document).ready(function() {
             data: JSON.stringify(codeData),
             traditional: true,
             success: function(data) {
-            	console.log(data);
             	location.href = "/Metamong/code/codeCompareForm?codeNo=" + codeNo;
-               
             }
         });
     });
