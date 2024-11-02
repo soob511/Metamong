@@ -13,13 +13,13 @@ label {
 .index-list-filters {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .index-search {
     display: flex;
     width: max-content;
-    margin-left: 20px;
+    margin-left: 10px;
     align-items: center;
 }
 
@@ -45,7 +45,7 @@ label {
     display: flex;
     align-items: center;
     min-width: 200px !important;
-    margin-left: 10px;
+    margin-left: 38px;
 }
 
 .schema-filter-label {
@@ -87,6 +87,17 @@ hr {
     border: none;
     width: 50px;
     height: 30px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.btn-search {
+    background-color: var(--theme);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 60px;
+    height: 35px;
     font-size: 14px;
     margin-right: 5px;
 }

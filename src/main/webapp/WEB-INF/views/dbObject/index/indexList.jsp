@@ -20,6 +20,15 @@
                 <p>&gt; 인덱스 관리</p>
               </div>
               <div class="index-list-filters">
+              	<div class="schema-filter">
+                  <label for="schemaSelect" class="schema-filter-label">스키마명</label>
+					<select id="schemaSelect" class="form-select" aria-label="Default select example">
+						<option value="ALL">전체</option>
+					    <c:forEach items="${schemaEnum}" var="schemaEnum">
+					        <option value="${schemaEnum.name()}">${schemaEnum.name()}</option>
+					    </c:forEach>
+					</select>
+                </div>
                 <div class="index-search">
                   <label for="indexNameSearch" class="index-search-label">인덱스명</label>
                   <div class="container-fluid">
@@ -29,14 +38,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="schema-filter">
-                  <label for="schemaSelect" class="schema-filter-label">스키마명</label>
-					<select id="schemaSelect" class="form-select" aria-label="Default select example">
-						<option value="ALL">전체</option>
-					    <c:forEach items="${schemaEnum}" var="schemaEnum">
-					        <option value="${schemaEnum.name()}">${schemaEnum.name()}</option>
-					    </c:forEach>
-					</select>
+                <div class="d-flex align-items-center ms-4">
+	                <button class="btn-search" id="indexSearchBtn">조회</button>
                 </div>
               </div>
             </div>
