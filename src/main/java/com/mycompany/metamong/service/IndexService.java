@@ -13,6 +13,7 @@ import com.mycompany.metamong.daoSub2.Sub2IndexDao;
 import com.mycompany.metamong.daoSub3.Sub3IndexDao;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
+import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 
@@ -80,8 +81,8 @@ public class IndexService {
 		return list;
 	}
 	
-	public void addApplyIndex(ApplyIndexDto applyIndexDto) {
-		indexDao.insertApplyIndex(applyIndexDto);
+	public List<ApplyIndexListDto> getApplyIndexList() {
+		return indexDao.selectApplyIndex();
 	}
 
 	public void createIndex(IndexDto indexdto) {

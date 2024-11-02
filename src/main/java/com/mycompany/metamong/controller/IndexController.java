@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
+import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.dto.index.RefColumnDto;
@@ -86,7 +87,9 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexApplyList")
-	public String indexApplyList() {
+	public String indexApplyList(Model model) {
+		List<ApplyIndexListDto> list = indexService.getApplyIndexList();
+		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyList";
 	}
 	

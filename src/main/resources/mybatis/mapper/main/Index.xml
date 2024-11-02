@@ -24,6 +24,15 @@
 		ORDER BY i.index_name, ic.column_position
 	</select>
 	
+	<select id="selectApplyIndex">
+		SELECT
+			a.apply_date, a.m_id, a.schema_name, 
+			i.idx_name, a.apply_obj, a.approval_status
+		FROM
+			apply_index i
+		JOIN apply_list a ON i.apply_no = a.apply_no
+	</select>
+	
 	<insert id="insertApplyIndex" parameterType="ApplyIndex">
 		INSERT INTO apply_index (
 			apply_no, table_no, idx_name, 
