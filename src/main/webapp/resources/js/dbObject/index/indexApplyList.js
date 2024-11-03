@@ -68,7 +68,7 @@ function filterApplyIndex() {
 	                      <td>${index.idxName}</td>
 	                      <td>${index.applyObj}</td>
 	                      	<td>
-	                      		<a href="indexDetail?applyNo=${index.applyNo}&no=${count++}"><button class="btn-history-details">상세보기</button></a>
+	                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&no=${count++}"><button class="btn-history-details">상세보기</button></a>
                   			</td>
 	                      <td>
               	            <span id="status-${getStatusId(index.approvalStatus)}">${getStatusText(index.approvalStatus)}</span>
