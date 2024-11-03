@@ -15,6 +15,7 @@ import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
@@ -71,6 +72,10 @@ public class ApplyService {
 			int approvalStatus, 
 			String indexName) {
 		return applyListDao.selectApplyIndexByParams(schemaName, approvalStatus, indexName);
+	}
+	
+	public ApplyIndexDetailDto getApplyIndexListDetail(int applyNo) {
+		return applyListDao.selectApplyIndexDetail(applyNo);
 	}
 
 }

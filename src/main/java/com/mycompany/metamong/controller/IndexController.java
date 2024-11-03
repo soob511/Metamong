@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
@@ -111,7 +112,10 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexDetail")
-	public String indexDetail() {
+	public String indexDetail(@RequestParam int applyNo,@RequestParam int no, Model model) {
+		ApplyIndexDetailDto applyIndexDetail = applyService.getApplyIndexListDetail(applyNo);
+		model.addAttribute("detail", applyIndexDetail);
+		model.addAttribute("no", no);
 		return "dbObject/index/indexDetail";
 	}
 }
