@@ -9,10 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.ApplyListDao;
+import com.mycompany.metamong.daoMain.CodeDao;
 import com.mycompany.metamong.daoMain.IndexDao;
+import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
+import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
+import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
@@ -20,6 +24,10 @@ import com.mycompany.metamong.dto.table.ApplyTableDto;
 public class ApplyService {
 	@Autowired
 	private ApplyListDao applyListDao;
+	@Autowired
+	private CodeDao codeDao;
+	@Autowired
+	private ItemDao itemDao;
 	@Autowired
 	private IndexDao indexDao;
 
@@ -37,6 +45,14 @@ public class ApplyService {
 
 	public ApplyTableDeatilDto getTableListDetail(int applyNo) {
 		return applyListDao.selectTableListDetail(applyNo);
+	}
+	
+	public void addApplyCode(ApplyCodeDto code) {
+		codeDao.insertApplyCode(code);
+	}
+	
+	public void addApplyItem(ApplyItemDto item) {
+		itemDao.insertApplyItem(item);
 	}
 	
 	@Transactional

@@ -30,16 +30,23 @@
 						         <input type="text" class="form-control" id="noticeTitle" name="noticeTitle" value="">
 							   </td>
 							</tr>
+							<tr>
+                                <td class="table-primary form-label" id="tdth">중요도<span class="form-required">(*)</span></td>
+                                <td>
+                                    <select class="form-select" id="noticeIsimp" name="noticeIsimp" required style="width:100px;">
+									    <option value="">선택</option>
+									    <option value="0" ${notice.noticeIsimp == null || notice.noticeIsimp == 0 ? 'selected' : ''}>기본</option>
+									    <option value="1" ${notice.noticeIsimp == 1 ? 'selected' : ''}>중요</option>
+									</select>
+
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="table-primary form-label" id="tdth">작성자</td>
                                 <td id="author"><span>관리자</span></td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label" id="tdth">등록일</td>
-                                <td><input type="date" class="form-control"  id="noticeRegdate" name="noticeRegdate" value="sysdate"></td>
-                            </tr>
-                            <tr>
-                                <td class="table-primary form-label" id="tdth">내용</td>
+                                <td class="table-primary form-label" id="tdth">내용<span class="form-required">(*)</span></td>
                                 <td id="noticeContentTd">                                   
                                     <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12"></textarea>
                                 </td>
@@ -53,8 +60,9 @@
                         <a href="noticeList">
                             <button type="button" class="btn-cancel me-2">취소</button>                        
                         </a>
-                            <button type="button" class="btn-add me-2" >등록</button>
+                            <button type="button" class="btn-add me-2" data-notice-regdate="${notice.noticeRegdate}">등록</button>
                         </div>
+                        <input type="hidden" name="noticeRegdate" value="${notice.noticeRegdate}">
                     </form>
                 </div>
             </div>

@@ -28,6 +28,17 @@
 
 
 				<div class="table-list-filters">
+					<div class="schema-filter">
+						<label for="schemaSelect" class="schema-filter-label">스키마명</label>
+						<select id="schemaSelect" class="form-select"
+							aria-label="Default select example">
+							<option value="" >전체</option>
+							<c:forEach items="${schemaEnum}" var="schemaEnum">
+								<option value="${schemaEnum.name()}">
+									${schemaEnum.name()}</option>
+							</c:forEach>
+						</select>
+					</div>
 
 					<div class="table-search">
 						<label for="tableNameSearch" class="table-search-label">테이블명(논리/물리)</label>
@@ -41,17 +52,6 @@
 					</div>
 
 
-					<div class="schema-filter">
-						<label for="schemaSelect" class="schema-filter-label">스키마명</label>
-						<select id="schemaSelect" class="form-select"
-							aria-label="Default select example">
-							<option value="" >전체</option>
-							<c:forEach items="${schemaEnum}" var="schemaEnum">
-								<option value="${schemaEnum.name()}">
-									${schemaEnum.name()}</option>
-							</c:forEach>
-						</select>
-					</div>
 
 				</div>
 

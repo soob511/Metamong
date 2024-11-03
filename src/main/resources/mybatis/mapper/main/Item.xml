@@ -10,11 +10,6 @@
 	
 	<insert id="insertApplyItem" parameterType="ApplyItem">
 		INSERT INTO apply_item (apply_no, item_id, item_nm, item_content, item_isactive, item_isupdate)
-		VALUES (#{applyNo}, #{itemId}, #{itemNm}, #{itemContent}, 1, 0)
-	</insert>
-	
-	<insert id="updateApplyItem" parameterType="ApplyItem">
-		INSERT INTO apply_item (apply_no, item_id, item_nm, item_content, item_isactive, item_isupdate)
 		VALUES (#{applyNo}, #{itemId}, #{itemNm}, #{itemContent}, #{itemIsActive}, #{itemIsUpdate})
 	</insert>
 </mapper>
