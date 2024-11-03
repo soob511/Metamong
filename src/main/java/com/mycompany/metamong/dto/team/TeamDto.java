@@ -1,7 +1,5 @@
 package com.mycompany.metamong.dto.team;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
 
 @Data

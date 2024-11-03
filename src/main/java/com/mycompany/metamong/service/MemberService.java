@@ -1,9 +1,12 @@
 package com.mycompany.metamong.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.MemberDao;
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.member.MemberDto;
 
 @Service
@@ -18,6 +21,14 @@ public class MemberService {
 
 	public int getMId(String mId) {
 		return memberDao.selectMId(mId);
+	}
+
+	public int getTotalRows() {
+		return memberDao.countRows();
+	}
+
+	public List<MemberDto> getMemberList(Pager pager) {
+		return memberDao.selectMemberList(pager);
 	}
 	
 }

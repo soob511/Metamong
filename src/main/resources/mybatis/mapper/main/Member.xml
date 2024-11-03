@@ -40,13 +40,40 @@
         sysdate,
         0
     )
-</insert>
+	</insert>
 
-<select id="selectMId" parameterType="String" resultType="int">
-	SELECT count(*)
-	FROM member
-	WHERE M_Id = #{MId}
-</select>
+	<select id="selectMId" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE M_Id = #{MId}
+	</select>
+
+	<select id="countRows" resultType="int">
+		SELECT count(*)
+		FROM member
+	    WHERE 
+           m_role != 'ROLE_ADMIN'
+	</select>
+
+	<select id="selectMemberList" parameterType="Pager" resultType="Member">
+	    <![CDATA[
+	        SELECT
+	            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
+	        FROM (
+	            SELECT 
+	                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
+	            FROM 
+	                member m
+	            LEFT OUTER JOIN 
+	                team t ON m.team_id = t.team_id
+	            WHERE 
+	                m.m_role != 'ROLE_ADMIN'
+	            ORDER BY 
+	                m.m_name, m.m_id
+	        )
+	        WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+	    ]]>
+	</select>
 
 </mapper>
 	
