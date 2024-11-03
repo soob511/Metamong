@@ -43,14 +43,16 @@ function filterApplyIndex() {
 	let approvalStatus = parseInt($('#statusSelect').val(), 10);
 	let indexName = $('#indexNameSearch').val();
 	
-	$.ajax({
-		type : 'GET',
-		url : 'searchApplyIndex',
-		data : {
+	const indexApplyListData = {
 			schemaName : schemaName,
 			approvalStatus : approvalStatus,
 			indexName : indexName
-		},
+	};
+	
+	$.ajax({
+		type : 'GET',
+		url : 'searchApplyIndex',
+		data : indexApplyListData,
 		success : function(data) {
 			let html = '';
 			let count = 1;

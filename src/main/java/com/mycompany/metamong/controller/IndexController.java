@@ -1,6 +1,7 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -102,12 +103,8 @@ public class IndexController {
 	
 	@ResponseBody
 	@GetMapping("/searchApplyIndex")
-	public List<ApplyIndexListDto> searchApplyIndex(
-			@RequestParam String schemaName,
-			@RequestParam int approvalStatus,
-			@RequestParam String indexName
-			) {
-		List<ApplyIndexListDto> list = applyService.getApplyIndexList(schemaName, approvalStatus, indexName);
+	public List<ApplyIndexListDto> searchApplyIndex(@RequestParam HashMap<String, Object> indexApplyListData) {
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList(indexApplyListData);
 		return list;
 	}
 	

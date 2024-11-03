@@ -1,5 +1,6 @@
 package com.mycompany.metamong.daoMain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,11 +26,7 @@ public interface ApplyListDao {
 	
 	public List<ApplyIndexListDto> selectApplyIndex();
 	
-	public List<ApplyIndexListDto> selectApplyIndexByParams(
-			@Param("schemaName") String schemaName,
-			@Param("approvalStatus") int approvalStatus,
-			@Param("indexName") String indexName
-			);
+	public List<ApplyIndexListDto> selectApplyIndexByParams(HashMap<String, Object> indexApplyListData);
 	
 	public ApplyIndexDetailDto selectApplyIndexDetail(int applyNo);
 
