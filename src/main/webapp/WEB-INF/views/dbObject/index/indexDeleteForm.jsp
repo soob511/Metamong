@@ -85,7 +85,8 @@
 							</div>
 							<div class="col index-apply-reason">
 								<p>신청사유</p>
-								<textarea></textarea>
+								<textarea id="indexDeleteReason"></textarea>
+								<div class="msg" id="reasonValidMessage"></div>
 								<a href="indexApplyList">
 									<button class="btn-add">신청</button>
 								</a>

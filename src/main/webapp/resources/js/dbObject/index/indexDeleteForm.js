@@ -27,7 +27,20 @@ $(document).ready(function() {
 	$('#flexCheckDefault').change(function () {
 		const isChecked = $(this).is(':checked');
 		$('#indexTableBody input').prop('checked', isChecked);		
-	})
+	});
+	
+	$('#indexDeleteReason').on('input', function () {
+	    let inputId = $("#indexDeleteReason").val().trim();
+	    const msg = $("#reasonValidMessage");
+
+	    if (inputId.length === 0) {
+	        msg.text("신청사유를 입력해주세요.");
+	        msg.addClass('warn');
+	    } else {
+	        msg.text("");
+	        msg.removeClass('warn');
+	    }
+	});
 });
 
 function filterIndex() {
