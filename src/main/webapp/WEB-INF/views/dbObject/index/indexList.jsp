@@ -34,7 +34,7 @@
                   <div class="container-fluid">
                     <div class="d-flex index-form">
                       <input class="form-control" type="search" id="indexNameSearch" placeholder="Search" aria-label="Search">
-                      	<i id=biSearch class="bi bi-search"></i>
+                      	<i id="biSearch" class="bi bi-search"></i>
                     </div>
                   </div>
                 </div>

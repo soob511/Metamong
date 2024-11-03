@@ -8,10 +8,6 @@ $(document).ready(function() {
     $('#schemaSelect').change(function() {
     	filterIndex()
     });
-    
-	$(document).on('click', '#biSearch', function() {
-		filterIndex()
-	});
 	
 	$(document).on('click', '#biSearch', function() {
 		filterIndex()
@@ -26,7 +22,6 @@ $(document).ready(function() {
 			return;
 		}
 		filterIndex();
-		console.log("실행")
 	});
 	
 });
@@ -34,7 +29,7 @@ $(document).ready(function() {
 function filterIndex() {
 	const schemaName = $('#schemaSelect').val();
 	const indexName = $('#indexNameSearch').val().toUpperCase();
-	console.log(schemaName);
+
 	if (schemaName == 'ALL') {
 		$.ajax({
 			type : 'GET',
