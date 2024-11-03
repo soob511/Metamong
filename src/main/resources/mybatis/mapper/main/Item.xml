@@ -8,6 +8,12 @@
 		WHERE code_no = #{codeNo}
 	</select>
 	
+	<select id="selectItemsByNo" parameterType="int" resultType="Item">
+		SELECT item_id, item_nm, item_content, item_isactive
+		FROM apply_item
+		WHERE apply_no = #{applyNo}
+	</select>
+	
 	<insert id="insertApplyItem" parameterType="ApplyItem">
 		INSERT INTO apply_item (apply_no, item_id, item_nm, item_content, item_isactive, item_isupdate)
 		VALUES (#{applyNo}, #{itemId}, #{itemNm}, #{itemContent}, #{itemIsActive}, #{itemIsUpdate})

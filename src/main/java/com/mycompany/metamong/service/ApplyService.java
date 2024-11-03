@@ -12,11 +12,14 @@ import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
+import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
+import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
+import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Service
@@ -30,8 +33,20 @@ public class ApplyService {
 	@Autowired
 	private IndexDao indexDao;
 
-	public void addApplyList(ApplyListDto apply) {
-		applyListDao.insertApplyList(apply);	
+	public List<ApplyCodeDto> getApplyCodeList() {
+		return applyListDao.selectApplyCodeList();
+	}
+	
+	public ApplyCodeDeatilDto getCodeApplyDetail(int applyNo) {
+		return applyListDao.selectCodeApplyDetail(applyNo);
+	}
+	
+	public CodeDto getCodeApplyByNo(int applyNo) {
+		return codeDao.selectCodeApplyByNo(applyNo);
+	}
+	
+	public List<ItemDto> getItemsApplyByNo(int applyNo) {
+		return itemDao.selectItemsByNo(applyNo);
 	}
 
 	public List<ApplyTableDto> getApplyTableList() {
@@ -44,6 +59,10 @@ public class ApplyService {
 
 	public ApplyTableDeatilDto getTableListDetail(int applyNo) {
 		return applyListDao.selectTableListDetail(applyNo);
+	}
+	
+	public void addApplyList(ApplyListDto apply) {
+		applyListDao.insertApplyList(apply);	
 	}
 	
 	public void addApplyCode(ApplyCodeDto code) {
