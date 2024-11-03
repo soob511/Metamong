@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
@@ -29,5 +30,7 @@ public interface ApplyListDao {
 			@Param("approvalStatus") int approvalStatus,
 			@Param("indexName") String indexName
 			);
+	
+	public ApplyIndexDetailDto selectApplyIndexDetail(int applyNo);
 
 }

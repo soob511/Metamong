@@ -96,7 +96,19 @@
 		ORDER BY a.apply_date DESC
 	</select>
 	
-
+	<select id="selectApplyIndexDetail" parameterType="int" resultType="ApplyIndexDetail">
+		SELECT 
+		    a.apply_date, a.compl_date, m.m_name, a.dba_name, 
+		    i.idx_name, a.schema_name, t.table_id, i.ref_column,
+		    i.is_unique, a.apply_reason, a.reject_reason, a.approval_status, 
+		    a.query
+		FROM
+		    apply_list a
+		JOIN member m ON m.m_id = a.m_id
+		JOIN apply_index i ON i.apply_no = a.apply_no
+		JOIN tables t ON t.table_no = i.table_no
+		WHERE a.apply_no = #{applyNo}
+	</select>
 
 </mapper>
 
