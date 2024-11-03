@@ -24,10 +24,6 @@ public class CodeService {
 	public List<CodeDto> getCodeSearch(String keyword, int option) {
 		return codeDao.selectCodeSearch(keyword, option);
 	}
-	
-	public CodeDto getCodeApplyByNo(int applyNo) {
-		return codeDao.selectCodeApplyByNo(applyNo);
-	}
 
 	public List<CodeDto> getActiveCodes() {
 		return codeDao.selectActiveCodes();

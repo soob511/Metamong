@@ -16,8 +16,10 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
+import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
+import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Service
@@ -37,6 +39,14 @@ public class ApplyService {
 	
 	public ApplyCodeDeatilDto getCodeApplyDetail(int applyNo) {
 		return applyListDao.selectCodeApplyDetail(applyNo);
+	}
+	
+	public CodeDto getCodeApplyByNo(int applyNo) {
+		return codeDao.selectCodeApplyByNo(applyNo);
+	}
+	
+	public List<ItemDto> getItemsApplyByNo(int applyNo) {
+		return itemDao.selectItemsByNo(applyNo);
 	}
 
 	public List<ApplyTableDto> getApplyTableList() {

@@ -177,10 +177,10 @@ public class CodeController {
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 		
-		CodeDto applyCode = codeService.getCodeApplyByNo(applyNo);
+		CodeDto applyCode = applyService.getCodeApplyByNo(applyNo);
 		model.addAttribute("applyCode", applyCode);
 		
-		List<ItemDto> applyItems = itemService.getItemsApplyByNo(applyNo);
+		List<ItemDto> applyItems = applyService.getItemsApplyByNo(applyNo);
 		model.addAttribute("applyItems",applyItems);
 		
 		return "code/codeApplyDetail";
