@@ -119,7 +119,7 @@ $(document).ready(function() {
                     title: '코드/항목 수정 신청이<br/>완료되었습니다.',
                     text: '신청 승인 후, 코드 사용이 가능합니다.'
                 }).then(result => {
-                    location.href = "/Metamong/code/codeApplyList";
+                    location.href = data;
                 });
             }
         });
@@ -153,7 +153,7 @@ $(document).ready(function() {
             data: JSON.stringify(codeData),
             traditional: true,
             success: function(data) {
-            	location.href = "/Metamong/code/codeCompareForm?codeNo=" + codeNo;
+            	location.href = data + "?codeNo=" + codeNo;
             }
         });
     });

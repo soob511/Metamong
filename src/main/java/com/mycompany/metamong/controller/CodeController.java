@@ -141,7 +141,7 @@ public class CodeController {
 	}
 	
 	@PostMapping("/codeCompare")
-	public String codeCompare(@RequestBody CodeApplyDto form, HttpSession session) {
+	public ResponseEntity<String> codeCompare(@RequestBody CodeApplyDto form, HttpSession session) {
 		// newCode
 		Map<String, Object> newCode = new HashMap<>();
 		newCode.put("codeNo", form.getCodeNo());
@@ -162,8 +162,8 @@ public class CodeController {
         
         session.setAttribute("oldCode", oldCode);
         session.setAttribute("oldItems", oldItems);
-		
-		return "code/codeCompareForm";
+        
+        return ResponseEntity.ok("/Metamong/code/codeCompareForm");
 	}
 	
 	@GetMapping("/codeApplyList")
