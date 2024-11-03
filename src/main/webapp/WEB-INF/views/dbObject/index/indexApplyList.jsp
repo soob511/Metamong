@@ -84,7 +84,7 @@
 			                      <td>${index.idxName}</td>
 			                      <td>${index.applyObj}</td>
 			                      	<td>
-			                      		<a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a>
+			                      		<a href="indexDetail?applyNo=${index.applyNo}&no=${status.index + 1}"><button class="btn-history-details">상세보기</button></a>
 		                  			</td>
 			                      <td>
 			                      	<c:choose>
