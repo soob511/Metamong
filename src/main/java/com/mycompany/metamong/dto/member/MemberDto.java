@@ -20,4 +20,5 @@ public class MemberDto {
 	private Date MApplydate;
 	private int MIsapprove;
 	private Date MRegdate;
+	private String teamName;
 }
