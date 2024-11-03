@@ -46,7 +46,12 @@ public class IndexController {
 	@ResponseBody
 	@GetMapping("/searchIndexAll")
 	public List<IndexDto> searchIndexAll(@RequestParam String indexName) {
-		List<IndexDto> list = indexService.getIndexList(indexName);
+		List<IndexDto> list = new ArrayList<>();
+		if (indexName != "") {
+			list = indexService.getIndexList(indexName);			
+		} else {
+			list = indexService.getIndexList();
+		}
 		return list;
 	}
 	
@@ -88,7 +93,10 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexDeleteForm")
-	public String indexDeleteForm() {
+	public String indexDeleteForm(Model model) {
+		List<IndexDto> list = indexService.getIndexList();
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("list", list);
 		return "dbObject/index/indexDeleteForm";
 	}
 	
