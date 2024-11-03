@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,8 +71,8 @@ public class CodeController {
 		return "code/codeAddForm";
 	}
 	
-	@PostMapping("/codeApply")
-	public String applyCode(Authentication auth, @RequestBody CodeApplyDto form) {
+	@PostMapping("/applyCode")
+	public ResponseEntity<String> applyCode(Authentication auth, @RequestBody CodeApplyDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
 		apply.setMId(auth.getName());
@@ -103,7 +104,8 @@ public class CodeController {
 	        item.setItemIsUpdate(inputItem.getItemIsUpdate());
 	        applyService.addApplyItem(item);
 	    }
-		return "code/codeApplyList";
+		
+		return ResponseEntity.ok("/Metamong/code/codeApplyList");
 	}
 	
 	@GetMapping("/codeUpdateForm")

@@ -108,7 +108,7 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            url: "/Metamong/code/codeApply",
+            url: "/Metamong/code/applyCode",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(codeData),
