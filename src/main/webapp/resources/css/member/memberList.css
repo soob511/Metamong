@@ -10,17 +10,18 @@
 	font-size:14px;
 }
 
-.table-container {
+.table {
 	margin-top:20px;
-	height: 600px;
-	border-radius: 8px !important; 
+	border-radius: 5px !important; 
     box-shadow: var(--box-shadow);
     overflow: hidden;
+    text-align: center;
+}
+.container-fluid {
+    padding-right: 0 !important;
 }
 
-.table {
-	text-align:center;
-}
+
 
 .table.table-bordered {
 	text-align:left;
@@ -45,11 +46,12 @@ thead{
     padding: 15px 10px;
 }
 
-.pagination {
+.page {
+	text-align:center !important;
 	position: fixed;
-	bottom: 10px;
-	left: 50%;
-	z-index: 1000;
+    bottom: 60px;
+    left: 53%;
+    z-index: 100;
 }
 
 tr{
@@ -90,4 +92,7 @@ td, th{
 
 h4 {
 	font-size: 25px !important;
+}
+.form-required {
+    color: red;
 }
