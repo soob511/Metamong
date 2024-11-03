@@ -118,11 +118,6 @@
 					</div>
 
 				</div>
-				<div class="button-group">
-					<a href="tableCompare">
-						<div class="btn-compare" type="button">전/후비교</div>
-					</a>
-				</div>
 
 
 				<div class="item-container">
