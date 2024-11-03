@@ -88,20 +88,20 @@
 		FULL OUTER JOIN team t ON m.team_id = t.team_id
 		<where>
 			<if test="keyword != null and keyword != '' and option == 'ID'">
-				m.M_id LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
+            LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+        	</if>
 			<if test="keyword != null and keyword != '' and option == '이름'">
 				m.M_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 			<if test="keyword != null and keyword != '' and option == '권한'">
-				m.M_role LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
+            LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+        	</if>
 			<if test="keyword != null and keyword != '' and option == '소속'">
 				t.team_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 			<if test="keyword != null and keyword != '' and option == '사번'">
-				m.M_empid LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
+            LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+        	</if>
 			
 		</where>
 		
