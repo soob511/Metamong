@@ -111,7 +111,7 @@ thead {
 
 .btn-compare {
 	background-color: white;
-	color: var(- -theme);
+	color: var(--theme);
 	border-radius: 8px;
 	border: 1px solid var(--theme);
 	width: 70px;
