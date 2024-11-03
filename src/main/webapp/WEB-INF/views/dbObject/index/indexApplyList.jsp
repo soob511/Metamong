@@ -26,19 +26,42 @@
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/index/indexApplyList">인덱스</a></li>
 					</ul>
 
-					<div class="d-flex justify-content-end align-items-center">						
+					<div class="d-flex justify-content-end align-items-center">
 						<div class="search-box d-flex align-items-center">
-							<form>
+							<div class="schema-filter">
+								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
+								<select id="schemaSelect" class="form-select"
+									aria-label="Default select example">
+									<option value="ALL">전체</option>
+									<c:forEach items="${schemaEnum}" var="schemaEnum">
+										<option value="${schemaEnum.name()}">
+											${schemaEnum.name()}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="schema-filter">
+								<label for="statusSelect" class="status-filter-label">상태</label>
+								<select id="statusSelect" class="form-select"
+									aria-label="Default select example">
+									<option value="-1" data-name="All">전체</option>
+									<option value="0" data-name="wait">승인대기</option>
+									<option value="1" data-name="approve">승인</option>
+									<option value="2" data-name="reject">반려</option>
+									<option value="3" data-name="reflect">반영</option>
+								</select>
+							</div>
+							<div class="schema-filter">
+							<label for="indexNameSearch" class="table-search-label">인덱스명/신청자</label>
 								<input class="form-control me-2" type="search"
-									id="codeNameSearch" placeholder="Search" aria-label="Search">
-								<i class="bi bi-search"></i>
-							</form>
+									id="indexNameSearch" placeholder="Search" aria-label="Search">
+								<i id="biSearch" class="bi bi-search"></i>
+							</div>
 						</div>
 					</div>
 					<div class="table-container">
 					<table class="table table-hover">
 						<thead class="table">
-							<tr class="table-primary">
+							<tr class="table-secondary">
 								<th scope="col">No.</th>
 								<th scope="col">신청일자</th>
 								<th scope="col">신청자</th>
@@ -49,14 +72,14 @@
 								<th scope="col">상태</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="indexApplyTable">
 							<c:forEach items="${list}" var="index" varStatus="status">
 		                  		<tr>
 			                      <th>${status.index + 1}</th>
 			                      <td>
 			                      	<fmt:formatDate value="${index.applyDate}" pattern="yyyy-MM-dd"/>
 			                      </td>
-			                      <td>${index.MId}</td>
+			                      <td>${index.MName}</td>
 			                      <td>${index.schemaName}</td>
 			                      <td>${index.idxName}</td>
 			                      <td>${index.applyObj}</td>
