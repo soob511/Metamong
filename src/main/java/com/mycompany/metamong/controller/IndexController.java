@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.metamong.dto.applyList.ApplyListDto;
-import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
@@ -95,9 +93,21 @@ public class IndexController {
 	
 	@GetMapping("/indexApplyList")
 	public String indexApplyList(Model model) {
-		List<ApplyIndexListDto> list = indexService.getApplyIndexList();
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList();
+		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyList";
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchApplyIndex")
+	public List<ApplyIndexListDto> searchApplyIndex(
+			@RequestParam String schemaName,
+			@RequestParam int approvalStatus,
+			@RequestParam String indexName
+			) {
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList(schemaName, approvalStatus, indexName);
+		return list;
 	}
 	
 	@GetMapping("/indexDetail")

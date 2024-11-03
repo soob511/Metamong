@@ -13,6 +13,7 @@ import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
+import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Service
@@ -44,4 +45,16 @@ public class ApplyService {
 		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
+	
+	public List<ApplyIndexListDto> getApplyIndexList() {
+		return applyListDao.selectApplyIndex();
+	}
+	
+	public List<ApplyIndexListDto> getApplyIndexList(
+			String schemaName, 
+			int approvalStatus, 
+			String indexName) {
+		return applyListDao.selectApplyIndexByParams(schemaName, approvalStatus, indexName);
+	}
+
 }

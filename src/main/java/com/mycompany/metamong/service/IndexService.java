@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoSub1.Sub1IndexDao;
@@ -88,10 +87,6 @@ public class IndexService {
 			break;
 		}
 		return list;
-	}
-	
-	public List<ApplyIndexListDto> getApplyIndexList() {
-		return indexDao.selectApplyIndex();
 	}
 
 	public void createIndex(IndexDto indexdto) {
