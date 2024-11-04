@@ -266,6 +266,11 @@ $(document).ready(function() {
                 icon: 'warning',
                 title: '컬럼을 추가해주세요'
             });
+        }    else if (!columns.some(column => column.colPk === "Y")) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'PK가 포함되어야 합니다'
+            });
         } else {
         	var tableInfo={
         		schemaName:schemaName,
