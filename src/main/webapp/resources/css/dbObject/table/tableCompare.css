@@ -70,3 +70,10 @@ thead {
 	height: 45px;
 	padding: 15px 10px;
 }
+
+
+tr.changed td{
+	background-color: rgba(198, 211, 232, 0.2);
+}
+
+

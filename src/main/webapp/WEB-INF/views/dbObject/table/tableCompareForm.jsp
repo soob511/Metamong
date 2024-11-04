@@ -78,7 +78,7 @@
 									<tbody>
 										<c:forEach items="${afterColumn}" var="aColumn"
 											varStatus="status">
-											<tr>
+											 <tr class="${aColumn.isChange == 1 ? 'changed' : ''}">
 												<td>${status.index+1}</td>
 												<td>${aColumn.colNm}</td>
 												<td>${aColumn.colId}</td>
@@ -97,6 +97,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 </body>
 </html>

@@ -168,7 +168,7 @@
 						</thead>
 						<tbody id="columnList">
 							<c:forEach items="${column}" var="column" varStatus="status">
-								<tr class="checkTr">
+								 <tr class="checkTr" data-change="0"> 
 									<td>${status.index+1}</td>
 									<td>${column.colNm}</td>
 									<td>${column.colId}</td>
@@ -229,8 +229,7 @@
 
 						</div>
 					</div>
-
-					<script
-						src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableUpdateForm.js"></script>
+						<script
+		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableUpdateForm.js"></script>
 </body>
 </html>

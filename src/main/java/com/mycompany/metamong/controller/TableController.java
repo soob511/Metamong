@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
+import com.mycompany.metamong.dto.column.NewColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableCompareDto;
@@ -111,7 +112,7 @@ public class TableController {
 
 		int tableNo = form.getTableNo();
 		
-		List<ColumnDto> afterColumn = form.getColumns();
+		List<NewColumnDto> afterColumn = form.getColumns();
 		session.setAttribute("afterColumn", afterColumn);
 		
 		String applyReason = form.getApplyReason();

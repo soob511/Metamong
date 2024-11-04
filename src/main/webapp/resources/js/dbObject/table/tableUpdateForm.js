@@ -105,7 +105,6 @@ $(document).ready(function() {
             }
         });
     }
-    
     $(".btn-add").on("click", function() {
         var colNm = $("#colNm").val();
         var colId = $("#colId").val();
@@ -113,17 +112,17 @@ $(document).ready(function() {
         var colLength = $("#dataLength").val();
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
-        console.log(colLength);
-        if (colNm === "" || colId === ""|| colLength === "") {
-        	Swal.fire({
-        		  icon: 'warning',                  
-        		  title: '추가할 내용을 <br/>전부 입력해주세요.',    
-        		});
-        }else{
-            var rowCount = $("#columnList tr").length + 1;
 
+        if (colNm === "" || colId === ""|| colLength === "") {
+            Swal.fire({
+                icon: 'warning',                  
+                title: '추가할 내용을 <br/>전부 입력해주세요.',    
+            });
+        } else {
+            var rowCount = $("#columnList tr").length + 1;
+            
             var newRow = `
-                <tr>
+                <tr class="checkTr" data-change="1">
                     <td>${rowCount}</td>
                     <td>${colNm}</td>
                     <td>${colId}</td>
@@ -134,10 +133,52 @@ $(document).ready(function() {
                     <td><i class="bi bi-trash3 delete-row"></i></td>
                 </tr>
             `;
-        }
-        $("#columnList").append(newRow); 
+            
+            $("#columnList").append(newRow);
+            
+            // 새로 추가된 행의 data-change 속성 값을 확인
+            console.log("New row data-change:", $("#columnList tr:last").attr("data-change"));
 
-        $("#itemForm")[0].reset(); 
+            $("#itemForm")[0].reset(); 
+        }
+    });
+
+    $(".btn-update").on("click", function() {
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length) {
+            var colNm = $("#colNm").val();
+            var colId = $("#colId").val();
+            var dataType = $("#dataType").val();
+            var colLength = $("#dataLength").val();
+            var colNullable = $("#nullable").val();
+            var colPk = $("#isUse").val();
+
+            if (colNm === "" || colId === "" || colLength === "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '수정할 내용을 <br/>전부 입력해주세요.'
+                });
+            } else {
+                selectedRow.find("td:eq(1)").text(colNm);
+                selectedRow.find("td:eq(2)").text(colId);
+                selectedRow.find("td:eq(3)").text(dataType);
+                selectedRow.find("td:eq(4)").text(colLength);
+                selectedRow.find("td:eq(5)").text(colNullable);
+                selectedRow.find("td:eq(6)").text(colPk);
+
+                // 수정된 행의 data-change 속성을 설정
+                selectedRow.attr("data-change", "1");
+                console.log("Updated row data-change:", selectedRow.attr("data-change"));
+
+                $("#itemForm")[0].reset();
+                selectedRow.removeClass("selected");
+            }
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: '수정할 행을<br/> 선택해주세요.'
+            });
+        }
     });
 
     $(document).on("click", ".delete-row", function () {
@@ -187,39 +228,6 @@ $(document).ready(function() {
         });
     }
     
-    $(".btn-update").on("click", function () {
-        var selectedRow = $("#columnList tr.selected");
-        if (selectedRow.length) {
-            var colNm = $("#colNm").val();
-            var colId = $("#colId").val();
-            var dataType = $("#dataType").val();
-            var colLength =$("#dataLength").val();
-            var colNullable = $("#nullable").val();
-            var colPk = $("#isUse").val();
-
-            if (colNm === "" || colId === "" || colLength === "") {
-                Swal.fire({
-                    icon: 'warning',
-                    title: '수정할 내용을 <br/>전부 입력해주세요.'
-                });
-            } else {
-                selectedRow.find("td:eq(1)").text(colNm);
-                selectedRow.find("td:eq(2)").text(colId);
-                selectedRow.find("td:eq(3)").text(dataType);
-                selectedRow.find("td:eq(4)").text(colLength);
-                selectedRow.find("td:eq(5)").text(colNullable);
-                selectedRow.find("td:eq(6)").text(colPk);
-
-                $("#itemForm")[0].reset();
-                selectedRow.removeClass("selected"); 
-            }
-        } else {
-            Swal.fire({
-                icon: 'warning',
-                title: '수정할 행을<br/> 선택해주세요.'
-            });
-        }
-    });
     
     $(".btn-apply").on("click", function() {
     	var schemaName = $("#schemaName").text();
@@ -294,7 +302,8 @@ $(document).ready(function() {
                 dataType: $(this).find("td:eq(3)").text(),
                 colLength: $(this).find("td:eq(4)").text(),
                 colNullable: $(this).find("td:eq(5)").text(),
-                colPk: $(this).find("td:eq(6)").text()
+                colPk: $(this).find("td:eq(6)").text(),
+                isChange: $(this).data("change") || "0" 
             };
             columns.push(column);
         });
