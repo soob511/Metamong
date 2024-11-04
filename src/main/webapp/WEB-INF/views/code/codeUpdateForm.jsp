@@ -55,7 +55,7 @@
                                 <tr>
                                     <td class="table-secondary">신청사유</td>
                                     <td colspan="5">
-                                    	<input type="text" id="applyReason" class="form-control code-input" required>
+                                    	<input type="text" id="applyReason" class="form-control code-input" value="${!applyReason ? applyReason : null}" required>
                                    	</td>
                                 </tr>
                             </table>

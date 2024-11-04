@@ -34,11 +34,14 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@GetMapping("/noticeList")
-	public String noticeList(Model model, @RequestParam(defaultValue="1")int pageNo, HttpSession session) {
+	public String noticeList(
+			@RequestParam(defaultValue="1") int pageNo, 
+			HttpSession session,
+			Model model) {
 		
 		int totalRows = noticeService.getTotalRows();
-		Pager pager = new Pager(10,5,totalRows,pageNo);
 		
+		Pager pager = new Pager(10,5,totalRows,pageNo);
 		session.setAttribute("pager", pager);
 		model.addAttribute("totalRows", totalRows);
 		
@@ -47,6 +50,25 @@ public class NoticeController {
 		
 		return "notice/noticeList";
 	}	
+
+	@GetMapping("/noticeSearch")
+    public String noticeSearch(
+    		@RequestParam(defaultValue="") String option, 
+    		@RequestParam(defaultValue="") String keyword, 
+    		@RequestParam(defaultValue="1")int pageNo,
+    		HttpSession session,
+    		Model model) {
+	
+		int totalRows = noticeService.countNotices(option, keyword);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		session.setAttribute("pager", pager);
+		model.addAttribute("totalRows", totalRows);
+        List<NoticeDto> list = noticeService.searchNotice(option,keyword,pager);
+        model.addAttribute("list", list);
+        model.addAttribute("option", option);
+
+        return "notice/noticeSearch";
+    }	
 	
 	@GetMapping("/noticeDetail")
 	public String noticeDetail(int noticeId, Model model) {
@@ -166,11 +188,4 @@ public class NoticeController {
 		 return pageNo;	
 	}
 	
-	@ResponseBody
-	@GetMapping("/noticeSearch")
-	    public List<NoticeDto> search(@RequestParam(defaultValue="") String option, @RequestParam(defaultValue="") String keyword) {
-	        List<NoticeDto> searchResults = noticeService.searchNotice(option,keyword);
-
-	        return searchResults;
-	    }
 }

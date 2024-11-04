@@ -23,18 +23,29 @@
 		WHERE apply_no =#{applyNo}
 	</select>
 	
-	<select id="selectApplyTableList" resultType="ApplyTableList">
-		SELECT
-		a.apply_no,m.m_name,
-		a.apply_date,a.approval_status,a.schema_name,t.table_id,a.apply_obj
-		FROM apply_list a
-		JOIN member m ON a.m_id = m.m_id
-		JOIN apply_table t ON
-		a.apply_no = t.apply_no
-		WHERE a.apply_obj = 'TABLE'
-		ORDER BY
-		a.apply_date DESC
-	</select>
+	<select id="selectApplyTableList" parameterType="Pager" resultType="ApplyTableList">
+    <![CDATA[
+        SELECT 
+            rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_obj
+        FROM (
+            SELECT 
+                rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_obj
+            FROM (
+                SELECT
+                    a.apply_no, m.m_name,
+                    a.apply_date, a.approval_status, a.schema_name, t.table_id, a.apply_obj
+                FROM apply_list a
+                JOIN member m ON a.m_id = m.m_id
+                JOIN apply_table t ON a.apply_no = t.apply_no
+                WHERE a.apply_obj = 'TABLE'
+                ORDER BY a.apply_date DESC
+            )
+            WHERE rownum <= #{endRowNo}
+        )
+        WHERE rnum >= #{startRowNo}
+    ]]>
+</select>
+
 
 	<select id="selectApplyTableSearch" parameterType="map"
 		resultType="ApplyTableList">
@@ -130,6 +141,12 @@
 		#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
 		#{applyType})
 	</insert>
+	
+	<select id="selectTotalRows">
+		SELECT count(*)
+		FROM apply_list
+		WHERE apply_obj = 'TABLE'
+	</select>
 
 </mapper>
 

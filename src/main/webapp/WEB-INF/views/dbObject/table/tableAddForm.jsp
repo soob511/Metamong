@@ -138,7 +138,7 @@
 				</div>
 				<div class="button-group">
 					<div class="btn-add" type="button">추가</div>
-					<div class="btn-update" type="button">수정</div>
+					<button class="btn-update" type="button">수정</button>
 				</div>
 
 				<div class="item-container">

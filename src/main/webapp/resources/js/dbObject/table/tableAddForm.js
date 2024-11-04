@@ -5,6 +5,20 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $(".btn-update").prop("disabled", true);
+    
+    $("#columnList").on("click", ".checkTr", function() {
+	    $(".checkTr").removeClass("table-active");
+	    $(this).addClass("table-active");
+	});
+    
+    function resetAndDisableButton() {
+    	console.log("실행");
+    	$("#itemForm")[0].reset();
+        $("#columnList tr").removeClass("selected");
+        $(".btn-update").prop("disabled", true);
+    }
+    
     $.ajax({
         url: "/Metamong/dataType/dataTypeList",
         type: "GET",
@@ -22,7 +36,7 @@ $(document).ready(function() {
     });
     
     $(".btn-reset").on("click", function() {
-        $("#itemForm")[0].reset(); 
+    	resetAndDisableButton();
     });
 
     $(".btn-load").on("click", function() {
@@ -108,36 +122,61 @@ $(document).ready(function() {
         var colLength = $("#dataLength").val();
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
-        console.log(colLength);
-        if (colNm === "" || colId === ""|| colLength === "") {
-        	Swal.fire({
-        		  icon: 'warning',                  
-        		  title: '추가할 내용을 <br/>전부 입력해주세요.',    
-        		});
-        }else{
-            var rowCount = $("#columnList tr").length + 1;
 
-            var newRow = `
-                <tr>
-                    <td>${rowCount}</td>
-                    <td>${colNm}</td>
-                    <td>${colId}</td>
-                    <td>${dataType}</td>
-                    <td>${colLength}</td>
-                    <td>${colNullable}</td>
-                    <td>${colPk}</td>
-                    <td><i class="bi bi-trash3 delete-row"></i></td>
-                </tr>
-            `;
+        if (colNm === "" || colId === "" || colLength === "") {
+            Swal.fire({
+                icon: 'warning',                  
+                title: '추가할 내용을 <br/>전부 입력해주세요.'   
+            });
+        } else {
+            // colId 중복 여부 확인
+            var isDuplicate = false;
+            $("#columnList tr").each(function() {
+                if ($(this).find("td:eq(2)").text() === colId) {
+                    isDuplicate = true;
+                    return false; // 중복이 발견되면 반복문 종료
+                }
+            });
+
+            if (isDuplicate) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '이미 존재하는 colId입니다.',
+                    text: '다른 colId를 입력해 주세요.'
+                });
+            } else {
+                // 중복이 없는 경우에만 행 추가
+                var rowCount = $("#columnList tr").length + 1;
+                
+                var newRow = `
+                    <tr class="checkTr" data-change="1">
+                        <td>${rowCount}</td>
+                        <td>${colNm}</td>
+                        <td>${colId}</td>
+                        <td>${dataType}</td>
+                        <td>${colLength}</td>
+                        <td>${colNullable}</td>
+                        <td>${colPk}</td>
+                        <td><i class="bi bi-trash3 delete-row"></i></td>
+                    </tr>
+                `;
+                
+                $("#columnList").append(newRow);
+
+                // 새로 추가된 행의 data-change 속성 값을 확인
+                console.log("New row data-change:", $("#columnList tr:last").attr("data-change"));
+
+                $("#itemForm")[0].reset(); 
+            }
         }
-        $("#columnList").append(newRow); 
-
-        $("#itemForm")[0].reset(); 
     });
 
-    $(document).on("click", ".delete-row", function () {
+
+    $(document).on("click", ".delete-row", function (event) {
+        event.stopPropagation(); 
         $(this).closest("tr").remove();
         updateRowNumbers();
+        resetAndDisableButton();
     });
 
     $("#move-up").on("click", function () {
@@ -157,6 +196,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click", "#columnList tr", function () {
+    	$(".btn-update").prop("disabled", false);
         $("#columnList tr").removeClass("selected");
         $(this).addClass("selected");
         const colNm = $(this).find("td:eq(1)").text();
@@ -183,6 +223,7 @@ $(document).ready(function() {
     $(".btn-update").on("click", function () {
         var selectedRow = $("#columnList tr.selected");
         if (selectedRow.length) {
+
             var colNm = $("#colNm").val();
             var colId = $("#colId").val();
             var dataType = $("#dataType").val();
@@ -205,6 +246,7 @@ $(document).ready(function() {
 
                 $("#itemForm")[0].reset();
                 selectedRow.removeClass("selected"); 
+                $(".btn-update").prop("disabled", true);
             }
         } else {
             Swal.fire({
@@ -246,6 +288,11 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'warning',
                 title: '컬럼을 추가해주세요'
+            });
+        }    else if (!columns.some(column => column.colPk === "Y")) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'PK가 포함되어야 합니다'
             });
         } else {
         	var tableInfo={
