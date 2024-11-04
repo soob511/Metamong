@@ -72,7 +72,7 @@ public class CodeController {
 	}
 	
 	@PostMapping("/applyCode")
-	public ResponseEntity<String> applyCode(Authentication auth, @RequestBody CodeApplyDto form) {
+	public ResponseEntity<String> applyCode(Authentication auth, @RequestBody CodeApplyDto form, HttpSession session) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
 		apply.setMId(auth.getName());
@@ -105,6 +105,7 @@ public class CodeController {
 	        applyService.addApplyItem(item);
 	    }
 		
+		session.removeAttribute("applyReason");
 		return ResponseEntity.ok("/Metamong/code/codeApplyList");
 	}
 	
@@ -136,34 +137,31 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeCompareForm") 
-	public String codeCompare(int codeNo) {
+	public String codeCompare(Model model, int codeNo) {
+		CodeDto oldCode = codeService.getCodeByNo(codeNo);
+	    List<ItemDto> oldItems = itemService.getItemList(codeNo);
+	    
+	    model.addAttribute("oldCode", oldCode);
+	    model.addAttribute("oldItems", oldItems);
+
 		return "code/codeCompareForm";
 	}
 	
 	@PostMapping("/codeCompare")
 	public ResponseEntity<String> codeCompare(@RequestBody CodeApplyDto form, HttpSession session) {
-		// newCode
-		Map<String, Object> newCode = new HashMap<>();
-		newCode.put("codeNo", form.getCodeNo());
-		newCode.put("codeId", form.getCodeId());
-		newCode.put("codeNm", form.getCodeNm());
-		newCode.put("codeLength", form.getCodeLength());
-		newCode.put("codeContent", form.getCodeContent());
-		newCode.put("codeIsActive", form.getCodeIsActive());
-		newCode.put("applyReason", form.getApplyReason());
+		CodeDto newCode = new CodeDto();
+		newCode.setCodeNo(form.getCodeNo());
+		newCode.setCodeId(form.getCodeId());
+		newCode.setCodeNm(form.getCodeNm());
+		newCode.setCodeLength(form.getCodeLength());
+		newCode.setCodeContent(form.getCodeContent());
+		newCode.setCodeIsActive(form.getCodeIsActive());
 
 		session.setAttribute("newCode", newCode);
 		session.setAttribute("newItems", form.getItems());
-		
-		// oldCode
-		int codeNo = form.getCodeNo();
-		CodeDto oldCode = codeService.getCodeByNo(codeNo);
-        List<ItemDto> oldItems = itemService.getItemList(codeNo);
-        
-        session.setAttribute("oldCode", oldCode);
-        session.setAttribute("oldItems", oldItems);
-        
-        return ResponseEntity.ok("/Metamong/code/codeCompareForm");
+		session.setAttribute("applyReason", form.getApplyReason());
+	
+        return ResponseEntity.ok("/Metamong/code/codeCompareForm?codeNo=" + form.getCodeNo());
 	}
 	
 	@GetMapping("/codeApplyList")

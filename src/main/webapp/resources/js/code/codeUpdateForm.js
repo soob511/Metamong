@@ -153,7 +153,7 @@ $(document).ready(function() {
             data: JSON.stringify(codeData),
             traditional: true,
             success: function(data) {
-            	location.href = data + "?codeNo=" + codeNo;
+            	location.href = data;
             }
         });
     });
