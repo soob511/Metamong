@@ -10,4 +10,5 @@ import lombok.Data;
 public class TableCompareDto {
 	private int tableNo;
 	private List<ColumnDto> columns;
+	private String applyReason;
 }

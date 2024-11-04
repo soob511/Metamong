@@ -279,6 +279,7 @@ $(document).ready(function() {
     $(".btn-compare").on("click", function() {
         var columns = [];
         var tableNo = $(".codeAdd-subtitle").data("table-no");
+        var applyReason = $("#applyReason").val();
 
         $("#columnList tr").each(function() {
             var column = {
@@ -294,7 +295,8 @@ $(document).ready(function() {
 
         var data = JSON.stringify({
             tableNo: tableNo,
-            columns: columns
+            columns: columns,
+            applyReason:applyReason
         });
 
         $.ajax({

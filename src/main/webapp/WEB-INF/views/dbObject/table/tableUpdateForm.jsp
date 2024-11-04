@@ -58,13 +58,15 @@
 									<td class="table-secondary">내용</td>
 									<td colspan="5"><input type="text" id="tableContent"
 										class="form-control content-input"
-										placeholder="${table.tableContent}"></td>
+										value="${table.tableContent}"></td>
 								</tr>
 								<tr>
 									<td class="table-secondary">신청사유</td>
 									<td colspan="5"><input type="text" id="applyReason"
-										class="form-control content-input" placeholder="내용 입력"></td>
+										class="form-control content-input" placeholder="내용 입력"
+										value="${applyReason != null ? applyReason : ''}"></td>
 								</tr>
+
 
 
 							</table>
@@ -182,8 +184,8 @@
 				</div>
 
 				<div class="button-group">
-						<div class="btn-compare" type="button">전/후비교</div>
-						<div class="btn-apply" type="button">신청</div>
+					<div class="btn-compare" type="button">전/후비교</div>
+					<div class="btn-apply" type="button">신청</div>
 				</div>
 
 				<div class="modal fade" id="codeLoadModal" tabindex="-1"

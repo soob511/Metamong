@@ -81,13 +81,16 @@ public class TableController {
 	}
 
 	@GetMapping("/tableUpdateForm")
-	public String tableUpdateForm(@RequestParam int tableNo, Model model) {
+	public String tableUpdateForm(@RequestParam int tableNo, Model model,HttpSession session) {
 		TableDto table = tableService.getTable(tableNo);
 		model.addAttribute("table", table);
 
 		List<ColumnDto> column = columnService.getColumnList(tableNo);
 		log.info(column.toString());
 		model.addAttribute("column", column);
+		
+		session.removeAttribute("applyReason");
+		
 
 		return "dbObject/table/tableUpdateForm";
 	}
@@ -111,6 +114,9 @@ public class TableController {
 		
 		List<ColumnDto> afterColumn = form.getColumns();
 		session.setAttribute("afterColumn", afterColumn);
+		
+		String applyReason = form.getApplyReason();
+		session.setAttribute("applyReason", applyReason);
 
 		return ResponseEntity.ok("/Metamong/table/tableCompareForm?tableNo=" + tableNo);
 	}
