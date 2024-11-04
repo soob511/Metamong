@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	var status = parseInt($('#approvalStatus').text());
 	var statusText = getStatusText(status);
@@ -13,8 +12,20 @@ $(document).ready(function() {
 	console.log(typeof rejectReason);
 	var rejectReasonStatus = getRejectReasonStatus(rejectReason);
 	$('#rejectReason').html(rejectReasonStatus);
+	getSqlBtn(statusText);
 })
-    
+
+function getSqlBtn(approvalStatus) {
+	if (approvalStatus === '반영') {
+		let html = `
+			<button class="btn-sql" data-bs-toggle="modal" data-bs-target="#sqlLoadModal">
+				SQL
+			</button>
+			`;
+		$('#sqlContents').html(html);
+	}
+}
+
 function getStatusText(approvalStatus) {
     switch (approvalStatus) {
         case 0: return '승인대기';
