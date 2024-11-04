@@ -122,32 +122,55 @@ $(document).ready(function() {
         var colLength = $("#dataLength").val();
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
-        console.log(colLength);
-        if (colNm === "" || colId === ""|| colLength === "") {
-        	Swal.fire({
-        		  icon: 'warning',                  
-        		  title: '추가할 내용을 <br/>전부 입력해주세요.',    
-        		});
-        }else{
-            var rowCount = $("#columnList tr").length + 1;
 
-            var newRow = `
-                 <tr class="checkTr">
-                    <td>${rowCount}</td>
-                    <td>${colNm}</td>
-                    <td>${colId}</td>
-                    <td>${dataType}</td>
-                    <td>${colLength}</td>
-                    <td>${colNullable}</td>
-                    <td>${colPk}</td>
-                    <td><i class="bi bi-trash3 delete-row"></i></td>
-                </tr>
-            `;
+        if (colNm === "" || colId === "" || colLength === "") {
+            Swal.fire({
+                icon: 'warning',                  
+                title: '추가할 내용을 <br/>전부 입력해주세요.'   
+            });
+        } else {
+            // colId 중복 여부 확인
+            var isDuplicate = false;
+            $("#columnList tr").each(function() {
+                if ($(this).find("td:eq(2)").text() === colId) {
+                    isDuplicate = true;
+                    return false; // 중복이 발견되면 반복문 종료
+                }
+            });
+
+            if (isDuplicate) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '이미 존재하는 colId입니다.',
+                    text: '다른 colId를 입력해 주세요.'
+                });
+            } else {
+                // 중복이 없는 경우에만 행 추가
+                var rowCount = $("#columnList tr").length + 1;
+                
+                var newRow = `
+                    <tr class="checkTr" data-change="1">
+                        <td>${rowCount}</td>
+                        <td>${colNm}</td>
+                        <td>${colId}</td>
+                        <td>${dataType}</td>
+                        <td>${colLength}</td>
+                        <td>${colNullable}</td>
+                        <td>${colPk}</td>
+                        <td><i class="bi bi-trash3 delete-row"></i></td>
+                    </tr>
+                `;
+                
+                $("#columnList").append(newRow);
+
+                // 새로 추가된 행의 data-change 속성 값을 확인
+                console.log("New row data-change:", $("#columnList tr:last").attr("data-change"));
+
+                $("#itemForm")[0].reset(); 
+            }
         }
-        $("#columnList").append(newRow); 
-
-        $("#itemForm")[0].reset(); 
     });
+
 
     $(document).on("click", ".delete-row", function (event) {
         event.stopPropagation(); 
