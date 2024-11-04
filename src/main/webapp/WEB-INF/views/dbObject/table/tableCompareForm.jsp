@@ -29,7 +29,7 @@
 							</div>
 							<div class="table-container">
 								<table class="table table-hover">
-									<thead class="table-primary">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">항목코드</th>
@@ -64,7 +64,7 @@
 							</div>
 							<div class="table-container">
 								<table class="table table-hover">
-									<thead class="table-primary">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">항목코드</th>
