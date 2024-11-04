@@ -160,11 +160,12 @@ $(document).ready(function () {
   }
 
   function refresh() {
+	itemIndex = null;
     $("#itemId").val("");
     $("#itemNm").val("");
     $("#itemContent").val("");
     $(".btn-edit").prop("disabled", true);
-    itemIndex = null;
+    $(".item").removeClass("table-active");
   }
 
   function itemList() {

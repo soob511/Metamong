@@ -194,12 +194,13 @@ $(document).ready(function() {
     };
     
     function refresh() {
+    	itemIndex = null;
     	$('#itemId').val('');
         $('#itemNm').val('');
         $('#itemContent').val('');
         $('#itemIsActive option:first').prop("selected", true);
         $(".btn-edit").prop("disabled", true);
-        itemIndex = null;
+        $(".item").removeClass("table-active");
     };
 
     function itemList() {
