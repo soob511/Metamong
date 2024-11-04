@@ -1,6 +1,7 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.metamong.dto.applyList.ApplyListDto;
-import com.mycompany.metamong.dto.index.ApplyIndexDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
+import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.dto.index.RefColumnDto;
@@ -111,12 +112,25 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexApplyList")
-	public String indexApplyList() {
+	public String indexApplyList(Model model) {
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList();
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyList";
 	}
 	
-	@GetMapping("/indexDetail")
-	public String indexDetail() {
-		return "dbObject/index/indexDetail";
+	@ResponseBody
+	@GetMapping("/searchApplyIndex")
+	public List<ApplyIndexListDto> searchApplyIndex(@RequestParam HashMap<String, Object> indexApplyListData) {
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList(indexApplyListData);
+		return list;
+	}
+	
+	@GetMapping("/indexApplyDetail")
+	public String indexApplyDetail(@RequestParam int applyNo,@RequestParam int no, Model model) {
+		ApplyIndexDetailDto applyIndexDetail = applyService.getApplyIndexListDetail(applyNo);
+		model.addAttribute("detail", applyIndexDetail);
+		model.addAttribute("no", no);
+		return "dbObject/index/indexApplyDetail";
 	}
 }

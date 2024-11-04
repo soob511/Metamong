@@ -144,3 +144,16 @@ thead {
 	margin: 18px 5px 10px 0;
 	padding: 0;
 }
+
+.btn-compare {
+	background-color: white;
+	color: var(--theme);
+	border-radius: 8px;
+	border: 1px solid var(--theme);
+	width: 70px;
+	height: 30px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 2.1;
+}
+

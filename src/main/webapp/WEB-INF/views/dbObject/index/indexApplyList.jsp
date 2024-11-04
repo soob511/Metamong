@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>DB Object 인덱스 신청내역</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-beta.4/dist/css/coreui.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/dbObject/common/applyList.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
 <body>
@@ -27,19 +26,42 @@
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/index/indexApplyList">인덱스</a></li>
 					</ul>
 
-					<div class="d-flex justify-content-end align-items-center">						
+					<div class="d-flex justify-content-end align-items-center">
 						<div class="search-box d-flex align-items-center">
-							<form>
+							<div class="schema-filter">
+								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
+								<select id="schemaSelect" class="form-select"
+									aria-label="Default select example">
+									<option value="ALL">전체</option>
+									<c:forEach items="${schemaEnum}" var="schemaEnum">
+										<option value="${schemaEnum.name()}">
+											${schemaEnum.name()}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="schema-filter">
+								<label for="statusSelect" class="status-filter-label">상태</label>
+								<select id="statusSelect" class="form-select"
+									aria-label="Default select example">
+									<option value="-1" data-name="All">전체</option>
+									<option value="0" data-name="wait">승인대기</option>
+									<option value="1" data-name="approve">승인</option>
+									<option value="2" data-name="reject">반려</option>
+									<option value="3" data-name="reflect">반영</option>
+								</select>
+							</div>
+							<div class="schema-filter">
+							<label for="indexNameSearch" class="table-search-label">인덱스명/신청자</label>
 								<input class="form-control me-2" type="search"
-									id="codeNameSearch" placeholder="Search" aria-label="Search">
-								<i class="bi bi-search"></i>
-							</form>
+									id="indexNameSearch" placeholder="Search" aria-label="Search">
+								<i id="biSearch" class="bi bi-search"></i>
+							</div>
 						</div>
 					</div>
 					<div class="table-container">
-<table class="table table-hover">
+					<table class="table table-hover">
 						<thead class="table">
-							<tr class="table-primary">
+							<tr class="table-secondary">
 								<th scope="col">No.</th>
 								<th scope="col">신청일자</th>
 								<th scope="col">신청자</th>
@@ -50,67 +72,38 @@
 								<th scope="col">상태</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">10</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member_index</td>
-								<td>인덱스</td>
-								<td><a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a></td>
-								<td class="code-approve">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">10</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member_index</td>
-								<td>인덱스</td>
-								<td><a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member_index</td>
-								<td>인덱스</td>
-								<td><a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a></td>
-								<td class="code-await">승인대기</td>
-							</tr>
-							<tr>
-								<th scope="row">4</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member_index</td>
-								<td>인덱스</td>
-								<td><a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">4</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member_index</td>
-								<td>인덱스</td>
-								<td><a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a></td>
-								<td class="code-deny">반려</td>
-							</tr>
-							<tr>
-								<th scope="row">5</th>
-								<td>2023-10-13</td>
-								<td>나길주</td>
-								<td>kosa_oti_team_1</td>
-								<td>member_index</td>
-								<td>인덱스</td>
-								<td><a href="${pageContext.request.contextPath}/index/indexDetail"><button class="btn-history-details">상세보기</button></a></td>
-								<td class="code-await">승인대기</td>
-							</tr>
+						<tbody id="indexApplyTable">
+							<c:forEach items="${list}" var="index" varStatus="status">
+		                  		<tr>
+			                      <th>${status.index + 1}</th>
+			                      <td>
+			                      	<fmt:formatDate value="${index.applyDate}" pattern="yyyy-MM-dd"/>
+			                      </td>
+			                      <td>${index.MName}</td>
+			                      <td>${index.schemaName}</td>
+			                      <td>${index.idxName}</td>
+			                      <td>${index.applyObj}</td>
+			                      	<td>
+			                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&no=${status.index + 1}"><button class="btn-history-details">상세보기</button></a>
+		                  			</td>
+			                      <td>
+			                      	<c:choose>
+										<c:when test="${index.approvalStatus == 0}">
+											<span id="status-await">승인대기</span>
+										</c:when>
+										<c:when test="${index.approvalStatus == 1}">
+											<span id="status-approve">승인</span>
+										</c:when>
+										<c:when test="${index.approvalStatus == 2}">
+											<span id="status-rejected">반려</span>
+										</c:when>
+										<c:when test="${index.approvalStatus == 3}">
+											<span id="status-applied">반영</span>
+										</c:when>
+									</c:choose>
+			                      </td>
+		                    	</tr>
+	                  		</c:forEach>
 						</tbody>
 					</table>
 					</div>

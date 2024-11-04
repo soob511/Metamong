@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
@@ -69,8 +71,8 @@ public class CodeController {
 		return "code/codeAddForm";
 	}
 	
-	@PostMapping("/codeApply")
-	public String applyCode(Authentication auth, @RequestBody CodeApplyDto form) {
+	@PostMapping("/applyCode")
+	public ResponseEntity<String> applyCode(Authentication auth, @RequestBody CodeApplyDto form) {
 		// APPLY_LIST 테이블
 		ApplyListDto apply = new ApplyListDto();	
 		apply.setMId(auth.getName());
@@ -102,7 +104,8 @@ public class CodeController {
 	        item.setItemIsUpdate(inputItem.getItemIsUpdate());
 	        applyService.addApplyItem(item);
 	    }
-		return "code/codeApplyList";
+		
+		return ResponseEntity.ok("/Metamong/code/codeApplyList");
 	}
 	
 	@GetMapping("/codeUpdateForm")
@@ -164,12 +167,24 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeApplyList")
-	public String codeApplyList() {
+	public String codeApplyList(Model model) {
+		List<ApplyCodeDto> list = applyService.getApplyCodeList();
+		model.addAttribute("list", list);
 		return "code/codeApplyList";
 	}
 	
 	@GetMapping("/codeApplyDetail")
-	public String codeApplyDetail() {
+	public String codeApplyDetail(Model model, int applyNo, int indexNo) {
+		ApplyCodeDeatilDto applyList = applyService.getCodeApplyDetail(applyNo); 
+		model.addAttribute("applyList", applyList);
+		model.addAttribute("indexNo", indexNo);
+		
+		CodeDto applyCode = applyService.getCodeApplyByNo(applyNo);
+		model.addAttribute("applyCode", applyCode);
+		
+		List<ItemDto> applyItems = applyService.getItemsApplyByNo(applyNo);
+		model.addAttribute("applyItems",applyItems);
+		
 		return "code/codeApplyDetail";
 	}
 	

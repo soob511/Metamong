@@ -2,18 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoMain.ApplyListDao">
 
-	<insert id="insertApplyList" parameterType="ApplyList">
-		<selectKey keyProperty="applyNo" resultType="int"
-			order="BEFORE">
-			SELECT seq_apply_no.nextval FROM dual
-		</selectKey>
-		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
-		approval_status,schema_name,apply_obj, apply_type)
-		VALUES (#{applyNo},
-		#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
-		#{applyType})
-	</insert>
-
+	<select id="selectApplyCodeList" resultType="ApplyCodeList">
+		SELECT
+		a.apply_no,m.m_name,
+		a.apply_date,a.approval_status,c.code_id,c.code_nm,a.apply_obj
+		FROM apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		JOIN apply_code c ON
+		a.apply_no = c.apply_no
+		WHERE a.apply_obj = 'CODE'
+		ORDER BY
+		a.apply_date DESC
+	</select>
+	
+	<select id="selectCodeApplyDetail" parameterType="int" resultType="ApplyCodeDeatil">
+		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name, a.apply_reason,
+		 a.reject_reason, a.approval_status
+		FROM apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		WHERE apply_no =#{applyNo}
+	</select>
+	
 	<select id="selectApplyTableList" resultType="ApplyTableList">
 		SELECT
 		a.apply_no,m.m_name,
@@ -62,9 +71,65 @@
 		JOIN member m ON a.m_id = m.m_id
 		WHERE apply_no =#{applyNo}
 	</select>
+	
+	<select id="selectApplyIndex" resultType="ApplyIndexList">
+		SELECT
+			a.apply_no, a.apply_date, m.m_name, a.schema_name, 
+			i.idx_name, a.apply_obj, a.approval_status
+		FROM
+			apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		JOIN apply_index i ON i.apply_no = a.apply_no
+		ORDER BY a.apply_date DESC
+	</select>
 
+	<select id="selectApplyIndexByParams" parameterType="map" resultType="ApplyIndexList">
+		SELECT
+			a.apply_no, a.apply_date, m.m_name, a.schema_name, 
+			i.idx_name, a.apply_obj, a.approval_status
+		FROM
+			apply_list a
+		JOIN member m ON a.m_id = m.m_id
+		JOIN apply_index i ON i.apply_no = a.apply_no
+		<where>
+			<if test="schemaName != 'ALL' ">
+				a.schema_name = #{schemaName}
+			</if>
+			<if test="approvalStatus != -1">
+				AND a.approval_status = #{approvalStatus}
+			</if>
+			<if test="indexName != '' ">
+				AND i.idx_name = #{indexName}
+			</if>
+		</where>
+		ORDER BY a.apply_date DESC
+	</select>
+	
+	<select id="selectApplyIndexDetail" parameterType="int" resultType="ApplyIndexDetail">
+		SELECT 
+		    a.apply_date, a.compl_date, m.m_name, a.dba_name, 
+		    i.idx_name, a.schema_name, t.table_id, i.ref_column,
+		    i.is_unique, a.apply_reason, a.reject_reason, a.approval_status, 
+		    a.query
+		FROM
+		    apply_list a
+		JOIN member m ON m.m_id = a.m_id
+		JOIN apply_index i ON i.apply_no = a.apply_no
+		JOIN tables t ON t.table_no = i.table_no
+		WHERE a.apply_no = #{applyNo}
+	</select>
 
-
+	<insert id="insertApplyList" parameterType="ApplyList">
+		<selectKey keyProperty="applyNo" resultType="int"
+			order="BEFORE">
+			SELECT seq_apply_no.nextval FROM dual
+		</selectKey>
+		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
+		approval_status,schema_name,apply_obj, apply_type)
+		VALUES (#{applyNo},
+		#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
+		#{applyType})
+	</insert>
 
 </mapper>
 

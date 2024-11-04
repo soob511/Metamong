@@ -20,10 +20,14 @@
 		<typeAlias type="com.mycompany.metamong.dto.code.CodeDto" alias="Code"/>
 		<typeAlias type="com.mycompany.metamong.dto.item.ItemDto" alias="Item"/>
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyListDto" alias="ApplyList"/>
+		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyCodeListDto" alias="ApplyCodeList"/>
+		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto" alias="ApplyCodeDeatil"/>
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyTableListDto" alias="ApplyTableList"/>
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto" alias="ApplyTableDetail"/>
 		<typeAlias type="com.mycompany.metamong.dto.code.ApplyCodeDto" alias="ApplyCode"/>
 		<typeAlias type="com.mycompany.metamong.dto.item.ApplyItemDto" alias="ApplyItem"/>
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDto" alias="ApplyIndex"/>
+		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexListDto" alias="ApplyIndexList"/>
+		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDetailDto" alias="ApplyIndexDetail"/>
 	</typeAliases>
 </configuration>

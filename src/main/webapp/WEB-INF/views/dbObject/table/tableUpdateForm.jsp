@@ -32,7 +32,8 @@
 				<div class="container">
 					<div class="row">
 						<div class="col code">
-							<div class="codeAdd-subtitle">테이블</div>
+							<div class="codeAdd-subtitle" data-table-no="${table.tableNo}">테이블</div>
+
 							<table class="table table-bordered code-table">
 								<tr>
 									<td class="table-secondary">스키마명</td>
@@ -181,6 +182,7 @@
 				</div>
 
 				<div class="button-group">
+						<div class="btn-compare" type="button">전/후비교</div>
 						<div class="btn-apply" type="button">신청</div>
 				</div>
 
