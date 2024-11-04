@@ -58,11 +58,11 @@
     vertical-align: middle;
 }
 
-.table-hover tbody tr {
+.tablecompare tbody tr {
     height: 50px; 
 }
 
-.table-hover td, .table-hover th {
+.tablecompare td, .tablecompare th {
     padding: 15px 10px;
 }
 
@@ -70,3 +70,10 @@ thead {
 	height: 45px;
 	padding: 15px 10px;
 }
+
+
+tr.changed td{
+	background-color: rgba(198, 211, 232, 0.2);
+}
+
+
