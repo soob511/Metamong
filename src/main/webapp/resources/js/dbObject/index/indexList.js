@@ -8,10 +8,6 @@ $(document).ready(function() {
     $('#schemaSelect').change(function() {
     	filterIndex()
     });
-    
-	$(document).on('click', '#biSearch', function() {
-		filterIndex()
-	});
 	
 	$(document).on('click', '#biSearch', function() {
 		filterIndex()
@@ -35,6 +31,7 @@ function filterIndex() {
 	const schemaName = $('#schemaSelect').val();
 	const indexName = $('#indexNameSearch').val().toUpperCase();
 	console.log(schemaName);
+	console.log(indexName);
 	if (schemaName == 'ALL') {
 		$.ajax({
 			type : 'GET',
@@ -59,7 +56,7 @@ function filterIndex() {
 							</tr>`;
 					});
 				} else {
-					html += '<th colspan="6">조건에 맞는 인덱스가 없습니다</th>'
+					html += '<th colspan="6">해당 조건에 맞는 인덱스가 없습니다</th>'
 				}
 				$('#indexTableBody').html(html);			 
 			},

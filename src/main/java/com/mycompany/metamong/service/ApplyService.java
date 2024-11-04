@@ -1,5 +1,6 @@
 package com.mycompany.metamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,12 +20,18 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
+
+import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDto;
+import com.mycompany.metamong.dto.item.ApplyItemDto;
+import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnAddDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.item.ItemDto;
+
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 
@@ -89,6 +96,18 @@ public class ApplyService {
 		applyIndexDto.setApplyNo(applyListDto.getApplyNo());
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
+	
+	public List<ApplyIndexListDto> getApplyIndexList() {
+		return applyListDao.selectApplyIndex();
+	}
+	
+	public List<ApplyIndexListDto> getApplyIndexList(HashMap<String, Object> indexApplyListDatae) {
+		return applyListDao.selectApplyIndexByParams(indexApplyListDatae);
+	}
+	
+	public ApplyIndexDetailDto getApplyIndexListDetail(int applyNo) {
+		return applyListDao.selectApplyIndexDetail(applyNo);
+	}
 
 	@Transactional
 	public void addApplyTable(TableAddDto form, Authentication auth) {
@@ -127,4 +146,5 @@ public class ApplyService {
 		}
 
 	}
+
 }
