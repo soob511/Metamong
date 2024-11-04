@@ -20,18 +20,16 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
-
-import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
-import com.mycompany.metamong.dto.index.ApplyIndexDto;
-import com.mycompany.metamong.dto.item.ApplyItemDto;
-import com.mycompany.metamong.dto.index.ApplyIndexListDto;
+import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnAddDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
+import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
+import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
-
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 
@@ -82,12 +80,36 @@ public class ApplyService {
 		applyListDao.insertApplyList(apply);	
 	}
 	
-	public void addApplyCode(ApplyCodeDto code) {
+	@Transactional
+	public void addApplyCode(CodeApplyDto form, Authentication auth) {
+		ApplyListDto apply = new ApplyListDto();	
+		apply.setMId(auth.getName());
+		apply.setApplyReason(form.getApplyReason());		
+		apply.setApplyObj("CODE");
+		apply.setApplyType(form.getApplyType());				
+		applyListDao.insertApplyList(apply);		
+
+		ApplyCodeDto code = new ApplyCodeDto();
+		code.setApplyNo(apply.getApplyNo());
+		code.setCodeNo(form.getCodeNo());
+		code.setCodeId(form.getCodeId());
+		code.setCodeNm(form.getCodeNm());
+		code.setCodeLength(form.getCodeLength());
+		code.setCodeContent(form.getCodeContent());
+		code.setCodeIsActive(form.getCodeIsActive());
 		codeDao.insertApplyCode(code);
-	}
-	
-	public void addApplyItem(ApplyItemDto item) {
-		itemDao.insertApplyItem(item);
+		
+		List<ItemApplyDto> items = form.getItems();		
+		for (ItemApplyDto i : items) {
+			ApplyItemDto item = new ApplyItemDto();
+	        item.setApplyNo(apply.getApplyNo());
+	        item.setItemId(i.getItemId());
+	        item.setItemNm(i.getItemNm());
+	        item.setItemContent(i.getItemContent());
+	        item.setItemIsActive(i.getItemIsActive());
+	        item.setItemIsUpdate(i.getItemIsUpdate());
+	        itemDao.insertApplyItem(item);
+	    }
 	}
 	
 	@Transactional

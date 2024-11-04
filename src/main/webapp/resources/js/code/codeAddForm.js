@@ -29,6 +29,9 @@ $(document).ready(function () {
   let itemIndex, updateItem;
 
   $(".item-list").on("click", ".item", function () {
+	$(".item").removeClass("table-active");
+	$(this).addClass("table-active");
+		    
     const itemId = $(this).find(".itemId").text();
     const itemNm = $(this).find(".itemNm").text();
     const itemContent = $(this).find(".itemContent").text();
@@ -100,6 +103,12 @@ $(document).ready(function () {
         text: "필수입력사항: 코드명(논리/물리), 코드길이, 신청사유",
       });
       return;
+    } else if (items.length < 1) {
+    	Swal.fire({
+            icon: "warning",
+            title: "항목을 추가해 주세요.",
+          });
+    	return;
     }
 
     $.ajax({
@@ -109,13 +118,12 @@ $(document).ready(function () {
       data: JSON.stringify(codeData),
       traditional: true,
       success: function (data) {
-        console.log(data);
         Swal.fire({
           icon: "success",
           title: "코드/항목 생성 신청이<br/>완료되었습니다.",
           text: "신청 승인 후, 코드 사용이 가능합니다.",
         }).then((result) => {
-          location.href = "/Metamong/code/codeApplyList";
+         location.href = data;
         });
       },
     });
@@ -152,11 +160,12 @@ $(document).ready(function () {
   }
 
   function refresh() {
+	itemIndex = null;
     $("#itemId").val("");
     $("#itemNm").val("");
     $("#itemContent").val("");
     $(".btn-edit").prop("disabled", true);
-    itemIndex = null;
+    $(".item").removeClass("table-active");
   }
 
   function itemList() {
