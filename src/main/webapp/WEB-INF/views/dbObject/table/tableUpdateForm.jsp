@@ -168,18 +168,38 @@
 						</thead>
 						<tbody id="columnList">
 							<c:forEach items="${column}" var="column" varStatus="status">
-								 <tr class="checkTr" data-change="0"> 
-									<td>${status.index+1}</td>
-									<td>${column.colNm}</td>
-									<td>${column.colId}</td>
-									<td>${column.dataType}</td>
-									<td>${column.colLength}</td>
-									<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
-									<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
-									<td>-</td>
-								</tr>
+								<c:choose>
+									<c:when test="${visit && column.isChange == 1}">
+										<tr class="checkTr" data-change="1">
+											<td>${status.index+1}</td>
+											<td>${column.colNm}</td>
+											<td>${column.colId}</td>
+											<td>${column.dataType}</td>
+											<td>${column.colLength}</td>
+											<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
+											<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
+											<td><i class="bi bi-trash3 delete-row"></i></td>
+										</tr>
+									</c:when>
+
+									<c:otherwise>
+										<tr class="checkTr" data-change="0">
+											<td>${status.index+1}</td>
+											<td>${column.colNm}</td>
+											<td>${column.colId}</td>
+											<td>${column.dataType}</td>
+											<td>${column.colLength}</td>
+											<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
+											<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
+											<td>-</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 						</tbody>
+
+
+
 					</table>
 				</div>
 
@@ -229,7 +249,7 @@
 
 						</div>
 					</div>
-						<script
-		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableUpdateForm.js"></script>
+					<script
+						src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableUpdateForm.js"></script>
 </body>
 </html>

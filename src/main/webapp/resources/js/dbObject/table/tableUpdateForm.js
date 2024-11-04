@@ -167,7 +167,7 @@ $(document).ready(function() {
                 selectedRow.find("td:eq(6)").text(colPk);
 
                 // 수정된 행의 data-change 속성을 설정
-                selectedRow.attr("data-change", "1");
+                selectedRow.attr("data-change", "2");
                 console.log("Updated row data-change:", selectedRow.attr("data-change"));
 
                 $("#itemForm")[0].reset();

@@ -58,11 +58,11 @@
     vertical-align: middle;
 }
 
-.table-hover tbody tr {
+.tablecompare tbody tr {
     height: 50px; 
 }
 
-.table-hover td, .table-hover th {
+.tablecompare td, .tablecompare th {
     padding: 15px 10px;
 }
 
