@@ -10,7 +10,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/applyList.css"
 	rel="stylesheet">
- 
+
 </head>
 <body>
 	<div class="container">
@@ -55,7 +55,7 @@
 								</select>
 							</div>
 							<div class="schema-filter">
-							<label for="tableNameSearch" class="table-search-label">테이블명/신청자</label>
+								<label for="tableNameSearch" class="table-search-label">테이블명/신청자</label>
 								<input class="form-control me-2" type="search"
 									id="tableNameSearch" placeholder="Search" aria-label="Search">
 								<i class="bi bi-search"></i>
@@ -86,8 +86,8 @@
 										<td>${tableList.schemaName}</td>
 										<td>${tableList.tableId}</td>
 										<td>${tableList.applyObj}</td>
-										<td><button
-													class="btn-history-details" onclick="tableListDetail(${tableList.applyNo},${status.index+1})">상세보기</button></td>
+										<td><button class="btn-history-details"
+												onclick="tableListDetail(${tableList.applyNo},${status.index+1})">상세보기</button></td>
 										<td class="code-approve"><c:choose>
 												<c:when test="${tableList.approvalStatus == 0}">
 													<span id="status-await">승인대기</span>
@@ -107,19 +107,32 @@
 							</tbody>
 						</table>
 					</div>
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
+					<div class="page">
+						<a href="tableApplyList?pageNo=1"
+							class="btn btn-outline-primary btn-sm"><<</a>
+						<c:if test="${pager.groupNo>1}">
+							<a href="tableApplyList?pageNo=${pager.startPageNo-1}"
+								class="btn btn-outline-info btn-sm"><</a>
+						</c:if>
+
+						<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
+							step="1" var="i">
+							<c:if test="${pager.pageNo==i}">
+								<a href="tableApplyList?pageNo=${i}" class="btn btn-primary btn-sm">${i}</a>
+							</c:if>
+							<c:if test="${pager.pageNo!=i}">
+								<a href="tableApplyList?pageNo=${i}"
+									class="btn btn-outline-primary btn-sm">${i}</a>
+							</c:if>
+						</c:forEach>
+
+						<c:if test="${pager.groupNo<pager.totalGroupNo}">
+							<a href="tableApplyList?pageNo=${pager.endPageNo+1}"
+								class="btn btn-outline-info btn-sm">></a>
+						</c:if>
+						<a href="tableApplyList?pageNo=${pager.totalPageNo}"
+							class="btn btn-outline-primary btn-sm">>></a>
+					</div>
 				</div>
 			</div>
 		</div>

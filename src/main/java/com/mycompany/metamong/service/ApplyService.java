@@ -16,6 +16,7 @@ import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
@@ -64,8 +65,8 @@ public class ApplyService {
 		return itemDao.selectItemsByNo(applyNo);
 	}
 
-	public List<ApplyTableDto> getApplyTableList() {
-		return applyListDao.selectApplyTableList();
+	public List<ApplyTableDto> getApplyTableList(Pager pager) {
+		return applyListDao.selectApplyTableList(pager);
 	}
 
 	public List<ApplyTableDto> getApplyTableSearch(Map<String, String> form) {
@@ -167,6 +168,10 @@ public class ApplyService {
 			columnDao.insertApplyColumn(applyColumn);	
 		}
 
+	}
+
+	public int getTotalRows() {
+		return applyListDao.selectTotalRows();
 	}
 
 }

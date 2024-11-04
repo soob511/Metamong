@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.column.NewColumnDto;
@@ -128,8 +129,15 @@ public class TableController {
 	}
 
 	@GetMapping("/tableApplyList")
-	public String tableApplyList(Model model) {
-		List<ApplyTableDto> list = applyService.getApplyTableList();
+	public String tableApplyList(@RequestParam(defaultValue="1") int pageNo, 
+			HttpSession session,Model model) {
+		
+		int totalRows = applyService.getTotalRows();
+		
+		Pager pager = new Pager(10,5,totalRows,pageNo);
+		session.setAttribute("pager", pager);
+		
+		List<ApplyTableDto> list = applyService.getApplyTableList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/table/tableApplyList";
