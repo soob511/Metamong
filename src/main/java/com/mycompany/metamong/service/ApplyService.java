@@ -70,8 +70,8 @@ public class ApplyService {
 		return itemDao.selectItemsByNo(applyNo);
 	}
 
-	public List<ApplyTableDto> getApplyTableList() {
-		return applyListDao.selectApplyTableList();
+	public List<ApplyTableDto> getApplyTableList(Pager pager) {
+		return applyListDao.selectApplyTableList(pager);
 	}
 
 	public List<ApplyTableDto> getApplyTableSearch(Map<String, String> form) {
@@ -174,4 +174,9 @@ public class ApplyService {
 		}
 
 	}
+
+	public int getTotalRows() {
+		return applyListDao.selectTotalRows();
+	}
+
 }
