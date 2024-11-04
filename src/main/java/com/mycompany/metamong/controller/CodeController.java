@@ -102,7 +102,6 @@ public class CodeController {
 	        item.setItemIsUpdate(inputItem.getItemIsUpdate());
 	        applyService.addApplyItem(item);
 	    }
-		
 		session.removeAttribute("applyReason");
 		return ResponseEntity.ok("/Metamong/code/codeApplyList");
 	}
@@ -112,7 +111,7 @@ public class CodeController {
 		List<ItemDto> items = itemService.getItemList(codeNo);
 		model.addAttribute("itemLength", items.size());
 		
-		if(isUpdated == 0) {
+		if(isUpdated == 0) {		
 			CodeDto code = codeService.getCodeByNo(codeNo);
 			List<ItemApplyDto> tmpItems = new ArrayList<ItemApplyDto>();
 
@@ -127,6 +126,7 @@ public class CodeController {
 			}
 			model.addAttribute("code", code);
 			model.addAttribute("items", tmpItems);
+			session.removeAttribute("applyReason");
 		} else { 
 			model.addAttribute("code", session.getAttribute("newCode"));
 			model.addAttribute("items", session.getAttribute("newItems"));
