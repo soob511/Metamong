@@ -19,7 +19,7 @@
 }
 .container-fluid {
     padding-right: 0 !important;
-}
+} 
 
 
 
@@ -95,4 +95,8 @@ h4 {
 }
 .form-required {
     color: red;
+}
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
 }
