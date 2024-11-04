@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
-import com.mycompany.metamong.dto.column.ApplyColumnDto;
-import com.mycompany.metamong.dto.column.ColumnAddDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
@@ -42,7 +39,7 @@ public class TableController {
 	private TableService tableService;
 
 	@Autowired
-	private ApplyService applyListService;
+	private ApplyService applyService;
 
 	@Autowired
 	private ColumnService columnService;
@@ -77,44 +74,8 @@ public class TableController {
 	@ResponseBody
 	@PostMapping("/applyTable")
 	public ResponseEntity<String> applyTable(@RequestBody TableAddDto form, Authentication auth) {
-		log.info("실행");
-		log.info(form.toString());
 
-		// 신청내역
-		ApplyListDto applyList = new ApplyListDto();
-		applyList.setMId(auth.getName());
-		applyList.setSchemaName(form.getSchemaName());
-		applyList.setApplyReason(form.getApplyReason());
-		applyList.setApplyObj("TABLE");
-		applyList.setApplyType(form.getApplyType());
-		log.info(applyList.toString());
-		applyListService.addApplyList(applyList);
-
-		// 테이블 신청내역
-		ApplyTableDto applyTable = new ApplyTableDto();
-		applyTable.setApplyNo(applyList.getApplyNo());
-		applyTable.setTableNm(form.getTableNm());
-		applyTable.setTableId(form.getTableId());
-		applyTable.setTableContent(form.getTableContent());
-		tableService.addApplyTable(applyTable);
-
-		// 컬럼 신청내역
-		List<ColumnAddDto> list = form.getColumns();
-		ApplyColumnDto applyColumn = new ApplyColumnDto();
-
-		int order = 0;
-		for (ColumnAddDto column : list) {
-			order += 1;
-			applyColumn.setApplyNo(applyList.getApplyNo());
-			applyColumn.setColId(column.getColId());
-			applyColumn.setColNm(column.getColNm());
-			applyColumn.setDataType(column.getDataType());
-			applyColumn.setColLength(column.getColLength());
-			applyColumn.setColIsnullable("NOTNULL".equals(column.getColNullable()) ? 0 : 1);
-			applyColumn.setColIspk("N".equals(column.getColPk()) ? 0 : 1);
-			applyColumn.setColOrder(order);
-			columnService.addApplyColumn(applyColumn);
-		}
+		applyService.addApplyTable(form,auth);
 
 		return ResponseEntity.ok("/Metamong/table/tableApplyList");
 	}
@@ -156,7 +117,7 @@ public class TableController {
 
 	@GetMapping("/tableApplyList")
 	public String tableApplyList(Model model) {
-		List<ApplyTableDto> list = applyListService.getApplyTableList();
+		List<ApplyTableDto> list = applyService.getApplyTableList();
 		model.addAttribute("list", list);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/table/tableApplyList";
@@ -165,7 +126,7 @@ public class TableController {
 	@GetMapping("/tableListDetail")
 	public String tableListDetail(int applyNo, int indexNo, Model model) {
 
-		ApplyTableDeatilDto applyList = applyListService.getTableListDetail(applyNo);
+		ApplyTableDeatilDto applyList = applyService.getTableListDetail(applyNo);
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 
@@ -183,7 +144,7 @@ public class TableController {
 	@GetMapping("/applyTableSearch")
 	public List<ApplyTableDto> applyTableSearch(@RequestParam Map<String, String> form) {
 		log.info("실행");
-		List<ApplyTableDto> list = applyListService.getApplyTableSearch(form);
+		List<ApplyTableDto> list = applyService.getApplyTableSearch(form);
 		log.info(list.toString());
 		return list;
 	}
