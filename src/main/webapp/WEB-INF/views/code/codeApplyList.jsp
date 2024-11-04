@@ -21,9 +21,24 @@
 				<div class="content">
 					<div class="fw-bold code-applyList-title">> 코드/항목 신청내역</div>
 					<hr>
-					<div class="d-flex justify-content-end align-items-center">
+					
+					<div class="d-flex justify-content-end">
+						<div class="d-flex align-items-center">
+							<label for="statusSelect" class="status-filter-label">상태</label>
+							<select id="statusSelect" class="form-select"	 aria-label="Default select ">
+								<option value="All" data-name="">전체</option>
+								<option value="wait" data-name="0">승인대기</option>
+								<option value="approve" data-name="1">승인</option>
+								<option value="reject" data-name="2">반려</option>
+								<option value="reflect" data-name="3">반영</option>
+							</select>
+						</div>
+                    
 						<div class="search-box d-flex align-items-center">
-							<label for="codeNameSearch" class="code-search-label">코드명(논리/물리)</label>
+							<select id="schemaSelect" class="form-select" aria-label="Default select example">
+                                <option selected>코드명(논리/물리)</option>
+                                <option>신청자</option>
+                            </select>
 							<form>
 								<input class="form-control me-2" type="search"
 									id="codeNameSearch" placeholder="Search" aria-label="Search">
