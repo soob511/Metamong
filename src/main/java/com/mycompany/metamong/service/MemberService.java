@@ -30,5 +30,8 @@ public class MemberService {
 	public List<MemberDto> getMemberList(Pager pager) {
 		return memberDao.selectMemberList(pager);
 	}
-	
+
+	public List<MemberDto> searchMember(String option, String keyword) {
+		return memberDao.selectMemberSearch(option, keyword);
+	}
 }

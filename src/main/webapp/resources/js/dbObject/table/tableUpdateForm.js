@@ -276,5 +276,38 @@ $(document).ready(function() {
         }
     });
 
+    $(".btn-compare").on("click", function() {
+        var columns = [];
+        var tableNo = $(".codeAdd-subtitle").data("table-no");
+
+        $("#columnList tr").each(function() {
+            var column = {
+                colNm: $(this).find("td:eq(1)").text(),
+                colId: $(this).find("td:eq(2)").text(),
+                dataType: $(this).find("td:eq(3)").text(),
+                colLength: $(this).find("td:eq(4)").text(),
+                colNullable: $(this).find("td:eq(5)").text(),
+                colPk: $(this).find("td:eq(6)").text()
+            };
+            columns.push(column);
+        });
+
+        var data = JSON.stringify({
+            tableNo: tableNo,
+            columns: columns
+        });
+
+        $.ajax({
+            url: "/Metamong/table/tableCompare",
+            type: "POST",
+            contentType: "application/json",
+            data: data,
+            success: function(response) {
+              location.href=response;
+            }
+        });
+    });
+
+
 
 });

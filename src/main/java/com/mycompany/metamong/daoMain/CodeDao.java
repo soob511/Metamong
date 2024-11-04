@@ -17,10 +17,14 @@ public interface CodeDao {
 
 	public List<CodeDto> selectCodeSearch(@Param(value="keyword") String keyword, @Param(value="option") int option);
 	
+	public CodeDto selectCodeApplyByNo(int applyNo);
+	
 	public List<CodeDto> selectActiveCodes();
 
 	public List<CodeDto> selectCodeLoadSearch(String keyword);
 
 	public int insertApplyCode(ApplyCodeDto code);
+
+	
 
 }

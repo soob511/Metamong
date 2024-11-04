@@ -1,4 +1,4 @@
-.before-management{
+.before-management,.after-management{
 	display: flex;
 	justify-content: space-between;
 	margin: 0 0 0 0;
@@ -25,13 +25,13 @@
 .before-management-title,.after-management-title{
 	font-size:18px;
 	font-weight: 600 !important;
-	margin-top: 30px;
+	margin-top: 30px !important;
 }
 
-.after-management{
+/* .after-management{
 	margin: 20px 0 10px 10px;
 }
-
+ */
 .after-table{
 	min-width: 660px !important;
 	max-width:660px !important;
