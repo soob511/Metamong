@@ -71,12 +71,12 @@
 						                  			<th>
 														<input class="form-check-input" type="checkbox">
 													</th>
-							                      <th>${status.index + 1}</th>
-							                      <td>${index.indexName}</td>
-							                      <td>${index.schemaName}</td>
-							                      <td>${index.tableName}</td>
-							                      <td>${index.columnName}</td>
-							                      <td>${index.uniqueness}</td>
+							                      	<th>${status.index + 1}</th>
+							                      	<td data-name="idxName" data-value="${index.indexName}">${index.indexName}</td>
+													<td data-name="schemaName" data-value="${index.schemaName}">${index.schemaName}</td>
+													<td data-name="tableNo" data-value="${index.tableName}">${index.tableName}</td>
+													<td data-name="refColumn" data-value="${index.columnName}">${index.columnName}</td>
+													<td data-name="isUnique" data-value="${index.uniqueness}">${index.uniqueness}</td>
 						                    	</tr>
 						                  	</c:forEach>
 										</tbody>
@@ -85,11 +85,9 @@
 							</div>
 							<div class="col index-apply-reason">
 								<p>신청사유</p>
-								<textarea id="indexDeleteReason"></textarea>
+								<textarea id="indexApplyReason"></textarea>
 								<div class="msg" id="reasonValidMessage"></div>
-								<a href="indexApplyList">
-									<button class="btn-add">신청</button>
-								</a>
+								<button id="btnApply" class="btn-add">신청</button>
 							</div>
 						</div>
 					</div>

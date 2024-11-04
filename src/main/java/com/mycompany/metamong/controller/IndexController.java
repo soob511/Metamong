@@ -92,6 +92,16 @@ public class IndexController {
 		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
 	}
 	
+	@ResponseBody
+	@PostMapping("/applyIndexDelete")
+	public void applyIndexDelete(
+			@RequestBody List<ApplyIndexRequestDto> applyIndexRequest,
+			Authentication authentication) {
+//		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
+//		applyIndexRequest.getApplyIndexDto().setRefColumn(combineRefColumn);
+//		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
+	}
+	
 	@GetMapping("/indexDeleteForm")
 	public String indexDeleteForm(Model model) {
 		List<IndexDto> list = indexService.getIndexList();
