@@ -49,8 +49,9 @@
 							<c:forEach items="${list}" var="code" varStatus="status">
 								<tr>
 									<th scope="row">${status.index+1}</th>
-									<td><fmt:formatDate value="${code.applyDate}"
-												pattern="yyyy-MM-dd" /></td>
+									<td>
+										<fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
+									</td>
 									<td>${code.MName}</td>
 									<td>${code.codeNm}</td>
 									<td>${code.codeId}</td>
@@ -78,7 +79,28 @@
 						</tbody>
 					</table>
 					</div>
-					<nav aria-label="Page navigation example">
+					<div class="page">
+	           			<a href="codeApplyList?pageNo=1" class="btn btn-outline-primary btn-sm"><<</a>
+	           			<c:if test="${pager.groupNo>1}">
+	           				<a href="codeApplyList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm"><</a>
+	           			</c:if>
+	           			
+	           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
+	           				<c:if test="${pager.pageNo==i}">
+	           					<a href="codeApplyList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+	           				</c:if>
+	           				<c:if test="${pager.pageNo!=i}">
+	           					<a href="codeApplyList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+	           				</c:if>
+	           			</c:forEach>
+	           			
+	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+	           				<a href="codeApplyList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
+	           			</c:if>
+	           			<a href="codeApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
+	           			
+	           		</div>
+					<!-- <nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 							<li class="page-item"><a class="page-link" href="#"
 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
@@ -90,7 +112,7 @@
 								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 							</a></li>
 						</ul>
-					</nav>
+					</nav> -->
 				</div>
 			</div>
 	</div>

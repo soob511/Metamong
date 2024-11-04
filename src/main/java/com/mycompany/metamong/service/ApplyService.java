@@ -16,7 +16,9 @@ import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
@@ -48,8 +50,12 @@ public class ApplyService {
 	@Autowired
 	private ColumnDao columnDao;
 
-	public List<ApplyCodeDto> getApplyCodeList() {
-		return applyListDao.selectApplyCodeList();
+	public int getApplyCodeRows() {
+		return applyListDao.selectApplyCodeRows();
+	}
+	
+	public List<ApplyCodeListDto> getApplyCodeList(Pager pager) {
+		return applyListDao.selectApplyCodeList(pager);
 	}
 	
 	public ApplyCodeDeatilDto getCodeApplyDetail(int applyNo) {
@@ -168,5 +174,4 @@ public class ApplyService {
 		}
 
 	}
-
 }

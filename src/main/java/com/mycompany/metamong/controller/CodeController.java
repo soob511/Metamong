@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
-import com.mycompany.metamong.dto.code.ApplyCodeDto;
+import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.item.ItemApplyDto;
@@ -131,9 +132,15 @@ public class CodeController {
 	}
 	
 	@GetMapping("/codeApplyList")
-	public String codeApplyList(Model model) {
-		List<ApplyCodeDto> list = applyService.getApplyCodeList();
+	public String codeApplyList(@RequestParam(defaultValue="1")int pageNo, Model model, HttpSession session) {
+		int totalRows = applyService.getApplyCodeRows();
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		List<ApplyCodeListDto> list = applyService.getApplyCodeList(pager);
+		log.info(list.toString());
+		
+		session.setAttribute("pager", pager);
 		model.addAttribute("list", list);
+		
 		return "code/codeApplyList";
 	}
 	

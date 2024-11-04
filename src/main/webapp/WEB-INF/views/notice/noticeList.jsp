@@ -75,27 +75,10 @@
                     	
                 	</div>
                 </div>
-               <!--  <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="boardList?pageNo=1" class="btn btn-outline-primary btn-sm" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav> -->
                 <div class="page">
-	           			<a href="noticeList?pageNo=1" class="btn btn-outline-primary btn-sm"><<</a>
+	           			<a href="noticeList?pageNo=1" class="btn btn-outline-primary btn-sm"> &lt;&lt;</a>
 	           			<c:if test="${pager.groupNo>1}">
-	           				<a href="noticeList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm"><</a>
+	           				<a href="noticeList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm">&lt;</a>
 	           			</c:if>
 	           			
 	           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
@@ -108,9 +91,9 @@
 	           			</c:forEach>
 	           			
 	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
-	           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
+	           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">&gt;</a>
 	           			</c:if>
-	           			<a href="noticeList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
+	           			<a href="noticeList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">&gt;&gt;</a>
 	           			
 	           		</div>
             </div>
