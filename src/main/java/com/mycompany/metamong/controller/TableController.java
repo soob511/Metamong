@@ -91,7 +91,6 @@ public class TableController {
 		
 		session.removeAttribute("applyReason");
 		
-
 		return "dbObject/table/tableUpdateForm";
 	}
 	

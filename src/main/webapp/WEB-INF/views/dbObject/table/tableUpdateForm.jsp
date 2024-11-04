@@ -168,7 +168,7 @@
 						</thead>
 						<tbody id="columnList">
 							<c:forEach items="${column}" var="column" varStatus="status">
-								<tr>
+								<tr class="checkTr">
 									<td>${status.index+1}</td>
 									<td>${column.colNm}</td>
 									<td>${column.colId}</td>

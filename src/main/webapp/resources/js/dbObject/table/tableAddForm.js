@@ -5,6 +5,12 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    
+    $("#columnList").on("click", ".checkTr", function() {
+	    $(".checkTr").removeClass("table-active");
+	    $(this).addClass("table-active");
+	});
+    
     $.ajax({
         url: "/Metamong/dataType/dataTypeList",
         type: "GET",
@@ -118,7 +124,7 @@ $(document).ready(function() {
             var rowCount = $("#columnList tr").length + 1;
 
             var newRow = `
-                <tr>
+                 <tr class="checkTr">
                     <td>${rowCount}</td>
                     <td>${colNm}</td>
                     <td>${colId}</td>

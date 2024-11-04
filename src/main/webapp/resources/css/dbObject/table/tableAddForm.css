@@ -157,3 +157,9 @@ thead {
 	line-height: 2.1;
 }
 
+
+.selected {
+    background-color: #d3d3d3;
+}
+
+

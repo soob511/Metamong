@@ -5,6 +5,11 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $("#columnList").on("click", ".checkTr", function() {
+	    $(".checkTr").removeClass("table-active");
+	    $(this).addClass("table-active");
+	});
+    
     $.ajax({
         url: "/Metamong/dataType/dataTypeList",
         type: "GET",
@@ -158,22 +163,23 @@ $(document).ready(function() {
         $("#nullable").val(colNullable);
         $("#isUse").val(colPk);
     });
-    
+
     $("#move-up").on("click", function () {
-    	var selectedRow = $("#columnList tr.selected");
-    	if (selectedRow.length && selectedRow.prev().length) {
-    		selectedRow.prev().before(selectedRow);
-    		updateRowNumbers();
-    	}
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length && selectedRow.prev().length) {
+            selectedRow.prev().before(selectedRow);
+            updateRowNumbers();
+        }
     });
-    
+
     $("#move-down").on("click", function () {
-    	var selectedRow = $("#columnList tr.selected");
-    	if (selectedRow.length && selectedRow.next().length) {
-    		selectedRow.next().after(selectedRow);
-    		updateRowNumbers();
-    	}
+        var selectedRow = $("#columnList tr.selected");
+        if (selectedRow.length && selectedRow.next().length) {
+            selectedRow.next().after(selectedRow);
+            updateRowNumbers();
+        }
     });
+
 
     function updateRowNumbers() {
         $("#columnList tr").each(function (index) {
