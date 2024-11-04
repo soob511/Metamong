@@ -2,5 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoSub2.Sub2TableDao">
 	
+	<select id="selectTableByDic" resultType="Table">
+	    SELECT table_name tableNm
+		FROM user_tables
+	</select>
+	
 </mapper>
 	

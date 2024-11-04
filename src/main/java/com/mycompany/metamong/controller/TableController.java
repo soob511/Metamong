@@ -57,6 +57,13 @@ public class TableController {
 	public List<TableDto> searchTable(@RequestParam SchemaEnum schemaName) {
 		return tableService.getTableName(schemaName);
 	}
+	
+	@ResponseBody
+	@GetMapping("/searchTableByDic")
+	public List<TableDto> searchTableByDic(@RequestParam String schemaName) {
+		List<TableDto> list = tableService.getTableListByDic(schemaName);
+		return list;
+	}
 
 	@ResponseBody
 	@GetMapping("/tableSearch")
