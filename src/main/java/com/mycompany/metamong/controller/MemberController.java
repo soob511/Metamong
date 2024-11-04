@@ -1,5 +1,6 @@
 package com.mycompany.metamong.controller;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -88,11 +89,31 @@ public class MemberController {
 		
 		return "member/memberList";
 	}
-	@ResponseBody
+	
+	
 	@GetMapping("/memberSearch")
-	    public List<MemberDto> search(@RequestParam(defaultValue="") String option, @RequestParam(defaultValue="") String keyword) {
-	        List<MemberDto> searchResults = memberService.searchMember(option,keyword);
+	    public String memberSearch(
+	    		@RequestParam(defaultValue="") String option, 
+	    		@RequestParam(defaultValue="") String keyword,
+	    		@RequestParam(defaultValue="1")int pageNo,
+	    		HttpSession session,
+	    		Model model) {
+		
+		if (keyword == null || keyword.trim().isEmpty()) {
+	        
+	        model.addAttribute("list", Collections.emptyList());
+	        model.addAttribute("totalRows", 0);
+	        return "member/memberSearch";
+	    }
+		
+		int totalRows = memberService.countMembers(option, keyword);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		session.setAttribute("pager", pager);
+		model.addAttribute("totalRows", totalRows);
+        List<MemberDto> list = memberService.searchMember(option,keyword,pager);
+        model.addAttribute("list", list);
+        model.addAttribute("option", option);
 
-	        return searchResults;
+        return "member/memberSearch";
 	    }
 }

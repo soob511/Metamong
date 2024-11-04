@@ -21,5 +21,8 @@ public interface MemberDao {
 
 	public List<MemberDto> selectMemberList(Pager pager);
 
-	public List<MemberDto> selectMemberSearch(@Param("option")String option, @Param("keyword")String keyword);
-}
+	public List<MemberDto> selectMemberSearch(@Param("option")String option, @Param("keyword")String keyword, Pager pager);
+	
+	public int countMembers(@Param("option") String option, @Param("keyword") String keyword);
+	}
+

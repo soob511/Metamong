@@ -17,6 +17,7 @@
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
 					<h4 class="fw-bold">> 직원목록</h4>
+					<div id="memberList">
 					<div class="d-flex justify-content-between align-items-center">
 					<div>총 <span class="form-required" id="memberCount">${totalRows}</span>명의 회원이 있습니다.</div>
 						<div class="d-flex">
@@ -33,18 +34,16 @@
 						</div>
 						</div>
 						<div class="search-box">
-							<form>
 								<input class="form-control me-2" type="search"
-									id="memberSearch" placeholder="Search" aria-label="Search">
-								<i class="bi bi-search"></i>
-							</form>
+									id="memberSearch" name="keyword" placeholder="Search" aria-label="Search" >
+								 <i  class="bi bi-search"></i> 
 						</div>
 					</div>
 					</div>
 					<div class="table-container">
-						<table class="table table-hover">
-							<thead class="table">
-								<tr class="table-primary">
+						<table class="table table-hover" >
+							<thead class="table-secondary">
+								<tr>
 									<th scope="col">No.</th>
 									<th scope="col">ID</th>
 									<th scope="col">이름</th>
@@ -54,9 +53,9 @@
 									<th scope="col">연락처</th>
 								</tr>
 							</thead>
-							<tbody id="memberList">
+							<tbody id="memberTable">
 								<c:forEach items="${list}" var="member" varStatus="status">
-									<tr>
+									<tr class="table-row">
 										<td scope="row">${status.index+1}</td>
 										<td>${member.MId}</td>
 										<td>${member.MName}</td>
@@ -71,30 +70,31 @@
 					</div>
 					
 					<div class="page">
-	           			<a href="memberList?pageNo=1" class="btn btn-outline-primary btn-sm"><<</a>
+	           			<a href="memberList?pageNo=1" class="btn btn-outline-secondary btn-sm"><<</a>
 	           			<c:if test="${pager.groupNo>1}">
-	           				<a href="noticeList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm"><</a>
+	           				<a href="memberList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-dark btn-sm"><</a>
 	           			</c:if>
 	           			
 	           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
 	           				<c:if test="${pager.pageNo==i}">
-	           					<a href="memberList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+	           					<a href="memberList?pageNo=${i}" class="btn btn-secondary btn-sm">${i}</a>
 	           				</c:if>
 	           				<c:if test="${pager.pageNo!=i}">
-	           					<a href="memberList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+	           					<a href="memberList?pageNo=${i}" class="btn btn-outline-secondary btn-sm">${i}</a>
 	           				</c:if>
 	           			</c:forEach>
 	           			
 	           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
-	           				<a href="memberList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">></a>
+	           				<a href="memberList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-dark btn-sm">></a>
 	           			</c:if>
-	           			<a href="memberList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
+	           			<a href="memberList?pageNo=${pager.totalPageNo}" class="btn btn-outline-secondary btn-sm">>></a>
 	           			
 	           		</div>
 				</div>
 			</div>
 	</div>
 </div> 
+</div>
 <script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>
 </body>
 </html>

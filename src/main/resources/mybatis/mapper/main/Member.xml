@@ -75,7 +75,7 @@
 	    ]]>
 	</select>
 	
-	<select id="selectMemberSearch" parameterType="map" resultType="Member">
+	<select id="selectMemberSearch" parameterType="Pager" resultType="Member">
 		SELECT 
 		    m.M_id AS MId, 
 		    m.M_name AS MName, 
@@ -104,9 +104,33 @@
         	</if>
 			
 		</where>
-		
+		  
 	</select>
 	
+	<select id="countMembers" parameterType="map" resultType="int">
+	    SELECT COUNT(*) 
+	    FROM member m
+	    FULL OUTER JOIN team t ON m.team_id = t.team_id
+	   <where>
+			<if test="keyword != null and keyword != '' and option == 'ID'">
+            LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+        	</if>
+			<if test="keyword != null and keyword != '' and option == '이름'">
+				m.M_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="keyword != null and keyword != '' and option == '권한'">
+            LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+        	</if>
+			<if test="keyword != null and keyword != '' and option == '소속'">
+				t.team_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="keyword != null and keyword != '' and option == '사번'">
+            LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+        	</if>
+			
+		</where>
+		  
+	</select>
 
 </mapper>
 	
