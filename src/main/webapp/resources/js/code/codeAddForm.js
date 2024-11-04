@@ -29,6 +29,9 @@ $(document).ready(function () {
   let itemIndex, updateItem;
 
   $(".item-list").on("click", ".item", function () {
+	$(".item").removeClass("table-active");
+	$(this).addClass("table-active");
+		    
     const itemId = $(this).find(".itemId").text();
     const itemNm = $(this).find(".itemNm").text();
     const itemContent = $(this).find(".itemContent").text();
