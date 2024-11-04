@@ -1,5 +1,6 @@
 package com.mycompany.metamong.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -58,6 +59,12 @@ public class NoticeController {
     		@RequestParam(defaultValue="1")int pageNo,
     		HttpSession session,
     		Model model) {
+		
+		if (keyword == null || keyword.trim().isEmpty()) {
+	        model.addAttribute("list", Collections.emptyList());
+	        model.addAttribute("totalRows", 0);
+	        return "notice/noticeSearch";
+	    }
 	
 		int totalRows = noticeService.countNotices(option, keyword);
 		Pager pager = new Pager(10, 5, totalRows, pageNo);

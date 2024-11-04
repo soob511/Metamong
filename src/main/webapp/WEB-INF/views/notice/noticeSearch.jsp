@@ -25,17 +25,17 @@
                 </div>
 <table class="table table-hover">
 	<thead>
-		<tr class="table-primary">
+		<tr class="table-secondary">
 			<th scope="col">No.</th>
 			<th scope="col">제목</th>
 			<th scope="col">등록일</th>
 			<th scope="col">조회수</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="noticeTable">
 		<c:if test="${totalRows>=1}">
 		<c:forEach items="${list}" var="notice" varStatus="status">
-			<tr>
+			<tr class="table-row">
 				<td scope="row">
 					<c:choose>
 						<c:when test="${notice.noticeIsimp == '1'}">
@@ -66,28 +66,28 @@
 
  <c:if test="${totalRows>0 }">
 <div class="page" id="pagination">
-	<a href="javascript:noticeSearch(1)" class="btn btn-outline-primary btn-sm"><<</a>
+	<a href="javascript:noticeSearch(1)" class="btn btn-outline-secondary btn-sm"><<</a>
 	<c:if test="${pager.groupNo>1}">
 		<a href="javascript:noticeSearch(${pager.startPageNo-1})"
-			class="btn btn-outline-info btn-sm"><</a>
+			class="btn btn-outline-dark btn-sm"><</a>
 	</c:if>
 
 	<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 		step="1" var="i">
 		<c:if test="${pager.pageNo==i}">
-			<a href="javascript:noticeSearch(${i})" class="btn btn-primary btn-sm">${i}</a>
+			<a href="javascript:noticeSearch(${i})" class="btn btn-secondary btn-sm">${i}</a>
 		</c:if>
 		<c:if test="${pager.pageNo!=i}">
 			<a href="javascript:noticeSearch(${i})"
-				class="btn btn-outline-primary btn-sm">${i}</a>
+				class="btn btn-outline-secondary btn-sm">${i}</a>
 		</c:if>
 	</c:forEach>
 
 	<c:if test="${pager.groupNo<pager.totalGroupNo}">
 		<a href="javascript:noticeSearch(${pager.endPageNo+1})"
-			class="btn btn-outline-info btn-sm">></a>
+			class="btn btn-outline-dark btn-sm">></a>
 	</c:if>
-	<a href="javascript:noticeSearch(${pager.totalPageNo})" class="btn btn-outline-primary btn-sm">>></a>
+	<a href="javascript:noticeSearch(${pager.totalPageNo})" class="btn btn-outline-secondary btn-sm">>></a>
 
 </div>
 </c:if>

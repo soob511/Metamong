@@ -14,6 +14,12 @@ $(".btn-write").click(function () {
 	location.href = "/Metamong/notice/noticeAddForm";
 });
 
+$("#noticeTable").on("click", ".table-row", function() {
+    $(".table-row").removeClass("table-active");
+    $(this).addClass("table-active");
+});
+
+
 $("#noticeSearch").on("keydown", function(event) {
     if (event.keyCode === 13) { 
         event.preventDefault();
