@@ -99,10 +99,10 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexApplyDetail")
-	public String indexApplyDetail(@RequestParam int applyNo,@RequestParam int no, Model model) {
+	public String indexApplyDetail(@RequestParam int applyNo,@RequestParam int indexNo, Model model) {
 		ApplyIndexDetailDto applyIndexDetail = applyService.getApplyIndexListDetail(applyNo);
 		model.addAttribute("detail", applyIndexDetail);
-		model.addAttribute("no", no);
+		model.addAttribute("no", indexNo);
 		return "dbObject/index/indexApplyDetail";
 	}
 }

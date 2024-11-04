@@ -59,7 +59,11 @@ public class NoticeService {
 		return noticeDao.deleteFile(form);
 	}
 
-	public List<NoticeDto> searchNotice(String option, String keyword) {
-		return noticeDao.selectNoticeSearch(option, keyword);
+	public List<NoticeDto> searchNotice(String option, String keyword, Pager pager) {
+		return noticeDao.selectNoticeSearch(option, keyword, pager);
+	}
+
+	public int countNotices(String option, String keyword) {
+		return noticeDao.countNotices(option,keyword);
 	}
 }

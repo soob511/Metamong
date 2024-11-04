@@ -35,6 +35,9 @@ $(document).ready(function() {
     let itemIndex, updateItem;
 
     $('.item-list').on('click', '.item', function() {
+    	$(".item").removeClass("table-active");
+	    $(this).addClass("table-active");
+	    
         const itemId = $(this).find('.itemId').text();
         const itemNm = $(this).find('.itemNm').text();
         const itemIsActive = $(this).find('.itemIsActive').text();
@@ -119,7 +122,7 @@ $(document).ready(function() {
                     title: '코드/항목 수정 신청이<br/>완료되었습니다.',
                     text: '신청 승인 후, 코드 사용이 가능합니다.'
                 }).then(result => {
-                    location.href = "/Metamong/code/codeApplyList";
+                    location.href = data;
                 });
             }
         });
@@ -153,7 +156,7 @@ $(document).ready(function() {
             data: JSON.stringify(codeData),
             traditional: true,
             success: function(data) {
-            	location.href = "/Metamong/code/codeCompareForm?codeNo=" + codeNo;
+            	location.href = data;
             }
         });
     });
@@ -191,12 +194,13 @@ $(document).ready(function() {
     };
     
     function refresh() {
+    	itemIndex = null;
     	$('#itemId').val('');
         $('#itemNm').val('');
         $('#itemContent').val('');
         $('#itemIsActive option:first').prop("selected", true);
         $(".btn-edit").prop("disabled", true);
-        itemIndex = null;
+        $(".item").removeClass("table-active");
     };
 
     function itemList() {

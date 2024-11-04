@@ -73,10 +73,8 @@
               </tr>
               <tr>
                 <td class="table-primary">쿼리문</td>
-                <td id="table-contents" colspan="3">
-                	<button class="btn-sql" data-bs-toggle="modal" data-bs-target="#sqlLoadModal">
-                		SQL
-               		</button>
+                <td id="sqlContents" colspan="3">
+                	
                	</td>
               </tr>
             </table>
@@ -107,7 +105,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexList.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexDetail.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexApplyDetail.js"></script>
   </body>
 </html>

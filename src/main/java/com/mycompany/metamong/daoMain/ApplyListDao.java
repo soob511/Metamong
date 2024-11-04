@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
@@ -24,7 +25,7 @@ public interface ApplyListDao {
 	
 	public ApplyCodeDeatilDto selectCodeApplyDetail(int applyNo);
 
-	public List<ApplyTableDto> selectApplyTableList();
+	public List<ApplyTableDto> selectApplyTableList(Pager pager);
 
 	public List<ApplyTableDto> selectApplyTableSearch(Map<String, String> form);
 
@@ -37,5 +38,7 @@ public interface ApplyListDao {
 	public ApplyIndexDetailDto selectApplyIndexDetail(int applyNo);
 
 	public int insertApplyList(ApplyListDto apply);
+
+	public int selectTotalRows();
 
 }

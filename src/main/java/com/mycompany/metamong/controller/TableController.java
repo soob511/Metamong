@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
+import com.mycompany.metamong.dto.column.NewColumnDto;
+import com.mycompany.metamong.dto.column.PreColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableCompareDto;
@@ -88,14 +91,21 @@ public class TableController {
 	}
 
 	@GetMapping("/tableUpdateForm")
-	public String tableUpdateForm(@RequestParam int tableNo, Model model) {
+	public String tableUpdateForm(@RequestParam int tableNo,@RequestParam int updateNo, Model model,HttpSession session) {
 		TableDto table = tableService.getTable(tableNo);
 		model.addAttribute("table", table);
 
-		List<ColumnDto> column = columnService.getColumnList(tableNo);
-		log.info(column.toString());
-		model.addAttribute("column", column);
-
+		if(updateNo==0) {
+			List<ColumnDto> column = columnService.getColumnList(tableNo);
+			model.addAttribute("column", column);
+			model.addAttribute("visit", false);
+		}else {
+			model.addAttribute("column", session.getAttribute("afterColumn"));
+			 model.addAttribute("visit", true);
+		}
+		
+		session.removeAttribute("applyReason");
+		
 		return "dbObject/table/tableUpdateForm";
 	}
 	
@@ -116,15 +126,25 @@ public class TableController {
 
 		int tableNo = form.getTableNo();
 		
-		List<ColumnDto> afterColumn = form.getColumns();
+		List<NewColumnDto> afterColumn = form.getColumns();
 		session.setAttribute("afterColumn", afterColumn);
+		
+		String applyReason = form.getApplyReason();
+		session.setAttribute("applyReason", applyReason);
 
 		return ResponseEntity.ok("/Metamong/table/tableCompareForm?tableNo=" + tableNo);
 	}
 
 	@GetMapping("/tableApplyList")
-	public String tableApplyList(Model model) {
-		List<ApplyTableDto> list = applyService.getApplyTableList();
+	public String tableApplyList(@RequestParam(defaultValue="1") int pageNo, 
+			HttpSession session,Model model) {
+		
+		int totalRows = applyService.getTotalRows();
+		
+		Pager pager = new Pager(10,5,totalRows,pageNo);
+		session.setAttribute("pager", pager);
+		
+		List<ApplyTableDto> list = applyService.getApplyTableList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/table/tableApplyList";

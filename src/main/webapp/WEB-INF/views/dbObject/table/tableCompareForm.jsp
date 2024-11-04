@@ -18,7 +18,7 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="container table-management">
 
-					<a href="tableUpdateForm?tableNo=${table.tableNo}">
+				<a href="tableUpdateForm?tableNo=${table.tableNo}&updateNo=1">
 						<button class="btn-back">뒤로가기</button>
 					</a>
 					<div class="row">
@@ -28,8 +28,8 @@
 									${table.tableId}(${table.tableNm}) 테이블 수정전</p>
 							</div>
 							<div class="table-container">
-								<table class="table table-hover">
-									<thead class="table-primary">
+								<table class="table tablecompare">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">항목코드</th>
@@ -63,8 +63,8 @@
 									${table.tableId}(${table.tableNm}) 테이블 수정후</p>
 							</div>
 							<div class="table-container">
-								<table class="table table-hover">
-									<thead class="table-primary">
+								<table class="table tablecompare">
+									<thead class="table-secondary">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">항목코드</th>
@@ -78,7 +78,7 @@
 									<tbody>
 										<c:forEach items="${afterColumn}" var="aColumn"
 											varStatus="status">
-											<tr>
+											 <tr class="${aColumn.isChange >= 1 ? 'changed' : ''}">
 												<td>${status.index+1}</td>
 												<td>${aColumn.colNm}</td>
 												<td>${aColumn.colId}</td>
@@ -97,6 +97,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 </body>
 </html>
