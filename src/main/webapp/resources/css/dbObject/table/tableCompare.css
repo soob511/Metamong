@@ -1,3 +1,17 @@
+
+.btn-back {
+	margin: 30px 0 15px 45px;
+	background-color: var(--theme);
+	color: white;
+	border-radius: 8px;
+	border: none;
+	width: 70px;
+	height: 30px;
+	font-size: 13px;
+	text-align: center;
+	line-height: 2.4;
+}
+
 .before-management,.after-management{
 	display: flex;
 	justify-content: space-between;

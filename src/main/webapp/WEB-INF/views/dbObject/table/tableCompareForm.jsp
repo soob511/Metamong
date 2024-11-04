@@ -17,6 +17,10 @@
 			<div class="col">
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="container table-management">
+
+					<a href="tableUpdateForm?tableNo=${table.tableNo}">
+						<button class="btn-back">뒤로가기</button>
+					</a>
 					<div class="row">
 						<div class="col-6 before-table">
 							<div class="before-management">
@@ -37,7 +41,8 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${beforeColumn}" var="bColumn" varStatus="status">
+										<c:forEach items="${beforeColumn}" var="bColumn"
+											varStatus="status">
 											<tr>
 												<td>${status.index+1}</td>
 												<td>${bColumn.colNm}</td>
@@ -71,7 +76,8 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach items="${afterColumn}" var="aColumn" varStatus="status">
+										<c:forEach items="${afterColumn}" var="aColumn"
+											varStatus="status">
 											<tr>
 												<td>${status.index+1}</td>
 												<td>${aColumn.colNm}</td>
