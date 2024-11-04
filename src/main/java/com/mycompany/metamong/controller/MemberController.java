@@ -88,4 +88,11 @@ public class MemberController {
 		
 		return "member/memberList";
 	}
+	@ResponseBody
+	@GetMapping("/memberSearch")
+	    public List<MemberDto> search(@RequestParam(defaultValue="") String option, @RequestParam(defaultValue="") String keyword) {
+	        List<MemberDto> searchResults = memberService.searchMember(option,keyword);
+
+	        return searchResults;
+	    }
 }

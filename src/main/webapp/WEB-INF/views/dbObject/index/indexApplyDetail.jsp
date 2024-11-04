@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -6,7 +7,7 @@
     <meta charset="UTF-8" />
     <title>인덱스 상세보기</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/index/indexDetail.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/common/sqlModal.css" />    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dbObject/common/sqlModal.css" />
   </head>
   <body>
     <div class="container">
@@ -26,45 +27,49 @@
             <table class="table table-bordered">
               <tr>
                 <td class="table-primary">No.</td>
-                <td id="table-contents" colspan="3">3</td>
+                <td id="table-contents" colspan="3">${no}</td>
               </tr>
               <tr>
                 <td class="table-primary">신청일자</td>
-                <td id="table-contents">2024-10-21</td>
+                <td id="table-contents">
+                	<fmt:formatDate value="${detail.applyDate}" pattern="yyyy-MM-dd"/>
+                </td>
                 <td class="table-primary">신청자</td>
-                <td id="table-contents">김유저(KimUser)</td>
+                <td id="table-contents">${detail.MName}</td>
               </tr>
               <tr>
                 <td class="table-primary">처리일자</td>
-                <td id="table-contents">2024-10-24</td>
+                <td id="table-contents">
+                	<fmt:formatDate value="${detail.complDate}" pattern="yyyy-MM-dd"/>
+                </td>
                 <td class="table-primary">처리자</td>
-                <td id="table-contents">나디비(ImDBA)</td>
+                <td id="table-contents">${detail.dbaName}</td>
               </tr>
               <tr>
                 <td class="table-primary">인덱스명</td>
-                <td id="table-contents">idx_order_customer_date</td>
+                <td id="table-contents">${detail.idxName}</td>
                 <td class="table-primary">스키마명</td>
-                <td id="table-contents">ASSET</td>
+                <td id="table-contents">${detail.schemaName}</td>
               </tr>
               <tr>
                 <td class="table-primary">참조테이블</td>
-                <td id="table-contents">TAB_ASSET</td>
+                <td id="table-contents">${detail.tableId}</td>
                 <td class="table-primary">참조컬럼</td>
-                <td id="table-contents">customer_id ASC, order_date DESC</td>
+                <td id="table-contents">${detail.refColumn}</td>
               </tr>
               <tr>
                 <td class="table-primary">신청사유</td>
-                <td id="table-contents">ASSET 스키마에서 사용 예정입니다.</td>
+                <td id="table-contents">${detail.applyReason}</td>
                 <td class="table-primary">UNIQUE</td>
-                <td id="table-contents">Y</td>
+                <td id="isUnique">${detail.isUnique}</td>
               </tr>
               <tr>
                 <td class="table-primary">상태</td>
-                <td id="table-contents" colspan="3">승인</td>
+                <td id="approvalStatus" colspan="3">${detail.approvalStatus}</td>
               </tr>
               <tr>
                 <td class="table-primary">반려사유</td>
-                <td id="table-contents" colspan="3">-</td>
+                <td id="rejectReason" colspan="3">${detail.rejectReason}</td>
               </tr>
               <tr>
                 <td class="table-primary">쿼리문</td>
@@ -94,8 +99,8 @@
 				<div class="modal-body">
 					<div class="table-container">
 						<div class="table-header d-flex align-items-center">SQL</div>
-						<div class="table-body">CREATE SEQUENCE my_sequence START
-							WITH 1 INCREMENT BY 1 MINVALUE 1 MAXVALUE 1000 NOCYCLE CACHE 20;
+						<div class="table-body">
+							${detail.query}
 						</div>
 					</div>
 				</div>
@@ -103,5 +108,6 @@
 		</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexList.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexDetail.js"></script>
   </body>
 </html>

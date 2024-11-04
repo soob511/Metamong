@@ -24,18 +24,18 @@
                             <div class="schema-filter">
 							<select id="schemaSelect" class="form-select"
 								aria-label="Default select example">
-								<option selected>사용자명</option>
-								<option value="1">이름</option>
-								<option value="2">권한</option>
-								<option value="3">소속</option>
-								<option value="3">사번</option>
+								<option selected>ID</option>
+								<option>이름</option>
+								<option>권한</option>
+								<option>소속</option>
+								<option>사번</option>
 							</select>
 						</div>
 						</div>
 						<div class="search-box">
 							<form>
 								<input class="form-control me-2" type="search"
-									id="tableNameSearch" placeholder="Search" aria-label="Search">
+									id="memberSearch" placeholder="Search" aria-label="Search">
 								<i class="bi bi-search"></i>
 							</form>
 						</div>
