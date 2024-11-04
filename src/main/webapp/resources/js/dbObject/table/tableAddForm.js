@@ -5,11 +5,19 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $(".btn-update").prop("disabled", true);
     
     $("#columnList").on("click", ".checkTr", function() {
 	    $(".checkTr").removeClass("table-active");
 	    $(this).addClass("table-active");
 	});
+    
+    function resetAndDisableButton() {
+    	console.log("실행");
+    	$("#itemForm")[0].reset();
+        $("#columnList tr").removeClass("selected");
+        $(".btn-update").prop("disabled", true);
+    }
     
     $.ajax({
         url: "/Metamong/dataType/dataTypeList",
@@ -28,7 +36,7 @@ $(document).ready(function() {
     });
     
     $(".btn-reset").on("click", function() {
-        $("#itemForm")[0].reset(); 
+    	resetAndDisableButton();
     });
 
     $(".btn-load").on("click", function() {
@@ -141,9 +149,11 @@ $(document).ready(function() {
         $("#itemForm")[0].reset(); 
     });
 
-    $(document).on("click", ".delete-row", function () {
+    $(document).on("click", ".delete-row", function (event) {
+        event.stopPropagation(); 
         $(this).closest("tr").remove();
         updateRowNumbers();
+        resetAndDisableButton();
     });
 
     $("#move-up").on("click", function () {
@@ -163,6 +173,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click", "#columnList tr", function () {
+    	$(".btn-update").prop("disabled", false);
         $("#columnList tr").removeClass("selected");
         $(this).addClass("selected");
         const colNm = $(this).find("td:eq(1)").text();
@@ -189,6 +200,7 @@ $(document).ready(function() {
     $(".btn-update").on("click", function () {
         var selectedRow = $("#columnList tr.selected");
         if (selectedRow.length) {
+
             var colNm = $("#colNm").val();
             var colId = $("#colId").val();
             var dataType = $("#dataType").val();
@@ -211,6 +223,7 @@ $(document).ready(function() {
 
                 $("#itemForm")[0].reset();
                 selectedRow.removeClass("selected"); 
+                $(".btn-update").prop("disabled", true);
             }
         } else {
             Swal.fire({

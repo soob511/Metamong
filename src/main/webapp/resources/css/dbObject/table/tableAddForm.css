@@ -118,6 +118,12 @@ thead {
 	line-height: 2.4;
 }
 
+.btn-update:disabled {
+    background-color: #ebebeb;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
 .item-header {
 	margin: 5px;
 }

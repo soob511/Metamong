@@ -5,10 +5,19 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $(".btn-update").prop("disabled", true);
+    
     $("#columnList").on("click", ".checkTr", function() {
 	    $(".checkTr").removeClass("table-active");
 	    $(this).addClass("table-active");
 	});
+    
+    function resetAndDisableButton() {
+    	console.log("실행");
+    	$("#itemForm")[0].reset();
+        $("#columnList tr").removeClass("selected");
+        $(".btn-update").prop("disabled", true);
+    }
     
     $.ajax({
         url: "/Metamong/dataType/dataTypeList",
@@ -27,7 +36,7 @@ $(document).ready(function() {
     });
     
     $(".btn-reset").on("click", function() {
-        $("#itemForm")[0].reset(); 
+    	resetAndDisableButton();
     });
 
     $(".btn-load").on("click", function() {
@@ -166,12 +175,12 @@ $(document).ready(function() {
                 selectedRow.find("td:eq(5)").text(colNullable);
                 selectedRow.find("td:eq(6)").text(colPk);
 
-                // 수정된 행의 data-change 속성을 설정
                 selectedRow.attr("data-change", "2");
                 console.log("Updated row data-change:", selectedRow.attr("data-change"));
 
                 $("#itemForm")[0].reset();
                 selectedRow.removeClass("selected");
+                $(".btn-update").prop("disabled", true);
             }
         } else {
             Swal.fire({
@@ -181,13 +190,16 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on("click", ".delete-row", function () {
+    $(document).on("click", ".delete-row", function (event) {
+        event.stopPropagation(); 
         $(this).closest("tr").remove();
         updateRowNumbers();
+        resetAndDisableButton();
     });
 
 
     $(document).on("click", "#columnList tr", function () {
+    	$(".btn-update").prop("disabled", false);
         $("#columnList tr").removeClass("selected");
         $(this).addClass("selected");
         const colNm = $(this).find("td:eq(1)").text();
