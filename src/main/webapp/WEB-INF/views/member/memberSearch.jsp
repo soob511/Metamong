@@ -40,7 +40,7 @@
 						<c:if test="${totalRows>=1}">
 						<c:forEach items="${list}" var="member" varStatus="status">
 								<tr>
-									<td scope="row">${status.index+1}</td>
+									<td scope="row">${status.index + 1 + (pager.pageNo - 1) * 10}</td>
 									<td>${member.MId}</td>
 									<td>${member.MName}</td>
 									<td>${member.MRole}</td>
@@ -50,11 +50,11 @@
 						</tr>
 							 </c:forEach>
 						 </c:if>
-				        <c:if test="${totalRows==0}" >
+				       <c:if test="${totalRows==0}" > 
 				        	<tr>
 				        		<th colspan="7">검색 결과가 없습니다.</th>
 				        	</tr>
-				        </c:if>
+				    </c:if> 
 					</tbody>
 				</table>
 			</div>
@@ -81,5 +81,5 @@
           			<a href="javascript:memberSearch(${pager.totalPageNo})" class="btn btn-outline-secondary btn-sm">>></a>
           			
           		</div>
-          		</c:if>
+          		 </c:if> 
           		<script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>

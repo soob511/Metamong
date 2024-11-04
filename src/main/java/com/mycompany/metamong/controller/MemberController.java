@@ -101,18 +101,26 @@ public class MemberController {
 		
 		if (keyword == null || keyword.trim().isEmpty()) {
 	        
-	        model.addAttribute("list", Collections.emptyList());
-	        model.addAttribute("totalRows", 0);
+			int totalRows = memberService.getTotalRows();
+			Pager pager = new Pager(10,5,totalRows,pageNo);
+			
+			session.setAttribute("pager", pager);
+			model.addAttribute("totalRows", totalRows);
+			
+			List<MemberDto> list = memberService.getMemberList(pager);
+			model.addAttribute("list", list);
 	        return "member/memberSearch";
 	    }
 		
 		int totalRows = memberService.countMembers(option, keyword);
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		pager.setTotalRows(totalRows);
 		session.setAttribute("pager", pager);
 		model.addAttribute("totalRows", totalRows);
         List<MemberDto> list = memberService.searchMember(option,keyword,pager);
         model.addAttribute("list", list);
         model.addAttribute("option", option);
+       // session.setAttribute("option", option);
 
         return "member/memberSearch";
 	    }

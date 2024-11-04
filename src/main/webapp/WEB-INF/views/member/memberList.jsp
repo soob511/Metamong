@@ -56,7 +56,7 @@
 							<tbody id="memberTable">
 								<c:forEach items="${list}" var="member" varStatus="status">
 									<tr class="table-row">
-										<td scope="row">${status.index+1}</td>
+										<td scope="row">${status.index + 1 + (pager.pageNo - 1) * 10}</td>
 										<td>${member.MId}</td>
 										<td>${member.MName}</td>
 										<td>${member.MRole}</td>
