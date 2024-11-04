@@ -100,6 +100,12 @@ $(document).ready(function () {
         text: "필수입력사항: 코드명(논리/물리), 코드길이, 신청사유",
       });
       return;
+    } else if (items.length < 1) {
+    	Swal.fire({
+            icon: "warning",
+            title: "항목을 추가해 주세요.",
+          });
+    	return;
     }
 
     $.ajax({
