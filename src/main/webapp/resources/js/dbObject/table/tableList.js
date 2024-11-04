@@ -30,14 +30,15 @@ $(document).ready(function() {
     $(".btn-edit").on("click", function() {
         var selectedRow = $("#tableList .table-active");
         var tableNo = selectedRow.data("table-no");
+        var updateNo = 0;
         
         if (tableNo) {
             $.ajax({
                 url: "/Metamong/table/tableUpdateForm",
                 type: "Get",
-                data: { tableNo: tableNo },
+                data: { tableNo: tableNo,updateNo:updateNo},
                 success: function(response) {
-                	location.href="/Metamong/table/tableUpdateForm?tableNo=" + tableNo;
+                	  location.href = "/Metamong/table/tableUpdateForm?tableNo=" + tableNo + "&updateNo=" + updateNo;
                 }
            });
             

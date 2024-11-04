@@ -58,13 +58,15 @@
 									<td class="table-secondary">내용</td>
 									<td colspan="5"><input type="text" id="tableContent"
 										class="form-control content-input"
-										placeholder="${table.tableContent}"></td>
+										value="${table.tableContent}"></td>
 								</tr>
 								<tr>
 									<td class="table-secondary">신청사유</td>
 									<td colspan="5"><input type="text" id="applyReason"
-										class="form-control content-input" placeholder="내용 입력"></td>
+										class="form-control content-input" placeholder="내용 입력"
+										value="${applyReason != null ? applyReason : ''}"></td>
 								</tr>
+
 
 
 							</table>
@@ -134,7 +136,7 @@
 				</div>
 				<div class="button-group">
 					<div class="btn-add" type="button">추가</div>
-					<div class="btn-update" type="button">수정</div>
+					<button class="btn-update" type="button">수정</button>
 				</div>
 
 
@@ -166,24 +168,44 @@
 						</thead>
 						<tbody id="columnList">
 							<c:forEach items="${column}" var="column" varStatus="status">
-								<tr>
-									<td>${status.index+1}</td>
-									<td>${column.colNm}</td>
-									<td>${column.colId}</td>
-									<td>${column.dataType}</td>
-									<td>${column.colLength}</td>
-									<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
-									<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
-									<td>-</td>
-								</tr>
+								<c:choose>
+									<c:when test="${visit && column.isChange == 1}">
+										<tr class="checkTr" data-change="1">
+											<td>${status.index+1}</td>
+											<td>${column.colNm}</td>
+											<td>${column.colId}</td>
+											<td>${column.dataType}</td>
+											<td>${column.colLength}</td>
+											<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
+											<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
+											<td><i class="bi bi-trash3 delete-row"></i></td>
+										</tr>
+									</c:when>
+
+									<c:otherwise>
+										<tr class="checkTr" data-change="0">
+											<td>${status.index+1}</td>
+											<td>${column.colNm}</td>
+											<td>${column.colId}</td>
+											<td>${column.dataType}</td>
+											<td>${column.colLength}</td>
+											<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
+											<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
+											<td>-</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 						</tbody>
+
+
+
 					</table>
 				</div>
 
 				<div class="button-group">
-						<div class="btn-compare" type="button">전/후비교</div>
-						<div class="btn-apply" type="button">신청</div>
+					<div class="btn-compare" type="button">전/후비교</div>
+					<div class="btn-apply" type="button">신청</div>
 				</div>
 
 				<div class="modal fade" id="codeLoadModal" tabindex="-1"
@@ -227,7 +249,6 @@
 
 						</div>
 					</div>
-
 					<script
 						src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableUpdateForm.js"></script>
 </body>

@@ -65,7 +65,7 @@
 		WHERE notice_id = #{noticeId}	
 	</select>
 	
-	<select id="selectNoticeSearch" parameterType="map" resultType="Notice">
+	<!-- <select id="selectNoticeSearch" parameterType="map" resultType="Notice">
 		SELECT 
 			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
 		FROM notice
@@ -77,7 +77,36 @@
 				notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 		</where>
-		ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_id DESC
+		ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
+	</select>  -->
+	
+	<select id="selectNoticeSearch" parameterType="Pager" resultType="Notice">
+	    SELECT 
+	        notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
+	    FROM notice
+	    <where>
+	        <if test="keyword != null and keyword != '' and option == '제목'">
+	            notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+	        </if>
+	        <if test="keyword != null and keyword != '' and option == '내용'">
+	            notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+	        </if>
+	    </where>
+	    ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
+	    
+	</select>
+	
+	<select id="countNotices" parameterType="map" resultType="int">
+	    SELECT COUNT(*) 
+	    FROM notice
+	    <where>
+	        <if test="keyword != null and keyword != '' and option == '제목'">
+	            notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+	        </if>
+	        <if test="keyword != null and keyword != '' and option == '내용'">
+	             notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+	        </if>
+	    </where>
 	</select>
 	
 	<insert id="insertNotice" parameterType="Notice">
