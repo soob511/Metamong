@@ -19,7 +19,7 @@ public class ApplyIndexListDto {
 	private int approvalStatus;
 	
 	public String getFmtApplyDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return applyDate != null ? sdf.format(applyDate) : "";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return simpleDateFormat.format(applyDate);
     }
 }
