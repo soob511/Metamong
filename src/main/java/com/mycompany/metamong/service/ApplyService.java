@@ -58,6 +58,14 @@ public class ApplyService {
 		return applyListDao.selectApplyCodeList(pager);
 	}
 	
+	public int getApplyCodeSearchRows(int status, String option, String keyword) {
+		return applyListDao.selectApplyCodeSearchRows(status, option, keyword);
+	}
+	
+	public List<ApplyCodeListDto> getApplyCodeSearchList(int status, String option, String keyword, Pager pager) {
+		return applyListDao.selectApplyCodeSearchList(status, option, keyword, pager);
+	}
+	
 	public ApplyCodeDeatilDto getCodeApplyDetail(int applyNo) {
 		return applyListDao.selectCodeApplyDetail(applyNo);
 	}
@@ -178,5 +186,4 @@ public class ApplyService {
 	public int getTotalRows() {
 		return applyListDao.selectTotalRows();
 	}
-
 }

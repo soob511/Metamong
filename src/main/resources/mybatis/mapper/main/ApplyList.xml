@@ -25,7 +25,60 @@
 			WHERE rnum >= #{startRowNo}	
 	    ]]>
 	</select>
+
+	<select id="selectApplyCodeSearchRows" resultType="int">
+	    SELECT count(*)
+	    FROM apply_list a
+	    JOIN member m ON a.m_id = m.m_id
+	    JOIN apply_code c ON a.apply_no = c.apply_no
+	    <where>
+	        a.apply_obj = 'CODE'
+	        <if test="keyword != null and keyword != '' and option == 'code'">
+	            AND (
+	                c.code_id LIKE '%' || #{keyword} || '%'
+	                OR c.code_nm LIKE '%' || #{keyword} || '%'
+	            )
+	        </if>
+	        <if test="keyword != null and keyword != '' and option == 'member'">
+	            AND m.m_name LIKE '%' || #{keyword} || '%'
+	        </if>
+	        <if test="status != -1">
+	            AND a.approval_status = #{status}
+	        </if>
+	    </where>
+	</select>
 	
+	<select id="selectApplyCodeSearchList" resultType="ApplyCodeList">
+	    SELECT rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_obj
+	    FROM (
+	        SELECT rownum as rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_obj
+	        FROM (
+	            SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id, c.code_nm, a.apply_obj
+	            FROM apply_list a
+	            JOIN member m ON a.m_id = m.m_id
+	            JOIN apply_code c ON a.apply_no = c.apply_no
+	            <where>
+	                a.apply_obj = 'CODE'
+	                <if test="keyword != null and keyword != '' and option == 'code'">
+	                    AND (
+	                        c.code_id LIKE '%' || #{keyword} || '%'
+	                        OR c.code_nm LIKE '%' || #{keyword} || '%'
+	                    )
+	                </if>
+	                <if test="keyword != null and keyword != '' and option == 'member'">
+	                    AND m.m_name LIKE '%' || #{keyword} || '%'
+	                </if>
+	                <if test="status != -1">
+	                    AND a.approval_status = #{status}
+	                </if>
+	            </where>
+	            ORDER BY a.apply_date DESC
+	        )
+	        WHERE rownum <![CDATA[<]]>=#{pager.endRowNo}
+	    )
+	    WHERE rnum <![CDATA[>]]>=#{pager.startRowNo}
+	</select>
+
 	<select id="selectCodeApplyDetail" parameterType="int" resultType="ApplyCodeDeatil">
 		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name, a.apply_reason,
 		 a.reject_reason, a.approval_status

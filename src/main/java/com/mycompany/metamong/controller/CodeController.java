@@ -136,12 +136,31 @@ public class CodeController {
 		int totalRows = applyService.getApplyCodeRows();
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyCodeListDto> list = applyService.getApplyCodeList(pager);
-		log.info(list.toString());
 		
 		session.setAttribute("pager", pager);
 		model.addAttribute("list", list);
 		
 		return "code/codeApplyList";
+	}
+	
+	@GetMapping("/codeApplySearch")
+	public String codeApplySearch(
+			@RequestParam(defaultValue="-1") int status, 
+			@RequestParam(defaultValue="code") String option, 
+    		@RequestParam(defaultValue="") String keyword, 
+    		@RequestParam(defaultValue="1") int pageNo,
+    		HttpSession session,
+    		Model model
+			) {
+
+		int totalRows = applyService.getApplyCodeSearchRows(status, option, keyword);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		List<ApplyCodeListDto> list = applyService.getApplyCodeSearchList(status, option, keyword, pager);
+		
+		session.setAttribute("pager", pager);
+		model.addAttribute("list", list);
+		
+		return "code/codeApplySearch";
 	}
 	
 	@GetMapping("/codeApplyDetail")
