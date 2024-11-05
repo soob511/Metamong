@@ -197,6 +197,9 @@ public class ApplyService {
 		return applyListDao.selectTotalRows();
 	}
 
+	public void updateCodeStatus(Map<String, Object> params) {
+		applyListDao.updateCodeStatus(params);
+	}
 	public int getSearchRows(Map<String, String> form) {
 		return applyListDao.selectSearchRows(form);
 	}
