@@ -221,6 +221,17 @@
 		WHERE apply_obj
 		='TABLE'
 	</select>
+	
+	<update id="updateCodeStatus" parameterType="map">
+		UPDATE apply_list
+		SET compl_date = sysdate,
+			   dba_name = #{dbaName},
+			   approval_status = #{status}
+			   <if test="reason != null and reason != ''">
+			   ,reject_reason = #{reason}
+			   </if>
+		WHERE apply_no = ${applyNo}
+	</update>
 
 	<update id="updateProcessApproval" parameterType="ApplyList">
 		UPDATE apply_list

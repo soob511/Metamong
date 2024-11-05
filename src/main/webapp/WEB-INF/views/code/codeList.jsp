@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -44,11 +45,15 @@
                         <div class="col-6 code-table">
                             <div class="code-management">
                                 <p class="code-management-title">코드</p>
-                                <div class="code-buttons">
-                                    <button class="btn-excel">EXCEL 업로드</button>
-                                    <a href="codeAddForm"><button class="btn-add">추가</button></a>
-                                    <button class="btn-edit">수정</button>
-                                </div>
+                                
+                                <sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
+									<div class="code-buttons">
+	                                    <button class="btn-excel">EXCEL 업로드</button>
+	                                    <a href="codeAddForm"><button class="btn-add">추가</button></a>
+	                                    <button class="btn-edit">수정</button>
+	                                </div>
+								</sec:authorize>
+								
                             </div>
                             <div class="code-table-container">
                                 <table class="table table-hover" id="codeTable">
