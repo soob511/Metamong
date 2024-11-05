@@ -63,7 +63,7 @@ public class NoticeService {
 		return noticeDao.selectNoticeSearch(option, keyword, pager);
 	}
 
-	public int countNotices(String option, String keyword) {
-		return noticeDao.countNotices(option,keyword);
+	public int countNotices(String option, String keyword,int pageNo) {
+		return noticeDao.countNotices(option,keyword,pageNo);
 	}
 }

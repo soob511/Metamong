@@ -23,12 +23,12 @@ $("#noticeTable").on("click", ".table-row", function() {
 $("#noticeSearch").on("keydown", function(event) {
     if (event.keyCode === 13) { 
         event.preventDefault();
-        noticeSearch(1);
+        noticeSearch();
     }
 });
 
 $('.bi-search').on('click', function() {
-	noticeSearch(1);
+	noticeSearch();
 });
 
 function showDetail(noticeId) {
@@ -43,7 +43,7 @@ function showDetail(noticeId) {
 	})
 }
 
-function noticeSearch(pageNo){
+function noticeSearch(pageNo=1){
 	var option = $('#schemaSelect').val();
 	console.log(option);
 	var keyword = $('#noticeSearch').val();

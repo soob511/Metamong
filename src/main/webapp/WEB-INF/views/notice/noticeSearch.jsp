@@ -2,31 +2,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<div class="d-flex justify-content-between align-items-center">
-	<div class="pt-3">
+<div class="d-flex justify-content-start">
+	<div>
 		총 <span class="form-required" id="noticeCount">${totalRows}</span>건의
 		게시물이 있습니다.
-	</div>
-	<div class="d-flex">
-		<div class="table-list-filters">
-			<div class="schema-filter">
-				<select id="schemaSelect" class="form-select"
-					aria-label="Default select example">
-					<option value="제목" ${option == '제목' ? 'selected' : ''}>제목</option>
-					<option value="내용" ${option == '내용' ? 'selected' : ''}>내용</option>
-				</select>
-			</div>
-		</div>
-		<div class="table-search">
-			<div class="container-fluid">
-				<div class="d-flex search-form">
-					<input class="form-control" type="search" id="noticeSearch"
-						name="keyword" placeholder="Search" aria-label="Search"> <i
-						class="bi bi-search"></i>
-				</div>
-			</div>
-		</div>
-	</div>
+	</div>	
 </div>
 <table class="table table-hover">
 	<thead>

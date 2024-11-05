@@ -1,6 +1,5 @@
 package com.mycompany.metamong.controller;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -59,22 +58,18 @@ public class NoticeController {
     		@RequestParam(defaultValue="1")int pageNo,
     		HttpSession session,
     		Model model) {
-		
-
 			if (keyword == null || keyword.trim().isEmpty()) {
-
-			int totalRows = noticeService.getTotalRows();
-			Pager pager = new Pager(10,5,totalRows,pageNo);
-
-			session.setAttribute("pager", pager);
-			model.addAttribute("totalRows", totalRows);
-
-			List<NoticeDto> list = noticeService.getNoticeList(pager);
-			model.addAttribute("list", list);
-	        return "notice/noticeSearch";
+				int totalRows = noticeService.getTotalRows();
+				Pager pager = new Pager(10,5,totalRows,pageNo);
+	
+				session.setAttribute("pager", pager);
+				model.addAttribute("totalRows", totalRows);
+	
+				List<NoticeDto> list = noticeService.getNoticeList(pager);
+				model.addAttribute("list", list);
+		        return "notice/noticeSearch";
 	    }
-
-		int totalRows = noticeService.countNotices(option, keyword);
+		int totalRows = noticeService.countNotices(option, keyword,pageNo);
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		pager.setTotalRows(totalRows);
 		session.setAttribute("pager", pager);
@@ -82,8 +77,8 @@ public class NoticeController {
         List<NoticeDto> list = noticeService.searchNotice(option,keyword,pager);
         model.addAttribute("list", list);
         model.addAttribute("option", option);
-       // session.setAttribute("option", option);
-
+        session.setAttribute("option", option);
+ 
         return "notice/noticeSearch";
     }	
 	

@@ -36,5 +36,5 @@ public interface NoticeDao {
 	
 	public List<NoticeDto> selectNoticeSearch(@Param("option")String option, @Param("keyword")String keyword, @Param("pager")Pager pager);
 
-	public int countNotices(@Param("option") String option, @Param("keyword") String keyword);
+	public int countNotices(@Param("option") String option, @Param("keyword") String keyword, @Param("pageNo") int pageNo);
 }

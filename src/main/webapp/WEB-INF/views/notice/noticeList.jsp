@@ -18,10 +18,7 @@
             <div class="content">
                 <h4 class="fw-bold">> 공지사항</h4>
                	
-                <div id="noticeList">
-               		<div class="d-flex justify-content-between align-items-center">
-                <div class="pt-3">총 <span class="form-required" id="noticeCount">${totalRows}</span>건의 게시물이 있습니다.</div>
-                    <div class="d-flex">
+               	<div class="d-flex justify-content-end">
                         <div class="table-list-filters">
                             <div class="schema-filter">
                                 <select id="schemaSelect" class="form-select" aria-label="Default select example">
@@ -40,6 +37,11 @@
                             </div>
                         </div>
                     </div>
+                    
+                <div id="noticeList">
+               		<div class="d-flex justify-content-start">
+                <div class="pt-3">총 <span class="form-required" id="noticeCount">${totalRows}</span>건의 게시물이 있습니다.</div>
+                    
                 </div>
                 
               <table class="table table-hover">
