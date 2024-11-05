@@ -34,12 +34,6 @@ public interface ApplyListDao {
 
 	public ApplyTableDeatilDto selectTableListDetail(int applyNo);
 
-	public List<ApplyIndexListDto> selectApplyIndex();
-
-	public List<ApplyIndexListDto> selectApplyIndexByParams(HashMap<String, Object> indexApplyListData);
-
-	public ApplyIndexDetailDto selectApplyIndexDetail(int applyNo);
-
 	public int insertApplyList(ApplyListDto apply);
 
 	public int selectTotalRows();

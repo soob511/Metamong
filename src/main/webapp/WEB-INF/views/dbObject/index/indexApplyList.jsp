@@ -32,10 +32,15 @@
 								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 								<select id="schemaSelect" class="form-select"
 									aria-label="Default select example">
-									<option value="ALL">전체</option>
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
-										<option value="${schemaEnum.name()}">
-											${schemaEnum.name()}</option>
+										 <option value="${schemaEnum.name()}">
+								        	<c:if test="${schemaEnum.name() == 'MAIN'}">
+									        	전체
+									        </c:if>
+									        <c:if test="${schemaEnum.name() != 'MAIN'}">
+									            ${schemaEnum.name()}
+									        </c:if>
+								        </option>
 									</c:forEach>
 								</select>
 							</div>
@@ -58,68 +63,77 @@
 							</div>
 						</div>
 					</div>
-					<div class="table-container">
-					<table class="table table-hover">
-						<thead class="table">
-							<tr class="table-secondary">
-								<th scope="col">No.</th>
-								<th scope="col">신청일자</th>
-								<th scope="col">신청자</th>
-								<th scope="col">스키마명</th>
-								<th scope="col">인덱스명</th>
-								<th scope="col">분류</th>
-								<th scope="col">상세보기</th>
-								<th scope="col">상태</th>
-							</tr>
-						</thead>
-						<tbody id="indexApplyTable">
-							<c:forEach items="${list}" var="index" varStatus="status">
-		                  		<tr>
-			                      <th>${status.index + 1}</th>
-			                      <td>
-			                      	<fmt:formatDate value="${index.applyDate}" pattern="yyyy-MM-dd"/>
-			                      </td>
-			                      <td>${index.MName}</td>
-			                      <td>${index.schemaName}</td>
-			                      <td>${index.idxName}</td>
-			                      <td>${index.applyObj}</td>
-			                      	<td>
-			                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&indexNo=${status.index + 1}"><button class="btn-history-details">상세보기</button></a>
-		                  			</td>
-			                      <td>
-			                      	<c:choose>
-										<c:when test="${index.approvalStatus == 0}">
-											<span id="status-await">승인대기</span>
-										</c:when>
-										<c:when test="${index.approvalStatus == 1}">
-											<span id="status-approve">승인</span>
-										</c:when>
-										<c:when test="${index.approvalStatus == 2}">
-											<span id="status-rejected">반려</span>
-										</c:when>
-										<c:when test="${index.approvalStatus == 3}">
-											<span id="status-applied">반영</span>
-										</c:when>
-									</c:choose>
-			                      </td>
-		                    	</tr>
-	                  		</c:forEach>
-						</tbody>
-					</table>
-					</div>
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
+					<div id="indexApplyListBody">
+						<div class="table-container">
+						<table class="table table-hover">
+							<thead class="table">
+								<tr class="table-secondary">
+									<th scope="col">No.</th>
+									<th scope="col">신청일자</th>
+									<th scope="col">신청자</th>
+									<th scope="col">스키마명</th>
+									<th scope="col">인덱스명</th>
+									<th scope="col">분류</th>
+									<th scope="col">상세보기</th>
+									<th scope="col">상태</th>
+								</tr>
+							</thead>
+							<tbody id="indexApplyTable">
+								<c:forEach items="${list}" var="index" varStatus="status">
+			                  		<tr>
+				                      <th>${status.index + 1}</th>
+				                      <td>
+				                      	<fmt:formatDate value="${index.applyDate}" pattern="yyyy-MM-dd"/>
+				                      </td>
+				                      <td>${index.MName}</td>
+				                      <td>${index.schemaName}</td>
+				                      <td>${index.idxName}</td>
+				                      <td>${index.applyObj}</td>
+				                      	<td>
+				                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&indexNo=${status.index + 1}"><button class="btn-history-details">상세보기</button></a>
+			                  			</td>
+				                      <td>
+				                      	<c:choose>
+											<c:when test="${index.approvalStatus == 0}">
+												<span id="status-await">승인대기</span>
+											</c:when>
+											<c:when test="${index.approvalStatus == 1}">
+												<span id="status-approve">승인</span>
+											</c:when>
+											<c:when test="${index.approvalStatus == 2}">
+												<span id="status-rejected">반려</span>
+											</c:when>
+											<c:when test="${index.approvalStatus == 3}">
+												<span id="status-applied">반영</span>
+											</c:when>
+										</c:choose>
+				                      </td>
+			                    	</tr>
+		                  		</c:forEach>
+							</tbody>
+						</table>
+						</div>
+						<div class="page">
+			           			<a href="indexApplyList?pageNo=1" class="btn btn-outline-primary btn-sm"><<</a>
+			           			<c:if test="${pager.groupNo > 1}">
+			           				<a href="indexApplyList?pageNo=${pager.startPageNo - 1}" class="btn btn-outline-info btn-sm"><</a>
+			           			</c:if>
+			           			
+			           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
+			           				<c:if test="${pager.pageNo == i}">
+			           					<a href="indexApplyList?pageNo=${i}" class="btn btn-primary btn-sm">${i}</a>
+			           				</c:if>
+			           				<c:if test="${pager.pageNo != i}">
+			           					<a href="indexApplyList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+			           				</c:if>
+			           			</c:forEach>
+			           			
+			           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+			           				<a href="indexApplyList?pageNo=${pager.endPageNo + 1}" class="btn btn-outline-info btn-sm">></a>
+			           			</c:if>
+			           			<a href="indexApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
+			           	</div>
+		           	</div>
 				</div>
 			</div>
 	</div>
