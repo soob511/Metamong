@@ -24,12 +24,15 @@
                     <p class="codeApplyInfo-title">&gt; 코드/항목 신청 상세보기</p>
                     <sec:authorize access="hasRole('ROLE_DBA')">
 						<div class="button-groupDBA">
-                    	<c:if test="${applyList.approvalStatus == 0}">
+                    	<c:if test="$btn-processed{applyList.approvalStatus == 0}">
 	                        <button class="btn-approve" onclick="codeApplyProcess(1)">승인</button>
 	                        <button class="btn-reject" onclick="codeApplyProcess(2)">반려</button>
                     	</c:if>
                     	<c:if test="${applyList.approvalStatus == 1}">
                     		<button class="btn-approve">반영</button>
+                    	</c:if>
+                    	<c:if test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
+                    		<div class="btn-processed">처리완료</div>
                     	</c:if>
 	                    </div> 
 					</sec:authorize>

@@ -39,6 +39,19 @@
 	line-height: 2.4;
 }
 
+.btn-processed {
+	color: gray;
+	background-color: white;
+	border-radius: 8px;
+	border: 1px solid gray;
+	width: 70px;
+	height: 30px;
+	font-size: 13px;
+	margin-right: 5px;
+	text-align: center;
+	line-height: 2.4;
+}
+
 .codeApplyInfo-subtitle, .codeAdd-subtitle, .item-header {
 	font-size: 18px;
 	font-weight: 600 !important;
