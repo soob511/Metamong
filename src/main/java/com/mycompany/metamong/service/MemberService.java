@@ -38,7 +38,7 @@ public class MemberService {
 	public int countMembers(String option, String keyword, int pageNo) {
 		return memberDao.countMembers(option,keyword,pageNo);
 	}
-
+	
 	public String getDbaNameById(String dbaId) {
 		return memberDao.selectDbaName(dbaId);
 	}
