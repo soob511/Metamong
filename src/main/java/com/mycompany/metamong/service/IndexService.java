@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoSub1.Sub1IndexDao;
 import com.mycompany.metamong.daoSub2.Sub2IndexDao;
 import com.mycompany.metamong.daoSub3.Sub3IndexDao;
@@ -17,12 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class IndexService {
 	@Autowired
+	private IndexDao indexDao;
+	@Autowired
 	private Sub1IndexDao sub1IndexDao;
 	@Autowired
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
-
+	
 	public List<IndexDto> getIndexList() {
 		List<IndexDto> list = new ArrayList<>();
 		list.addAll(sub1IndexDao.selectIndex());
@@ -53,6 +56,14 @@ public class IndexService {
 				break;
 			}
 		return list;
+	}
+	
+	public int countTotalRows() {
+		return indexDao.selectTotalRows();
+	}
+	
+	public int countIndexRows(String schemaName, int approvalStatus, String indexName) {
+		return indexDao.selectIndexRows(schemaName, approvalStatus, indexName);
 	}
 
 	public void createIndex(IndexDto indexdto) {

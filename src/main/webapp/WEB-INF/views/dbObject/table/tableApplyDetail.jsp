@@ -1,8 +1,9 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,18 +23,33 @@
 
 				<div class="codeApplyInfo-header">
 					<p class="codeApplyInfo-title">&gt; 테이블/컬럼 신청 상세보기</p>
-					<!-- <div class="button-groupDBA">
-						<button class="btn-approve">승인</button>
-						<button class="btn-reject">반려</button>
-					</div> -->
+					<sec:authorize access="hasRole('ROLE_DBA')">
+						<div class="button-groupDBA">
+							<c:choose>
+								<c:when test="${applyList.approvalStatus == 0}">
+									<button class="btn-approve">승인</button>
+									<button class="btn-reject">반려</button>
+								</c:when>
+								<c:when test="${applyList.approvalStatus == 1}">
+									<button class="btn-reflect">반영</button>
+								</c:when>
+								<c:when
+									test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
+									<button class="btn-complete">처리완료</button>
+								</c:when>
+							</c:choose>
+						</div>
+					</sec:authorize>
+
 				</div>
 				<hr>
-				<div class="container">
+				<div id="applyContainer" class="container"
+					data-applyno="${applyList.applyNo}">
 					<div class="row">
 						<div class="col codeApplyInfo">
 							<div class="codeApplyInfo-subtitle">신청정보</div>
 							<table class="table table-bordered codeApplyInfo-table">
-								<tr>
+								<tr data-indexno="${indexNo}">
 									<td class="table-secondary">No.</td>
 									<td colspan="5">
 										<div class="table-text">${indexNo}</div>
@@ -169,7 +185,7 @@
 	</div>
 
 	<script
-		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableApplyList.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableApplyDetail.js"></script>
 </body>
 
 </html>
