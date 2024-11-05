@@ -14,15 +14,21 @@ $(".btn-write").click(function () {
 	location.href = "/Metamong/notice/noticeAddForm";
 });
 
+$("#noticeTable").on("click", ".table-row", function() {
+    $(".table-row").removeClass("table-active");
+    $(this).addClass("table-active");
+});
+
+
 $("#noticeSearch").on("keydown", function(event) {
     if (event.keyCode === 13) { 
         event.preventDefault();
-        noticeSearch(1);
+        noticeSearch();
     }
 });
 
 $('.bi-search').on('click', function() {
-	noticeSearch(1);
+	noticeSearch();
 });
 
 function showDetail(noticeId) {
@@ -37,7 +43,7 @@ function showDetail(noticeId) {
 	})
 }
 
-function noticeSearch(pageNo){
+function noticeSearch(pageNo=1){
 	var option = $('#schemaSelect').val();
 	console.log(option);
 	var keyword = $('#noticeSearch').val();

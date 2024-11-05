@@ -20,12 +20,10 @@ public interface NoticeDao {
 
 	public int updateHitcount(int noticeId);
 
-	public NoticeDto selectPrevNotice(int noticeId);
-
-	public NoticeDto selectNextNotice(int noticeId);
-
 	public NoticeDto selectNoticeFile(int noticeId);
 
+	public NoticeDto selectPrevNext(int noticeId);
+	
 	public int insertNotice(NoticeDto notice);
 
 	public int deleteNotice(int noticeId);
@@ -34,7 +32,7 @@ public interface NoticeDao {
 
 	public int deleteFile(NoticeUpdateFormDto form);
 	
-	public List<NoticeDto> selectNoticeSearch(@Param("option")String option, @Param("keyword")String keyword, Pager pager);
+	public List<NoticeDto> selectNoticeSearch(@Param("option")String option, @Param("keyword")String keyword, @Param("pager")Pager pager);
 
-	public int countNotices(@Param("option") String option, @Param("keyword") String keyword);
+	public int countNotices(@Param("option") String option, @Param("keyword") String keyword, @Param("pageNo") int pageNo);
 }

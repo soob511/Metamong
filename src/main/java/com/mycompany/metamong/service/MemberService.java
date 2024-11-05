@@ -42,4 +42,8 @@ public class MemberService {
 	public String getMNameById(String mId) {
 		return memberDao.selectMNameById(mId);
 	}
+	
+	public MemberDto getDbaNameById(String dbaId) {
+		return memberDao.selectDbaName(dbaId);
+	}
 }

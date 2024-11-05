@@ -26,7 +26,7 @@ public class IndexService {
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
-
+	
 	public List<IndexDto> getIndexList() {
 		List<IndexDto> list = new ArrayList<>();
 		list.addAll(indexDao.selectIndex());
@@ -87,6 +87,14 @@ public class IndexService {
 			break;
 		}
 		return list;
+	}
+	
+	public int countTotalRows() {
+		return indexDao.selectTotalRows();
+	}
+	
+	public int countIndexRows(String schemaName, int approvalStatus, String indexName) {
+		return indexDao.selectIndexRows(schemaName, approvalStatus, indexName);
 	}
 
 	public void createIndex(IndexDto indexdto) {

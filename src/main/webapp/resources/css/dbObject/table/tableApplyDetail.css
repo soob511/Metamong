@@ -39,6 +39,34 @@
 	line-height: 2.4;
 }
 
+.btn-reflect {
+	background-color: var(--theme);
+	color: white;
+	border-radius: 8px;
+	border: none;
+	width: 70px;
+	height: 30px;
+	font-size: 13px;
+	margin-right: 5px;
+	text-align: center;
+	line-height: 2.4;
+}
+
+.btn-complete{
+	background-color: gray;
+	color: white;
+	border-radius: 8px;
+	border: none;
+	width: 70px;
+	height: 30px;
+	font-size: 13px;
+	margin-right: 5px;
+	text-align: center;
+	line-height: 2.4;
+	pointer-events: none; 
+    cursor: default; 
+}
+
 .codeApplyInfo-subtitle, .codeAdd-subtitle, .item-header {
 	font-size: 18px;
 	font-weight: 600 !important;

@@ -1,6 +1,5 @@
 package com.mycompany.metamong.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,10 +81,6 @@ public class ApplyService {
 		return applyListDao.selectApplyTableList(pager);
 	}
 
-	public List<ApplyTableDto> getApplyTableSearch(Map<String, String> form) {
-		return applyListDao.selectApplyTableSearch(form);
-	}
-
 	public ApplyTableDeatilDto getTableListDetail(int applyNo) {
 		return applyListDao.selectTableListDetail(applyNo);
 	}
@@ -133,16 +128,31 @@ public class ApplyService {
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
 	
-	public List<ApplyIndexListDto> getApplyIndexList() {
-		return applyListDao.selectApplyIndex();
+	public List<ApplyIndexListDto> getApplyIndexList(Pager pager) {
+		return indexDao.selectApplyIndex(pager);
 	}
-	
-	public List<ApplyIndexListDto> getApplyIndexList(HashMap<String, Object> indexApplyListDatae) {
-		return applyListDao.selectApplyIndexByParams(indexApplyListDatae);
+
+	public List<ApplyIndexListDto> getApplyIndexList(
+			String schemaName,
+			int approvalStatus,
+			String indexName,
+			int startRowNo,
+			int endRowNo
+			) {
+		List<ApplyIndexListDto> list = 
+				indexDao.selectApplyIndexByParamsPaging(
+					schemaName,
+					approvalStatus,
+					indexName,
+					startRowNo,
+					endRowNo
+					);
+		return list;
 	}
+
 	
 	public ApplyIndexDetailDto getApplyIndexListDetail(int applyNo) {
-		return applyListDao.selectApplyIndexDetail(applyNo);
+		return indexDao.selectApplyIndexDetail(applyNo);
 	}
 
 	@Transactional
@@ -190,4 +200,16 @@ public class ApplyService {
 	public void updateCodeStatus(Map<String, Object> params) {
 		applyListDao.updateCodeStatus(params);
 	}
+	public int getSearchRows(Map<String, String> form) {
+		return applyListDao.selectSearchRows(form);
+	}
+
+	public List<ApplyTableDto> getApplyTableSearch(Map<String, Object> params) {
+		return applyListDao.selectApplyTableSearch(params);
+	}
+	
+	public void addProcessApproval(ApplyListDto applyList) {
+		applyListDao.updateProcessApproval(applyList);
+	}
+
 }
