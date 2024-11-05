@@ -28,7 +28,7 @@
 	<select id="selectApplyIndex" parameterType="Pager" resultType="ApplyIndexList">
 		<![CDATA[
 		SELECT
-			ROWNUM as rnum, apply_no, apply_date, m_name, 
+			rnum, apply_no, apply_date, m_name, 
 			schema_name, idx_name, apply_obj, approval_status
 		FROM (
 			SELECT
@@ -69,7 +69,41 @@
 				AND i.idx_name = #{indexName}
 			</if>
 		</where>
-		ORDER BY a.apply_date DESC
+		ORDER BY a.apply_date DESC	
+	</select>
+	
+	<select id="selectApplyIndexByParamsPaging" parameterType="map" resultType="ApplyIndexList">
+		SELECT
+			rnum, apply_no, apply_date, m_name, 
+			schema_name, idx_name, apply_obj, approval_status
+		FROM (
+			SELECT
+				ROWNUM as rnum, apply_no, apply_date, m_name, 
+				schema_name, idx_name, apply_obj, approval_status
+			FROM ( 
+				SELECT
+					a.apply_no, a.apply_date, m.m_name, a.schema_name, 
+					i.idx_name, a.apply_obj, a.approval_status
+				FROM
+					apply_list a
+				JOIN member m ON a.m_id = m.m_id
+				JOIN apply_index i ON i.apply_no = a.apply_no
+				<where>
+					<if test="schemaName != 'ALL' ">
+						a.schema_name = #{schemaName}
+					</if>
+					<if test="approvalStatus != -1">
+						AND a.approval_status = #{approvalStatus}
+					</if>
+					<if test="indexName != '' ">
+						AND i.idx_name = #{indexName}
+					</if>
+				</where>
+				ORDER BY a.apply_date DESC
+				)
+			WHERE ROWNUM &lt; #{endRowNo}
+			)
+		WHERE rnum &gt; #{startRowNo}
 	</select>
 	
 	<select id="selectApplyIndexDetail" parameterType="int" resultType="ApplyIndexDetail">
@@ -88,8 +122,20 @@
 	
 	<select id="selectTotalRows" resultType="int">
 		SELECT count(*)
-		FROM apply_list
+		FROM apply_list a
 		WHERE apply_obj = 'INDEX'
+	</select>
+	
+	<select id="selectIndexRows" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM apply_list a
+		JOIN apply_index i ON i.apply_no = a.apply_no
+		<where>
+			a.apply_obj = 'INDEX'
+	        <if test="indexName != '' ">
+	            AND i.idx_name = #{indexName}
+	        </if>
+	    </where>
 	</select>
 	
 	<insert id="insertApplyIndex" parameterType="ApplyIndex">

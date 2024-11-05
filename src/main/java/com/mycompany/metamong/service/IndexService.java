@@ -89,8 +89,12 @@ public class IndexService {
 		return list;
 	}
 	
-	public int countIndexRows() {
+	public int countTotalRows() {
 		return indexDao.selectTotalRows();
+	}
+	
+	public int countIndexRows(String indexName) {
+		return indexDao.selectIndexRows(indexName);
 	}
 
 	public void createIndex(IndexDto indexdto) {

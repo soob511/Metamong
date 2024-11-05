@@ -1,6 +1,5 @@
 package com.mycompany.metamong.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -123,10 +122,25 @@ public class ApplyService {
 	public List<ApplyIndexListDto> getApplyIndexList(Pager pager) {
 		return indexDao.selectApplyIndex(pager);
 	}
-	
-	public List<ApplyIndexListDto> getApplyIndexList(HashMap<String, Object> indexApplyListDatae) {
-		return indexDao.selectApplyIndexByParams(indexApplyListDatae);
+
+	public List<ApplyIndexListDto> getApplyIndexList(
+			String schemaName,
+			int approvalStatus,
+			String indexName,
+			int startRowNo,
+			int endRowNo
+			) {
+		List<ApplyIndexListDto> list = 
+				indexDao.selectApplyIndexByParamsPaging(
+					schemaName,
+					approvalStatus,
+					indexName,
+					startRowNo,
+					endRowNo
+					);
+		return list;
 	}
+
 	
 	public ApplyIndexDetailDto getApplyIndexListDetail(int applyNo) {
 		return indexDao.selectApplyIndexDetail(applyNo);

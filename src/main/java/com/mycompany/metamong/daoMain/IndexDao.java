@@ -23,9 +23,19 @@ public interface IndexDao {
 	
 	public List<ApplyIndexListDto> selectApplyIndexByParams(HashMap<String, Object> indexApplyListData);
 	
+	public List<ApplyIndexListDto> selectApplyIndexByParamsPaging(
+			@Param("schemaName") String schemaName,
+			@Param("approvalStatus") int approvalStatus,
+			@Param("indexName") String indexName,
+			@Param("startRowNo") int startRowNo,
+			@Param("endRowNo") int endRowNo
+			);
+
 	public ApplyIndexDetailDto selectApplyIndexDetail(int applyNo);
 	
 	public int selectTotalRows();
+
+	public int selectIndexRows(String indexName);
 	
 	public int insertApplyIndex(ApplyIndexDto applyIndexDto);
 	

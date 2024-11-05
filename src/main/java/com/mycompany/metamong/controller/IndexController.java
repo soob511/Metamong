@@ -24,6 +24,7 @@ import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.dto.index.RefColumnDto;
+import com.mycompany.metamong.dto.notice.NoticeDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.IndexService;
@@ -102,21 +103,39 @@ public class IndexController {
 			HttpSession session,
 			Model model
 			) {
-		int totalRows = indexService.countIndexRows();
+		int totalRows = indexService.countTotalRows();
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyIndexListDto> list = applyService.getApplyIndexList(pager);
-		session.setAttribute("pager", pager);
-		model.addAttribute("totalRows", totalRows);
+		model.addAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyList";
 	}
 	
-	@ResponseBody
+//	@ResponseBody
+//	@GetMapping("/searchApplyIndex")
+//	public List<ApplyIndexListDto> searchApplyIndex(@RequestParam HashMap<String, Object> indexApplyListData) {
+//		List<ApplyIndexListDto> list = applyService.getApplyIndexList(indexApplyListData);
+//		return list;
+//	}
+	
 	@GetMapping("/searchApplyIndex")
-	public List<ApplyIndexListDto> searchApplyIndex(@RequestParam HashMap<String, Object> indexApplyListData) {
-		List<ApplyIndexListDto> list = applyService.getApplyIndexList(indexApplyListData);
-		return list;
+	public String searchApplyIndex(
+			@RequestParam String schemaName,
+	        @RequestParam int approvalStatus,
+	        @RequestParam String indexName,
+	        @RequestParam(defaultValue="1") int pageNo,
+    		HttpSession session,
+    		Model model) {
+		int totalRows = indexService.countIndexRows(indexName);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList(
+				schemaName, approvalStatus, indexName, pager.getStartRowNo(), pager.getEndRowNo()
+				);
+		model.addAttribute("pager", pager);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("list", list);
+		return "dbObject/index/indexApplyListSearch";
 	}
 	
 	@GetMapping("/indexApplyDetail")
