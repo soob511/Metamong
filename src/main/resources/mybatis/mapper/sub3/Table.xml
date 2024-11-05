@@ -6,5 +6,10 @@
 		${sql}
 	</insert>
 	
+	<select id="selectTableByDic" resultType="Table">
+	    SELECT table_name tableNm
+		FROM user_tables
+	</select>
+	
 </mapper>
 	
