@@ -47,19 +47,6 @@
                     </table>
                     <table class="table table-bordered" id="subTable">
                         <tr>
-                            <td class="table-secondary" id="subtdth">이전글</td>
-                            <td id="table-contents">
-                            	<c:choose>
-                            		<c:when test="${notice.prevNum == 0}">
-                            		이전글이 없습니다.
-                            		</c:when>
-                            		<c:otherwise>                         
-	                            	<a href="noticeDetail?noticeId=${notice.prevNum}" style="color:black;">${notice.prevTitle}</a>
-	                            	</c:otherwise>	 
-	                            	</c:choose>                          
-                           </td>
-                        </tr>
-                        <tr>
                             <td class="table-secondary" id="subtdth">다음글</td>
                             <td id="table-contents">
                             	<c:choose>
@@ -71,6 +58,19 @@
 	                            	</c:otherwise>	 
 	                            	</c:choose>                          
                            </td>                 
+                        </tr>
+                        <tr>
+                            <td class="table-secondary" id="subtdth">이전글</td>
+                            <td id="table-contents">
+                            	<c:choose>
+                            		<c:when test="${notice.prevNum == 0}">
+                            		이전글이 없습니다.
+                            		</c:when>
+                            		<c:otherwise>                         
+	                            	<a href="noticeDetail?noticeId=${notice.prevNum}" style="color:black;">${notice.prevTitle}</a>
+	                            	</c:otherwise>	 
+	                            	</c:choose>                          
+                           </td>
                         </tr>
                     </table>
                     <div class="d-flex justify-content-end mt-3">
