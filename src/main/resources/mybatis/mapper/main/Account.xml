@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mycompany.metamong.daoMain.AccountDao">
+	
+	<select id="countRows" resultType="int">
+		SELECT count(*)
+		FROM member
+	    WHERE 
+           m_role != 'ROLE_ADMIN'
+	</select>
+
+	<select id="selectApplyList" parameterType="Pager" resultType="Member">
+		    <![CDATA[
+		        SELECT
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_applydate
+		        FROM (
+		            SELECT 
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate
+		            FROM 
+		                member m
+		            LEFT OUTER JOIN 
+		                team t ON m.team_id = t.team_id
+		            WHERE 
+		                m.m_role != 'ROLE_ADMIN'
+		            ORDER BY 
+		                m.m_applydate DESC
+		        )
+		        WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+		    ]]>
+	</select>
+</mapper>
