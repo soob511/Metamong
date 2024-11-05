@@ -16,7 +16,7 @@
 
 .table-container {
 	margin-top:20px;
-	height: 600px;
+	height: 550px;
 	border-radius: 8px !important; 
     box-shadow: var(--box-shadow);
     overflow: hidden;
@@ -65,9 +65,34 @@ td, th{
 	vertical-align: middle;
 }
 
+.filter {
+    display: flex;
+    position: relative;
+    align-items: center;
+    min-width : 200px !important;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.filter-label {
+	min-width: 70px;
+	margin:0 10px;
+	text-align: right;
+}
+
+.status-filter-label{
+	min-width: 30px;
+	margin:0 10px;
+	text-align: right;
+}
+
+#statusSelect {
+	margin-right: 20px;
+}
+
 .search-box form {
    width: 240px;
-   margin-left: 20px;
+   margin-left: 10px;
    border-radius: 5px;
    font-size: 22px;
    position: relative;
@@ -86,10 +111,14 @@ td, th{
 
 .search-box .bi-search {
    position: absolute;
-   right: 20px;
+   right: 15px;
    top: 10px;
    font-size: 20px;
    color: #343a40;
+}
+
+.bi-search:hover {
+	cursor: pointer;
 }
 
 .code-search-label {
