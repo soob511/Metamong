@@ -123,7 +123,6 @@ public class IndexController {
 		List<ApplyIndexListDto> list = applyService.getApplyIndexList(
 				schemaName, approvalStatus, indexName, pager.getStartRowNo(), pager.getEndRowNo()
 				);
-		log.info("찾아봐" + list);
 		session.setAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
