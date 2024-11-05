@@ -88,11 +88,41 @@ public class MemberController {
 		
 		return "member/memberList";
 	}
-	@ResponseBody
+	
+	
 	@GetMapping("/memberSearch")
-	    public List<MemberDto> search(@RequestParam(defaultValue="") String option, @RequestParam(defaultValue="") String keyword) {
-	        List<MemberDto> searchResults = memberService.searchMember(option,keyword);
-
-	        return searchResults;
+	    public String memberSearch(
+	    		@RequestParam(defaultValue="") String option, 
+	    		@RequestParam(defaultValue="") String keyword,
+	    		@RequestParam(defaultValue="1")int pageNo,
+	    		HttpSession session,
+	    		Model model) {
+		
+		if (keyword == null || keyword.trim().isEmpty()) {
+	        
+			int totalRows = memberService.getTotalRows();
+			Pager pager = new Pager(10,5,totalRows,pageNo);
+			model.addAttribute("totalRows", totalRows);
+			
+			List<MemberDto> list = memberService.getMemberList(pager);
+			model.addAttribute("list", list);
+			session.setAttribute("pager", pager);
+	        return "member/memberSearch";
 	    }
+		else {
+		
+		int pagerTotalRows = memberService.countMembers(option, keyword,pageNo);
+		Pager pager = new Pager(10, 5,pagerTotalRows, pageNo);
+		
+		model.addAttribute("totalRows", pagerTotalRows);
+		pager.setTotalRows(pagerTotalRows);
+		
+        List<MemberDto> list = memberService.searchMember(option,keyword,pager);
+        model.addAttribute("list", list);
+        model.addAttribute("option", option);
+        session.setAttribute("option", option);
+        session.setAttribute("pager", pager);
+        	return "member/memberSearch";
+			}	    
+		}
 }
