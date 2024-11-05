@@ -212,4 +212,8 @@ public class ApplyService {
 		applyListDao.updateProcessApproval(applyList);
 	}
 
+	public void applyObject(int applyNo) {
+		applyListDao.updateApplyStatus(applyNo);
+	}
+
 }

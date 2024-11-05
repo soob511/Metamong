@@ -90,8 +90,7 @@
 	<select id="selectCodeApplyDetail" parameterType="int"
 		resultType="ApplyCodeDetail">
 		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name,
-		a.apply_reason,
-		a.reject_reason, a.approval_status
+		a.apply_reason, a.apply_type, a.reject_reason, a.approval_status
 		FROM apply_list a
 		JOIN member m ON a.m_id = m.m_id
 		WHERE apply_no =#{applyNo}
@@ -240,7 +239,13 @@
 		compl_date = SYSDATE
 		WHERE apply_no = #{applyNo}
 	</update>
-
+	
+	<update id="updateApplyStatus" parameterType="int">
+		UPDATE apply_list
+		SET approval_status = 3
+		WHERE apply_no = #{applyNo}
+	</update>
+	
 </mapper>
 
 		

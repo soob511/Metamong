@@ -13,4 +13,5 @@ public class ApplyCodeDetailDto {
 	private String rejectReason;
 	private int approvalStatus;
 	private String applyReason;
+	private String applyType;
 }

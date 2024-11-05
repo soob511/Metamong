@@ -42,4 +42,6 @@ public interface ApplyListDao {
 	
 	public int updateProcessApproval(ApplyListDto applyList);
 
+	public int updateApplyStatus(int applyNo);
+
 }

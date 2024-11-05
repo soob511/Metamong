@@ -198,6 +198,23 @@ public class CodeController {
 		return ResponseEntity.ok("/Metamong/code/codeApplyDetail?applyNo=" + applyNo);
 	}
 	
+	@PostMapping("/applyComplete")
+	public ResponseEntity<String> applyComplete(int applyNo, String type) {
+		log.info("type: ", type);
+		/*if(type == "CREATE") {*/
+			CodeDto code = applyService.getCodeApplyByNo(applyNo);
+			List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
+
+			codeService.insertCode(code, items);
+			applyService.applyObject(applyNo);
+			
+	/*	} else {
+			
+		}*/
+		
+		return ResponseEntity.ok("/Metamong/code/codeList");
+	}
+	
 	@ResponseBody
 	@GetMapping("/codeLoad")
 	public List<CodeDto> codeLoad(){
