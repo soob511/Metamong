@@ -49,18 +49,28 @@
                         <tr>
                             <td class="table-secondary" id="subtdth">이전글</td>
                             <td id="table-contents">
-	                            <c:if test=${prevNotice.noticeId != null}>
-	                            	<a href="noticeDetail?noticeId=${prevNotice.noticeId}" style="color:black;">${prevNotice.noticeTitle}</a>	                           
-	                        </c:if>
+                            	<c:choose>
+                            		<c:when test="${notice.prevNum == 0}">
+                            		이전글이 없습니다.
+                            		</c:when>
+                            		<c:otherwise>                         
+	                            	<a href="noticeDetail?noticeId=${notice.prevNum}" style="color:black;">${notice.prevTitle}</a>
+	                            	</c:otherwise>	 
+	                            	</c:choose>                          
                            </td>
                         </tr>
                         <tr>
                             <td class="table-secondary" id="subtdth">다음글</td>
                             <td id="table-contents">
-                            <c:if test= ${nextNotice.noticeId != null}>
-                            	<a href="noticeDetail?noticeId=${nextNotice.noticeId}" style="color:black;">${nextNotice.noticeTitle}</a>	
-                            </c:if>
-                           	</td>                    
+                            	<c:choose>
+                            		<c:when test="${notice.nextNum == 0}">
+                            		다음글이 없습니다.
+                            		</c:when>
+                            		<c:otherwise>                         
+	                            	<a href="noticeDetail?noticeId=${notice.nextNum}" style="color:black;">${notice.nextTitle}</a>
+	                            	</c:otherwise>	 
+	                            	</c:choose>                          
+                           </td>                 
                         </tr>
                     </table>
                     <div class="d-flex justify-content-end mt-3">

@@ -39,25 +39,31 @@
 			notice_hitcount = notice_hitcount + 1
 		WHERE notice_id = #{noticeId}
 	</update>
-	
-	<select id="selectPrevNotice" parameterType="int" resultType="Notice">
-		SELECT 
-			notice_id, notice_title
-		FROM notice
-		WHERE #{noticeId} > notice_id
-		ORDER BY notice_id DESC
-		FETCH FIRST ROWS ONLY
+
+	<select id="selectPrevNext" resultType="Notice" parameterType="int">
+		    SELECT notice_id, notice_title, notice_isimp, notice_regdate, prev_num, prev_title, next_num, next_title
+		    FROM (
+			        SELECT 
+			            notice_id, notice_title, notice_isimp,  notice_regdate,
+			            LAG(notice_id, 1, 0) OVER(
+			                ORDER BY notice_isimp DESC, notice_regdate DESC, notice_id DESC
+			            ) AS next_num,
+			            LAG(notice_title, 1) OVER(
+			                ORDER BY notice_isimp DESC, notice_regdate DESC, notice_id DESC
+			            ) AS next_title,
+			            LEAD(notice_id, 1, 0) OVER(
+			                ORDER BY notice_isimp DESC, notice_regdate DESC, notice_id DESC
+			            ) AS prev_num,
+			            LEAD(notice_title, 1) OVER(
+			                ORDER BY notice_isimp DESC, notice_regdate DESC, notice_id DESC
+			            ) AS prev_title
+			        FROM 
+			            notice
+			    )
+		    WHERE 
+		        notice_id = #{noticeId}
 	</select>
-	
-	<select id="selectNextNotice" parameterType="int" resultType="Notice">
-		SELECT 
-			notice_id, notice_title
-		FROM notice
-		WHERE notice_id > #{noticeId}
-		ORDER BY notice_id
-		FETCH FIRST ROWS ONLY
-	</select>
-	
+
 	<select id="selectNoticeFile" parameterType="int" resultType="Notice">
 		SELECT 
 			notice_filename, notice_filetype, notice_filedata

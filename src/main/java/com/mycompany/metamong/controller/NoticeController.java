@@ -90,12 +90,13 @@ public class NoticeController {
 		
 		noticeService.addHitcount(noticeId);
 		
-		NoticeDto prevNotice = noticeService.getPrevNotice(noticeId);
-		NoticeDto nextNotice = noticeService.getNextNotice(noticeId);
+		NoticeDto prevNext = noticeService.getPrevNext(noticeId);
+		notice.setPrevNum(prevNext.getPrevNum());
+		notice.setPrevTitle(prevNext.getPrevTitle());
+		notice.setNextNum(prevNext.getNextNum());
+		notice.setNextTitle(prevNext.getNextTitle());
 		
-		model.addAttribute("prevNotice", prevNotice);
-		model.addAttribute("nextNotice", nextNotice);
-		
+		model.addAttribute("prevNext", prevNext);
 		return "notice/noticeDetail";
 	}
 	
