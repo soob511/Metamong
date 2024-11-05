@@ -26,7 +26,7 @@ public class IndexService {
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
-
+	
 	public List<IndexDto> getIndexList() {
 		List<IndexDto> list = new ArrayList<>();
 		list.addAll(indexDao.selectIndex());
@@ -87,6 +87,10 @@ public class IndexService {
 			break;
 		}
 		return list;
+	}
+	
+	public int countIndexRows() {
+		return indexDao.selectTotalRows();
 	}
 
 	public void createIndex(IndexDto indexdto) {

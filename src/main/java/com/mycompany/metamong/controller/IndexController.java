@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
@@ -94,8 +97,16 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexApplyList")
-	public String indexApplyList(Model model) {
-		List<ApplyIndexListDto> list = applyService.getApplyIndexList();
+	public String indexApplyList(
+			@RequestParam(defaultValue="1")int pageNo, 
+			HttpSession session,
+			Model model
+			) {
+		int totalRows = indexService.countIndexRows();
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList(pager);
+		session.setAttribute("pager", pager);
+		model.addAttribute("totalRows", totalRows);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyList";

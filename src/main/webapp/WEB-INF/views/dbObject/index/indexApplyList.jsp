@@ -107,19 +107,26 @@
 						</tbody>
 					</table>
 					</div>
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-						</ul>
-					</nav>
+					<div class="page">
+		           			<a href="indexApplyList?pageNo=1" class="btn btn-outline-primary btn-sm"><<</a>
+		           			<c:if test="${pager.groupNo > 1}">
+		           				<a href="indexApplyList?pageNo=${pager.startPageNo - 1}" class="btn btn-outline-info btn-sm"><</a>
+		           			</c:if>
+		           			
+		           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
+		           				<c:if test="${pager.pageNo == i}">
+		           					<a href="indexApplyList?pageNo=${i}" class="btn btn-primary btn-sm">${i}</a>
+		           				</c:if>
+		           				<c:if test="${pager.pageNo != i}">
+		           					<a href="indexApplyList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+		           				</c:if>
+		           			</c:forEach>
+		           			
+		           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+		           				<a href="indexApplyList?pageNo=${pager.endPageNo + 1}" class="btn btn-outline-info btn-sm">></a>
+		           			</c:if>
+		           			<a href="indexApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
+		           	</div>
 				</div>
 			</div>
 	</div>
