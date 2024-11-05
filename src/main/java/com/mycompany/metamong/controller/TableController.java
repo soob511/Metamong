@@ -23,7 +23,6 @@ import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.column.NewColumnDto;
-import com.mycompany.metamong.dto.column.PreColumnDto;
 import com.mycompany.metamong.dto.member.MemberDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
