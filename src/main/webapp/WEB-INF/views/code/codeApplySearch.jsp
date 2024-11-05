@@ -63,7 +63,7 @@
   	<c:if test="${pager.totalRows > 0}">
 	    <div class="page">
 	        <div class="pagination">
-	            <a href="codeApplyList?pageNo=1" class="btn btn-outline-primary btn-sm">&lt;&lt;</a>
+	            <a href="javascript:codeApplySearch(1)" class="btn btn-outline-primary btn-sm">&lt;&lt;</a>
 	            <c:if test="${pager.groupNo > 1}">
 	                <a href="javascript:codeApplySearch(${pager.startPageNo - 1})" class="btn btn-outline-info btn-sm">&lt;</a>
 	            </c:if>
