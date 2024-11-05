@@ -34,7 +34,6 @@ $(document).ready(function() {
 		}
 		filterIndex();
 	});
-	document.getElementById("schemaName_${index.applyNo}").innerText = getSchemaName('${index.schemaName}');
 });
 
 function getSchemaName(schemaName) {
@@ -135,7 +134,7 @@ function filterIndex() {
 						</tr>`;
 				});
 			} else {
-				html += '<th colspan="6">해당 조건에 맞는 인덱스가 없습니다</th>'
+				html += '<th colspan="8">해당 조건에 맞는 인덱스가 없습니다</th>'
 			}
 			$('#indexTableBody').html(html);			 
 		},

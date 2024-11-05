@@ -65,6 +65,44 @@
 										</tbody>
 									</table>
 								</div>
+								<div></div>
+								<div class="table-container-second">
+					                <table class="table table-hover">
+					                  <thead class="table-primary">
+					                    <tr>
+					                      <th scope="col">No.</th>
+					                      <th scope="col">인덱스명</th>
+					                      <th scope="col">스키마명</th>
+					                      <th scope="col">참조테이블명</th>
+					                      <th scope="col">참조컬럼명</th>
+					                      <th scope="col">컬럼순서</th>
+					                      <th scope="col">유일성</th>
+					                      <th scope="col">정렬</th>
+					                    </tr>
+					                  </thead>
+					                  <tbody id="indexTableBody">
+										<tr>
+										<th>1</th>
+										<td>SYS_C0021765</td>
+										<td>HR</td>
+										<td>MEMBER</td>
+										<td>M_ID</td>
+					                    <td>null</td>
+					                    <td>UNIQUE</td>
+					                    <td>null</td>
+										</tr>
+										<tr>
+										<th>2</th>
+										<td>SYS_C0021770</td>
+										<td>HR</td>
+										<td>NOTICE</td>
+										<td>NOTICE_ID</td>
+					                    <td>null</td>
+					                    <td>UNIQUE</td>
+					                    <td>null</td>
+										</tr></tbody>
+					                </table>
+			                </div>
 							</div>
 							<div class="col index-col-table">
 								<div
