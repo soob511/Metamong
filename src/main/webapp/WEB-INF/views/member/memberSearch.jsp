@@ -1,28 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-	<div class="d-flex justify-content-between align-items-center">
-			<div class="pt-3">총 <span class="form-required" id="memberCount">${totalRows}</span>명의 회원이 있습니다.</div>
-				<div class="d-flex">
-                      <div class="table-list-filters">
-                          <div class="schema-filter">
-					<select id="schemaSelect" class="form-select"
-						aria-label="Default select example">
-						<option value="ID" ${option == 'ID' ? 'selected' : ''}>ID</option>
-						<option value="이름" ${option == '이름' ? 'selected' : ''}>이름</option>
-						<option value="권한" ${option == '권한' ? 'selected' : ''}>권한</option>
-						<option value="소속" ${option == '소속' ? 'selected' : ''}>소속</option>
-						<option value="사번" ${option == '사번' ? 'selected' : ''}>사번</option>
-					</select>
-				</div>
-				</div>
-				<div class="search-box">
-						<input class="form-control" type="search"
-							id="memberSearch" name="keyword" placeholder="Search" aria-label="Search">
-						<i class="bi bi-search"></i>
-				</div>
-			</div>
-			</div>
+	<div class="d-flex  justify-content-start">
+			<div >총 <span class="form-required" id="memberCount">${totalRows}</span>명의 회원이 있습니다.</div>			
+	</div>
 			<div class="table-container">
 				<table class="table table-hover">
 					<thead class="table-secondary">

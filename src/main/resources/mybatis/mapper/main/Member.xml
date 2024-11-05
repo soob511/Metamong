@@ -56,75 +56,36 @@
 	</select>
 
 	<select id="selectMemberList" parameterType="Pager" resultType="Member">
-	    <![CDATA[
-	        SELECT
-	            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
-	        FROM (
-	            SELECT 
-	                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
-	            FROM 
-	                member m
-	            LEFT OUTER JOIN 
-	                team t ON m.team_id = t.team_id
-	            WHERE 
-	                m.m_role != 'ROLE_ADMIN'
-	            ORDER BY 
-	                m.m_name, m.m_id
-	        )
-	        WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
-	    ]]>
+		    <![CDATA[
+		        SELECT
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
+		        FROM (
+		            SELECT 
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
+		            FROM 
+		                member m
+		            LEFT OUTER JOIN 
+		                team t ON m.team_id = t.team_id
+		            WHERE 
+		                m.m_role != 'ROLE_ADMIN'
+		            ORDER BY 
+		                m.m_name, m.m_id
+		        )
+		        WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
+		    ]]>
 	</select>
 	
-	<!-- <select id="selectMemberSearch" parameterType="Pager" resultType="Member">
-		    <![CDATA[
-			        SELECT 
-			      		rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
-			        FROM (
-			            SELECT 
-			                rownum AS rnum, 
-			                m.M_id AS MId, 
-			                m.M_name AS MName, 
-			                REPLACE(m.M_role, 'ROLE_', '') AS MRole, 
-			                t.team_id AS teamId, 
-			                t.team_name AS teamName, 
-			                m.M_empid AS MEmpId, 
-			                m.M_tel AS MTel
-			            FROM member m
-			            FULL OUTER JOIN team t ON m.team_id = t.team_id
-			            <where>
-			                <if test="keyword != null and keyword != '' and option == 'ID'">
-			                    LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '이름'">
-			                    m.M_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '권한'">
-			                    LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '소속'">
-			                    t.team_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '사번'">
-			                    LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
-			            </where>
-			            ORDER BY m.M_name, m.M_id
-			        )
-			        WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
-		    		]]>
-		</select> -->
-		
-		<select id="selectMemberSearch"  resultType="Member" parameterType="Pager">
+	<select id="selectMemberSearch"  resultType="Member" parameterType="Pager">
 	    <![CDATA[
-	        SELECT
-	            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
-	        FROM (
-	            SELECT 
-	                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
-	            FROM 
-	                member m
-	            LEFT OUTER JOIN 
-	                team t ON m.team_id = t.team_id
+		        SELECT
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
+		        FROM (
+		            SELECT 
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
+		            FROM 
+		                member m
+		            LEFT OUTER JOIN 
+		                team t ON m.team_id = t.team_id
 	          ]]>       
 	            <where>
 			                <if test="keyword != null and keyword != '' and option == 'ID'">
@@ -146,35 +107,38 @@
 		            <![CDATA[
 				            ORDER BY 
 				                m.m_name, m.m_id
-				        )
-				        WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
+				        	)
+			        WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
 	   				 ]]>
-		</select>
-
-	<select id="countMembers" parameterType="map" resultType="int">
-	    SELECT COUNT(*) 
-	    FROM member m
-	    FULL OUTER JOIN team t ON m.team_id = t.team_id
-	   <where>
-			<if test="keyword != null and keyword != '' and option == 'ID'">
-            LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-        	</if>
-			<if test="keyword != null and keyword != '' and option == '이름'">
-				m.M_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-			<if test="keyword != null and keyword != '' and option == '권한'">
-            LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-        	</if>
-			<if test="keyword != null and keyword != '' and option == '소속'">
-				t.team_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-			<if test="keyword != null and keyword != '' and option == '사번'">
-            LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-        	</if>
-			
-		</where>
-		  
 	</select>
 
+	<select id="countMembers" parameterType="Pager" resultType="int">
+	    SELECT COUNT(*)
+	    	FROM(
+	    		SELECT
+	    			rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel 
+			    FROM member m
+			    FULL OUTER JOIN team t ON m.team_id = t.team_id
+			   <where>
+					<if test="keyword != null and keyword != '' and option == 'ID'">
+		            LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+		        	</if>
+					<if test="keyword != null and keyword != '' and option == '이름'">
+						m.M_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+					</if>
+					<if test="keyword != null and keyword != '' and option == '권한'">
+		            LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+		        	</if>
+					<if test="keyword != null and keyword != '' and option == '소속'">
+						t.team_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+					</if>
+					<if test="keyword != null and keyword != '' and option == '사번'">
+		            LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
+		        	</if>
+					
+				</where>
+		  
+				 )
+	</select>
 </mapper>
 	

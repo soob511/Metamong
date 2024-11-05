@@ -1,6 +1,5 @@
 package com.mycompany.metamong.controller;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -103,25 +102,27 @@ public class MemberController {
 	        
 			int totalRows = memberService.getTotalRows();
 			Pager pager = new Pager(10,5,totalRows,pageNo);
-			
-			session.setAttribute("pager", pager);
 			model.addAttribute("totalRows", totalRows);
 			
 			List<MemberDto> list = memberService.getMemberList(pager);
 			model.addAttribute("list", list);
+			session.setAttribute("pager", pager);
 	        return "member/memberSearch";
 	    }
+		else {
 		
-		int totalRows = memberService.countMembers(option, keyword);
-		Pager pager = new Pager(10, 5, totalRows, pageNo);
-		pager.setTotalRows(totalRows);
-		session.setAttribute("pager", pager);
-		model.addAttribute("totalRows", totalRows);
+		int pagerTotalRows = memberService.countMembers(option, keyword,pageNo);
+		Pager pager = new Pager(10, 5,pagerTotalRows, pageNo);
+		
+		model.addAttribute("totalRows", pagerTotalRows);
+		pager.setTotalRows(pagerTotalRows);
+		
         List<MemberDto> list = memberService.searchMember(option,keyword,pager);
         model.addAttribute("list", list);
         model.addAttribute("option", option);
-       // session.setAttribute("option", option);
-
-        return "member/memberSearch";
-	    }
+        session.setAttribute("option", option);
+        session.setAttribute("pager", pager);
+        	return "member/memberSearch";
+			}	    
+		}
 }

@@ -17,11 +17,9 @@
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
 					<h4 class="fw-bold">> 직원목록</h4>
-					<div id="memberList">
-					<div class="d-flex justify-content-between align-items-center">
-					<div>총 <span class="form-required" id="memberCount">${totalRows}</span>명의 회원이 있습니다.</div>
-						<div class="d-flex">
-                        <div class="table-list-filters">
+				
+					<div class="d-flex justify-content-end">
+                        <div class="table-list-filters me-2">
                             <div class="schema-filter">
 							<select id="schemaSelect" class="form-select"
 								aria-label="Default select example">
@@ -38,8 +36,14 @@
 									id="memberSearch" name="keyword" placeholder="Search" aria-label="Search" >
 								 <i  class="bi bi-search"></i> 
 						</div>
+					</div>	
+					
+					<div id="memberList" >
+					<div class="d-flex  justify-content-start">
+					<div>총 <span class="form-required" id="memberCount">${totalRows}</span>명의 회원이 있습니다.</div>
 					</div>
-					</div>
+					
+					
 					<div class="table-container">
 						<table class="table table-hover" >
 							<thead class="table-secondary">

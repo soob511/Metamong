@@ -11,16 +11,16 @@ $("#memberTable").on("click", ".table-row", function() {
 $("#memberSearch").on("keydown", function(event) {
     if (event.keyCode === 13) { 
         event.preventDefault();
-        memberSearch(1);
+        memberSearch();
     }
 });
 
 
 $('.bi-search').on('click', function() {
-	memberSearch(1);
+	memberSearch();
 });
 
-function memberSearch(pageNo){
+function memberSearch(pageNo=1){
 	var option = $('#schemaSelect').val();
 	console.log(option);
 	var keyword = $('#memberSearch').val();
@@ -28,7 +28,7 @@ function memberSearch(pageNo){
 	
 	$.ajax({
 		url:"/Metamong/member/memberSearch",
-		type:"GET",		
+		type:"GET",	
 		data:{option : option, keyword : keyword , pageNo : pageNo},
 		success : function(data) {
 			$('#memberList').html(data);
