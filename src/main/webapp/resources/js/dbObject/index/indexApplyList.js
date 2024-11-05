@@ -7,14 +7,20 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(3)').addClass('active');
 
-    $('#schemaSelect').change(filterApplyIndex);
-    $('#statusSelect').change(filterApplyIndex);
-    $('#biSearch').click(filterApplyIndex);
+    $('#schemaSelect').change(function() {
+        filterApplyIndexPaging(1);
+    });
+    $('#statusSelect').change(function() {
+        filterApplyIndexPaging(1);
+    });
+    $('#biSearch').click(function() {
+    	filterApplyIndexPaging(1);
+    });
     $('#indexNameSearch').on('keyup', function(event) {
     	if (event.key != "Enter") {
     		return;
     	}
-    	filterApplyIndex();
+    	filterApplyIndexPaging(1);
     })
 });
 
@@ -38,48 +44,22 @@ function getStatusId(approvalStatus) {
     }
 }
 
-function filterApplyIndex() {
+function filterApplyIndexPaging(pageNo) {
 	let schemaName = $('#schemaSelect').val();
 	let approvalStatus = parseInt($('#statusSelect').val(), 10);
 	let indexName = $('#indexNameSearch').val();
 	
-	const indexApplyListData = {
-			schemaName : schemaName,
-			approvalStatus : approvalStatus,
-			indexName : indexName
-	};
-	
 	$.ajax({
 		type : 'GET',
-		url : 'searchApplyIndex',
-		data : indexApplyListData,
+		url : '/Metamong/index/searchApplyIndex',
+		data : { 
+			schemaName : schemaName,
+			approvalStatus : approvalStatus,
+			indexName : indexName,
+            pageNo: pageNo
+			},
 		success : function(data) {
-			let html = '';
-			let count = 1;
-			
-			if (data.length > 0) {
-				data.forEach(function(index) {
-					html += `
-						<tr>
-	                      <th>${count}</th>
-	                      <td>${index.fmtApplyDate}</td>
-	                      <td>${index.mname}</td>
-	                      <td>${index.schemaName}</td>
-	                      <td>${index.idxName}</td>
-	                      <td>${index.applyObj}</td>
-	                      	<td>
-	                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&indexNo=${count++}"><button class="btn-history-details">상세보기</button></a>
-                  			</td>
-	                      <td>
-              	            <span id="status-${getStatusId(index.approvalStatus)}">${getStatusText(index.approvalStatus)}</span>
-	                      </td>
-                    	</tr>
-                    	`
-				});
-			} else {
-				html += '<th colspan="8">조건에 맞는 인덱스가 없습니다</th>'
-			}
-			$('#indexApplyTable').html(html);			 
+			$('#indexApplyListBody').html(data);			 
 		},
 		error : function(xhr, status, error) {
 			console.log('오류: ' + xhr.responseText);
