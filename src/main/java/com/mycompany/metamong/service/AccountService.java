@@ -22,4 +22,12 @@ public class AccountService {
 	public List<MemberDto> getApplyList(Pager pager) {
 		return accountDao.selectApplyList(pager);
 	}
+	
+	public List<MemberDto> searchMember(String option, String keyword, Pager pager) {
+		return accountDao.selectMemberSearch(option, keyword, pager);
+	}
+	
+	public int countMembers(String option, String keyword, int pageNo) {
+		return accountDao.countMembers(option,keyword,pageNo);
+	}
 }

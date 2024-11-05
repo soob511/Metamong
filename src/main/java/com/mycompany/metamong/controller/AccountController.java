@@ -40,5 +40,41 @@ public class AccountController {
 		model.addAttribute("list", list);
 		return "account/accountApplyList";
 	}
+	
+	@GetMapping("/accountApplySearch")
+    public String memberSearch(
+    		@RequestParam(defaultValue="") String option, 
+    		@RequestParam(defaultValue="") String keyword,
+    		@RequestParam(defaultValue="1")int pageNo,
+    		HttpSession session,
+    		Model model) {
+	
+	if (keyword == null || keyword.trim().isEmpty()) {
+        
+		int totalRows = accountService.getTotalRows();
+		Pager pager = new Pager(10,5,totalRows,pageNo);
+		model.addAttribute("totalRows", totalRows);
+		
+		List<MemberDto> list = accountService.getApplyList(pager);
+		model.addAttribute("list", list);
+		session.setAttribute("pager", pager);
+        return "account/accountApplySearch";
+    }
+	else {
+	
+	int pagerTotalRows = accountService.countMembers(option, keyword,pageNo);
+	Pager pager = new Pager(10, 5,pagerTotalRows, pageNo);
+	
+	model.addAttribute("totalRows", pagerTotalRows);
+	pager.setTotalRows(pagerTotalRows);
+	
+    List<MemberDto> list = accountService.searchMember(option,keyword,pager);
+    model.addAttribute("list", list);
+    model.addAttribute("option", option);
+    session.setAttribute("option", option);
+    session.setAttribute("pager", pager);
+    	return "account/accountApplySearch";
+		}	    
+	}
 
 }
