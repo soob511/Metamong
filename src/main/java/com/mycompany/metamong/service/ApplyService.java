@@ -82,9 +82,9 @@ public class ApplyService {
 		return applyListDao.selectApplyTableList(pager);
 	}
 
-	public List<ApplyTableDto> getApplyTableSearch(Map<String, String> form) {
-		return applyListDao.selectApplyTableSearch(form);
-	}
+	/*public List<ApplyTableDto> getApplyTableSearch(Map<String, String> form, Pager pager) {
+		return applyListDao.selectApplyTableSearch(form,pager);
+	}*/
 
 	public ApplyTableDeatilDto getTableListDetail(int applyNo) {
 		return applyListDao.selectTableListDetail(applyNo);
@@ -186,4 +186,13 @@ public class ApplyService {
 	public int getTotalRows() {
 		return applyListDao.selectTotalRows();
 	}
+
+	public int getSearchRows(Map<String, String> form) {
+		return applyListDao.selectSearchRows(form);
+	}
+
+	public List<ApplyTableDto> getApplyTableSearch(Map<String, Object> params) {
+		return applyListDao.selectApplyTableSearch(params);
+	}
+
 }

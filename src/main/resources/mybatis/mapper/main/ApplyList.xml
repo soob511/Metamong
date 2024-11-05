@@ -86,8 +86,9 @@
 		JOIN member m ON a.m_id = m.m_id
 		WHERE apply_no =#{applyNo}
 	</select>
-	
-	<select id="selectApplyTableList" parameterType="Pager" resultType="ApplyTableList">
+
+	<select id="selectApplyTableList" parameterType="Pager"
+		resultType="ApplyTableList">
     <![CDATA[
         SELECT 
             rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_obj
@@ -108,26 +109,26 @@
         )
         WHERE rnum >= #{startRowNo}
     ]]>
-</select>
+	</select>
 
-
-	<select id="selectApplyTableSearch" parameterType="map"
-		resultType="ApplyTableList">
-		SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status,
-		a.schema_name, t.table_id, a.apply_obj
+	<select id="selectSearchRows" parameterType="map"
+		resultType="int">
+		SELECT COUNT(*)
 		FROM apply_list a
 		JOIN member m ON a.m_id = m.m_id
-		JOIN apply_table t ON a.apply_no = t.apply_no
+		JOIN
+		apply_table t ON a.apply_no = t.apply_no
 		<where>
 			a.apply_obj = 'TABLE'
 
 			<if test="keyword != null and keyword != ''">
 				AND (
 				m.m_name LIKE '%' || #{keyword} || '%'
-				OR t.table_id LIKE '%' || #{keyword} || '%'
+				OR t.table_id
+				LIKE '%' || #{keyword} || '%'
 				)
 			</if>
-			
+
 			<if test="schema != null and schema != ''">
 				AND a.schema_name = #{schema}
 			</if>
@@ -136,36 +137,93 @@
 				AND a.approval_status = #{status}
 			</if>
 		</where>
-		ORDER BY a.apply_date DESC
 	</select>
-	
-	<select id="selectTableListDetail" parameterType="int" resultType="ApplyTableDetail">
-		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name,a.apply_reason,
-		 a.reject_reason, a.approval_status, a.query, a.schema_name
+
+
+	<select id="selectApplyTableSearch" parameterType="map"
+		resultType="ApplyTableList">
+		SELECT
+		rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id,
+		apply_obj
+		FROM (
+		SELECT
+		rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name,
+		table_id, apply_obj
+		FROM (
+		SELECT
+		a.apply_no, m.m_name, a.apply_date, a.approval_status,
+		a.schema_name, t.table_id, a.apply_obj
 		FROM apply_list a
 		JOIN member m ON a.m_id = m.m_id
-		WHERE apply_no =#{applyNo}
+		JOIN apply_table t ON a.apply_no = t.apply_no
+		<where>
+			a.apply_obj = 'TABLE'
+
+			<if test="form.keyword != null and form.keyword != ''">
+				AND (
+				m.m_name LIKE '%' || #{form.keyword} || '%'
+				OR t.table_id LIKE '%' || #{form.keyword} || '%'
+				)
+			</if>
+
+			<if test="form.schema != null and form.schema != ''">
+				AND a.schema_name = #{form.schema}
+			</if>
+
+			<if test="form.status != null and form.status != ''">
+				AND a.approval_status = #{form.status}
+			</if>
+		</where>
+		ORDER BY a.apply_date DESC
+		)
+		    WHERE rownum <![CDATA[<]]>=#{pager.endRowNo}
+	    )
+	    WHERE rnum <![CDATA[>]]>=#{pager.startRowNo}
 	</select>
-	
+
+
+
+
+	<select id="selectTableListDetail" parameterType="int"
+		resultType="ApplyTableDetail">
+		SELECT m.m_name, a.apply_date, a.compl_date,
+		a.dba_name,a.apply_reason,
+		a.reject_reason, a.approval_status, a.query,
+		a.schema_name
+		FROM apply_list a
+		JOIN member
+		m ON a.m_id = m.m_id
+		WHERE
+		apply_no =#{applyNo}
+	</select>
+
 	<select id="selectApplyIndex" resultType="ApplyIndexList">
 		SELECT
-			a.apply_no, a.apply_date, m.m_name, a.schema_name, 
-			i.idx_name, a.apply_obj, a.approval_status
+		a.apply_no,
+		a.apply_date, m.m_name, a.schema_name,
+		i.idx_name, a.apply_obj,
+		a.approval_status
 		FROM
-			apply_list a
+		apply_list a
 		JOIN member m ON a.m_id = m.m_id
-		JOIN apply_index i ON i.apply_no = a.apply_no
+		JOIN
+		apply_index i ON i.apply_no =
+		a.apply_no
 		ORDER BY a.apply_date DESC
 	</select>
 
-	<select id="selectApplyIndexByParams" parameterType="map" resultType="ApplyIndexList">
+	<select id="selectApplyIndexByParams" parameterType="map"
+		resultType="ApplyIndexList">
 		SELECT
-			a.apply_no, a.apply_date, m.m_name, a.schema_name, 
-			i.idx_name, a.apply_obj, a.approval_status
+		a.apply_no, a.apply_date, m.m_name, a.schema_name,
+		i.idx_name,
+		a.apply_obj, a.approval_status
 		FROM
-			apply_list a
-		JOIN member m ON a.m_id = m.m_id
-		JOIN apply_index i ON i.apply_no = a.apply_no
+		apply_list a
+		JOIN member m ON a.m_id
+		= m.m_id
+		JOIN apply_index i ON i.apply_no =
+		a.apply_no
 		<where>
 			<if test="schemaName != 'ALL' ">
 				a.schema_name = #{schemaName}
@@ -179,19 +237,25 @@
 		</where>
 		ORDER BY a.apply_date DESC
 	</select>
-	
-	<select id="selectApplyIndexDetail" parameterType="int" resultType="ApplyIndexDetail">
-		SELECT 
-		    a.apply_date, a.compl_date, m.m_name, a.dba_name, 
-		    i.idx_name, a.schema_name, t.table_id, i.ref_column,
-		    i.is_unique, a.apply_reason, a.reject_reason, a.approval_status, 
-		    a.query
+
+	<select id="selectApplyIndexDetail" parameterType="int"
+		resultType="ApplyIndexDetail">
+		SELECT
+		a.apply_date, a.compl_date, m.m_name, a.dba_name,
+		i.idx_name, a.schema_name, t.table_id, i.ref_column,
+		i.is_unique,
+		a.apply_reason, a.reject_reason, a.approval_status,
+		a.query
 		FROM
-		    apply_list a
+		apply_list a
 		JOIN member m ON m.m_id = a.m_id
-		JOIN apply_index i ON i.apply_no = a.apply_no
+		JOIN apply_index i ON
+		i.apply_no =
+		a.apply_no
 		JOIN tables t ON t.table_no = i.table_no
-		WHERE a.apply_no = #{applyNo}
+		WHERE
+		a.apply_no =
+		#{applyNo}
 	</select>
 
 	<insert id="insertApplyList" parameterType="ApplyList">
@@ -205,11 +269,12 @@
 		#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
 		#{applyType})
 	</insert>
-	
+
 	<select id="selectTotalRows">
 		SELECT count(*)
 		FROM apply_list
-		WHERE apply_obj = 'TABLE'
+		WHERE apply_obj =
+		'TABLE'
 	</select>
 
 </mapper>
