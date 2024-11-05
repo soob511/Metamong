@@ -185,7 +185,7 @@ public class CodeController {
 	
 	@PostMapping("/codeApplyProcess")
 	public ResponseEntity<String> codeApplyProcess(int applyNo, int status, String reason, Authentication auth) {
-		String dbaName = memberService.getMNameById(auth.getName());
+		String dbaName = memberService.getDbaNameById(auth.getName());
 	
 		Map<String, Object> params = new HashMap<>();
 		params.put("applyNo", applyNo);  

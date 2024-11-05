@@ -112,7 +112,7 @@
 	   				 ]]>
 	</select>
 	
-	<select id="selectDbaName" parameterType="String" resultType="Member">
+	<select id="selectDbaName" parameterType="String" resultType="String">
 		SELECT m_name
 		FROM member
 		WHERE m_id = #{dbaId}
@@ -146,11 +146,6 @@
 				</where>
 
 	</select>
-	
-	<select id="selectMNameById" resultType="String" parameterType="String">
-		SELECT m_name
-		FROM member
-		WHERE m_id = #{mId}
-	</select>
+
 </mapper>
 	

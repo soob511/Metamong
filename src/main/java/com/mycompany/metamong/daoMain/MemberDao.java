@@ -24,8 +24,6 @@ public interface MemberDao {
 	public List<MemberDto> selectMemberSearch(@Param("option")String option, @Param("keyword")String keyword, @Param("pager") Pager pager);
 	
 	public int countMembers(@Param("option") String option, @Param("keyword") String keyword, @Param("pageNo") int pageNo);
-
-	public String selectMNameById(String mId);
 	
-	public MemberDto selectDbaName(String dbaId);
+	public String selectDbaName(String dbaId);
 }
