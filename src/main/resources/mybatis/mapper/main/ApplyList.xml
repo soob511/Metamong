@@ -139,7 +139,6 @@
 		</where>
 	</select>
 
-
 	<select id="selectApplyTableSearch" parameterType="map"
 		resultType="ApplyTableList">
 		SELECT
@@ -153,6 +152,7 @@
 		SELECT
 		a.apply_no, m.m_name, a.apply_date, a.approval_status,
 		a.schema_name, t.table_id, a.apply_obj
+	</select>
 	
 	<select id="selectTableListDetail" parameterType="int" resultType="ApplyTableDetail">
 		SELECT a.apply_no,m.m_name, a.apply_date, a.compl_date, a.dba_name,a.apply_reason,
@@ -184,9 +184,6 @@
 	    )
 	    WHERE rnum <![CDATA[>]]>=#{pager.startRowNo}
 	</select>
-
-
-
 
 	<select id="selectTableListDetail" parameterType="int"
 		resultType="ApplyTableDetail">
