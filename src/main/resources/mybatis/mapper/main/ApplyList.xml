@@ -288,8 +288,17 @@
 		SET dba_name = #{dbaName},
 		approval_status = #{approvalStatus},
 		compl_date = SYSDATE
+		 <if test="query != null">
+            , query = #{query}
+        </if>
 		WHERE apply_no = #{applyNo}
 	</update>
+	
+	<select id="selectApplyType" parameterType="int" resultType="String">
+		SELECT apply_type
+		FROM apply_list
+		WHERE apply_no =#{apply_no}
+	</select>
 
 </mapper>
 

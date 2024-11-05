@@ -50,5 +50,11 @@
 	WHERE table_no = #{tableNo}
 </select>
 
+<select id="selectTableIdByApplyNo" parameterType="int" resultType="String">
+	SELECT table_id
+	FROM apply_table
+	WHERE apply_no = #{applyNo}
+</select>
+
 </mapper>
 	

@@ -186,18 +186,26 @@ public class TableController {
 	}
 
 	@PostMapping("/tableProcessApproval")
-	public  ResponseEntity<String> tableProcessApproval(@RequestParam int status, @RequestParam int applyNo,Authentication auth) {
+	public  ResponseEntity<String> tableProcessApproval(@RequestParam int status, @RequestParam int applyNo,@RequestParam String reason,Authentication auth) {
 		log.info("실행");
 		ApplyListDto applyList = new ApplyListDto();
 		
-		MemberDto member = memberService.getDbaNameById(auth.getName());
+		String dbaName = memberService.getDbaNameById(auth.getName());
 		applyList.setApplyNo(applyNo);
-		applyList.setDbaName(member.getMName());
-		
+		applyList.setDbaName(dbaName);
 		if(status==1) {//승인
+			String type = applyService.getApplyType(applyNo);
+			String sql="";
+			if(type.equals("CREATE")) {
+				sql = applyService.addCreateTableSql(applyNo);
+				applyList.setQuery(sql);
+			}else if(type.equals("UPDATE")){
+				
+			}
 			applyList.setApprovalStatus(status);
 		}else {//반려
 			applyList.setApprovalStatus(status);
+			applyList.setRejectReason(reason);
 		}
 		
 		applyService.addProcessApproval(applyList);

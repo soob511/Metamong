@@ -1,5 +1,6 @@
 package com.mycompany.metamong.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnAddDto;
+import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
@@ -194,5 +196,47 @@ public class ApplyService {
 	public void addProcessApproval(ApplyListDto applyList) {
 		applyListDao.updateProcessApproval(applyList);
 	}
+
+	public String getApplyType(int applyNo) {
+		return applyListDao.selectApplyType(applyNo);
+	}
+
+	public String addCreateTableSql(int applyNo) {
+	    StringBuilder sql = new StringBuilder("CREATE TABLE ");
+	    
+	    String tableId = tableDao.selectTableIdByApplyNo(applyNo);
+	    sql.append(tableId).append(" (");
+	    
+	    List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
+	    List<String> columns = new ArrayList<>();
+	    
+	    for (ColumnDto column : list) {
+	        StringBuilder col = new StringBuilder(column.getColId())
+	                .append(" ").append(column.getDataType())
+	                .append("(").append(column.getColLength()).append(")");
+
+	        if (column.getColIspk() == 1) {
+	            col.append(" PRIMARY KEY");
+	        } else {
+	            col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
+	        }
+	        
+	        columns.add(col.toString());
+	    }
+	    
+	    sql.append(String.join(", ", columns)).append(")");
+	    return sql.toString();
+	}
+
+	
+	/*CREATE TABLE employees (
+		    employee_id NUMBER(10) PRIMARY KEY,
+		    first_name VARCHAR2(50) NOT NULL,
+		    last_name VARCHAR2(50) NOT NULL,
+		    email VARCHAR2(100) UNIQUE,
+		    phone_number VARCHAR2(15),
+		    hire_date DATE DEFAULT SYSDATE,
+		    salary NUMBER(8, 2) CHECK (salary > 0)
+		);*/
 
 }

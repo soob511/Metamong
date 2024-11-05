@@ -50,4 +50,6 @@ public interface ApplyListDao {
 	
 	public int updateProcessApproval(ApplyListDto applyList);
 
+	public String selectApplyType(int applyNo);
+
 }
