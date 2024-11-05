@@ -16,7 +16,7 @@ import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
@@ -65,7 +65,7 @@ public class ApplyService {
 		return applyListDao.selectApplyCodeSearchList(status, option, keyword, pager);
 	}
 	
-	public ApplyCodeDeatilDto getCodeApplyDetail(int applyNo) {
+	public ApplyCodeDetailDto getCodeApplyDetail(int applyNo) {
 		return applyListDao.selectCodeApplyDetail(applyNo);
 	}
 	

@@ -185,7 +185,7 @@ public class TableController {
 		return "dbObject/table/tableApplySearch";
 	}
 
-	@PostMapping("/tableProcessApproval")
+/*	@PostMapping("/tableProcessApproval")
 	public  ResponseEntity<String> tableProcessApproval(@RequestParam int status, @RequestParam int applyNo,Authentication auth) {
 		log.info("실행");
 		ApplyListDto applyList = new ApplyListDto();
@@ -203,7 +203,7 @@ public class TableController {
 		applyService.addProcessApproval(applyList);
 		
 		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
-	}
+	}*/
 	
 
 }

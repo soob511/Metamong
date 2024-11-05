@@ -28,7 +28,7 @@
 	                        <td>${code.MName}</td>
 	                        <td>${code.codeNm}</td>
 	                        <td>${code.codeId}</td>
-	                        <td>${code.applyObj}</td>
+	                        <td>${code.applyType}</td>
 	                        <td>
 	                            <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${status.index + 1})">상세보기</button>
 	                        </td>

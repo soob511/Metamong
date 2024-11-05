@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
@@ -24,7 +24,7 @@ public interface ApplyListDao {
 	
 	public List<ApplyCodeListDto> selectApplyCodeSearchList(@Param("status") int status, @Param("option") String option, @Param("keyword") String keyword, @Param("pager") Pager pager);
 	
-	public ApplyCodeDeatilDto selectCodeApplyDetail(int applyNo);
+	public ApplyCodeDetailDto selectCodeApplyDetail(int applyNo);
 
 	public List<ApplyTableDto> selectApplyTableList(Pager pager);
 

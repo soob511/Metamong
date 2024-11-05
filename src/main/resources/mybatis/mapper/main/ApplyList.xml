@@ -11,11 +11,11 @@
 	<select id="selectApplyCodeList" parameterType="Pager"
 		resultType="ApplyCodeList">
 	    <![CDATA[
-	    	SELECT rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_obj
+	    	SELECT rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_type
 			FROM (
-			    SELECT rownum as rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_obj
+			    SELECT rownum as rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_type
 			    FROM (
-			        SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id, c.code_nm, a.apply_obj
+			        SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id, c.code_nm, a.apply_type
 			        FROM apply_list a
 			        JOIN member m ON a.m_id = m.m_id
 			        JOIN apply_code c ON a.apply_no = c.apply_no
@@ -88,7 +88,7 @@
 	</select>
 
 	<select id="selectCodeApplyDetail" parameterType="int"
-		resultType="ApplyCodeDeatil">
+		resultType="ApplyCodeDetail">
 		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name,
 		a.apply_reason,
 		a.reject_reason, a.approval_status
