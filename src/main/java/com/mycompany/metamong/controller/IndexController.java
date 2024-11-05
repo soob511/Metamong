@@ -1,7 +1,6 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -24,7 +23,6 @@ import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.dto.index.RefColumnDto;
-import com.mycompany.metamong.dto.notice.NoticeDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.IndexService;
@@ -106,18 +104,11 @@ public class IndexController {
 		int totalRows = indexService.countTotalRows();
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyIndexListDto> list = applyService.getApplyIndexList(pager);
-		model.addAttribute("pager", pager);
+		session.setAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyList";
 	}
-	
-//	@ResponseBody
-//	@GetMapping("/searchApplyIndex")
-//	public List<ApplyIndexListDto> searchApplyIndex(@RequestParam HashMap<String, Object> indexApplyListData) {
-//		List<ApplyIndexListDto> list = applyService.getApplyIndexList(indexApplyListData);
-//		return list;
-//	}
 	
 	@GetMapping("/searchApplyIndex")
 	public String searchApplyIndex(
@@ -127,12 +118,13 @@ public class IndexController {
 	        @RequestParam(defaultValue="1") int pageNo,
     		HttpSession session,
     		Model model) {
-		int totalRows = indexService.countIndexRows(indexName);
+		int totalRows = indexService.countIndexRows(schemaName, approvalStatus, indexName);
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyIndexListDto> list = applyService.getApplyIndexList(
 				schemaName, approvalStatus, indexName, pager.getStartRowNo(), pager.getEndRowNo()
 				);
-		model.addAttribute("pager", pager);
+		log.info("찾아봐" + list);
+		session.setAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyListSearch";

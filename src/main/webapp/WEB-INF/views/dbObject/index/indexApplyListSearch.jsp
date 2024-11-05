@@ -47,6 +47,11 @@
 						</c:choose></td>
 				</tr>
 			</c:forEach>
+			<c:if test="${pager.totalRows == 0}">
+             	<tr>
+             		<th colspan="8">검색 조건에 맞는 내역이 없습니다.</th>
+             	</tr>
+             </c:if>
 		</tbody>
 	</table>
 </div>
@@ -56,7 +61,7 @@
 		<a href="javascript:filterApplyIndexPaging(${pager.startPageNo - 1})}"
 			class="btn btn-outline-info btn-sm"><</a>
 	</c:if>
-
+	<c:if test="${pager.totalRows != 0}">
 	<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 		step="1" var="i">
 		<c:if test="${pager.pageNo == i}">
@@ -68,7 +73,7 @@
 				class="btn btn-outline-primary btn-sm">${i}</a>
 		</c:if>
 	</c:forEach>
-
+	</c:if>
 	<c:if test="${pager.groupNo < pager.totalGroupNo}">
 		<a href="javascript:filterApplyIndexPaging(${pager.endPageNo + 1})}"
 			class="btn btn-outline-info btn-sm">></a>

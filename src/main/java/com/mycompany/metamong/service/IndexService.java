@@ -93,8 +93,8 @@ public class IndexService {
 		return indexDao.selectTotalRows();
 	}
 	
-	public int countIndexRows(String indexName) {
-		return indexDao.selectIndexRows(indexName);
+	public int countIndexRows(String schemaName, int approvalStatus, String indexName) {
+		return indexDao.selectIndexRows(schemaName, approvalStatus, indexName);
 	}
 
 	public void createIndex(IndexDto indexdto) {

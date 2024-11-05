@@ -48,7 +48,7 @@ function filterApplyIndexPaging(pageNo) {
 	let schemaName = $('#schemaSelect').val();
 	let approvalStatus = parseInt($('#statusSelect').val(), 10);
 	let indexName = $('#indexNameSearch').val();
-	
+
 	$.ajax({
 		type : 'GET',
 		url : '/Metamong/index/searchApplyIndex',

@@ -1,6 +1,5 @@
 package com.mycompany.metamong.daoMain;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -20,9 +19,7 @@ public interface IndexDao {
 	public List<IndexDto> selectIndexByName(String indexName);
 	
 	public List<ApplyIndexListDto> selectApplyIndex(Pager Pager);
-	
-	public List<ApplyIndexListDto> selectApplyIndexByParams(HashMap<String, Object> indexApplyListData);
-	
+		
 	public List<ApplyIndexListDto> selectApplyIndexByParamsPaging(
 			@Param("schemaName") String schemaName,
 			@Param("approvalStatus") int approvalStatus,
@@ -35,7 +32,11 @@ public interface IndexDao {
 	
 	public int selectTotalRows();
 
-	public int selectIndexRows(String indexName);
+	public int selectIndexRows(
+			@Param("schemaName") String schemaName,
+			@Param("approvalStatus") int approvalStatus,
+			@Param("indexName") String indexName
+			);
 	
 	public int insertApplyIndex(ApplyIndexDto applyIndexDto);
 	
