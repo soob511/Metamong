@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ApplyCodeDeatilDto {
+public class ApplyCodeDetailDto {
 	private String MName;
 	private Date applyDate;
 	private Date complDate;

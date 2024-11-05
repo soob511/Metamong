@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
@@ -170,7 +170,7 @@ public class CodeController {
 	
 	@GetMapping("/codeApplyDetail")
 	public String codeApplyDetail(Model model, int applyNo, int indexNo) {
-		ApplyCodeDeatilDto applyList = applyService.getCodeApplyDetail(applyNo); 
+		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo); 
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 		
