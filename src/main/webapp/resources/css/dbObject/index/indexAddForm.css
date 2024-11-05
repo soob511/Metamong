@@ -8,7 +8,16 @@
 }
 
 .table-container:first-of-type {
-    height: 545px;
+    height: 280px;
+}
+
+.table-container-second {
+	border-radius: 8px !important;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    overflow-y: auto !important;
+	margin-top: 20px;
+    height: 240px;
 }
 
 .table th, .table td {
