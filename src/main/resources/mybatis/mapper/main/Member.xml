@@ -111,6 +111,13 @@
 			        WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
 	   				 ]]>
 	</select>
+	
+	<select id="selectDbaName" parameterType="String" resultType="String">
+		SELECT m_name
+		FROM member
+		WHERE m_id = #{dbaId}
+	</select>
+	
 
 	<select id="countMembers" parameterType="Pager" resultType="int">
 	    SELECT COUNT(*)
@@ -137,8 +144,8 @@
 		        	</if>
 					
 				</where>
-		  
-				 )
+
 	</select>
+
 </mapper>
 	

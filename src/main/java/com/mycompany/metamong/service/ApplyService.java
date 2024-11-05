@@ -1,5 +1,6 @@
 package com.mycompany.metamong.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,11 +22,13 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnAddDto;
+import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
@@ -78,12 +81,8 @@ public class ApplyService {
 		return itemDao.selectItemsByNo(applyNo);
 	}
 
-	public List<ApplyTableDto> getApplyTableList(Pager pager) {
+	public List<ApplyTableListDto> getApplyTableList(Pager pager) {
 		return applyListDao.selectApplyTableList(pager);
-	}
-
-	public List<ApplyTableDto> getApplyTableSearch(Map<String, String> form) {
-		return applyListDao.selectApplyTableSearch(form);
 	}
 
 	public ApplyTableDeatilDto getTableListDetail(int applyNo) {
@@ -133,16 +132,31 @@ public class ApplyService {
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
 	
-	public List<ApplyIndexListDto> getApplyIndexList() {
-		return applyListDao.selectApplyIndex();
+	public List<ApplyIndexListDto> getApplyIndexList(Pager pager) {
+		return indexDao.selectApplyIndex(pager);
 	}
-	
-	public List<ApplyIndexListDto> getApplyIndexList(HashMap<String, Object> indexApplyListDatae) {
-		return applyListDao.selectApplyIndexByParams(indexApplyListDatae);
+
+	public List<ApplyIndexListDto> getApplyIndexList(
+			String schemaName,
+			int approvalStatus,
+			String indexName,
+			int startRowNo,
+			int endRowNo
+			) {
+		List<ApplyIndexListDto> list = 
+				indexDao.selectApplyIndexByParamsPaging(
+					schemaName,
+					approvalStatus,
+					indexName,
+					startRowNo,
+					endRowNo
+					);
+		return list;
 	}
+
 	
 	public ApplyIndexDetailDto getApplyIndexListDetail(int applyNo) {
-		return applyListDao.selectApplyIndexDetail(applyNo);
+		return indexDao.selectApplyIndexDetail(applyNo);
 	}
 
 	@Transactional
@@ -186,4 +200,62 @@ public class ApplyService {
 	public int getTotalRows() {
 		return applyListDao.selectTotalRows();
 	}
+
+	public void updateCodeStatus(Map<String, Object> params) {
+		applyListDao.updateCodeStatus(params);
+	}
+	public int getSearchRows(Map<String, String> form) {
+		return applyListDao.selectSearchRows(form);
+	}
+
+	public List<ApplyTableDto> getApplyTableSearch(Map<String, Object> params) {
+		return applyListDao.selectApplyTableSearch(params);
+	}
+	
+	public void addProcessApproval(ApplyListDto applyList) {
+		applyListDao.updateProcessApproval(applyList);
+	}
+
+	public String getApplyType(int applyNo) {
+		return applyListDao.selectApplyType(applyNo);
+	}
+
+	public String addCreateTableSql(int applyNo) {
+	    StringBuilder sql = new StringBuilder("CREATE TABLE ");
+	    
+	    String tableId = tableDao.selectTableIdByApplyNo(applyNo);
+	    sql.append(tableId).append(" (");
+	    
+	    List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
+	    List<String> columns = new ArrayList<>();
+	    
+	    for (ColumnDto column : list) {
+	        StringBuilder col = new StringBuilder(column.getColId())
+	                .append(" ").append(column.getDataType())
+	                .append("(").append(column.getColLength()).append(")");
+
+	        if (column.getColIspk() == 1) {
+	            col.append(" PRIMARY KEY");
+	        } else {
+	            col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
+	        }
+	        
+	        columns.add(col.toString());
+	    }
+	    
+	    sql.append(String.join(", ", columns)).append(")");
+	    return sql.toString();
+	}
+
+	
+	/*CREATE TABLE employees (
+		    employee_id NUMBER(10) PRIMARY KEY,
+		    first_name VARCHAR2(50) NOT NULL,
+		    last_name VARCHAR2(50) NOT NULL,
+		    email VARCHAR2(100) UNIQUE,
+		    phone_number VARCHAR2(15),
+		    hire_date DATE DEFAULT SYSDATE,
+		    salary NUMBER(8, 2) CHECK (salary > 0)
+		);*/
+
 }

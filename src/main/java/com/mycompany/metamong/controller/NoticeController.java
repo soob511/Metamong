@@ -58,15 +58,27 @@ public class NoticeController {
     		@RequestParam(defaultValue="1")int pageNo,
     		HttpSession session,
     		Model model) {
+			if (keyword == null || keyword.trim().isEmpty()) {
+				int totalRows = noticeService.getTotalRows();
+				Pager pager = new Pager(10,5,totalRows,pageNo);
 	
-		int totalRows = noticeService.countNotices(option, keyword);
+				session.setAttribute("pager", pager);
+				model.addAttribute("totalRows", totalRows);
+	
+				List<NoticeDto> list = noticeService.getNoticeList(pager);
+				model.addAttribute("list", list);
+		        return "notice/noticeSearch";
+	    }
+		int totalRows = noticeService.countNotices(option, keyword,pageNo);
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		pager.setTotalRows(totalRows);
 		session.setAttribute("pager", pager);
 		model.addAttribute("totalRows", totalRows);
         List<NoticeDto> list = noticeService.searchNotice(option,keyword,pager);
         model.addAttribute("list", list);
         model.addAttribute("option", option);
-
+        session.setAttribute("option", option);
+ 
         return "notice/noticeSearch";
     }	
 	
@@ -78,12 +90,13 @@ public class NoticeController {
 		
 		noticeService.addHitcount(noticeId);
 		
-		NoticeDto prevNotice = noticeService.getPrevNotice(noticeId);
-		NoticeDto nextNotice = noticeService.getNextNotice(noticeId);
+		NoticeDto prevNext = noticeService.getPrevNext(noticeId);
+		notice.setPrevNum(prevNext.getPrevNum());
+		notice.setPrevTitle(prevNext.getPrevTitle());
+		notice.setNextNum(prevNext.getNextNum());
+		notice.setNextTitle(prevNext.getNextTitle());
 		
-		model.addAttribute("prevNotice", prevNotice);
-		model.addAttribute("nextNotice", nextNotice);
-		
+		model.addAttribute("prevNext", prevNext);
 		return "notice/noticeDetail";
 	}
 	

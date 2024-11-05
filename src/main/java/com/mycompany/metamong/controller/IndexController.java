@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
@@ -45,29 +48,15 @@ public class IndexController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/searchIndexAll")
-	public List<IndexDto> searchIndexAll(@RequestParam String indexName) {
-		List<IndexDto> list = new ArrayList<>();
-		if (indexName != "") {
-			list = indexService.getIndexList(indexName);			
-		} else {
-			list = indexService.getIndexList();
-		}
-		return list;
-	}
-	
-	@ResponseBody
 	@GetMapping("/searchIndex")
 	public List<IndexDto> searchIndex(
-			@RequestParam SchemaEnum schemaName,
-			@RequestParam String indexName
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName
 			) {
-		List<IndexDto> list = new ArrayList<>();
-		if (!indexName.isEmpty()) {
-			list = indexService.getIndexList(schemaName, indexName);
-		} else {
-			list = indexService.getIndexList(schemaName);			
-		}
+		List<IndexDto> list = 
+				indexService.getIndexList(indexName, columnName, tableName, schemaName);
 		return list;
 	}
 	
@@ -112,18 +101,37 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexApplyList")
-	public String indexApplyList(Model model) {
-		List<ApplyIndexListDto> list = applyService.getApplyIndexList();
+	public String indexApplyList(
+			@RequestParam(defaultValue="1")int pageNo, 
+			HttpSession session,
+			Model model
+			) {
+		int totalRows = indexService.countTotalRows();
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList(pager);
+		session.setAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexApplyList";
 	}
 	
-	@ResponseBody
 	@GetMapping("/searchApplyIndex")
-	public List<ApplyIndexListDto> searchApplyIndex(@RequestParam HashMap<String, Object> indexApplyListData) {
-		List<ApplyIndexListDto> list = applyService.getApplyIndexList(indexApplyListData);
-		return list;
+	public String searchApplyIndex(
+			@RequestParam String schemaName,
+	        @RequestParam int approvalStatus,
+	        @RequestParam String indexName,
+	        @RequestParam(defaultValue="1") int pageNo,
+    		HttpSession session,
+    		Model model) {
+		int totalRows = indexService.countIndexRows(schemaName, approvalStatus, indexName);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		List<ApplyIndexListDto> list = applyService.getApplyIndexList(
+				schemaName, approvalStatus, indexName, pager.getStartRowNo(), pager.getEndRowNo()
+				);
+		session.setAttribute("pager", pager);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("list", list);
+		return "dbObject/index/indexApplyListSearch";
 	}
 	
 	@GetMapping("/indexApplyDetail")

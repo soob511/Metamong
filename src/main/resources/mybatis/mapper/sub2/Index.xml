@@ -4,7 +4,8 @@
 
 	<select id="selectIndex" resultType="Index">
 		SELECT 
-			i.index_name, user schema_name,i.table_name, ic.column_name, i.uniqueness
+			i.index_name, user schema_name, i.table_name, ic.column_position, 
+            ic.column_name, i.uniqueness, ic.descend
 		FROM 
 			user_indexes i
 		JOIN 
@@ -12,16 +13,25 @@
 		ORDER BY i.index_name, ic.column_position
 	</select>
 	
-	<select id="selectIndexByName" parameterType="String" resultType="Index">
+	<select id="selectIndexByDic" parameterType="map" resultType="Index">
 		SELECT
 			i.index_name, user schema_name,i.table_name, ic.column_name, i.uniqueness
 		FROM
 			user_indexes i
 		JOIN
 			user_ind_columns ic ON i.index_name = ic.index_name
-		WHERE 
-			i.index_name = #{indexName}
-		ORDER BY i.index_name, ic.column_position
+		<where>
+	        <if test="indexName != 'NONE' ">
+	            i.index_name = UPPER(#{indexName})
+	        </if>
+	        <if test="tableName != 'NONE' ">
+	            AND i.table_name = UPPER(#{tableName})
+	        </if>
+	        <if test="columnName != 'NONE' ">
+	            AND ic.column_name = UPPER(#{columnName})
+	        </if>
+	    </where>
+	    ORDER BY i.index_name, ic.column_position
 	</select>
 
 </mapper>

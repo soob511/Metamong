@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableList.css"
 	rel="stylesheet" />
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
@@ -32,7 +34,7 @@
 						<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 						<select id="schemaSelect" class="form-select"
 							aria-label="Default select example">
-							<option value="" >전체</option>
+							<option value="">전체</option>
 							<c:forEach items="${schemaEnum}" var="schemaEnum">
 								<option value="${schemaEnum.name()}">
 									${schemaEnum.name()}</option>
@@ -63,12 +65,15 @@
 						<div class="col-6 tables-table">
 							<div class="tables-management">
 								<p class="tables-management-title">테이블</p>
-								<div class="tables-buttons">
-									<a href="tableAddForm">
-										<button class="btn-add">추가</button>
-									</a>
+								<sec:authorize
+									access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
+									<div class="tables-buttons">
+										<a href="tableAddForm">
+											<button class="btn-add">추가</button>
+										</a>
 										<button class="btn-edit">수정</button>
-								</div>
+									</div>
+								</sec:authorize>
 							</div>
 							<div class="table-contanier">
 								<table class="table table-hover">

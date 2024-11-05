@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class ApplyTableDeatilDto {
+	private int applyNo;
 	private String MName;
 	private Date applyDate;
 	private Date complDate;

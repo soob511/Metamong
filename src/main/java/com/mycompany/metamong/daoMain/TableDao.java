@@ -24,6 +24,8 @@ public interface TableDao {
 
 	public TableDto selectTable(int tableNo);
 
+	public String selectTableIdByApplyNo(int applyNo);
+
 
 
 }

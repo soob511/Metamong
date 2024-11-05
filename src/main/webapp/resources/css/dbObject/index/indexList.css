@@ -6,6 +6,10 @@
     font-weight: bold;
 }
 
+.form-select {
+    font-size: 13px !important;
+}
+
 label {
     font-size: 17px;
 }
@@ -19,14 +23,13 @@ label {
 .index-search {
     display: flex;
     width: max-content;
-    margin-left: 10px;
+    margin-left: 42px;
     align-items: center;
 }
 
 .index-search-label {
     min-width: max-content !important;
     align-items: center;
-    margin-left: 25px;
 }
 
 .index-form input {
@@ -46,6 +49,20 @@ label {
     align-items: center;
     min-width: 200px !important;
     margin-left: 38px;
+}
+
+.schema-filter {
+    display: flex;
+    align-items: center;
+    min-width: 200px !important;
+    margin-left: 38px;
+}
+
+.table-column-filter {
+    display: flex;
+    align-items: center;
+    min-width: 200px !important;
+    margin-left: 30px;
 }
 
 .schema-filter-label {
@@ -80,7 +97,7 @@ hr {
     font-weight: 600 !important;
 }
 
-.btn-add {
+.btn-add, .btn-search {
     background-color: var(--theme);
     color: white;
     border-radius: 8px;
@@ -90,18 +107,18 @@ hr {
     font-size: 14px;
     margin-right: 5px;
 }
-
+/*
 .btn-search {
     background-color: var(--theme);
     color: white;
     border-radius: 8px;
     border: none;
-    width: 60px;
-    height: 35px;
+    width: 50px;
+    height: 30px;
     font-size: 14px;
     margin-right: 5px;
 }
-
+*/
 .btn-del {
     background-color: white;
     color: var(--theme);

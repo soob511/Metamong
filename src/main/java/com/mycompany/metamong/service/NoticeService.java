@@ -30,13 +30,9 @@ public class NoticeService {
 	public int addHitcount(int noticeId) {
 		return noticeDao.updateHitcount(noticeId);
 	}
-		
-	public NoticeDto getPrevNotice(int noticeId) {
-		return noticeDao.selectPrevNotice(noticeId);
-	}
 
-	public NoticeDto getNextNotice(int noticeId) {
-		return noticeDao.selectNextNotice(noticeId);
+	public NoticeDto getPrevNext(int noticeId) {
+		return noticeDao.selectPrevNext(noticeId);
 	}
 
 	public NoticeDto getNoticeFile(int noticeId) {
@@ -63,7 +59,7 @@ public class NoticeService {
 		return noticeDao.selectNoticeSearch(option, keyword, pager);
 	}
 
-	public int countNotices(String option, String keyword) {
-		return noticeDao.countNotices(option,keyword);
+	public int countNotices(String option, String keyword,int pageNo) {
+		return noticeDao.countNotices(option,keyword,pageNo);
 	}
 }
