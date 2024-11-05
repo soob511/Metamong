@@ -15,7 +15,7 @@ $(document).ready(function() {
 			url: "/Metamong/table/reflectTable",
 			type: "POST",
 			data: { applyNo: applyNo}, 
-			success: function(response) {
+			success: function(data) {
 				
 				Swal.fire({
 					icon: 'success',
