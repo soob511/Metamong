@@ -25,9 +25,6 @@ public interface ApplyListDao {
 
 	public List<ApplyTableDto> selectApplyTableList(Pager pager);
 
-/*	public List<ApplyTableDto> selectApplyTableSearch(@Param("form") Map<String, String> form,
-			@Param("pager") Pager pager);*/
-
 	public ApplyTableDeatilDto selectTableListDetail(int applyNo);
 
 	public List<ApplyIndexListDto> selectApplyIndex();

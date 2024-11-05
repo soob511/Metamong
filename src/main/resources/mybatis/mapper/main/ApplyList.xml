@@ -82,7 +82,16 @@
 
 	<select id="selectApplyTableSearch" parameterType="map"
 		resultType="ApplyTableList">
-		SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status,
+		SELECT
+		rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id,
+		apply_obj
+		FROM (
+		SELECT
+		rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name,
+		table_id, apply_obj
+		FROM (
+		SELECT
+		a.apply_no, m.m_name, a.apply_date, a.approval_status,
 		a.schema_name, t.table_id, a.apply_obj
 		FROM apply_list a
 		JOIN member m ON a.m_id = m.m_id
@@ -106,7 +115,12 @@
 			</if>
 		</where>
 		ORDER BY a.apply_date DESC
+		)
+		    WHERE rownum <![CDATA[<]]>=#{pager.endRowNo}
+	    )
+	    WHERE rnum <![CDATA[>]]>=#{pager.startRowNo}
 	</select>
+
 
 
 
