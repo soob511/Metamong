@@ -81,7 +81,9 @@
 	                      <th scope="col">스키마명</th>
 	                      <th scope="col">참조테이블명</th>
 	                      <th scope="col">참조컬럼명</th>
+	                      <th scope="col">컬럼순서</th>
 	                      <th scope="col">유일성</th>
+	                      <th scope="col">정렬</th>
 	                    </tr>
 	                  </thead>
 	                  <tbody id="indexTableBody">
@@ -89,10 +91,19 @@
 	                  		<tr>
 		                      <th>${status.index + 1}</th>
 		                      <td>${index.indexName}</td>
-		                      <td>${index.schemaName}</td>
+		                      	<td>
+			                      	<c:choose>
+					                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_1'}">SPM</c:when>
+					                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_2'}">PMS</c:when>
+					                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_3'}">HR</c:when>
+					                    <c:otherwise></c:otherwise>
+					                </c:choose>
+			                	</td>
 		                      <td>${index.tableName}</td>
 		                      <td>${index.columnName}</td>
+		                      <td>${index.columnPosition}</td>
 		                      <td>${index.uniqueness}</td>
+		                      <td>${index.descend}</td>
 	                    	</tr>
 	                  	</c:forEach>
 	                  </tbody>

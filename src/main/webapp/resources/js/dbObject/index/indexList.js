@@ -34,15 +34,14 @@ $(document).ready(function() {
 		}
 		filterIndex();
 	});
-	
+	document.getElementById("schemaName_${index.applyNo}").innerText = getSchemaName('${index.schemaName}');
 });
 
-function getStatusText(approvalStatus) {
-    switch (approvalStatus) {
-        case 0: return '승인대기';
-        case 1: return '승인';
-        case 2: return '반려';
-        case 3: return '반영';
+function getSchemaName(schemaName) {
+    switch (schemaName) {
+        case 'USER_2024_OTI_FINAL_TEAM1_1': return 'SPM';
+        case 'USER_2024_OTI_FINAL_TEAM1_2': return 'PMS';
+        case 'USER_2024_OTI_FINAL_TEAM1_3': return 'HR';
         default: return '';
     }
 }
@@ -127,10 +126,12 @@ function filterIndex() {
 						<tr>
 						<th>${count++}</th>
 						<td>${index.indexName}</td>
-						<td>${index.schemaName}</td>
+						<td>${getSchemaName(index.schemaName)}</td>
 						<td>${index.tableName}</td>
 						<td>${index.columnName}</td>
-						<td>${index.uniqueness}</td>
+	                    <td>${index.columnPosition}</td>
+	                    <td>${index.uniqueness}</td>
+	                    <td>${index.descend}</td>
 						</tr>`;
 				});
 			} else {
