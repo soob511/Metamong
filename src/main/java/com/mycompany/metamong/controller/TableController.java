@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.column.NewColumnDto;
+import com.mycompany.metamong.dto.column.PreColumnDto;
+import com.mycompany.metamong.dto.member.MemberDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableCompareDto;
@@ -29,6 +32,7 @@ import com.mycompany.metamong.dto.table.TableDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.ColumnService;
+import com.mycompany.metamong.service.MemberService;
 import com.mycompany.metamong.service.TableService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +50,9 @@ public class TableController {
 
 	@Autowired
 	private ColumnService columnService;
+	
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("/tableList")
 	public String tableList(Model model) {
@@ -179,9 +186,25 @@ public class TableController {
 		return "dbObject/table/tableApplySearch";
 	}
 
-	@GetMapping("/tableApplyDetail")
-	public String tableApplyDetail() {
-		return "dbObject/table/tableApplyDetail";
+	@PostMapping("/tableProcessApproval")
+	public  ResponseEntity<String> tableProcessApproval(@RequestParam int status, @RequestParam int applyNo,Authentication auth) {
+		log.info("실행");
+		ApplyListDto applyList = new ApplyListDto();
+		
+		MemberDto member = memberService.getDbaNameById(auth.getName());
+		applyList.setApplyNo(applyNo);
+		applyList.setDbaName(member.getMName());
+		
+		if(status==1) {//승인
+			applyList.setApprovalStatus(status);
+		}else {//반려
+			applyList.setApprovalStatus(status);
+		}
+		
+		applyService.addProcessApproval(applyList);
+		
+		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
 	}
+	
 
 }

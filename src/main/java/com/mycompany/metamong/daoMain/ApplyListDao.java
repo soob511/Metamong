@@ -47,5 +47,7 @@ public interface ApplyListDao {
 	public int selectSearchRows(Map<String, String> form);
 
 	public List<ApplyTableDto> selectApplyTableSearch(Map<String, Object> params);
+	
+	public int updateProcessApproval(ApplyListDto applyList);
 
 }

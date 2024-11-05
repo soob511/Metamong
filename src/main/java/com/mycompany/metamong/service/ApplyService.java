@@ -193,6 +193,9 @@ public class ApplyService {
 
 	public List<ApplyTableDto> getApplyTableSearch(Map<String, Object> params) {
 		return applyListDao.selectApplyTableSearch(params);
+		
+	public void addProcessApproval(ApplyListDto applyList) {
+		applyListDao.updateProcessApproval(applyList);
 	}
 
 }
