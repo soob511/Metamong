@@ -103,6 +103,13 @@ thead {
 	margin: 10px 40px 60px 40px !important;
 }
 
+.item-table-container {
+	overflow-y: scroll;	
+	height: 280px;
+	border-radius: 8px !important; 
+    box-shadow: var(--box-shadow);
+}
+
 .button-group {
 	display: flex;
 	gap: 10px;
