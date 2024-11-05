@@ -54,13 +54,13 @@
 	<select id="selectApplyCodeSearchList"
 		resultType="ApplyCodeList">
 		SELECT rnum, apply_no, m_name, apply_date, approval_status, code_id,
-		code_nm, apply_obj
+		code_nm, apply_type
 		FROM (
 		SELECT rownum as rnum, apply_no, m_name, apply_date, approval_status,
-		code_id, code_nm, apply_obj
+		code_id, code_nm, apply_type
 		FROM (
 		SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id,
-		c.code_nm, a.apply_obj
+		c.code_nm, a.apply_type
 		FROM apply_list a
 		JOIN member m ON a.m_id = m.m_id
 		JOIN apply_code c ON a.apply_no = c.apply_no
