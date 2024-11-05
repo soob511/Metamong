@@ -9,7 +9,6 @@
 		"COLUMN"
 		WHERE table_no = #{tableNo}
 		ORDER BY col_order
-
 	</select>
 	
 	<insert id="insertApplyColumn" parameterType="ApplyColumn">
@@ -34,7 +33,18 @@
 		apply_col
 		WHERE apply_no = #{applyNo}
 		ORDER BY col_order
-
 	</select>
+	
+	<select id="selectApplyColumn" parameterType="int" resultType="ApplyColumn">
+	SELECT col_id,col_nm,data_type,col_Length,col_isnullable,col_ispk,col_order
+	FROM apply_col
+	WHERE apply_no = #{applyNo}
+	</select>
+	
+	<insert id="insertColumn" parameterType="Column">
+		INSERT INTO
+		"COLUMN"(table_no,col_id,col_nm,data_type,col_length,col_isnullable,col_ispk,col_order)
+		VALUES(#{tableNo},#{colId},#{colNm},#{dataType},#{colLength},#{colIsnullable},#{colIspk},#{colOrder})
+	</insert>
 </mapper>
 	

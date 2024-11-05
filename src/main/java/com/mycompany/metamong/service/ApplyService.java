@@ -39,6 +39,7 @@ import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
+import com.mycompany.metamong.dto.table.TableDto;
 
 @Service
 public class ApplyService {
@@ -263,28 +264,40 @@ public class ApplyService {
 		String schema = applyListDao.getSchemaName(applyNo);
 		String sql = applyListDao.getQuery(applyNo);
 		
-		if(schema.equals("SPM")) {
+		/*if(schema.equals("SPM")) {
 			spmDao.CreateTable(sql);
 		}else if(schema.equals("PMS")) {
 			pmsDao.CreateTable(sql);
 		}else {
 			hrDao.CreateTable(sql);
-		}
+		}*/
+		//반영으로 상태변경
 		applyListDao.updateStatus(applyNo);
 		
+		//테이블 테이블에 생성된 테이블 정보 넣기
+		ApplyTableDto applyTable  = tableDao.selectApplyTable(applyNo);
+		TableDto table = new TableDto();
+		table.setTableId(applyTable.getTableId());
+		table.setTableNm(applyTable.getTableNm());
+		table.setTableContent(applyTable.getTableContent());
+		table.setSchemaNm(schema);
+		tableDao.insertTable(table);
+		
+		//컬럼정보 넣기
+		List<ApplyColumnDto> applyColumn = columnDao.selectApplyColumn(applyNo);
+		for(ApplyColumnDto aColumn:applyColumn) {
+			ColumnDto column = new ColumnDto();
+			column.setTableNo(table.getTableNo());
+			column.setColId(aColumn.getColId());
+			column.setColNm(aColumn.getColNm());
+			column.setDataType(aColumn.getDataType());
+			column.setColLength(aColumn.getColLength());
+			column.setColIsnullable(aColumn.getColIsnullable());
+			column.setColIspk(aColumn.getColIspk());
+			column.setColOrder(aColumn.getColOrder());
+			columnDao.insertColumn(column);
+		}
+		
 	}
-
-
-
-	
-	/*CREATE TABLE employees (
-		    employee_id NUMBER(10) PRIMARY KEY,
-		    first_name VARCHAR2(50) NOT NULL,
-		    last_name VARCHAR2(50) NOT NULL,
-		    email VARCHAR2(100) UNIQUE,
-		    phone_number VARCHAR2(15),
-		    hire_date DATE DEFAULT SYSDATE,
-		    salary NUMBER(8, 2) CHECK (salary > 0)
-		);*/
 
 }
