@@ -1,5 +1,6 @@
 package com.mycompany.metamong.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,6 @@ import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.column.NewColumnDto;
-import com.mycompany.metamong.dto.column.PreColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableCompareDto;
@@ -162,11 +162,24 @@ public class TableController {
 
 	@ResponseBody
 	@GetMapping("/applyTableSearch")
-	public List<ApplyTableDto> applyTableSearch(@RequestParam Map<String, String> form) {
+	public String applyTableSearch(@RequestParam Map<String, String> form,@RequestParam(defaultValue="1")int pageNo,
+    		HttpSession session,Model model) {
 		log.info("실행");
-		List<ApplyTableDto> list = applyService.getApplyTableSearch(form);
-		log.info(list.toString());
-		return list;
+		
+		int searchRows = applyService.getSearchRows(form);
+		
+		Pager pager = new Pager(10, 5, searchRows, pageNo);
+		session.setAttribute("pager", pager);
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("form", form);  // 검색 조건
+		params.put("pager", pager); // 페이징 정보
+		params.put("pageNo", pageNo);  // pageNo 추가
+		
+		List<ApplyTableDto> list = applyService.getApplyTableSearch(params);
+		model.addAttribute("list", list);
+		
+		return "dbObject/table/tableApplySearch";
 	}
 
 	@GetMapping("/tableApplyDetail")
