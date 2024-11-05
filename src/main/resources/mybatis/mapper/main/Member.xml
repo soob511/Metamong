@@ -140,5 +140,11 @@
 		  
 				 )
 	</select>
+	
+	<select id="selectMNameById" resultType="String" parameterType="String">
+		SELECT m_name
+		FROM member
+		WHERE m_id = #{mId}
+	</select>
 </mapper>
 	

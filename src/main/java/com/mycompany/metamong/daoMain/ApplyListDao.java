@@ -44,4 +44,6 @@ public interface ApplyListDao {
 	public int insertApplyList(ApplyListDto apply);
 
 	public int selectTotalRows();
+
+	public int updateCodeStatus(Map<String, Object> params);
 }

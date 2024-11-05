@@ -186,4 +186,8 @@ public class ApplyService {
 	public int getTotalRows() {
 		return applyListDao.selectTotalRows();
 	}
+
+	public void updateCodeStatus(Map<String, Object> params) {
+		applyListDao.updateCodeStatus(params);
+	}
 }

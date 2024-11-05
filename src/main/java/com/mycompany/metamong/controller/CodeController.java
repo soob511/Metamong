@@ -1,7 +1,9 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +29,7 @@ import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.CodeService;
 import com.mycompany.metamong.service.ItemService;
+import com.mycompany.metamong.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +43,8 @@ public class CodeController {
 	private ItemService itemService;
 	@Autowired
 	private ApplyService applyService;
+	@Autowired
+	private MemberService memberService;
 	
 	@GetMapping("/codeList")
 	public String codeList(Model model) {
@@ -176,6 +181,22 @@ public class CodeController {
 		model.addAttribute("applyItems",applyItems);
 		
 		return "code/codeApplyDetail";
+	}
+	
+	@PostMapping("/codeApplyProcess")
+	public ResponseEntity<String> codeApplyProcess(int applyNo, int status, String reason, Authentication auth) {
+		log.info("reason: ", reason);
+		String dbaName = memberService.getMNameById(auth.getName());
+	
+		Map<String, Object> params = new HashMap<>();
+		params.put("applyNo", applyNo);  
+		params.put("dbaName", dbaName); 
+		params.put("reason", reason); 
+		params.put("status", status); 
+		
+		applyService.updateCodeStatus(params);
+		
+		return ResponseEntity.ok("/Metamong/code/codeApplyDetail?applyNo=" + applyNo);
 	}
 	
 	@ResponseBody

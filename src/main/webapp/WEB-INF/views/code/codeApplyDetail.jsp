@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,8 @@
     <meta charset="UTF-8" />
     <title>코드/항목 신청 상세보기</title>
     <link href="${pageContext.request.contextPath}/resources/css/code/codeApplyDetail.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
     <div class="container codeApplyInfo-container">
@@ -19,14 +22,13 @@
 
                 <div class="codeApplyInfo-header">
                     <p class="codeApplyInfo-title">&gt; 코드/항목 신청 상세보기</p>
-                    <!-- 
-                    <div class="button-groupDBA">
-                        <button class="btn-approve">승인</button>
-                        <button class="btn-reject">반려</button>
-                    </div> 
-                    -->
+                    <sec:authorize access="hasRole('ROLE_DBA')">
+						<div class="button-groupDBA">
+	                        <button class="btn-approve" onclick="codeApplyProcess(1)">승인</button>
+	                        <button class="btn-reject" onclick="codeApplyProcess(2)">반려</button>
+	                    </div> 
+					</sec:authorize>
                 </div>
-
                 <hr>
                 <div class="container">
                     <div class="row">
@@ -162,6 +164,6 @@
             </div>
         </div>
     </div>
-    <script src="${pageContext.request.contextPath}/resources/js/code/codeApplyList.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/code/codeApplyDetail.js"></script>
 </body>
 </html>
