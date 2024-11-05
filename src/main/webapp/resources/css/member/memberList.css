@@ -63,7 +63,7 @@ td, th{
 	vertical-align: middle;
 }
 
-.search-box form {
+.search-box {
    width: 240px;
    margin-left: 20px;
    border-radius: 5px;
@@ -84,7 +84,7 @@ td, th{
 
 .search-box .bi-search {
    position: absolute;
-   right: 20px;
+   right: 10px;
    top: 10px;
    font-size: 20px;
    color: #343a40;

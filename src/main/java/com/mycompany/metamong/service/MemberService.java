@@ -31,7 +31,11 @@ public class MemberService {
 		return memberDao.selectMemberList(pager);
 	}
 
-	public List<MemberDto> searchMember(String option, String keyword) {
-		return memberDao.selectMemberSearch(option, keyword);
+	public List<MemberDto> searchMember(String option, String keyword, Pager pager) {
+		return memberDao.selectMemberSearch(option, keyword, pager);
+	}
+	
+	public int countMembers(String option, String keyword, int pageNo) {
+		return memberDao.countMembers(option,keyword,pageNo);
 	}
 }
