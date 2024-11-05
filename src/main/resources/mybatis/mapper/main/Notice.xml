@@ -65,35 +65,28 @@
 		WHERE notice_id = #{noticeId}	
 	</select>
 	
-	<!-- <select id="selectNoticeSearch" parameterType="map" resultType="Notice">
-		SELECT 
-			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
-		FROM notice
-		<where>
-			<if test="keyword != null and keyword != '' and option == '제목'">
-				notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-			<if test="keyword != null and keyword != '' and option == '내용'">
-				notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-		</where>
-		ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
-	</select>  -->
-	
 	<select id="selectNoticeSearch" parameterType="Pager" resultType="Notice">
-	    SELECT 
-	        notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
-	    FROM notice
-	    <where>
-	        <if test="keyword != null and keyword != '' and option == '제목'">
-	            notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-	        </if>
-	        <if test="keyword != null and keyword != '' and option == '내용'">
-	            notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-	        </if>
-	    </where>
-	    ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
-	    
+			 <![CDATA[
+			    SELECT 
+			        rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
+		        FROM (
+		            	SELECT(	
+		            		rownum as  rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount
+				    	FROM notice
+		     			]]> 
+					    <where>
+					        <if test="keyword != null and keyword != '' and option == '제목'">
+					            notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+					        </if>
+					        <if test="keyword != null and keyword != '' and option == '내용'">
+					            notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+					        </if>
+					    </where>
+				     	<![CDATA[
+	 							ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
+	 								)	
+ 				WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
+    				]]> 
 	</select>
 	
 	<select id="countNotices" parameterType="map" resultType="int">

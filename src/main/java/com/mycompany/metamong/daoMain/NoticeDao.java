@@ -34,7 +34,7 @@ public interface NoticeDao {
 
 	public int deleteFile(NoticeUpdateFormDto form);
 	
-	public List<NoticeDto> selectNoticeSearch(@Param("option")String option, @Param("keyword")String keyword, Pager pager);
+	public List<NoticeDto> selectNoticeSearch(@Param("option")String option, @Param("keyword")String keyword, @Param("pager")Pager pager);
 
 	public int countNotices(@Param("option") String option, @Param("keyword") String keyword);
 }
