@@ -24,11 +24,11 @@
                     <form id="updateNoticeForm" action="updateNotice" method="post" enctype="multipart/form-data">
                         <table class="table"> 
                             <tr>
-                                <td class="table-primary form-label" id="tdth">제목<span class="form-required">(*)</span></td>
+                                <td class="table-secondary form-label" id="tdth">제목<span class="form-required">(*)</span></td>
                                 <td><input type="text" class="form-control" id="noticeTitle" name="noticeTitle" value="${notice.noticeTitle}"></td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label" id="tdth">중요도<span class="form-required">(*)</span></td>
+                                <td class="table-secondary form-label" id="tdth">중요도<span class="form-required">(*)</span></td>
                                 <td>
                                     <select class="form-select" id="noticeIsimp" name="noticeIsimp" required style="width:100px;">
                                         <option value="">선택</option>
@@ -38,17 +38,17 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label" id="tdth">작성자</td>
+                                <td class="table-secondary form-label" id="tdth">작성자</td>
                                 <td id="author"><span>관리자</span></td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label" id="tdth">내용</td>
+                                <td class="table-secondary form-label" id="tdth">내용</td>
                                 <td id="noticeContentTd">                                   
                                     <textarea class="form-control" id="noticeContent" name="noticeContent" rows="12">${notice.noticeContent}</textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="table-primary form-label" id="tdth">첨부파일</td>
+                                <td class="table-secondary form-label" id="tdth">첨부파일</td>
                                 <td>
                                     <c:if test="${notice.noticeFilename != null}">
                                         <div id="existingFile">
