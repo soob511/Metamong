@@ -1,7 +1,6 @@
 package com.mycompany.metamong.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +16,9 @@ import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
+import com.mycompany.metamong.daoSub1.Sub1TableDao;
+import com.mycompany.metamong.daoSub2.Sub2TableDao;
+import com.mycompany.metamong.daoSub3.Sub3TableDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
@@ -52,6 +54,15 @@ public class ApplyService {
 	private TableDao tableDao;
 	@Autowired
 	private ColumnDao columnDao;
+	
+	@Autowired
+	private Sub1TableDao spmDao;
+	
+	@Autowired
+	private Sub2TableDao pmsDao;
+	
+	@Autowired
+	private Sub3TableDao hrDao;
 
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
@@ -246,6 +257,24 @@ public class ApplyService {
 	    sql.append(String.join(", ", columns)).append(")");
 	    return sql.toString();
 	}
+
+	@Transactional
+	public void runQuery(int applyNo) {
+		String schema = applyListDao.getSchemaName(applyNo);
+		String sql = applyListDao.getQuery(applyNo);
+		
+		if(schema.equals("SPM")) {
+			spmDao.CreateTable(sql);
+		}else if(schema.equals("PMS")) {
+			pmsDao.CreateTable(sql);
+		}else {
+			hrDao.CreateTable(sql);
+		}
+		applyListDao.updateStatus(applyNo);
+		
+	}
+
+
 
 	
 	/*CREATE TABLE employees (

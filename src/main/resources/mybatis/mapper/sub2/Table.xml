@@ -2,5 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoSub2.Sub2TableDao">
 	
+	<insert id="CreateTable" parameterType="String">
+		${sql}
+	</insert>
+	
 </mapper>
 	
