@@ -120,16 +120,16 @@ public class ApplyService {
 		indexDao.insertApplyIndex(applyIndexDto);
 	}
 	
-	public List<ApplyIndexListDto> getApplyIndexList() {
-		return applyListDao.selectApplyIndex();
+	public List<ApplyIndexListDto> getApplyIndexList(Pager pager) {
+		return indexDao.selectApplyIndex(pager);
 	}
 	
 	public List<ApplyIndexListDto> getApplyIndexList(HashMap<String, Object> indexApplyListDatae) {
-		return applyListDao.selectApplyIndexByParams(indexApplyListDatae);
+		return indexDao.selectApplyIndexByParams(indexApplyListDatae);
 	}
 	
 	public ApplyIndexDetailDto getApplyIndexListDetail(int applyNo) {
-		return applyListDao.selectApplyIndexDetail(applyNo);
+		return indexDao.selectApplyIndexDetail(applyNo);
 	}
 
 	@Transactional

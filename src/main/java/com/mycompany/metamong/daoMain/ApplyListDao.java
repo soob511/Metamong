@@ -30,12 +30,6 @@ public interface ApplyListDao {
 	public List<ApplyTableDto> selectApplyTableSearch(Map<String, String> form);
 
 	public ApplyTableDeatilDto selectTableListDetail(int applyNo);
-	
-	public List<ApplyIndexListDto> selectApplyIndex();
-	
-	public List<ApplyIndexListDto> selectApplyIndexByParams(HashMap<String, Object> indexApplyListData);
-	
-	public ApplyIndexDetailDto selectApplyIndexDetail(int applyNo);
 
 	public int insertApplyList(ApplyListDto apply);
 
