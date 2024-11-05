@@ -101,14 +101,14 @@
 		resultType="ApplyTableList">
     <![CDATA[
         SELECT 
-            rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_obj
+            rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_type
         FROM (
             SELECT 
-                rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_obj
+                rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_type
             FROM (
                 SELECT
                     a.apply_no, m.m_name,
-                    a.apply_date, a.approval_status, a.schema_name, t.table_id, a.apply_obj
+                    a.apply_date, a.approval_status, a.schema_name, t.table_id, a.apply_type
                 FROM apply_list a
                 JOIN member m ON a.m_id = m.m_id
                 JOIN apply_table t ON a.apply_no = t.apply_no
@@ -238,8 +238,17 @@
 		SET dba_name = #{dbaName},
 		approval_status = #{approvalStatus},
 		compl_date = SYSDATE
+		 <if test="query != null">
+            , query = #{query}
+        </if>
 		WHERE apply_no = #{applyNo}
 	</update>
+	
+	<select id="selectApplyType" parameterType="int" resultType="String">
+		SELECT apply_type
+		FROM apply_list
+		WHERE apply_no =#{apply_no}
+	</select>
 
 </mapper>
 

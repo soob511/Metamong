@@ -12,6 +12,8 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableApplyDetail.css"
 	rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container codeApplyInfo-container">
@@ -27,8 +29,8 @@
 						<div class="button-groupDBA">
 							<c:choose>
 								<c:when test="${applyList.approvalStatus == 0}">
-									<button class="btn-approve">승인</button>
-									<button class="btn-reject">반려</button>
+									<button class="btn-approve" onclick="tableApplyProcess(1)">승인</button>
+									<button class="btn-reject" onclick="tableApplyProcess(2)">반려</button>
 								</c:when>
 								<c:when test="${applyList.approvalStatus == 1}">
 									<button class="btn-reflect">반영</button>

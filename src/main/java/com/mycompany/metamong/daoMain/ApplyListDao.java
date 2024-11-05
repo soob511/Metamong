@@ -11,6 +11,7 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Mapper
@@ -26,7 +27,7 @@ public interface ApplyListDao {
 	
 	public ApplyCodeDeatilDto selectCodeApplyDetail(int applyNo);
 
-	public List<ApplyTableDto> selectApplyTableList(Pager pager);
+	public List<ApplyTableListDto> selectApplyTableList(Pager pager);
 
 	public ApplyTableDeatilDto selectTableListDetail(int applyNo);
 
@@ -41,5 +42,7 @@ public interface ApplyListDao {
 	public List<ApplyTableDto> selectApplyTableSearch(Map<String, Object> params);
 	
 	public int updateProcessApproval(ApplyListDto applyList);
+
+	public String selectApplyType(int applyNo);
 
 }
