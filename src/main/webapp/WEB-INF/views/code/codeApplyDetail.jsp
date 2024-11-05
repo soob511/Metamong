@@ -126,14 +126,9 @@
                     </div>
                 </div>
 
-               <!--  <div class="button-group">
-                    <a href="codeCompare">
-                        <button class="btn-compare" type="button">전/후비교</button>
-                    </a>
-                </div> -->
-
                 <div class="item-container">
                     <div class="item-header">항목</div>
+                    <div class="item-table-container">
                     <table class="table table-hover bottom-table">
                         <thead class="table-primary">
                             <tr>
@@ -144,7 +139,7 @@
                                 <th scope="col">내용</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="item-tbody">
                             <c:forEach items="${applyItems}" var="applyItem"	varStatus="status">
 								<tr>
 									<th>${status.index+1}</th>
@@ -156,6 +151,7 @@
 							</c:forEach>
                         </tbody>
                     </table>
+                    </div>
                 </div>
 
                 <div class="button-group">
