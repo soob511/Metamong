@@ -25,13 +25,26 @@
 					<p class="codeApplyInfo-title">&gt; 테이블/컬럼 신청 상세보기</p>
 					<sec:authorize access="hasRole('ROLE_DBA')">
 						<div class="button-groupDBA">
-							<button class="btn-approve">승인</button>
-							<button class="btn-reject">반려</button>
+							<c:choose>
+								<c:when test="${applyList.approvalStatus == 0}">
+									<button class="btn-approve">승인</button>
+									<button class="btn-reject">반려</button>
+								</c:when>
+								<c:when test="${applyList.approvalStatus == 1}">
+									<button class="btn-reflect">반영</button>
+								</c:when>
+								<c:when
+									test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
+									<button class="btn-complete">처리완료</button>
+								</c:when>
+							</c:choose>
 						</div>
 					</sec:authorize>
+
 				</div>
 				<hr>
-				<div id="applyContainer" class="container" data-applyno="${applyList.applyNo}">
+				<div id="applyContainer" class="container"
+					data-applyno="${applyList.applyNo}">
 					<div class="row">
 						<div class="col codeApplyInfo">
 							<div class="codeApplyInfo-subtitle">신청정보</div>
