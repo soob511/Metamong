@@ -40,6 +40,7 @@ function  tableApplyProcess(status){
 		    input: status == 1 ? null : 'text'
 		}).then(result => {
 		    const reason = (status == 1) ? '' : result.value;
+		    console.log(reason);
 		    
 			$.ajax({
 				url : "/Metamong/table/tableProcessApproval",

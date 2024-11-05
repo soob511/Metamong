@@ -252,6 +252,9 @@
 		<if test="query != null">
 			, query = #{query}
 		</if>
+		  <if test="rejectReason != null">
+            , reject_reason = #{rejectReason}
+        </if>
 		WHERE apply_no = #{applyNo}
 	</update>
 
