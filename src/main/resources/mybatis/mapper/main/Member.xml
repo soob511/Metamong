@@ -107,6 +107,12 @@
 		
 	</select>
 	
+	<select id="selectDbaName" parameterType="String" resultType="Member">
+		SELECT m_name
+		FROM member
+		WHERE m_id = #{dbaId}
+	</select>
+	
 
 </mapper>
 	

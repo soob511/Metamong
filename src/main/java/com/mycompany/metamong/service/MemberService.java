@@ -34,4 +34,8 @@ public class MemberService {
 	public List<MemberDto> searchMember(String option, String keyword) {
 		return memberDao.selectMemberSearch(option, keyword);
 	}
+
+	public MemberDto getDbaNameById(String dbaId) {
+		return memberDao.selectDbaName(dbaId);
+	}
 }

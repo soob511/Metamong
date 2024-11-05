@@ -22,4 +22,6 @@ public interface MemberDao {
 	public List<MemberDto> selectMemberList(Pager pager);
 
 	public List<MemberDto> selectMemberSearch(@Param("option")String option, @Param("keyword")String keyword);
+
+	public MemberDto selectDbaName(String dbaId);
 }

@@ -41,4 +41,6 @@ public interface ApplyListDao {
 
 	public int selectTotalRows();
 
+	public int updateProcessApproval(ApplyListDto applyList);
+
 }

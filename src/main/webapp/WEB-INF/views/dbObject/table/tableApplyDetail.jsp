@@ -31,12 +31,12 @@
 					</sec:authorize>
 				</div>
 				<hr>
-				<div class="container">
+				<div id="applyContainer" class="container" data-applyno="${applyList.applyNo}">
 					<div class="row">
 						<div class="col codeApplyInfo">
 							<div class="codeApplyInfo-subtitle">신청정보</div>
 							<table class="table table-bordered codeApplyInfo-table">
-								<tr>
+								<tr data-indexno="${indexNo}">
 									<td class="table-secondary">No.</td>
 									<td colspan="5">
 										<div class="table-text">${indexNo}</div>
@@ -172,7 +172,7 @@
 	</div>
 
 	<script
-		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableApplyList.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableApplyDetail.js"></script>
 </body>
 
 </html>

@@ -174,4 +174,8 @@ public class ApplyService {
 		return applyListDao.selectTotalRows();
 	}
 
+	public void addProcessApproval(ApplyListDto applyList) {
+		applyListDao.updateProcessApproval(applyList);
+	}
+
 }

@@ -76,7 +76,7 @@
 	</select>
 	
 	<select id="selectTableListDetail" parameterType="int" resultType="ApplyTableDetail">
-		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name,a.apply_reason,
+		SELECT a.apply_no,m.m_name, a.apply_date, a.compl_date, a.dba_name,a.apply_reason,
 		 a.reject_reason, a.approval_status, a.query, a.schema_name
 		FROM apply_list a
 		JOIN member m ON a.m_id = m.m_id
@@ -147,7 +147,14 @@
 		FROM apply_list
 		WHERE apply_obj = 'TABLE'
 	</select>
-
-</mapper>
+	
+	<update id="updateProcessApproval" parameterType="ApplyList">
+	 	 UPDATE apply_list
+        SET dba_name = #{dbaName},
+            approval_status = #{approvalStatus},
+            compl_date = SYSDATE 
+        WHERE apply_no = #{applyNo}
+	</update>
+	</mapper>
 
 	
