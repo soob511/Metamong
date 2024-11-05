@@ -23,7 +23,7 @@ label {
 .index-search {
     display: flex;
     width: max-content;
-    margin-left: 55px;
+    margin-left: 42px;
     align-items: center;
 }
 
@@ -62,7 +62,7 @@ label {
     display: flex;
     align-items: center;
     min-width: 200px !important;
-    margin-left: 40px;
+    margin-left: 30px;
 }
 
 .schema-filter-label {
