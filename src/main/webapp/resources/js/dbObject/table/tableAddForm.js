@@ -12,11 +12,32 @@ $(document).ready(function() {
 	    $(this).addClass("table-active");
 	});
     
+    const pkSelect = $("#isUse");
+    const nullableSelect = $("#nullable");
+
+    if (pkSelect.val() === "Y") {
+        nullableSelect.val("NOTNULL");
+        nullableSelect.prop("disabled", true);
+    }
+
+    pkSelect.on("change", function() {
+        if (pkSelect.val() === "Y") {
+            nullableSelect.val("NOTNULL");
+            nullableSelect.prop("disabled", true);
+        } else {
+            nullableSelect.prop("disabled", false);
+        }
+    });
+    
     function resetAndDisableButton() {
     	console.log("실행");
     	$("#itemForm")[0].reset();
         $("#columnList tr").removeClass("selected");
         $(".btn-update").prop("disabled", true);
+        if (pkSelect.val() === "Y") {
+            nullableSelect.val("NOTNULL");
+            nullableSelect.prop("disabled", true);
+        }
     }
     
     $.ajax({
