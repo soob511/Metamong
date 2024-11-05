@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.column.NewColumnDto;
-import com.mycompany.metamong.dto.member.MemberDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableCompareDto;
@@ -143,7 +143,7 @@ public class TableController {
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		session.setAttribute("pager", pager);
 
-		List<ApplyTableDto> list = applyService.getApplyTableList(pager);
+		List<ApplyTableListDto> list = applyService.getApplyTableList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/table/tableApplyList";
