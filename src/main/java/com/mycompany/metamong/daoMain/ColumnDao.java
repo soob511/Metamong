@@ -20,7 +20,7 @@ public interface ColumnDao {
 	
 	public List<ColumnDto> selectColumnByApplyNo(int applyNo);
 
-	public List<ApplyColumnDto> selectApplyColumn(int applyNo);
+	public List<ColumnDto> selectApplyColumn(int applyNo);
 
 	public int insertColumn(ColumnDto column);
 

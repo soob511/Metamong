@@ -220,12 +220,13 @@ public class TableController {
 		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
 	}
 	
+	@ResponseBody
 	@PostMapping("/reflectTable")
-	public  ResponseEntity<String> reflectTable(@RequestParam int applyNo){
+	public  int reflectTable(@RequestParam int applyNo){
 		
-		applyService.runQuery(applyNo);
+		int success = applyService.runQuery(applyNo);
 		
-		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
+		return success;
 	}
 	
 
