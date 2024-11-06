@@ -16,9 +16,9 @@ import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
-import com.mycompany.metamong.daoSub1.Sub1TableDao;
-import com.mycompany.metamong.daoSub2.Sub2TableDao;
-import com.mycompany.metamong.daoSub3.Sub3TableDao;
+import com.mycompany.metamong.daoSub1.SrmTableDao;
+import com.mycompany.metamong.daoSub2.PmsTableDao;
+import com.mycompany.metamong.daoSub3.HrTableDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
@@ -55,15 +55,12 @@ public class ApplyService {
 	private TableDao tableDao;
 	@Autowired
 	private ColumnDao columnDao;
-	
 	@Autowired
-	private Sub1TableDao spmDao;
-	
+	private SrmTableDao srmDao;
 	@Autowired
-	private Sub2TableDao pmsDao;
-	
+	private PmsTableDao pmsDao;
 	@Autowired
-	private Sub3TableDao hrDao;
+	private HrTableDao hrDao;
 
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
@@ -260,43 +257,41 @@ public class ApplyService {
 	}
 
 	@Transactional
-	public void runQuery(int applyNo) {
+	public int runQuery(int applyNo) {
 		String schema = applyListDao.getSchemaName(applyNo);
 		String sql = applyListDao.getQuery(applyNo);
+		int pass = -1;
 		
 		if(schema.equals("SPM")) {
-			spmDao.CreateTable(sql);
+			pass = srmDao.CreateTable(sql);
 		}else if(schema.equals("PMS")) {
-			pmsDao.CreateTable(sql);
+			pass = pmsDao.CreateTable(sql);
 		}else {
-			hrDao.CreateTable(sql);
+			pass =hrDao.CreateTable(sql);
 		}
-		//반영으로 상태변경
-		applyListDao.updateStatus(applyNo);
 		
-		//테이블 테이블에 생성된 테이블 정보 넣기
-		ApplyTableDto applyTable  = tableDao.selectApplyTable(applyNo);
-		TableDto table = new TableDto();
-		table.setTableId(applyTable.getTableId());
-		table.setTableNm(applyTable.getTableNm());
-		table.setTableContent(applyTable.getTableContent());
-		table.setSchemaNm(schema);
-		tableDao.insertTable(table);
-		
-		//컬럼정보 넣기
-		List<ApplyColumnDto> applyColumn = columnDao.selectApplyColumn(applyNo);
-		for(ApplyColumnDto aColumn:applyColumn) {
-			ColumnDto column = new ColumnDto();
-			column.setTableNo(table.getTableNo());
-			column.setColId(aColumn.getColId());
-			column.setColNm(aColumn.getColNm());
-			column.setDataType(aColumn.getDataType());
-			column.setColLength(aColumn.getColLength());
-			column.setColIsnullable(aColumn.getColIsnullable());
-			column.setColIspk(aColumn.getColIspk());
-			column.setColOrder(aColumn.getColOrder());
-			columnDao.insertColumn(column);
+		//성공했을시
+		if(pass==0) {
+			//반영으로 상태변경
+			applyListDao.updateStatus(applyNo,3);
+			
+			//테이블 테이블에 생성된 테이블 정보 넣기
+			TableDto table  = tableDao.selectApplyTable(applyNo);
+			table.setSchemaNm(schema);
+			tableDao.insertTable(table);
+			
+			//컬럼정보 넣기
+			List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
+			for(ColumnDto col:column) {
+				col.setTableNo(table.getTableNo());
+				columnDao.insertColumn(col);
+			}	
+		}else {//실패했을때
+			applyListDao.updateStatus(applyNo,2);
+			applyListDao.updateRejectReason(applyNo,"중복된 이름의 테이블이 있습니다.");
 		}
+		
+		return pass;
 		
 	}
 
