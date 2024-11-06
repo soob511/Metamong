@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>계정 신청내역</title>
-<link href="${pageContext.request.contextPath}/resources/css/notice/noticeList.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/account/accountApplyList.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -15,31 +17,41 @@
 		<div class="col">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
-					<h4 class="fw-bold">> 계정 신청내역</h4>
+					<div class="fw-bold account-applyList-title">> 계정 신청내역</div>
 					
-					<div class="d-flex justify-content-end">
-                        <div class="table-list-filters">
-                            <div class="schema-filter">
-							<select id="schemaSelect" class="form-select"
+					<div class="d-flex justify-content-end ">
+					 <div class="d-flex align-items-center" id="status">
+                        <label for="statusSelect" class="status-filter-label me-2">상태</label>
+                        <select id="statusSelect" class="form-select" aria-label="Default select">
+                            <option value="All" data-status="">전체</option>
+                            <option value="wait" data-status="0">승인대기</option>
+                            <option value="approve" data-status="1">승인</option>
+                            <option value="reject" data-status="2">반려</option>                       
+                        </select>
+                    </div>                
+                    	 <div class="d-flex align-items-end">
+                             <label for="statusSelect" class="status-filter-label" id="opt">검색조건</label>
+							<select id="searchSelect" class="form-select"
 								aria-label="Default select example">
-								<option selected>ID</option>
+								 <option value="All" data-status="">전체</option>
+								<option value="ID">ID</option>
 								<option>이름</option>
 								<option>권한</option>
 								<option>소속</option>
 								<option>사번</option>
 							</select>
-						</div>
-						</div>
-						<div class="search-box">
+							</div>
+						
+							<div class="search-box ms-2">
 								<input class="form-control me-2" type="search"
 									id="memberSearch" name="keyword" placeholder="Search" aria-label="Search" >
 								 <i  class="bi bi-search"></i> 
 						</div>
 					</div>
-					
+			
 					<div id="memberList" >
 					<div class="d-flex  justify-content-start">
-					<div>총 <span class="form-required" id="memberCount">${totalRows}</span>건의 신청이 있습니다.</div>
+					<div class="pb-3">총 <span class="form-required" id="memberCount">${totalRows}</span>건의 신청이 있습니다.</div>
 					</div>	
 
 					<table class="table table-hover">
@@ -67,9 +79,19 @@
 								<td> ${member.teamName} </td>
 								<td> ${member.MEmpId} </td>
 								<td> ${member.MTel} </td>
-								<td>
-									<button type="button" class="btn btn-sm me-2" style="background-color:#003567; color:white;">승인</button>
-									<button type="button" class="btn btn-sm me-2" style="background-color:#949494; color:white;">반려</button>
+								<td class="apply-approve">
+									<c:choose>
+										<c:when test="${member.MApprovalStatus == 0}">
+												<button class="btn btn-sm me-2" id="btn-approve" onclick="accountApplyProcess('${member.MId}', 1)">승인</button>
+												<button class="btn btn-sm me-2" id="btn-reject" onclick="accountApplyProcess('${member.MId}', 2)" >반려</button>
+										</c:when>
+										<c:when test="${member.MApprovalStatus == 1}">
+												<span id="status-approve">승인</span>
+                                       </c:when>
+                                        <c:when test="${member.MApprovalStatus == 2}">
+                                                <span id="status-rejected">반려</span>
+                                       </c:when>
+										</c:choose>
 								</td>
 							</tr>
 						</c:forEach>
@@ -101,6 +123,7 @@
 			</div>
 	</div>
 </div> 
+</div>
 <script src="${pageContext.request.contextPath}/resources/js/account/accountApplyList.js"></script>
 </body>
 </html>

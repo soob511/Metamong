@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>직원목록</title>
-<link href="${pageContext.request.contextPath}/resources/css/notice/noticeList.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/account/accountApplyList.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -67,7 +67,7 @@
 								</td>
 								<td>
 									<div>
-										<select id="schemaSelect" class="form-select"
+										<select id="searchSelect" class="form-select"
 											aria-label="Default select example">
 											<option selected>개발1팀</option>
 											<option value="1">개발2팀</option>
@@ -81,7 +81,7 @@
 								<td>2024-10-21</td>
 								<td>
 									<div>
-										<select id="schemaSelect" class="form-select"
+										<select id="searchSelect" class="form-select"
 											aria-label="Default select example">
 											<option selected>N</option>
 											<option value="1">Y</option>
