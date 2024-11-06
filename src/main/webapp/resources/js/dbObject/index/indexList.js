@@ -50,7 +50,7 @@ function filterTable() {
 	console.log(schemaName);
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/table/searchTableByDic',
+		url : '/Metamong/table/searchTableName',
 		data : {
 			schemaName : schemaName
 		},
@@ -75,7 +75,7 @@ function filterColumn() {
 
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/column/searchColumnByDic',
+		url : '/Metamong/column/searchColumnName',
 		data : {
 			schemaName : schemaName,
 			tableName : tableName
