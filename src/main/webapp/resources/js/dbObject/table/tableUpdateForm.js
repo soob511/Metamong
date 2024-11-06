@@ -143,7 +143,7 @@ $(document).ready(function() {
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
 
-        if (colNm === "" || colId === "" || colLength === "") {
+        if (colNm === "" || colId === "") {
             Swal.fire({
                 icon: 'warning',                  
                 title: '추가할 내용을 <br/>전부 입력해주세요.'   
@@ -202,7 +202,7 @@ $(document).ready(function() {
             var colNullable = $("#nullable").val();
             var colPk = $("#isUse").val();
 
-            if (colNm === "" || colId === "" || colLength === "") {
+            if (colNm === "" || colId === "") {
                 Swal.fire({
                     icon: 'warning',
                     title: '수정할 내용을 <br/>전부 입력해주세요.'
@@ -215,7 +215,9 @@ $(document).ready(function() {
                 selectedRow.find("td:eq(5)").text(colNullable);
                 selectedRow.find("td:eq(6)").text(colPk);
 
-                selectedRow.attr("data-change", "2");
+                if (selectedRow.data("change") === 0) {
+                    selectedRow.data("change", 2).attr("data-change", 2); 
+                }
                 console.log("Updated row data-change:", selectedRow.attr("data-change"));
 
                 $("#itemForm")[0].reset();
@@ -297,7 +299,8 @@ $(document).ready(function() {
                 dataType: $(this).find("td:eq(3)").text(),
                 colLength: $(this).find("td:eq(4)").text(),
                 colNullable: $(this).find("td:eq(5)").text(),
-                colPk: $(this).find("td:eq(6)").text()
+                colPk: $(this).find("td:eq(6)").text(),
+                colIsupdate: $(this).data("change") 
             };
             columns.push(column);
         });
@@ -370,7 +373,7 @@ $(document).ready(function() {
             columns: columns,
             applyReason:applyReason
         });
-
+ 
         $.ajax({
             url: "/Metamong/table/tableCompare",
             type: "POST",

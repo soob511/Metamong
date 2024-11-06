@@ -13,8 +13,8 @@
 	
 	<insert id="insertApplyColumn" parameterType="ApplyColumn">
 		INSERT INTO
-		apply_col(apply_no,col_id,col_nm,data_type,col_length,col_isnullable,col_ispk,col_order)
-		VALUES(#{applyNo},#{colId},#{colNm},#{dataType},#{colLength},#{colIsnullable},#{colIspk},#{colOrder})
+		apply_col(apply_no,col_id,col_nm,data_type,col_length,col_isnullable,col_ispk,col_order,col_isupdate)
+		VALUES(#{applyNo},#{colId},#{colNm},#{dataType},#{colLength},#{colIsnullable},#{colIspk},#{colOrder},#{colIsupdate})
 	</insert>
 	
 	<select id="selectColumnByTable" parameterType="map" resultType="Column">

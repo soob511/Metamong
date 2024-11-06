@@ -201,6 +201,14 @@ public class ApplyService {
 			applyColumn.setColIsnullable("NOTNULL".equals(column.getColNullable()) ? 0 : 1);
 			applyColumn.setColIspk("N".equals(column.getColPk()) ? 0 : 1);
 			applyColumn.setColOrder(order);
+			if (column.getColIsupdate() == 1) {
+			    applyColumn.setColIsupdate(1);
+			} else if (column.getColIsupdate() == 2) {
+			    applyColumn.setColIsupdate(2);
+			} else {
+			    applyColumn.setColIsupdate(0);
+			}
+
 			columnDao.insertApplyColumn(applyColumn);	
 		}
 
@@ -240,8 +248,11 @@ public class ApplyService {
 	    
 	    for (ColumnDto column : list) {
 	        StringBuilder col = new StringBuilder(column.getColId())
-	                .append(" ").append(column.getDataType())
-	                .append("(").append(column.getColLength()).append(")");
+	                .append(" ").append(column.getDataType());
+	        
+	        if (column.getColLength() != null) {
+	            col.append("(").append(column.getColLength()).append(")");
+	        }
 
 	        if (column.getColIspk() == 1) {
 	            col.append(" PRIMARY KEY");
@@ -251,6 +262,7 @@ public class ApplyService {
 	        
 	        columns.add(col.toString());
 	    }
+
 	    
 	    sql.append(String.join(", ", columns)).append(")");
 	    return sql.toString();
