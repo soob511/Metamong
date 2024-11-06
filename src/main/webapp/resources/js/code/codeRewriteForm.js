@@ -79,7 +79,7 @@ $(document).ready(function() {
     $('.btn-init').click(function() {
     	refresh();
     });
-
+    
     /* 코드, 항목 수정 신청 */
     $('#code-apply').click(function() {
     	const codeNo = $('.codeAdd-subtitle').data('code-no');
@@ -87,6 +87,7 @@ $(document).ready(function() {
         const codeId = $('#codeId').val();
         const codeLength = $('#codeLength').val();
         const codeContent = $('#codeContent').val();
+        const applyType = $('#code-apply').data('type');
         const codeIsActive = $("#codeIsActive option:selected").val();
         const applyReason = $('#applyReason').val();
 
@@ -97,7 +98,7 @@ $(document).ready(function() {
             codeLength: codeLength,
             codeContent: codeContent,
             codeIsActive: codeIsActive,
-            applyType: 'UPDATE',
+            applyType: applyType,
             applyReason: applyReason,
             items: items
         };
@@ -128,7 +129,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     $('.btn-compare').click(function() {
     	const codeNo = $('.codeAdd-subtitle').data('code-no');
     	const codeNm = $('#codeNm').val();

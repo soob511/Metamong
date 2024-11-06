@@ -126,12 +126,13 @@
 	                    </table>
                     </div>
                 </div>
-
-                <div class="button-group">
-               		<button class="btn-compare" type="button">전/후 비교</button>
-                 	<button id="code-apply" class="btn-add" type="button">신청</button>
-                </div>
-
+				
+	                <div class="button-group">
+	                <c:if test="${applyType == 'UPDATE'}">
+	               		<button class="btn-compare" type="button">전/후 비교</button>
+					</c:if>
+	                 	<button id="code-apply" class="btn-add" type="button" data-type="${applyType}">신청</button>
+	                </div>
                 <script src="${pageContext.request.contextPath}/resources/js/code/codeRewriteForm.js"></script>
             </div>
         </div>

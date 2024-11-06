@@ -226,12 +226,12 @@ public class CodeController {
 	
 	@GetMapping("/codeApplyRewrite")
 	public String codeApplyRewrite(int applyNo, Model model, HttpSession session) {
-		//String type = applyService.getApplyType(applyNo);
+		String applyType = applyService.getApplyType(applyNo);
 		
 		CodeDto code = applyService.getCodeApplyByNo(applyNo);
 		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 		int  itemLength = itemService.getItemList(code.getCodeNo()).size();
-		model.addAttribute("itemLength", itemLength);
+		
 		
 		List<ItemApplyDto> tmpItems = new ArrayList<ItemApplyDto>();
 
@@ -246,8 +246,9 @@ public class CodeController {
 		}
 		model.addAttribute("code", code);
 		model.addAttribute("items", tmpItems);
+		model.addAttribute("itemLength", itemLength);
+		model.addAttribute("applyType", applyType);
 		session.removeAttribute("applyReason");
-		log.info("재작성 실행함");
 		
 		return "code/codeRewriteForm";
 	}

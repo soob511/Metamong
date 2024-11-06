@@ -51,21 +51,4 @@ function applyComplete() {
             });
         }
     });
-}
-
-/* 재작성 */
-function applyRewrite(no) {
-	console.log(no);
-	/*const params = new URL(location.href).searchParams;
-	const applyNo = params.get('applyNo');
-	
-    $.ajax({
-        url: "/Metamong/code/codeApplyRewrite",
-        type: "GET",
-        data: { applyNo: applyNo },
-        success: function (data) {
-        	console.log(data);
-            location.href = data;
-        }
-    });*/
 };
