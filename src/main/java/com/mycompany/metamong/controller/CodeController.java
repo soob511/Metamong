@@ -224,6 +224,34 @@ public class CodeController {
 		return ResponseEntity.ok(result);
 	}
 	
+	@GetMapping("/codeApplyRewrite")
+	public String codeApplyRewrite(int applyNo, Model model, HttpSession session) {
+		//String type = applyService.getApplyType(applyNo);
+		
+		CodeDto code = applyService.getCodeApplyByNo(applyNo);
+		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
+		int  itemLength = itemService.getItemList(code.getCodeNo()).size();
+		model.addAttribute("itemLength", itemLength);
+		
+		List<ItemApplyDto> tmpItems = new ArrayList<ItemApplyDto>();
+
+		for(ItemDto item : items) {
+			ItemApplyDto tmpItem = new ItemApplyDto();
+			tmpItem.setItemId(item.getItemId());
+			tmpItem.setItemNm(item.getItemNm());
+			tmpItem.setItemIsActive(item.getItemIsActive());
+			tmpItem.setItemContent(item.getItemContent());
+			tmpItem.setItemIsUpdate(0);
+			tmpItems.add(tmpItem);
+		}
+		model.addAttribute("code", code);
+		model.addAttribute("items", tmpItems);
+		session.removeAttribute("applyReason");
+		log.info("재작성 실행함");
+		
+		return "code/codeRewriteForm";
+	}
+	
 	@ResponseBody
 	@GetMapping("/codeLoad")
 	public List<CodeDto> codeLoad(){
