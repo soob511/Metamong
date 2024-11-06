@@ -20,4 +20,6 @@ public interface ColumnDao {
 	
 	public List<ColumnDto> selectColumnByApplyNo(int applyNo);
 
+	public String selectColumnName(@Param("tableNo")int tableNo, @Param("colId")String colId);
+
 }

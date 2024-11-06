@@ -2,13 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.metamong.daoSub1.Sub1ColumnDao">
 	
-	<select id="selectColumnByDic" parameterType="String" resultType="Column">
+	<select id="selectColumnName" parameterType="String" resultType="Column">
 		SELECT 
 		    column_name colNm
 		FROM 
 		    user_tab_columns
 		WHERE 
 		    table_name = UPPER(#{tableName})
+	</select>
+
+	<select id="selectColumnInfo" parameterType="String" resultType="Column">
+		SELECT 
+			cols.column_name AS col_id, cols.data_type, cols.DATA_LENGTH AS col_length, 
+			cols.NULLABLE AS col_isnullable_text,
+	    CASE WHEN cons.constraint_type = 'P' THEN 'Y' ELSE 'N' END AS col_ispk_text
+		FROM
+		    all_tab_columns cols
+		LEFT JOIN
+		    all_cons_columns cons_col ON cols.table_name = cons_col.table_name 
+		    AND cols.column_name = cons_col.column_name
+		LEFT JOIN
+		    ALL_CONSTRAINTS cons ON cons_col.constraint_name = cons.constraint_name 
+		    AND cons.constraint_type = 'P'
+		WHERE
+		    cols.table_name = UPPER(#{tableName})
 	</select>
 
 </mapper>

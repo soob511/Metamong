@@ -36,5 +36,12 @@
 		ORDER BY col_order
 
 	</select>
+	
+	<select id="selectColumnName" parameterType="map" resultType="String">
+	    SELECT col_nm
+	    FROM "COLUMN" c
+	    WHERE table_no = #{tableNo} AND col_id = #{colId}
+	</select>
+
 </mapper>
 	
