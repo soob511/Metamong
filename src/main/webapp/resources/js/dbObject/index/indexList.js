@@ -56,7 +56,7 @@ function filterTable() {
 		},
 		success : function(data) {
 			let html = '<option>선택</option>';
-			console.log(data);
+			$('#columnSelect').html(html);
 			data.forEach(function(table) {
 				html += `
 					<option>${table.tableNm}</option>`
