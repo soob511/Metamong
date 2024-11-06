@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
+import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
@@ -72,29 +74,39 @@ public class IndexController {
 			) {
 		StringJoiner joiner = new StringJoiner(", ");
 		for (RefColumnDto refColumn : applyIndexRequest.getRefColumn()) {
-		    joiner.add(refColumn.getColId() + " " + refColumn.getColOrder());
+			joiner.add(refColumn.getColId() + " " + refColumn.getColOrder());
 		}
 		String combineRefColumn = joiner.toString();
-		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyIndexRequest.getApplyIndexDto().setRefColumn(combineRefColumn);
+		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
 	}
 	
 	@ResponseBody
-	@PostMapping("/applyIndexDelete")
-	public void applyIndexDelete(
-			@RequestBody List<ApplyIndexRequestDto> applyIndexRequest,
+	@PostMapping("/applyIndexDel")
+	public void applyIndexDel(
+			@RequestBody ApplyIndexRequestDto applyIndexRequest,
 			Authentication authentication) {
-//		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
-//		applyIndexRequest.getApplyIndexDto().setRefColumn(combineRefColumn);
-//		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
+		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
+		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchIndexNoPk")
+	public List<IndexDto> searchIndexNoPk(
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName
+			) {
+		List<IndexDto> list = 
+				indexService.getIndexListNoPk(indexName, columnName, tableName, schemaName);
+		return list;
 	}
 	
 	@GetMapping("/indexDeleteForm")
 	public String indexDeleteForm(Model model) {
-		List<IndexDto> list = indexService.getIndexList();
 		model.addAttribute("schemaEnum", SchemaEnum.values());
-		model.addAttribute("list", list);
 		return "dbObject/index/indexDeleteForm";
 	}
 	
