@@ -79,9 +79,7 @@ public class ColumnService {
 				for (ColumnDto col : list) {
 			        String colId = col.getColId();
 			        String colNm = columnDao.selectColumnName(tableNo, colId);
-			        log.info("실행" + colId + colNm);
 			        if (colNm != null) col.setColNm(colNm);
-			        log.info("실행" + list);
 			    }
 				break;
 			case "PMS":
@@ -89,9 +87,7 @@ public class ColumnService {
 				for (ColumnDto col : list) {
 			        String colId = col.getColId();
 			        String colNm = columnDao.selectColumnName(tableNo, colId);
-			        log.info("실행" + colId + colNm);
 			        if (colNm != null) col.setColNm(colNm);
-			        log.info("실행" + list);
 			    }
 				break;
 			case "HR":
@@ -99,9 +95,7 @@ public class ColumnService {
 				for (ColumnDto col : list) {
 			        String colId = col.getColId();
 			        String colNm = columnDao.selectColumnName(tableNo, colId);
-			        log.info("실행" + colId + colNm);
 			        if (colNm != null) col.setColNm(colNm);
-			        log.info("실행" + list);
 			    }
 				break;
 			default:

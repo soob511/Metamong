@@ -4,7 +4,6 @@ $(document).ready(function() {
     $('.sub-menu:eq(1)').addClass('active');
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(2)').addClass('active');
-    filterTable();
     
     $('#schemaSelect').change(function() {
     	filterTable();
@@ -240,7 +239,8 @@ function filterTable() {
 			schemaName : schemaName
 		},
 		success : function(data) {
-			let html = '<option>선택</option>';
+			console.log(data);
+			let html = '<option data-name="선택">선택</option>';
 
 			data.forEach(function(table) {
 				if (table != null) {
