@@ -264,13 +264,13 @@ public class ApplyService {
 		String schema = applyListDao.getSchemaName(applyNo);
 		String sql = applyListDao.getQuery(applyNo);
 		
-		/*if(schema.equals("SPM")) {
+		if(schema.equals("SPM")) {
 			spmDao.CreateTable(sql);
 		}else if(schema.equals("PMS")) {
 			pmsDao.CreateTable(sql);
 		}else {
 			hrDao.CreateTable(sql);
-		}*/
+		}
 		//반영으로 상태변경
 		applyListDao.updateStatus(applyNo);
 		

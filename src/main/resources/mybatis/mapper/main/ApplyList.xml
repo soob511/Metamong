@@ -159,17 +159,16 @@
 		resultType="ApplyTableList">
 		SELECT
 		rnum, apply_no, m_name, apply_date, approval_status,
-		schema_name, table_id,
-		apply_obj
+		schema_name, table_id
 		FROM (
 		SELECT
 		rownum AS rnum, apply_no,
 		m_name, apply_date, approval_status, schema_name,
-		table_id, apply_obj
+		table_id
 		FROM (
 		SELECT
 		a.apply_no, m.m_name, a.apply_date, a.approval_status,
-		a.schema_name, t.table_id, a.apply_obj
+		a.schema_name, t.table_id
 		FROM apply_list a
 		JOIN member m
 		ON a.m_id = m.m_id
