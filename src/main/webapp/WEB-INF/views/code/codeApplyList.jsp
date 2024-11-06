@@ -44,7 +44,7 @@
                     <div class="table-container">
                         <table class="table table-hover">
                             <thead class="table">
-                                <tr class="table-primary">
+                                <tr class="table-secondary">
                                     <th scope="col">No.</th>
                                     <th scope="col">신청일자</th>
                                     <th scope="col">신청자</th>
@@ -65,7 +65,7 @@
                                         <td>${code.MName}</td>
                                         <td>${code.codeNm}</td>
                                         <td>${code.codeId}</td>
-                                        <td>${code.applyObj}</td>
+                                        <td>${code.applyType}</td>
                                         <td>
                                             <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${status.index + 1})">상세보기</button>
                                         </td>
@@ -92,22 +92,22 @@
                     </div>
                     <div class="page">
                         <div class="pagination">
-                            <a href="codeApplyList?pageNo=1" class="btn btn-outline-primary btn-sm">&lt;&lt;</a>
+                            <a href="codeApplyList?pageNo=1" class="btn btn-outline-secondary btn-sm">&lt;&lt;</a>
                             <c:if test="${pager.groupNo > 1}">
                                 <a href="codeApplyList?pageNo=${pager.startPageNo - 1}" class="btn btn-outline-info btn-sm">&lt;</a>
                             </c:if>
                             <c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
                                 <c:if test="${pager.pageNo == i}">
-                                    <a href="codeApplyList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+                                    <a href="codeApplyList?pageNo=${i}" class="btn btn-outline-secondary btn-sm">${i}</a>
                                 </c:if>
                                 <c:if test="${pager.pageNo != i}">
-                                    <a href="codeApplyList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+                                    <a href="codeApplyList?pageNo=${i}" class="btn btn-outline-secondary btn-sm">${i}</a>
                                 </c:if>
                             </c:forEach>
                             <c:if test="${pager.groupNo < pager.totalGroupNo}">
                                 <a href="codeApplyList?pageNo=${pager.endPageNo + 1}" class="btn btn-outline-info btn-sm">&gt;</a>
                             </c:if>
-                            <a href="codeApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">&gt;&gt;</a>
+                            <a href="codeApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-secondary btn-sm">&gt;&gt;</a>
                         </div>
                     </div>
                 </div>

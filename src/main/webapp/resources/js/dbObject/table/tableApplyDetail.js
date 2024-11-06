@@ -7,7 +7,27 @@ $(document).ready(function() {
 	$('.sub-menu:eq(1) .sub-item').removeClass('active');
 	$('.sub-menu:eq(1) .sub-item:eq(3)').addClass('active');
 
+	$(".btn-reflect").on("click", function() {
+		var applyNo = $("#applyContainer").attr("data-applyno");
+		var indexNo = $("tr").data("indexno");
+		
+		$.ajax({
+			url: "/Metamong/table/reflectTable",
+			type: "POST",
+			data: { applyNo: applyNo}, 
+			success: function(data) {
+				
+				Swal.fire({
+					icon: 'success',
+					title: '반영이 완료되었습니다!'
+				}).then(() => {
+					location.href=data +"&indexNo=" + indexNo;		
+				});
+			}
+		});
+	});
 });
+
 
 function  tableApplyProcess(status){
 	var applyNo = $("#applyContainer").attr("data-applyno");
@@ -20,6 +40,7 @@ function  tableApplyProcess(status){
 		    input: status == 1 ? null : 'text'
 		}).then(result => {
 		    const reason = (status == 1) ? '' : result.value;
+		    console.log(reason);
 		    
 			$.ajax({
 				url : "/Metamong/table/tableProcessApproval",

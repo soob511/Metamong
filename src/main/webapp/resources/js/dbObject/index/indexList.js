@@ -50,13 +50,13 @@ function filterTable() {
 	console.log(schemaName);
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/table/searchTableByDic',
+		url : '/Metamong/table/searchTableName',
 		data : {
 			schemaName : schemaName
 		},
 		success : function(data) {
 			let html = '<option>선택</option>';
-			console.log(data);
+			$('#columnSelect').html(html);
 			data.forEach(function(table) {
 				html += `
 					<option>${table.tableNm}</option>`
@@ -75,7 +75,7 @@ function filterColumn() {
 
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/column/searchColumnByDic',
+		url : '/Metamong/column/searchColumnName',
 		data : {
 			schemaName : schemaName,
 			tableName : tableName

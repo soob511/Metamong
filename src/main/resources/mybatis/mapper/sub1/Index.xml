@@ -15,7 +15,8 @@
 	
 	<select id="selectIndexByDic" parameterType="map" resultType="Index">
 		SELECT
-			i.index_name, user schema_name,i.table_name, ic.column_name, i.uniqueness
+			i.index_name, user schema_name, i.table_name, ic.column_position, 
+            ic.column_name, i.uniqueness, ic.descend
 		FROM
 			user_indexes i
 		JOIN

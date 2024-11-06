@@ -1,7 +1,6 @@
 package com.mycompany.metamong.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +16,11 @@ import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
+import com.mycompany.metamong.daoSub1.Sub1TableDao;
+import com.mycompany.metamong.daoSub2.Sub2TableDao;
+import com.mycompany.metamong.daoSub3.Sub3TableDao;
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
@@ -37,6 +39,7 @@ import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
+import com.mycompany.metamong.dto.table.TableDto;
 
 @Service
 public class ApplyService {
@@ -52,6 +55,15 @@ public class ApplyService {
 	private TableDao tableDao;
 	@Autowired
 	private ColumnDao columnDao;
+	
+	@Autowired
+	private Sub1TableDao spmDao;
+	
+	@Autowired
+	private Sub2TableDao pmsDao;
+	
+	@Autowired
+	private Sub3TableDao hrDao;
 
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
@@ -69,7 +81,7 @@ public class ApplyService {
 		return applyListDao.selectApplyCodeSearchList(status, option, keyword, pager);
 	}
 	
-	public ApplyCodeDeatilDto getCodeApplyDetail(int applyNo) {
+	public ApplyCodeDetailDto getCodeApplyDetail(int applyNo) {
 		return applyListDao.selectCodeApplyDetail(applyNo);
 	}
 	
@@ -247,15 +259,45 @@ public class ApplyService {
 	    return sql.toString();
 	}
 
-	
-	/*CREATE TABLE employees (
-		    employee_id NUMBER(10) PRIMARY KEY,
-		    first_name VARCHAR2(50) NOT NULL,
-		    last_name VARCHAR2(50) NOT NULL,
-		    email VARCHAR2(100) UNIQUE,
-		    phone_number VARCHAR2(15),
-		    hire_date DATE DEFAULT SYSDATE,
-		    salary NUMBER(8, 2) CHECK (salary > 0)
-		);*/
+	@Transactional
+	public void runQuery(int applyNo) {
+		String schema = applyListDao.getSchemaName(applyNo);
+		String sql = applyListDao.getQuery(applyNo);
+		
+		if(schema.equals("SPM")) {
+			spmDao.CreateTable(sql);
+		}else if(schema.equals("PMS")) {
+			pmsDao.CreateTable(sql);
+		}else {
+			hrDao.CreateTable(sql);
+		}
+		//반영으로 상태변경
+		applyListDao.updateStatus(applyNo);
+		
+		//테이블 테이블에 생성된 테이블 정보 넣기
+		ApplyTableDto applyTable  = tableDao.selectApplyTable(applyNo);
+		TableDto table = new TableDto();
+		table.setTableId(applyTable.getTableId());
+		table.setTableNm(applyTable.getTableNm());
+		table.setTableContent(applyTable.getTableContent());
+		table.setSchemaNm(schema);
+		tableDao.insertTable(table);
+		
+		//컬럼정보 넣기
+		List<ApplyColumnDto> applyColumn = columnDao.selectApplyColumn(applyNo);
+		for(ApplyColumnDto aColumn:applyColumn) {
+			ColumnDto column = new ColumnDto();
+			column.setTableNo(table.getTableNo());
+			column.setColId(aColumn.getColId());
+			column.setColNm(aColumn.getColNm());
+			column.setDataType(aColumn.getDataType());
+			column.setColLength(aColumn.getColLength());
+			column.setColIsnullable(aColumn.getColIsnullable());
+			column.setColIspk(aColumn.getColIspk());
+			column.setColOrder(aColumn.getColOrder());
+			columnDao.insertColumn(column);
+		}
+		
+	}
 
 }

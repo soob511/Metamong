@@ -62,15 +62,16 @@ public class TableController {
 	}
 
 	@ResponseBody
-	@GetMapping("/searchTableBySchema")
-	public List<TableDto> searchTable(@RequestParam SchemaEnum schemaName) {
-		return tableService.getTableName(schemaName);
+	@GetMapping("/searchTableInfo")
+	public List<TableDto> searchTableInfo(@RequestParam String schemaName) {
+		List<TableDto> list = tableService.getTableInfo(schemaName);
+		return list;
 	}
 	
 	@ResponseBody
-	@GetMapping("/searchTableByDic")
-	public List<TableDto> searchTableByDic(@RequestParam String schemaName) {
-		List<TableDto> list = tableService.getTableListByDic(schemaName);
+	@GetMapping("/searchTableName")
+	public List<TableDto> searchTableName(@RequestParam String schemaName) {
+		List<TableDto> list = tableService.getTableNameByDic(schemaName);
 		return list;
 	}
 
@@ -216,6 +217,14 @@ public class TableController {
 		}
 		
 		applyService.addProcessApproval(applyList);
+		
+		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
+	}
+	
+	@PostMapping("/reflectTable")
+	public  ResponseEntity<String> reflectTable(@RequestParam int applyNo){
+		
+		applyService.runQuery(applyNo);
 		
 		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
 	}
