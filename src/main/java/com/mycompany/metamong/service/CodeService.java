@@ -48,6 +48,6 @@ public class CodeService {
 		for (ItemDto item : items) {
 			itemDao.insertItem(item);
 		}
-		applyListDao.updateStatus(applyNo);
+		applyListDao.updateStatus(applyNo,3);
 	}
 }
