@@ -8,7 +8,7 @@
 		m_role, m_isactive,
 		prof_filename,
 		prof_filetype, prof_filedata,
-		m_applydate, m_isapprove, m_regdate
+		m_applydate, m_approval_status, m_regdate
 		FROM
 		member
 		WHERE
@@ -27,7 +27,7 @@
         m_role,
         m_isactive,
         m_applydate,
-        m_ISAPPROVE
+        m_approval_stauts
     ) VALUES (
         #{MId},
         #{MName},
