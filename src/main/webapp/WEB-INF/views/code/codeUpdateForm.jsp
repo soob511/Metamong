@@ -69,7 +69,7 @@
                             <table class="table table-bordered item-table">
                                 <tr>
                                     <td class="table-secondary">항목코드</td>
-                                    <td colspan="5" id="itemIdTd"><input type="text" id="itemId" class="form-control code-input" required></td>
+                                    <td colspan="5"><input type="text" id="itemId" class="form-control code-input" required></td>
                                 </tr>
                                 <tr>
                                     <td class="table-secondary">항목명</td>
@@ -113,7 +113,7 @@
 	                        </thead>
 	                        <tbody class="item-list" data-item-length="${itemLength}">
 		                        <c:forEach items="${items}" var="item" varStatus="i">
-		                            <tr class="item" data-item-isupdate="${item.itemIsUpdate}">
+		                            <tr class="item ${i.index < itemLength ? 'oldItem' : null }" data-item-isupdate="${item.itemIsUpdate}">
 		                                <th class="item-index">${i.index+1}</th>
 		                                <td class="itemId">${item.itemId}</td>
 		                                <td class="itemNm">${item.itemNm}</td>

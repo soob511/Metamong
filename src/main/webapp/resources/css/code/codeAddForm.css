@@ -125,7 +125,7 @@ thead{
    line-height: 2.4;
 }
 
-.btn-add:disabled:first-of-type, .btn-edit:disabled {
+.btn-edit:disabled {
     background-color: #ebebeb;
     color: #ffffff;
 }
