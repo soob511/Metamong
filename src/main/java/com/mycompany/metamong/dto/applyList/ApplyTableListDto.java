@@ -16,6 +16,6 @@ public class ApplyTableListDto {
 	private int approvalStatus;
 	private String schemaName;
 	private String tableId;
-	private String applyObj;
+	private String applyType;
 	
 }

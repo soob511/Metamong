@@ -24,6 +24,12 @@ public interface TableDao {
 
 	public TableDto selectTable(int tableNo);
 
+	public String selectTableIdByApplyNo(int applyNo);
+
+	public ApplyTableDto selectApplyTable(int applyNo);
+
+	public int insertTable(TableDto table);
+
 
 
 }

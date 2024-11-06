@@ -1,5 +1,6 @@
 package com.mycompany.metamong.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,16 +16,21 @@ import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
+import com.mycompany.metamong.daoSub1.Sub1TableDao;
+import com.mycompany.metamong.daoSub2.Sub2TableDao;
+import com.mycompany.metamong.daoSub3.Sub3TableDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnAddDto;
+import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
@@ -33,6 +39,7 @@ import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
+import com.mycompany.metamong.dto.table.TableDto;
 
 @Service
 public class ApplyService {
@@ -48,6 +55,15 @@ public class ApplyService {
 	private TableDao tableDao;
 	@Autowired
 	private ColumnDao columnDao;
+	
+	@Autowired
+	private Sub1TableDao spmDao;
+	
+	@Autowired
+	private Sub2TableDao pmsDao;
+	
+	@Autowired
+	private Sub3TableDao hrDao;
 
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
@@ -77,7 +93,7 @@ public class ApplyService {
 		return itemDao.selectItemsByNo(applyNo);
 	}
 
-	public List<ApplyTableDto> getApplyTableList(Pager pager) {
+	public List<ApplyTableListDto> getApplyTableList(Pager pager) {
 		return applyListDao.selectApplyTableList(pager);
 	}
 
@@ -214,6 +230,78 @@ public class ApplyService {
 
 	public void applyObject(int applyNo) {
 		applyListDao.updateApplyStatus(applyNo);
+	}
+	
+	public String getApplyType(int applyNo) {
+		return applyListDao.selectApplyType(applyNo);
+	}
+
+	public String addCreateTableSql(int applyNo) {
+	    StringBuilder sql = new StringBuilder("CREATE TABLE ");
+	    
+	    String tableId = tableDao.selectTableIdByApplyNo(applyNo);
+	    sql.append(tableId).append(" (");
+	    
+	    List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
+	    List<String> columns = new ArrayList<>();
+	    
+	    for (ColumnDto column : list) {
+	        StringBuilder col = new StringBuilder(column.getColId())
+	                .append(" ").append(column.getDataType())
+	                .append("(").append(column.getColLength()).append(")");
+
+	        if (column.getColIspk() == 1) {
+	            col.append(" PRIMARY KEY");
+	        } else {
+	            col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
+	        }
+	        
+	        columns.add(col.toString());
+	    }
+	    
+	    sql.append(String.join(", ", columns)).append(")");
+	    return sql.toString();
+	}
+
+	@Transactional
+	public void runQuery(int applyNo) {
+		String schema = applyListDao.getSchemaName(applyNo);
+		String sql = applyListDao.getQuery(applyNo);
+		
+		/*if(schema.equals("SPM")) {
+			spmDao.CreateTable(sql);
+		}else if(schema.equals("PMS")) {
+			pmsDao.CreateTable(sql);
+		}else {
+			hrDao.CreateTable(sql);
+		}*/
+		//반영으로 상태변경
+		applyListDao.updateStatus(applyNo);
+		
+		//테이블 테이블에 생성된 테이블 정보 넣기
+		ApplyTableDto applyTable  = tableDao.selectApplyTable(applyNo);
+		TableDto table = new TableDto();
+		table.setTableId(applyTable.getTableId());
+		table.setTableNm(applyTable.getTableNm());
+		table.setTableContent(applyTable.getTableContent());
+		table.setSchemaNm(schema);
+		tableDao.insertTable(table);
+		
+		//컬럼정보 넣기
+		List<ApplyColumnDto> applyColumn = columnDao.selectApplyColumn(applyNo);
+		for(ApplyColumnDto aColumn:applyColumn) {
+			ColumnDto column = new ColumnDto();
+			column.setTableNo(table.getTableNo());
+			column.setColId(aColumn.getColId());
+			column.setColNm(aColumn.getColNm());
+			column.setDataType(aColumn.getDataType());
+			column.setColLength(aColumn.getColLength());
+			column.setColIsnullable(aColumn.getColIsnullable());
+			column.setColIspk(aColumn.getColIspk());
+			column.setColOrder(aColumn.getColOrder());
+			columnDao.insertColumn(column);
+		}
+		
 	}
 
 }

@@ -11,18 +11,6 @@
 			user_ind_columns ic ON i.index_name = ic.index_name
 		ORDER BY i.index_name, ic.column_position
 	</select>
-
-	<select id="selectIndexByName" parameterType="String" resultType="Index">
-		SELECT
-			i.index_name, user schema_name,i.table_name, ic.column_name, i.uniqueness
-		FROM
-			user_indexes i
-		JOIN
-			user_ind_columns ic ON i.index_name = ic.index_name
-		WHERE 
-			i.index_name = #{indexName}
-		ORDER BY i.index_name, ic.column_position
-	</select>
 	
 		
 	<select id="selectApplyIndex" parameterType="Pager" resultType="ApplyIndexList">

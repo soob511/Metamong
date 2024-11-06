@@ -34,4 +34,13 @@ public class ColumnController {
 			) {
 		return columnService.getColumnList(schemaName, tableNo);
 	}
+	
+	@ResponseBody
+	@GetMapping("/searchColumnByDic")
+	public List<ColumnDto> searchColumnByDic(
+			@RequestParam String schemaName,
+			@RequestParam String tableName
+			) {
+		return columnService.getCoulmnByDic(schemaName, tableName);
+	}
 }

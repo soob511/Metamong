@@ -1,6 +1,7 @@
 package com.mycompany.metamong.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -47,24 +48,15 @@ public class IndexController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/searchIndexAll")
-	public List<IndexDto> searchIndexAll(@RequestParam String indexName) {
-		List<IndexDto> list = indexService.getIndexList(indexName);
-		return list;
-	}
-	
-	@ResponseBody
 	@GetMapping("/searchIndex")
 	public List<IndexDto> searchIndex(
-			@RequestParam SchemaEnum schemaName,
-			@RequestParam String indexName
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName
 			) {
-		List<IndexDto> list = new ArrayList<>();
-		if (!indexName.isEmpty()) {
-			list = indexService.getIndexList(schemaName, indexName);
-		} else {
-			list = indexService.getIndexList(schemaName);			
-		}
+		List<IndexDto> list = 
+				indexService.getIndexList(indexName, columnName, tableName, schemaName);
 		return list;
 	}
 	

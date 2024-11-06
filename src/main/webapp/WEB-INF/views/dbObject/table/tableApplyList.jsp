@@ -72,7 +72,7 @@
 										<th scope="col">신청자</th>
 										<th scope="col">스키마명</th>
 										<th scope="col">테이블명</th>
-										<th scope="col">분류</th>
+										<th scope="col">타입</th>
 										<th scope="col">상세보기</th>
 										<th scope="col">상태</th>
 									</tr>
@@ -86,7 +86,7 @@
 											<td>${tableList.MName}</td>
 											<td>${tableList.schemaName}</td>
 											<td>${tableList.tableId}</td>
-											<td>${tableList.applyObj}</td>
+											<td>${tableList.applyType}</td>
 											<td><button class="btn-history-details"
 													onclick="tableListDetail(${tableList.applyNo},${status.index+1})">상세보기</button></td>
 											<td class="code-approve"><c:choose>

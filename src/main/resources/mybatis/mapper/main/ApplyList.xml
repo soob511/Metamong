@@ -32,13 +32,15 @@
 		SELECT count(*)
 		FROM apply_list a
 		JOIN member m ON a.m_id = m.m_id
-		JOIN apply_code c ON a.apply_no = c.apply_no
+		JOIN
+		apply_code c ON a.apply_no = c.apply_no
 		<where>
 			a.apply_obj = 'CODE'
 			<if test="keyword != null and keyword != '' and option == 'code'">
 				AND (
 				c.code_id LIKE '%' || #{keyword} || '%'
-				OR c.code_nm LIKE '%' || #{keyword} || '%'
+				OR c.code_nm
+				LIKE '%' || #{keyword} || '%'
 				)
 			</if>
 			<if
@@ -62,14 +64,16 @@
 		SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id,
 		c.code_nm, a.apply_type
 		FROM apply_list a
-		JOIN member m ON a.m_id = m.m_id
+		JOIN member m ON a.m_id =
+		m.m_id
 		JOIN apply_code c ON a.apply_no = c.apply_no
 		<where>
 			a.apply_obj = 'CODE'
 			<if test="keyword != null and keyword != '' and option == 'code'">
 				AND (
 				c.code_id LIKE '%' || #{keyword} || '%'
-				OR c.code_nm LIKE '%' || #{keyword} || '%'
+				OR c.code_nm
+				LIKE '%' || #{keyword} || '%'
 				)
 			</if>
 			<if
@@ -100,14 +104,14 @@
 		resultType="ApplyTableList">
     <![CDATA[
         SELECT 
-            rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_obj
+            rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_type
         FROM (
             SELECT 
-                rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_obj
+                rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id, apply_type
             FROM (
                 SELECT
                     a.apply_no, m.m_name,
-                    a.apply_date, a.approval_status, a.schema_name, t.table_id, a.apply_obj
+                    a.apply_date, a.approval_status, a.schema_name, t.table_id, a.apply_type
                 FROM apply_list a
                 JOIN member m ON a.m_id = m.m_id
                 JOIN apply_table t ON a.apply_no = t.apply_no
@@ -151,18 +155,21 @@
 	<select id="selectApplyTableSearch" parameterType="map"
 		resultType="ApplyTableList">
 		SELECT
-		rnum, apply_no, m_name, apply_date, approval_status, schema_name, table_id,
+		rnum, apply_no, m_name, apply_date, approval_status,
+		schema_name, table_id,
 		apply_obj
 		FROM (
 		SELECT
-		rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name,
+		rownum AS rnum, apply_no,
+		m_name, apply_date, approval_status, schema_name,
 		table_id, apply_obj
 		FROM (
 		SELECT
 		a.apply_no, m.m_name, a.apply_date, a.approval_status,
 		a.schema_name, t.table_id, a.apply_obj
 		FROM apply_list a
-		JOIN member m ON a.m_id = m.m_id
+		JOIN member m
+		ON a.m_id = m.m_id
 		JOIN apply_table t ON a.apply_no = t.apply_no
 		<where>
 			a.apply_obj = 'TABLE'
@@ -170,7 +177,8 @@
 			<if test="form.keyword != null and form.keyword != ''">
 				AND (
 				m.m_name LIKE '%' || #{form.keyword} || '%'
-				OR t.table_id LIKE '%' || #{form.keyword} || '%'
+				OR
+				t.table_id LIKE '%' || #{form.keyword} || '%'
 				)
 			</if>
 
@@ -184,10 +192,10 @@
 		</where>
 		ORDER BY a.apply_date DESC
 		)
-		    WHERE rownum <![CDATA[<]]>=#{pager.endRowNo}
-	    )
-	    WHERE rnum <![CDATA[>]]>=#{pager.startRowNo}
-	    </select>
+		WHERE rownum <![CDATA[<]]>=#{pager.endRowNo}
+		)
+		WHERE rnum <![CDATA[>]]>=#{pager.startRowNo}
+	</select>
 
 	<select id="selectTableListDetail" parameterType="int"
 		resultType="ApplyTableDetail">
@@ -220,27 +228,56 @@
 		WHERE apply_obj
 		='TABLE'
 	</select>
-	
+
 	<update id="updateCodeStatus" parameterType="map">
 		UPDATE apply_list
 		SET compl_date = sysdate,
-			   dba_name = #{dbaName},
-			   approval_status = #{status}
-			   <if test="reason != null and reason != ''">
-			   ,reject_reason = #{reason}
-			   </if>
+		dba_name = #{dbaName},
+		approval_status = #{status}
+		<if test="reason != null and reason != ''">
+			,reject_reason = #{reason}
+		</if>
 		WHERE apply_no = ${applyNo}
 	</update>
 
 	<update id="updateProcessApproval" parameterType="ApplyList">
 		UPDATE apply_list
 		SET dba_name = #{dbaName},
-		approval_status = #{approvalStatus},
+		approval_status =
+		#{approvalStatus},
 		compl_date = SYSDATE
+		<if test="query != null">
+			, query = #{query}
+		</if>
+		  <if test="rejectReason != null">
+            , reject_reason = #{rejectReason}
+        </if>
 		WHERE apply_no = #{applyNo}
 	</update>
-	
-	<update id="updateApplyStatus" parameterType="int">
+
+	<select id="selectApplyType" parameterType="int"
+		resultType="String">
+		SELECT apply_type
+		FROM apply_list
+		WHERE apply_no =#{apply_no}
+	</select>
+
+	<select id="getSchemaName" parameterType="int"
+		resultType="String">
+		SELECT schema_name
+		FROM apply_list
+		WHERE apply_no
+		=#{apply_no}
+	</select>
+
+	<select id="getQuery" parameterType="int" resultType="String">
+		SELECT
+		query
+		FROM apply_list
+		WHERE apply_no =#{apply_no}
+	</select>
+
+	<update id="updateStatus" parameterType="int">
 		UPDATE apply_list
 		SET approval_status = 3
 		WHERE apply_no = #{applyNo}
