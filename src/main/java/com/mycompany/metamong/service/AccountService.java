@@ -23,11 +23,20 @@ public class AccountService {
 		return accountDao.selectApplyList(pager);
 	}
 	
-	public List<MemberDto> searchMember(String option, String keyword, Pager pager) {
-		return accountDao.selectMemberSearch(option, keyword, pager);
+	public List<MemberDto> searchMember(int status,String option, String keyword, Pager pager) {
+		return accountDao.selectMemberSearch(status,option, keyword, pager);
 	}
 	
-	public int countMembers(String option, String keyword, int pageNo) {
-		return accountDao.countMembers(option,keyword,pageNo);
+	public int countMembers(int status, String option, String keyword) {
+		return accountDao.countMembers(status,option,keyword);
+	}
+
+	public void updateaccountStatus(String MId, int status) {
+		accountDao.updateAccountStatus(MId, status);
+	}
+
+	public MemberDto getMemberId(String mId) {
+		return accountDao.selectMemberId(mId);
+		
 	}
 }
