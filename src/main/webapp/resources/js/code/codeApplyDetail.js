@@ -29,3 +29,22 @@ function codeApplyProcess(status){
 	    });
 	});
 };
+
+function applyComplete(type) {
+	const params = new URL(location.href).searchParams;
+	const applyNo = params.get('applyNo');
+	
+	$.ajax({
+	      url: "/Metamong/code/applyComplete",
+	      type: "POST",
+	      data: { applyNo: applyNo },
+	      success: function (data) {
+	        Swal.fire({
+	          icon: "success",
+	          title: "반영이<br/>완료되었습니다.",
+	        }).then((result) => {
+	         location.href = data;
+	        });
+	      },
+	    });
+};

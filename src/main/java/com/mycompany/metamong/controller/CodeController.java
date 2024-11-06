@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.applyList.ApplyCodeDeatilDto;
+import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
@@ -170,7 +170,7 @@ public class CodeController {
 	
 	@GetMapping("/codeApplyDetail")
 	public String codeApplyDetail(Model model, int applyNo, int indexNo) {
-		ApplyCodeDeatilDto applyList = applyService.getCodeApplyDetail(applyNo); 
+		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo); 
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 		
@@ -196,6 +196,21 @@ public class CodeController {
 		applyService.updateCodeStatus(params);
 		
 		return ResponseEntity.ok("/Metamong/code/codeApplyDetail?applyNo=" + applyNo);
+	}
+	
+	@PostMapping("/applyComplete")
+	public ResponseEntity<String> applyComplete(int applyNo, String type) {
+		log.info("type: ", type);
+		/*if(type == "CREATE") {*/
+			CodeDto code = applyService.getCodeApplyByNo(applyNo);
+			List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
+
+			codeService.insertCode(applyNo, code, items);			
+	/*	} else {
+			
+		}*/
+		
+		return ResponseEntity.ok("/Metamong/code/codeList");
 	}
 	
 	@ResponseBody

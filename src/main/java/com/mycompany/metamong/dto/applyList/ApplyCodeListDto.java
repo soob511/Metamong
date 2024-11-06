@@ -16,6 +16,5 @@ public class ApplyCodeListDto {
 	private int approvalStatus;
 	private String codeId;
 	private String codeNm;
-	private String applyObj;
-	
+	private String applyType;
 }

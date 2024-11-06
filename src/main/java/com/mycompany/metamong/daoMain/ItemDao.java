@@ -15,4 +15,6 @@ public interface ItemDao {
 	public List<ItemDto> selectItemsByNo(int applyNo);	
 
 	public int insertApplyItem(ApplyItemDto item);
+
+	public int insertItem(ItemDto item);
 }
