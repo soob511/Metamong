@@ -52,6 +52,4 @@ public interface ApplyListDao {
 	public int updateStatus(@Param("applyNo")int applyNo,@Param("status") int status);
 
 	public int updateRejectReason(@Param("applyNo")int applyNo,@Param("message") String message);
-
-	public int updateRejectReason(@Param("applyNo")int applyNo,@Param("message") String message);
 }
