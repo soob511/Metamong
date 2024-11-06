@@ -8,5 +8,7 @@ import com.mycompany.metamong.dto.column.ColumnDto;
 
 @Mapper
 public interface Sub1ColumnDao {
-	public List<ColumnDto> selectColumnByDic(String tableName);
+	public List<ColumnDto> selectColumnName(String tableName);
+	
+	public List<ColumnDto> selectColumnInfo(String tableName);
 }

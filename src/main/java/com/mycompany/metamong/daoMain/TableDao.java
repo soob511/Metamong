@@ -20,13 +20,15 @@ public interface TableDao {
 
 	public List<TableDto> selectTableListBySchema(SchemaEnum schemaName);
 	
+	public TableDto selectTableInfo(@Param("tableName")String tableName, @Param("schemaName")String schemaName);
+	
 	public TableDto selectTableByApplyNo(int applyNo);
 
 	public TableDto selectTable(int tableNo);
 
 	public String selectTableIdByApplyNo(int applyNo);
 
-	public ApplyTableDto selectApplyTable(int applyNo);
+	public TableDto selectApplyTable(int applyNo);
 
 	public int insertTable(TableDto table);
 

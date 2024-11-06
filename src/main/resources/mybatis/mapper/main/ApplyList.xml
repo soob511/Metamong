@@ -276,7 +276,7 @@
 		WHERE apply_no =#{apply_no}
 	</select>
 
-	<update id="updateStatus" parameterType="int">
+	<update id="updateStatus">
 		UPDATE apply_list
 		SET approval_status = #{status}
 		WHERE apply_no = #{applyNo}

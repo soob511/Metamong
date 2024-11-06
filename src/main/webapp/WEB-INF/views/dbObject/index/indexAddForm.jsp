@@ -26,15 +26,20 @@
 			                <div class="filter">
 			                  <label for="schemaSelect" class="filter-label">스키마 선택</label>
 			                  	<select id="schemaSelect" class="form-select" aria-label="select example">
+			                  		<option>선택</option>
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
-										<option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>										
-									</c:forEach>
+								       	<c:if test="${schemaEnum.name() != 'MAIN'}">
+									        <option value="${schemaEnum.name()}">
+										            ${schemaEnum.name()}
+									        </option>
+									    </c:if>
+								    </c:forEach>
 								</select>
 			                </div>
 			                <div class="filter">
 			                  <label for="tableSelect" class="filter-label">테이블 선택</label>
 			                  <select id="tableSelect" class="form-select" aria-label="select example">
-			      				
+			      				<option>선택</option>
 			                  </select>
 			                </div>
 			              </div>
@@ -46,7 +51,7 @@
 								<p class="index-apply-title">컬럼</p>
 								<div class="table-container">
 									<table class="table table-hover">
-										<thead class="table-primary">
+										<thead class="table-secondary">
 											<tr>
 												<th scope="col"><input class="form-check-input"
 													type="checkbox" value="" id="flexCheckDefault"></th>
@@ -68,7 +73,7 @@
 								<div></div>
 								<div class="table-container-second">
 					                <table class="table table-hover">
-					                  <thead class="table-primary">
+					                  <thead class="table-secondary">
 					                    <tr>
 					                      <th scope="col">No.</th>
 					                      <th scope="col">인덱스명</th>
@@ -80,27 +85,9 @@
 					                      <th scope="col">정렬</th>
 					                    </tr>
 					                  </thead>
-					                  <tbody id="indexTableBody">
-										<tr>
-										<th>1</th>
-										<td>SYS_C0021765</td>
-										<td>HR</td>
-										<td>MEMBER</td>
-										<td>M_ID</td>
-					                    <td>null</td>
-					                    <td>UNIQUE</td>
-					                    <td>null</td>
-										</tr>
-										<tr>
-										<th>2</th>
-										<td>SYS_C0021770</td>
-										<td>HR</td>
-										<td>NOTICE</td>
-										<td>NOTICE_ID</td>
-					                    <td>null</td>
-					                    <td>UNIQUE</td>
-					                    <td>null</td>
-										</tr></tbody>
+					                  	<tbody id="indexTableBody">
+										
+										</tbody>
 					                </table>
 			                </div>
 							</div>
@@ -122,7 +109,7 @@
 								</div>
 								<div class="index-cols table-container index-apply-table">
 									<table class="table table-hover">
-										<thead class="table-primary">
+										<thead class="table-secondary">
 											<tr>
 												<th scope="col">No.</th>
 												<th scope="col">컬럼명(물리)</th>
@@ -137,7 +124,7 @@
 								</div>
 								
 								<div class="index-apply-reason">
-									<p>인덱스제목</p>
+									<p>인덱스이름</p>
 									<input class="index-name-title" id="indexName"></input>
 									<div class="msg" id="nameValidMessage"></div>
 								</div>

@@ -14,6 +14,16 @@ $(document).ready(function() {
     	filterColumn();
     });
     
+    $('#columnTableBody').on('click', 'tr', function() { 
+    	if ($(event.target).closest('input').length === 0) {
+            let columnName = $(this).data('value');
+
+            if (!$(event.target).closest('td[data-name="colOrder"]').length) {
+                filterIndex(columnName);   
+            }
+        }
+    });
+
     $('#upButton').on('click', function() {
     	moveUp();
     });
@@ -32,6 +42,28 @@ $(document).ready(function() {
     });
 
 });
+
+
+function getCheckedOnePk() {
+    let checkedCount = $('#columnTableBody .form-check-input:checked').length;
+
+    if (checkedCount === 1) {
+        let checkedRow = $('#columnTableBody .form-check-input:checked').closest('tr'); 
+        let seventhTdValue = checkedRow.find('td').eq(6).text(); 
+        return seventhTdValue;
+    }
+}
+
+
+function getSchemaName(schemaName) {
+    switch (schemaName) {
+        case 'USER_2024_OTI_FINAL_TEAM1_1': return 'SPM';
+        case 'USER_2024_OTI_FINAL_TEAM1_2': return 'PMS';
+        case 'USER_2024_OTI_FINAL_TEAM1_3': return 'HR';
+        default: return '';
+    }
+}
+
 let indexCount = 1;
 
 $('#columnTableBody').on('change', 'select.form-select', function() {
@@ -198,11 +230,12 @@ $(document).on("input", "#indexApplyReason", function () {
 });
 
 function filterTable() {
+	$('#indexTableBody').html('');
 	const schemaName = $('#schemaSelect').val();
-
+	
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/table/searchTableBySchema',
+		url : '/Metamong/table/searchTableInfo',
 		data : {
 			schemaName : schemaName
 		},
@@ -210,8 +243,12 @@ function filterTable() {
 			let html = '<option>선택</option>';
 
 			data.forEach(function(table) {
-				html += `
-					<option value="${table.tableNo}">${table.tableId}</option>`
+				if (table != null) {
+					html += `
+						<option value="${table.tableNo}" data-name="${table.tableId}">
+							${table.tableId}
+						</option>`;					
+				}
 			});
 			$('#tableSelect').html(html);
 			$('#indexApplyColumn').html('');
@@ -225,23 +262,29 @@ function filterTable() {
 }
 
 function filterColumn() {
+	$('#indexTableBody').html('');
 	let schemaName = $('#schemaSelect').val();
+	let tableName = $('#tableSelect').find(':selected').data('name');
 	let tableNo = $('#tableSelect').val();
-	if (tableNo === '선택') {
+	let tableValue = $('#tableSelect').val();
+	if (tableValue === '선택') {
+		$('#columnTableBody').html('');
 		return;
 	}
-
+	console.log(schemaName);
+	console.log(tableName);
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/column/searchColumnBySchema',
+		url : '/Metamong/column/searchColumnInfo',
 		data : {
 			schemaName : schemaName,
+			tableName : tableName,
 			tableNo : tableNo
 		},
 		success : function(data) {
 			let count = 1;
 			let html = '';
-
+			
 			data.forEach(function(column) {
 				html += `
 					<tr data-value="${column.colId}">
@@ -253,8 +296,8 @@ function filterColumn() {
                         <td data-name="colId" data-value="${column.colId}">${column.colId}</td>
                         <td>${column.dataType}</td>
                         <td>${column.colLength}</td>
-                        <td>${column.colIsnullable}</td>
-						<td>${column.colIspk}</td>
+                        <td>${column.colIsnullableText}</td>
+						<td>${column.colIspkText}</td>
 						<td data-name="colOrder">
 							<select class="form-select" aria-label="Default select">
 								<option selected>ASC</option>
@@ -275,7 +318,58 @@ function filterColumn() {
 	});
 }
 
+function filterIndex(clickColumnName) {
+	let schemaName = $('#schemaSelect').val();
+	let tableName = 
+		$('#tableSelect').find(':selected').data('name') == '선택' ? 'NONE' : $('#tableSelect').find(':selected').data('name');
+	let columnName = clickColumnName;
+	let indexName = 'NONE';
+	console.log(schemaName);
+	console.log(tableName);
+	console.log(columnName);
+	console.log(indexName);
+	
+	$.ajax({
+		type : 'GET',
+		url : 'searchIndex',
+		data : {
+			indexName : indexName,
+			columnName : columnName,
+			tableName : tableName,
+			schemaName : schemaName
+		},
+		success : function(data) {
+			let html = '';
+			let count = 1;
+			console.log(data);
+			if (data.length > 0) {
+				data.forEach(function(index) {
+					console.log(index);
+					html += `
+						<tr>
+						<th>${count++}</th>
+						<td>${index.indexName}</td>
+						<td>${getSchemaName(index.schemaName)}</td>
+						<td>${index.tableName}</td>
+						<td>${index.columnName}</td>
+	                    <td>${index.columnPosition}</td>
+	                    <td>${index.uniqueness}</td>
+	                    <td>${index.descend}</td>
+						</tr>`;
+				});
+			} else {
+				html += '<th colspan="8">해당 조건에 맞는 인덱스가 없습니다</th>'
+			}
+			$('#indexTableBody').html(html);			 
+		},
+		error : function(xhr, status, error) {
+			console.log('오류: ' + xhr.responseText);
+		}
+	});
+}
+
 function applyIndex() {
+	var checkedOnePkValue = getCheckedOnePk();	
 	var refColumn = [];
     
     $('#indexApplyColumn tr').each(function() {
@@ -313,6 +407,12 @@ function applyIndex() {
   		  	title: '필수내역을 공란없이<br/>입력해 주세요.',
   		  	text: '필수입력사항: 컬럼 선택, 인덱스 제목, 신청사유'
   		});
+	} else if (checkedOnePkValue == 'Y') {
+		Swal.fire({
+			icon: 'warning',                  
+			title: '인덱스를 다시<br/>확인해 주세요.',
+			text: '오류입력사항: PK는 단일 인덱스 신청이 불가'
+		});
 	} else if ($("#nameValidMessage").hasClass("warn")) {
 		Swal.fire({
 			icon: 'warning',                  

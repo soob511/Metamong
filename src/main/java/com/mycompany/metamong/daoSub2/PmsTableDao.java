@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 import com.mycompany.metamong.dto.table.TableDto;
 
 @Mapper
-public interface Sub2TableDao {
+public interface PmsTableDao {
 	
-	public List<TableDto> selectTableByDic();
+	public List<TableDto> selectTableName();
 
-	public void CreateTable(String sql);
+	public int CreateTable(String sql);
 
 }
