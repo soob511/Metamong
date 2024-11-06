@@ -22,11 +22,16 @@ public interface CodeDao {
 	public List<CodeDto> selectActiveCodes();
 
 	public List<CodeDto> selectCodeLoadSearch(String keyword);
+	
+	public int selectIsExistCode(String codeId);
 
 	public int insertApplyCode(ApplyCodeDto code);
 
 	public int insertCode(CodeDto code);
 
 	public int updateCode(CodeDto code);
+
+
+	
 
 }

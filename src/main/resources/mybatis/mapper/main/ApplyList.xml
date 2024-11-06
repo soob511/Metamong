@@ -278,10 +278,15 @@
 
 	<update id="updateStatus" parameterType="int">
 		UPDATE apply_list
-		SET approval_status = 3
+		SET approval_status = #{status}
 		WHERE apply_no = #{applyNo}
 	</update>
 	
+	<update id="updateRejectReason">
+		UPDATE apply_list
+		SET reject_reason = #{message}
+		WHERE apply_no = #{applyNo}
+	</update>
 </mapper>
 
 		

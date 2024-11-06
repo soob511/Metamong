@@ -46,6 +46,12 @@
   		OR (code_id LIKE CONCAT('%', CONCAT(#{keyword}, '%')) AND code_isactive=1)
 	</select>
 	
+	<select id="selectIsExistCode" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM code
+		WHERE code_id = #{codeId} AND code_isactive = 1
+	</select>
+	
 	<insert id="insertApplyCode" parameterType="ApplyCode">
 	    <selectKey keyProperty="codeNo" resultType="int" order="BEFORE">
 	        SELECT NVL(NULLIF(#{codeNo}, 0), seq_code_no.nextval) FROM dual

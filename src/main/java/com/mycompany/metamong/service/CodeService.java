@@ -44,12 +44,22 @@ public class CodeService {
 	}
 
 	@Transactional
-	public void insertCode(int applyNo, CodeDto code, List<ItemDto> items) {
-		codeDao.insertCode(code);
-		for (ItemDto item : items) {
-			itemDao.insertItem(item);
+	public int insertCode(int applyNo, CodeDto code, List<ItemDto> items) {
+		int result = 0;
+		int isExist = codeDao.selectIsExistCode(code.getCodeId());
+		
+		if(isExist == 0) {
+			codeDao.insertCode(code);
+			for (ItemDto item : items) {
+				itemDao.insertItem(item);
+			}
+			applyListDao.updateStatus(applyNo, 3);
+			result = 1;
+		} else {
+			applyListDao.updateStatus(applyNo, 2);
+			applyListDao.updateRejectReason(applyNo,"중복된 이름의 코드명(물리)가 존재합니다.");
 		}
-		applyListDao.updateStatus(applyNo);
+		return result;
 	}
 	
 	@Transactional
@@ -73,7 +83,7 @@ public class CodeService {
 			 	}
 		 	}
 		}
-		applyListDao.updateStatus(applyNo);
+		applyListDao.updateStatus(applyNo, 3);
 		
 	}
 }

@@ -200,7 +200,8 @@ public class CodeController {
 	}
 	
 	@PostMapping("/applyComplete")
-	public ResponseEntity<String> applyComplete(int applyNo) {
+	public ResponseEntity<Integer> applyComplete(int applyNo) {
+		int result = 1;
 		String type = applyService.getApplyType(applyNo);
 		
 		CodeDto code = applyService.getCodeApplyByNo(applyNo);
@@ -208,12 +209,12 @@ public class CodeController {
 		int itemsLength = items.size();
 		
 		if(type.equals("CREATE")) {
-			codeService.insertCode(applyNo, code, items);
+			result = codeService.insertCode(applyNo, code, items);
 		} else {
 			List<ApplyItemDto> applyItems = applyService.getApplyItemsByNo(applyNo);
 			codeService.updateCode(applyNo, code, applyItems, itemsLength);		
 		}
-		return ResponseEntity.ok("/Metamong/code/codeList");
+		return ResponseEntity.ok(result);
 	}
 	
 	@ResponseBody

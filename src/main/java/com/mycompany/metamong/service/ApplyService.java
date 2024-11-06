@@ -276,7 +276,7 @@ public class ApplyService {
 			hrDao.CreateTable(sql);
 		}
 		//반영으로 상태변경
-		applyListDao.updateStatus(applyNo);
+		/*applyListDao.updateStatus(applyNo);*/
 		
 		//테이블 테이블에 생성된 테이블 정보 넣기
 		ApplyTableDto applyTable  = tableDao.selectApplyTable(applyNo);
