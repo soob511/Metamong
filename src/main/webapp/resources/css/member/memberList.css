@@ -46,13 +46,6 @@ thead{
     padding: 15px 10px;
 }
 
-.page {
-	text-align:center !important;
-	position: fixed;
-    bottom: 60px;
-    left: 53%;
-    z-index: 100;
-}
 
 tr{
 	height:50px;
