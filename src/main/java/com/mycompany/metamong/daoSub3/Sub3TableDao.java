@@ -9,6 +9,6 @@ import com.mycompany.metamong.dto.table.TableDto;
 @Mapper
 public interface Sub3TableDao {
 	
-	public List<TableDto> selectTableByDic();
+	public List<TableDto> selectTableName();
 
 }

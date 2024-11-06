@@ -61,16 +61,23 @@ public class TableController {
 		return "dbObject/table/tableList";
 	}
 
+//	@ResponseBody
+//	@GetMapping("/searchTableBySchema")
+//	public List<TableDto> searchTable(@RequestParam SchemaEnum schemaName) {
+//		return tableService.getTableName(schemaName);
+//	}
+	
 	@ResponseBody
-	@GetMapping("/searchTableBySchema")
-	public List<TableDto> searchTable(@RequestParam SchemaEnum schemaName) {
-		return tableService.getTableName(schemaName);
+	@GetMapping("/searchTableInfo")
+	public List<TableDto> searchTableInfo(@RequestParam String schemaName) {
+		List<TableDto> list = tableService.getTableInfo(schemaName);
+		return list;
 	}
 	
 	@ResponseBody
-	@GetMapping("/searchTableByDic")
-	public List<TableDto> searchTableByDic(@RequestParam String schemaName) {
-		List<TableDto> list = tableService.getTableListByDic(schemaName);
+	@GetMapping("/searchTableName")
+	public List<TableDto> searchTableName(@RequestParam String schemaName) {
+		List<TableDto> list = tableService.getTableNameByDic(schemaName);
 		return list;
 	}
 
