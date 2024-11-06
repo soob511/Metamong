@@ -1,53 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mycompany.metamong.daoMain.MemberDao">
-	<select id="selectByMId" parameterType="String"
-		resultType="Member">
-		SELECT
-		m_id, m_name, m_password, team_id, m_empid, m_tel,
-		m_role, m_isactive,
-		prof_filename,
-		prof_filetype, prof_filedata,
-		m_applydate, m_approval_status, m_regdate
-		FROM
-		member
-		WHERE
-		m_id = #{mId} AND
-		m_isactive = 1
-	</select>
-
-	<insert id="insertJoin" parameterType="Member">
-    INSERT INTO member (
-        m_id,
-        m_name,
-        m_password,
-        team_id,
-        m_empid,
-        m_tel,
-        m_role,
-        m_isactive,
-        m_applydate,
-        m_approval_stauts
-    ) VALUES (
-        #{MId},
-        #{MName},
-        #{MPassword},
-        #{teamId},
-        #{MEmpId},
-        #{MTel},
-        #{MRole},
-        1,
-        sysdate,
-        0
-    )
-	</insert>
-
-	<select id="selectMId" parameterType="String" resultType="int">
-		SELECT count(*)
-		FROM member
-		WHERE M_Id = #{MId}
-	</select>
-
+<mapper namespace="com.mycompany.metamong.daoMain.AccountDao">
+	
 	<select id="countRows" resultType="int">
 		SELECT count(*)
 		FROM member
@@ -55,13 +9,13 @@
            m_role != 'ROLE_ADMIN'
 	</select>
 
-	<select id="selectMemberList" parameterType="Pager" resultType="Member">
+	<select id="selectApplyList" parameterType="Pager" resultType="Member">
 		    <![CDATA[
 		        SELECT
-		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_applydate
 		        FROM (
 		            SELECT 
-		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate
 		            FROM 
 		                member m
 		            LEFT OUTER JOIN 
@@ -69,7 +23,7 @@
 		            WHERE 
 		                m.m_role != 'ROLE_ADMIN'
 		            ORDER BY 
-		                m.m_name, m.m_id
+		                m.m_applydate DESC
 		        )
 		        WHERE rnum BETWEEN #{startRowNo} AND #{endRowNo}
 		    ]]>
@@ -78,10 +32,10 @@
 	<select id="selectMemberSearch"  resultType="Member" parameterType="Pager">
 	    <![CDATA[
 		        SELECT
-		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_applydate
 		        FROM (
 		            SELECT 
-		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate
 		            FROM 
 		                member m
 		            LEFT OUTER JOIN 
@@ -92,13 +46,13 @@
 			                    LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 			                </if>
 			                <if test="keyword != null and keyword != '' and option == '이름'">
-			                    m.M_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			                    LOWER(m.M_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 			                </if>
 			                <if test="keyword != null and keyword != '' and option == '권한'">
 			                    LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 			                </if>
 			                <if test="keyword != null and keyword != '' and option == '소속'">
-			                    t.team_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			                    LOWER(t.team_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 			                </if>
 			                <if test="keyword != null and keyword != '' and option == '사번'">
 			                    LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
@@ -112,18 +66,11 @@
 	   				 ]]>
 	</select>
 	
-	<select id="selectDbaName" parameterType="String" resultType="String">
-		SELECT m_name
-		FROM member
-		WHERE m_id = #{dbaId}
-	</select>
-	
-
 	<select id="countMembers" parameterType="Pager" resultType="int">
 	    SELECT COUNT(*)
 	    	FROM(
 	    		SELECT
-	    			rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel 
+	    			rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate 
 			    FROM member m
 			    FULL OUTER JOIN team t ON m.team_id = t.team_id
 			   <where>
@@ -131,20 +78,20 @@
 		            LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 		        	</if>
 					<if test="keyword != null and keyword != '' and option == '이름'">
-						m.M_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+					LOWER(m.M_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 					</if>
 					<if test="keyword != null and keyword != '' and option == '권한'">
 		            LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 		        	</if>
 					<if test="keyword != null and keyword != '' and option == '소속'">
-						t.team_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+					LOWER(t.team_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 					</if>
 					<if test="keyword != null and keyword != '' and option == '사번'">
 		            LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 		        	</if>
 					
 				</where>
-					)
+				)
 	</select>
 
 </mapper>

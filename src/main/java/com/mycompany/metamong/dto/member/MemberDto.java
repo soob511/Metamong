@@ -37,7 +37,7 @@ public class MemberDto {
 	private String profFiletype;
 	private byte[] profFiledata;
 	private Date MApplydate;
-	private int MIsapprove;
+	private int MApprovalStatus;
 	private Date MRegdate;
 	private String teamName;
 }

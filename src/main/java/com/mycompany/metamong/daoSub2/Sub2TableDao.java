@@ -11,4 +11,6 @@ public interface Sub2TableDao {
 	
 	public List<TableDto> selectTableName();
 
+	public void CreateTable(String sql);
+
 }

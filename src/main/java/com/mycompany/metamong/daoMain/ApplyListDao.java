@@ -45,4 +45,10 @@ public interface ApplyListDao {
 
 	public String selectApplyType(int applyNo);
 
+	public String getSchemaName(int applyNo);
+
+	public String getQuery(int applyNo);
+
+	public int updateStatus(int applyNo);
+
 }

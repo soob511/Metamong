@@ -17,5 +17,6 @@ public class ApplyTableListDto {
 	private String schemaName;
 	private String tableId;
 	private String applyType;
+	private String applyObj;
 	
 }
