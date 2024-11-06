@@ -16,13 +16,22 @@ $(document).ready(function() {
 			type: "POST",
 			data: { applyNo: applyNo}, 
 			success: function(data) {
+				if(data==0){
+					Swal.fire({
+						icon: 'success',
+						title: '반영이 완료되었습니다!'
+					}).then(() => {
+						location.href="/Metamong/table/tableListDetail?applyNo=" + applyNo +"&indexNo=" + indexNo;		
+					});				
+				}else{
+					Swal.fire({
+						icon: 'error',
+						title: '반영할 수 없습니다!'
+					}).then(() => {
+						location.href="/Metamong/table/tableListDetail?applyNo=" + applyNo +"&indexNo=" + indexNo;		
+					});
+				}
 				
-				Swal.fire({
-					icon: 'success',
-					title: '반영이 완료되었습니다!'
-				}).then(() => {
-					location.href=data +"&indexNo=" + indexNo;		
-				});
 			}
 		});
 	});

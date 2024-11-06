@@ -113,7 +113,7 @@
 	                        </thead>
 	                        <tbody class="item-list" data-item-length="${itemLength}">
 		                        <c:forEach items="${items}" var="item" varStatus="i">
-		                            <tr class="item" data-item-isupdate="${item.itemIsUpdate}">
+		                            <tr class="item ${i.index < itemLength ? 'oldItem' : null }" data-item-isupdate="${item.itemIsUpdate}">
 		                                <th class="item-index">${i.index+1}</th>
 		                                <td class="itemId">${item.itemId}</td>
 		                                <td class="itemNm">${item.itemNm}</td>

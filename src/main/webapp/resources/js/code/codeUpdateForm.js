@@ -37,6 +37,7 @@ $(document).ready(function() {
     $('.item-list').on('click', '.item', function() {
     	$(".item").removeClass("table-active");
 	    $(this).addClass("table-active");
+	    $(this).hasClass('oldItem') &&  $('#itemId').prop('disabled', true);
 	    
         const itemId = $(this).find('.itemId').text();
         const itemNm = $(this).find('.itemNm').text();
@@ -198,9 +199,10 @@ $(document).ready(function() {
     	$('#itemId').val('');
         $('#itemNm').val('');
         $('#itemContent').val('');
-        $('#itemIsActive option:first').prop("selected", true);
+        $('#itemId').prop('disabled', false);
         $(".btn-edit").prop("disabled", true);
         $(".item").removeClass("table-active");
+        $('#itemIsActive option:first').prop("selected", true);
     };
 
     function itemList() {
@@ -208,9 +210,9 @@ $(document).ready(function() {
 
         for (let i = 0; i < items.length; i++) {
             $('.item-list').append(
-                `<tr class="item">
+                `<tr class="item ${i < num ? 'oldItem' : null }">
                     <th>${i+1}</th>
-                    <td class="itemId">${items[i].itemId}</td>
+                    <td class="itemId" >${items[i].itemId}</td>
                     <td class="itemNm">${items[i].itemNm}</td>
                     <td class="itemIsActive">${items[i].itemIsActive == 1 ? 'Y' : 'N'}</td>
                     <td class="itemContent">${items[i].itemContent ? items[i].itemContent : '-'}</td>

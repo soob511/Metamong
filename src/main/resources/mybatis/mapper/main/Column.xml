@@ -35,10 +35,10 @@
 		ORDER BY col_order
 	</select>
 	
-	<select id="selectApplyColumn" parameterType="int" resultType="ApplyColumn">
-		SELECT col_id,col_nm,data_type,col_Length,col_isnullable,col_ispk,col_order
-		FROM apply_col
-		WHERE apply_no = #{applyNo}
+	<select id="selectApplyColumn" parameterType="int" resultType="Column">
+	SELECT col_id,col_nm,data_type,col_Length,col_isnullable,col_ispk,col_order
+	FROM apply_col
+	WHERE apply_no = #{applyNo}
 	</select>
 	
 	<insert id="insertColumn" parameterType="Column">

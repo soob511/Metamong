@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.TableDao;
-import com.mycompany.metamong.daoSub1.Sub1TableDao;
-import com.mycompany.metamong.daoSub2.Sub2TableDao;
-import com.mycompany.metamong.daoSub3.Sub3TableDao;
+import com.mycompany.metamong.daoSub1.SrmTableDao;
+import com.mycompany.metamong.daoSub2.PmsTableDao;
+import com.mycompany.metamong.daoSub3.HrTableDao;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableDto;
 import com.mycompany.metamong.enums.SchemaEnum;
@@ -23,11 +23,11 @@ public class TableService {
 	@Autowired
 	private TableDao tableDao;
 	@Autowired
-	private Sub1TableDao sub1TableDao;
+	private SrmTableDao sub1TableDao;
 	@Autowired
-	private Sub2TableDao sub2TableDao;
+	private PmsTableDao sub2TableDao;
 	@Autowired
-	private Sub3TableDao sub3TableDao;
+	private HrTableDao sub3TableDao;
 	
 	public List<TableDto> getTableList() {
 		return tableDao.selectTableList();

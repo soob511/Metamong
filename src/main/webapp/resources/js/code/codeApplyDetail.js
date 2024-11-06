@@ -21,7 +21,7 @@ function codeApplyProcess(status){
 	    
 	    $.ajax({
 	        url: "/Metamong/code/codeApplyProcess",
-	        type: "POST",        
+	        type: "POST",
 	        data: { applyNo: applyNo, status: status, reason: reason },
 	        success: function(data) {
 	            location.href = data + "&indexNo=" + indexNo;    
@@ -30,21 +30,24 @@ function codeApplyProcess(status){
 	});
 };
 
-function applyComplete(type) {
-	const params = new URL(location.href).searchParams;
-	const applyNo = params.get('applyNo');
-	
-	$.ajax({
-	      url: "/Metamong/code/applyComplete",
-	      type: "POST",
-	      data: { applyNo: applyNo },
-	      success: function (data) {
-	        Swal.fire({
-	          icon: "success",
-	          title: "반영이<br/>완료되었습니다.",
-	        }).then((result) => {
-	         location.href = data;
-	        });
-	      },
-	    });
-};
+function applyComplete() {
+    const params = new URL(location.href).searchParams;
+    const applyNo = params.get('applyNo');
+    const indexNo = params.get('indexNo');
+    
+    $.ajax({
+        url: "/Metamong/code/applyComplete",
+        type: "POST",
+        data: { applyNo: applyNo },
+        success: function (data) {
+            Swal.fire({
+                icon: data != 0 ? "success" : "error",
+                title: data != 0 ? "반영이<br/>완료되었습니다." : "반영할 수 없는 신청입니다.",
+                text: data !=0 ? null : "해당 신청은 반려처리 됩니다."
+            }).then(() => {
+                location.href = "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+            });
+        }
+    });
+}
+

@@ -5,9 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,38 +45,33 @@ public class AccountController {
 	
 	@GetMapping("/accountApplySearch")
     public String memberSearch(
-    		@RequestParam(defaultValue="") String option, 
+    		@RequestParam(defaultValue="-1") int status, 
+    		@RequestParam(defaultValue="ID") String option, 
     		@RequestParam(defaultValue="") String keyword,
     		@RequestParam(defaultValue="1")int pageNo,
     		HttpSession session,
     		Model model) {
 	
-	if (keyword == null || keyword.trim().isEmpty()) {
-        
-		int totalRows = accountService.getTotalRows();
-		Pager pager = new Pager(10,5,totalRows,pageNo);
-		model.addAttribute("totalRows", totalRows);
-		
-		List<MemberDto> list = accountService.getApplyList(pager);
-		model.addAttribute("list", list);
-		session.setAttribute("pager", pager);
-        return "account/accountApplySearch";
-    }
-	else {
-	
-	int pagerTotalRows = accountService.countMembers(option, keyword,pageNo);
+
+	int pagerTotalRows = accountService.countMembers(status,option, keyword);
 	Pager pager = new Pager(10, 5,pagerTotalRows, pageNo);
 	
 	model.addAttribute("totalRows", pagerTotalRows);
-	pager.setTotalRows(pagerTotalRows);
+
 	
-    List<MemberDto> list = accountService.searchMember(option,keyword,pager);
+    List<MemberDto> list = accountService.searchMember(status,option,keyword,pager);
     model.addAttribute("list", list);
     model.addAttribute("option", option);
-    session.setAttribute("option", option);
     session.setAttribute("pager", pager);
-    	return "account/accountApplySearch";
-		}	    
+    
+	return "account/accountApplySearch";
 	}
-
+	
+	@PostMapping("/accountApplyProcess")
+	public ResponseEntity<String> accountApplyProcess(@RequestParam String MId, @RequestParam int status) {
+		
+		accountService.updateaccountStatus(MId, status);
+		
+		return ResponseEntity.ok("/Metamong/account/accountApplyList");
+	}
 }

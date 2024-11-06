@@ -56,10 +56,10 @@
 	WHERE apply_no = #{applyNo}
 </select>
 
-<select id="selectApplyTable" parameterType="int" resultType="ApplyTable">
-	SELECT table_id,table_nm,table_content
-	FROM apply_table
-	WHERE apply_no = #{applyNo}
+<select id="selectApplyTable" parameterType="int" resultType="Table">
+ SELECT table_id,table_nm,table_content
+ FROM apply_table
+ WHERE apply_no = #{applyNo}
 </select>
 
 <insert id="insertTable" parameterType="Table">
