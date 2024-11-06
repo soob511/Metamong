@@ -70,11 +70,8 @@
 	   				 ]]>
 	</select>
 	
-	<select id="countMembers" parameterType="Pager" resultType="int">
-	    SELECT COUNT(*)
-	    FROM(
-	    		SELECT
-	    				rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate , m.m_approval_status
+	<select id="countMembers"  resultType="int">
+	    		SELECT COUNT(*)    
 			    FROM member m
 			   LEFT OUTER JOIN team t ON m.team_id = t.team_id
 			   <where>
@@ -96,10 +93,8 @@
 		                <if test="keyword != null and keyword != '' and option == '사번'">
 		                    AND LOWER(m.m_empid) LIKE LOWER('%' || #{keyword} || '%')
 		                </if>
-		               
 		                AND m_role != 'ROLE_ADMIN'
 					</where>
-						)
 	</select>
 	
 	<update id="updateAccountStatus">
