@@ -128,7 +128,6 @@ thead{
 .btn-edit:disabled {
     background-color: #ebebeb;
     color: #ffffff;
-    cursor: not-allowed;
 }
 
 .item-header{

@@ -29,7 +29,7 @@
 	                        <button class="btn-reject" onclick="codeApplyProcess(2)">반려</button>
                     	</c:if>
                     	<c:if test="${applyList.approvalStatus == 1}">
-                    		<button class="btn-approve" onclick="applyComplete('${applyList.applyType}')">반영</button>
+                    		<button class="btn-approve" onclick="applyComplete()">반영</button>
                     	</c:if>
                     	<c:if test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
                     		<div class="btn-processed">처리완료</div>

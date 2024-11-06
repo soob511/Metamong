@@ -11,6 +11,7 @@ import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.dto.code.CodeDto;
+import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.item.ItemDto;
 
 @Service
@@ -43,11 +44,46 @@ public class CodeService {
 	}
 
 	@Transactional
-	public void insertCode(int applyNo, CodeDto code, List<ItemDto> items) {
-		codeDao.insertCode(code);
-		for (ItemDto item : items) {
-			itemDao.insertItem(item);
+	public int insertCode(int applyNo, CodeDto code, List<ItemDto> items) {
+		int result = 0;
+		int isExist = codeDao.selectIsExistCode(code.getCodeId());
+		
+		if(isExist == 0) {
+			codeDao.insertCode(code);
+			for (ItemDto item : items) {
+				itemDao.insertItem(item);
+			}
+			applyListDao.updateStatus(applyNo, 3);
+			result = 1;
+		} else {
+			applyListDao.updateStatus(applyNo, 2);
+			applyListDao.updateRejectReason(applyNo,"중복된 이름의 코드명(물리)가 존재합니다.");
 		}
-		applyListDao.updateStatus(applyNo,3);
+		return result;
+	}
+	
+	@Transactional
+	public void updateCode(int applyNo, CodeDto code, List<ApplyItemDto> items, int itemsLength) {
+		codeDao.updateCode(code);
+		
+		for(int i = 0; i < items.size(); i++) {
+			ApplyItemDto itm = items.get(i);
+			ItemDto item = new ItemDto();
+		 	item.setCodeNo(code.getCodeNo());
+		 	item.setItemId(itm.getItemId());
+		 	item.setItemNm(itm.getItemNm());
+		 	item.setItemContent(itm.getItemContent());
+		 	item.setItemIsActive(itm.getItemIsActive());
+		 	
+		 	if(itm.getItemIsUpdate() != 0) {
+		 		if(i < itemsLength-1) {
+			 		itemDao.updateItem(item);
+			 	} else {
+			 		itemDao.insertItem(item);		 		
+			 	}
+		 	}
+		}
+		applyListDao.updateStatus(applyNo, 3);
+		
 	}
 }

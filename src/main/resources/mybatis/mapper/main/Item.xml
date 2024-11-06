@@ -14,6 +14,12 @@
 	    JOIN apply_code ac ON ai.apply_no = ac.apply_no
 	    WHERE ai.apply_no = #{applyNo}
 	</select>
+	
+	<select id="selectApplyItemsByNo" parameterType="int" resultType="ApplyItem">
+	    SELECT item_id, item_nm, item_content, item_isactive, item_isupdate
+	    FROM apply_item
+	    WHERE apply_no = #{applyNo}
+	</select>
 
 	
 	<insert id="insertApplyItem" parameterType="ApplyItem">
@@ -25,6 +31,13 @@
 		INSERT INTO item (code_no, item_id, item_nm, item_content, item_isactive)
 		VALUES (#{codeNo}, #{itemId}, #{itemNm}, #{itemContent}, #{itemIsActive})
 	</insert>
+	
+	<update id="updateItem" parameterType="Item">
+		UPDATE item
+		SET 
+			item_nm = #{itemNm}, item_content = #{itemContent}, item_isactive = #{itemIsActive}
+	    WHERE code_no = #{codeNo} AND item_id = #{itemId}
+	</update>
 </mapper>
 	
 	

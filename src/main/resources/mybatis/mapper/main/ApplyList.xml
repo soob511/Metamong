@@ -287,7 +287,6 @@
 		SET reject_reason = #{message}
 		WHERE apply_no = #{applyNo}
 	</update>
-	
 </mapper>
 
 		
