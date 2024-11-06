@@ -26,15 +26,20 @@
 			                <div class="filter">
 			                  <label for="schemaSelect" class="filter-label">스키마 선택</label>
 			                  	<select id="schemaSelect" class="form-select" aria-label="select example">
+			                  		<option>선택</option>
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
-										<option value="${schemaEnum.name()}">${schemaEnum.getSchemaName()}</option>										
-									</c:forEach>
+								       	<c:if test="${schemaEnum.name() != 'MAIN'}">
+									        <option value="${schemaEnum.name()}">
+										            ${schemaEnum.name()}
+									        </option>
+									    </c:if>
+								    </c:forEach>
 								</select>
 			                </div>
 			                <div class="filter">
 			                  <label for="tableSelect" class="filter-label">테이블 선택</label>
 			                  <select id="tableSelect" class="form-select" aria-label="select example">
-			      				
+			      				<option>선택</option>
 			                  </select>
 			                </div>
 			              </div>
