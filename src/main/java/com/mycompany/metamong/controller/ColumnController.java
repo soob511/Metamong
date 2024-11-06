@@ -25,15 +25,6 @@ public class ColumnController {
 		return columnService.getColumnList(tableId);
 	}
 
-//	@ResponseBody
-//	@GetMapping("/searchColumnBySchema")
-//	public List<ColumnDto> searchColumn(
-//			@RequestParam String schemaName,
-//			@RequestParam String tableName
-//			) {
-//		return columnService.getColumnByDic(schemaName, tableName);
-//	}
-	
 	@ResponseBody
 	@GetMapping("/searchColumnName")
 	public List<ColumnDto> searchColumnName(

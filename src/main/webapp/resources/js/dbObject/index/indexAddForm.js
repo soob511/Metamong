@@ -51,8 +51,6 @@ function getCheckedOnePk() {
         let checkedRow = $('#columnTableBody .form-check-input:checked').closest('tr'); 
         let seventhTdValue = checkedRow.find('td').eq(6).text(); 
         return seventhTdValue;
-    } else {
-        console.log("체크박스가 하나만 선택되지 않았습니다.");
     }
 }
 
@@ -371,9 +369,7 @@ function filterIndex(clickColumnName) {
 }
 
 function applyIndex() {
-	var checkedOnePkValue = getCheckedOnePk();
-	console.log(checkedOnePkValue);
-	
+	var checkedOnePkValue = getCheckedOnePk();	
 	var refColumn = [];
     
     $('#indexApplyColumn tr').each(function() {

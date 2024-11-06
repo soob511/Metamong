@@ -61,12 +61,6 @@ public class TableController {
 		return "dbObject/table/tableList";
 	}
 
-//	@ResponseBody
-//	@GetMapping("/searchTableBySchema")
-//	public List<TableDto> searchTable(@RequestParam SchemaEnum schemaName) {
-//		return tableService.getTableName(schemaName);
-//	}
-	
 	@ResponseBody
 	@GetMapping("/searchTableInfo")
 	public List<TableDto> searchTableInfo(@RequestParam String schemaName) {
