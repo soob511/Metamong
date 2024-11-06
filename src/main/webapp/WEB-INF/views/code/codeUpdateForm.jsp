@@ -69,7 +69,7 @@
                             <table class="table table-bordered item-table">
                                 <tr>
                                     <td class="table-secondary">항목코드</td>
-                                    <td colspan="5"><input type="text" id="itemId" class="form-control code-input" required></td>
+                                    <td colspan="5" id="itemIdTd"><input type="text" id="itemId" class="form-control code-input" required></td>
                                 </tr>
                                 <tr>
                                     <td class="table-secondary">항목명</td>

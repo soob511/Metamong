@@ -125,10 +125,9 @@ thead{
    line-height: 2.4;
 }
 
-.btn-edit:disabled {
+.btn-add:disabled:first-of-type, .btn-edit:disabled {
     background-color: #ebebeb;
     color: #ffffff;
-    cursor: not-allowed;
 }
 
 .item-header{

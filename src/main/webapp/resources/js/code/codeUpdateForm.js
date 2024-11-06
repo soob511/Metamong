@@ -35,8 +35,10 @@ $(document).ready(function() {
     let itemIndex, updateItem;
 
     $('.item-list').on('click', '.item', function() {
+	    $(".btn-add").prop("disabled", true);
     	$(".item").removeClass("table-active");
 	    $(this).addClass("table-active");
+	    $('#itemId').prop('disabled', true);
 	    
         const itemId = $(this).find('.itemId').text();
         const itemNm = $(this).find('.itemNm').text();
@@ -198,9 +200,11 @@ $(document).ready(function() {
     	$('#itemId').val('');
         $('#itemNm').val('');
         $('#itemContent').val('');
-        $('#itemIsActive option:first').prop("selected", true);
+        $('#itemId').prop('disabled', false);
         $(".btn-edit").prop("disabled", true);
+        $(".btn-add").prop("disabled", false);
         $(".item").removeClass("table-active");
+        $('#itemIsActive option:first').prop("selected", true);
     };
 
     function itemList() {
