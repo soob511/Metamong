@@ -169,9 +169,16 @@ public class CodeController {
 		return "code/codeApplySearch";
 	}
 	
+	
 	@GetMapping("/codeApplyDetail")
-	public String codeApplyDetail(Model model, int applyNo, int indexNo) {
-		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo); 
+	public String codeApplyDetail(int applyNo, int indexNo, Authentication auth, Model model) {		
+		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo);
+		
+		String mName = memberService.getDbaNameById(auth.getName());
+		if(applyList.getMName().equals(mName)) {
+			model.addAttribute("myApply", true);
+		}
+		
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 		

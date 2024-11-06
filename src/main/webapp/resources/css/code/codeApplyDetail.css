@@ -13,7 +13,7 @@
 	margin-right: 20px!important;
 }
 
-.btn-approve {
+.btn-approve, .btn-rewrite {
 	background-color: var(--theme);
 	color: white;
 	border-radius: 8px;

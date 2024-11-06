@@ -31,11 +31,16 @@
                     	<c:if test="${applyList.approvalStatus == 1}">
                     		<button class="btn-approve" onclick="applyComplete()">반영</button>
                     	</c:if>
+                    	
                     	<c:if test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
                     		<div class="btn-processed">처리완료</div>
                     	</c:if>
 	                    </div> 
 					</sec:authorize>
+					
+					<c:if test="${applyList.approvalStatus == 2 && myApply != null }">
+                   		<div class="btn-rewrite">재작성</div>
+                   	</c:if>
                 </div>
                 <hr>
                 <div class="container">

@@ -232,7 +232,7 @@ public class ApplyService {
 	public String getApplyType(int applyNo) {
 		return applyListDao.selectApplyType(applyNo);
 	}
-
+	
 	public String addCreateTableSql(int applyNo) {
 	    StringBuilder sql = new StringBuilder("CREATE TABLE ");
 	    
