@@ -59,5 +59,12 @@
 	    VALUES (#{codeNo}, #{codeId}, #{codeNm}, #{codeLength}, #{codeContent}, #{codeIsActive})
 	</insert>
 	
+	<update id="updateCode" parameterType="Code">
+		UPDATE code
+		SET 
+			code_id = #{codeId}, code_nm = #{codeNm}, code_length = #{codeLength},
+			code_content = #{codeContent}, code_isactive = #{codeIsActive}
+	    WHERE code_no = #{codeNo}
+	</update>
 </mapper>
 	

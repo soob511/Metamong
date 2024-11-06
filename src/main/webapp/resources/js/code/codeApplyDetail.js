@@ -21,7 +21,7 @@ function codeApplyProcess(status){
 	    
 	    $.ajax({
 	        url: "/Metamong/code/codeApplyProcess",
-	        type: "POST",        
+	        type: "POST",
 	        data: { applyNo: applyNo, status: status, reason: reason },
 	        success: function(data) {
 	            location.href = data + "&indexNo=" + indexNo;    
@@ -30,14 +30,14 @@ function codeApplyProcess(status){
 	});
 };
 
-function applyComplete(type) {
+function applyComplete() {
 	const params = new URL(location.href).searchParams;
 	const applyNo = params.get('applyNo');
 	
 	$.ajax({
 	      url: "/Metamong/code/applyComplete",
 	      type: "POST",
-	      data: { applyNo: applyNo },
+	      data: { applyNo: applyNo},
 	      success: function (data) {
 	        Swal.fire({
 	          icon: "success",

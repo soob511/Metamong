@@ -24,6 +24,7 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
+import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
 import com.mycompany.metamong.service.ApplyService;
@@ -199,17 +200,19 @@ public class CodeController {
 	}
 	
 	@PostMapping("/applyComplete")
-	public ResponseEntity<String> applyComplete(int applyNo, String type) {
-		log.info("type: ", type);
-		/*if(type == "CREATE") {*/
-			CodeDto code = applyService.getCodeApplyByNo(applyNo);
-			List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
-
-			codeService.insertCode(applyNo, code, items);			
-	/*	} else {
-			
-		}*/
+	public ResponseEntity<String> applyComplete(int applyNo) {
+		String type = applyService.getApplyType(applyNo);
 		
+		CodeDto code = applyService.getCodeApplyByNo(applyNo);
+		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
+		int itemsLength = items.size();
+		
+		if(type.equals("CREATE")) {
+			codeService.insertCode(applyNo, code, items);
+		} else {
+			List<ApplyItemDto> applyItems = applyService.getApplyItemsByNo(applyNo);
+			codeService.updateCode(applyNo, code, applyItems, itemsLength);		
+		}
 		return ResponseEntity.ok("/Metamong/code/codeList");
 	}
 	

@@ -92,6 +92,10 @@ public class ApplyService {
 	public List<ItemDto> getItemsApplyByNo(int applyNo) {
 		return itemDao.selectItemsByNo(applyNo);
 	}
+	
+	public List<ApplyItemDto> getApplyItemsByNo(int applyNo) {
+		return itemDao.selectApplyItemsByNo(applyNo);
+	}
 
 	public List<ApplyTableListDto> getApplyTableList(Pager pager) {
 		return applyListDao.selectApplyTableList(pager);
@@ -299,5 +303,4 @@ public class ApplyService {
 		}
 		
 	}
-
 }

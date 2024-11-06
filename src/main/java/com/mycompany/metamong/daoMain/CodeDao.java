@@ -27,4 +27,6 @@ public interface CodeDao {
 
 	public int insertCode(CodeDto code);
 
+	public int updateCode(CodeDto code);
+
 }
