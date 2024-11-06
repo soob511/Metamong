@@ -34,5 +34,35 @@
 	    </where>
 	    ORDER BY i.index_name, ic.column_position
 	</select>
+	
+	<select id="selectIndexNoPk" parameterType="map" resultType="Index">
+		SELECT 
+		    i.index_name, user schema_name, i.table_name, ic.column_position, 
+		    ic.column_name, i.uniqueness, ic.descend,
+		    CASE 
+		        WHEN c.constraint_type = 'P' THEN 'Y'
+		        ELSE 'N'
+		    END AS pk_status
+		FROM 
+		    user_indexes i
+		JOIN 
+		    user_ind_columns ic ON i.index_name = ic.index_name
+		LEFT JOIN 
+		    user_constraints c ON i.index_name = c.index_name
+		<where>
+		    c.constraint_type is null
+	        <if test="indexName != 'NONE' ">
+	            AND i.index_name = UPPER(#{indexName})
+	        </if>
+	        <if test="tableName != 'NONE' ">
+	            AND i.table_name = UPPER(#{tableName})
+	        </if>
+	        <if test="columnName != 'NONE' ">
+	            AND ic.column_name = UPPER(#{columnName})
+	        </if>
+	    </where>
+		ORDER BY 
+		    i.index_name, ic.column_position
+	</select>
 
 </mapper>

@@ -11,4 +11,5 @@ public class IndexDto {
 	private String columnPosition;
 	private String uniqueness;
 	private String descend;
+	private String pkStatus;
 }

@@ -58,6 +58,25 @@ public class IndexService {
 		return list;
 	}
 	
+	public List<IndexDto> getIndexListNoPk(String indexName, String columnName, String tableName, String schemaName) {
+		List<IndexDto> list = new ArrayList<>();
+
+		switch (schemaName) {
+			case "SPM":
+				list.addAll(sub1IndexDao.selectIndexNoPk(indexName, columnName, tableName));
+				break;
+			case "PMS":
+				list.addAll(sub2IndexDao.selectIndexNoPk(indexName, columnName, tableName));
+				break;
+			case "HR":
+				list.addAll(sub3IndexDao.selectIndexNoPk(indexName, columnName, tableName));
+				break;
+			default:
+				break;
+			}
+		return list;
+	}
+	
 	public int countTotalRows() {
 		return indexDao.selectTotalRows();
 	}
