@@ -124,7 +124,7 @@
 								</div>
 								
 								<div class="index-apply-reason">
-									<p>인덱스제목</p>
+									<p>인덱스이름</p>
 									<input class="index-name-title" id="indexName"></input>
 									<div class="msg" id="nameValidMessage"></div>
 								</div>

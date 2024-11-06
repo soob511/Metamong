@@ -15,9 +15,13 @@ $(document).ready(function() {
     });
     
     $('#columnTableBody').on('click', 'tr', function() { 
-        let columnName = $(this).data('value');
-        console.log(columnName);
-        filterIndex(columnName);
+    	if ($(event.target).closest('input').length === 0) {
+            let columnName = $(this).data('value');
+
+            if (!$(event.target).closest('td[data-name="colOrder"]').length) {
+                filterIndex(columnName);   
+            }
+        }
     });
 
     $('#upButton').on('click', function() {
@@ -38,6 +42,20 @@ $(document).ready(function() {
     });
 
 });
+
+
+function getCheckedOnePk() {
+    let checkedCount = $('#columnTableBody .form-check-input:checked').length;
+
+    if (checkedCount === 1) {
+        let checkedRow = $('#columnTableBody .form-check-input:checked').closest('tr'); 
+        let seventhTdValue = checkedRow.find('td').eq(6).text(); 
+        return seventhTdValue;
+    } else {
+        console.log("체크박스가 하나만 선택되지 않았습니다.");
+    }
+}
+
 
 function getSchemaName(schemaName) {
     switch (schemaName) {
@@ -214,9 +232,9 @@ $(document).on("input", "#indexApplyReason", function () {
 });
 
 function filterTable() {
+	$('#indexTableBody').html('');
 	const schemaName = $('#schemaSelect').val();
 	
-	console.log(schemaName);
 	$.ajax({
 		type : 'GET',
 		url : '/Metamong/table/searchTableInfo',
@@ -224,7 +242,6 @@ function filterTable() {
 			schemaName : schemaName
 		},
 		success : function(data) {
-			console.log(data);
 			let html = '<option>선택</option>';
 
 			data.forEach(function(table) {
@@ -247,11 +264,13 @@ function filterTable() {
 }
 
 function filterColumn() {
+	$('#indexTableBody').html('');
 	let schemaName = $('#schemaSelect').val();
 	let tableName = $('#tableSelect').find(':selected').data('name');
 	let tableNo = $('#tableSelect').val();
 	let tableValue = $('#tableSelect').val();
 	if (tableValue === '선택') {
+		$('#columnTableBody').html('');
 		return;
 	}
 	console.log(schemaName);
@@ -267,7 +286,7 @@ function filterColumn() {
 		success : function(data) {
 			let count = 1;
 			let html = '';
-			console.log(data);
+			
 			data.forEach(function(column) {
 				html += `
 					<tr data-value="${column.colId}">
@@ -300,12 +319,6 @@ function filterColumn() {
 		}
 	});
 }
-
-//function selectCol() {
-//	$('#columnTableBody td').click(function() {
-//		let columnName = $(this).closest('tr').data('value');
-//	})
-//}
 
 function filterIndex(clickColumnName) {
 	let schemaName = $('#schemaSelect').val();
@@ -358,6 +371,9 @@ function filterIndex(clickColumnName) {
 }
 
 function applyIndex() {
+	var checkedOnePkValue = getCheckedOnePk();
+	console.log(checkedOnePkValue);
+	
 	var refColumn = [];
     
     $('#indexApplyColumn tr').each(function() {
@@ -395,6 +411,12 @@ function applyIndex() {
   		  	title: '필수내역을 공란없이<br/>입력해 주세요.',
   		  	text: '필수입력사항: 컬럼 선택, 인덱스 제목, 신청사유'
   		});
+	} else if (checkedOnePkValue == 'Y') {
+		Swal.fire({
+			icon: 'warning',                  
+			title: '인덱스를 다시<br/>확인해 주세요.',
+			text: '오류입력사항: PK는 단일 인덱스 신청이 불가'
+		});
 	} else if ($("#nameValidMessage").hasClass("warn")) {
 		Swal.fire({
 			icon: 'warning',                  
