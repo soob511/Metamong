@@ -42,8 +42,6 @@ public interface ApplyListDao {
 	public List<ApplyTableDto> selectApplyTableSearch(Map<String, Object> params);
 	
 	public int updateProcessApproval(ApplyListDto applyList);
-
-	public int updateApplyStatus(int applyNo);
 	
 	public String selectApplyType(int applyNo);
 

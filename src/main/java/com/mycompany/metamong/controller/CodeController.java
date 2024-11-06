@@ -205,9 +205,7 @@ public class CodeController {
 			CodeDto code = applyService.getCodeApplyByNo(applyNo);
 			List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 
-			codeService.insertCode(code, items);
-			applyService.applyObject(applyNo);
-			
+			codeService.insertCode(applyNo, code, items);			
 	/*	} else {
 			
 		}*/

@@ -228,10 +228,6 @@ public class ApplyService {
 		applyListDao.updateProcessApproval(applyList);
 	}
 
-	public void applyObject(int applyNo) {
-		applyListDao.updateApplyStatus(applyNo);
-	}
-	
 	public String getApplyType(int applyNo) {
 		return applyListDao.selectApplyType(applyNo);
 	}

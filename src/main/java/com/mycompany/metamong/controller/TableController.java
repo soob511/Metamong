@@ -218,7 +218,7 @@ public class TableController {
 		applyService.addProcessApproval(applyList);
 		
 		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
-	}*/
+	}
 	
 	@PostMapping("/reflectTable")
 	public  ResponseEntity<String> reflectTable(@RequestParam int applyNo){
