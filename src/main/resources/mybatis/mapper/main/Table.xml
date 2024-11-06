@@ -57,9 +57,9 @@
 </select>
 
 <select id="selectApplyTable" parameterType="int" resultType="ApplyTable">
- SELECT table_id,table_nm,table_content
- FROM apply_table
- WHERE apply_no = #{applyNo}
+	SELECT table_id,table_nm,table_content
+	FROM apply_table
+	WHERE apply_no = #{applyNo}
 </select>
 
 <insert id="insertTable" parameterType="Table">
@@ -69,6 +69,12 @@
     INSERT INTO tables (table_no, table_nm, table_id, table_content, schema_nm)
     VALUES (#{tableNo}, #{tableNm}, #{tableId}, #{tableContent}, #{schemaNm})
 </insert>
+
+<select id="selectTableInfo" parameterType="map" resultType="Table">
+    SELECT table_no, table_nm, table_id, schema_nm
+    FROM tables
+    WHERE table_id = #{tableName} AND schema_nm = #{schemaName}
+</select>
 
 </mapper>
 	

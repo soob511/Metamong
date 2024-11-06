@@ -36,9 +36,9 @@
 	</select>
 	
 	<select id="selectApplyColumn" parameterType="int" resultType="ApplyColumn">
-	SELECT col_id,col_nm,data_type,col_Length,col_isnullable,col_ispk,col_order
-	FROM apply_col
-	WHERE apply_no = #{applyNo}
+		SELECT col_id,col_nm,data_type,col_Length,col_isnullable,col_ispk,col_order
+		FROM apply_col
+		WHERE apply_no = #{applyNo}
 	</select>
 	
 	<insert id="insertColumn" parameterType="Column">
@@ -46,5 +46,12 @@
 		"COLUMN"(table_no,col_id,col_nm,data_type,col_length,col_isnullable,col_ispk,col_order)
 		VALUES(#{tableNo},#{colId},#{colNm},#{dataType},#{colLength},#{colIsnullable},#{colIspk},#{colOrder})
 	</insert>
+	
+	<select id="selectColumnName" parameterType="map" resultType="String">
+	    SELECT col_nm
+	    FROM "COLUMN" c
+	    WHERE table_no = #{tableNo} AND col_id = #{colId}
+	</select>
+
 </mapper>
 	

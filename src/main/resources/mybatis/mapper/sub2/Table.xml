@@ -6,7 +6,7 @@
 		${sql}
 	</insert>
 	
-	<select id="selectTableByDic" resultType="Table">
+	<select id="selectTableName" resultType="Table">
 	    SELECT table_name tableNm
 		FROM user_tables
 	</select>

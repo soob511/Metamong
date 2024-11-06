@@ -23,5 +23,7 @@ public interface ColumnDao {
 	public List<ApplyColumnDto> selectApplyColumn(int applyNo);
 
 	public int insertColumn(ColumnDto column);
+	
+	public String selectColumnName(@Param("tableNo")int tableNo, @Param("colId")String colId);
 
 }

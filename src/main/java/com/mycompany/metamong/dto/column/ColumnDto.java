@@ -10,8 +10,9 @@ public class ColumnDto {
 	private String dataType;
 	private String colLength;
 	private int colIsnullable;
+	private String colIsnullableText;
 	private int colIspk;
+	private String colIspkText;
 	private int colOrder;
-	
 
 }
