@@ -138,14 +138,15 @@ public class ApplyService {
 		List<ItemApplyDto> items = form.getItems();
 		for (ItemApplyDto i : items) {
 			ApplyItemDto item = new ApplyItemDto();
-			item.setApplyNo(apply.getApplyNo());
-			item.setItemId(i.getItemId());
-			item.setItemNm(i.getItemNm());
-			item.setItemContent(i.getItemContent());
-			item.setItemIsActive(i.getItemIsActive());
-			item.setItemIsUpdate(i.getItemIsUpdate());
-			itemDao.insertApplyItem(item);
-		}
+	        item.setApplyNo(apply.getApplyNo());
+	        item.setItemId(i.getItemId());
+	        item.setItemNm(i.getItemNm());
+	        item.setItemContent(i.getItemContent());
+	        item.setItemIsActive(i.getItemIsActive());
+	        item.setItemIsUpdate(i.getItemIsUpdate());
+	        item.setCodeNo(code.getCodeNo());
+	        itemDao.insertApplyItem(item);
+	    }
 	}
 
 	@Transactional

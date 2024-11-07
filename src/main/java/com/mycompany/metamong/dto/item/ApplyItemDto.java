@@ -10,4 +10,5 @@ public class ApplyItemDto {
 	private String itemContent;
 	private int itemIsActive;
 	private int itemIsUpdate;
+	private int codeNo;
 }
