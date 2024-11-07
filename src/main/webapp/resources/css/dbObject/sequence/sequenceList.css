@@ -25,7 +25,7 @@ label{
 }
 
 .sequence-search-label{
-	min-width: 100px !important;
+	min-width: 70px !important;
 	text-align: right;
 	align-items: center; 
 }
@@ -167,6 +167,9 @@ thead{
 	padding-top: 10px;
 }
 
-.form-control, .form-select  {
-	width: 305px !important;
+.form-control{
+	width: 250px !important;	
+}
+.form-select  {
+ 	width: 150px !important;	
 } 
