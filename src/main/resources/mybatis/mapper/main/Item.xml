@@ -23,8 +23,8 @@
 
 	
 	<insert id="insertApplyItem" parameterType="ApplyItem">
-		INSERT INTO apply_item (apply_no, item_id, item_nm, item_content, item_isactive, item_isupdate)
-		VALUES (#{applyNo}, #{itemId}, #{itemNm}, #{itemContent}, #{itemIsActive}, #{itemIsUpdate})
+		INSERT INTO apply_item (apply_no, item_id, item_nm, item_content, item_isactive, item_isupdate, code_no)
+		VALUES (#{applyNo}, #{itemId}, #{itemNm}, #{itemContent}, #{itemIsActive}, #{itemIsUpdate}, #{codeNo})
 	</insert>
 	
 	<insert id="insertItem" parameterType="Item">

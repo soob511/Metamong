@@ -134,6 +134,7 @@ public class ApplyService {
 	        item.setItemContent(i.getItemContent());
 	        item.setItemIsActive(i.getItemIsActive());
 	        item.setItemIsUpdate(i.getItemIsUpdate());
+	        item.setCodeNo(code.getCodeNo());
 	        itemDao.insertApplyItem(item);
 	    }
 	}
