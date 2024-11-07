@@ -48,4 +48,13 @@ public class AccountService {
 		return accountDao.selectAccountRows();
 	}
 
+	public int countAccountMembers(String option, String keyword) {
+		return accountDao.countAccountMembers(option,keyword);
+		
+	}
+
+	public List<MemberDto> searchAccountMember(String option, String keyword, Pager pager) {
+		return accountDao.selectAccountSearch(option, keyword, pager);
+	}
+
 }

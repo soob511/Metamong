@@ -27,5 +27,9 @@ public interface AccountDao {
 
 	public int selectAccountRows();
 
+	public int countAccountMembers(@Param("option") String option,@Param("keyword")  String keyword);
+
+	public List<MemberDto> selectAccountSearch(@Param("option") String option, @Param("keyword") String keyword, @Param("pager") Pager pager);
+
 	
 }
