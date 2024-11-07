@@ -339,6 +339,68 @@
     WHERE rnum >= #{startRowNo}
     ]]>
 	</select>
+	
+<select id="selectSequenceSearchRows" parameterType="map" resultType="int">
+    SELECT COUNT(*)
+    FROM apply_list a
+    JOIN member m ON a.m_id = m.m_id
+    JOIN apply_seq s ON a.apply_no = s.apply_no
+    <where>
+        a.apply_obj = 'SEQUENCE'
+
+        <if test="keyword != null and keyword != ''">
+            AND (
+                m.m_name LIKE '%' || #{keyword} || '%'
+                OR s.seq_name LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+
+        <if test="schema != null and schema != ''">
+            AND a.schema_name = #{schema}
+        </if>
+
+        <if test="status != null and status != ''">
+            AND a.approval_status = #{status}
+        </if>
+    </where>
+</select>
+
+<select id="selectApplySequenceSearch" parameterType="map" resultType="SequenceApplyList">
+    SELECT rnum, apply_no, m_name, apply_date, approval_status, schema_name, seq_name, apply_type
+    FROM (
+        SELECT rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name, seq_name, apply_type
+        FROM (
+            SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, a.schema_name, s.seq_name, a.apply_type
+            FROM apply_list a
+            JOIN member m ON a.m_id = m.m_id
+            JOIN apply_seq s ON a.apply_no = s.apply_no
+            <where>
+                a.apply_obj = 'SEQUENCE'
+
+                <if test="form.keyword != null and form.keyword != ''">
+                    AND (
+                        m.m_name LIKE '%' || #{form.keyword} || '%'
+                        OR s.seq_name LIKE '%' || #{form.keyword} || '%'
+                    )
+                </if>
+
+                <if test="form.schema != null and form.schema != ''">
+                    AND a.schema_name = #{form.schema}
+                </if>
+
+                <if test="form.status != null and form.status != ''">
+                    AND a.approval_status = #{form.status}
+                </if>
+            </where>
+            ORDER BY a.apply_date DESC
+        )
+        WHERE rownum <![CDATA[<=]]> #{pager.endRowNo}
+    )
+    WHERE rnum <![CDATA[>=]]> #{pager.startRowNo}
+
+</select>
+
+
 </mapper>
 
 		

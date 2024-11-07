@@ -59,4 +59,8 @@ public interface ApplyListDao {
 	public int selectTotalSequenceRows();
 
 	public List<SequenceApplyListDto> selectSequenceApplyList(Pager pager);
+
+	public int selectSequenceSearchRows(Map<String, String> form);
+
+	public List<SequenceApplyListDto> selectApplySequenceSearch(Map<String, Object> params);
 }

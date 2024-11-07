@@ -400,4 +400,12 @@ public class ApplyService {
 		List<SequenceApplyListDto> list = applyListDao.selectSequenceApplyList(pager);
 		return list;
 	}
+
+	public int getSequenceSearchRows(Map<String, String> form) {
+		return applyListDao.selectSequenceSearchRows(form);
+	}
+
+	public List<SequenceApplyListDto> getApplySequenceSearch(Map<String, Object> params) {
+		return applyListDao.selectApplySequenceSearch(params);
+	}
 }

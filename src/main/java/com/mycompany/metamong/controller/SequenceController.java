@@ -2,7 +2,9 @@ package com.mycompany.metamong.controller;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +26,7 @@ import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.sequence.ApplySequenceDto;
 import com.mycompany.metamong.dto.sequence.SequenceApplyListDto;
 import com.mycompany.metamong.dto.sequence.SequenceDto;
+import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.SequenceService;
@@ -104,7 +107,26 @@ public class SequenceController {
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/sequence/sequenceApplyList";
 	}
+	
+	@GetMapping("/sequenceApplySearch")
+	public String sequenceApplySearch(@RequestParam Map<String, String> form, HttpSession session, Model model) {
+		log.info("실행");
+		int searchRows = applyService.getSequenceSearchRows(form);
+		
+		int pageNo =  Integer.parseInt(form.get("pageNo"));
+		Pager pager = new Pager(10, 5, searchRows, pageNo);
+		session.setAttribute("pager", pager);
 
+		Map<String, Object> params = new HashMap<>();
+		params.put("form", form);
+		params.put("pager", pager);
+
+		List<SequenceApplyListDto> list = applyService.getApplySequenceSearch(params);
+		model.addAttribute("list", list);
+
+		return "dbObject/sequence/sequenceApplySearch";
+	}
+	
 	@GetMapping("/sequenceApplyDetail")
 	public String sequenceApplyDetail() {
 		return "dbObject/sequence/sequenceApplyDetail";
