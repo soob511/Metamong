@@ -14,5 +14,6 @@ public class ColumnDto {
 	private int colIspk;
 	private String colIspkText;
 	private int colOrder;
+	private int colIsupdate;
 
 }

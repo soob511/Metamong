@@ -208,7 +208,8 @@ public class TableController {
 				sql = applyService.addCreateTableSql(applyNo);
 				applyList.setQuery(sql);
 			}else if(type.equals("UPDATE")){
-				
+				sql = applyService.addUpdateTableSql(applyNo);
+				applyList.setQuery(sql);
 			}
 			applyList.setApprovalStatus(status);
 		}else {//반려
@@ -224,8 +225,8 @@ public class TableController {
 	@ResponseBody
 	@PostMapping("/reflectTable")
 	public  int reflectTable(@RequestParam int applyNo){
-		
-		int success = applyService.runQuery(applyNo);
+		String type = applyService.getApplyType(applyNo);
+		int success = applyService.runQuery(applyNo,type);
 		
 		return success;
 	}

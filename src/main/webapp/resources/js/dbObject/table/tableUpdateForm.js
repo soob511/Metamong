@@ -10,6 +10,34 @@ $(document).ready(function() {
     $("#columnList").on("click", ".checkTr", function() {
 	    $(".checkTr").removeClass("table-active");
 	    $(this).addClass("table-active");
+	    
+	    const colNm = $(this).find("td:eq(1)").text();
+        const colId = $(this).find("td:eq(2)").text();
+        const dataType = $(this).find("td:eq(3)").text();
+        const colLength = $(this).find("td:eq(4)").text();
+        const colNullable = $(this).find("td:eq(5)").text();
+        const colPk = $(this).find("td:eq(6)").text();
+        
+        $("#colNm").val(colNm);
+        $("#colId").val(colId);
+        $("#dataType").val(dataType);
+        $("#dataLength").val(colLength);
+        $("#nullable").val(colNullable);
+        $("#isUse").val(colPk);
+
+        // 기존 컬럼인지 새로 추가된 컬럼인지 확인
+        const isNewColumn = $(this).data("change") === 1;
+
+        // 원래 있던 컬럼이면 컬럼NM, 컬럼ID, PK 비활성화
+        if (!isNewColumn) {
+            $("#colNm").prop("disabled", true);
+            $("#colId").prop("disabled", true);
+        } else {
+            $("#colNm").prop("disabled", false);
+            $("#colId").prop("disabled", false);
+        }
+
+        $(".btn-update").prop("disabled", false);
 	});
     
     const pkSelect = $("#isUse");
@@ -34,6 +62,9 @@ $(document).ready(function() {
     	$("#itemForm")[0].reset();
         $("#columnList tr").removeClass("selected");
         $(".btn-update").prop("disabled", true);
+        $(".checkTr").removeClass("table-active");
+        $("#colNm").prop("disabled", false);
+        $("#colId").prop("disabled", false);
         if (pkSelect.val() === "Y") {
             nullableSelect.val("NOTNULL");
             nullableSelect.prop("disabled", true);
