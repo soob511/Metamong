@@ -23,52 +23,6 @@
 						<div class="index-list-header">
 							<p>&gt; 인덱스 삭제</p>
 						</div>
-						<div class="index-list-filters">
-							<div class="schema-filter">
-								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
-								<select id="schemaSelect" class="form-select"
-									aria-label="Default select example">
-									<c:forEach items="${schemaEnum}" var="schemaEnum">
-										<option value="${schemaEnum.name()}">
-											<c:if test="${schemaEnum.name() == 'MAIN'}">
-									        	선택
-									        </c:if>
-											<c:if test="${schemaEnum.name() != 'MAIN'}">
-									            ${schemaEnum.name()}
-									        </c:if>
-										</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div class="table-column-filter">
-								<label for="tableSelect" class="schema-filter-label">참조테이블명</label>
-								<select id="tableSelect" class="form-select"
-									aria-label="Default select example">
-									<option>선택</option>
-								</select>
-							</div>
-							<div class="table-column-filter">
-								<label for="columnSelect" class="schema-filter-label">참조컬럼명</label>
-								<select id="columnSelect" class="form-select"
-									aria-label="Default select example">
-									<option >선택</option>
-								</select>
-							</div>
-
-							<div class="index-search">
-								<label for="indexNameSearch" class="index-search-label">인덱스명</label>
-								<div class="container-fluid">
-									<div class="d-flex index-form">
-										<input class="form-control" type="search" id="indexNameSearch"
-											placeholder="Search" aria-label="Search"> <i
-											id="biSearch" class="bi bi-search"></i>
-									</div>
-								</div>
-							</div>
-							<div class="d-flex align-items-center ms-4">
-								<button class="btn-search" id="indexSearchBtn">조회</button>
-							</div>
-						</div>
 					</div>
 					<hr>
 					<div class="container index-tables">
@@ -96,26 +50,40 @@
 										<tbody id="indexTableBody">
 											<c:forEach items="${list}" var="index" varStatus="status">
 												<tr>
-													<th>
-														<input class="form-check-input" type="checkbox">
-													</th>
-													<td>${status.index + 1}</td>
-													<td data-name="idxName" data-value="${index.indexName}">
-														${index.indexName}
-													</td>
-													<td>
-								                      	<c:choose>
-										                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_1'}">SPM</c:when>
-										                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_2'}">PMS</c:when>
-										                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_3'}">HR</c:when>
-										                    <c:otherwise></c:otherwise>
-										                </c:choose>
-								                	</td>
-													<td data-name="tableName" data-value="${index.tableName}">${index.tableName}</td>
-													<td data-name="refColumn" data-value="${index.columnName}">${index.columnName}</td>
-													<td data-name="columnPosition" data-value="${index.columnPosition}">${index.columnPosition}</td>
-													<td data-name="isUnique" data-value="${index.uniqueness}">${index.uniqueness}</td>
-													<td data-name="descend" data-value="${index.descend}">${index.descend}</td>
+												<th>
+													<input class="form-check-input" type="checkbox" checked>
+												</th>
+												<td>${status.index + 1}</td>
+												<td data-name="idxName" data-value="${index.indexName}">
+													${index.indexName}
+												</td>
+												<td data-name="schemaName" data-value="${index.schemaName}">
+							                      	<c:choose>
+									                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_1'}">SPM</c:when>
+									                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_2'}">PMS</c:when>
+									                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_3'}">HR</c:when>
+									                    <c:otherwise></c:otherwise>
+									                </c:choose>
+							                	</td>
+												<td data-name="tableName" data-value="${index.tableName}">
+													${index.tableName}
+												</td>
+												<td data-name="refColumn" data-value="${index.columnName}">
+													${index.columnName}
+												</td>
+												<td data-name="columnPosition" data-value="${index.columnPosition}">
+													${index.columnPosition}
+												</td>
+												<td data-name="isUnique" data-value="${index.uniqueness}">
+													${index.uniqueness}
+												</td>
+												<td data-name="descend" data-value="${index.descend}">
+													${index.descend}
+												</td>
+												<td data-name="pkStatus" data-value="${index.pkStatus}">
+													${index.pkStatus}
+												</td>
+												<td data-name="tableNo" data-value="${index.tableNo}" style="display: none;"></td>
 												</tr>
 											</c:forEach>
 										</tbody>
