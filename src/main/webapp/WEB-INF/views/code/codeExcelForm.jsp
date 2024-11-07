@@ -47,16 +47,19 @@
                                 <p class="code-management-title">코드</p>
                                 
                                 <sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
-									<div class="code-buttons d-flex gap-1">
-	                                    <form enctype="multipart/form-data" method="post" action="codeApplyExcel" id="uploadForm">
-										    <input type="file" name="file" id="fileInput" style="display: none;" />
-										    <label for="fileInput" class="btn-excel">EXCEL 업로드</label>
-										    <button type="submit" style="display:none;">Upload</button>
-										</form>
+									<div class="code-buttons">
+	                                    <input class="btn-excel" type="file" value="EXCEL 업로드"></input>
 	                                    <a href="codeAddForm"><button class="btn-add">추가</button></a>
 	                                    <button class="btn-edit">수정</button>
 	                                </div>
-								</sec:authorize>								
+								</sec:authorize>
+								
+								<!-- <form enctype="multipart/form-data" method="post" action="/api/excel/upload">
+								    <input type="file" name="codeExcel" />
+								    <input type="password" name="password" />
+								    <button type="submit">Upload</button>
+								</form> -->
+								
                             </div>
                             <div class="code-table-container">
                                 <table class="table table-hover" id="codeTable">
@@ -66,18 +69,16 @@
                                             <th scope="col">코드(논리)</th>
                                             <th scope="col">코드(물리)</th>
                                             <th scope="col">코드길이</th>
-                                            <th scope="col">사용여부</th>
                                             <th scope="col">내용</th>
                                         </tr>
                                     </thead>
                                     <tbody id="codeList">
                                         <c:forEach items="${codeList}" var="code">
-                                            <tr class="code-row" onclick="showItemList(${code.codeNo})" data-code-no="${code.codeNo}">
-                                                <th>${code.codeNo}</th>
+                                            <tr class="code-row">
+                                                <th>${code.ID}</th>
                                                 <td>${code.codeNm}</td>
                                                 <td>${code.codeId}</td>
                                                 <td>${code.codeLength}</td>
-                                                <td>${code.codeIsActive == 1 ? 'Y' : 'N'}</td>
                                                 <td>${code.codeContent}</td>
                                             </tr>
                                         </c:forEach>
@@ -96,14 +97,18 @@
                                             <th scope="col">No.</th>
                                             <th scope="col">항목코드</th>
                                             <th scope="col">항목명</th>
-                                            <th scope="col">사용여부</th>
                                             <th scope="col">내용</th>
                                         </tr>
                                     </thead>
                                     <tbody id="itemList">
-                                        <tr>
-                                            <th colspan="5">코드를 선택해 주세요.</th>
-                                        </tr>
+                                         <c:forEach items="${itemList}" var="item">
+                                            <tr class="code-row">
+                                                <th>${item.ID}</th>
+                                                <td>${item.itemId}</td>
+                                                <td>${item.itemNm}</td>
+                                                <td>${item.itemContent}</td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -113,6 +118,6 @@
             </div>
         </div>
     </div>
-    <script src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script>
+    <%-- <script src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script> --%>
 </body>
 </html>

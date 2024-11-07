@@ -4,6 +4,10 @@ $(document).ready(function () {
   $(".sub-menu:eq(0)").addClass("active");
   $(".sub-menu:eq(0) .sub-item").removeClass("active");
   $(".sub-menu:eq(0) .sub-item:first").addClass("active");
+  
+  $('#fileInput').on('change', function() {
+      $('#uploadForm').submit();
+  });
 
   $(".bi-search").on("click", function () {
     searchCode();

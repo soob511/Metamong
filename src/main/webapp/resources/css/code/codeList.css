@@ -88,7 +88,7 @@ input[type="search"]::-webkit-search-cancel-button {
    padding-top: 10px;
 }
 
-.btn-excel{
+.btn-excel {
    background-color: white;
    color:  var(--theme);
    border-radius: 8px;
@@ -98,6 +98,11 @@ input[type="search"]::-webkit-search-cancel-button {
    font-size: 14px;
    text-align: center;
    margin-right: 5px;
+   line-height: 30px;
+}
+
+.btn-excel:hover {
+	cursor: pointer;
 }
 
 .btn-add{

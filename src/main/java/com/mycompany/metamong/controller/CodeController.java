@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
@@ -169,7 +170,6 @@ public class CodeController {
 		return "code/codeApplySearch";
 	}
 	
-	
 	@GetMapping("/codeApplyDetail")
 	public String codeApplyDetail(int applyNo, int indexNo, Authentication auth, Model model) {		
 		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo);
@@ -265,4 +265,23 @@ public class CodeController {
 		keyword = keyword != null ? keyword.toUpperCase() : null;
 		return codeService.getCodeLoadSearch(keyword);
 	}
+	
+	@PostMapping("/codeApplyExcel")
+    public String excelUpload(MultipartFile file, Model model) throws Exception {
+		Map<String, Object> list = codeService.uploadExcel(file);
+		
+		//log.info(list.get("codeList").toString());
+		//log.info(list.get("itemList").toString());
+		
+		model.addAttribute("codeList", list.get("codeList"));
+		model.addAttribute("itemList", list.get("itemList"));
+		
+        return "code/codeExcelForm";
+    }
 }
+
+
+
+
+
+
