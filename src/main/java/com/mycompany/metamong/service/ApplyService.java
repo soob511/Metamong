@@ -347,12 +347,12 @@ public class ApplyService {
 		// 성공했을시
 		if (pass == 0) {
 
+			TableDto table = tableDao.selectApplyTable(applyNo);
 			if (type.equals("CREATE")) {
 				// 반영으로 상태변경
 				applyListDao.updateStatus(applyNo, 3);
 
 				// 테이블 테이블에 생성된 테이블 정보 넣기
-				TableDto table = tableDao.selectApplyTable(applyNo);
 				table.setSchemaNm(schema);
 				tableDao.insertTable(table);
 
@@ -364,6 +364,14 @@ public class ApplyService {
 				}
 			}else {
 				applyListDao.updateStatus(applyNo, 3);
+				List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
+				int tableNo = tableDao.selectTableNo(schema,table.getTableId());
+				for (ColumnDto col : column) {
+					if(col.getColIsupdate()==1) {
+						col.setTableNo(tableNo);
+						columnDao.insertColumn(col);						
+					}
+				}
 			}
 		} else {// 실패했을때
 			applyListDao.updateStatus(applyNo, 2);

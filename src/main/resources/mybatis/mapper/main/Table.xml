@@ -76,5 +76,10 @@
     WHERE table_id = #{tableName} AND schema_nm = #{schemaName}
 </select>
 
+<select id="selectTableNo" resultType="int">
+	SELECT table_no
+	FROM tables
+	WHERE table_id = #{tableId} AND schema_nm = #{schema}
+</select>
 </mapper>
 	

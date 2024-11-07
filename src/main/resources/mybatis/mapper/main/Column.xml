@@ -40,7 +40,7 @@
 
 	<select id="selectApplyColumn" parameterType="int"
 		resultType="Column">
-		SELECT col_id,col_nm,data_type,col_Length,col_isnullable,col_ispk,col_order
+		SELECT col_id,col_nm,data_type,col_Length,col_isnullable,col_ispk,col_order,col_isupdate
 		FROM apply_col
 		WHERE apply_no = #{applyNo}
 	</select>
