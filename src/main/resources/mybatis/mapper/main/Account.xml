@@ -29,7 +29,7 @@
 		    ]]>
 	</select>
 	
-	<select id="selectAccountRows" resultType="int">
+	<select id="AccountListRows" resultType="int">
 		SELECT count(*)
 		FROM member
 	    WHERE 
@@ -169,7 +169,7 @@
 	   				 ]]>
 	</select>
 	
-	<select id="countAccountMembers"  resultType="int">
+	<select id="selectAccountMembers"  resultType="int">
 	    		SELECT COUNT(*)    
 			    FROM member m
 			   LEFT OUTER JOIN team t ON m.team_id = t.team_id

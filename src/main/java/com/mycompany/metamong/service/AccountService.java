@@ -44,12 +44,12 @@ public class AccountService {
 		return accountDao.selectAccountList(pager);
 	}
 
-	public int getAccountTotalRows() {
-		return accountDao.selectAccountRows();
+	public int getAccountListRows() {
+		return accountDao.AccountListRows();
 	}
 
-	public int countAccountMembers(String option, String keyword) {
-		return accountDao.countAccountMembers(option,keyword);
+	public int selectAccountMembers(String option, String keyword) {
+		return accountDao.selectAccountMembers(option,keyword);
 		
 	}
 

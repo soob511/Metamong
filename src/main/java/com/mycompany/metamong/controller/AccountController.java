@@ -30,7 +30,7 @@ public class AccountController {
 	
 	@GetMapping("/accountList")
 	public String accountList(@RequestParam(defaultValue="1")int pageNo, HttpSession session, Model model) {
-		int accountTotalRows = accountService.getAccountTotalRows();
+		int accountTotalRows = accountService.getAccountListRows();
 		Pager pager = new Pager(10,5,accountTotalRows,pageNo);
 		
 		session.setAttribute("pager", pager);
@@ -48,7 +48,7 @@ public class AccountController {
 
 		if (keyword == null || keyword.trim().isEmpty()) {
 
-			int accountTotalRows = accountService.getAccountTotalRows();
+			int accountTotalRows = accountService.getAccountListRows();
 			Pager pager = new Pager(10, 5, accountTotalRows, pageNo);
 
 			session.setAttribute("pager", pager);
@@ -58,7 +58,7 @@ public class AccountController {
 			model.addAttribute("list", list);
 			return "account/accountSearch";
 		} else {
-			int accountSearchTotalRows = accountService.countAccountMembers(option, keyword);
+			int accountSearchTotalRows = accountService.selectAccountMembers(option, keyword);
 			Pager pager = new Pager(10, 5, accountSearchTotalRows, pageNo);
 
 			model.addAttribute("totalRows", accountSearchTotalRows);
