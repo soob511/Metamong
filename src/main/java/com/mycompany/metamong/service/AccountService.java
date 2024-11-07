@@ -57,4 +57,7 @@ public class AccountService {
 		return accountDao.selectAccountSearch(option, keyword, pager);
 	}
 
+	public int updateAccount(MemberDto members) {
+		return accountDao.updateAccount(members);
+	}
 }

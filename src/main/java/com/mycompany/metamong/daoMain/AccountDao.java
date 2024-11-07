@@ -31,5 +31,6 @@ public interface AccountDao {
 
 	public List<MemberDto> selectAccountSearch(@Param("option") String option, @Param("keyword") String keyword, @Param("pager") Pager pager);
 
+	public int updateAccount(MemberDto members);
 	
 }

@@ -116,4 +116,26 @@ public class AccountController {
 		
 		return ResponseEntity.ok("/Metamong/account/accountApplyList");
 	}
+	
+	@ResponseBody
+	@PostMapping("/updateAccount")
+	public int updateAccount(
+	        @RequestParam("mId") String mId,
+	        @RequestParam("mRole") String mRole,
+	        @RequestParam("teamName") String teamName,
+	        @RequestParam("mEmpId") String mEmpId,
+	        @RequestParam("mTel") String mTel,
+	        @RequestParam("mIsactive") int mIsActive 
+	) throws Exception {
+
+		MemberDto members = new MemberDto();
+	    members.setMId(mId);
+	    members.setMRole(mRole);
+	    members.setTeamName(teamName);
+	    members.setMEmpId(mEmpId);
+	    members.setMTel(mTel);
+	    members.setMIsActive(mIsActive);
+
+	    return accountService.updateAccount(members);
+	}
 }
