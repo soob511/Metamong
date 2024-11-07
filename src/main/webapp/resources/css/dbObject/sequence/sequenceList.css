@@ -145,18 +145,18 @@ thead{
     align-items: center; 
 }
 
-.input-group,.schema-input-group{
+.input-group,.schema-input-group,.type-input-group{
 	display: flex;
 }
 
-.input-label,.schema-input-label,.input-file-label{
+.input-label,.schema-input-label,.input-file-label,.type-input-label{
 	width:100px;
 	margin:10px 20px !important;
 /* 	font-weight: 600; */
 }
 
 #seqName,#seqReason,#inputGroupFile,
-#schemaInput{
+#schemaInput,#typeInput{
 	margin: 10px;
 }
 

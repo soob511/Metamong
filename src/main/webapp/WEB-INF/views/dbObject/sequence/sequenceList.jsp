@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/sequence/sequenceList.css"
 	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container table-list-container">
@@ -74,16 +78,17 @@
 									</tr>
 								</thead>
 								<tbody id="searchSequenceList">
-									<c:forEach items="${sequence}" var="sequence" varStatus="status">
-									<tr>
-										<th>${status.index+1}</th>
-										<td>${sequence.sequenceName}</td>
-										<td>${sequence.schemaName}</td>
-										<td>${sequence.minValue}</td>
-										<td>${sequence.maxValue}</td>
-										<td>${sequence.incrementBy}</td>
-										<td>${sequence.lastNumber}</td>
-									</tr>
+									<c:forEach items="${sequence}" var="sequence"
+										varStatus="status">
+										<tr>
+											<th>${status.index+1}</th>
+											<td>${sequence.sequenceName}</td>
+											<td>${sequence.schemaName}</td>
+											<td>${sequence.minValue}</td>
+											<td>${sequence.maxValue}</td>
+											<td>${sequence.incrementBy}</td>
+											<td>${sequence.lastNumber}</td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -105,25 +110,31 @@
 
 								<div class="modal-body">
 									<div class="col sequence-create-delete">
-
-
 										<div class="input-group">
 											<label for="seqName" class="input-label">시퀀스명</label> <input
 												type="text" class="form-control" id="seqName"
 												aria-label="seqName" aria-describedby="seqName">
 										</div>
 
+
 										<div class="schema-input-group">
 											<label for="schemaInput" class="schema-input-label">스키마명</label>
 											<select id="schemaInput" class="form-select"
 												aria-label="Default select example">
-												<option selected>선택</option>
-												<option value="1">One</option>
-												<option value="2">Two</option>
-												<option value="3">Three</option>
+												<c:forEach items="${schemaEnum}" var="schemaEnum">
+													<option value="${schemaEnum.name()}">
+														${schemaEnum.name()}</option>
+												</c:forEach>
 											</select>
 										</div>
-
+										<div class="type-input-group">
+											<label for="typeInput" class="type-input-label">신청종류</label>
+											<select id="typeInput" class="form-select"
+												aria-label="Default select example">
+												<option value="CREATE">생성</option>
+												<option value="DROP">삭제</option>
+											</select>
+										</div>
 										<div class="input-group">
 											<label for="seqReason" class="input-label">신청사유</label> <input
 												type="text" class="form-control" id="seqReason"
@@ -140,7 +151,7 @@
 								</div>
 
 								<div class="modal-footer">
-									<button type="button" class="btn-apply" data-bs-dismiss="modal">신청</button>
+									<button type="button" class="btn-apply" id="sequenceApply">신청</button>
 								</div>
 							</div>
 						</div>

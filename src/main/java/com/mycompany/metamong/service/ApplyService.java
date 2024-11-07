@@ -385,4 +385,8 @@ public class ApplyService {
 		return pass;
 
 	}
+
+	public void applySequence(ApplyListDto applyList) {
+		applyListDao.insertApplySequence(applyList);
+	}
 }
