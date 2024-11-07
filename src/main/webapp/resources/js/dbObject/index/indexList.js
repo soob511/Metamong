@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('.sub-menu:eq(1)').addClass('active');
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(2)').addClass('active');
+    filterIndex();
     
     $('#schemaSelect').change(function() {
     	filterTable()
@@ -19,6 +20,9 @@ $(document).ready(function() {
     	filterIndex()
     });
 	
+    $('#indexTableBody').on('change', '.form-check-input', function () {
+		checkCheckBox(this);
+	});
 	
 	$(document).on('click', '#biSearch', function() {
 		filterIndex()
@@ -34,11 +38,41 @@ $(document).ready(function() {
 		}
 		filterIndex();
 	});
+	$(document).on('click', '#btnDelete', function() {
+		navToDeletePage();
+	});
+	
 });
+
+function checkCheckBox(checkbox) {
+    const isChecked = $(checkbox).is(':checked');
+    const dataValue = $(checkbox).closest('tr').find('td:nth-child(3)').text().trim();
+    if (!isChecked) {
+        $('#indexTableBody tr').each(function () {
+            const rowCheckBox = $(this).find('.form-check-input');
+            rowCheckBox.prop('disabled', false);
+            rowCheckBox.prop('checked', false);
+        });
+    } else {
+        $('#indexTableBody tr').each(function () {
+            const rowDataValue = $(this).find('td:nth-child(3)').text().trim();
+            const rowCheckBox = $(this).find('.form-check-input');
+            
+            if (rowDataValue === dataValue) {
+                rowCheckBox.prop('checked', isChecked);
+                rowCheckBox.prop('disabled', false);
+            } else {
+                rowCheckBox.prop('checked', false);
+                rowCheckBox.prop('disabled', true);
+            }
+        });
+    }
+}
+
 
 function getSchemaName(schemaName) {
     switch (schemaName) {
-        case 'USER_2024_OTI_FINAL_TEAM1_1': return 'SPM';
+        case 'USER_2024_OTI_FINAL_TEAM1_1': return 'SRM';
         case 'USER_2024_OTI_FINAL_TEAM1_2': return 'PMS';
         case 'USER_2024_OTI_FINAL_TEAM1_3': return 'HR';
         default: return '';
@@ -47,19 +81,22 @@ function getSchemaName(schemaName) {
 
 function filterTable() {
 	const schemaName = $('#schemaSelect').val();
-	console.log(schemaName);
+	
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/table/searchTableName',
+		url : '/Metamong/table/searchTableInfo',
 		data : {
 			schemaName : schemaName
 		},
 		success : function(data) {
-			let html = '<option>선택</option>';
+			let html = '<option data-name="선택">선택</option>';
 			$('#columnSelect').html(html);
 			data.forEach(function(table) {
 				html += `
-					<option>${table.tableNm}</option>`
+						<option value="${table.tableNo}" data-name="${table.tableId}">
+							${table.tableId}
+						</option>
+						`;
 			});
 			$('#tableSelect').html(html);
 		},
@@ -71,21 +108,28 @@ function filterTable() {
 
 function filterColumn() {
 	let schemaName = $('#schemaSelect').val();
-	let tableName = $('#tableSelect').val();
+	let tableName = $('#tableSelect').find(':selected').data('name');
+	let tableNo = $('#tableSelect').val();
+	if (tableNo === '선택') {
+		return;
+	}
 
 	$.ajax({
 		type : 'GET',
-		url : '/Metamong/column/searchColumnName',
+		url : '/Metamong/column/searchColumnInfo',
 		data : {
 			schemaName : schemaName,
-			tableName : tableName
+			tableName : tableName,
+			tableNo : tableNo
 		},
 		success : function(data) {
 			let html = '<option>선택</option>';
 			console.log(data);
 			data.forEach(function(column) {
 				html += `
-					<option>${column.colNm}</option>
+					<option data-name="colId" data-value="${column.colId}">
+						${column.colId}
+					</option>
 					`;
 			});
 			$('#columnSelect').html(html);
@@ -98,14 +142,11 @@ function filterColumn() {
 
 function filterIndex() {
 	let schemaName = $('#schemaSelect').val();
-	let tableName = $('#tableSelect').val() == '선택' ? 'NONE' : $('#tableSelect').val();
+	let tableName = 
+		$('#tableSelect').find(':selected').data('name') == '선택' ? 'NONE' : $('#tableSelect').find(':selected').data('name');
 	let columnName = $('#columnSelect').val() == '선택' ? 'NONE' : $('#columnSelect').val();
 	let indexName = $('#indexNameSearch').val().toUpperCase() == '' ? 'NONE' :$('#indexNameSearch').val().toUpperCase();
 	console.log(schemaName);
-	console.log(tableName);
-	console.log(columnName);
-	console.log(indexName);
-	
 	$.ajax({
 		type : 'GET',
 		url : 'searchIndex',
@@ -123,14 +164,35 @@ function filterIndex() {
 				data.forEach(function(index) {
 					html += `
 						<tr>
-						<th>${count++}</th>
-						<td>${index.indexName}</td>
-						<td>${getSchemaName(index.schemaName)}</td>
-						<td>${index.tableName}</td>
-						<td>${index.columnName}</td>
-	                    <td>${index.columnPosition}</td>
-	                    <td>${index.uniqueness}</td>
-	                    <td>${index.descend}</td>
+						<th>
+							<input class="form-check-input" type="checkbox">
+						</th>
+						<td>${count++}</td>
+						<td data-name="idxName" data-value="${index.indexName}">
+							${index.indexName}
+						</td>
+						<td data-name="schemaName" data-value="${getSchemaName(index.schemaName)}">
+							${getSchemaName(index.schemaName)}
+						</td>
+						<td data-name="tableName" data-value="${index.tableName}">
+							${index.tableName}
+						</td>
+						<td data-name="refColumn" data-value="${index.columnName}">
+							${index.columnName}
+						</td>
+						<td data-name="columnPosition" data-value="${index.columnPosition}">
+							${index.columnPosition}
+						</td>
+						<td data-name="isUnique" data-value="${index.uniqueness}">
+							${index.uniqueness}
+						</td>
+						<td data-name="descend" data-value="${index.descend}">
+							${index.descend}
+						</td>
+						<td data-name="pkStatus" data-value="${index.pkStatus}">
+							${index.pkStatus}
+						</td>
+						<td data-name="tableNo" data-value="${index.tableNo}" style="display: none;"></td>
 						</tr>`;
 				});
 			} else {
@@ -142,4 +204,30 @@ function filterIndex() {
 			console.log('오류: ' + xhr.responseText);
 		}
 	});
+}
+
+function navToDeletePage() {
+	var row = $('input[type="checkbox"]:checked').closest('tr');
+	var schemaName = row.find('[data-name="schemaName"]').data('value');
+	var tableName = row.find('[data-name="tableName"]').data('value');
+	var columnName = 'NONE';
+    var indexName = row.find('[data-name="idxName"]').data('value');
+    var pkStatus = row.find('[data-name="pkStatus"]').data('value');
+    
+    if (row.length === 0) {
+    	Swal.fire({ 
+			icon: 'warning',
+			title: '인덱스를 다시<br>선택해주세요.',
+			text: '인덱스를 선택해주세요.',
+		})
+    } else if (row.length === 1 && pkStatus === 'N') {
+    	Swal.fire({ 
+			icon: 'warning',
+			title: '인덱스를 다시<br>선택해주세요.',
+			text: 'PK는 삭제가 불가합니다.',
+		})
+    } else {
+    	document.location.href = '/Metamong/index/indexDeleteForm?schemaName=' + schemaName + '&indexName=' + indexName + '&columnName=' + columnName + '&tableName=' + tableName;    	    	
+    }
+    console.log(row.length);
 }

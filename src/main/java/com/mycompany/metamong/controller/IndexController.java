@@ -72,16 +72,47 @@ public class IndexController {
 			) {
 		StringJoiner joiner = new StringJoiner(", ");
 		for (RefColumnDto refColumn : applyIndexRequest.getRefColumn()) {
-		    joiner.add(refColumn.getColId() + " " + refColumn.getColOrder());
+			joiner.add(refColumn.getColId() + " " + refColumn.getColOrder());
 		}
 		String combineRefColumn = joiner.toString();
-		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyIndexRequest.getApplyIndexDto().setRefColumn(combineRefColumn);
+		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
 	}
 	
+	@ResponseBody
+	@PostMapping("/applyIndexDel")
+	public void applyIndexDel(
+			@RequestBody ApplyIndexRequestDto applyIndexRequest,
+			Authentication authentication) {
+		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
+		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchIndexNoPk")
+	public List<IndexDto> searchIndexNoPk(
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName
+			) {
+		List<IndexDto> list = 
+				indexService.getIndexListNoPk(indexName, columnName, tableName, schemaName);
+		return list;
+	}
+	
 	@GetMapping("/indexDeleteForm")
-	public String indexDeleteForm() {
+	public String indexDeleteForm(
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName,
+			Model model) {
+		List<IndexDto> list = 
+				indexService.getIndexList(indexName, columnName, tableName, schemaName);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("list", list);
 		return "dbObject/index/indexDeleteForm";
 	}
 	
