@@ -27,7 +27,7 @@
         m_role,
         m_isactive,
         m_applydate,
-        m_approval_stauts
+        m_approval_status
     ) VALUES (
         #{MId},
         #{MName},

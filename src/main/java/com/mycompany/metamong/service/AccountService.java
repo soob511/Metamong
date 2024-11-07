@@ -39,4 +39,13 @@ public class AccountService {
 		return accountDao.selectMemberId(mId);
 		
 	}
+
+	public List<MemberDto> getAccountList(Pager pager) {
+		return accountDao.selectAccountList(pager);
+	}
+
+	public int getAccountTotalRows() {
+		return accountDao.selectAccountRows();
+	}
+
 }

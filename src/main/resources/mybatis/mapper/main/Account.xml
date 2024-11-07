@@ -29,6 +29,39 @@
 		    ]]>
 	</select>
 	
+	<select id="selectAccountRows" resultType="int">
+		SELECT count(*)
+		FROM member
+	    WHERE 
+           m_role != 'ROLE_ADMIN' 
+           AND m_approval_status = '1'
+	</select>
+	
+	<select id="selectAccountList" parameterType="Pager" resultType="Member">
+		    <![CDATA[
+			        SELECT
+			            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_regdate, m_approval_status, m_isactive
+			        FROM (
+				            SELECT 
+				                rownum AS rnum,  m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_regdate, m_approval_status, m_isactive
+				            FROM (
+				            	SELECT
+				            	 	m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_regdate, m.m_approval_status, m.m_isactive
+				                FROM member m
+				            LEFT OUTER JOIN 
+				                team t ON m.team_id = t.team_id
+				            WHERE 
+				                m.m_role != 'ROLE_ADMIN'  
+				                AND  m.m_approval_status = '1'
+				            ORDER BY 
+				                m.m_regdate DESC
+        				) 
+        			WHERE rownum <= #{endRowNo}
+		        )
+		        WHERE rnum  >= #{startRowNo}
+		    ]]>
+	</select>
+	
 	<select id="selectMemberSearch"  resultType="Member" parameterType="Pager">
 	    <![CDATA[
 		        SELECT
@@ -64,7 +97,7 @@
 		            </where>
 		            <![CDATA[
 				            ORDER BY 
-				                m.m_name, m.m_id
+				                m.m_applydate DESC
 				        	)
 			        WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
 	   				 ]]>
@@ -105,6 +138,21 @@
 		  </if>
 		  WHERE m_id = #{MId}
 	</update>
-
+	
+	<update id="updateAccount" parameterType="Member">
+		UPDATE member
+		SET 
+			m_role = #{MRole},
+			team_id = (
+            SELECT team_id
+            FROM team
+            WHERE team_name = #{teamName} 
+       		)
+       		,m_empid = #{MEmpId},
+       		m_tel = #{MTel},
+            m_isactive = #{MIsActive}
+          
+		WHERE m_id = #{MId}
+	</update>
 </mapper>
 	

@@ -120,6 +120,9 @@ td, th{
    font-size: 20px;
    color: #343a40;
 }
+#memberSearch {
+	font-size:1rem !important;
+}
 
 .bi-search:hover {
 	cursor: pointer;
@@ -137,12 +140,8 @@ td, th{
 	color: #A5A5A5 !important;
 }
 
-
 #edit {
-	width:150px !important;
-	font-size:14px !important;
-	vertical-align:middle !important;
-	margin-left:30px !important;
+	width:170px !important;
 }
 
 .btn {
@@ -157,6 +156,7 @@ input[type="search"]::-webkit-search-cancel-button {
 	width:110px !important;
 	vertical-align:middle !important;
 	margin-left:30px !important;
+	
 }
 
 #btn-approve {
@@ -194,4 +194,13 @@ input[type="search"]::-webkit-search-cancel-button {
 	margin-right:-20px;
 	margin-bottom:8px;
 	
+}
+.form-select{
+	font-size : 1rem !important;
+}
+.form-control{
+	font-size:14px !important;
+}
+#mRole, #teamName, #mIsactive{
+	font-size:14px !important;
 }

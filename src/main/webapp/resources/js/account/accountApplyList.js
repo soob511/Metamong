@@ -59,7 +59,11 @@ function accountApplyProcess(MId, status){
 	        type: "POST",        
 	        data: { MId : MId, status: status},
 	        success: function(data) {
-	            location.href = `/Metamong/account/accountApplyList?pageNo=${pageNo}`;
+	        		if(pageNo) {
+	        			location.href = `/Metamong/account/accountApplyList?pageNo=${pageNo}`;
+	        		} else {
+	        			location.href = `/Metamong/account/accountApplyList`;
+	        		}
 	        }
 	    });
 	});
