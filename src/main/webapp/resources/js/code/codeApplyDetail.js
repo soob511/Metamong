@@ -6,6 +6,7 @@ $(document).ready(function() {
     $('.sub-menu:eq(0) .sub-item:eq(1)').addClass('active'); 
 });
 
+/* 승인, 반려 */
 function codeApplyProcess(status){
 	const params = new URL(location.href).searchParams;
 	const applyNo = params.get('applyNo');
@@ -30,6 +31,7 @@ function codeApplyProcess(status){
 	});
 };
 
+/* 반영 */
 function applyComplete() {
     const params = new URL(location.href).searchParams;
     const applyNo = params.get('applyNo');
@@ -49,5 +51,4 @@ function applyComplete() {
             });
         }
     });
-}
-
+};

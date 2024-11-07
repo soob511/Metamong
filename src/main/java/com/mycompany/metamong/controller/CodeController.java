@@ -169,9 +169,16 @@ public class CodeController {
 		return "code/codeApplySearch";
 	}
 	
+	
 	@GetMapping("/codeApplyDetail")
-	public String codeApplyDetail(Model model, int applyNo, int indexNo) {
-		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo); 
+	public String codeApplyDetail(int applyNo, int indexNo, Authentication auth, Model model) {		
+		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo);
+		
+		String mName = memberService.getDbaNameById(auth.getName());
+		if(applyList.getMName().equals(mName)) {
+			model.addAttribute("myApply", true);
+		}
+		
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 		
@@ -215,6 +222,35 @@ public class CodeController {
 			codeService.updateCode(applyNo, code, applyItems, itemsLength);		
 		}
 		return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/codeApplyRewrite")
+	public String codeApplyRewrite(int applyNo, Model model, HttpSession session) {
+		String applyType = applyService.getApplyType(applyNo);
+		
+		CodeDto code = applyService.getCodeApplyByNo(applyNo);
+		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
+		int  itemLength = itemService.getItemList(code.getCodeNo()).size();
+		
+		
+		List<ItemApplyDto> tmpItems = new ArrayList<ItemApplyDto>();
+
+		for(ItemDto item : items) {
+			ItemApplyDto tmpItem = new ItemApplyDto();
+			tmpItem.setItemId(item.getItemId());
+			tmpItem.setItemNm(item.getItemNm());
+			tmpItem.setItemIsActive(item.getItemIsActive());
+			tmpItem.setItemContent(item.getItemContent());
+			tmpItem.setItemIsUpdate(0);
+			tmpItems.add(tmpItem);
+		}
+		model.addAttribute("code", code);
+		model.addAttribute("items", tmpItems);
+		model.addAttribute("itemLength", itemLength);
+		model.addAttribute("applyType", applyType);
+		session.removeAttribute("applyReason");
+		
+		return "code/codeRewriteForm";
 	}
 	
 	@ResponseBody
