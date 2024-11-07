@@ -165,7 +165,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="itemList" class="excel-items">
-                                        <tr>
+                                        <tr class="no-file">
                                             <td colspan="4">파일을 등록해 주세요.</td>
                                         </tr>
                                     </tbody>
