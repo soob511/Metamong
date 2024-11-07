@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.ColumnDao;
-import com.mycompany.metamong.daoSub1.Sub1ColumnDao;
-import com.mycompany.metamong.daoSub2.Sub2ColumnDao;
-import com.mycompany.metamong.daoSub3.Sub3ColumnDao;
+import com.mycompany.metamong.daoSub1.SrmColumnDao;
+import com.mycompany.metamong.daoSub2.PmsColumnDao;
+import com.mycompany.metamong.daoSub3.HrColumnDao;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.table.TableDto;
@@ -25,11 +25,11 @@ public class ColumnService {
 	@Autowired
 	private ColumnDao columnDao;
 	@Autowired
-	private Sub1ColumnDao sub1ColumnDao;
+	private SrmColumnDao sub1ColumnDao;
 	@Autowired
-	private Sub2ColumnDao sub2ColumnDao;
+	private PmsColumnDao sub2ColumnDao;
 	@Autowired
-	private Sub3ColumnDao sub3ColumnDao;
+	private HrColumnDao sub3ColumnDao;
 	
 	public List<ColumnDto> getColumnList(int tableId) {
 		return columnDao.selectColumnList(tableId);

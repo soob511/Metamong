@@ -13,4 +13,5 @@ public class ApplyColumnDto {
 	private int colIsnullable;
 	private int colIspk;
 	private int colOrder;
+	private int colIsupdate;
 }
