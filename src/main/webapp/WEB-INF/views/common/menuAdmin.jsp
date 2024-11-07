@@ -17,7 +17,7 @@
 		        <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-		        <li class="sub-item mt-2 "><a href="${pageContext.request.contextPath}/account/accountManage">계정내역</a></li> 
+		        <li class="sub-item mt-2 "><a href="${pageContext.request.contextPath}/account/accountList">계정내역</a></li> 
 		        <li class="sub-item last-item"><a href="${pageContext.request.contextPath}/account/accountApplyList">신청내역</a></li>
 		    </ul>
 		</li>	

@@ -22,5 +22,15 @@ public interface AccountDao {
 	public int updateAccountStatus(@Param("MId")String MId, @Param("status")int status);
 
 	public MemberDto selectMemberId(String mId);
+
+	public List<MemberDto> selectAccountList(Pager pager);
+
+	public int AccountListRows();
+
+	public int selectAccountMembers(@Param("option") String option,@Param("keyword")  String keyword);
+
+	public List<MemberDto> selectAccountSearch(@Param("option") String option, @Param("keyword") String keyword, @Param("pager") Pager pager);
+
+	public int updateAccount(MemberDto members);
 	
 }

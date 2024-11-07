@@ -28,10 +28,9 @@ public class MemberDto {
 	 
 	@JsonProperty("MRole")
 	private String MRole;
-	 
+
 	@JsonProperty("MIsActive")
 	private int MIsActive;
-	
 	
 	private String profFilename;
 	private String profFiletype;
