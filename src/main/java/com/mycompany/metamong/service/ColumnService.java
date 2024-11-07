@@ -55,7 +55,7 @@ public class ColumnService {
 				list.addAll(sub1ColumnDao.selectColumnName(tableName));
 				list.addAll(sub2ColumnDao.selectColumnName(tableName));
 				list.addAll(sub3ColumnDao.selectColumnName(tableName));
-			case "SPM":
+			case "SRM":
 				list.addAll(sub1ColumnDao.selectColumnName(tableName));
 				break;
 			case "PMS":
@@ -74,7 +74,7 @@ public class ColumnService {
 		List<ColumnDto> list = new ArrayList<>();
 
 		switch (schemaName) {
-			case "SPM":
+			case "SRM":
 				list.addAll(sub1ColumnDao.selectColumnInfo(tableName));
 				for (ColumnDto col : list) {
 			        String colId = col.getColId();

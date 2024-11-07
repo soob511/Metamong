@@ -63,7 +63,7 @@ public class TableService {
 				list.addAll(sub2TableDao.selectTableName());
 				list.addAll(sub3TableDao.selectTableName());
 				break;
-			case "SPM":
+			case "SRM":
 				list.addAll(sub1TableDao.selectTableName());
 				break;
 			case "PMS":
@@ -83,7 +83,7 @@ public class TableService {
 		List<TableDto> newList = new ArrayList<>();
 
 		switch (schemaName) {
-			case "SPM":
+			case "SRM":
 				tableDic.addAll(sub1TableDao.selectTableName());
 				for (TableDto table : tableDic) {
 			        String tableName = table.getTableNm();
