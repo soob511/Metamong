@@ -12,10 +12,10 @@
 	<select id="selectApplyList" parameterType="Pager" resultType="Member">
 		    <![CDATA[
 		        SELECT
-		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_applydate
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_applydate, m_approval_status
 		        FROM (
 		            SELECT 
-		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate, m.m_approval_status
 		            FROM 
 		                member m
 		            LEFT OUTER JOIN 
@@ -32,31 +32,35 @@
 	<select id="selectMemberSearch"  resultType="Member" parameterType="Pager">
 	    <![CDATA[
 		        SELECT
-		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_applydate
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_applydate, m_approval_status
 		        FROM (
 		            SELECT 
-		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate, m.m_approval_status
 		            FROM 
 		                member m
 		            LEFT OUTER JOIN 
 		                team t ON m.team_id = t.team_id
 	          ]]>       
 	            <where>
-			                <if test="keyword != null and keyword != '' and option == 'ID'">
-			                    LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '이름'">
-			                    LOWER(m.M_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '권한'">
-			                    LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '소속'">
-			                    LOWER(t.team_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
-			                <if test="keyword != null and keyword != '' and option == '사번'">
-			                    LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-			                </if>
+	            			<if test="status != -1">
+				                m.m_approval_status = #{status}
+				            </if>
+			              <if test="keyword != null and keyword != '' and option == 'ID'">
+				               AND  LOWER(m.m_id) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '이름'">
+				                AND LOWER(m.m_name) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '권한'">
+				                AND LOWER(m.m_role) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '소속'">
+				                AND LOWER(t.team_name) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '사번'">
+				                AND LOWER(m.m_empid) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            AND m_role != 'ROLE_ADMIN'
 		            </where>
 		            <![CDATA[
 				            ORDER BY 
@@ -66,33 +70,41 @@
 	   				 ]]>
 	</select>
 	
-	<select id="countMembers" parameterType="Pager" resultType="int">
-	    SELECT COUNT(*)
-	    	FROM(
-	    		SELECT
-	    			rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_applydate 
+	<select id="countMembers"  resultType="int">
+	    		SELECT COUNT(*)    
 			    FROM member m
-			    FULL OUTER JOIN team t ON m.team_id = t.team_id
+			   LEFT OUTER JOIN team t ON m.team_id = t.team_id
 			   <where>
-					<if test="keyword != null and keyword != '' and option == 'ID'">
-		            LOWER(m.M_id) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-		        	</if>
-					<if test="keyword != null and keyword != '' and option == '이름'">
-					LOWER(m.M_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-					</if>
-					<if test="keyword != null and keyword != '' and option == '권한'">
-		            LOWER(m.M_role) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-		        	</if>
-					<if test="keyword != null and keyword != '' and option == '소속'">
-					LOWER(t.team_name) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-					</if>
-					<if test="keyword != null and keyword != '' and option == '사번'">
-		            LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
-		        	</if>
-					
-				</where>
-				)
+			   			 <if test="status != -1">
+		                     m.m_approval_status = #{status}
+		                </if>
+						 <if test="keyword != null and keyword != '' and option == 'ID'">
+	                    	AND  LOWER(m.m_id) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '이름'">
+		                    AND LOWER(m.m_name) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '권한'">
+		                    AND LOWER(m.m_role) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '소속'">
+		                    AND LOWER(t.team_name) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '사번'">
+		                    AND LOWER(m.m_empid) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                AND m_role != 'ROLE_ADMIN'
+					</where>
 	</select>
+	
+	<update id="updateAccountStatus">
+		UPDATE member
+		SET m_approval_status = #{status}
+		<if test="status==1">
+		  ,m_regdate = sysdate
+		  </if>
+		  WHERE m_id = #{MId}
+	</update>
 
 </mapper>
 	

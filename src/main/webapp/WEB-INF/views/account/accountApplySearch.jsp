@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <div class="d-flex  justify-content-start">
-	<div>
+	<div class="pb-3">
 		총 <span class="form-required" id="memberCount">${totalRows}</span>건의
 		신청이 있습니다.
 	</div>
@@ -38,12 +39,20 @@
 					<td>${member.teamName}</td>
 					<td>${member.MEmpId}</td>
 					<td>${member.MTel}</td>
-					<td>
-						<button type="button" class="btn btn-sm me-2"
-							style="background-color: #003567; color: white;">승인</button>
-						<button type="button" class="btn btn-sm me-2"
-							style="background-color: #949494; color: white;">반려</button>
-					</td>
+					<td class="apply-approve">
+							<c:choose>
+								<c:when test="${member.MApprovalStatus == 0}">
+										<button class="btn btn-sm me-2" id="btn-approve" onclick="accountApplyProcess('${member.MId}', 1)">승인</button>
+										<button class="btn btn-sm me-2" id="btn-reject" onclick="accountApplyProcess('${member.MId}', 2)" >반려</button>
+								</c:when>
+								<c:when test="${member.MApprovalStatus == 1}">
+										<span id="status-approve">승인</span>
+                                     </c:when>
+                                      <c:when test="${member.MApprovalStatus == 2}">
+                                              <span id="status-rejected">반려</span>
+                                     </c:when>
+								</c:choose>
+						</td>
 				</tr>
 			</c:forEach>
 		</c:if>
@@ -57,30 +66,30 @@
 
 <c:if test="${totalRows>0 }">
 <div class="page">
-	<a href="javascript:memberSearch(1)"
+	<a href="javascript:accountApplySearch(1)"
 		class="btn btn-outline-secondary btn-sm"><<</a>
 	<c:if test="${pager.groupNo>1}">
-		<a href="javascript:memberSearch(${pager.startPageNo-1})"
+		<a href="javascript:accountApplySearch(${pager.startPageNo-1})"
 			class="btn btn-outline-dark btn-sm"><</a>
 	</c:if>
 
 	<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 		step="1" var="i">
 		<c:if test="${pager.pageNo==i}">
-			<a href="javascript:memberSearch(${i})"
+			<a href="javascript:accountApplySearch(${i})"
 				class="btn btn-secondary btn-sm">${i}</a>
 		</c:if>
 		<c:if test="${pager.pageNo!=i}">
-			<a href="javascript:memberSearch(${i})"
+			<a href="javascript:accountApplySearch(${i})"
 				class="btn btn-outline-secondary btn-sm">${i}</a>
 		</c:if>
 	</c:forEach>
 
 	<c:if test="${pager.groupNo<pager.totalGroupNo}">
-		<a href="javascript:memberSearch(${pager.endPageNo+1})"
+		<a href="javascript:accountApplySearch(${pager.endPageNo+1})"
 			class="btn btn-outline-dark btn-sm">></a>
 	</c:if>
-	<a href="javascript:memberSearch(${pager.totalPageNo})"
+	<a href="javascript:accountApplySearch(${pager.totalPageNo})"
 		class="btn btn-outline-secondary btn-sm">>></a>
 
 </div>
