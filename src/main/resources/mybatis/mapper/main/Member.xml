@@ -53,21 +53,25 @@
 		FROM member
 	    WHERE 
            m_role != 'ROLE_ADMIN'
+           AND m_approval_status=1
+           AND m_isactive = 1
 	</select>
 
 	<select id="selectMemberList" parameterType="Pager" resultType="Member">
 		    <![CDATA[
 		        SELECT
-		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_approval_status, m_isactive
 		        FROM (
 		            SELECT 
-		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_approval_status, m.m_isactive
 		            FROM 
 		                member m
 		            LEFT OUTER JOIN 
 		                team t ON m.team_id = t.team_id
 		            WHERE 
 		                m.m_role != 'ROLE_ADMIN'
+		                AND m.m_approval_status=1
+		                AND m.m_isactive = 1
 		            ORDER BY 
 		                m.m_name, m.m_id
 		        )
@@ -103,6 +107,9 @@
 			                <if test="keyword != null and keyword != '' and option == '사번'">
 			                    LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 			                </if>
+			                AND m_role != 'ROLE_ADMIN'
+				            AND m_approval_status=1
+				            AND m_isactive = 1
 		            </where>
 		            <![CDATA[
 				            ORDER BY 
@@ -142,7 +149,9 @@
 					<if test="keyword != null and keyword != '' and option == '사번'">
 		            LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 		        	</if>
-					
+					AND m_role != 'ROLE_ADMIN'
+		            AND m_approval_status=1
+		            AND m_isactive = 1
 				</where>
 					)
 	</select>
