@@ -25,7 +25,7 @@ label{
 }
 
 .sequence-search-label{
-	min-width: 100px !important;
+	min-width: 70px !important;
 	text-align: right;
 	align-items: center; 
 }
@@ -85,7 +85,7 @@ label{
 }
 
 .modal-header {
-	background-color: #cfe2ff;
+	background-color: #E2E3E5;
 }
 
 .modal-header, .modal-footer {
@@ -99,6 +99,7 @@ label{
 }
 
 
+
 .btn-apply {
 	background-color: var(--theme);
 	color: white;
@@ -109,6 +110,10 @@ label{
 	padding: 0 10px;
 	font-size: 14px;
 	margin-right: 5px;
+}
+
+.sequence-list-table{
+	overflow-y:scroll; 
 }
 
 .table th, .table td {
@@ -140,18 +145,18 @@ thead{
     align-items: center; 
 }
 
-.input-group,.schema-input-group{
+.input-group,.schema-input-group,.type-input-group{
 	display: flex;
 }
 
-.input-label,.schema-input-label,.input-file-label{
+.input-label,.schema-input-label,.input-file-label,.type-input-label{
 	width:100px;
 	margin:10px 20px !important;
 /* 	font-weight: 600; */
 }
 
 #seqName,#seqReason,#inputGroupFile,
-#schemaInput{
+#schemaInput,#typeInput{
 	margin: 10px;
 }
 
@@ -167,6 +172,15 @@ thead{
 	padding-top: 10px;
 }
 
-.form-control, .form-select  {
-	width: 305px !important;
+.form-control{
+	width: 250px !important;	
+}
+
+.form-select  {
+ 	width: 150px !important;	s
 } 
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}

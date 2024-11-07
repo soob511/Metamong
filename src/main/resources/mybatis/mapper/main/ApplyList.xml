@@ -287,6 +287,18 @@
 		SET reject_reason = #{message}
 		WHERE apply_no = #{applyNo}
 	</update>
+	
+	<insert id="insertApplySequence" parameterType="ApplyList">
+		<selectKey keyProperty="applyNo" resultType="int"
+				order="BEFORE">
+				SELECT seq_apply_no.nextval FROM dual
+			</selectKey>
+			INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
+			approval_status,schema_name,apply_obj, apply_type,query)
+			VALUES (#{applyNo},
+			#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
+			#{applyType},#{query})
+	</insert>
 </mapper>
 
 		

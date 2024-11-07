@@ -10,6 +10,34 @@ $(document).ready(function() {
     $("#columnList").on("click", ".checkTr", function() {
 	    $(".checkTr").removeClass("table-active");
 	    $(this).addClass("table-active");
+	    
+	    const colNm = $(this).find("td:eq(1)").text();
+        const colId = $(this).find("td:eq(2)").text();
+        const dataType = $(this).find("td:eq(3)").text();
+        const colLength = $(this).find("td:eq(4)").text();
+        const colNullable = $(this).find("td:eq(5)").text();
+        const colPk = $(this).find("td:eq(6)").text();
+        
+        $("#colNm").val(colNm);
+        $("#colId").val(colId);
+        $("#dataType").val(dataType);
+        $("#dataLength").val(colLength);
+        $("#nullable").val(colNullable);
+        $("#isUse").val(colPk);
+
+        // 기존 컬럼인지 새로 추가된 컬럼인지 확인
+        const isNewColumn = $(this).data("change") === 1;
+
+        // 원래 있던 컬럼이면 컬럼NM, 컬럼ID, PK 비활성화
+        if (!isNewColumn) {
+            $("#colNm").prop("disabled", true);
+            $("#colId").prop("disabled", true);
+        } else {
+            $("#colNm").prop("disabled", false);
+            $("#colId").prop("disabled", false);
+        }
+
+        $(".btn-update").prop("disabled", false);
 	});
     
     const pkSelect = $("#isUse");
@@ -34,6 +62,9 @@ $(document).ready(function() {
     	$("#itemForm")[0].reset();
         $("#columnList tr").removeClass("selected");
         $(".btn-update").prop("disabled", true);
+        $(".checkTr").removeClass("table-active");
+        $("#colNm").prop("disabled", false);
+        $("#colId").prop("disabled", false);
         if (pkSelect.val() === "Y") {
             nullableSelect.val("NOTNULL");
             nullableSelect.prop("disabled", true);
@@ -143,7 +174,7 @@ $(document).ready(function() {
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
 
-        if (colNm === "" || colId === "" || colLength === "") {
+        if (colNm === "" || colId === "") {
             Swal.fire({
                 icon: 'warning',                  
                 title: '추가할 내용을 <br/>전부 입력해주세요.'   
@@ -202,7 +233,7 @@ $(document).ready(function() {
             var colNullable = $("#nullable").val();
             var colPk = $("#isUse").val();
 
-            if (colNm === "" || colId === "" || colLength === "") {
+            if (colNm === "" || colId === "") {
                 Swal.fire({
                     icon: 'warning',
                     title: '수정할 내용을 <br/>전부 입력해주세요.'
@@ -215,7 +246,9 @@ $(document).ready(function() {
                 selectedRow.find("td:eq(5)").text(colNullable);
                 selectedRow.find("td:eq(6)").text(colPk);
 
-                selectedRow.attr("data-change", "2");
+                if (selectedRow.data("change") === 0) {
+                    selectedRow.data("change", 2).attr("data-change", 2); 
+                }
                 console.log("Updated row data-change:", selectedRow.attr("data-change"));
 
                 $("#itemForm")[0].reset();
@@ -297,7 +330,8 @@ $(document).ready(function() {
                 dataType: $(this).find("td:eq(3)").text(),
                 colLength: $(this).find("td:eq(4)").text(),
                 colNullable: $(this).find("td:eq(5)").text(),
-                colPk: $(this).find("td:eq(6)").text()
+                colPk: $(this).find("td:eq(6)").text(),
+                colIsupdate: $(this).data("change") 
             };
             columns.push(column);
         });
@@ -370,7 +404,7 @@ $(document).ready(function() {
             columns: columns,
             applyReason:applyReason
         });
-
+ 
         $.ajax({
             url: "/Metamong/table/tableCompare",
             type: "POST",

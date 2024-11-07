@@ -26,4 +26,6 @@ public interface ColumnDao {
 	
 	public String selectColumnName(@Param("tableNo")int tableNo, @Param("colId")String colId);
 
+	public ColumnDto selectColumn(@Param("schema")String schema,@Param("tableId")String tableId,@Param("colId")String colId);
+
 }

@@ -11,5 +11,6 @@ public class ColumnAddDto {
 	private String colLength;
 	private String colNullable;
 	private String colPk;
+	private int colIsupdate;
 	
 }

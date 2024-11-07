@@ -144,7 +144,7 @@ $(document).ready(function() {
         var colNullable = $("#nullable").val();
         var colPk = $("#isUse").val();
 
-        if (colNm === "" || colId === "" || colLength === "") {
+        if (colNm === "" || colId === "") {
             Swal.fire({
                 icon: 'warning',                  
                 title: '추가할 내용을 <br/>전부 입력해주세요.'   
@@ -252,7 +252,7 @@ $(document).ready(function() {
             var colNullable = $("#nullable").val();
             var colPk = $("#isUse").val();
 
-            if (colNm === "" || colId === "" || colLength === "") {
+            if (colNm === "" || colId === "") {
                 Swal.fire({
                     icon: 'warning',
                     title: '수정할 내용을 <br/>전부 입력해주세요.'

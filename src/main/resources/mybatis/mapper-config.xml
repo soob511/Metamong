@@ -29,5 +29,6 @@
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDto" alias="ApplyIndex"/>
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexListDto" alias="ApplyIndexList"/>
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDetailDto" alias="ApplyIndexDetail"/>
+		<typeAlias type="com.mycompany.metamong.dto.sequence.SequenceDto" alias="Sequence"/>
 	</typeAliases>
 </configuration>
