@@ -50,3 +50,10 @@ function sequenceApplySearch(pageNo) {
 		}
 	})
 }
+
+function sequenceApplyDetail(applyNo, indexNo) {
+	console.log(indexNo);
+	location.href = "/Metamong/sequence/sequenceApplyDetail?applyNo=" + applyNo
+			+ "&indexNo=" + indexNo;
+
+}

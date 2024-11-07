@@ -11,6 +11,7 @@ import com.mycompany.metamong.daoSub1.SrmSequenceDao;
 import com.mycompany.metamong.daoSub2.PmsSequenceDao;
 import com.mycompany.metamong.daoSub3.HrSequenceDao;
 import com.mycompany.metamong.dto.sequence.ApplySequenceDto;
+import com.mycompany.metamong.dto.sequence.SequenceDetailDto;
 import com.mycompany.metamong.dto.sequence.SequenceDto;
 
 @Service
@@ -86,6 +87,10 @@ public class SequenceService {
 
 	public void insertApplySequence(ApplySequenceDto applySequence) {
 		sequenceDao.insertApplySequence(applySequence);
+	}
+
+	public SequenceDetailDto getSequenceDetail(int applyNo) {
+		return sequenceDao.selectSequenceDetail(applyNo);
 	}
 
 

@@ -87,9 +87,9 @@
 											<td>${seq.schemaName}</td>
 											<td>${seq.seqName}</td>
 											<td>${seq.applyType}</td>
-											<td><a
-												href="${pageContext.request.contextPath}/sequence/sequenceApplyDetail"><button
-														class="btn-history-details">상세보기</button></a></td>
+											<td><button class="btn-history-details"
+													onclick="sequenceApplyDetail(${seq.applyNo}, ${status.index + 1})">상세보기</button>
+											</td>
 											<td class="code-approve"><c:choose>
 													<c:when test="${seq.approvalStatus == 0}">
 														<span id="status-await">승인대기</span>

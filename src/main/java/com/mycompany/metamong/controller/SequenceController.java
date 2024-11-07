@@ -1,6 +1,7 @@
 package com.mycompany.metamong.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -25,8 +28,8 @@ import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.sequence.ApplySequenceDto;
 import com.mycompany.metamong.dto.sequence.SequenceApplyListDto;
+import com.mycompany.metamong.dto.sequence.SequenceDetailDto;
 import com.mycompany.metamong.dto.sequence.SequenceDto;
-import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.SequenceService;
@@ -128,8 +131,38 @@ public class SequenceController {
 	}
 	
 	@GetMapping("/sequenceApplyDetail")
-	public String sequenceApplyDetail() {
+	public String sequenceApplyDetail(int applyNo,int indexNo,Model model) {
+		
+		SequenceDetailDto detail = sequenceService.getSequenceDetail(applyNo);
+		detail.setIndexNo(indexNo);
+		model.addAttribute("detail", detail);
+		
 		return "dbObject/sequence/sequenceApplyDetail";
 	}
+	
+	@GetMapping("/downloadFile")
+	public ResponseEntity<byte[]> downloadFile(@RequestParam("applyNo") int applyNo) {
+	    SequenceDetailDto detail = sequenceService.getSequenceDetail(applyNo);
+	    byte[] fileData = detail.getSeqFileData();
+	    String fileName = detail.getSeqFileName();
+	    String fileType = detail.getSeqFileType();
+
+	    if (fileData == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.parseMediaType(fileType));
+
+	    // UTF-8로 인코딩된 파일 이름을 설정
+	    String encodedFileName = URLEncoder.encode(fileName).replaceAll("\\+", "%20");
+	    headers.add("Content-Disposition", "attachment; filename*=UTF-8''" + encodedFileName);
+
+	    return ResponseEntity.ok()
+	            .headers(headers)
+	            .body(fileData);
+	}
+
+
 
 }

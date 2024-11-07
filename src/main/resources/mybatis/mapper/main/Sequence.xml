@@ -2,8 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoMain.SequenceDao">
 	<insert id="insertApplySequence" parameterType="ApplySequence">
-		INSERT INTO APPLY_SEQ(apply_no,seq_name,seq_file_name,seq_file_type,seq_file_data)
+		INSERT INTO
+		APPLY_SEQ(apply_no,seq_name,seq_file_name,seq_file_type,seq_file_data)
 		VALUES(#{applyNo},#{seqName},#{seqFileName},#{seqFileType},#{seqFileData})
 	</insert>
+
+	<select id="selectSequenceDetail" parameterType="int"
+		resultType="SequenceDetail">
+		SELECT a.apply_no,a.apply_date,a.compl_date,a.dba_name,m.m_name,a.apply_reason,
+		a.reject_reason,a.approval_status,a.schema_name,s.seq_name,a.query,s.seq_file_name,s.seq_file_type,s.seq_file_data
+		FROM apply_list a
+		JOIN apply_seq s ON a.apply_no = s.apply_no
+		JOIN member m ON a.m_id = m.m_id
+		WHERE a.apply_no = #{applyNo}
+	</select>
+
 </mapper>
 	

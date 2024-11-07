@@ -32,5 +32,6 @@
 		<typeAlias type="com.mycompany.metamong.dto.sequence.SequenceDto" alias="Sequence"/>
 		<typeAlias type="com.mycompany.metamong.dto.sequence.ApplySequenceDto" alias="ApplySequence"/>
 		<typeAlias type="com.mycompany.metamong.dto.sequence.SequenceApplyListDto" alias="SequenceApplyList"/>
+		<typeAlias type="com.mycompany.metamong.dto.sequence.SequenceDetailDto" alias="SequenceDetail"/>
 	</typeAliases>
 </configuration>
