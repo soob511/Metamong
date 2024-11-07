@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class IndexDto {
+	private int tableNo;
 	private String indexName;
 	private String schemaName;
 	private String tableName;

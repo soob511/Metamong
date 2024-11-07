@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
-import com.mycompany.metamong.dto.index.ApplyIndexDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
@@ -105,8 +103,16 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexDeleteForm")
-	public String indexDeleteForm(Model model) {
+	public String indexDeleteForm(
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName,
+			Model model) {
+		List<IndexDto> list = 
+				indexService.getIndexList(indexName, columnName, tableName, schemaName);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("list", list);
 		return "dbObject/index/indexDeleteForm";
 	}
 	
