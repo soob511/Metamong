@@ -41,6 +41,7 @@ import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
+import com.mycompany.metamong.dto.sequence.SequenceApplyListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableDto;
@@ -388,5 +389,15 @@ public class ApplyService {
 
 	public void applySequence(ApplyListDto applyList) {
 		applyListDao.insertApplySequence(applyList);
+	}
+
+	public int getTotalSequenceRows() {
+		int totalRows = applyListDao.selectTotalSequenceRows();
+		return totalRows;
+	}
+
+	public List<SequenceApplyListDto> getsequenceApplyList(Pager pager) {
+		List<SequenceApplyListDto> list = applyListDao.selectSequenceApplyList(pager);
+		return list;
 	}
 }

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.sequence.ApplySequenceDto;
+import com.mycompany.metamong.dto.sequence.SequenceApplyListDto;
 import com.mycompany.metamong.dto.sequence.SequenceDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
@@ -69,7 +70,7 @@ public class SequenceController {
 		applyList.setMId(auth.getName());
 		applyList.setApplyReason(applyReason);
 		applyList.setSchemaName(schemaName);
-		applyList.setApplyObj("schemaName");
+		applyList.setApplyObj("SEQUENCE");
 		String fileContent = new String(file.getBytes(), StandardCharsets.UTF_8);
 		applyList.setQuery(fileContent);
 		applyList.setApplyType(Type);
@@ -92,7 +93,15 @@ public class SequenceController {
 
 	
 	@GetMapping("/sequenceApplyList")
-	public String sequenceApplyList() {
+	public String sequenceApplyList(@RequestParam(defaultValue = "1") int pageNo, HttpSession session, Model model) {
+		int totalRows = applyService.getTotalSequenceRows();
+
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		session.setAttribute("pager", pager);
+		
+		List<SequenceApplyListDto> list = applyService.getsequenceApplyList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/sequence/sequenceApplyList";
 	}
 

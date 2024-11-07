@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,66 +49,32 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${list}" var="seq" varStatus="status">
 								<tr>
-									<th scope="row">1</th>
-									<td>2023-10-13</td>
-									<td>나길주</td>
-									<td>kosa_oti_team_1</td>
-									<td>notice_id</td>
-									<td>시퀀스</td>
+									<th scope="row">${status.index+1}</th>
+									<td><fmt:formatDate value="${seq.applyDate}"
+													pattern="yyyy-MM-dd" /></td>
+									<td>${seq.MName}</td>
+									<td>${seq.schemaName}</td>
+									<td>${seq.seqName}</td>
+									<td>${seq.applyType}</td>
 									<td><a href="${pageContext.request.contextPath}/sequence/sequenceApplyDetail"><button class="btn-history-details">상세보기</button></a></td>
-									<td class="code-approve">승인</td>
+									<td class="code-approve"><c:choose>
+													<c:when test="${seq.approvalStatus == 0}">
+														<span id="status-await">승인대기</span>
+													</c:when>
+													<c:when test="${seq.approvalStatus == 1}">
+														<span id="status-approve">승인</span>
+													</c:when>
+													<c:when test="${seq.approvalStatus == 2}">
+														<span id="status-rejected">반려</span>
+													</c:when>
+													<c:when test="${seq.approvalStatus == 3}">
+														<span id="status-applied">반영</span>
+													</c:when>
+												</c:choose></td>
 								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>2023-10-13</td>
-									<td>나길주</td>
-									<td>kosa_oti_team_1</td>
-									<td>notice_id</td>
-									<td>시퀀스</td>
-									<td><a href="${pageContext.request.contextPath}/sequence/sequenceApplyDetail"><button class="btn-history-details">상세보기</button></a></td>
-									<td class="code-deny">반려</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>2023-10-13</td>
-									<td>나길주</td>
-									<td>kosa_oti_team_1</td>
-									<td>notice_id</td>
-									<td>시퀀스</td>
-									<td><a href="${pageContext.request.contextPath}/sequence/sequenceApplyDetail"><button class="btn-history-details">상세보기</button></a></td>
-									<td class="code-await">승인대기</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>2023-10-13</td>
-									<td>나길주</td>
-									<td>kosa_oti_team_1</td>
-									<td>notice_id</td>
-									<td>시퀀스</td>
-									<td><a href="${pageContext.request.contextPath}/sequence/sequenceApplyDetail"><button class="btn-history-details">상세보기</button></a></td>
-									<td class="code-deny">반려</td>
-								</tr>
-								<tr>
-									<th scope="row">4</th>
-									<td>2023-10-13</td>
-									<td>나길주</td>
-									<td>kosa_oti_team_1</td>
-									<td>notice_id</td>
-									<td>시퀀스</td>
-									<td><a href="${pageContext.request.contextPath}/sequence/sequenceApplyDetail"><button class="btn-history-details">상세보기</button></a></td>
-									<td class="code-deny">반려</td>
-								</tr>
-								<tr>
-									<th scope="row">5</th>
-									<td>2023-10-13</td>
-									<td>나길주</td>
-									<td>kosa_oti_team_1</td>
-									<td>notice_id</td>
-									<td>시퀀스</td>
-									<td><a href="${pageContext.request.contextPath}/sequence/sequenceApplyDetail"><button class="btn-history-details">상세보기</button></a></td>
-									<td class="code-await">승인대기</td>
-								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
