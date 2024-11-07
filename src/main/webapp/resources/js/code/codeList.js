@@ -4,10 +4,6 @@ $(document).ready(function () {
   $(".sub-menu:eq(0)").addClass("active");
   $(".sub-menu:eq(0) .sub-item").removeClass("active");
   $(".sub-menu:eq(0) .sub-item:first").addClass("active");
-  
-  $('#fileInput').on('change', function() {
-      $('#uploadForm').submit();
-  });
 
   $(".bi-search").on("click", function () {
     searchCode();
@@ -47,6 +43,45 @@ $(document).ready(function () {
 		  })
 	  };
   })
+  
+  /* EXCEL 업로드 */
+  $('#fileInput').change(function () {
+      let file = $('#fileInput')[0].files[0];
+
+      let formData = new FormData();
+      formData.append('file', file);
+
+      $.ajax({
+          url: "/Metamong/code/codeApplyExcel",
+          type: "POST", 
+          data: formData,
+          enctype: 'multipart/form-data',
+          processData: false,
+          contentType: false,
+          cache: false,
+          success: function (data) {
+        	  let cHtml = "";
+              let iHtml = `<tr class="no-item"><th colspan="5">코드를 선택해 주세요.</th></tr>`;
+              
+              data.codeList.forEach((code) => {
+                  cHtml += `<tr class="code-row">
+                          <th>${code.id}</th>
+                        <td>${code.codeNm}</td>
+                        <td>${code.codeId}</td>
+                        <td>${code.codeLength}</td>
+                        <td>${code.codeContent}</td>
+                      </tr>`;
+                });
+
+              $('.excel-codes').html(cHtml);
+              $('.excel-items').html(iHtml);
+          },
+          error: function (error) {
+              console.log("파일 업로드 실패:", error);
+          }
+      });
+  });  
+  
 });
 
 function searchCode() {

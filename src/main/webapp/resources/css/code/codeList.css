@@ -171,11 +171,15 @@ thead{
 	display: none;
 }
 
+.modal {
+	--bs-modal-width: 1600px !important;
+}
 
-/* .table-hover:hover {
-	--bs-table-hover-bg: #F8F9FA !important;
-} 
+.modal-footer {
+	border: none !important;
+}
 
-.table-active  td, .table-active  th {
-	--bs-table-bg-state: #F2F6F9 !important;
-} */
+.modal-code-table, .modal-item-table {
+	margin: 20px;
+	width: 800px !important;
+}

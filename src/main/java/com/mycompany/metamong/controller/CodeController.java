@@ -266,17 +266,15 @@ public class CodeController {
 		return codeService.getCodeLoadSearch(keyword);
 	}
 	
+	@ResponseBody
 	@PostMapping("/codeApplyExcel")
-    public String excelUpload(MultipartFile file, Model model) throws Exception {
+    public Map<String, Object> codeApplyExcel(MultipartFile file, Model model) throws Exception {
 		Map<String, Object> list = codeService.uploadExcel(file);
 		
-		//log.info(list.get("codeList").toString());
-		//log.info(list.get("itemList").toString());
-		
-		model.addAttribute("codeList", list.get("codeList"));
-		model.addAttribute("itemList", list.get("itemList"));
-		
-        return "code/codeExcelForm";
+		Map<String, Object> response = new HashMap<>();
+		response.put("codeList", list.get("codeList"));
+		response.put("itemList", list.get("itemList"));
+	    return response;
     }
 }
 
