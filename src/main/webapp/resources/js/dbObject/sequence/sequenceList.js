@@ -6,41 +6,49 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item:eq(1)').addClass('active');
     
     $(".bi-search").on("click", function() {
-    	searchSequence();
+        searchSequence();
     });
-
 
     $("#sequenceNameSearch").on("keydown", function(event) {
         if (event.keyCode === 13) { 
-        	 event.preventDefault()
+            event.preventDefault();
             searchSequence();
         }
     });
     
     $("#schemaSelect").on("change", function() {
-    	searchSequence();
+        searchSequence();
     });
 });
 
-/*function searchSequence() {
+function searchSequence() {
     const schema = document.getElementById("schemaSelect").value;
-    const keyword = document.getElementById("sequenceNameSearch").value;
+    const keyword = document.getElementById("sequenceNameSearch").value.toUpperCase();
 
-    // AJAX 요청을 통해 서버로 데이터 전송
     $.ajax({
-        url: '/Metamong/sequence/searchSequnce',
+        url: '/Metamong/sequence/searchSequence',
         type: 'GET',
+        dataType: 'json', 
         data: {
             schema: schema,
             keyword: keyword
         },
         success: function(response) {
-            // 서버 응답 처리 (필요 시 테이블 갱신 등 추가 로직 작성)
-            console.log("검색 결과:", response);
-            // 예: 테이블 내용 업데이트 함수 호출
-        },
-        error: function(error) {
-            console.error("검색 중 오류 발생:", error);
+            let html = "";
+            response.forEach((sequence, index) => {
+                html += `
+                    <tr>
+                        <th>${index + 1}</th>
+                        <td>${sequence.sequenceName}</td>
+                        <td>${sequence.schemaName}</td>
+                        <td>${sequence.minValue}</td>
+                        <td>${sequence.maxValue}</td>
+                        <td>${sequence.incrementBy}</td>
+                        <td>${sequence.lastNumber}</td>
+                    </tr>
+                `;
+            });
+            $("#searchSequenceList").html(html);
         }
     });
-}*/
+}

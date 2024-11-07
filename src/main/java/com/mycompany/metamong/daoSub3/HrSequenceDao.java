@@ -11,4 +11,6 @@ public interface HrSequenceDao {
 
 	public List<SequenceDto> selectSequenceList();
 
+	public List<SequenceDto> selectSearchSequence(String keyword);
+
 }

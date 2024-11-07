@@ -48,10 +48,35 @@ public class SequenceService {
 		return SequenceList;
 	}
 
-	/*
-	 * public void searchSequence(String schema, String keyword) { if()
-	 * 
-	 * }
-	 */
+	public List<SequenceDto> getSearchSequence(String schema, String keyword) {
+		List<SequenceDto> sequenceList = new ArrayList<>();
+		
+		 if (schema.equals("ALL") || schema.equals("SRM")) {
+		        List<SequenceDto> srmSequence = srmSequenceDao.selectSearchSequence(keyword);
+		        for (SequenceDto sequence : srmSequence) {
+		            sequence.setSchemaName("SRM");
+		            sequenceList.add(sequence);
+		        }
+		    }
+		    
+		    if (schema.equals("ALL") || schema.equals("PMS")) {
+		        List<SequenceDto> pmsSequence = pmsSequenceDao.selectSearchSequence(keyword);
+		        for (SequenceDto sequence : pmsSequence) {
+		            sequence.setSchemaName("PMS");
+		            sequenceList.add(sequence);
+		        }
+		    }
+		    
+		    if (schema.equals("ALL") || schema.equals("HR")) {
+		        List<SequenceDto> hrSequence = hrSequenceDao.selectSearchSequence(keyword);
+		        for (SequenceDto sequence : hrSequence) {
+		            sequence.setSchemaName("HR");
+		            sequenceList.add(sequence);
+		        }
+		    }
+		    
+		return sequenceList;
+	}
+
 
 }

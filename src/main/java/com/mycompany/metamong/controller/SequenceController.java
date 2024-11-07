@@ -9,12 +9,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.sequence.SequenceDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.SequenceService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 @RequestMapping("/sequence")
 public class SequenceController {
 	
@@ -31,10 +35,13 @@ public class SequenceController {
 		return "dbObject/sequence/sequenceList";
 	}
 	
-	@GetMapping("/searchSequnce")
-	public String searchSequnce(@RequestParam(defaultValue="ALL") String schema,@RequestParam(defaultValue="NULL") String keyword) {
-		
-		return null;
+	@ResponseBody
+	@GetMapping("/searchSequence")
+	public List<SequenceDto> searchSequence(@RequestParam(defaultValue="ALL") String schema,@RequestParam(defaultValue="NULL") String keyword) {
+		log.info(keyword);
+		List<SequenceDto> sequence = sequenceService.getSearchSequence(schema,keyword);
+		log.info(sequence.toString());
+		return sequence;
 	}
 	
 	@GetMapping("/sequenceApplyList")

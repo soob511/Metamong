@@ -73,7 +73,7 @@
 										<th scope="col">현재값</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="searchSequenceList">
 									<c:forEach items="${sequence}" var="sequence" varStatus="status">
 									<tr>
 										<th>${status.index+1}</th>
