@@ -48,7 +48,7 @@
                                 
                                 <sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
 									<div class="code-buttons">
-	                                    <button class="btn-excel">EXCEL 업로드</button>
+	                                    <input class="btn-excel" type="file" value="EXCEL 업로드"></input>
 	                                    <a href="codeAddForm"><button class="btn-add">추가</button></a>
 	                                    <button class="btn-edit">수정</button>
 	                                </div>
