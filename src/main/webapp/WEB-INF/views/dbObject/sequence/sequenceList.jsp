@@ -74,33 +74,17 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach items="${sequence}" var="sequence" varStatus="status">
 									<tr>
-										<th>1</th>
-										<td>SEQ_CODE</td>
-										<td>user_2024_oti_final_team1_1</td>
-										<td>1</td>
-										<td>9999</td>
-										<td>1</td>
-										<td>27</td>
+										<th>${status.index+1}</th>
+										<td>${sequence.sequenceName}</td>
+										<td>${sequence.schemaName}</td>
+										<td>${sequence.minValue}</td>
+										<td>${sequence.maxValue}</td>
+										<td>${sequence.incrementBy}</td>
+										<td>${sequence.lastNumber}</td>
 									</tr>
-									<tr>
-										<th>2</th>
-										<td>SEQ_CODE</td>
-										<td>user_2024_oti_final_team1_1</td>
-										<td>1</td>
-										<td>9999</td>
-										<td>1</td>
-										<td>27</td>
-									</tr>
-									<tr>
-										<th>3</th>
-										<td>SEQ_CODE</td>
-										<td>user_2024_oti_final_team1_1</td>
-										<td>1</td>
-										<td>9999</td>
-										<td>1</td>
-										<td>27</td>
-									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

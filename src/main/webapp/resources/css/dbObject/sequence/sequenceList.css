@@ -99,6 +99,7 @@ label{
 }
 
 
+
 .btn-apply {
 	background-color: var(--theme);
 	color: white;
@@ -109,6 +110,10 @@ label{
 	padding: 0 10px;
 	font-size: 14px;
 	margin-right: 5px;
+}
+
+.sequence-list-table{
+	overflow-y:scroll; 
 }
 
 .table th, .table td {
@@ -170,6 +175,12 @@ thead{
 .form-control{
 	width: 250px !important;	
 }
+
 .form-select  {
- 	width: 150px !important;	
+ 	width: 150px !important;	s
 } 
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
