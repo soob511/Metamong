@@ -18,10 +18,13 @@ import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
 import com.mycompany.metamong.daoSub1.SrmColumnDao;
+import com.mycompany.metamong.daoSub1.SrmSequenceDao;
 import com.mycompany.metamong.daoSub1.SrmTableDao;
 import com.mycompany.metamong.daoSub2.PmsColumnDao;
+import com.mycompany.metamong.daoSub2.PmsSequenceDao;
 import com.mycompany.metamong.daoSub2.PmsTableDao;
 import com.mycompany.metamong.daoSub3.HrColumnDao;
+import com.mycompany.metamong.daoSub3.HrSequenceDao;
 import com.mycompany.metamong.daoSub3.HrTableDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
@@ -72,6 +75,12 @@ public class ApplyService {
 	private PmsColumnDao pmsColumnDao;
 	@Autowired
 	private HrColumnDao hrColumnDao;
+	@Autowired
+	private SrmSequenceDao srmSequenceDao;
+	@Autowired
+	private PmsSequenceDao pmsSequenceDao;
+	@Autowired
+	private HrSequenceDao hrSequenceDao;
 
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
@@ -100,7 +109,7 @@ public class ApplyService {
 	public List<ItemDto> getItemsApplyByNo(int applyNo) {
 		return itemDao.selectItemsByNo(applyNo);
 	}
-	
+
 	public List<ApplyItemDto> getApplyItemsByNo(int applyNo) {
 		return itemDao.selectApplyItemsByNo(applyNo);
 	}
@@ -239,7 +248,7 @@ public class ApplyService {
 	public String getApplyType(int applyNo) {
 		return applyListDao.selectApplyType(applyNo);
 	}
-	
+
 	public String addCreateTableSql(int applyNo) {
 		StringBuilder sql = new StringBuilder("CREATE TABLE ");
 
@@ -367,14 +376,14 @@ public class ApplyService {
 					col.setTableNo(table.getTableNo());
 					columnDao.insertColumn(col);
 				}
-			}else {
+			} else {
 				applyListDao.updateStatus(applyNo, 3);
 				List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
-				int tableNo = tableDao.selectTableNo(schema,table.getTableId());
+				int tableNo = tableDao.selectTableNo(schema, table.getTableId());
 				for (ColumnDto col : column) {
-					if(col.getColIsupdate()==1) {
+					if (col.getColIsupdate() == 1) {
 						col.setTableNo(tableNo);
-						columnDao.insertColumn(col);						
+						columnDao.insertColumn(col);
 					}
 				}
 			}
@@ -408,4 +417,32 @@ public class ApplyService {
 	public List<SequenceApplyListDto> getApplySequenceSearch(Map<String, Object> params) {
 		return applyListDao.selectApplySequenceSearch(params);
 	}
+
+	public int sequenceRunQuery(int applyNo) {
+	    String schema = applyListDao.getSchemaName(applyNo);
+	    String sql = applyListDao.getQuery(applyNo);
+	    int pass = -1;
+
+	    try {
+	        if (schema.equals("SRM")) {
+	            pass = srmSequenceDao.createSequence(sql);
+	        } else if (schema.equals("PMS")) {
+	            pass = pmsSequenceDao.createSequence(sql);
+	        } else {
+	            pass = hrSequenceDao.createSequence(sql);
+	        }
+
+	        if (pass != 0) {
+	            throw new Exception("쿼리 실행에 실패했습니다.");
+	        }
+
+	    } catch (Exception e) {
+	        applyListDao.updateStatus(applyNo, 2);
+	        applyListDao.updateRejectReason(applyNo, "반영 시 오류가 있습니다");
+	        e.printStackTrace();
+	    }
+
+	    return pass;
+	}
+
 }
