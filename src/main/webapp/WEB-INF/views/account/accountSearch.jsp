@@ -33,8 +33,8 @@
 										<div>
 										<select id="mRole-${member.MId}" class="form-select"
 											aria-label="Default select example">
-											<option value="USER" ${member.MRole == 'USER' ? 'selected' : ''}>USER</option>
-											<option value="DBA" ${member.MRole == 'DBA' ? 'selected' : ''}>DBA</option>
+											<option value="ROLE_USER" ${member.MRole == 'USER' ? 'selected' : ''}>USER</option>
+											<option value="ROLE_DBA" ${member.MRole == 'DBA' ? 'selected' : ''}>DBA</option>
 										</select>
 										</div>
 									</td>
