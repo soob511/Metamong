@@ -72,4 +72,10 @@
 		    i.index_name, ic.column_position
 	</select>
 
+	<insert id="createIndex" parameterType="String">
+		<if test="sqlSyn != null and sqlSyn != ''">
+        	${sqlSyn}
+    	</if>
+	</insert>
+
 </mapper>

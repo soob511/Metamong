@@ -19,10 +19,13 @@ import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
 import com.mycompany.metamong.daoSub1.SrmColumnDao;
 import com.mycompany.metamong.daoSub1.SrmTableDao;
+import com.mycompany.metamong.daoSub1.Sub1IndexDao;
 import com.mycompany.metamong.daoSub2.PmsColumnDao;
 import com.mycompany.metamong.daoSub2.PmsTableDao;
+import com.mycompany.metamong.daoSub2.Sub2IndexDao;
 import com.mycompany.metamong.daoSub3.HrColumnDao;
 import com.mycompany.metamong.daoSub3.HrTableDao;
+import com.mycompany.metamong.daoSub3.Sub3IndexDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
@@ -45,6 +48,9 @@ import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableDto;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ApplyService {
 	@Autowired
@@ -71,7 +77,13 @@ public class ApplyService {
 	private PmsColumnDao pmsColumnDao;
 	@Autowired
 	private HrColumnDao hrColumnDao;
-
+	@Autowired
+	private Sub1IndexDao sub1IndexDao;
+	@Autowired
+	private Sub2IndexDao sub2IndexDao;
+	@Autowired
+	private Sub3IndexDao sub3IndexDao;
+	
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
 	}
@@ -389,4 +401,58 @@ public class ApplyService {
 	public void applySequence(ApplyListDto applyList) {
 		applyListDao.insertApplySequence(applyList);
 	}
+	
+	public String createIndexSql(ApplyIndexDetailDto applyDetail) {
+		String unique = applyDetail.getIsUnique() == 1 ? "UNIQUE " : "";
+		String applyType = applyDetail.getApplyType().toUpperCase();
+		String query = "";
+		if ("CREATE".equals(applyType)) {
+			query = String.format("%s %sINDEX %s ON %s (%s)", 
+					applyType, 
+					unique, 
+					applyDetail.getIdxName(), 
+					applyDetail.getTableId(), 
+					applyDetail.getRefColumn()
+					);			
+		} else {
+			query = String.format("DROP INDEX %s", applyDetail.getIdxName());
+		}
+		return query;
+	}
+	
+	@Transactional
+	public void applyIndexSql(String schemaName, int applyNo, String dbaName) {
+		String query = applyListDao.getQuery(applyNo);
+		ApplyListDto applyList = new ApplyListDto();
+		applyList.setApplyNo(applyNo);
+		applyList.setDbaName(dbaName);
+		log.info("실행" + query);
+		try {
+		switch (schemaName) {
+			case "SRM":
+				sub1IndexDao.createIndex(query);
+				applyList.setApprovalStatus(3);
+				applyListDao.updateProcessApproval(applyList);
+				break;
+			case "PMS":
+				sub2IndexDao.createIndex(query);
+				applyList.setApprovalStatus(3);
+				applyListDao.updateProcessApproval(applyList);
+				break;
+			case "HR":
+				sub3IndexDao.createIndex(query);
+				applyList.setApprovalStatus(3);
+				applyListDao.updateProcessApproval(applyList);
+				break;
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			applyList.setApprovalStatus(2);
+			applyList.setRejectReason("반영할 수 없는 신청입니다");
+			applyListDao.updateProcessApproval(applyList);
+			throw new RuntimeException("트랜잭셔널 오류 발생");
+		}
+	}
+	
 }
