@@ -5,6 +5,11 @@ $(document).ready(function () {
     $(".sub-menu:eq(0) .sub-item").removeClass("active");
     $(".sub-menu:eq(0) .sub-item:first").addClass("active");
     
+    $(".excel-codes").on("click", ".code-row", function() {
+	    $(".code-row").removeClass("table-active");
+	    $(this).addClass("table-active");
+	}); 
+    
     $(".bi-search").on("click", function () {
         searchCode();
     });

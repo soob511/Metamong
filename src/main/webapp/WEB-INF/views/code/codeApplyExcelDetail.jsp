@@ -58,7 +58,6 @@
                                 <div class="table-text">총 ${totalCount}건</div>
                             </td>
                         </tr>
-
                         <tr>
                             <td class="table-secondary">신청일자</td>
                             <td>
@@ -82,7 +81,6 @@
                                 </div>
                             </td>
                         </tr>
-
                         <tr>
                             <td class="table-secondary">처리일자</td>
                             <td>
@@ -117,7 +115,7 @@
 		                            </thead>
 		                            <tbody class="code-tbody">
 		                              <c:forEach items="${applyCodes}" var="applyCode" varStatus="i">
-		                                    <tr onclick="getExcelItems(${applyCode.codeNo})">
+		                                    <tr class="code" onclick="getExcelItems(${applyCode.codeNo})">
 		                                        <th>${i.index+1}</th>
 		                                        <td>${applyCode.codeNm}</td>
 		                                        <td>${applyCode.codeId}</td>
@@ -129,8 +127,6 @@
 		                        </table>
 		                    </div>
 		                </div>
-		        	
-		        	
 		        	
 		                <div class="col item-container">
 		                    <div class="item-header">항목</div>
