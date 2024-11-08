@@ -285,13 +285,11 @@ public class CodeController {
 	
 	@GetMapping("/codeExcelDownload")
 	public void codeExcelDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String fileName = "excel.xlsx";
-		String encodingfileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + encodingfileName +"\"");
+		response.setHeader("Content-Disposition", "attachment; filename=\"excel.xlsx\"");
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		
 		String saveDir = request.getServletContext().getRealPath("/resources/file");
-	    Path path = Paths.get(saveDir, fileName);
+	    Path path = Paths.get(saveDir, "excel.xlsx");
 	    
 		OutputStream out = response.getOutputStream();
 		Files.copy(path, out);

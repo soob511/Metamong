@@ -166,6 +166,14 @@ function showItemList(codeNo) {
 function codeApplyExcel() {
 	let reason;
 	
+	if($('.excel-codes .code-row').length == 0) {
+		Swal.fire({
+		    icon: "warning",
+		    title: "파일을 등록해 주세요.",
+		})
+		return;
+	}
+	
 	Swal.fire({
 	    icon: "info",
 	    title: "신청 사유를<br/>입력하세요.",
