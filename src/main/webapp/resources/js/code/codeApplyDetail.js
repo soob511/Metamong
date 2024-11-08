@@ -52,3 +52,28 @@ function applyComplete() {
         }
     });
 };
+
+/* 항목 가져오기 */
+function getExcelItems(codeNo) {
+	const params = new URL(location.href).searchParams;
+	const applyNo = params.get('applyNo');
+	
+	$.ajax({
+        url: "/Metamong/item/itemApplyExcelList",
+        type: "GET",
+        data: { applyNo: applyNo, codeNo: codeNo },
+        success: function (data) {
+            let html = " ";
+            let count = 0;
+            data.forEach((item) => {
+                html += `<tr>
+                    <td>${++count}</td>
+                    <td>${item.itemId}</td>
+                    <td>${item.itemNm}</td>
+                    <td>${item.itemContent}</td>
+                </tr>`;
+            });
+            $(".item-tbody").html(html);
+        },
+    });
+}

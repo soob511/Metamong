@@ -38,6 +38,6 @@ function codeApplySearch(pageNo){
 
 function codeApplyDetail(applyNo, indexNo, applyType) {
 	location.href = (applyType == "EXCEL")
-	? "/Metamong/code/codeApplyExcelDetail"
+	? "/Metamong/code/codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
 	: "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
 };

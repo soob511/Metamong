@@ -37,12 +37,6 @@
                     	</c:if>
 	                    </div> 
 					</sec:authorize>
-					
-					<c:if test="${applyList.approvalStatus == 2 && myApply != null }">
-                 		<a href="codeApplyRewrite?applyNo=<%= request.getParameter("applyNo") %>">
-						    <button class="btn-rewrite">재작성</button>
-						</a>
-                   	</c:if>
                 </div>
                 <hr>
                 <div class="container">

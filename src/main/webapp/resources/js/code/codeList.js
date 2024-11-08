@@ -237,6 +237,4 @@ function codeApplyExcel() {
 		      },
 	    });
 	});
-	
-	console.log(codeDatas);
 }

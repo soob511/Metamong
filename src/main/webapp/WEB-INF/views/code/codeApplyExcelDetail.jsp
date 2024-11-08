@@ -55,7 +55,7 @@
                             </td>
                             <td class="table-secondary">신청 건수</td>
                             <td>
-                                <div class="table-text">총 ${indexNo}건</div>
+                                <div class="table-text">총 ${totalCount}건</div>
                             </td>
                         </tr>
 
@@ -116,15 +116,15 @@
 		                                </tr>
 		                            </thead>
 		                            <tbody class="code-tbody">
-		                                <c:forEach items="${applyCodes}" var="applyItem" varStatus="status">
-		                                    <tr>
-		                                        <th></th>
-		                                        <td></td>
-		                                        <td></td>
-		                                        <td></td>
-		                                        <td></td>
+		                              <c:forEach items="${applyCodes}" var="applyCode" varStatus="i">
+		                                    <tr onclick="getExcelItems(${applyCode.codeNo})">
+		                                        <th>${i.index+1}</th>
+		                                        <td>${applyCode.codeNm}</td>
+		                                        <td>${applyCode.codeId}</td>
+		                                        <td>${applyCode.codeLength}</td>
+		                                        <td>${applyCode.codeContent}</td>
 		                                    </tr>
-		                                </c:forEach>
+		                               </c:forEach>
 		                            </tbody>
 		                        </table>
 		                    </div>
@@ -141,12 +141,11 @@
 		                                    <th scope="col">No.</th>
 		                                    <th scope="col">항목코드</th>
 		                                    <th scope="col">항목명</th>
-		                                    <th scope="col">사용여부</th>
 		                                    <th scope="col">내용</th>
 		                                </tr>
 		                            </thead>
 		                            <tbody class="item-tbody">
-	                                    <tr><th colspan="5">코드를 선택해 주세요.</th></tr>
+	                                    <tr><th colspan="4">코드를 선택해 주세요.</th></tr>
 		                            </tbody>
 		                        </table>
 		                    </div>

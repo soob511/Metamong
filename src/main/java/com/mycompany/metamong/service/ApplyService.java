@@ -92,7 +92,7 @@ public class ApplyService {
 		return applyListDao.selectCodeApplyDetail(applyNo);
 	}
 
-	public CodeDto getCodeApplyByNo(int applyNo) {
+	public List<CodeDto> getCodeApplyByNo(int applyNo) {
 		return codeDao.selectCodeApplyByNo(applyNo);
 	}
 
@@ -102,6 +102,10 @@ public class ApplyService {
 	
 	public List<ApplyItemDto> getApplyItemsByNo(int applyNo) {
 		return itemDao.selectApplyItemsByNo(applyNo);
+	}
+	
+	public List<ItemDto> getItemsApplyExcelByNo(int applyNo, int codeNo) {
+		return itemDao.selectItemsExcelByNo(applyNo, codeNo);
 	}
 
 	public List<ApplyTableListDto> getApplyTableList(Pager pager) {

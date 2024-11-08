@@ -188,19 +188,13 @@ public class CodeController {
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 		
-		CodeDto applyCode = applyService.getCodeApplyByNo(applyNo);
-		model.addAttribute("applyCode", applyCode);
+		List<CodeDto> applyCode = applyService.getCodeApplyByNo(applyNo);
+		model.addAttribute("applyCode", applyCode.get(0));
 		
 		List<ItemDto> applyItems = applyService.getItemsApplyByNo(applyNo);
 		model.addAttribute("applyItems",applyItems);
 		
 		return "code/codeApplyDetail";
-	}
-	
-	@GetMapping("/codeApplyExcelDetail")
-	public String codeApplyExcelDetail() {		
-
-		return "code/codeApplyExcelDetail";
 	}
 	
 	@PostMapping("/codeApplyProcess")
@@ -223,7 +217,8 @@ public class CodeController {
 		int result = 1;
 		String type = applyService.getApplyType(applyNo);
 		
-		CodeDto code = applyService.getCodeApplyByNo(applyNo);
+		List<CodeDto> codes = applyService.getCodeApplyByNo(applyNo);
+		CodeDto code = codes.get(0);
 		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 		int itemsLength = items.size();
 		
@@ -240,7 +235,8 @@ public class CodeController {
 	public String codeApplyRewrite(int applyNo, Model model, HttpSession session) {
 		String applyType = applyService.getApplyType(applyNo);
 		
-		CodeDto code = applyService.getCodeApplyByNo(applyNo);
+		List<CodeDto> codes = applyService.getCodeApplyByNo(applyNo);
+		CodeDto code = codes.get(0);
 		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 		int  itemLength = itemService.getItemList(code.getCodeNo()).size();
 		
@@ -311,8 +307,21 @@ public class CodeController {
 		int applyNo = applyService.addApplyCode(form, auth, 0);
 		
 		for (int i = 1; i < forms.size(); i++) {
-			applyService.addApplyCode(form, auth, applyNo);
+			applyService.addApplyCode(forms.get(i), auth, applyNo);
 		}
 	return ResponseEntity.ok("/Metamong/code/codeApplyList");
+	}
+	
+	@GetMapping("/codeApplyExcelDetail")
+	public String codeApplyExcelDetail(int applyNo, int indexNo, Authentication auth, Model model) {		
+		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo);
+		model.addAttribute("applyList", applyList);
+		model.addAttribute("indexNo", indexNo);
+		
+		List<CodeDto> applyCodes = applyService.getCodeApplyByNo(applyNo);
+		model.addAttribute("applyCodes", applyCodes);
+		model.addAttribute("totalCount", applyCodes.size());
+		
+		return "code/codeApplyExcelDetail";
 	}
 }

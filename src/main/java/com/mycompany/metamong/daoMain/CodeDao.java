@@ -17,7 +17,7 @@ public interface CodeDao {
 
 	public List<CodeDto> selectCodeSearch(@Param(value="keyword") String keyword, @Param(value="option") int option);
 	
-	public CodeDto selectCodeApplyByNo(int applyNo);
+	public List<CodeDto> selectCodeApplyByNo(int applyNo);
 	
 	public List<CodeDto> selectActiveCodes();
 
