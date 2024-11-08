@@ -197,6 +197,12 @@ public class CodeController {
 		return "code/codeApplyDetail";
 	}
 	
+	@GetMapping("/codeApplyExcelDetail")
+	public String codeApplyExcelDetail() {		
+
+		return "code/codeApplyExcelDetail";
+	}
+	
 	@PostMapping("/codeApplyProcess")
 	public ResponseEntity<String> codeApplyProcess(int applyNo, int status, String reason, Authentication auth) {
 		String dbaName = memberService.getDbaNameById(auth.getName());

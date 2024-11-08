@@ -6,8 +6,10 @@ $(document).ready(function() {
     $('.sub-menu:eq(0) .sub-item:eq(1)').addClass('active');   
 });
 
-function codeApplyDetail(applyNo, indexNo) {
-	location.href = "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+function codeApplyDetail(applyNo, indexNo, applyType) {
+	location.href = (applyType == "EXCEL")
+	? "/Metamong/code/codeApplyExcelDetail"
+	: "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
 };
 
 $('#statusSelect').on('change', function() {
