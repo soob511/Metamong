@@ -47,11 +47,12 @@ $(document).ready(function() {
 function checkCheckBox(checkbox) {
     const isChecked = $(checkbox).is(':checked');
     const dataValue = $(checkbox).closest('tr').find('td:nth-child(3)').text().trim();
+    
     if (!isChecked) {
         $('#indexTableBody tr').each(function () {
             const rowCheckBox = $(this).find('.form-check-input');
-            rowCheckBox.prop('disabled', false);
             rowCheckBox.prop('checked', false);
+            rowCheckBox.css('display', 'block');
         });
     } else {
         $('#indexTableBody tr').each(function () {
@@ -60,10 +61,10 @@ function checkCheckBox(checkbox) {
             
             if (rowDataValue === dataValue) {
                 rowCheckBox.prop('checked', isChecked);
-                rowCheckBox.prop('disabled', false);
+                rowCheckBox.css('display', 'block');
             } else {
                 rowCheckBox.prop('checked', false);
-                rowCheckBox.prop('disabled', true);
+                rowCheckBox.css('display', 'none');
             }
         });
     }

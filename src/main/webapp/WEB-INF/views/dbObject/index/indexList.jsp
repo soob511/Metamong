@@ -85,8 +85,7 @@
 								<table class="table table-hover">
 									<thead class="table-secondary">
 										<tr>
-											<th scope="col"><input class="form-check-input"
-												type="checkbox" id="flexCheckDefault" disabled></th>
+											<th scope="col"></th>
 											<th scope="col">No.</th>
 											<th scope="col">인덱스명</th>
 											<th scope="col">스키마명</th>
