@@ -84,7 +84,7 @@ public class CodeController {
 	@PostMapping("/applyCode")
 	public ResponseEntity<String> applyCode(Authentication auth, @RequestBody CodeApplyDto form, HttpSession session) {
 		session.removeAttribute("applyReason");
-		applyService.addApplyCode(form, auth);
+		applyService.addApplyCode(form, auth, 0);
 		return ResponseEntity.ok("/Metamong/code/codeApplyList");
 	}
 	
@@ -295,5 +295,18 @@ public class CodeController {
 		Files.copy(path, out);
 		out.flush();
 		out.close();
+	}
+	
+	@PostMapping("/codeApplyExcel")
+	public ResponseEntity<String> codeApplyExcel(Authentication auth, @RequestBody List<CodeApplyDto> forms) {
+		log.info(forms.toString());
+		
+		CodeApplyDto form = forms.get(0);		
+		int applyNo = applyService.addApplyCode(form, auth, 0);
+		
+		for (int i = 1; i < forms.size(); i++) {
+			applyService.addApplyCode(form, auth, applyNo);
+		}
+	return ResponseEntity.ok("/Metamong/code/codeApplyList");
 	}
 }

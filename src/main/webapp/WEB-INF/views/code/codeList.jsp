@@ -111,8 +111,7 @@
     </div>
     
     <!-- excel 모달  -->
-
-	<div class="modal fade" tabindex="-1" id="excelModal" data-bs-backdrop="static" >
+	<div class="modal fade" id="excelModal" data-bs-backdrop="static" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -121,12 +120,11 @@
 	      </div>
 	      <div class="modal-body">
 	      	<div class="excel-btns d-flex  justify-content-end gap-1 ms-2">
-	      	<a href="codeExcelDownload">
-	      	<button class="btn-download">양식 다운로드</button></a>
 			<form id="uploadForm" enctype="multipart/form-data" class="d-flex">
 			    <input type="file" name="file" id="fileInput" accept=".xlsx, .xls" style="display: none;" />
 			    <label for="fileInput" class="btn-excel modal-btn-excel">EXCEL 업로드</label>
 			</form>
+	      	<a href="codeExcelDownload"><button class="btn-download">양식 다운로드</button></a>
 			<button class="btn-refresh">초기화</button>
 			</div>
 	        <div class="container-fluid">

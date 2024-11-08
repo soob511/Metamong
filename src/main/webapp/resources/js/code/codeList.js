@@ -4,7 +4,7 @@ $(document).ready(function () {
     $(".sub-menu:eq(0)").addClass("active");
     $(".sub-menu:eq(0) .sub-item").removeClass("active");
     $(".sub-menu:eq(0) .sub-item:first").addClass("active");
-
+    
     $(".bi-search").on("click", function () {
         searchCode();
     });
@@ -72,19 +72,19 @@ $(document).ready(function () {
                 data.codeList.forEach((code) => {
                     cHtml += `<tr class="code-row" onclick="getExcelItems(${code.id})">
                         <th>${code.id}</th>
-                        <td>${code.codeNm}</td>
-                        <td>${code.codeId}</td>
-                        <td>${code.codeLength}</td>
-                        <td>${code.codeContent}</td>
+                        <td class="codeNm">${code.codeNm}</td>
+                        <td class="codeId">${code.codeId}</td>
+                        <td class="codeLength">${code.codeLength}</td>
+                        <td class="codeContent">${code.codeContent}</td>
                     </tr>`;
                 });
 
                 data.itemList.forEach((item) => {
                     iHtml += `<tr class="code-row" style="display: none;">
                         <th>${item.id}</th>
-                        <td>${item.itemId}</td>
-                        <td>${item.itemNm}</td>
-                        <td>${item.itemContent}</td>
+                        <td class="itemId">${item.itemId}</td>
+                        <td class="itemNm">${item.itemNm}</td>
+                        <td class="itemContent">${item.itemContent}</td>
                     </tr>`;
                 });
 
@@ -164,7 +164,44 @@ function showItemList(codeNo) {
 
 /* 엑셀 코드 신청 */
 function codeApplyExcel() {
-	let reason;
+	let codeDatas = [];	
+
+	$('.excel-codes .code-row').each(function() {
+		let id = $(this).find('th').text()
+		let codeNm = $(this).find('.codeNm').text();
+		let codeId = $(this).find('.codeId').text();
+		let codeLength = $(this).find('.codeLength').text();
+		let codeContent = $(this).find('.codeContent').text();
+		let items = [];
+		
+		$('.excel-items .code-row').each(function() {
+		    let itemId = $(this).find('.itemId').text();
+		    let itemNm = $(this).find('.itemNm').text();
+		    let itemContent = $(this).find('.itemContent').text();
+
+		    if (id == $(this).find('th').text()) {
+		        items.push({
+		            itemId: itemId,
+		            itemNm: itemNm,
+		            itemIsActive: 1,
+		            itemContent: itemContent,
+		            itemIsUpdate: 0
+		        });
+		    }
+		});
+
+		codeDatas.push({
+			codeNo: 0,
+		    codeNm: codeNm,
+		    codeId: codeId,
+		    codeLength: codeLength,
+		    codeContent: codeContent,
+		    codeIsActive: 1,
+		    applyType: 'EXCEL',
+		    applyReason: "-",
+		    items: items,
+		});
+	});
 	
 	if($('.excel-codes .code-row').length == 0) {
 		Swal.fire({
@@ -176,18 +213,30 @@ function codeApplyExcel() {
 	
 	Swal.fire({
 	    icon: "info",
-	    title: "신청 사유를<br/>입력하세요.",
+	    title: "신청사유를 입력하세요.",
 	    input: 'text'
-	})/*.then(result => {
-	    const reason =  result.value;
-	    
+	}).then(result => {
+		/*codeDatas.forEach(function(data) {
+		    data.applyReason = result.value;
+		});*/
+
 	    $.ajax({
 	        url: "/Metamong/code/codeApplyExcel",
 	        type: "POST",
-	        data: { applyNo: applyNo, status: status, reason: reason },
-	        success: function(data) {
-	            location.href = data + "&indexNo=" + indexNo;    
-	        }
+	        contentType: "application/json",
+		    data: JSON.stringify(codeDatas),
+		    traditional: true,
+	        success:function (data) {
+		        Swal.fire({
+		          icon: "success",
+		          title: "코드/항목 생성 신청이<br/>완료되었습니다.",
+		          text: "신청 승인 후, 코드 사용이 가능합니다.",
+		        }).then(() => {
+		         location.href = data;
+		        });
+		      },
 	    });
-	});*/
+	});
+	
+	console.log(codeDatas);
 }
