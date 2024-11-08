@@ -88,9 +88,9 @@
 				                      <td>${index.MName}</td>
 				                      <td>${index.schemaName}</td>
 				                      <td>${index.idxName}</td>
-				                      <td>${index.applyObj}</td>
+				                      <td>${index.applyType}</td>
 				                      	<td>
-				                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&indexNo=${status.index + 1}"><button class="btn-history-details">상세보기</button></a>
+				                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&indexNo=${status.index + 1}&applyType=${index.applyType}"><button class="btn-history-details">상세보기</button></a>
 			                  			</td>
 				                      <td>
 				                      	<c:choose>
