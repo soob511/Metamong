@@ -35,7 +35,6 @@ public class MemberDetailsService implements UserDetailsService {
 		
 		List<GrantedAuthority> authorities = new ArrayList<>(); 
 		authorities.add(new SimpleGrantedAuthority(member.getMRole()));
-		log.info("찾아봐" + member.getMRole());
 		MemberDetails memberDetails = new MemberDetails(member, authorities);
 		
 		return memberDetails;

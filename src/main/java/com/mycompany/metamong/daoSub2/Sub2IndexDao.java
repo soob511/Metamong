@@ -23,4 +23,6 @@ public interface Sub2IndexDao {
 			@Param("columnName") String columName, 
 			@Param("tableName") String tableName
 			);
+	
+	public int createIndex(String sqlSyn);
 }
