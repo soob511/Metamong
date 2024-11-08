@@ -42,7 +42,6 @@
 							</c:choose>
 						</div>
 					</sec:authorize>
-
 				</div>
 				<hr>
 				<div id="applyContainer" class="container"

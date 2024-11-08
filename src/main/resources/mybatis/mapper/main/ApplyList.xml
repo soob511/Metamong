@@ -58,10 +58,12 @@
 		SELECT rnum, apply_no, m_name, apply_date, approval_status, code_id,
 		code_nm, apply_type
 		FROM (
-		SELECT rownum as rnum, apply_no, m_name, apply_date, approval_status,
+		SELECT rownum as rnum, apply_no, m_name,
+		apply_date, approval_status,
 		code_id, code_nm, apply_type
 		FROM (
-		SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id,
+		SELECT
+		a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id,
 		c.code_nm, a.apply_type
 		FROM apply_list a
 		JOIN member m ON a.m_id =
@@ -95,7 +97,8 @@
 		resultType="ApplyCodeDetail">
 		SELECT m.m_name, a.apply_date, a.compl_date, a.dba_name,
 		a.apply_reason, a.apply_type, a.reject_reason, a.approval_status
-		FROM apply_list a
+		FROM
+		apply_list a
 		JOIN member m ON a.m_id = m.m_id
 		WHERE apply_no =#{applyNo}
 	</select>
@@ -160,16 +163,19 @@
 		FROM (
 		SELECT
 		rownum AS rnum, apply_no,
-		m_name, apply_date, approval_status, schema_name,
+		m_name,
+		apply_date, approval_status, schema_name,
 		table_id
 		FROM (
 		SELECT
 		a.apply_no, m.m_name, a.apply_date, a.approval_status,
-		a.schema_name, t.table_id
+		a.schema_name,
+		t.table_id
 		FROM apply_list a
 		JOIN member m
 		ON a.m_id = m.m_id
-		JOIN apply_table t ON a.apply_no = t.apply_no
+		JOIN
+		apply_table t ON a.apply_no = t.apply_no
 		<where>
 			a.apply_obj = 'TABLE'
 
@@ -248,9 +254,9 @@
 		<if test="query != null">
 			, query = #{query}
 		</if>
-		  <if test="rejectReason != null">
-            , reject_reason = #{rejectReason}
-        </if>
+		<if test="rejectReason != null">
+			, reject_reason = #{rejectReason}
+		</if>
 		WHERE apply_no = #{applyNo}
 	</update>
 
@@ -281,24 +287,120 @@
 		SET approval_status = #{status}
 		WHERE apply_no = #{applyNo}
 	</update>
-	
+
 	<update id="updateRejectReason">
 		UPDATE apply_list
 		SET reject_reason = #{message}
-		WHERE apply_no = #{applyNo}
+		WHERE
+		apply_no = #{applyNo}
 	</update>
-	
+
 	<insert id="insertApplySequence" parameterType="ApplyList">
 		<selectKey keyProperty="applyNo" resultType="int"
-				order="BEFORE">
-				SELECT seq_apply_no.nextval FROM dual
-			</selectKey>
-			INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
-			approval_status,schema_name,apply_obj, apply_type,query)
-			VALUES (#{applyNo},
-			#{mId}, sysdate, #{applyReason}, 0,#{schemaName},#{applyObj},
-			#{applyType},#{query})
+			order="BEFORE">
+			SELECT seq_apply_no.nextval FROM dual
+		</selectKey>
+		INSERT INTO apply_list (apply_no, m_id, apply_date, apply_reason,
+		approval_status,schema_name,apply_obj, apply_type,query)
+		VALUES
+		(#{applyNo},
+		#{mId}, sysdate, #{applyReason},
+		0,#{schemaName},#{applyObj},
+		#{applyType},#{query})
 	</insert>
+
+	<select id="selectTotalSequenceRows">
+		SELECT count(*)
+		FROM apply_list
+		WHERE apply_obj
+		='SEQUENCE'
+	</select>
+
+	<select id="selectSequenceApplyList" parameterType="Pager"
+		resultType="SequenceApplyList">
+	     <![CDATA[
+    SELECT rnum, apply_no, m_name, apply_date, 
+           approval_status, schema_name, seq_name, apply_type 
+    FROM (
+        SELECT rownum rnum, apply_no, m_name, apply_date, 
+               approval_status, schema_name, seq_name, apply_type
+        FROM (
+            SELECT a.apply_no, m.m_name, a.apply_date, 
+                   a.approval_status, a.schema_name, 
+                   s.seq_name, a.apply_type
+            FROM apply_list a
+            JOIN member m ON a.m_id = m.m_id
+            JOIN apply_seq s ON a.apply_no = s.apply_no
+            WHERE a.apply_obj = 'SEQUENCE'
+            ORDER BY a.apply_date DESC
+        )
+        WHERE rownum <= #{endRowNo}
+    )
+    WHERE rnum >= #{startRowNo}
+    ]]>
+	</select>
+	
+<select id="selectSequenceSearchRows" parameterType="map" resultType="int">
+    SELECT COUNT(*)
+    FROM apply_list a
+    JOIN member m ON a.m_id = m.m_id
+    JOIN apply_seq s ON a.apply_no = s.apply_no
+    <where>
+        a.apply_obj = 'SEQUENCE'
+
+        <if test="keyword != null and keyword != ''">
+            AND (
+                m.m_name LIKE '%' || #{keyword} || '%'
+                OR s.seq_name LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+
+        <if test="schema != null and schema != ''">
+            AND a.schema_name = #{schema}
+        </if>
+
+        <if test="status != null and status != ''">
+            AND a.approval_status = #{status}
+        </if>
+    </where>
+</select>
+
+<select id="selectApplySequenceSearch" parameterType="map" resultType="SequenceApplyList">
+    SELECT rnum, apply_no, m_name, apply_date, approval_status, schema_name, seq_name, apply_type
+    FROM (
+        SELECT rownum AS rnum, apply_no, m_name, apply_date, approval_status, schema_name, seq_name, apply_type
+        FROM (
+            SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, a.schema_name, s.seq_name, a.apply_type
+            FROM apply_list a
+            JOIN member m ON a.m_id = m.m_id
+            JOIN apply_seq s ON a.apply_no = s.apply_no
+            <where>
+                a.apply_obj = 'SEQUENCE'
+
+                <if test="form.keyword != null and form.keyword != ''">
+                    AND (
+                        m.m_name LIKE '%' || #{form.keyword} || '%'
+                        OR s.seq_name LIKE '%' || #{form.keyword} || '%'
+                    )
+                </if>
+
+                <if test="form.schema != null and form.schema != ''">
+                    AND a.schema_name = #{form.schema}
+                </if>
+
+                <if test="form.status != null and form.status != ''">
+                    AND a.approval_status = #{form.status}
+                </if>
+            </where>
+            ORDER BY a.apply_date DESC
+        )
+        WHERE rownum <![CDATA[<=]]> #{pager.endRowNo}
+    )
+    WHERE rnum <![CDATA[>=]]> #{pager.startRowNo}
+
+</select>
+
+
 </mapper>
 
 		

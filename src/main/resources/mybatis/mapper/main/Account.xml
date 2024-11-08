@@ -29,6 +29,39 @@
 		    ]]>
 	</select>
 	
+	<select id="AccountListRows" resultType="int">
+		SELECT count(*)
+		FROM member
+	    WHERE 
+           m_role != 'ROLE_ADMIN' 
+           AND m_approval_status = '1'
+	</select>
+	
+	<select id="selectAccountList" parameterType="Pager" resultType="Member">
+		    <![CDATA[
+			        SELECT
+			            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_regdate, m_approval_status, m_isactive
+			        FROM (
+				            SELECT 
+				                rownum AS rnum,  m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_regdate, m_approval_status, m_isactive
+				            FROM (
+				            	SELECT
+				            	 	m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_regdate, m.m_approval_status, m.m_isactive
+				                FROM member m
+				            LEFT OUTER JOIN 
+				                team t ON m.team_id = t.team_id
+				            WHERE 
+				                m.m_role != 'ROLE_ADMIN'  
+				                AND  m.m_approval_status = '1'
+				            ORDER BY 
+				                m.m_regdate DESC
+        				) 
+        			WHERE rownum <= #{endRowNo}
+		        )
+		        WHERE rnum  >= #{startRowNo}
+		    ]]>
+	</select>
+	
 	<select id="selectMemberSearch"  resultType="Member" parameterType="Pager">
 	    <![CDATA[
 		        SELECT
@@ -64,7 +97,7 @@
 		            </where>
 		            <![CDATA[
 				            ORDER BY 
-				                m.m_name, m.m_id
+				                m.m_applydate DESC
 				        	)
 			        WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
 	   				 ]]>
@@ -97,6 +130,70 @@
 					</where>
 	</select>
 	
+	<select id="selectAccountSearch"  resultType="Member" parameterType="Pager">
+	    <![CDATA[
+		        SELECT
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_regdate, m_approval_status, m_isactive
+		        FROM (
+		            SELECT 
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_regdate, m.m_approval_status, m.m_isactive
+		            FROM 
+		                member m
+		            LEFT OUTER JOIN 
+		                team t ON m.team_id = t.team_id
+	          ]]>       
+	            <where>
+			              <if test="keyword != null and keyword != '' and option == 'ID'">
+				              LOWER(m.m_id) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '이름'">
+				                LOWER(m.m_name) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '권한'">
+				                LOWER(m.m_role) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '소속'">
+				                LOWER(t.team_name) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            <if test="keyword != null and keyword != '' and option == '사번'">
+				                LOWER(m.m_empid) LIKE LOWER('%' || #{keyword} || '%')
+				            </if>
+				            AND m_role != 'ROLE_ADMIN'
+				            AND m_approval_status = '1'
+		            </where>
+		            <![CDATA[
+				            ORDER BY 
+				                m.m_applydate DESC
+				        	)
+			        WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
+	   				 ]]>
+	</select>
+	
+	<select id="selectAccountMembers"  resultType="int">
+	    		SELECT COUNT(*)    
+			    FROM member m
+			   LEFT OUTER JOIN team t ON m.team_id = t.team_id
+			   <where>
+						 <if test="keyword != null and keyword != '' and option == 'ID'">
+	                    	LOWER(m.m_id) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '이름'">
+		                     LOWER(m.m_name) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '권한'">
+		                    LOWER(m.m_role) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '소속'">
+		                    LOWER(t.team_name) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                <if test="keyword != null and keyword != '' and option == '사번'">
+		                    LOWER(m.m_empid) LIKE LOWER('%' || #{keyword} || '%')
+		                </if>
+		                AND m_role != 'ROLE_ADMIN'
+		                 AND m_approval_status = '1'
+					</where>
+	</select>
+	
 	<update id="updateAccountStatus">
 		UPDATE member
 		SET m_approval_status = #{status}
@@ -105,6 +202,21 @@
 		  </if>
 		  WHERE m_id = #{MId}
 	</update>
-
+	
+	<update id="updateAccount" parameterType="Member">
+		UPDATE member
+		SET 
+			m_role = #{MRole},
+			team_id = (
+            SELECT team_id
+            FROM team
+            WHERE team_name = #{teamName} 
+       		)
+       		,m_empid = #{MEmpId},
+       		m_tel = #{MTel},
+            m_isactive = #{MIsActive}
+          
+		WHERE m_id = #{MId}
+	</update>
 </mapper>
 	

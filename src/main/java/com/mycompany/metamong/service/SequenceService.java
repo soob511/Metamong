@@ -6,13 +6,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.metamong.daoMain.SequenceDao;
 import com.mycompany.metamong.daoSub1.SrmSequenceDao;
 import com.mycompany.metamong.daoSub2.PmsSequenceDao;
 import com.mycompany.metamong.daoSub3.HrSequenceDao;
+import com.mycompany.metamong.dto.sequence.ApplySequenceDto;
+import com.mycompany.metamong.dto.sequence.SequenceDetailDto;
 import com.mycompany.metamong.dto.sequence.SequenceDto;
 
 @Service
 public class SequenceService {
+	
+	@Autowired
+	private SequenceDao sequenceDao;
 
 	@Autowired
 	private SrmSequenceDao srmSequenceDao;
@@ -22,6 +28,7 @@ public class SequenceService {
 
 	@Autowired
 	private HrSequenceDao hrSequenceDao;
+	
 
 	public List<SequenceDto> getSequenceList() {
 		List<SequenceDto> SequenceList = new ArrayList<>();
@@ -76,6 +83,14 @@ public class SequenceService {
 		    }
 		    
 		return sequenceList;
+	}
+
+	public void insertApplySequence(ApplySequenceDto applySequence) {
+		sequenceDao.insertApplySequence(applySequence);
+	}
+
+	public SequenceDetailDto getSequenceDetail(int applyNo) {
+		return sequenceDao.selectSequenceDetail(applyNo);
 	}
 
 

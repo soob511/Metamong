@@ -14,5 +14,8 @@ public interface SrmSequenceDao {
 
 	public List<SequenceDto> selectSearchSequence(String schema);
 
+	public int createSequence(String sql);
+
+
 
 }

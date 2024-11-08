@@ -12,6 +12,7 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
+import com.mycompany.metamong.dto.sequence.SequenceApplyListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 
 @Mapper
@@ -54,4 +55,12 @@ public interface ApplyListDao {
 	public int updateRejectReason(@Param("applyNo")int applyNo,@Param("message") String message);
 
 	public int insertApplySequence(ApplyListDto applyList);
+
+	public int selectTotalSequenceRows();
+
+	public List<SequenceApplyListDto> selectSequenceApplyList(Pager pager);
+
+	public int selectSequenceSearchRows(Map<String, String> form);
+
+	public List<SequenceApplyListDto> selectApplySequenceSearch(Map<String, Object> params);
 }
