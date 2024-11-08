@@ -1,10 +1,16 @@
 package com.mycompany.metamong.controller;
 
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -267,7 +273,7 @@ public class CodeController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/codeApplyExcel")
+	@PostMapping("/codeExcelUpload")
     public Map<String, Object> codeApplyExcel(MultipartFile file, Model model) throws Exception {
 		Map<String, Object> list = codeService.uploadExcel(file);
 		
@@ -276,4 +282,20 @@ public class CodeController {
 		response.put("itemList", list.get("itemList"));
 	    return response;
     }
+	
+	@GetMapping("/codeExcelDownload")
+	public void codeExcelDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String fileName = "excel.xlsx";
+		String encodingfileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + encodingfileName +"\"");
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		
+		String saveDir = request.getServletContext().getRealPath("/resources/file");
+	    Path path = Paths.get(saveDir, fileName);
+	    
+		OutputStream out = response.getOutputStream();
+		Files.copy(path, out);
+		out.flush();
+		out.close();
+	}
 }

@@ -69,7 +69,7 @@ input[type="search"]::-webkit-search-cancel-button {
    margin: 10px 0 0 0;
 }
 
-.code-table{
+.code-table {
    min-width: 660px !important;
    max-width:660px !important;
    margin: 20px 20px 20px 45px;   
@@ -88,7 +88,7 @@ input[type="search"]::-webkit-search-cancel-button {
    padding-top: 10px;
 }
 
-.btn-excel {
+.btn-excel, .btn-refresh {
    background-color: white;
    color:  var(--theme);
    border-radius: 8px;
@@ -105,7 +105,7 @@ input[type="search"]::-webkit-search-cancel-button {
 	cursor: pointer;
 }
 
-.btn-add{
+.btn-add, .btn-download, .modal-btn-excel {
    background-color: var(--theme);
    color: white;
    border-radius: 8px;
@@ -114,6 +114,20 @@ input[type="search"]::-webkit-search-cancel-button {
    height: 30px;
    font-size: 14px;
    margin-right: 5px;
+}
+
+.btn-download {
+	width: 120px;
+   line-height: 14px;
+}
+
+.btn-refresh {
+	width: 60px;
+	line-height: 14px;
+}
+
+.modal-btn-excel {
+	width: 120px;
 }
 
 .btn-edit {
@@ -125,11 +139,6 @@ input[type="search"]::-webkit-search-cancel-button {
 	height: 30px;
 	font-size: 14px;
 }
-/* 
-tr.active {
-	background-color: var(--table-header) !important;
-	background-color: blue !important;
-} */
 
 .item-management{
    margin: 20px 0 10px 10px;

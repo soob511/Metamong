@@ -52,7 +52,7 @@ $(document).ready(function () {
         formData.append('file', file);
 
         $.ajax({
-            url: "/Metamong/code/codeApplyExcel",
+            url: "/Metamong/code/codeExcelUpload",
             type: "POST",
             data: formData,
             enctype: 'multipart/form-data',
@@ -154,4 +154,26 @@ function showItemList(codeNo) {
             $("#itemList").html(html);
         },
     });
+}
+
+/* 엑셀 코드 신청 */
+function codeApplyExcel() {
+	let reason;
+	
+	Swal.fire({
+	    icon: "info",
+	    title: "신청 사유를<br/>입력하세요.",
+	    input: 'text'
+	})/*.then(result => {
+	    const reason =  result.value;
+	    
+	    $.ajax({
+	        url: "/Metamong/code/codeApplyExcel",
+	        type: "POST",
+	        data: { applyNo: applyNo, status: status, reason: reason },
+	        success: function(data) {
+	            location.href = data + "&indexNo=" + indexNo;    
+	        }
+	    });
+	});*/
 }
