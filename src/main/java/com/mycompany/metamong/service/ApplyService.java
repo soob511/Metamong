@@ -434,6 +434,8 @@ public class ApplyService {
 
 	        if (pass != 0) {
 	            throw new Exception("쿼리 실행에 실패했습니다.");
+	        }else {
+	        	applyListDao.updateStatus(applyNo, 3);
 	        }
 
 	    } catch (Exception e) {
