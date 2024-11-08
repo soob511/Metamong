@@ -420,7 +420,6 @@ public class ApplyService {
 		return query;
 	}
 	
-	@Transactional
 	public void applyIndexSql(String schemaName, int applyNo, String dbaName) {
 		String query = applyListDao.getQuery(applyNo);
 		ApplyListDto applyList = new ApplyListDto();
@@ -428,24 +427,18 @@ public class ApplyService {
 		applyList.setDbaName(dbaName);
 		log.info("실행" + query);
 		try {
-		switch (schemaName) {
-			case "SRM":
-				sub1IndexDao.createIndex(query);
-				applyList.setApprovalStatus(3);
-				applyListDao.updateProcessApproval(applyList);
-				break;
-			case "PMS":
-				sub2IndexDao.createIndex(query);
-				applyList.setApprovalStatus(3);
-				applyListDao.updateProcessApproval(applyList);
-				break;
-			case "HR":
-				sub3IndexDao.createIndex(query);
-				applyList.setApprovalStatus(3);
-				applyListDao.updateProcessApproval(applyList);
-				break;
-			default:
-				break;
+			switch (schemaName) {
+				case "SRM":
+					sub1IndexDao.createIndex(query);
+					break;
+				case "PMS":
+					sub2IndexDao.createIndex(query);
+					break;
+				case "HR":
+					sub3IndexDao.createIndex(query);
+					break;
+				default:
+					break;
 			}
 		} catch (Exception e) {
 			applyList.setApprovalStatus(2);
@@ -453,6 +446,7 @@ public class ApplyService {
 			applyListDao.updateProcessApproval(applyList);
 			throw new RuntimeException("트랜잭셔널 오류 발생");
 		}
+		applyList.setApprovalStatus(3);
+		applyListDao.updateProcessApproval(applyList);
 	}
-	
 }
