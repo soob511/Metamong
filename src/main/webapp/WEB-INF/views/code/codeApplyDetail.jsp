@@ -91,7 +91,7 @@
 									</td>
                                 </tr>
                                 <tr>
-                                    <td class="table-secondary">사유</td>
+                                    <td class="table-secondary">반려사유</td>
                                     <td colspan="5">
                                         <div class="table-text">${applyList.rejectReason}</div>
                                     </td>

@@ -6,12 +6,6 @@ $(document).ready(function() {
     $('.sub-menu:eq(0) .sub-item:eq(1)').addClass('active');   
 });
 
-function codeApplyDetail(applyNo, indexNo, applyType) {
-	location.href = (applyType == "EXCEL")
-	? "/Metamong/code/codeApplyExcelDetail"
-	: "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
-};
-
 $('#statusSelect').on('change', function() {
 	codeApplySearch(1);
 });
@@ -41,3 +35,9 @@ function codeApplySearch(pageNo){
 		}		
 	});
 }
+
+function codeApplyDetail(applyNo, indexNo, applyType) {
+	location.href = (applyType == "EXCEL")
+	? "/Metamong/code/codeApplyExcelDetail"
+	: "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+};
