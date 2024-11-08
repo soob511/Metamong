@@ -43,6 +43,12 @@ $(document).ready(function () {
             });
         }
     });
+    
+    /* 초기화 */
+    $('.btn-refresh').click(function() {
+    	$('.excel-codes').html(`<tr><td colspan="5">파일을 등록해 주세요.</td></tr>`);
+    	$('.excel-items').html(`<tr><td colspan="4">파일을 등록해 주세요.</td></tr>`);
+    });
 
     /* EXCEL 업로드 */
     $('#fileInput').change(function () {
