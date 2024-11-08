@@ -3,18 +3,25 @@
 <mapper namespace="com.mycompany.metamong.daoSub1.SrmSequenceDao">
 
 	<select id="selectSequenceList" resultType="Sequence">
+		SELECT
+		SEQUENCE_NAME,MIN_VALUE,MAX_VALUE,INCREMENT_BY,LAST_NUMBER
+		FROM
+		USER_SEQUENCES
+	</select>
+
+	<select id="selectSearchSequence" parameterType="String"
+		resultType="Sequence">
 		SELECT SEQUENCE_NAME,MIN_VALUE,MAX_VALUE,INCREMENT_BY,LAST_NUMBER
 		FROM USER_SEQUENCES
+		<where>
+			<if test="keyword != null and keyword != 'NULL'">
+				SEQUENCE_NAME LIKE '%' || #{keyword} || '%'
+			</if>
+		</where>
 	</select>
-	
-	<select id="selectSearchSequence" parameterType="String" resultType="Sequence">
-	    SELECT SEQUENCE_NAME,MIN_VALUE,MAX_VALUE,INCREMENT_BY,LAST_NUMBER
-    		FROM USER_SEQUENCES
-    		<where>
-        		<if test="keyword != null and keyword != 'NULL'">
-            		SEQUENCE_NAME LIKE '%' || #{keyword} || '%'
-        		</if>
-    		</where>
-	</select>
+
+	<insert id="createSequence" parameterType="String">
+		${sql}
+	</insert>
 </mapper>
 	

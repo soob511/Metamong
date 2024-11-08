@@ -32,6 +32,7 @@ import com.mycompany.metamong.dto.sequence.SequenceDetailDto;
 import com.mycompany.metamong.dto.sequence.SequenceDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
+import com.mycompany.metamong.service.MemberService;
 import com.mycompany.metamong.service.SequenceService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,8 @@ public class SequenceController {
 	private SequenceService sequenceService;
 	@Autowired
 	private ApplyService applyService;
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("/sequenceList")
 	public String sequenceList(Model model) {
@@ -161,6 +164,37 @@ public class SequenceController {
 	    return ResponseEntity.ok()
 	            .headers(headers)
 	            .body(fileData);
+	}
+	
+	@PostMapping("/sequenceProcessApproval")
+	public  ResponseEntity<String> tableProcessApproval(@RequestParam int status, @RequestParam int applyNo,@RequestParam String reason,Authentication auth) {
+		log.info("실행");
+		ApplyListDto applyList = new ApplyListDto();
+		
+		String dbaName = memberService.getDbaNameById(auth.getName());
+		applyList.setApplyNo(applyNo);
+		applyList.setDbaName(dbaName);
+		if(status==1) {//승인
+			String type = applyService.getApplyType(applyNo);
+			applyList.setApprovalStatus(status);
+		}else {//반려
+			applyList.setApprovalStatus(status);
+			applyList.setRejectReason(reason);
+		}
+		
+		applyService.addProcessApproval(applyList);
+		
+		return ResponseEntity.ok("/Metamong/sequence/sequenceApplyDetail?applyNo=" + applyNo);
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("/reflectSequence")
+	public  int reflectSequence(@RequestParam int applyNo){
+
+		int success = applyService.sequenceRunQuery(applyNo);
+		
+		return success;
 	}
 
 

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,8 @@
 	href="${pageContext.request.contextPath}/resources/css/dbObject/sequence/sequenceDetail.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/sqlModal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -18,14 +21,27 @@
 			<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 			<div class="col">
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
-				<div class="index-container">
+				<div class="index-container" id="applyContainer" data-applyno="${detail.applyNo}" data-indexno="${detail.indexNo}">
 					<div class="table-list-header">
 						<p class="table-list-title">&gt; DB Object &gt; 신청내역 &gt; 시퀀스
 							상세보기</p>
-						<!-- <div class="button-groupDBA">
-						<button class="btn-approve">승인</button>
-						<button class="btn-reject">반려</button>
-				</div> -->
+						<sec:authorize access="hasRole('ROLE_DBA')">
+							<div class="button-groupDBA">
+								<c:choose>
+									<c:when test="${detail.approvalStatus == 0}">
+										<button class="btn-approve" onclick="sequenceProcessApproval(1)">승인</button>
+										<button class="btn-reject" onclick="sequenceProcessApproval(2)">반려</button>
+									</c:when>
+									<c:when test="${detail.approvalStatus == 1}">
+										<button class="btn-reflect">반영</button>
+									</c:when>
+									<c:when
+										test="${detail.approvalStatus == 2 || detail.approvalStatus == 3}">
+										<button class="btn-complete">처리완료</button>
+									</c:when>
+								</c:choose>
+							</div>
+						</sec:authorize>
 					</div>
 					<hr>
 					<table class="table table-bordered">
@@ -43,7 +59,7 @@
 						<tr>
 							<td class="table-secondary">처리일자</td>
 							<td id="table-contents" style="width: 38%"><fmt:formatDate
-									value="${deatil.complDate}" pattern="yyyy-MM-dd" /></td>
+									value="${detail.complDate}" pattern="yyyy-MM-dd" /></td>
 							<td class="table-secondary">처리자</td>
 							<td id="table-contents" style="width: 38%">${detail.dbaName}</td>
 						</tr>
@@ -125,6 +141,6 @@
 		</div>
 	</div>
 	<script
-		src="${pageContext.request.contextPath}/resources/js/dbObject/sequence/sequenceList.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/dbObject/sequence/sequenceDetail.js"></script>
 </body>
 </html>

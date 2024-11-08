@@ -17,5 +17,8 @@
     		</where>
 	</select>
 
+	<insert id="createSequence" parameterType="String">
+		${sql}
+	</insert>
 </mapper>
 	

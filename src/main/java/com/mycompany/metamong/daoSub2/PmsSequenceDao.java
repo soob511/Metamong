@@ -13,4 +13,6 @@ public interface PmsSequenceDao {
 
 	public List<SequenceDto> selectSearchSequence(String keyword);
 
+	public int createSequence(String sql);
+
 }
