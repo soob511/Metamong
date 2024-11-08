@@ -35,6 +35,7 @@ import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
+import com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
@@ -47,6 +48,7 @@ import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
+import com.mycompany.metamong.dto.member.ApprovalStatusDto;
 import com.mycompany.metamong.dto.sequence.SequenceApplyListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
@@ -506,4 +508,21 @@ public class ApplyService {
 		applyList.setApprovalStatus(3);
 		applyListDao.updateProcessApproval(applyList);
 	}
+	
+	public ApprovalStatusDto countApprovalStatus(String mId) {
+		List<ApprovalStatusCountDto> approvalStatusCount = applyListDao.selectApprovalStatus(mId);
+		ApprovalStatusDto approvalStatus = new  ApprovalStatusDto();
+        int totalCount = 0;
+		for (ApprovalStatusCountDto status : approvalStatusCount) {
+			totalCount += status.getCount();
+            switch (status.getApprovalStatus()) {
+                case 0: approvalStatus.setAwaitCount(status.getCount()); break;
+                case 1: approvalStatus.setApprovedCount(status.getCount()); break;
+                case 2: approvalStatus.setRejectedCount(status.getCount()); break;
+                case 3: approvalStatus.setReflectCount(status.getCount()); break;
+            }
+        }
+		approvalStatus.setTotalCount(totalCount);
+        return approvalStatus;
+    }
 }
