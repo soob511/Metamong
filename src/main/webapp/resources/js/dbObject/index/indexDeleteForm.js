@@ -132,7 +132,6 @@ function applyIndex() {
 				Swal.fire({ 
 					icon: 'success',
 					title: '인덱스 삭제 신청이<br/>완료되었습니다.',
-					text: '인덱스 삭제 반영 후, 조회가 불가합니다.',
 				}).then(result=>{
 					location.href="/Metamong/index/indexApplyList";
 				})
