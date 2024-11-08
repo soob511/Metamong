@@ -16,6 +16,7 @@ public class ApplyIndexListDto {
 	private String schemaName;
 	private String idxName;
 	private String applyObj;
+	private String applyType;
 	private int approvalStatus;
 	
 	public String getFmtApplyDate() {
