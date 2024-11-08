@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,8 +62,11 @@
 						<div
 							class="sequence-management-header d-flex justify-content-between align-items-center">
 							<p class="sequence-management-title">시퀀스</p>
+							<sec:authorize
+									access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
 							<button class="btn-apply" data-bs-toggle="modal"
 								data-bs-target="#sequenceApplyModal">생성/삭제</button>
+								</sec:authorize>
 						</div>
 						<div class="sequence-list-table">
 							<table class="table sequence-list table-hover">
