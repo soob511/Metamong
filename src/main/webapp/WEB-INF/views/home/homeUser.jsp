@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,23 +27,23 @@
 								</div>
 								<div class="col">							
 									<p class="project-title"># MetaMong 프로젝트</p>
-									<h4 class="project-user">반가워요! <span class="fw-bold">김유저</span><span class="fs-5">님</span></h4>
+									<h4 class="project-user">반가워요! <span class="fw-bold">${userName}</span><span class="fs-5">님</span></h4>
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
 											<p>접수</p>
-											<h3><span class="fw-bold">15</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">${mApprovalStatus.awaitCount}</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>승인</p>
-											<h3><span class="fw-bold">10</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">${mApprovalStatus.approvedCount}</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반려</p>
-											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">${mApprovalStatus.rejectedCount}</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반영</p>
-											<h3><span class="fw-bold">3</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">${mApprovalStatus.reflectCount}</span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
 								</div>
@@ -63,120 +65,80 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr>
-                            <th scope="row">10</th>
-                            <td>회원정보 변경신청</td>
-                            <td>2024-10-21</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td>인덱스 신청에 관하여</td>
-                            <td>2024-10-20</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>메타정보관리시스템에 대한 공지입니다.</td>
-                            <td>2024-10-18</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>테이블 신청에 관하여 안내합니다.</td>
-                            <td>2024-09-08</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>주요 반려 사유</td>
-                            <td>2024-09-01</td>
-                            <td>70</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>이렇게 신청하지 마십시오.</td>
-                            <td>2024-08-30</td>
-                            <td>82</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>[재공지][중요]해킹위험 사례 안내</td>
-                            <td>2024-08-27</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>[중요]해킹위험 사례 안내</td>
-                            <td>2024-08-26</td>
-                            <td>12</td>
-                        </tr> -->
-                        <c:forEach items="${list}" var="notice">           
-	                        <tr>
-	                            <th scope="row">${notice.noticeId}</th>
-	                            <td>${notice.noticeTitle}</td>
-	                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
-	                            <td>${notice.noticeHitcount}</td>
-	                        </tr>
-                      </c:forEach>    
+                        <c:forEach items="${noticeList}" var="notice" varStatus="status">           
+		                        <tr class="table-row">
+		                            <td scope="row">
+			                            <c:choose>
+											<c:when test="${notice.noticeIsimp == '1'}">
+												<img
+													src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
+													alt="중요도" style="width: 20px; height: 20px ">
+											</c:when>
+											<c:otherwise>
+												${pager.totalRows - (pager.pageNo-1) * 10 - status.index}
+											</c:otherwise>
+									</c:choose>
+									</td>                          
+		                            <td><a href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
+		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+		                            <td>${notice.noticeHitcount}</td>
+		                        </tr>
+	                      </c:forEach>    
                     </tbody>
                 </table>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-5">
-						<p class="board-title">테이블 목록</p>
-						<div class="table-box">
-						<table class="table table-hover">
-                    <thead class="table">
-                        <tr class="table-primary">
-                            <th scope="col">No.</th>
-                            <th scope="col">테이블명(물리)</th>
-                            <th scope="col">테이블명(논리)</th>
-                            <th scope="col">스키마</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>EMPLOYEE</td>
-                            <td>사원정보</td>
-                            <td>EMP</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>JOBS</td>
-                            <td>직업정보</td>
-                            <td>JOB</td>
-                        </tr>
-                    </tbody>
-                </table></div>
-					</div>
-					<div class="col">
+						<div class="col-5">
+							<div class="schema-filter">
+								<div class="schema-table-title">테이블 목록</div>
+								<div class="d-flex align-items-center">
+								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
+								<select id="schemaSelect" class="form-select"
+									aria-label="Default select example">
+									<c:forEach items="${schemaEnum}" var="schemaEnum">
+											<c:if test="${schemaEnum.name() != 'MAIN'}">
+												<option value="${schemaEnum.name()}">
+											            ${schemaEnum.name()}
+												</option>
+									        </c:if>
+									</c:forEach>
+								</select>
+								</div>
+							</div>
+							<div class="table-box">
+								<table class="table table-hover">
+									<thead class="table">
+										<tr class="table-primary">
+											<th scope="col">No.</th>
+											<th scope="col">테이블명(논리)</th>
+											<th scope="col">테이블명(물리)</th>
+											<th scope="col">스키마</th>
+										</tr>
+									</thead>
+									<tbody id="tableList">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col">
 						<p class="board-title">속성(Column) 목록</p>
 						<div class="col-box">
 						<table class="table table-hover">
                     <thead class="table">
                         <tr class="table-primary">
                             <th scope="col">No.</th>
-                            <th scope="col">컬럼명</th>
+                            <th scope="col">컬럼명(논리)</th>
+                            <th scope="col">컬럼명(물리)</th>
                             <th scope="col">데이터타입</th>
                             <th scope="col">길이</th>
                             <th scope="col">NULL</th>
                             <th scope="col">PK</th>
-                            <th scope="col">내용</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">10</th>
-                            <td>PRPT_NO</td>
-                            <td>NUMBER</td>
-                            <td>7</td>
-                            <td>N</td>
-                            <td>Y</td>
-                            <td>-</td>
-                        </tr>
+                    <tbody id="columnList">
+                        
                     </tbody>
                 </table></div>
 					</div>

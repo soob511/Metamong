@@ -10,6 +10,9 @@
 	margin-bottom: 5px;
 }
 
+.table-board-title {
+	font-weight: 600;
+}
 /* 신청현황 */
 .col-6 {
 	margin-right: 40px !important;
@@ -100,4 +103,28 @@ table th, table td {
 	border-radius: 8px;
 	border: 1px solid #d9d9d9;
 	box-shadow: var(--box-shadow);
+}
+
+.schema-filter-label {
+    min-width: max-content;
+    margin: 0 12px;
+}
+
+.schema-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 200px !important;
+    margin-bottom: 5px;
+    margin-right: 40px;
+}
+
+.schema-table-title {
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.form-select {
+    font-size: 13px !important;
+    width: 100px !important;
 }
