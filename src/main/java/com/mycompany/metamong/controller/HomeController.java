@@ -9,16 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto;
-import com.mycompany.metamong.dto.member.ApprovalStatusDto;
+import com.mycompany.metamong.dto.applyList.ApprovalStatusDto;
 import com.mycompany.metamong.dto.notice.NoticeDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.MemberService;
 import com.mycompany.metamong.service.NoticeService;
-import com.mycompany.metamong.service.TableService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,17 +43,18 @@ public class HomeController {
 		String userName = memberService.getDbaNameById(auth.getName());
 		Pager pager = new Pager(8, 10, 10, 1); 
 		List<NoticeDto> noticeList = noticeService.getNoticeList(pager);
-		
-		model.addAttribute("pager", pager);
+
 		model.addAttribute("userName", userName);
+		model.addAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("noticeList", noticeList);
 		log.info("실행");
 		return "home/homeUser";
 	}
 	
-	@GetMapping("/countApprovalStatus")
-	public ApprovalStatusDto countApprovalStatus(Authentication auth) {
+	@ResponseBody
+	@GetMapping("/getApprovalStatus")
+	public ApprovalStatusDto getApprovalStatus(Authentication auth) {
 		return applyService.countApprovalStatus(auth.getName());
 	}
 
