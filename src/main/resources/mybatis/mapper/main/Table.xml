@@ -63,9 +63,6 @@
 </select>
 
 <insert id="insertTable" parameterType="Table">
-    <selectKey keyProperty="tableNo" resultType="int" order="BEFORE">
-        SELECT seq_tables_no.NEXTVAL FROM dual
-    </selectKey>
     INSERT INTO tables (table_no, table_nm, table_id, table_content, schema_nm)
     VALUES (#{tableNo}, #{tableNm}, #{tableId}, #{tableContent}, #{schemaNm})
 </insert>

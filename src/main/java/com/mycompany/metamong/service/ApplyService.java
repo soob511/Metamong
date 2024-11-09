@@ -346,79 +346,78 @@ public class ApplyService {
 
 	@Transactional
 	public int runQuery(int applyNo, String type) {
-		String schema = applyListDao.getSchemaName(applyNo);
-		String sql = applyListDao.getQuery(applyNo);
-		int pass = -1;
+	    int pass = -1;
+	    try {
+	        String schema = applyListDao.getSchemaName(applyNo);
+	        String sql = applyListDao.getQuery(applyNo);
 
-		if (type.equals("CREATE")) {
-			if (schema.equals("SRM")) {
-				pass = srmTableDao.CreateTable(sql);
-			} else if (schema.equals("PMS")) {
-				pass = pmsTableDao.CreateTable(sql);
-			} else {
-				pass = hrTableDao.CreateTable(sql);
-			}
-		} else {
-			String[] updateSql = Arrays.stream(sql.split(";")).map(String::trim).toArray(String[]::new);
+	        if (type.equals("CREATE")) {
+	            if (schema.equals("SRM")) {
+	                pass = srmTableDao.CreateTable(sql);
+	            } else if (schema.equals("PMS")) {
+	                pass = pmsTableDao.CreateTable(sql);
+	            } else {
+	                pass = hrTableDao.CreateTable(sql);
+	            }
+	        } else {
+	            String[] updateSql = Arrays.stream(sql.split(";")).map(String::trim).toArray(String[]::new);
 
-			if (schema.equals("SRM")) {
-				for (String usql : updateSql) {
-					pass = srmColumnDao.updateColumn(usql);
-					if (pass != 0)
-						break;
-				}
-			} else if (schema.equals("PMS")) {
-				for (String usql : updateSql) {
-					pass = pmsColumnDao.updateColumn(usql);
-					if (pass != 0)
-						break;
-				}
-			} else {
-				for (String usql : updateSql) {
-					pass = hrColumnDao.updateColumn(usql);
-					if (pass != 0)
-						break;
-				}
-			}
-		}
+	            if (schema.equals("SRM")) {
+	                for (String usql : updateSql) {
+	                    pass = srmColumnDao.updateColumn(usql);
+	                    if (pass != 0) break;
+	                }
+	            } else if (schema.equals("PMS")) {
+	                for (String usql : updateSql) {
+	                    pass = pmsColumnDao.updateColumn(usql);
+	                    if (pass != 0) break;
+	                }
+	            } else {
+	                for (String usql : updateSql) {
+	                    pass = hrColumnDao.updateColumn(usql);
+	                    if (pass != 0) break;
+	                }
+	            }
+	        }
 
-		// 성공했을시
-		if (pass == 0) {
+	        // 성공했을시
+	        if (pass == 0) {
+	            TableDto table = tableDao.selectApplyTable(applyNo);
+	            if (type.equals("CREATE")) {
+	                applyListDao.updateStatus(applyNo, 3);
+	                table.setSchemaNm(schema);
+	                tableDao.insertTable(table);
 
-			TableDto table = tableDao.selectApplyTable(applyNo);
-			if (type.equals("CREATE")) {
-				// 반영으로 상태변경
-				applyListDao.updateStatus(applyNo, 3);
-
-				// 테이블 테이블에 생성된 테이블 정보 넣기
-				table.setSchemaNm(schema);
-				tableDao.insertTable(table);
-
-				// 컬럼정보 넣기
-				List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
-				for (ColumnDto col : column) {
-					col.setTableNo(table.getTableNo());
-					columnDao.insertColumn(col);
-				}
-			} else {
-				applyListDao.updateStatus(applyNo, 3);
-				List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
-				int tableNo = tableDao.selectTableNo(schema, table.getTableId());
-				for (ColumnDto col : column) {
-					if (col.getColIsupdate() == 1) {
-						col.setTableNo(tableNo);
-						columnDao.insertColumn(col);
-					}
-				}
-			}
-		} else {// 실패했을때
-			applyListDao.updateStatus(applyNo, 2);
-			applyListDao.updateRejectReason(applyNo, "반영시 오류가 있습니다.");
-		}
-
-		return pass;
-
+	                List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
+	                for (ColumnDto col : column) {
+	                    col.setTableNo(table.getTableNo());
+	                    columnDao.insertColumn(col);
+	                }
+	            } else {
+	                applyListDao.updateStatus(applyNo, 3);
+	                List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
+	                int tableNo = tableDao.selectTableNo(schema, table.getTableId());
+	                for (ColumnDto col : column) {
+	                    if (col.getColIsupdate() == 1) {
+	                        col.setTableNo(tableNo);
+	                        columnDao.insertColumn(col);
+	                    }
+	                }
+	            }
+	        } else { // 실패했을때
+	            applyListDao.updateStatus(applyNo, 2);
+	            applyListDao.updateRejectReason(applyNo, "반영시 오류가 있습니다.");
+	        }
+	    } catch (Exception e) {
+	        applyListDao.updateStatus(applyNo, 2);
+	        applyListDao.updateRejectReason(applyNo, "반영시 오류가 있습니다.");
+	        e.printStackTrace();
+	        pass = -1; 
+	    }
+	    
+	    return pass;
 	}
+
 
 	public void applySequence(ApplyListDto applyList) {
 		applyListDao.insertApplySequence(applyList);
