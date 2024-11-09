@@ -66,6 +66,18 @@
 		AND t.table_id = #{tableId}
 		AND c.col_id = #{colId}
 	</select>
+	
+	<select id="selectColumnBytableNo" resultType="Column" parameterType="int">
+		SELECT col_id,col_ispk
+		FROM "COLUMN"
+		WHERE table_no = #{tableNo}
+	</select>
+	
+	<delete id="deleteColumn" parameterType="Column">
+		DELETE
+		FROM "COLUMN"
+		WHERE table_no = #{tableNo}
+	</delete>
 
 </mapper>
 	

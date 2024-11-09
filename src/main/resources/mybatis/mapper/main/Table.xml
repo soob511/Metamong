@@ -32,6 +32,11 @@
     VALUES (#{applyNo}, seq_table_no.NEXTVAL, #{tableNm}, #{tableId}, #{tableContent})
 </insert>
 
+<insert id="insertApplyTableByTableNo" parameterType="ApplyTable">
+INSERT INTO apply_table (apply_no, table_no, table_nm, table_id, table_content)
+    VALUES (#{applyNo}, #{tableNo}, #{tableNm}, #{tableId}, #{tableContent})
+</insert>
+
 <select id="selectTableListBySchema" resultType="Table">
     SELECT table_no, table_id, schema_nm
     FROM tables
@@ -57,15 +62,12 @@
 </select>
 
 <select id="selectApplyTable" parameterType="int" resultType="Table">
- SELECT table_id,table_nm,table_content
+ SELECT table_no,table_id,table_nm,table_content
  FROM apply_table
  WHERE apply_no = #{applyNo}
 </select>
 
 <insert id="insertTable" parameterType="Table">
-    <selectKey keyProperty="tableNo" resultType="int" order="BEFORE">
-        SELECT seq_tables_no.NEXTVAL FROM dual
-    </selectKey>
     INSERT INTO tables (table_no, table_nm, table_id, table_content, schema_nm)
     VALUES (#{tableNo}, #{tableNm}, #{tableId}, #{tableContent}, #{schemaNm})
 </insert>

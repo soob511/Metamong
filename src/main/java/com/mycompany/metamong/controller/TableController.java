@@ -49,7 +49,7 @@ public class TableController {
 
 	@Autowired
 	private ColumnService columnService;
-	
+
 	@Autowired
 	private MemberService memberService;
 
@@ -67,7 +67,7 @@ public class TableController {
 		List<TableDto> list = tableService.getTableInfo(schemaName);
 		return list;
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/searchTableName")
 	public List<TableDto> searchTableName(@RequestParam String schemaName) {
@@ -178,8 +178,8 @@ public class TableController {
 	public String applyTableSearch(@RequestParam Map<String, String> form, HttpSession session, Model model) {
 		log.info("실행");
 		int searchRows = applyService.getSearchRows(form);
-		
-		int pageNo =  Integer.parseInt(form.get("pageNo"));
+
+		int pageNo = Integer.parseInt(form.get("pageNo"));
 		Pager pager = new Pager(10, 5, searchRows, pageNo);
 		session.setAttribute("pager", pager);
 
@@ -194,42 +194,37 @@ public class TableController {
 	}
 
 	@PostMapping("/tableProcessApproval")
-	public  ResponseEntity<String> tableProcessApproval(@RequestParam int status, @RequestParam int applyNo,@RequestParam String reason,Authentication auth) {
+	public ResponseEntity<String> tableProcessApproval(@RequestParam int status, @RequestParam int applyNo,
+			@RequestParam String reason, Authentication auth) {
 		log.info("실행");
 		ApplyListDto applyList = new ApplyListDto();
-		
+
 		String dbaName = memberService.getDbaNameById(auth.getName());
 		applyList.setApplyNo(applyNo);
 		applyList.setDbaName(dbaName);
-		if(status==1) {//승인
+		if (status == 1) {// 승인
 			String type = applyService.getApplyType(applyNo);
-			String sql="";
-			if(type.equals("CREATE")) {
-				sql = applyService.addCreateTableSql(applyNo);
-				applyList.setQuery(sql);
-			}else if(type.equals("UPDATE")){
-				sql = applyService.addUpdateTableSql(applyNo);
-				applyList.setQuery(sql);
-			}
+			String sql = "";
+			sql = applyService.addCreateTableSql(applyNo, type);
+			applyList.setQuery(sql);
 			applyList.setApprovalStatus(status);
-		}else {//반려
+		} else {// 반려
 			applyList.setApprovalStatus(status);
 			applyList.setRejectReason(reason);
 		}
-		
+
 		applyService.addProcessApproval(applyList);
-		
+
 		return ResponseEntity.ok("/Metamong/table/tableListDetail?applyNo=" + applyNo);
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/reflectTable")
-	public  int reflectTable(@RequestParam int applyNo){
+	public int reflectTable(@RequestParam int applyNo) {
 		String type = applyService.getApplyType(applyNo);
-		int success = applyService.runQuery(applyNo,type);
-		
+		int success = applyService.runQuery(applyNo, type);
+
 		return success;
 	}
-	
 
 }

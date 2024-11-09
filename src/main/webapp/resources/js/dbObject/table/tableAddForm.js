@@ -15,18 +15,21 @@ $(document).ready(function() {
     const pkSelect = $("#isUse");
     const nullableSelect = $("#nullable");
 
-    if (pkSelect.val() === "Y") {
-        nullableSelect.val("NOTNULL");
-        nullableSelect.prop("disabled", true);
-    }
-
-    pkSelect.on("change", function() {
+    // PK가 Y이면 NULL 옵션을 NOTNULL로 고정하고, N이면 자유롭게 설정 가능
+    function updateNullableSelect() {
         if (pkSelect.val() === "Y") {
             nullableSelect.val("NOTNULL");
             nullableSelect.prop("disabled", true);
         } else {
             nullableSelect.prop("disabled", false);
         }
+    }
+
+    // 초기 상태 업데이트
+    updateNullableSelect();
+
+    pkSelect.on("change", function() {
+    	updateNullableSelect();
     });
     
     function resetAndDisableButton() {
