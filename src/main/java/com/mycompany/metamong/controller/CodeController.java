@@ -208,8 +208,7 @@ public class CodeController {
 		params.put("status", status); 
 		
 		applyService.updateCodeStatus(params);
-		
-		return ResponseEntity.ok("/Metamong/code/codeApplyDetail?applyNo=" + applyNo);
+		return ResponseEntity.ok("/Metamong/code/");
 	}
 	
 	@PostMapping("/applyComplete")

@@ -25,8 +25,8 @@
                     <sec:authorize access="hasRole('ROLE_DBA')">
                         <div class="button-groupDBA">
                             <c:if test="${applyList.approvalStatus == 0}">
-                                <button class="btn-approve" onclick="codeApplyProcess(1)">승인</button>
-                                <button class="btn-reject" onclick="codeApplyProcess(2)">반려</button>
+                                <button class="btn-approve" onclick="codeApplyProcess(1, `${applyList.applyType}`)">승인</button>
+                                <button class="btn-reject" onclick="codeApplyProcess(2, `${applyList.applyType}`)">반려</button>
                             </c:if>
                             <c:if test="${applyList.approvalStatus == 1}">
                                 <button class="btn-approve" onclick="applyComplete()">반영</button>

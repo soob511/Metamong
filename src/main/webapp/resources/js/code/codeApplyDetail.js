@@ -12,7 +12,8 @@ $(document).ready(function() {
 });
 
 /* 승인, 반려 */
-function codeApplyProcess(status){
+function codeApplyProcess(status, applyType){
+	console.log(applyType);
 	const params = new URL(location.href).searchParams;
 	const applyNo = params.get('applyNo');
 	const indexNo = params.get('indexNo');
@@ -30,7 +31,10 @@ function codeApplyProcess(status){
 	        type: "POST",
 	        data: { applyNo: applyNo, status: status, reason: reason },
 	        success: function(data) {
-	            location.href = data + "&indexNo=" + indexNo;    
+	        	console.log(applyType);
+	        	location.href = applyType == 'EXCEL' 
+	        		? data +"codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
+	        		: data +"codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
 	        }
 	    });
 	});
