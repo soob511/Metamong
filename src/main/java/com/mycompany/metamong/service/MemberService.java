@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoMain.MemberDao;
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.member.ApplyMemberDto;
+import com.mycompany.metamong.dto.member.ApprovalMemberStatusDto;
 import com.mycompany.metamong.dto.member.MemberDto;
 
 @Service
@@ -41,5 +43,21 @@ public class MemberService {
 	
 	public String getDbaNameById(String dbaId) {
 		return memberDao.selectDbaName(dbaId);
+	}
+	
+	public MemberDto getMember(String mId) {
+		return memberDao.selectByMId(mId);
+	}
+	
+	public List<MemberDto> getActiveMember(int rowNumber) {
+		return memberDao.selectActiveMember(rowNumber);
+	}
+	
+	public List<ApplyMemberDto> getApplyMember(String mRole) {
+		return memberDao.selectApplyMember(mRole);
+	}
+	
+	public List<ApprovalMemberStatusDto> getApprovalStatus() {
+		return memberDao.selectApprovalStatus();
 	}
 }
