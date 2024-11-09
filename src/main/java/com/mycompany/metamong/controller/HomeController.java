@@ -1,6 +1,8 @@
 package com.mycompany.metamong.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -9,11 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
-import com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusDto;
+import com.mycompany.metamong.dto.member.ApplyMemberDto;
+import com.mycompany.metamong.dto.member.ApprovalMemberStatusDto;
+import com.mycompany.metamong.dto.member.MemberDto;
 import com.mycompany.metamong.dto.notice.NoticeDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
@@ -48,14 +53,22 @@ public class HomeController {
 		model.addAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("noticeList", noticeList);
-		log.info("실행");
-		return "home/homeUser";
+	    return "home/homeUser";
 	}
 	
 	@ResponseBody
 	@GetMapping("/getApprovalStatus")
 	public ApprovalStatusDto getApprovalStatus(Authentication auth) {
-		return applyService.countApprovalStatus(auth.getName());
+		String userId = auth.getName();
+		MemberDto userInfo = memberService.getMember(userId);
+		if (!userInfo.getMRole().equals("ROLE_DBA")) {
+			log.info("실행" + userId);
+			return applyService.countApprovalStatus(userId);			
+		} else {
+			userId = "";
+			log.info("실행DBA" + userId);
+			return applyService.countApprovalStatus(userId);						
+		}
 	}
 
 	@GetMapping("/homeDBA")
@@ -64,9 +77,36 @@ public class HomeController {
 		return "home/homeDBA";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/homeAdmin")
-	public String homeAdmin() {
+	public String homeAdmin(Model model, Authentication auth) {
+		String userName = memberService.getDbaNameById(auth.getName());
+		Pager pager = new Pager(8, 10, 10, 1); 
+		List<NoticeDto> noticeList = noticeService.getNoticeList(pager);
+		List<MemberDto> memberList = memberService.getActiveMember(10);
+		model.addAttribute("userName", userName);
+		model.addAttribute("pager", pager);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("memberList" ,memberList);
 		log.info("실행");
 		return "home/homeAdmin";
+	}
+	
+	@ResponseBody
+	@GetMapping("/getSignupStatus")
+	public Map<String, Object> getSignupStatus(@RequestParam String roleUser, @RequestParam String roleDba) {
+		List<ApplyMemberDto> userList = memberService.getApplyMember(roleUser);
+		List<ApplyMemberDto> dbaList = memberService.getApplyMember(roleDba);		
+		Map<String, Object> memberList = new HashMap<String, Object>();
+		memberList.put("userList", userList);
+		memberList.put("dbaList", dbaList);	
+		return memberList;
+	}
+	
+	@ResponseBody
+	@GetMapping("/getApprovalMemberStatus")
+	public List<ApprovalMemberStatusDto> getApprovalMemberStatus() {
+		return memberService.getApprovalStatus();
 	}
 }
