@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class IndexDto {
+	private int tableNo;
 	private String indexName;
 	private String schemaName;
 	private String tableName;
@@ -11,4 +12,5 @@ public class IndexDto {
 	private String columnPosition;
 	private String uniqueness;
 	private String descend;
+	private String pkStatus;
 }

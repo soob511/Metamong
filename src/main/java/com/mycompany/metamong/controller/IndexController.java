@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexDetailDto;
 import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
@@ -25,6 +26,7 @@ import com.mycompany.metamong.dto.index.RefColumnDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.IndexService;
+import com.mycompany.metamong.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +38,8 @@ public class IndexController {
 	private IndexService indexService;
 	@Autowired
 	private ApplyService applyService;
+	@Autowired
+	private MemberService memberSerivce;
 	
 	@GetMapping("/indexList")
 	public String indexList(Model model) {
@@ -72,16 +76,47 @@ public class IndexController {
 			) {
 		StringJoiner joiner = new StringJoiner(", ");
 		for (RefColumnDto refColumn : applyIndexRequest.getRefColumn()) {
-		    joiner.add(refColumn.getColId() + " " + refColumn.getColOrder());
+			joiner.add(refColumn.getColId() + " " + refColumn.getColOrder());
 		}
 		String combineRefColumn = joiner.toString();
-		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyIndexRequest.getApplyIndexDto().setRefColumn(combineRefColumn);
+		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
 		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
 	}
 	
+	@ResponseBody
+	@PostMapping("/applyIndexDel")
+	public void applyIndexDel(
+			@RequestBody ApplyIndexRequestDto applyIndexRequest,
+			Authentication authentication) {
+		applyIndexRequest.getApplyListDto().setMId(authentication.getName());
+		applyService.addApplyIndex(applyIndexRequest.getApplyListDto(), applyIndexRequest.getApplyIndexDto());
+	}
+	
+	@ResponseBody
+	@GetMapping("/searchIndexNoPk")
+	public List<IndexDto> searchIndexNoPk(
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName
+			) {
+		List<IndexDto> list = 
+				indexService.getIndexListNoPk(indexName, columnName, tableName, schemaName);
+		return list;
+	}
+	
 	@GetMapping("/indexDeleteForm")
-	public String indexDeleteForm() {
+	public String indexDeleteForm(
+			@RequestParam String indexName,
+			@RequestParam String columnName,
+			@RequestParam String tableName,
+			@RequestParam String schemaName,
+			Model model) {
+		List<IndexDto> list = 
+				indexService.getIndexList(indexName, columnName, tableName, schemaName);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("list", list);
 		return "dbObject/index/indexDeleteForm";
 	}
 	
@@ -120,10 +155,47 @@ public class IndexController {
 	}
 	
 	@GetMapping("/indexApplyDetail")
-	public String indexApplyDetail(@RequestParam int applyNo,@RequestParam int indexNo, Model model) {
+	public String indexApplyDetail(
+			@RequestParam int applyNo, 
+			@RequestParam int indexNo,
+			@RequestParam String applyType,
+			Model model) {
 		ApplyIndexDetailDto applyIndexDetail = applyService.getApplyIndexListDetail(applyNo);
+		applyIndexDetail.setApplyNo(applyNo);
+		applyIndexDetail.setApplyType(applyType);
 		model.addAttribute("detail", applyIndexDetail);
 		model.addAttribute("no", indexNo);
 		return "dbObject/index/indexApplyDetail";
+	}
+	
+	@ResponseBody
+	@PostMapping("/indexApplyDba")
+	public void indexApplyDba(
+			@RequestBody ApplyIndexDetailDto applyDetail,
+			Authentication auth) {
+		ApplyListDto applyList = new ApplyListDto();
+		applyList.setApplyNo(applyDetail.getApplyNo());
+		applyList.setApprovalStatus(applyDetail.getApprovalStatus());
+		applyList.setApplyType(applyDetail.getApplyType());
+		applyList.setDbaName(memberSerivce.getDbaNameById(auth.getName()));
+		if (applyDetail.getApprovalStatus() == 1) {
+			String query = applyService.createIndexSql(applyDetail);
+			applyList.setQuery(query);
+			applyService.addProcessApproval(applyList);		
+		} else {
+			applyList.setRejectReason(applyDetail.getRejectReason());
+			applyService.addProcessApproval(applyList);
+		}
+	}
+	
+	@ResponseBody
+	@GetMapping("/indexReflectDba")
+	public void indexReflectDba(
+			@RequestParam String schemaName,
+			@RequestParam int applyNo,
+			Authentication auth
+			) {
+		String dbaName = memberSerivce.getDbaNameById(auth.getName());
+		applyService.applyIndexSql(schemaName, applyNo, dbaName);
 	}
 }

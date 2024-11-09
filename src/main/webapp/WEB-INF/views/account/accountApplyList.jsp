@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>계정 신청내역</title>
+<title>>계정관리 > 신청내역</title>
 <link href="${pageContext.request.contextPath}/resources/css/account/accountApplyList.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -17,7 +17,7 @@
 		<div class="col">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="content">
-					<div class="fw-bold account-applyList-title">> 계정 신청내역</div>
+					<div class="fw-bold account-applyList-title">> 계정관리 > 신청내역</div>
 					
 					<div class="d-flex justify-content-end ">
 					 <div class="d-flex align-items-center" id="status">

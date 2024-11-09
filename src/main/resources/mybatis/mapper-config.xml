@@ -24,10 +24,15 @@
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto" alias="ApplyCodeDetail"/>
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyTableListDto" alias="ApplyTableList"/>
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto" alias="ApplyTableDetail"/>
+		<typeAlias type="com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto" alias="ApprovalStatusCount"/>
 		<typeAlias type="com.mycompany.metamong.dto.code.ApplyCodeDto" alias="ApplyCode"/>
 		<typeAlias type="com.mycompany.metamong.dto.item.ApplyItemDto" alias="ApplyItem"/>
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDto" alias="ApplyIndex"/>
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexListDto" alias="ApplyIndexList"/>
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDetailDto" alias="ApplyIndexDetail"/>
+		<typeAlias type="com.mycompany.metamong.dto.sequence.SequenceDto" alias="Sequence"/>
+		<typeAlias type="com.mycompany.metamong.dto.sequence.ApplySequenceDto" alias="ApplySequence"/>
+		<typeAlias type="com.mycompany.metamong.dto.sequence.SequenceApplyListDto" alias="SequenceApplyList"/>
+		<typeAlias type="com.mycompany.metamong.dto.sequence.SequenceDetailDto" alias="SequenceDetail"/>
 	</typeAliases>
 </configuration>

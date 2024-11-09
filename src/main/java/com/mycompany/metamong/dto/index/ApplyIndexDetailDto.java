@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class ApplyIndexDetailDto {
+	private int applyNo;
 	private Date applyDate;
 	private Date complDate;
 	private String MName;
@@ -19,4 +20,5 @@ public class ApplyIndexDetailDto {
 	private String rejectReason;
 	private int approvalStatus;
 	private String query;
+	private String applyType;
 }

@@ -8,7 +8,7 @@ $("#memberTable").on("click", ".table-row", function() {
     $(this).addClass("table-active");
 });
 
-$("#memberSearch").on("keydown", function(event) {
+$("#memberSearch").off("keydown").on("keydown", function(event) {
     if (event.keyCode === 13) { 
         event.preventDefault();
         memberSearch();
@@ -16,7 +16,7 @@ $("#memberSearch").on("keydown", function(event) {
 });
 
 
-$('.bi-search').on('click', function() {
+$('.bi-search').off('click').on('click', function() {
 	memberSearch();
 });
 

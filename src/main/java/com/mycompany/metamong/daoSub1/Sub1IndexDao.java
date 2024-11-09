@@ -18,4 +18,11 @@ public interface Sub1IndexDao {
 			@Param("tableName") String tableName
 			);
 	
+	public List<IndexDto> selectIndexNoPk(
+			@Param("indexName") String indexName, 
+			@Param("columnName") String columName, 
+			@Param("tableName") String tableName
+			);
+	
+	public int createIndex(String sqlSyn);
 }

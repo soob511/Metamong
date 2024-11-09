@@ -40,5 +40,4 @@ public interface IndexDao {
 	
 	public int insertApplyIndex(ApplyIndexDto applyIndexDto);
 	
-	public int insertIndex(String sqlSyn);
 }

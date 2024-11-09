@@ -39,4 +39,25 @@ public class AccountService {
 		return accountDao.selectMemberId(mId);
 		
 	}
+
+	public List<MemberDto> getAccountList(Pager pager) {
+		return accountDao.selectAccountList(pager);
+	}
+
+	public int getAccountListRows() {
+		return accountDao.AccountListRows();
+	}
+
+	public int selectAccountMembers(String option, String keyword) {
+		return accountDao.selectAccountMembers(option,keyword);
+		
+	}
+
+	public List<MemberDto> searchAccountMember(String option, String keyword, Pager pager) {
+		return accountDao.selectAccountSearch(option, keyword, pager);
+	}
+
+	public int updateAccount(MemberDto members) {
+		return accountDao.updateAccount(members);
+	}
 }

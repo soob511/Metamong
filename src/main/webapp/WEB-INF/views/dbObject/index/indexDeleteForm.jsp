@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,8 @@
 <title>인덱스 삭제 신청</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dbObject/index/indexDeleteForm.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -17,30 +20,8 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 				<div class="index-container">
 					<div>
-						<div class="table-list-header">
-							<p class="table-list-title">&gt; 인덱스 삭제</p>
-						</div>
-						<div class="table-list-filters">
-							<div class="table-search">
-								<label for="tableNameSearch" class="table-search-label">인덱스명</label>
-								<div class="container-fluid">
-									<form class="d-flex search-form">
-										<input class="form-control me-2" type="search"
-											id="tableNameSearch" placeholder="Search" aria-label="Search">
-										<i class="bi bi-search"></i>
-									</form>
-								</div>
-							</div>
-							<div class="schema-filter">
-								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
-								<select id="schemaSelect" class="form-select"
-									aria-label="Default select example">
-									<option selected>선택</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</select>
-							</div>
+						<div class="index-list-header">
+							<p>&gt; 인덱스 삭제</p>
 						</div>
 					</div>
 					<hr>
@@ -50,39 +31,70 @@
 								<p class="index-apply-title">인덱스</p>
 								<div class="table-container">
 									<table class="table table-hover">
-										<thead class="table-primary">
+										<thead class="table-secondary">
 											<tr>
-												<th scope="col"><input class="form-check-input"
-													type="checkbox" value="" id="flexCheckDefault"></th>
+												<th scope="col">
+													<input class="form-check-input" type="checkbox" id="flexCheckDefault" disabled>
+												</th>
 												<th scope="col">No.</th>
 												<th scope="col">인덱스명</th>
 												<th scope="col">스키마명</th>
 												<th scope="col">참조테이블명</th>
 												<th scope="col">참조컬럼명</th>
+												<th scope="col">컬럼순서</th>
 												<th scope="col">유일성</th>
+												<th scope="col">정렬</th>
+												<th scope="col">PK</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<th><input class="form-check-input" type="checkbox"
-													value="" id="flexCheckChecked" checked></th>
-												<td>1</td>
-												<td>SEQ_CODE</td>
-												<td>kosa_oracle_server-team3</td>
-												<td>참조테이블</td>
-												<td>참조컬럼</td>
-												<td>N</td>
-											</tr>
+										<tbody id="indexTableBody">
+											<c:forEach items="${list}" var="index" varStatus="status">
+												<tr>
+												<th>
+													<input class="form-check-input" type="checkbox" checked>
+												</th>
+												<td>${status.index + 1}</td>
+												<td data-name="idxName" data-value="${index.indexName}">
+													${index.indexName}
+												</td>
+												<td data-name="schemaName" data-value="${index.schemaName}">
+							                      	<c:choose>
+									                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_1'}">SPM</c:when>
+									                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_2'}">PMS</c:when>
+									                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_3'}">HR</c:when>
+									                    <c:otherwise></c:otherwise>
+									                </c:choose>
+							                	</td>
+												<td data-name="tableName" data-value="${index.tableName}">
+													${index.tableName}
+												</td>
+												<td data-name="refColumn" data-value="${index.columnName}">
+													${index.columnName}
+												</td>
+												<td data-name="columnPosition" data-value="${index.columnPosition}">
+													${index.columnPosition}
+												</td>
+												<td data-name="isUnique" data-value="${index.uniqueness}">
+													${index.uniqueness}
+												</td>
+												<td data-name="descend" data-value="${index.descend}">
+													${index.descend}
+												</td>
+												<td data-name="pkStatus" data-value="${index.pkStatus}">
+													${index.pkStatus}
+												</td>
+												<td data-name="tableNo" data-value="${index.tableNo}" style="display: none;"></td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
 							</div>
 							<div class="col index-apply-reason">
 								<p>신청사유</p>
-								<textarea></textarea>
-								<a href="indexApplyList">
-									<button class="btn-add">신청</button>
-								</a>
+								<textarea id="indexApplyReason"></textarea>
+								<div class="msg" id="reasonValidMessage"></div>
+								<button id="btnApply" class="btn-add">신청</button>
 							</div>
 						</div>
 					</div>
@@ -91,6 +103,6 @@
 		</div>
 	</div>
 	<script
-		src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexList.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexDeleteForm.js"></script>
 </body>
 </html>

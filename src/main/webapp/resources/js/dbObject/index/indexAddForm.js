@@ -4,7 +4,6 @@ $(document).ready(function() {
     $('.sub-menu:eq(1)').addClass('active');
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:eq(2)').addClass('active');
-    filterTable();
     
     $('#schemaSelect').change(function() {
     	filterTable();
@@ -57,7 +56,7 @@ function getCheckedOnePk() {
 
 function getSchemaName(schemaName) {
     switch (schemaName) {
-        case 'USER_2024_OTI_FINAL_TEAM1_1': return 'SPM';
+        case 'USER_2024_OTI_FINAL_TEAM1_1': return 'SRM';
         case 'USER_2024_OTI_FINAL_TEAM1_2': return 'PMS';
         case 'USER_2024_OTI_FINAL_TEAM1_3': return 'HR';
         default: return '';
@@ -240,7 +239,8 @@ function filterTable() {
 			schemaName : schemaName
 		},
 		success : function(data) {
-			let html = '<option>선택</option>';
+			console.log(data);
+			let html = '<option data-name="선택">선택</option>';
 
 			data.forEach(function(table) {
 				if (table != null) {
@@ -266,8 +266,7 @@ function filterColumn() {
 	let schemaName = $('#schemaSelect').val();
 	let tableName = $('#tableSelect').find(':selected').data('name');
 	let tableNo = $('#tableSelect').val();
-	let tableValue = $('#tableSelect').val();
-	if (tableValue === '선택') {
+	if (tableNo === '선택') {
 		$('#columnTableBody').html('');
 		return;
 	}
