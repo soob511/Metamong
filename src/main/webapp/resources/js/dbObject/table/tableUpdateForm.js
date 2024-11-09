@@ -25,17 +25,13 @@ $(document).ready(function() {
         $("#nullable").val(colNullable);
         $("#isUse").val(colPk);
 
-        // 기존 컬럼인지 새로 추가된 컬럼인지 확인
-        const isNewColumn = $(this).data("change") === 1;
-
-        // 원래 있던 컬럼이면 컬럼NM, 컬럼ID, PK 비활성화
-        if (!isNewColumn) {
-            $("#colNm").prop("disabled", true);
-            $("#colId").prop("disabled", true);
-        } else {
-            $("#colNm").prop("disabled", false);
-            $("#colId").prop("disabled", false);
-        }
+     /*
+		 * // 기존 컬럼인지 새로 추가된 컬럼인지 확인 const isNewColumn = $(this).data("change")
+		 * === 1; // 원래 있던 컬럼이면 컬럼NM, 컬럼ID, PK 비활성화 if (!isNewColumn) {
+		 * $("#colNm").prop("disabled", true); $("#colId").prop("disabled",
+		 * true); } else { $("#colNm").prop("disabled", false);
+		 * $("#colId").prop("disabled", false); }
+		 */
 
         $(".btn-update").prop("disabled", false);
 	});
@@ -43,18 +39,21 @@ $(document).ready(function() {
     const pkSelect = $("#isUse");
     const nullableSelect = $("#nullable");
 
-    if (pkSelect.val() === "Y") {
-        nullableSelect.val("NOTNULL");
-        nullableSelect.prop("disabled", true);
-    }
-
-    pkSelect.on("change", function() {
+    // PK가 Y이면 NULL 옵션을 NOTNULL로 고정하고, N이면 자유롭게 설정 가능
+    function updateNullableSelect() {
         if (pkSelect.val() === "Y") {
             nullableSelect.val("NOTNULL");
             nullableSelect.prop("disabled", true);
         } else {
             nullableSelect.prop("disabled", false);
         }
+    }
+
+    // 초기 상태 업데이트
+    updateNullableSelect();
+
+    pkSelect.on("change", function() {
+    	updateNullableSelect();
     });
     
     function resetAndDisableButton() {
@@ -65,10 +64,7 @@ $(document).ready(function() {
         $(".checkTr").removeClass("table-active");
         $("#colNm").prop("disabled", false);
         $("#colId").prop("disabled", false);
-        if (pkSelect.val() === "Y") {
-            nullableSelect.val("NOTNULL");
-            nullableSelect.prop("disabled", true);
-        }
+        updateNullableSelect();
     }
     
     $.ajax({
@@ -217,7 +213,7 @@ $(document).ready(function() {
                 // 새로 추가된 행의 data-change 속성 값을 확인
                 console.log("New row data-change:", $("#columnList tr:last").attr("data-change"));
 
-                $("#itemForm")[0].reset(); 
+                resetAndDisableButton();
             }
         }
     });
@@ -251,8 +247,7 @@ $(document).ready(function() {
                 }
                 console.log("Updated row data-change:", selectedRow.attr("data-change"));
 
-                $("#itemForm")[0].reset();
-                selectedRow.removeClass("selected");
+                resetAndDisableButton();
                 $(".btn-update").prop("disabled", true);
             }
         } else {
