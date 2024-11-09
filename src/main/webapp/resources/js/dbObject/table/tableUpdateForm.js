@@ -317,6 +317,7 @@ $(document).ready(function() {
         var tableContent = $("#tableContent").val();
         var columns = [];
         var applyType = "UPDATE";
+        var tableNo = $(".codeAdd-subtitle").data("table-no"); 
         
         $("#columnList tr").each(function() {
             var column = {
@@ -354,7 +355,8 @@ $(document).ready(function() {
         		applyReason:applyReason,
         		tableContent:tableContent,
         		columns:columns,
-        		applyType:applyType	
+        		applyType:applyType,
+        		tableNo:tableNo
         	}
         	console.log(tableInfo);
             $.ajax({

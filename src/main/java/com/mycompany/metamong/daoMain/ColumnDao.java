@@ -28,4 +28,8 @@ public interface ColumnDao {
 
 	public ColumnDto selectColumn(@Param("schema")String schema,@Param("tableId")String tableId,@Param("colId")String colId);
 
+	public List<ColumnDto> selectColumnBytableNo(int tableNo);
+
+	public int deleteColumn(ColumnDto col);
+
 }
