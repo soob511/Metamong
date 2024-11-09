@@ -2,13 +2,26 @@ $(document).ready(function() {
     $('.menu-item').removeClass('active');
     $('.menu-item:first').addClass('active');
     
+	
+	getApprovalStatus();
+	searchTable().then(function() {
+		let tableId = $("#tableList tr").data('value');
+	    showColumnList(tableId);
+	});
+	$("#schemaSelect").on("change", function() {
+        searchTable();
+    });
+	
+});
+
+function getApprovalStatus() {
 	let ctx = document.getElementById('chart').getContext('2d');
-	let myChart = new Chart(ctx, {
+	myChart = new Chart(ctx, {
 	    type: 'doughnut',
 	    data: {
-	    	labels: ['접수', '승인', '반려', '반영'],
+	    	labels: ['승인대기', '승인', '반려', '반영'],
 	        datasets: [{
-	            data: [10, 2, 3, 5],
+	            data: [0, 0, 0, 5],
 	            backgroundColor: [
 	                'rgba(255, 175, 163)',
 	                'rgba(128, 202, 255)',
@@ -33,21 +46,38 @@ $(document).ready(function() {
 	            },
 	            title: {
 	              display: true,
-	              text: '전체 30건'
+	              text: ''
 	            }
 	          }
 	    }
 	});
-	
-	searchTable().then(function() {
-		let tableId = $("#tableList tr").data('value');
-	    showColumnList(tableId);
+	$.ajax({
+		url : "/Metamong/getApprovalStatus",
+		type : "GET",
+		success : function(data) {
+			
+            const chartData = [
+                data.awaitCount,     
+                data.approvedCount,  
+                data.rejectedCount,  
+                data.reflectCount    
+            ];
+            const summarySpans = $(".summary-box .fw-bold");
+
+            summarySpans.eq(0).text(chartData[0]);  
+            summarySpans.eq(1).text(chartData[1]);  
+            summarySpans.eq(2).text(chartData[2]);  
+            summarySpans.eq(3).text(chartData[3]);
+            
+            myChart.data.datasets[0].data = chartData;
+            myChart.options.plugins.title.text = `전체 ${chartData.reduce((a, b) => a + b)}건`;
+            myChart.update(); // 차트 업데이트
+		},
+		error : function(xhr, status, error) {
+			console.log('오류: ' + xhr.responseText);
+		}
 	});
-	$("#schemaSelect").on("change", function() {
-        searchTable();
-    });
-	
-});
+}
 
 function showColumnList(tableId) {
     $.ajax({

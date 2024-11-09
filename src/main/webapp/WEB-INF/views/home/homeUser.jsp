@@ -30,20 +30,20 @@
 									<h4 class="project-user">반가워요! <span class="fw-bold">${userName}</span><span class="fs-5">님</span></h4>
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
-											<p>접수</p>
-											<h3><span class="fw-bold">${mApprovalStatus.awaitCount}</span><span class="fs-4">건</span></h3>
+											<p>승인대기</p>
+											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>승인</p>
-											<h3><span class="fw-bold">${mApprovalStatus.approvedCount}</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반려</p>
-											<h3><span class="fw-bold">${mApprovalStatus.rejectedCount}</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반영</p>
-											<h3><span class="fw-bold">${mApprovalStatus.reflectCount}</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
 								</div>

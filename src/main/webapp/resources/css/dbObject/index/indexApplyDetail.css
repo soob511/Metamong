@@ -114,3 +114,7 @@ thead {
 	font-size: 14px;
 	margin-right: 60px;
 }
+
+.table-primary {
+	text-align: center !important;
+}

@@ -36,6 +36,7 @@ import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto;
+import com.mycompany.metamong.dto.applyList.ApprovalStatusDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
@@ -48,7 +49,6 @@ import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.item.ApplyItemDto;
 import com.mycompany.metamong.dto.item.ItemApplyDto;
 import com.mycompany.metamong.dto.item.ItemDto;
-import com.mycompany.metamong.dto.member.ApprovalStatusDto;
 import com.mycompany.metamong.dto.sequence.SequenceApplyListDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
@@ -513,7 +513,7 @@ public class ApplyService {
 			applyList.setApprovalStatus(2);
 			applyList.setRejectReason("반영할 수 없는 신청입니다");
 			applyListDao.updateProcessApproval(applyList);
-			throw new RuntimeException("트랜잭셔널 오류 발생");
+			throw new RuntimeException("오류 발생");
 		}
 		applyList.setApprovalStatus(3);
 		applyListDao.updateProcessApproval(applyList);
@@ -522,9 +522,8 @@ public class ApplyService {
 	public ApprovalStatusDto countApprovalStatus(String mId) {
 		List<ApprovalStatusCountDto> approvalStatusCount = applyListDao.selectApprovalStatus(mId);
 		ApprovalStatusDto approvalStatus = new  ApprovalStatusDto();
-        int totalCount = 0;
+        
 		for (ApprovalStatusCountDto status : approvalStatusCount) {
-			totalCount += status.getCount();
             switch (status.getApprovalStatus()) {
                 case 0: approvalStatus.setAwaitCount(status.getCount()); break;
                 case 1: approvalStatus.setApprovedCount(status.getCount()); break;
@@ -532,7 +531,6 @@ public class ApplyService {
                 case 3: approvalStatus.setReflectCount(status.getCount()); break;
             }
         }
-		approvalStatus.setTotalCount(totalCount);
         return approvalStatus;
     }
 }
