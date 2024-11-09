@@ -47,13 +47,12 @@
                                 <p class="code-management-title">코드</p>
                                 
                                 <sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
-									<div class="code-buttons">
-	                                    <button class="btn-excel">EXCEL 업로드</button>
+									<div class="code-buttons d-flex gap-1">
+										<button data-bs-toggle="modal" data-bs-target="#excelModal" class="btn-excel">EXCEL 업로드</button>
 	                                    <a href="codeAddForm"><button class="btn-add">추가</button></a>
 	                                    <button class="btn-edit">수정</button>
 	                                </div>
-								</sec:authorize>
-								
+								</sec:authorize>								
                             </div>
                             <div class="code-table-container">
                                 <table class="table table-hover" id="codeTable">
@@ -110,6 +109,82 @@
             </div>
         </div>
     </div>
+    
+    <!-- excel 모달  -->
+	<div class="modal fade" tabindex="-1" id="excelModal" data-bs-backdrop="static">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title">EXCEL 업로드</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="excel-btns d-flex  justify-content-end gap-1 ms-2 ps-1">
+			<form id="uploadForm" enctype="multipart/form-data" class="d-flex">
+			    <input type="file" name="file" id="fileInput" accept=".xlsx, .xls" style="display: none;" />
+			    <label for="fileInput" class="btn-excel modal-btn-excel">EXCEL 업로드</label>
+			</form>
+	      	<a href="codeExcelDownload"><button class="btn-download">양식 다운로드</button></a>
+			<button class="btn-refresh">초기화</button>
+			</div>
+	        <div class="container-fluid">
+	        	<div class="row">
+	        		<div class="col modal-code-table">
+	        			<div class="code-management">
+                                <p class="code-management-title">코드</p>
+                            </div>
+                            <div class="code-table-container">
+                                <table class="table table-hover" id="codeTable">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                           <th scope="col">ID</th>
+                                            <th scope="col">코드(논리)</th>
+                                            <th scope="col">코드(물리)</th>
+                                            <th scope="col">코드길이</th>
+                                            <th scope="col">내용</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="codeList" class="excel-codes">
+                                        <tr>
+                                            <td colspan="5">파일을 등록해 주세요.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+	        		</div>
+	        		<div class="col modal-item-table">
+	        			<div class="item-management">
+                                <p class="item-management-title">항목</p>
+                            </div>
+                            <div class="item-table-container">
+                                <table class="table table-hover" id="itemTable">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">항목코드</th>
+                                            <th scope="col">항목명</th>
+                                            <th scope="col">내용</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="itemList" class="excel-items">
+                                        <tr class="no-file">
+                                            <td colspan="4">파일을 등록해 주세요.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+	        		</div>
+	        	</div>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	      <input></input>
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	        <button type="button" class="btn btn-primary" onclick="codeApplyExcel()">신청하기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
     <script src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script>
 </body>
 </html>

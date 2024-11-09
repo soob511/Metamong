@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.item.ItemDto;
+import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.ItemService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +20,20 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/item")
 public class ItemController {
 	@Autowired
-	private ItemService itemService;	
+	private ItemService itemService;
+	@Autowired
+	private ApplyService applyService;
 	
 	@ResponseBody
 	@GetMapping("/itemList")
 	public List<ItemDto> itemList(@RequestParam int codeNo) {
 		return itemService.getItemList(codeNo);
+	}
+	
+	@ResponseBody
+	@GetMapping("/itemApplyExcelList")
+	public List<ItemDto> itemApplyExcelList (int applyNo, int codeNo) {
+		List<ItemDto> applyItems = applyService.getItemsApplyExcelByNo(applyNo, codeNo);			
+		return applyItems;
 	}
 }

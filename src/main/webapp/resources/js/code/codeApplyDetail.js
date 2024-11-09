@@ -4,10 +4,16 @@ $(document).ready(function() {
     $('.sub-menu:eq(0)').addClass('active');
     $('.sub-menu:eq(0) .sub-item').removeClass('active');
     $('.sub-menu:eq(0) .sub-item:eq(1)').addClass('active'); 
+    
+    $(".code-tbody").on("click", ".code", function() {
+	    $(".code").removeClass("table-active");
+	    $(this).addClass("table-active");
+	}); 
 });
 
 /* 승인, 반려 */
-function codeApplyProcess(status){
+function codeApplyProcess(status, applyType){
+	console.log(applyType);
 	const params = new URL(location.href).searchParams;
 	const applyNo = params.get('applyNo');
 	const indexNo = params.get('indexNo');
@@ -25,7 +31,10 @@ function codeApplyProcess(status){
 	        type: "POST",
 	        data: { applyNo: applyNo, status: status, reason: reason },
 	        success: function(data) {
-	            location.href = data + "&indexNo=" + indexNo;    
+	        	console.log(applyType);
+	        	location.href = applyType == 'EXCEL' 
+	        		? data +"codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
+	        		: data +"codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
 	        }
 	    });
 	});
@@ -52,3 +61,28 @@ function applyComplete() {
         }
     });
 };
+
+/* 항목 가져오기 */
+function getExcelItems(codeNo) {
+	const params = new URL(location.href).searchParams;
+	const applyNo = params.get('applyNo');
+	
+	$.ajax({
+        url: "/Metamong/item/itemApplyExcelList",
+        type: "GET",
+        data: { applyNo: applyNo, codeNo: codeNo },
+        success: function (data) {
+            let html = " ";
+            let count = 0;
+            data.forEach((item) => {
+                html += `<tr>
+                    <td>${++count}</td>
+                    <td>${item.itemId}</td>
+                    <td>${item.itemNm}</td>
+                    <td>${item.itemContent}</td>
+                </tr>`;
+            });
+            $(".item-tbody").html(html);
+        },
+    });
+}

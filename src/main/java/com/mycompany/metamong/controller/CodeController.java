@@ -1,10 +1,16 @@
 package com.mycompany.metamong.controller;
 
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
@@ -77,7 +84,7 @@ public class CodeController {
 	@PostMapping("/applyCode")
 	public ResponseEntity<String> applyCode(Authentication auth, @RequestBody CodeApplyDto form, HttpSession session) {
 		session.removeAttribute("applyReason");
-		applyService.addApplyCode(form, auth);
+		applyService.addApplyCode(form, auth, 0);
 		return ResponseEntity.ok("/Metamong/code/codeApplyList");
 	}
 	
@@ -169,7 +176,6 @@ public class CodeController {
 		return "code/codeApplySearch";
 	}
 	
-	
 	@GetMapping("/codeApplyDetail")
 	public String codeApplyDetail(int applyNo, int indexNo, Authentication auth, Model model) {		
 		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo);
@@ -182,8 +188,8 @@ public class CodeController {
 		model.addAttribute("applyList", applyList);
 		model.addAttribute("indexNo", indexNo);
 		
-		CodeDto applyCode = applyService.getCodeApplyByNo(applyNo);
-		model.addAttribute("applyCode", applyCode);
+		List<CodeDto> applyCode = applyService.getCodeApplyByNo(applyNo);
+		model.addAttribute("applyCode", applyCode.get(0));
 		
 		List<ItemDto> applyItems = applyService.getItemsApplyByNo(applyNo);
 		model.addAttribute("applyItems",applyItems);
@@ -202,8 +208,7 @@ public class CodeController {
 		params.put("status", status); 
 		
 		applyService.updateCodeStatus(params);
-		
-		return ResponseEntity.ok("/Metamong/code/codeApplyDetail?applyNo=" + applyNo);
+		return ResponseEntity.ok("/Metamong/code/");
 	}
 	
 	@PostMapping("/applyComplete")
@@ -211,7 +216,8 @@ public class CodeController {
 		int result = 1;
 		String type = applyService.getApplyType(applyNo);
 		
-		CodeDto code = applyService.getCodeApplyByNo(applyNo);
+		List<CodeDto> codes = applyService.getCodeApplyByNo(applyNo);
+		CodeDto code = codes.get(0);
 		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 		int itemsLength = items.size();
 		
@@ -228,7 +234,8 @@ public class CodeController {
 	public String codeApplyRewrite(int applyNo, Model model, HttpSession session) {
 		String applyType = applyService.getApplyType(applyNo);
 		
-		CodeDto code = applyService.getCodeApplyByNo(applyNo);
+		List<CodeDto> codes = applyService.getCodeApplyByNo(applyNo);
+		CodeDto code = codes.get(0);
 		List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 		int  itemLength = itemService.getItemList(code.getCodeNo()).size();
 		
@@ -264,5 +271,56 @@ public class CodeController {
 	public List<CodeDto> codeLoadSearch(@RequestParam String keyword){
 		keyword = keyword != null ? keyword.toUpperCase() : null;
 		return codeService.getCodeLoadSearch(keyword);
+	}
+	
+	@ResponseBody
+	@PostMapping("/codeExcelUpload")
+    public Map<String, Object> codeApplyExcel(MultipartFile file, Model model) throws Exception {
+		Map<String, Object> list = codeService.uploadExcel(file);
+		
+		Map<String, Object> response = new HashMap<>();
+		response.put("codeList", list.get("codeList"));
+		response.put("itemList", list.get("itemList"));
+	    return response;
+    }
+	
+	@GetMapping("/codeExcelDownload")
+	public void codeExcelDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setHeader("Content-Disposition", "attachment; filename=\"excel.xlsx\"");
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		
+		String saveDir = request.getServletContext().getRealPath("/resources/file");
+	    Path path = Paths.get(saveDir, "excel.xlsx");
+	    
+		OutputStream out = response.getOutputStream();
+		Files.copy(path, out);
+		out.flush();
+		out.close();
+	}
+	
+	@PostMapping("/codeApplyExcel")
+	public ResponseEntity<String> codeApplyExcel(Authentication auth, @RequestBody List<CodeApplyDto> forms) {
+		log.info(forms.toString());
+		
+		CodeApplyDto form = forms.get(0);		
+		int applyNo = applyService.addApplyCode(form, auth, 0);
+		
+		for (int i = 1; i < forms.size(); i++) {
+			applyService.addApplyCode(forms.get(i), auth, applyNo);
+		}
+	return ResponseEntity.ok("/Metamong/code/codeApplyList");
+	}
+	
+	@GetMapping("/codeApplyExcelDetail")
+	public String codeApplyExcelDetail(int applyNo, int indexNo, Authentication auth, Model model) {		
+		ApplyCodeDetailDto applyList = applyService.getCodeApplyDetail(applyNo);
+		model.addAttribute("applyList", applyList);
+		model.addAttribute("indexNo", indexNo);
+		
+		List<CodeDto> applyCodes = applyService.getCodeApplyByNo(applyNo);
+		model.addAttribute("applyCodes", applyCodes);
+		model.addAttribute("totalCount", applyCodes.size());
+		
+		return "code/codeApplyExcelDetail";
 	}
 }

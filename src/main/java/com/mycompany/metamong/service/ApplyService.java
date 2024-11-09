@@ -116,7 +116,7 @@ public class ApplyService {
 		return applyListDao.selectCodeApplyDetail(applyNo);
 	}
 
-	public CodeDto getCodeApplyByNo(int applyNo) {
+	public List<CodeDto> getCodeApplyByNo(int applyNo) {
 		return codeDao.selectCodeApplyByNo(applyNo);
 	}
 
@@ -126,6 +126,10 @@ public class ApplyService {
 	
 	public List<ApplyItemDto> getApplyItemsByNo(int applyNo) {
 		return itemDao.selectApplyItemsByNo(applyNo);
+	}
+	
+	public List<ItemDto> getItemsApplyExcelByNo(int applyNo, int codeNo) {
+		return itemDao.selectItemsExcelByNo(applyNo, codeNo);
 	}
 
 	public List<ApplyTableListDto> getApplyTableList(Pager pager) {
@@ -141,16 +145,20 @@ public class ApplyService {
 	}
 
 	@Transactional
-	public void addApplyCode(CodeApplyDto form, Authentication auth) {
+	public int addApplyCode(CodeApplyDto form, Authentication auth, int applyNo) {
 		ApplyListDto apply = new ApplyListDto();
 		apply.setMId(auth.getName());
 		apply.setApplyReason(form.getApplyReason());
 		apply.setApplyObj("CODE");
 		apply.setApplyType(form.getApplyType());
 		applyListDao.insertApplyList(apply);
+		
+		if(applyNo == 0) {
+			applyNo = apply.getApplyNo();
+		}
 
 		ApplyCodeDto code = new ApplyCodeDto();
-		code.setApplyNo(apply.getApplyNo());
+		code.setApplyNo(applyNo);
 		code.setCodeNo(form.getCodeNo());
 		code.setCodeId(form.getCodeId());
 		code.setCodeNm(form.getCodeNm());
@@ -162,16 +170,18 @@ public class ApplyService {
 		List<ItemApplyDto> items = form.getItems();
 		for (ItemApplyDto i : items) {
 			ApplyItemDto item = new ApplyItemDto();
-			item.setApplyNo(apply.getApplyNo());
-			item.setItemId(i.getItemId());
-			item.setItemNm(i.getItemNm());
-			item.setItemContent(i.getItemContent());
-			item.setItemIsActive(i.getItemIsActive());
-			item.setItemIsUpdate(i.getItemIsUpdate());
-			itemDao.insertApplyItem(item);
-		}
+	        item.setApplyNo(applyNo);
+	        item.setItemId(i.getItemId());
+	        item.setItemNm(i.getItemNm());
+	        item.setItemContent(i.getItemContent());
+	        item.setItemIsActive(i.getItemIsActive());
+	        item.setItemIsUpdate(i.getItemIsUpdate());
+	        item.setCodeNo(code.getCodeNo());
+	        itemDao.insertApplyItem(item);
+	    }
+		return apply.getApplyNo();
 	}
-
+	
 	@Transactional
 	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
 		applyListDao.insertApplyList(applyListDto);
