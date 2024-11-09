@@ -13,7 +13,6 @@ $(document).ready(function() {
 
 /* 승인, 반려 */
 function codeApplyProcess(status, applyType){
-	console.log(applyType);
 	const params = new URL(location.href).searchParams;
 	const applyNo = params.get('applyNo');
 	const indexNo = params.get('indexNo');
@@ -31,7 +30,6 @@ function codeApplyProcess(status, applyType){
 	        type: "POST",
 	        data: { applyNo: applyNo, status: status, reason: reason },
 	        success: function(data) {
-	        	console.log(applyType);
 	        	location.href = applyType == 'EXCEL' 
 	        		? data +"codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
 	        		: data +"codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
@@ -41,7 +39,7 @@ function codeApplyProcess(status, applyType){
 };
 
 /* 반영 */
-function applyComplete() {
+function applyComplete(applyType) {
     const params = new URL(location.href).searchParams;
     const applyNo = params.get('applyNo');
     const indexNo = params.get('indexNo');
@@ -56,7 +54,9 @@ function applyComplete() {
                 title: data != 0 ? "반영이<br/>완료되었습니다." : "반영할 수 없는 신청입니다.",
                 text: data !=0 ? null : "해당 신청은 반려처리 됩니다."
             }).then(() => {
-                location.href = "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+            	location.href = applyType == 'EXCEL' 
+	        		? "/Metamong/code/codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
+	        		: "/Metamong/code/codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
             });
         }
     });
