@@ -57,7 +57,7 @@
 </select>
 
 <select id="selectApplyTable" parameterType="int" resultType="Table">
- SELECT table_id,table_nm,table_content
+ SELECT table_no,table_id,table_nm,table_content
  FROM apply_table
  WHERE apply_no = #{applyNo}
 </select>
