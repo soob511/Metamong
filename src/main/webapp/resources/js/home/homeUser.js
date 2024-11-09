@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 function getApprovalStatus() {
 	let ctx = document.getElementById('chart').getContext('2d');
-	myChart = new Chart(ctx, {
+	let myChart = new Chart(ctx, {
 	    type: 'doughnut',
 	    data: {
 	    	labels: ['승인대기', '승인', '반려', '반영'],
