@@ -47,11 +47,13 @@ $(document).ready(function() {
 function checkCheckBox(checkbox) {
     const isChecked = $(checkbox).is(':checked');
     const dataValue = $(checkbox).closest('tr').find('td:nth-child(3)').text().trim();
+    
     if (!isChecked) {
         $('#indexTableBody tr').each(function () {
             const rowCheckBox = $(this).find('.form-check-input');
-            rowCheckBox.prop('disabled', false);
             rowCheckBox.prop('checked', false);
+            rowCheckBox.css('display', 'block');  // 체크박스를 다시 보이도록
+            rowCheckBox.css('margin', '0 auto');  // 중앙 정렬
         });
     } else {
         $('#indexTableBody tr').each(function () {
@@ -60,10 +62,11 @@ function checkCheckBox(checkbox) {
             
             if (rowDataValue === dataValue) {
                 rowCheckBox.prop('checked', isChecked);
-                rowCheckBox.prop('disabled', false);
+                rowCheckBox.css('display', 'block');  // 체크박스를 보이도록
+                rowCheckBox.css('margin', '0 auto');  // 중앙 정렬
             } else {
                 rowCheckBox.prop('checked', false);
-                rowCheckBox.prop('disabled', true);
+                rowCheckBox.css('display', 'none');  // 체크박스를 숨김
             }
         });
     }
@@ -220,7 +223,7 @@ function navToDeletePage() {
 			title: '인덱스를 다시<br>선택해주세요.',
 			text: '인덱스를 선택해주세요.',
 		})
-    } else if (row.length === 1 && pkStatus === 'N') {
+    } else if (row.length === 1 && pkStatus === 'Y') {
     	Swal.fire({ 
 			icon: 'warning',
 			title: '인덱스를 다시<br>선택해주세요.',

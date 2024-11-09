@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -75,18 +75,19 @@
 						<div class="tables-table">
 							<div class="tables-management">
 								<p class="tables-management-title">인덱스</p>
-								<div class="tables-buttons">
-									<a href="${pageContext.request.contextPath}/index/indexAddForm"><button
-											class="btn-add">추가</button></a>
-										<button id="btnDelete" class="btn-del">삭제</button>
-								</div>
+								<sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA') and !hasRole('ROLE_ADMIN')">								
+									<div class="tables-buttons">
+										<a href="${pageContext.request.contextPath}/index/indexAddForm"><button
+												class="btn-add">추가</button></a>
+											<button id="btnDelete" class="btn-del">삭제</button>
+									</div>
+								</sec:authorize>
 							</div>
 							<div class="table-container">
 								<table class="table table-hover">
 									<thead class="table-secondary">
 										<tr>
-											<th scope="col"><input class="form-check-input"
-												type="checkbox" id="flexCheckDefault" disabled></th>
+											<th scope="col"></th>
 											<th scope="col">No.</th>
 											<th scope="col">인덱스명</th>
 											<th scope="col">스키마명</th>
