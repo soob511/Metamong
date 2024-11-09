@@ -171,7 +171,8 @@ function showItemList(codeNo) {
 /* 엑셀 코드 신청 */
 function codeApplyExcel() {
 	let codeDatas = [];	
-
+	let applyReason = $('.applyReason').val().trim();
+	console.log(applyReason);
 	$('.excel-codes .code-row').each(function() {
 		let id = $(this).find('th').text()
 		let codeNm = $(this).find('.codeNm').text();
@@ -204,7 +205,7 @@ function codeApplyExcel() {
 		    codeContent: codeContent,
 		    codeIsActive: 1,
 		    applyType: 'EXCEL',
-		    applyReason: "-",
+		    applyReason: applyReason,
 		    items: items,
 		});
 	});
@@ -215,32 +216,28 @@ function codeApplyExcel() {
 		    title: "파일을 등록해 주세요."
 		})
 		return;
+	} else if(!applyReason) {
+		Swal.fire({
+		    icon: "warning",
+		    title: "신청사유를 입력해 주세요."
+		})
+		return;
 	}
 	
-	Swal.fire({
-	    icon: "info",
-	    title: "신청사유를 입력하세요.",
-	    input: 'text',
-	}).then(result => {
-		/*codeDatas.forEach(function(data) {
-		    data.applyReason = result.value;
-		});*/
-
-	    $.ajax({
-	        url: "/Metamong/code/codeApplyExcel",
-	        type: "POST",
-	        contentType: "application/json",
-		    data: JSON.stringify(codeDatas),
-		    traditional: true,
-	        success:function (data) {
-		        Swal.fire({
-		          icon: "success",
-		          title: "코드/항목 생성 신청이<br/>완료되었습니다.",
-		          text: "신청 승인 후, 코드 사용이 가능합니다.",
-		        }).then(() => {
-		         location.href = data;
-		        });
-		      },
-	    });
-	});
+    $.ajax({
+        url: "/Metamong/code/codeApplyExcel",
+        type: "POST",
+        contentType: "application/json",
+	    data: JSON.stringify(codeDatas),
+	    traditional: true,
+        success:function (data) {
+	        Swal.fire({
+	          icon: "success",
+	          title: "코드/항목 생성 신청이<br/>완료되었습니다.",
+	          text: "신청 승인 후, 코드 사용이 가능합니다.",
+	        }).then(() => {
+	         location.href = data;
+	        });
+	      },
+    });
 }

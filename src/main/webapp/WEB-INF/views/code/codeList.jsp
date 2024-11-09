@@ -177,10 +177,15 @@
 	        	</div>
 	        </div>
 	      </div>
-	      <div class="modal-footer">
-	      <input></input>
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-primary" onclick="codeApplyExcel()">신청하기</button>
+	      <div class="modal-footer d-flex justify-content-between">
+		      <div class="reason-box d-flex align-items-center gap-3">
+			      <p class="applyReason-title">신청사유</p>
+			      <input class="applyReason" placeholder="입력해 주세요."></input>
+		      </div>
+		      <div class="modal-btns">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-primary" onclick="codeApplyExcel()">신청하기</button>
+	        </div>
 	      </div>
 	    </div>
 	  </div>
