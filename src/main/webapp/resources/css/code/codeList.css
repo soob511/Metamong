@@ -184,11 +184,18 @@ thead{
 	--bs-modal-width: 1600px !important;
 }
 
+.modal-content {
+	padding: 20px;
+}
+
 .modal-footer {
 	border: none !important;
 }
 
 .modal-code-table, .modal-item-table {
-	margin: 20px;
 	width: 800px !important;
+}
+
+.modal-code-table {
+	margin-right: 40px;
 }

@@ -111,7 +111,7 @@
     </div>
     
     <!-- excel 모달  -->
-	<div class="modal fade" id="excelModal" data-bs-backdrop="static" aria-hidden="true">
+	<div class="modal fade" tabindex="-1" id="excelModal" data-bs-backdrop="static">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -119,7 +119,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	      	<div class="excel-btns d-flex  justify-content-end gap-1 ms-2">
+	      	<div class="excel-btns d-flex  justify-content-end gap-1 ms-2 ps-1">
 			<form id="uploadForm" enctype="multipart/form-data" class="d-flex">
 			    <input type="file" name="file" id="fileInput" accept=".xlsx, .xls" style="display: none;" />
 			    <label for="fileInput" class="btn-excel modal-btn-excel">EXCEL 업로드</label>
@@ -178,13 +178,13 @@
 	        </div>
 	      </div>
 	      <div class="modal-footer">
+	      <input></input>
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 	        <button type="button" class="btn btn-primary" onclick="codeApplyExcel()">신청하기</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
-	   
     <script src="${pageContext.request.contextPath}/resources/js/code/codeList.js"></script>
 </body>
 </html>

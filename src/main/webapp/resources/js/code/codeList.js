@@ -58,7 +58,6 @@ $(document).ready(function () {
 
     /* EXCEL 업로드 */
     $('#fileInput').change(function () {
-    	console.log("실행");
         let file = $('#fileInput')[0].files[0];
 
         let formData = new FormData();
@@ -213,7 +212,7 @@ function codeApplyExcel() {
 	if($('.excel-codes .code-row').length == 0) {
 		Swal.fire({
 		    icon: "warning",
-		    title: "파일을 등록해 주세요.",
+		    title: "파일을 등록해 주세요."
 		})
 		return;
 	}
@@ -221,7 +220,7 @@ function codeApplyExcel() {
 	Swal.fire({
 	    icon: "info",
 	    title: "신청사유를 입력하세요.",
-	    input: 'text'
+	    input: 'text',
 	}).then(result => {
 		/*codeDatas.forEach(function(data) {
 		    data.applyReason = result.value;
