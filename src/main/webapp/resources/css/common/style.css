@@ -166,7 +166,7 @@ p.logo a {
    	text-align:center !important;
    	position: fixed;
     bottom: 40px;
-    left: 50%;
+    left: calc(50% + 25px);
     z-index: 100;
 }
 
@@ -176,5 +176,3 @@ p.logo a {
     left: 50%;
     z-index: 100;
 }
-
-

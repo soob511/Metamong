@@ -21,7 +21,7 @@
             	<c:if test="${pager.totalRows > 0}">
 	                <c:forEach items="${list}" var="code" varStatus="status">
 	                    <tr>
-	                        <th scope="row">${status.index + 1}</th>
+	                        <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
 	                        <td>
 	                            <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 	                        </td>
