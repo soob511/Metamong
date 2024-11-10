@@ -37,7 +37,7 @@
 								</select>
 			                </div>
 			                <div class="filter">
-			                  <label for="tableSelect" class="filter-label">테이블 선택</label>
+			                  <label for="tableSelect" class="filter-label">참조테이블 선택</label>
 			                  <select id="tableSelect" class="form-select" aria-label="select example">
 			      				<option>선택</option>
 			                  </select>
@@ -49,7 +49,7 @@
 						<div class="row">
 							<div class="col-7 index-table">
 								<p class="index-apply-title">컬럼</p>
-								<div class="table-container">
+								<div class="column-container">
 									<table class="table table-hover">
 										<thead class="table-secondary">
 											<tr>
@@ -71,8 +71,8 @@
 									</table>
 								</div>
 								<div></div>
-								<div class="table-container-second">
-					                <table class="table table-hover">
+								<div class="index-info-container">
+					                <table class="table">
 					                  <thead class="table-secondary">
 					                    <tr>
 					                      <th scope="col">No.</th>
@@ -91,9 +91,9 @@
 					                </table>
 			                </div>
 							</div>
-							<div class="col index-col-table">
+							<div class="col selected-column-area">
 								<div
-									class="index-col-title d-flex justify-content-between align-items-end">
+									class="selected-column-title d-flex justify-content-between align-items-end">
 									<div>
 										<span>UNIQUE</span> <input class="form-check-input"
 											type="checkbox" id="uniqueCheckBox">
@@ -107,14 +107,14 @@
 										</button>
 									</div>
 								</div>
-								<div class="index-cols table-container index-apply-table">
-									<table class="table table-hover">
+								<div class="selected-column-container">
+									<table class="table">
 										<thead class="table-secondary">
 											<tr>
 												<th scope="col">No.</th>
-												<th scope="col">컬럼명(물리)</th>
-												<th scope="col">정렬</th>
-												<th></th>
+												<th>컬럼명(물리)</th>
+												<th>정렬</th>
+												<th>삭제</th>
 											</tr>
 										</thead>
 										<tbody id="indexApplyColumn">

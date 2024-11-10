@@ -114,24 +114,24 @@
 						</table>
 						</div>
 						<div class="page">
-			           			<a href="indexApplyList?pageNo=1" class="btn btn-outline-primary btn-sm"><<</a>
+			           			<a href="indexApplyList?pageNo=1" class="btn btn-outline-secondary btn-sm"><<</a>
 			           			<c:if test="${pager.groupNo > 1}">
-			           				<a href="indexApplyList?pageNo=${pager.startPageNo - 1}" class="btn btn-outline-info btn-sm"><</a>
+			           				<a href="indexApplyList?pageNo=${pager.startPageNo - 1}" class="btn btn-outline-dark btn-sm"><</a>
 			           			</c:if>
 			           			
 			           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
 			           				<c:if test="${pager.pageNo == i}">
-			           					<a href="indexApplyList?pageNo=${i}" class="btn btn-primary btn-sm">${i}</a>
+			           					<a href="indexApplyList?pageNo=${i}" class="btn btn-secondary btn-sm">${i}</a>
 			           				</c:if>
 			           				<c:if test="${pager.pageNo != i}">
-			           					<a href="indexApplyList?pageNo=${i}" class="btn btn-outline-primary btn-sm">${i}</a>
+			           					<a href="indexApplyList?pageNo=${i}" class="btn btn-outline-secondary btn-sm">${i}</a>
 			           				</c:if>
 			           			</c:forEach>
 			           			
 			           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
-			           				<a href="indexApplyList?pageNo=${pager.endPageNo + 1}" class="btn btn-outline-info btn-sm">></a>
+			           				<a href="indexApplyList?pageNo=${pager.endPageNo + 1}" class="btn btn-outline-dark btn-sm">></a>
 			           			</c:if>
-			           			<a href="indexApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">>></a>
+			           			<a href="indexApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-secondary btn-sm">>></a>
 			           	</div>
 		           	</div>
 				</div>

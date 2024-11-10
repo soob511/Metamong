@@ -17,78 +17,95 @@
 		<div class="col">
 			<jsp:include page="/WEB-INF/views/common/header.jsp" /> 
 			<div class="container main-container">
-				<div class="row">
-					<div class="col-6">
-						<p class="board-title">신청 현황</p>
-						<div class="container dash-board">
-							<div class="row">
-								<div class="col-4 chart">
-									<canvas id="chart" width="400" height="400"></canvas>
-								</div>
-								<div class="col">							
-									<p class="project-title"># MetaMong 프로젝트</p>
-									<h4 class="project-user">반가워요! <span class="fw-bold">${userName}</span><span class="fs-5">님</span></h4>
-									<div class="summary-box d-flex justify-content-center align-items-center">
-										<div>
-											<p>코드/항목</p>
-											<h3><span class="fw-bold">15</span><span class="fs-4">건</span></h3>
-										</div>
-										<div>
-											<p>테이블</p>
-											<h3><span class="fw-bold">10</span><span class="fs-4">건</span></h3>
-										</div>
-										<div>
-											<p>시퀀스</p>
-											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
-										</div>
-										<div>
-											<p>인덱스</p>
-											<h3><span class="fw-bold">3</span><span class="fs-4">건</span></h3>
+					<div class="row">
+						<div class="col-6">
+							<p class="board-title">신청 현황</p>
+							<div class="container dash-board">
+								<div class="row">
+									<div class="col-4 chart">
+										<canvas id="chart" width="400" height="400"></canvas>
+									</div>
+									<div class="col">
+										<p class="project-title"># MetaMong 프로젝트</p>
+										<h4 class="project-user">
+											반가워요! <span class="fw-bold">${userName}</span><span
+												class="fs-5">님</span>
+										</h4>
+										<div
+											class="summary-box d-flex justify-content-center align-items-center">
+											<div>
+												<p>코드/항목</p>
+												<h3>
+													<span class="fw-bold">15</span><span class="fs-4">건</span>
+												</h3>
+											</div>
+											<div>
+												<p>테이블</p>
+												<h3>
+													<span class="fw-bold">10</span><span class="fs-4">건</span>
+												</h3>
+											</div>
+											<div>
+												<p>시퀀스</p>
+												<h3>
+													<span class="fw-bold">2</span><span class="fs-4">건</span>
+												</h3>
+											</div>
+											<div>
+												<p>인덱스</p>
+												<h3>
+													<span class="fw-bold">3</span><span class="fs-4">건</span>
+												</h3>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col notice-box">
-						<div class="d-flex justify-content-between">
-							<p class="board-title">공지사항</p>
-							<a href="${pageContext.request.contextPath}/notice/noticeList"><button class="btn-notice">+ 더보기</button></a>
-						</div>
-						<table class="table table-hover">
-                    <thead class="table">
-                        <tr class="table-secondary">
-                            <th scope="col">No.</th>
-                            <th scope="col">제목</th>
-                            <th scope="col">등록일</th>
-                            <th scope="col">조회수</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${noticeList}" var="notice" varStatus="status">           
-		                        <tr class="table-row">
-		                            <td scope="row">
-			                            <c:choose>
-											<c:when test="${notice.noticeIsimp == '1'}">
-												<img
-													src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
-													alt="중요도" style="width: 20px; height: 20px ">
-											</c:when>
-											<c:otherwise>
+						<div class="col notice-box">
+							<div class="d-flex justify-content-between">
+								<p class="board-title">공지사항</p>
+								<a href="${pageContext.request.contextPath}/notice/noticeList"><button
+										class="btn-notice">+ 더보기</button></a>
+							</div>
+							<div class="notice-container">
+								<table class="table table-hover">
+									<thead class="table">
+										<tr class="table-secondary">
+											<th scope="col">No.</th>
+											<th scope="col">제목</th>
+											<th scope="col">등록일</th>
+											<th scope="col">조회수</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${noticeList}" var="notice"
+											varStatus="status">
+											<tr class="table-row">
+												<td scope="row"><c:choose>
+														<c:when test="${notice.noticeIsimp == '1'}">
+															<img
+																src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
+																alt="중요도" style="width: 20px; height: 20px">
+														</c:when>
+														<c:otherwise>
 												${pager.totalRows - (pager.pageNo-1) * 10 - status.index}
 											</c:otherwise>
-									</c:choose>
-									</td>                          
-		                            <td><a href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
-		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
-		                            <td>${notice.noticeHitcount}</td>
-		                        </tr>
-	                      </c:forEach>
-                    </tbody>
-                </table>
-				</div>
-				</div>
-				<div class="row">
+													</c:choose></td>
+												<td><a
+													href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}"
+													style="color: black;">${notice.noticeTitle}</a></td>
+												<td><fmt:formatDate value="${notice.noticeRegdate}"
+														pattern="yyyy-MM-dd" /></td>
+												<td>${notice.noticeHitcount}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
 					<div class="col-5">
 							<div class="schema-filter">
 								<div class="schema-table-title">테이블 목록</div>

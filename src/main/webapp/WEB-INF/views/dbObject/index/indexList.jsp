@@ -23,7 +23,7 @@
 						<div class="index-list-header">
 							<p>&gt; 인덱스 관리</p>
 						</div>
-						<div class="index-list-filters">
+						<div class="index-manage-filters">
 							<div class="schema-filter">
 								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 								<select id="schemaSelect" class="form-select"
