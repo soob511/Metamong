@@ -9,8 +9,8 @@
 	justify-content: space-between;
 }
 
-.button-groupDBA{
-	margin-right: 20px!important;
+.button-groupDBA {
+	margin-right: 20px !important;
 }
 
 .btn-approve {
@@ -52,7 +52,7 @@
 	line-height: 2.4;
 }
 
-.btn-complete{
+.btn-complete {
 	background-color: gray;
 	color: white;
 	border-radius: 8px;
@@ -63,8 +63,8 @@
 	margin-right: 5px;
 	text-align: center;
 	line-height: 2.4;
-	pointer-events: none; 
-    cursor: default; 
+	pointer-events: none;
+	cursor: default;
 }
 
 .codeApplyInfo-subtitle, .codeAdd-subtitle, .item-header {
@@ -80,14 +80,15 @@
 .codeApplyInfo-table {
 	min-width: 660px !important;
 	max-width: 660px !important;
+	height: 230px;
 	margin: 5px 20px 0 40px;;
 }
 
 .code-table {
 	min-width: 660px !important;
 	max-width: 660px !important;
-	height: 268px;
-	margin: 5px 40px 20px 20px;
+	height: 230px;
+	margin: 5px 40px 20px 10px;
 }
 
 .table {
@@ -163,5 +164,12 @@ thead {
 }
 
 #table-content {
-	height: 100px;
+	height: 30px;
+}
+
+.button-group {
+	position: fixed;
+	bottom: 20px; /* 페이지 하단에서 20px 떨어지도록 설정 */
+    right: 10px;  /* 페이지 오른쪽에서 20px 떨어지도록 설정 */
+	z-index: 1000; /* 다른 요소보다 위에 표시되도록 설정 */
 }
