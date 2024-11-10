@@ -51,6 +51,7 @@
 							<p class="board-title">공지사항</p>
 							<a href="${pageContext.request.contextPath}/notice/noticeList"><button class="btn-notice">+ 더보기</button></a>
 						</div>
+						<div class="notice-container">
 						<table class="table table-hover">
                     <thead class="table">
                         <tr class="table-secondary">
@@ -82,12 +83,13 @@
 	                      </c:forEach>    
                     </tbody>
                 </table>
+                </div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-5">
 						<p class="board-title">가입현황</p>
-						<canvas id="line-chart" width="525" height="315"></canvas>
+						<canvas id="line-chart" width="525" height="275"></canvas>
 					</div>
 						<div class="col ms-4">
 							<p class="board-title">계정 목록</p>
