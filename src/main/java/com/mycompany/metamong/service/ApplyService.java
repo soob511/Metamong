@@ -37,6 +37,7 @@ import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusDto;
+import com.mycompany.metamong.dto.applyList.DbObjApprovalStatusDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
@@ -533,4 +534,8 @@ public class ApplyService {
         }
         return approvalStatus;
     }
+	
+	public List<DbObjApprovalStatusDto> getDbObjAwaitStatus() {
+		return applyListDao.selectDbObjAwaitStatus();
+	}
 }
