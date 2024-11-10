@@ -147,15 +147,17 @@ public class ApplyService {
 
 	@Transactional
 	public int addApplyCode(CodeApplyDto form, Authentication auth, int applyNo) {
-		ApplyListDto apply = new ApplyListDto();
-		apply.setMId(auth.getName());
-		apply.setApplyReason(form.getApplyReason());
-		apply.setApplyObj("CODE");
-		apply.setApplyType(form.getApplyType());
-		applyListDao.insertApplyList(apply);
-
-		if (applyNo == 0) {
+		int applyId = 0;
+		
+		if(applyNo==0) {
+			ApplyListDto apply = new ApplyListDto();
+			apply.setMId(auth.getName());
+			apply.setApplyReason(form.getApplyReason());
+			apply.setApplyObj("CODE");
+			apply.setApplyType(form.getApplyType());
+			applyListDao.insertApplyList(apply);
 			applyNo = apply.getApplyNo();
+			applyId = applyNo;
 		}
 
 		ApplyCodeDto code = new ApplyCodeDto();
@@ -180,7 +182,7 @@ public class ApplyService {
 			item.setCodeNo(code.getCodeNo());
 			itemDao.insertApplyItem(item);
 		}
-		return apply.getApplyNo();
+		return applyId;
 	}
 
 	@Transactional

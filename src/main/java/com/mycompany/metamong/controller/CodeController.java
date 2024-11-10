@@ -308,8 +308,6 @@ public class CodeController {
 	
 	@PostMapping("/codeApplyExcel")
 	public ResponseEntity<String> codeApplyExcel(Authentication auth, @RequestBody List<CodeApplyDto> forms) {
-		log.info(forms.toString());
-		
 		CodeApplyDto form = forms.get(0);		
 		int applyNo = applyService.addApplyCode(form, auth, 0);
 		

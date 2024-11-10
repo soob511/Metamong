@@ -59,7 +59,7 @@
 								<c:forEach items="${list}" var="code" varStatus="status">
 								    <c:if test="${code.applyNo != previousApplyNo}">
 								        <tr>
-								            <th scope="row">${status.index + 1}</th>
+								            <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
 								            <td>
 								                <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 								            </td>
@@ -101,7 +101,7 @@
 									class="btn btn-outline-info btn-sm"><</a>
 							</c:if>
 
-							<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo-1}"
+							<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 								step="1" var="i">
 								<c:if test="${pager.pageNo==i}">
 									<a href="codeApplyList?pageNo=${i}"
@@ -117,7 +117,7 @@
 								<a href="codeApplyList?pageNo=${pager.endPageNo+1}"
 									class="btn btn-outline-info btn-sm">></a>
 							</c:if>
-							<a href="codeApplyList?pageNo=${pager.totalPageNo-1}"
+							<a href="codeApplyList?pageNo=${pager.totalPageNo}"
 								class="btn btn-outline-secondary btn-sm">>></a>
 						</div>
 						</c:if>

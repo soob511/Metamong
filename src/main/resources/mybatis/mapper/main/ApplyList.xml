@@ -4,8 +4,8 @@
 
 	<select id="selectApplyCodeRows" resultType="int">
 		SELECT count(*)
-		FROM
-		apply_code
+		FROM apply_list
+		WHERE apply_obj = 'CODE'
 	</select>
 
 	<select id="selectApplyCodeList" parameterType="Pager" resultType="ApplyCodeList">
