@@ -135,14 +135,43 @@ p.logo a {
 	top: 3px;
 	left: 13px;
 }
-
+.profile-container {
+        position: relative;
+        display: inline-block;
+    }
+    
 .profile-img {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
 	box-shadow: var(--box-shadow); 
+	 transition: opacity 0.3s;
+        cursor: pointer;
 }
+.profile-container:hover  .profile-img {
+        opacity: 0.6 ;
+    }
 
+.edit-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        display: none;
+    }
+    
+    .profile-container:hover  .edit-icon {
+        display: block;
+    }
+    
+    #fileInput {
+        display: none;
+    }
+    
+    
 .header p {
 	margin: 5px 0 0;
 	font-size: 16px;
@@ -177,4 +206,9 @@ p.logo a {
     z-index: 100;
 }
 
+ .dropdown-item {
+    padding: 5px 10px; 
+    font-size: 12px; 
+
+}
 

@@ -26,4 +26,11 @@ public interface MemberDao {
 	public int countMembers(@Param("option") String option, @Param("keyword") String keyword, @Param("pageNo") int pageNo);
 
 	public String selectDbaName(String dbaId);
+
+	public MemberDto selectMemberProf(String mId);
+
+	public int updateProf(MemberDto member);
+
+	public int deleteProf(MemberDto member);
+
 }

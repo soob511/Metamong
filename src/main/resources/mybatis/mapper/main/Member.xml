@@ -156,5 +156,35 @@
 					)
 	</select>
 
-</mapper>
+	<select id="selectMemberProf" parameterType="String" resultType="Member">
+		SELECT 
+           m.m_id, m.m_empid,m.m_name, t.team_name, m.prof_filename, m.prof_filetype, m.prof_filedata
+        	 FROM 
+		                member m
+		            LEFT OUTER JOIN 
+		                team t ON m.team_id = t.team_id
+               WHERE m.M_id = #{MId}
+	</select>
 	
+	<update id="updateProf" parameterType="Member">
+		UPDATE member
+		SET 
+			<if test="profFilename !=null">
+				prof_filename = #{profFilename},
+				prof_filetype = #{profFiletype},
+				prof_filedata = #{profFiledata}
+			</if>
+			
+		WHERE M_id = #{MId}
+	</update>
+	
+	<update id="deleteProf" parameterType="Member">
+	    UPDATE member
+	    SET 
+	    		prof_filename = NULL,
+	     		prof_filetype = NULL,
+	        	prof_filedata = NULL
+	  
+	    WHERE M_id = #{MId}
+	</update>
+</mapper>
