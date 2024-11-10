@@ -219,4 +219,10 @@
 	  
 	    WHERE M_id = #{MId}
 	</update>
+	<select id="selectDbaIdByRole" parameterType="String" resultType="String">
+		SELECT m_id
+		FROM member
+		WHERE m_role = #{role}
+	</select>
+	
 </mapper>

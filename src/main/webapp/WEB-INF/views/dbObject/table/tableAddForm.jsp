@@ -225,6 +225,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/alarm.jsp" />
 	<script
 		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableAddForm.js"></script>
 </body>

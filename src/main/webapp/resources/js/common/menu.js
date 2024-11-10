@@ -47,60 +47,6 @@ function handleFileUpload(event) {
     });
 }
 
-
-
-
-/*function handleFileUpload(event) {
-	
-	const mid = $('#deleteProf').data('m-id');
-    const deleteProf = $("#deleteProf").val();
-    
-    const formData = new FormData();
-    formData.append("MId", mid); 
-    formData.append("deleteProf", deleteProf);
-    
-    $.ajax({
-        url: "/Metamong/member/deleteProf",
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            if (data > 0) { 
-                Swal.fire({
-                    icon: 'success',
-                    title: '프로필이 성공적으로 변경되었습니다.',
-                }).then(() => {
-                    location.reload(); 
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: '업데이트 실패',
-                    text: '다시 시도해 주세요.',
-                });
-            }
-        },
-        error: function () {
-            Swal.fire({
-                icon: 'error',
-                title: '오류 발생',
-                text: '프로필 업데이트 중 오류가 발생했습니다. 다시 시도해 주세요.',
-            });
-        }
-    });
-}
-
-$(document).ready(function() {
-	
-	$('#deleteProfile').on('click', function() {
-		$('#existingProf').hide(); 
-		$('#deleteFile').val("1");
-		
-	});
-});
-*/
-
 $(document).ready(function() {
     $('#deleteProfile').on('click', function() {
         $('#deleteProf').val("1");  
