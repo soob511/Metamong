@@ -30,10 +30,9 @@
                         </select>
                     </div>                
                     	 <div class="d-flex align-items-end">
-                             <label for="statusSelect" class="status-filter-label" id="opt">검색조건</label>
+                             <label for="statusSelect" class="status-filter-label me-1" id="opt">검색조건</label>
 							<select id="searchSelect" class="form-select"
-								aria-label="Default select example">
-								 <option value="All" data-status="">전체</option>
+								aria-label="Default select example">								 
 								<option value="ID">ID</option>
 								<option>이름</option>
 								<option>권한</option>
