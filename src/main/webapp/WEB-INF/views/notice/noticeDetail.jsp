@@ -24,7 +24,7 @@
         <jsp:include page="/WEB-INF/views/common/menu.jsp" />
         </sec:authorize>
    </sec:authorize>
-        <div class="col-10">
+        <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
                 <div class="content">
