@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusDto;
+import com.mycompany.metamong.dto.applyList.DbObjApprovalStatusDto;
 import com.mycompany.metamong.dto.member.ApplyMemberDto;
 import com.mycompany.metamong.dto.member.ApprovalMemberStatusDto;
 import com.mycompany.metamong.dto.member.MemberDto;
@@ -70,11 +71,25 @@ public class HomeController {
 			return applyService.countApprovalStatus(userId);						
 		}
 	}
-
+	
+	@Secured("ROLE_DBA")
 	@GetMapping("/homeDBA")
-	public String homeDBA() {
-		log.info("실행");
+	public String homeDBA(Model model, Authentication auth) {
+		String userName = memberService.getDbaNameById(auth.getName());
+		Pager pager = new Pager(8, 10, 10, 1); 
+		List<NoticeDto> noticeList = noticeService.getNoticeList(pager);
+		model.addAttribute("userName", userName);
+		model.addAttribute("pager", pager);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		model.addAttribute("noticeList", noticeList);
 		return "home/homeDBA";
+	}
+	
+	@ResponseBody
+	@GetMapping("/getDbObjApprovalStatus")
+	public List<DbObjApprovalStatusDto> getDbObjApprovalStatus() {
+		List<DbObjApprovalStatusDto> dbObjApprovalList = applyService.getDbObjAwaitStatus();
+		return dbObjApprovalList; 
 	}
 	
 	@Secured("ROLE_ADMIN")

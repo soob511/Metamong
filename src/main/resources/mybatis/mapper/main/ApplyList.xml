@@ -411,6 +411,13 @@
     GROUP BY approval_status    
 </select>
 
+<select id="selectDbObjApprovalStatus" resultType="DbObjApprovalStatus">
+	 SELECT apply_obj, count(*) AS count 
+	 FROM apply_list
+	 WHERE approval_status = 0
+	 GROUP BY apply_obj
+</select>
+
 </mapper>
 
 		

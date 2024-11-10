@@ -37,6 +37,7 @@ import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusDto;
+import com.mycompany.metamong.dto.applyList.DbObjApprovalStatusDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
@@ -496,21 +497,17 @@ public class ApplyService {
 		ApprovalStatusDto approvalStatus = new ApprovalStatusDto();
 
 		for (ApprovalStatusCountDto status : approvalStatusCount) {
-			switch (status.getApprovalStatus()) {
-			case 0:
-				approvalStatus.setAwaitCount(status.getCount());
-				break;
-			case 1:
-				approvalStatus.setApprovedCount(status.getCount());
-				break;
-			case 2:
-				approvalStatus.setRejectedCount(status.getCount());
-				break;
-			case 3:
-				approvalStatus.setReflectCount(status.getCount());
-				break;
-			}
-		}
-		return approvalStatus;
+            switch (status.getApprovalStatus()) {
+                case 0: approvalStatus.setAwaitCount(status.getCount()); break;
+                case 1: approvalStatus.setApprovedCount(status.getCount()); break;
+                case 2: approvalStatus.setRejectedCount(status.getCount()); break;
+                case 3: approvalStatus.setReflectCount(status.getCount()); break;
+            }
+        }
+        return approvalStatus;
+    }
+	
+	public List<DbObjApprovalStatusDto> getDbObjAwaitStatus() {
+		return applyListDao.selectDbObjAwaitStatus();
 	}
 }
