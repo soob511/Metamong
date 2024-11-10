@@ -2,6 +2,8 @@ package com.mycompany.metamong.dto.member;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -35,6 +37,8 @@ public class MemberDto {
 	private String profFilename;
 	private String profFiletype;
 	private byte[] profFiledata;
+	private MultipartFile profFile;
+	public int deleteProf;
 	private Date MApplydate;
 	private int MApprovalStatus;
 	private Date MRegdate;
