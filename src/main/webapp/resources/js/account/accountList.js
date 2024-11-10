@@ -1,5 +1,4 @@
 let teams = [];
-let teamIndex, updateTeam;
 
 $(document).ready(function() {
     $('.menu-team').removeClass('active');
@@ -35,91 +34,7 @@ $(document).ready(function() {
             }
         });
     });
-
-    // 소속 추가
-    $('.team-add').click(function() {
-        const teamName = $('#teamName').val();
-        const teamIsactive = $("#teamIsactive option:selected").val();
-
-        if(teamCheck(0) != 0) {
-            teams.push({ teamId: 0, teamName: teamName, teamIsactive: teamIsactive });
-            teamList();
-        }
-    });
-
-    // 소속 수정
-    $('#teamList').on('click', '.team', function() {
-        $(".team").removeClass("table-active");
-        $(this).addClass("table-active");
-
-        const teamId = $(this).find('.teamId').text();
-        const teamName = $(this).find('.teamName').text();
-        const teamIsactive = $(this).find('.teamIsactive').text();
-
-        $('#teamName').val(teamName);
-        (teamIsactive == 'Y') ? $('#teamIsactive option:first').prop("selected", true) : $('#teamIsactive option:last').prop("selected", true);
-
-        teamIndex = teams.findIndex(team => team.teamId === teamId);
-        $(".team-edit").prop("disabled", false);
-    });
-
-    $('.team-edit').on('click', function() {
-        const teamId = $('#teamId').val();
-        const teamName = $('#teamName').val();
-        const teamIsactive = $("#teamIsactive option:selected").val();
-
-        if(teamCheck(1) != 0) {
-            updateTeam = { teamId: teamId, teamName: teamName, teamIsactive: teamIsactive };
-            teams.splice(teamIndex, 1, updateTeam);
-            teamList();
-        }
-    });
 });
-
-// 팀 목록 갱신 함수
-function teamList() {
-    $('#teamList').empty();
-
-    for (let i = 0; i < teams.length; i++) {
-        $('#teamList').append(
-            `<tr>
-                <th class="teamId">${i + 1}</th>
-                <td class="teamName">${teams[i].teamName}</td>
-                <td class="teamIsactive">${teams[i].teamIsactive == 1 ? 'Y' : 'N'}</td>            
-            </tr>`
-        );
-    }
-};
-
-// 소속명 중복 체크
-function teamCheck(isEdit) {
-    const teamName = $('#teamName').val().trim();
-
-    let isExist = false;
-    for (let i = 0; i < teams.length; i++) {
-        if (isEdit == 0) {
-            if (teamName == teams[i].teamName) isExist = true;
-        } else {
-            if (teamName == teams[i].teamName && i != teamIndex) isExist = true;
-        }
-    }
-
-    if (!teamName) {
-        Swal.fire({
-            icon: 'warning',
-            title: '소속명을 입력해주세요.'
-        });
-        return 0;
-    }
-
-    if (isExist) {
-        Swal.fire({
-            icon: 'warning',
-            title: '동일한 소속명이 존재합니다.'
-        });
-        return 0;
-    }
-};
 
 // 회원 검색
 $("#memberTable").on("click", ".table-row", function() {
