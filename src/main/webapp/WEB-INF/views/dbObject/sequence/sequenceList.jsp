@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>시퀀스 내역 관리</title>
+<title>시퀀스 관리</title>
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/sequence/sequenceList.css"
 	rel="stylesheet" />
@@ -24,7 +24,7 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 				<div class="sequence-list-header">
-					<p class="sequence-list-title">&gt; 시퀀스 내역 관리</p>
+					<p class="sequence-list-title">&gt; 시퀀스  관리</p>
 				</div>
 
 				<div class="sequence-list-filters">
