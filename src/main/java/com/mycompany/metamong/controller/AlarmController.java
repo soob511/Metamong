@@ -1,6 +1,5 @@
 package com.mycompany.metamong.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -9,7 +8,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +37,7 @@ public class AlarmController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("content", message);
 		for (String dba : dbaId) {
+			 log.info("DBA에게 알림 전송 중: " + dba);
 			messagingTemplate.convertAndSendToUser(dba, "/user/topic/recieveMessage", jsonObject.toString());
 		}
 	}

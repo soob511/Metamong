@@ -1,18 +1,25 @@
 $(document).ready(function() {
-	// WebSocket 연결 및 메시지 수신
-	const socket = new SockJS('/Metamong/ws');
-	const stompClient = Stomp.over(socket);
+    function connectWebSocket() {
+        const socket = new SockJS('/Metamong/ws'); // 서버의 WebSocket 엔드포인트와 일치해야 합니다.
+        stompClient = Stomp.over(socket);
 
-	stompClient.connect({}, function (frame) {
-	    console.log('Connected: ' + frame);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/user/topic/recieveMessage', function (message) {
+                const content = JSON.parse(message.body).content;
+                console.log("알림 메시지:", content); // 알림 메시지 출력
+                showToast(content); // 수신된 알림을 Toast로 표시
+            });
+        }, function (error) {
+            console.log("WebSocket 연결 실패. 재시도 중...");
+            setTimeout(connectWebSocket, 5000); // 5초 후 재연결 시도
+        });
+    }
 
-	    // 메시지 수신 시 Toast 알림 표시
-	    stompClient.subscribe('/user/topic/recieveMessage', function (message) {
-	        const notificationContent = JSON.parse(message.body).content;
-	        showToast(notificationContent);
-	    });
-	});
+    // 페이지 로드 시 WebSocket 연결
+    connectWebSocket();
 });
+
 // Toast 알림 표시 함수
 function showToast(content) {
     // 현재 시간을 표시하는 포맷
@@ -20,19 +27,18 @@ function showToast(content) {
 
     // Toast HTML 구조 생성
     const toastHTML = `
-        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="..." class="rounded me-2" alt="...">
-      <strong class="me-auto">Metamong</strong>
-      <small>11 mins ago</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body">
-     ${content}
-    </div>
-  </div>
-</div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Metamong</strong>
+                    <small>${currentTime}</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    ${content}
+                </div>
+            </div>
+        </div>
     `;
 
     // Toast를 컨테이너에 추가
