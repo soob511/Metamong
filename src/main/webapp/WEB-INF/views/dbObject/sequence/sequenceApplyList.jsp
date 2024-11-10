@@ -111,7 +111,7 @@
 						</div>
 						<div class="page">
 							<a href="sequenceApplyList?pageNo=1"
-								class="btn btn-outline-primary btn-sm"><<</a>
+								class="btn btn-outline-secondary btn-sm"><<</a>
 							<c:if test="${pager.groupNo>1}">
 								<a href="sequenceApplyList?pageNo=${pager.startPageNo-1}"
 									class="btn btn-outline-info btn-sm"><</a>
@@ -121,11 +121,11 @@
 								step="1" var="i">
 								<c:if test="${pager.pageNo==i}">
 									<a href="sequenceApplyList?pageNo=${i}"
-										class="btn btn-primary btn-sm">${i}</a>
+										class="btn btn-secondary btn-sm">${i}</a>
 								</c:if>
 								<c:if test="${pager.pageNo!=i}">
 									<a href="sequenceApplyList?pageNo=${i}"
-										class="btn btn-outline-primary btn-sm">${i}</a>
+										class="btn btn-outline-secondary btn-sm">${i}</a>
 								</c:if>
 							</c:forEach>
 
@@ -134,7 +134,7 @@
 									class="btn btn-outline-info btn-sm">></a>
 							</c:if>
 							<a href="sequenceApplyList?pageNo=${pager.totalPageNo}"
-								class="btn btn-outline-primary btn-sm">>></a>
+								class="btn btn-outline-secondary btn-sm">>></a>
 						</div>
 					</div>
 				</div>

@@ -19,7 +19,7 @@
 					<h4 class="fw-bold">> 직원목록</h4>
 				
 					<div class="d-flex justify-content-end">
-                        <div class="table-list-filters me-2">
+                        <div class="table-list-filters">
                             <div class="schema-filter">
 							<select id="schemaSelect" class="form-select"
 								aria-label="Default select example">
@@ -49,6 +49,7 @@
 							<thead class="table-secondary">
 								<tr>
 									<th scope="col">No.</th>
+									<th scope="col">프로필</th>
 									<th scope="col">ID</th>
 									<th scope="col">이름</th>
 									<th scope="col">권한</th>
@@ -61,6 +62,17 @@
 								<c:forEach items="${list}" var="member" varStatus="status">
 									<tr class="table-row">
 										<td scope="row">${status.index + 1 + (pager.pageNo - 1) * 10}</td>
+										<td>
+											<c:choose>
+												<c:when test="${not empty member.profFilename}">
+												<img class="profile-img" src="${pageContext.request.contextPath}/member/getMemberProf?MId=${member.MId}">
+												</c:when>
+												
+												<c:otherwise>
+													<img class="profile-img" src="${pageContext.request.contextPath}/resources/image/general_prof.png">
+												</c:otherwise>
+											</c:choose>
+										</td>
 										<td>${member.MId}</td>
 										<td>${member.MName}</td>
 										<td>${member.MRole}</td>
@@ -73,7 +85,7 @@
 						</table>
 					</div>
 					
-					<div class="page">
+					<div class="page" id="memberPage">
 	           			<a href="memberList?pageNo=1" class="btn btn-outline-secondary btn-sm"><<</a>
 	           			<c:if test="${pager.groupNo>1}">
 	           				<a href="memberList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-dark btn-sm"><</a>

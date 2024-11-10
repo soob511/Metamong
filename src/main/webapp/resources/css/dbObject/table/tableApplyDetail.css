@@ -9,8 +9,8 @@
 	justify-content: space-between;
 }
 
-.button-groupDBA{
-	margin-right: 20px!important;
+.button-groupDBA {
+	margin-right: 20px !important;
 }
 
 .btn-approve {
@@ -52,7 +52,7 @@
 	line-height: 2.4;
 }
 
-.btn-complete{
+.btn-complete {
 	background-color: gray;
 	color: white;
 	border-radius: 8px;
@@ -63,8 +63,8 @@
 	margin-right: 5px;
 	text-align: center;
 	line-height: 2.4;
-	pointer-events: none; 
-    cursor: default; 
+	pointer-events: none;
+	cursor: default;
 }
 
 .codeApplyInfo-subtitle, .codeAdd-subtitle, .item-header {
@@ -80,14 +80,15 @@
 .codeApplyInfo-table {
 	min-width: 660px !important;
 	max-width: 660px !important;
+	height: 250px;
 	margin: 5px 20px 0 40px;;
 }
 
 .code-table {
 	min-width: 660px !important;
 	max-width: 660px !important;
-	height: 268px;
-	margin: 5px 40px 20px 20px;
+	height: 250px;
+	margin: 5px 40px 20px 10px;
 }
 
 .table {
@@ -127,7 +128,14 @@ thead {
 .item-container {
 	min-width: 1360px !important;
 	max-width: 1360px !important;
-	margin: 10px 40px 60px 40px !important;
+	margin: 30px 40px 60px 40px !important;
+}
+
+#item-background {
+   border-radius: 8px !important;
+   box-shadow: var(--box-shadow);
+   overflow-y: scroll;
+   height: 270px !important;
 }
 
 .button-group {
@@ -163,5 +171,12 @@ thead {
 }
 
 #table-content {
-	height: 100px;
+	height: 30px;
+}
+
+.button-group {
+	position: fixed;
+	bottom: 30px;
+    right: 10px; 
+	z-index: 1000; 
 }

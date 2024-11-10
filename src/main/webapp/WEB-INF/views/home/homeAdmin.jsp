@@ -31,11 +31,11 @@
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
 											<p>접수</p>
-											<h3><span class="fw-bold">10</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>승인</p>
-											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">13</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반려</p>

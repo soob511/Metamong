@@ -69,7 +69,7 @@ function getApprovalStatus() {
 		data : {
 			labels : [ '접수', '승인', '반려' ],
 			datasets : [ {
-				data : [ 10, 2, 3 ],
+				data : [ 2, 13, 3 ],
 				backgroundColor : [ 
 					'rgba(255, 175, 163)',
 					'rgba(128, 202, 255)', 
@@ -85,7 +85,7 @@ function getApprovalStatus() {
 		            },
 		            title: {
 		              display: true,
-		              text: '전체 15건'
+		              text: '전체 18건'
 		            }
 		          }
 		}

@@ -124,6 +124,12 @@
 									</td>
 								</tr>
 								<tr>
+									<td class="table-secondary">내용</td>
+									<td colspan="5">
+										<div class="table-text" id="table-content">${applyTable.tableContent}</div>
+									</td>
+								</tr>
+								<tr>
 									<td class="table-secondary">신청사유</td>
 									<td colspan="5">
 										<div class="table-text" id="table-content">${applyList.applyReason}</div>
@@ -139,6 +145,7 @@
 
 				<div class="item-container">
 					<div class="item-header">컬럼</div>
+					<div id="item-background">
 					<table class="table table-hover  bottom-table">
 						<thead class="table-secondary">
 							<tr>
@@ -174,6 +181,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					</div>
 				</div>
 
 				<div class="button-group">

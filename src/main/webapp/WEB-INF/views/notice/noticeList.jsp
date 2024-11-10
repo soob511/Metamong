@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,16 @@
 <body>
 <div class="container">
     <div class="row">
+    	<sec:authorize access="hasRole('ROLE_ADMIN')">
         <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
+    </sec:authorize>
+
+    <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+        <sec:authorize access="!hasRole('ROLE_ADMIN')">
+            <jsp:include page="/WEB-INF/views/common/menu.jsp" />
+        </sec:authorize>
+    </sec:authorize>
+    
         <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div class="content">
@@ -59,9 +69,10 @@
 		                            <td scope="row">
 			                            <c:choose>
 											<c:when test="${notice.noticeIsimp == '1'}">
-												<img
-													src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
-													alt="중요도" style="width:33px; height:33px ">
+												
+												<button type="button" class="btn btn-sm">
+									                <i class="bi bi-megaphone">중요</i>
+									              </button>
 											</c:when>
 											<c:otherwise>
 												${pager.totalRows - (pager.pageNo-1) * 10 - status.index}
@@ -76,11 +87,13 @@
 	                   </tbody>                     
 	                </table>
 	                
+	                <sec:authorize access="hasRole('ROLE_ADMIN')">
 	                <div class="d-flex justify-content-end">
                 	<div class="btn btn-write" id="btn-write">
                     	<a href="${pageContext.request.contextPath}/notice/noticeAddForm">작성하기</a>
                 	</div>
                 </div>
+                </sec:authorize>
 	                <div class="page">
 		           			<a href="noticeList?pageNo=1" class="btn btn-outline-secondary btn-sm"><<</a>
 		           			<c:if test="${pager.groupNo>1}">
@@ -106,6 +119,13 @@
         </div>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList_admin.js"></script>
+</sec:authorize>
+ <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+ 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+ <script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
+ 	</sec:authorize>
+ </sec:authorize>
 </body>
 </html>

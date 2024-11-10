@@ -1,6 +1,6 @@
 .fw-bold {
 	margin-top:30px;
-	margin-bottom: 20px;
+	
 }
 
 .content {
@@ -16,6 +16,8 @@
     box-shadow: var(--box-shadow);
     overflow: hidden;
     text-align: center;
+     table-layout: fixed;
+    width: 100%;
 }
 .container-fluid {
     padding-right: 0 !important;
@@ -52,8 +54,11 @@ tr{
 }
 
 td, th{
-	text-align: center;
-	vertical-align: middle;
+	width: 100px;
+    height: 50px; 
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
 }
 
 .search-box {
@@ -92,4 +97,13 @@ h4 {
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
+}
+
+#memberPage {
+	margin-left:75px;
+   	text-align:center !important;
+   	position: fixed;
+    bottom: 20px;
+    left: 50%;
+    z-index: 100;
 }

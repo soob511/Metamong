@@ -11,6 +11,9 @@ import com.mycompany.metamong.dto.member.ApplyMemberDto;
 import com.mycompany.metamong.dto.member.ApprovalMemberStatusDto;
 import com.mycompany.metamong.dto.member.MemberDto;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MemberService {
 	
@@ -60,5 +63,21 @@ public class MemberService {
 	public List<ApprovalMemberStatusDto> getApprovalStatus() {
 		return memberDao.selectApprovalStatus();
 	}
+
+	public List<String> getDbaIdByRole(String role) {
+		return memberDao.selectDbaIdByRole(role);
+	}
 	
+	public MemberDto getMemberProf(String mId) {
+		MemberDto member = memberDao.selectMemberProf(mId);
+		return member;
+	}
+
+	public int updateProf(MemberDto member) {
+		return memberDao.updateProf(member);
+	}
+
+	public int deleteProf(MemberDto member) {
+		return memberDao.deleteProf(member);
+	}
 }
