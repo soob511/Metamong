@@ -2,6 +2,7 @@
 
 .main-container > .row {
 	padding: 30px 45px 0;
+	margin-bottom: -15px;
 }
 
 .board-title {

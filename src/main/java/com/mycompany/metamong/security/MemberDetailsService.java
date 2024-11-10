@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.mycompany.metamong.daoMain.MemberDao;
 import com.mycompany.metamong.dto.member.MemberDto;
 
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

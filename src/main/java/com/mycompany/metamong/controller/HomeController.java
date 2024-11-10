@@ -62,12 +62,10 @@ public class HomeController {
 	public ApprovalStatusDto getApprovalStatus(Authentication auth) {
 		String userId = auth.getName();
 		MemberDto userInfo = memberService.getMember(userId);
-		if (!userInfo.getMRole().equals("ROLE_DBA")) {
-			log.info("실행" + userId);
+		if (userInfo.getMRole().equals("ROLE_USER")) {
 			return applyService.countApprovalStatus(userId);			
 		} else {
 			userId = "";
-			log.info("실행DBA" + userId);
 			return applyService.countApprovalStatus(userId);						
 		}
 	}
@@ -104,7 +102,6 @@ public class HomeController {
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("memberList" ,memberList);
-		log.info("실행");
 		return "home/homeAdmin";
 	}
 	
