@@ -60,4 +60,5 @@ public class MemberService {
 	public List<ApprovalMemberStatusDto> getApprovalStatus() {
 		return memberDao.selectApprovalStatus();
 	}
+	
 }
