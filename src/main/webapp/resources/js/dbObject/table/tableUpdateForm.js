@@ -25,21 +25,13 @@ $(document).ready(function() {
         $("#nullable").val(colNullable);
         $("#isUse").val(colPk);
 
-     /*
-		 * // 기존 컬럼인지 새로 추가된 컬럼인지 확인 const isNewColumn = $(this).data("change")
-		 * === 1; // 원래 있던 컬럼이면 컬럼NM, 컬럼ID, PK 비활성화 if (!isNewColumn) {
-		 * $("#colNm").prop("disabled", true); $("#colId").prop("disabled",
-		 * true); } else { $("#colNm").prop("disabled", false);
-		 * $("#colId").prop("disabled", false); }
-		 */
-
         $(".btn-update").prop("disabled", false);
 	});
     
     const pkSelect = $("#isUse");
     const nullableSelect = $("#nullable");
 
-    // PK가 Y이면 NULL 옵션을 NOTNULL로 고정하고, N이면 자유롭게 설정 가능
+
     function updateNullableSelect() {
         if (pkSelect.val() === "Y") {
             nullableSelect.val("NOTNULL");
@@ -48,8 +40,7 @@ $(document).ready(function() {
             nullableSelect.prop("disabled", false);
         }
     }
-
-    // 초기 상태 업데이트
+    
     updateNullableSelect();
 
     pkSelect.on("change", function() {
@@ -242,9 +233,7 @@ $(document).ready(function() {
                 selectedRow.find("td:eq(5)").text(colNullable);
                 selectedRow.find("td:eq(6)").text(colPk);
 
-                if (selectedRow.data("change") === 0) {
-                    selectedRow.data("change", 2).attr("data-change", 2); 
-                }
+                selectedRow.data("change", 1).attr("data-change", 1); 
                 console.log("Updated row data-change:", selectedRow.attr("data-change"));
 
                 resetAndDisableButton();
@@ -287,6 +276,7 @@ $(document).ready(function() {
 
     $("#move-up").on("click", function () {
         var selectedRow = $("#columnList tr.selected");
+    	selectedRow.data("change", 1).attr("data-change", 1); 
         if (selectedRow.length && selectedRow.prev().length) {
             selectedRow.prev().before(selectedRow);
             updateRowNumbers();
@@ -295,6 +285,7 @@ $(document).ready(function() {
 
     $("#move-down").on("click", function () {
         var selectedRow = $("#columnList tr.selected");
+    	selectedRow.data("change", 1).attr("data-change", 1); 
         if (selectedRow.length && selectedRow.next().length) {
             selectedRow.next().after(selectedRow);
             updateRowNumbers();
@@ -389,8 +380,8 @@ $(document).ready(function() {
                 colId: $(this).find("td:eq(2)").text(),
                 dataType: $(this).find("td:eq(3)").text(),
                 colLength: $(this).find("td:eq(4)").text(),
-                colNullable: $(this).find("td:eq(5)").text() === "NULL" ? 1 : 0, 
-                colPk: $(this).find("td:eq(6)").text() === "Y" ? 1 : 0,         
+                colNullable: $(this).find("td:eq(5)").text().trim() === "NULL" ? 1 : 0, 
+                	colIspk: $(this).find("td:eq(6)").text().trim() === "Y" ? 1 : 0,       
                 isChange: $(this).data("change") || "0" 
             };
             columns.push(column);
@@ -401,7 +392,7 @@ $(document).ready(function() {
             columns: columns,
             applyReason:applyReason
         });
- 
+        	console.log(columns);
         $.ajax({
             url: "/Metamong/table/tableCompare",
             type: "POST",
