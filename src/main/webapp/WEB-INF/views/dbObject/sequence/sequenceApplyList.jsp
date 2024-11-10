@@ -110,30 +110,30 @@
 							</table>
 						</div>
 						<div class="page">
-							<a href="tableApplyList?pageNo=1"
+							<a href="sequenceApplyList?pageNo=1"
 								class="btn btn-outline-primary btn-sm"><<</a>
 							<c:if test="${pager.groupNo>1}">
-								<a href="tableApplyList?pageNo=${pager.startPageNo-1}"
+								<a href="sequenceApplyList?pageNo=${pager.startPageNo-1}"
 									class="btn btn-outline-info btn-sm"><</a>
 							</c:if>
 
 							<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 								step="1" var="i">
 								<c:if test="${pager.pageNo==i}">
-									<a href="tableApplyList?pageNo=${i}"
+									<a href="sequenceApplyList?pageNo=${i}"
 										class="btn btn-primary btn-sm">${i}</a>
 								</c:if>
 								<c:if test="${pager.pageNo!=i}">
-									<a href="tableApplyList?pageNo=${i}"
+									<a href="sequenceApplyList?pageNo=${i}"
 										class="btn btn-outline-primary btn-sm">${i}</a>
 								</c:if>
 							</c:forEach>
 
 							<c:if test="${pager.groupNo<pager.totalGroupNo}">
-								<a href="tableApplyList?pageNo=${pager.endPageNo+1}"
+								<a href="sequenceApplyList?pageNo=${pager.endPageNo+1}"
 									class="btn btn-outline-info btn-sm">></a>
 							</c:if>
-							<a href="tableApplyList?pageNo=${pager.totalPageNo}"
+							<a href="sequenceApplyList?pageNo=${pager.totalPageNo}"
 								class="btn btn-outline-primary btn-sm">>></a>
 						</div>
 					</div>
