@@ -37,13 +37,13 @@
 							<table class="table table-bordered code-table">
 								<tr>
 									<td class="table-secondary">스키마명</td>
-									<td colspan="5">
-									<select id="schemaSelect" class="form-select" aria-label="스키마명">
-										<c:forEach items="${schemaEnum}" var="schemaEnum">
+									<td colspan="5"><select id="schemaSelect"
+										class="form-select" aria-label="스키마명">
+											<c:forEach items="${schemaEnum}" var="schemaEnum">
 												<option value="${schemaEnum.name()}"
 													data-name="${schemaEnum.name()}">
 													${schemaEnum.name()}</option>
-										</c:forEach>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr>
@@ -54,19 +54,19 @@
 								</tr>
 								<tr>
 									<td class="table-secondary">테이블(물리)</td>
-									<td colspan="5"><input type="text"  id="tableId"
+									<td colspan="5"><input type="text" id="tableId"
 										class="form-control code-input" placeholder="내용 입력" required>
 									</td>
 								</tr>
 								<tr>
 									<td class="table-secondary">내용</td>
-									<td colspan="5"><input type="text"  id="tableContent"
+									<td colspan="5"><input type="text" id="tableContent"
 										class="form-control content-input" placeholder="내용 입력">
 									</td>
 								</tr>
 								<tr>
 									<td class="table-secondary">신청사유</td>
-									<td colspan="5"><input type="text"  id="applyReason"
+									<td colspan="5"><input type="text" id="applyReason"
 										class="form-control content-input" placeholder="내용 입력">
 									</td>
 								</tr>
@@ -141,6 +141,7 @@
 					<button class="btn-update" type="button">수정</button>
 				</div>
 
+
 				<div class="item-container">
 					<div class="item-icon">
 						<div class="item-header">컬럼</div>
@@ -154,27 +155,28 @@
 						</div>
 
 					</div>
-					<table class="table table-hover bottom-table">
-						<thead class="table-secondary">
-							<tr>
-								<th scope="col">No.</th>
-								<th scope="col">컬럼(논리)</th>
-								<th scope="col">컬럼(물리)</th>
-								<th scope="col">타입</th>
-								<th scope="col">길이</th>
-								<th scope="col">NULL</th>
-								<th scope="col">PK</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody id="columnList">
+					<div id="item-backgroud">
+						<table class="table table-hover bottom-table">
+							<thead class="table-secondary">
+								<tr>
+									<th scope="col">No.</th>
+									<th scope="col">컬럼(논리)</th>
+									<th scope="col">컬럼(물리)</th>
+									<th scope="col">타입</th>
+									<th scope="col">길이</th>
+									<th scope="col">NULL</th>
+									<th scope="col">PK</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody id="columnList">
 
-						</tbody>
-					</table>
+							</tbody>
+						</table>
+					</div>
 				</div>
-
 				<div class="button-group">
-						<div class="btn-apply" type="button">신청</div>
+					<div class="btn-apply" type="button">신청</div>
 				</div>
 
 				<div class="modal fade" id="codeLoadModal" tabindex="-1"
@@ -215,10 +217,10 @@
 									</table>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>

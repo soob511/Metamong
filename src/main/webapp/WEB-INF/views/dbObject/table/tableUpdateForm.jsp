@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>테이블/컬럼 수정</title>
 <link
-	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableAddForm.css"
+	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableUpdateForm.css"
 	rel="stylesheet" />
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/codeModal.css"
@@ -153,54 +153,54 @@
 						</div>
 
 					</div>
-					<table class="table table-hover bottom-table">
-						<thead class="table-secondary">
-							<tr>
-								<th scope="col">No.</th>
-								<th scope="col">컬럼(논리)</th>
-								<th scope="col">컬럼(물리)</th>
-								<th scope="col">타입</th>
-								<th scope="col">길이</th>
-								<th scope="col">NULL</th>
-								<th scope="col">PK</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody id="columnList">
-							<c:forEach items="${column}" var="column" varStatus="status">
-								<c:choose>
-									<c:when test="${visit && column.isChange == 1}">
-										<tr class="checkTr" data-change="1">
-											<td>${status.index+1}</td>
-											<td>${column.colNm}</td>
-											<td>${column.colId}</td>
-											<td>${column.dataType}</td>
-											<td>${column.colLength}</td>
-											<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
-											<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
-											<td><i class="bi bi-trash3 delete-row"></i></td>
-										</tr>
-									</c:when>
+					<div id="item-backgroud">
+						<table class="table table-hover bottom-table">
+							<thead class="table-secondary">
+								<tr>
+									<th scope="col">No.</th>
+									<th scope="col">컬럼(논리)</th>
+									<th scope="col">컬럼(물리)</th>
+									<th scope="col">타입</th>
+									<th scope="col">길이</th>
+									<th scope="col">NULL</th>
+									<th scope="col">PK</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody id="columnList">
+								<c:forEach items="${column}" var="column" varStatus="status">
+									<c:choose>
+										<c:when test="${visit && column.isChange == 1}">
+											<tr class="checkTr" data-change="1">
+												<td>${status.index+1}</td>
+												<td>${column.colNm}</td>
+												<td>${column.colId}</td>
+												<td>${column.dataType}</td>
+												<td>${column.colLength}</td>
+												<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
+												<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
+												<td><i class="bi bi-trash3 delete-row"></i></td>
+											</tr>
+										</c:when>
 
-									<c:otherwise>
-										<tr class="checkTr" data-change="0">
-											<td>${status.index+1}</td>
-											<td>${column.colNm}</td>
-											<td>${column.colId}</td>
-											<td>${column.dataType}</td>
-											<td>${column.colLength}</td>
-											<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
-											<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
-											<td><i class="bi bi-trash3 delete-row"></i></td>
-										</tr>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</tbody>
+										<c:otherwise>
+											<tr class="checkTr" data-change="0">
+												<td>${status.index+1}</td>
+												<td>${column.colNm}</td>
+												<td>${column.colId}</td>
+												<td>${column.dataType}</td>
+												<td>${column.colLength}</td>
+												<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
+												<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
+												<td><i class="bi bi-trash3 delete-row"></i></td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</tbody>
 
-
-
-					</table>
+						</table>
+					</div>
 				</div>
 
 				<div class="button-group">
