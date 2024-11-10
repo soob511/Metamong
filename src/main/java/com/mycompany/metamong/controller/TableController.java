@@ -107,12 +107,12 @@ public class TableController {
 			List<ColumnDto> column = columnService.getColumnList(tableNo);
 			model.addAttribute("column", column);
 			model.addAttribute("visit", false);
+			session.removeAttribute("applyReason");
 		} else {
 			model.addAttribute("column", session.getAttribute("afterColumn"));
 			model.addAttribute("visit", true);
 		}
 
-		session.removeAttribute("applyReason");
 
 		return "dbObject/table/tableUpdateForm";
 	}
@@ -135,6 +135,7 @@ public class TableController {
 		int tableNo = form.getTableNo();
 
 		List<NewColumnDto> afterColumn = form.getColumns();
+		log.info(afterColumn.toString());
 		session.setAttribute("afterColumn", afterColumn);
 
 		String applyReason = form.getApplyReason();

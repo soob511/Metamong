@@ -389,13 +389,13 @@ $(document).ready(function() {
                 colId: $(this).find("td:eq(2)").text(),
                 dataType: $(this).find("td:eq(3)").text(),
                 colLength: $(this).find("td:eq(4)").text(),
-                colNullable: $(this).find("td:eq(5)").text(),
-                colPk: $(this).find("td:eq(6)").text(),
+                colNullable: $(this).find("td:eq(5)").text() === "NULL" ? 1 : 0, 
+                colPk: $(this).find("td:eq(6)").text() === "Y" ? 1 : 0,         
                 isChange: $(this).data("change") || "0" 
             };
             columns.push(column);
         });
-
+        
         var data = JSON.stringify({
             tableNo: tableNo,
             columns: columns,
