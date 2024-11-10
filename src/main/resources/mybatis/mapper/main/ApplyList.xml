@@ -8,23 +8,24 @@
 		apply_code
 	</select>
 
-	<select id="selectApplyCodeList" parameterType="Pager"
-		resultType="ApplyCodeList">
+	<select id="selectApplyCodeList" parameterType="Pager" resultType="ApplyCodeList">
 	    <![CDATA[
-	    	SELECT rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_type
-			FROM (
-			    SELECT rownum as rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_type
-			    FROM (
-			        SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id, c.code_nm, a.apply_type
-			        FROM apply_list a
-			        JOIN member m ON a.m_id = m.m_id
-			        JOIN apply_code c ON a.apply_no = c.apply_no
-			        WHERE a.apply_obj = 'CODE'
-			        ORDER BY a.apply_date DESC
-			    )
-			    WHERE rownum <= #{endRowNo}
-			)
-			WHERE rnum >= #{startRowNo}	
+	        SELECT rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_type
+	        FROM (
+	            SELECT rownum as rnum, apply_no, m_name, apply_date, approval_status, code_id, code_nm, apply_type
+	            FROM (
+	                SELECT a.apply_no, m.m_name, a.apply_date, a.approval_status, c.code_id, c.code_nm, a.apply_type,
+	                       ROW_NUMBER() OVER (PARTITION BY c.apply_no ORDER BY a.apply_date DESC) AS rn
+	                FROM apply_list a
+	                JOIN member m ON a.m_id = m.m_id
+	                JOIN apply_code c ON a.apply_no = c.apply_no
+	                WHERE a.apply_obj = 'CODE'
+	                ORDER BY a.apply_date DESC
+	            )
+	            WHERE rn = 1
+	            AND rownum <= #{endRowNo}
+	        )
+	        WHERE rnum >= #{startRowNo}
 	    ]]>
 	</select>
 

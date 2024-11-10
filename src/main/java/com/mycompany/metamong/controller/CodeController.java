@@ -147,7 +147,7 @@ public class CodeController {
 	@GetMapping("/codeApplyList")
 	public String codeApplyList(@RequestParam(defaultValue="1")int pageNo, Model model, HttpSession session) {
 		int totalRows = applyService.getApplyCodeRows();
-		Pager pager = new Pager(20, 5, totalRows, pageNo);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyCodeListDto> list = applyService.getApplyCodeList(pager);
 		
 		session.setAttribute("pager", pager);
