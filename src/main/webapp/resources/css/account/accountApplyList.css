@@ -15,6 +15,23 @@
 	line-height: 30px;
 }
 
+.team-add, .team-edit {
+   background-color: var(--theme);
+   color: white;
+   border-radius: 8px;
+   border: none;
+   width: 70px;
+   height: 30px;
+   font-size: 13px;
+   text-align: center;
+   line-height: 2.4;
+}
+
+.team-edit:disabled {
+    background-color: #ebebeb;
+    color: #ffffff;
+}
+
 .form-required {
     color: red;
 }

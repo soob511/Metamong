@@ -20,7 +20,7 @@
 					<h4 class="fw-bold">> 계정관리> 계정내역</h4>
 					<div class="d-flex justify-content-end">
 						<div class="d-flex align-items-center">
-							<button data-bs-toggle="modal" data-bs-target="#teamModal" class="btn-team" onclick="getTeamList()">소속 관리</button>
+							<button data-bs-toggle="modal" data-bs-target="#teamModal" class="btn-team">소속 관리</button>
 							<select id="searchSelect" class="form-select"
 								aria-label="Default select example">
 								<option value="All" data-status="">전체</option>
@@ -150,13 +150,7 @@
                                     <th scope="col">사용여부</th>
                                 </tr>
                             </thead>
-                            <tbody id="teamList">
-                                <tr>
-                                    <td scope="col">No.</td>
-                                    <td scope="col">소속명</td>
-                                    <td scope="col">사용여부</td>
-                                </tr>
-                            </tbody>
+                            <tbody id="teamList"></tbody>
 	      				</table>
 	      			</div>
 	      			<div class="col team-form">
@@ -175,8 +169,11 @@
                                         </select>
                                     </td>   
                                 </tr>
-								
 	      				</table>
+	      				<div class="button-group">
+		                    <button class="team-add" type="button">추가</button>
+		                    <button class="team-edit" type="button" disabled>수정</button>
+		                </div>
 	      			</div>
 	      		</div>
 	      	</div>
@@ -184,7 +181,7 @@
 	      <div class="modal-footer">
 		      <div class="modal-btns">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-		        <button type="button" class="btn btn-primary">수정하기</button>
+		        <button type="button" class="btn btn-primary">저장하기</button>
 	        </div>
 	      </div>
 	    </div>
