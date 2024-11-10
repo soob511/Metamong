@@ -20,6 +20,7 @@
 					<h4 class="fw-bold">> 계정관리> 계정내역</h4>
 					<div class="d-flex justify-content-end">
 						<div class="d-flex align-items-center">
+							<button data-bs-toggle="modal" data-bs-target="#teamModal" class="btn-team" onclick="getTeamList()">소속 관리</button>
 							<select id="searchSelect" class="form-select"
 								aria-label="Default select example">
 								<option value="All" data-status="">전체</option>
@@ -127,6 +128,67 @@
 			</div>
 		</div>
 	</div>
+	</div>
+
+<div class="modal fade" tabindex="-1" id="teamModal" data-bs-backdrop="static">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title">회원 소속 관리</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="container team-container">
+	      		<div class="row d-flex gap-3">
+	      			<div class="col team-container">
+                             <div class="team-subtitle">소속 내역</div>
+	      				<table class="table" id="teamTable">
+	      					<thead class="table-secondary">
+                                <tr>
+                                   <th scope="col">No.</th>
+                                    <th scope="col">회원 소속명</th>
+                                    <th scope="col">사용여부</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teamList">
+                                <tr>
+                                    <td scope="col">No.</td>
+                                    <td scope="col">소속명</td>
+                                    <td scope="col">사용여부</td>
+                                </tr>
+                            </tbody>
+	      				</table>
+	      			</div>
+	      			<div class="col team-form">
+                             <div class="team-subtitle">소속 추가/수정</div>
+	      				<table class="table" id="teamForm">
+                                <tr>
+                                    <td class="table-secondary">소속명</td>
+                                    <td><input type="text" id="teamName"  placeholder="내용 입력" required></td>   
+                                </tr>
+                                <tr>
+                                    <td class="table-secondary">사용여부</td>
+                                    <td>
+                                    	<select id="teamIsActive" class="form-select use-status-select" aria-label="사용 여부 선택">
+                                            <option value="1">Y</option>
+                                            <option value="0">N</option>
+                                        </select>
+                                    </td>   
+                                </tr>
+								
+	      				</table>
+	      			</div>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+		      <div class="modal-btns">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-primary">수정하기</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 <script src="${pageContext.request.contextPath}/resources/js/account/accountList.js"></script>

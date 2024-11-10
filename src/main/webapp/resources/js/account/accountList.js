@@ -87,3 +87,21 @@ $(".btn-approve").on("click", function() {
         }
 	})
 }) 
+
+function getTeamList() {
+	$.ajax({
+		url:"/Metamong/team/getTeamList",
+		type: "GET",
+        success:function(data){
+        	let tHtml = "";       	
+        	data.forEach((team) => {
+        		tHtml += `<tr>
+                    <th>${team.teamId}</th>
+                    <td class="teamName">${team.teamName}</td>
+                	<td class="teamIsactive">${team.teamIsactive == 1 ? 'Y' : 'N'}</td>
+                </tr>`;
+            });        	
+        	$('#teamList').html(tHtml);
+        }
+	})
+}
