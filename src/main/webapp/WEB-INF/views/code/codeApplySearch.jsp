@@ -60,7 +60,7 @@
         </table>
     </div>
   
-  	<c:if test="${pager.totalRows > 0}">
+  	<%-- <c:if test="${pager.totalRows > 0}">
 	    <div class="page">
 	        <div class="pagination">
 	            <a href="javascript:codeApplySearch(1)" class="btn btn-outline-secondary btn-sm">&lt;&lt;</a>
@@ -81,5 +81,35 @@
 	            <a href="javascript:codeApplySearch(${pager.totalPageNo})" class="btn btn-outline-secondary btn-sm">&gt;&gt;</a>
 	        </div>
 	    </div>
-    </c:if>
+    </c:if> --%>
+    
+    <c:if test="${pager.totalRows >0 }">
+      <div class="page">
+		<a href="javascript:codeApplySearch(1)"
+			class="btn btn-outline-secondary btn-sm"><<</a>
+		<c:if test="${pager.groupNo>1}">
+			<a href="javascript:codeApplySearch(${pager.startPageNo-1)"
+				class="btn btn-outline-info btn-sm"><</a>
+		</c:if>
+
+		<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
+			step="1" var="i">
+			<c:if test="${pager.pageNo==i}">
+				<a href="javascript:codeApplySearch(${i})"
+					class="btn btn-secondary btn-sm">${i}</a>
+			</c:if>
+			<c:if test="${pager.pageNo!=i}">
+				<a href="javascript:codeApplySearch(${i})"
+					class="btn btn-outline-secondary btn-sm">${i}</a>
+			</c:if>
+		</c:forEach>
+
+		<c:if test="${pager.groupNo<pager.totalGroupNo}">
+			<a href="javascript:codeApplySearch(${pager.endPageNo+1})"
+				class="btn btn-outline-info btn-sm">></a>
+		</c:if>
+		<a href="javascript:codeApplySearch(${pager.totalPageNo})"
+			class="btn btn-outline-secondary btn-sm">>></a>
+	</div>
+	</c:if>
 </div>

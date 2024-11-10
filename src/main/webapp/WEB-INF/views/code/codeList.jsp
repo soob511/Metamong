@@ -67,9 +67,9 @@
                                         </tr>
                                     </thead>
                                     <tbody id="codeList">
-                                        <c:forEach items="${codeList}" var="code">
+                                        <c:forEach items="${codeList}" var="code" varStatus="status">
                                             <tr class="code-row" onclick="showItemList(${code.codeNo})" data-code-no="${code.codeNo}">
-                                                <th>${code.codeNo}</th>
+                                                <th>${status.index + 1}</th>
                                                 <td>${code.codeNm}</td>
                                                 <td>${code.codeId}</td>
                                                 <td>${code.codeLength}</td>
