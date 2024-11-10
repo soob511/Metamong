@@ -53,7 +53,7 @@
 						</div>
 						<table class="table table-hover">
                     <thead class="table">
-                        <tr class="table-primary">
+                        <tr class="table-secondary">
                             <th scope="col">No.</th>
                             <th scope="col">제목</th>
                             <th scope="col">등록일</th>
@@ -89,38 +89,39 @@
 						<p class="board-title">가입현황</p>
 						<canvas id="line-chart" width="525" height="315"></canvas>
 					</div>
-					<div class="col ms-4">
-						<p class="board-title">계정 목록</p>
-						<div class="col-box">
-						<table class="table table-hover">
-                    <thead class="table">
-                        <tr class="table-primary">
-                            <th scope="col">No.</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">이름</th>
-                            <th scope="col">권한</th>
-                            <th scope="col">소속</th>
-                            <th scope="col">사번</th>
-                            <th scope="col">가입일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    	<c:forEach items="${memberList}" var="list" varStatus="status">
-	                        <tr>
-	                            <th scope="row">${status.index + 1}</th>
-	                            <td>${list.MId}</td>
-	                            <td>${list.MName}</td>
-	                            <td>${list.MRole}</td>
-	                            <td>${list.teamName}</td>
-	                            <td>${list.MEmpId}</td>
-	                            <td><fmt:formatDate value="${list.MRegdate}" pattern="yyyy-MM-dd"/></td>
-	                        </tr>                    	
-                    	</c:forEach>
-                    </tbody>
-                </table>
-                </div>
+						<div class="col ms-4">
+							<p class="board-title">계정 목록</p>
+							<div class="col-box">
+								<table class="table table-hover">
+									<thead class="table">
+										<tr class="table-secondary">
+											<th scope="col">No.</th>
+											<th scope="col">ID</th>
+											<th scope="col">이름</th>
+											<th scope="col">권한</th>
+											<th scope="col">소속</th>
+											<th scope="col">사번</th>
+											<th scope="col">가입일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${memberList}" var="list" varStatus="status">
+											<tr>
+												<th scope="row">${status.index + 1}</th>
+												<td>${list.MId}</td>
+												<td>${list.MName}</td>
+												<td>${list.MRole}</td>
+												<td>${list.teamName}</td>
+												<td>${list.MEmpId}</td>
+												<td><fmt:formatDate value="${list.MRegdate}"
+														pattern="yyyy-MM-dd" /></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>
