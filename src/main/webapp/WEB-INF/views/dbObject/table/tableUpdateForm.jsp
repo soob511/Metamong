@@ -122,8 +122,8 @@
 										<td class="table-secondary">PK</td>
 										<td colspan="5"><select id="isUse"
 											class="form-select use-status-select" aria-label="사용 여부 선택">
-												<option value="Y">Y</option>
 												<option value="N">N</option>
+												<option value="Y">Y</option>
 										</select></td>
 									</tr>
 								</table>
@@ -191,7 +191,7 @@
 											<td>${column.colLength}</td>
 											<td>${column.colIsnullable == 1 ? 'NULL' : 'NOTNULL'}</td>
 											<td>${column.colIspk == 1 ? 'Y' : 'N'}</td>
-											<td>-</td>
+											<td><i class="bi bi-trash3 delete-row"></i></td>
 										</tr>
 									</c:otherwise>
 								</c:choose>

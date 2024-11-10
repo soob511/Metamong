@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class TableAddDto {
 	private String schemaName;
+	private int tableNo;
 	private String tableNm;
 	private String tableId;
 	private String applyReason;

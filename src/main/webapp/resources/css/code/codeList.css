@@ -75,13 +75,17 @@ input[type="search"]::-webkit-search-cancel-button {
    margin: 20px 20px 20px 45px;   
 }
 
-.code-management-title,.item-management-title{
+.code-management-title,.item-management-title, .applyReason-title {
    font-size:18px;
    font-weight: 600 !important;
 }
 
-.code-management-title{
+.code-management-title {
    padding-top: 10px;
+}
+
+.applyReason-title {
+	margin-bottom: 0 !important;
 }
 
 .code-buttons{
@@ -170,7 +174,7 @@ thead{
 }
 
  .item-table-container, .code-table-container {
-	height: 580px !important;
+	height: 560px !important;
 	overflow-y: scroll;
 	border-radius: 8px !important; 
 	box-shadow: var(--box-shadow);
@@ -186,10 +190,11 @@ thead{
 
 .modal-content {
 	padding: 20px;
+	padding-bottom: 8px;
 }
 
 .modal-footer {
-	border: none !important;
+	padding-top: 20px !important;
 }
 
 .modal-code-table, .modal-item-table {
@@ -198,4 +203,12 @@ thead{
 
 .modal-code-table {
 	margin-right: 40px;
+}
+
+.applyReason {
+	height: 37.3px;
+	border-radius: 8px;
+	width: 600px;
+	border: 1px solid #dee2e6;
+	padding-left: 10px; 
 }

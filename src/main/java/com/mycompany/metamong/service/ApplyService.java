@@ -95,7 +95,7 @@ public class ApplyService {
 	private Sub2IndexDao sub2IndexDao;
 	@Autowired
 	private Sub3IndexDao sub3IndexDao;
-	
+
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
 	}
@@ -123,11 +123,11 @@ public class ApplyService {
 	public List<ItemDto> getItemsApplyByNo(int applyNo) {
 		return itemDao.selectItemsByNo(applyNo);
 	}
-	
+
 	public List<ApplyItemDto> getApplyItemsByNo(int applyNo) {
 		return itemDao.selectApplyItemsByNo(applyNo);
 	}
-	
+
 	public List<ItemDto> getItemsApplyExcelByNo(int applyNo, int codeNo) {
 		return itemDao.selectItemsExcelByNo(applyNo, codeNo);
 	}
@@ -152,8 +152,8 @@ public class ApplyService {
 		apply.setApplyObj("CODE");
 		apply.setApplyType(form.getApplyType());
 		applyListDao.insertApplyList(apply);
-		
-		if(applyNo == 0) {
+
+		if (applyNo == 0) {
 			applyNo = apply.getApplyNo();
 		}
 
@@ -170,18 +170,18 @@ public class ApplyService {
 		List<ItemApplyDto> items = form.getItems();
 		for (ItemApplyDto i : items) {
 			ApplyItemDto item = new ApplyItemDto();
-	        item.setApplyNo(applyNo);
-	        item.setItemId(i.getItemId());
-	        item.setItemNm(i.getItemNm());
-	        item.setItemContent(i.getItemContent());
-	        item.setItemIsActive(i.getItemIsActive());
-	        item.setItemIsUpdate(i.getItemIsUpdate());
-	        item.setCodeNo(code.getCodeNo());
-	        itemDao.insertApplyItem(item);
-	    }
+			item.setApplyNo(applyNo);
+			item.setItemId(i.getItemId());
+			item.setItemNm(i.getItemNm());
+			item.setItemContent(i.getItemContent());
+			item.setItemIsActive(i.getItemIsActive());
+			item.setItemIsUpdate(i.getItemIsUpdate());
+			item.setCodeNo(code.getCodeNo());
+			itemDao.insertApplyItem(item);
+		}
 		return apply.getApplyNo();
 	}
-	
+
 	@Transactional
 	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
 		applyListDao.insertApplyList(applyListDto);
@@ -220,7 +220,13 @@ public class ApplyService {
 		applyTable.setTableNm(form.getTableNm());
 		applyTable.setTableId(form.getTableId());
 		applyTable.setTableContent(form.getTableContent());
-		tableDao.insertApplyTable(applyTable);
+
+		if (form.getApplyType().equals("CREATE")) {
+			tableDao.insertApplyTable(applyTable);
+		} else {
+			applyTable.setTableNo(form.getTableNo());
+			tableDao.insertApplyTableByTableNo(applyTable);
+		}
 
 		List<ColumnAddDto> list = form.getColumns();
 		ApplyColumnDto applyColumn = new ApplyColumnDto();
@@ -272,176 +278,142 @@ public class ApplyService {
 	public String getApplyType(int applyNo) {
 		return applyListDao.selectApplyType(applyNo);
 	}
-	
-	public String addCreateTableSql(int applyNo) {
-		StringBuilder sql = new StringBuilder("CREATE TABLE ");
 
-		String tableId = tableDao.selectTableIdByApplyNo(applyNo);
-		sql.append(tableId).append(" (");
+	public String addCreateTableSql(int applyNo, String type) {
+	    StringBuilder sql = new StringBuilder();
 
-		List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
-		List<String> columns = new ArrayList<>();
+	    String tableId = tableDao.selectTableIdByApplyNo(applyNo);
 
-		for (ColumnDto column : list) {
-			StringBuilder col = new StringBuilder(column.getColId()).append(" ").append(column.getDataType());
+	    if (type.equals("UPDATE")) {
+	        sql.append(String.format("DROP TABLE %s;", tableId));
+	    }
 
-			if (column.getColLength() != null) {
-				col.append("(").append(column.getColLength()).append(")");
-			}
+	    sql.append("CREATE TABLE ").append(tableId).append(" (");
 
-			if (column.getColIspk() == 1) {
-				col.append(" PRIMARY KEY");
-			} else {
-				col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
-			}
+	    List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
+	    List<String> columns = new ArrayList<>();
 
-			columns.add(col.toString());
-		}
+	    for (ColumnDto column : list) {
+	        StringBuilder col = new StringBuilder(column.getColId()).append(" ").append(column.getDataType());
 
-		sql.append(String.join(", ", columns)).append(")");
-		return sql.toString();
-	}
+	        if (column.getColLength() != null) {
+	            col.append("(").append(column.getColLength()).append(")");
+	        }
 
-	public String addUpdateTableSql(int applyNo) {
-		StringBuilder sql = new StringBuilder();
-		String tableId = tableDao.selectTableIdByApplyNo(applyNo);
+	        if (column.getColIspk() == 1) {
+	            col.append(" PRIMARY KEY");
+	        } else {
+	            col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
+	        }
 
-		List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
+	        columns.add(col.toString());
+	    }
 
-		for (ColumnDto column : list) {
-			StringBuilder col = new StringBuilder("ALTER TABLE ").append(tableId);
+	    sql.append(String.join(", ", columns)).append(");");
 
-			// 컬럼이 추가되는 경우
-			if (column.getColIsupdate() == 1) {
-				col.append(" ADD ").append(column.getColId()).append(" ").append(column.getDataType());
-
-				if (column.getColLength() != null) {
-					col.append("(").append(column.getColLength()).append(")");
-				}
-
-				if (column.getColIspk() == 1) {
-					col.append(" PRIMARY KEY");
-				} else {
-					col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
-				}
-
-				sql.append(col.toString()).append(";");
-			}
-			// 컬럼이 수정되는 경우
-			else if (column.getColIsupdate() == 2) {
-				col.append(" MODIFY ").append(column.getColId()).append(" ").append(column.getDataType());
-
-				if (column.getColLength() != null) {
-					col.append("(").append(column.getColLength()).append(")");
-				}
-
-				col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
-
-				sql.append(col.toString()).append(";");
-			}
-		}
-
-		return sql.toString();
+	    return sql.toString();
 	}
 
 	@Transactional
 	public int runQuery(int applyNo, String type) {
-		String schema = applyListDao.getSchemaName(applyNo);
-		String sql = applyListDao.getQuery(applyNo);
 		int pass = -1;
+		try {
+			String schema = applyListDao.getSchemaName(applyNo);
+			String sql = applyListDao.getQuery(applyNo);
 
-		if (type.equals("CREATE")) {
-			if (schema.equals("SRM")) {
-				pass = srmTableDao.CreateTable(sql);
-			} else if (schema.equals("PMS")) {
-				pass = pmsTableDao.CreateTable(sql);
-			} else {
-				pass = hrTableDao.CreateTable(sql);
-			}
-		} else {
-			String[] updateSql = Arrays.stream(sql.split(";")).map(String::trim).toArray(String[]::new);
-
-			if (schema.equals("SRM")) {
-				for (String usql : updateSql) {
-					pass = srmColumnDao.updateColumn(usql);
-					if (pass != 0)
-						break;
-				}
-			} else if (schema.equals("PMS")) {
-				for (String usql : updateSql) {
-					pass = pmsColumnDao.updateColumn(usql);
-					if (pass != 0)
-						break;
-				}
-			} else {
-				for (String usql : updateSql) {
-					pass = hrColumnDao.updateColumn(usql);
-					if (pass != 0)
-						break;
-				}
-			}
-		}
-
-		// 성공했을시
-		if (pass == 0) {
-
-			TableDto table = tableDao.selectApplyTable(applyNo);
 			if (type.equals("CREATE")) {
-				// 반영으로 상태변경
-				applyListDao.updateStatus(applyNo, 3);
-
-				// 테이블 테이블에 생성된 테이블 정보 넣기
-				table.setSchemaNm(schema);
-				tableDao.insertTable(table);
-
-				// 컬럼정보 넣기
-				List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
-				for (ColumnDto col : column) {
-					col.setTableNo(table.getTableNo());
-					columnDao.insertColumn(col);
+				if (schema.equals("SRM")) {
+					pass = srmTableDao.CreateTable(sql);
+				} else if (schema.equals("PMS")) {
+					pass = pmsTableDao.CreateTable(sql);
+				} else {
+					pass = hrTableDao.CreateTable(sql);
 				}
 			} else {
-				applyListDao.updateStatus(applyNo, 3);
-				List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
-				int tableNo = tableDao.selectTableNo(schema, table.getTableId());
-				for (ColumnDto col : column) {
-					if (col.getColIsupdate() == 1) {
-						col.setTableNo(tableNo);
-						columnDao.insertColumn(col);
+				String[] updateSql = Arrays.stream(sql.split(";")).map(String::trim).toArray(String[]::new);
+
+				if (schema.equals("SRM")) {
+					for (String usql : updateSql) {
+						pass = srmColumnDao.updateColumn(usql);
+						if (pass != 0)
+							break;
+					}
+				} else if (schema.equals("PMS")) {
+					for (String usql : updateSql) {
+						pass = pmsColumnDao.updateColumn(usql);
+						if (pass != 0)
+							break;
+					}
+				} else {
+					for (String usql : updateSql) {
+						pass = hrColumnDao.updateColumn(usql);
+						if (pass != 0)
+							break;
 					}
 				}
 			}
-		} else {// 실패했을때
+
+			// 성공했을시
+			if (pass == 0) {
+				TableDto table = tableDao.selectApplyTable(applyNo);
+				if (type.equals("CREATE")) {
+					applyListDao.updateStatus(applyNo, 3);
+					table.setSchemaNm(schema);
+					tableDao.insertTable(table);
+
+					List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
+					for (ColumnDto col : column) {
+						col.setTableNo(table.getTableNo());
+						columnDao.insertColumn(col);
+					}
+				} else {
+					applyListDao.updateStatus(applyNo, 3);
+					List<ColumnDto> precolumn = columnDao.selectColumnBytableNo(table.getTableNo());
+					for (ColumnDto col : precolumn) {
+						col.setTableNo(table.getTableNo());
+						columnDao.deleteColumn(col);
+					}
+
+					List<ColumnDto> column = columnDao.selectApplyColumn(applyNo);
+					for (ColumnDto col : column) {
+						col.setTableNo(table.getTableNo());
+						columnDao.insertColumn(col);
+					}
+
+				}
+			} else { // 실패했을때
+				applyListDao.updateStatus(applyNo, 2);
+				applyListDao.updateRejectReason(applyNo, "반영시 오류가 있습니다.");
+			}
+		} catch (
+
+		Exception e) {
 			applyListDao.updateStatus(applyNo, 2);
 			applyListDao.updateRejectReason(applyNo, "반영시 오류가 있습니다.");
+			e.printStackTrace();
+			pass = -1;
 		}
 
 		return pass;
-
 	}
 
 	public void applySequence(ApplyListDto applyList) {
 		applyListDao.insertApplySequence(applyList);
 	}
-	
+
 	public String createIndexSql(ApplyIndexDetailDto applyDetail) {
 		String unique = applyDetail.getIsUnique() == 1 ? "UNIQUE " : "";
 		String applyType = applyDetail.getApplyType().toUpperCase();
 		String query = "";
 		if ("CREATE".equals(applyType)) {
-			query = String.format("%s %sINDEX %s ON %s (%s)", 
-					applyType, 
-					unique, 
-					applyDetail.getIdxName(), 
-					applyDetail.getTableId(), 
-					applyDetail.getRefColumn()
-					);			
+			query = String.format("%s %sINDEX %s ON %s (%s)", applyType, unique, applyDetail.getIdxName(),
+					applyDetail.getTableId(), applyDetail.getRefColumn());
 		} else {
 			query = String.format("DROP INDEX %s", applyDetail.getIdxName());
 		}
 		return query;
 	}
-	
+
 	public int getTotalSequenceRows() {
 		int totalRows = applyListDao.selectTotalSequenceRows();
 		return totalRows;
@@ -461,34 +433,34 @@ public class ApplyService {
 	}
 
 	public int sequenceRunQuery(int applyNo) {
-	    String schema = applyListDao.getSchemaName(applyNo);
-	    String sql = applyListDao.getQuery(applyNo);
-	    int pass = -1;
+		String schema = applyListDao.getSchemaName(applyNo);
+		String sql = applyListDao.getQuery(applyNo);
+		int pass = -1;
 
-	    try {
-	        if (schema.equals("SRM")) {
-	            pass = srmSequenceDao.createSequence(sql);
-	        } else if (schema.equals("PMS")) {
-	            pass = pmsSequenceDao.createSequence(sql);
-	        } else {
-	            pass = hrSequenceDao.createSequence(sql);
-	        }
+		try {
+			if (schema.equals("SRM")) {
+				pass = srmSequenceDao.createSequence(sql);
+			} else if (schema.equals("PMS")) {
+				pass = pmsSequenceDao.createSequence(sql);
+			} else {
+				pass = hrSequenceDao.createSequence(sql);
+			}
 
-	        if (pass != 0) {
-	            throw new Exception("쿼리 실행에 실패했습니다.");
-	        }else {
-	        	applyListDao.updateStatus(applyNo, 3);
-	        }
+			if (pass != 0) {
+				throw new Exception("쿼리 실행에 실패했습니다.");
+			} else {
+				applyListDao.updateStatus(applyNo, 3);
+			}
 
-	    } catch (Exception e) {
-	        applyListDao.updateStatus(applyNo, 2);
-	        applyListDao.updateRejectReason(applyNo, "반영 시 오류가 있습니다");
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			applyListDao.updateStatus(applyNo, 2);
+			applyListDao.updateRejectReason(applyNo, "반영 시 오류가 있습니다");
+			e.printStackTrace();
+		}
 
-	    return pass;
+		return pass;
 	}
-	
+
 	public void applyIndexSql(String schemaName, int applyNo, String dbaName) {
 		String query = applyListDao.getQuery(applyNo);
 		ApplyListDto applyList = new ApplyListDto();
@@ -497,17 +469,17 @@ public class ApplyService {
 		log.info("실행" + query);
 		try {
 			switch (schemaName) {
-				case "SRM":
-					sub1IndexDao.createIndex(query);
-					break;
-				case "PMS":
-					sub2IndexDao.createIndex(query);
-					break;
-				case "HR":
-					sub3IndexDao.createIndex(query);
-					break;
-				default:
-					break;
+			case "SRM":
+				sub1IndexDao.createIndex(query);
+				break;
+			case "PMS":
+				sub2IndexDao.createIndex(query);
+				break;
+			case "HR":
+				sub3IndexDao.createIndex(query);
+				break;
+			default:
+				break;
 			}
 		} catch (Exception e) {
 			applyList.setApprovalStatus(2);
@@ -518,19 +490,27 @@ public class ApplyService {
 		applyList.setApprovalStatus(3);
 		applyListDao.updateProcessApproval(applyList);
 	}
-	
+
 	public ApprovalStatusDto countApprovalStatus(String mId) {
 		List<ApprovalStatusCountDto> approvalStatusCount = applyListDao.selectApprovalStatus(mId);
-		ApprovalStatusDto approvalStatus = new  ApprovalStatusDto();
-        
+		ApprovalStatusDto approvalStatus = new ApprovalStatusDto();
+
 		for (ApprovalStatusCountDto status : approvalStatusCount) {
-            switch (status.getApprovalStatus()) {
-                case 0: approvalStatus.setAwaitCount(status.getCount()); break;
-                case 1: approvalStatus.setApprovedCount(status.getCount()); break;
-                case 2: approvalStatus.setRejectedCount(status.getCount()); break;
-                case 3: approvalStatus.setReflectCount(status.getCount()); break;
-            }
-        }
-        return approvalStatus;
-    }
+			switch (status.getApprovalStatus()) {
+			case 0:
+				approvalStatus.setAwaitCount(status.getCount());
+				break;
+			case 1:
+				approvalStatus.setApprovedCount(status.getCount());
+				break;
+			case 2:
+				approvalStatus.setRejectedCount(status.getCount());
+				break;
+			case 3:
+				approvalStatus.setReflectCount(status.getCount());
+				break;
+			}
+		}
+		return approvalStatus;
+	}
 }

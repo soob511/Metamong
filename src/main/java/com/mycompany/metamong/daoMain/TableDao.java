@@ -34,6 +34,8 @@ public interface TableDao {
 
 	public int selectTableNo(@Param("schema")String schema,@Param("tableId") String tableId);
 
+	public int insertApplyTableByTableNo(ApplyTableDto applyTable);
+
 
 
 }
