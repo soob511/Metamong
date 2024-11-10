@@ -155,6 +155,38 @@
 				</where>
 					)
 	</select>
-
+	
+	<select id="selectActiveMember" parameterType="int" resultType="Member">
+		SELECT
+			m.m_id, m.m_name, m.m_role, t.team_name, m.m_empid, m.m_regdate
+		FROM
+			member m
+		JOIN team t ON t.team_id = m.team_id
+		WHERE m.m_isactive = 1 AND ROWNUM &lt;= #{rowNumber}
+		ORDER BY m.m_regdate DESC
+	</select>
+	
+	<select id="selectApplyMember" parameterType="String" resultType="ApplyMember">
+		SELECT 
+		    TO_CHAR(m_applydate, 'YYYY-MM') AS month, m_role, COUNT(*) AS count
+		FROM 
+		    member
+		WHERE 
+		    m_role = #{mRole}
+		    AND m_applydate BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE
+		GROUP BY 
+		    TO_CHAR(m_applydate, 'YYYY-MM'), m_role
+		ORDER BY 
+		    month ASC
+	</select>
+	
+	<select id="selectApprovalStatus" resultType="ApprovalMemberStatus" >
+		SELECt COUNT(*) AS count, m_approval_status
+		FROM member 
+		WHERE m_role IN ('ROLE_USER', 'ROLE_DBA')
+        GROUP BY m_approval_status 
+        ORDER BY m_approval_status ASC
+	</select>
+	
 </mapper>
 	

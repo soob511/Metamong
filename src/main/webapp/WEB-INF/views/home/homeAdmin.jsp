@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +27,7 @@
 								</div>
 								<div class="col">							
 									<p class="project-title"># MetaMong 프로젝트</p>
-									<h4 class="project-user">반가워요! <span class="fw-bold">관리자</span><span class="fs-5">님</span></h4>
+									<h4 class="project-user">반가워요! <span class="fw-bold">${userName}</span><span class="fs-5">님</span></h4>
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
 											<p>접수</p>
@@ -59,54 +61,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">10</th>
-                            <td>회원정보 변경신청</td>
-                            <td>2024-10-21</td>
-                            <td>6</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td>인덱스 신청에 관하여</td>
-                            <td>2024-10-20</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>메타정보관리시스템에 대한 공지입니다.</td>
-                            <td>2024-10-18</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>테이블 신청에 관하여 안내합니다.</td>
-                            <td>2024-09-08</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>주요 반려 사유</td>
-                            <td>2024-09-01</td>
-                            <td>70</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>이렇게 신청하지 마십시오.</td>
-                            <td>2024-08-30</td>
-                            <td>82</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>[재공지][중요]해킹위험 사례 안내</td>
-                            <td>2024-08-27</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>[중요]해킹위험 사례 안내</td>
-                            <td>2024-08-26</td>
-                            <td>12</td>
-                        </tr>
+                        <c:forEach items="${noticeList}" var="notice" varStatus="status">           
+		                        <tr class="table-row">
+		                            <td scope="row">
+			                            <c:choose>
+											<c:when test="${notice.noticeIsimp == '1'}">
+												<img
+													src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
+													alt="중요도" style="width: 20px; height: 20px ">
+											</c:when>
+											<c:otherwise>
+												${pager.totalRows - (pager.pageNo-1) * 10 - status.index}
+											</c:otherwise>
+									</c:choose>
+									</td>                          
+		                            <td><a href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
+		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+		                            <td>${notice.noticeHitcount}</td>
+		                        </tr>
+	                      </c:forEach>    
                     </tbody>
                 </table>
 					</div>
@@ -132,26 +105,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>metamong01</td>
-                            <td>김유저</td>
-                            <td>USER</td>
-                            <td>개발1팀</td>
-                            <td>123412</td>
-                            <td>2023.10.13</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>dba01</td>
-                            <td>김DBA</td>
-                            <td>DBA</td>
-                            <td>DBA팀</td>
-                            <td>123417</td>
-                            <td>2023.10.17</td>
-                        </tr>
+                    	<c:forEach items="${memberList}" var="list" varStatus="status">
+	                        <tr>
+	                            <th scope="row">${status.index + 1}</th>
+	                            <td>${list.MId}</td>
+	                            <td>${list.MName}</td>
+	                            <td>${list.MRole}</td>
+	                            <td>${list.teamName}</td>
+	                            <td>${list.MEmpId}</td>
+	                            <td><fmt:formatDate value="${list.MRegdate}" pattern="yyyy-MM-dd"/></td>
+	                        </tr>                    	
+                    	</c:forEach>
                     </tbody>
-                </table></div>
+                </table>
+                </div>
 					</div>
 				</div>
 			</div>
