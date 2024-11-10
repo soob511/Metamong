@@ -155,7 +155,7 @@
 						</div>
 
 					</div>
-					<div id="item-backgroud">
+					<div id="item-background">
 						<table class="table table-hover bottom-table">
 							<thead class="table-secondary">
 								<tr>

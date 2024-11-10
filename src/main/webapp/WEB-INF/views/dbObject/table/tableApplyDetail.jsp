@@ -145,6 +145,7 @@
 
 				<div class="item-container">
 					<div class="item-header">컬럼</div>
+					<div id="item-background">
 					<table class="table table-hover  bottom-table">
 						<thead class="table-secondary">
 							<tr>
@@ -180,6 +181,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					</div>
 				</div>
 
 				<div class="button-group">

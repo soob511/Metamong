@@ -124,7 +124,7 @@ thead {
     cursor: not-allowed;
 }
 
-#item-backgroud {
+#item-background {
    border-radius: 8px !important;
    box-shadow: var(--box-shadow);
    overflow-y: scroll;
