@@ -2,7 +2,6 @@ $(document).ready(function() {
     $('.menu-item').removeClass('active');
     $('.menu-item:first').addClass('active');
     
-	
 	getApprovalStatus();
 	searchTable().then(function() {
 		let tableId = $("#tableList tr").data('value');
@@ -11,7 +10,6 @@ $(document).ready(function() {
 	$("#schemaSelect").on("change", function() {
         searchTable();
     });
-	
 });
 
 function getApprovalStatus() {
