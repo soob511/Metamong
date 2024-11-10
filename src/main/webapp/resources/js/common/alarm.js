@@ -7,7 +7,7 @@ $(document).ready(function() {
 	    console.log('Connected: ' + frame);
 
 	    // 메시지 수신 시 Toast 알림 표시
-	    stompClient.subscribe('/topic/recieveMessage', function (message) {
+	    stompClient.subscribe('/member/topic/recieveMessage', function (message) {
 	        const notificationContent = JSON.parse(message.body).content;
 	        showToast(notificationContent);
 	    });
