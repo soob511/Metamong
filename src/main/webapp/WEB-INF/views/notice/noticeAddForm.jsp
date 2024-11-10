@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
     
 </head>
 <body>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div class="container">
     <div class="row">
         <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
@@ -69,6 +71,7 @@
         </div>
     </div>
 </div>
+</sec:authorize>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
