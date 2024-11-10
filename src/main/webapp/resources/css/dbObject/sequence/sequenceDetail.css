@@ -116,3 +116,10 @@ thead {
 	line-height: 2.4;
 	margin-right: 60px;
 }
+
+.button-group {
+	position: fixed;
+	bottom: 30px;
+    right: 5px; 
+	z-index: 1000; 
+}

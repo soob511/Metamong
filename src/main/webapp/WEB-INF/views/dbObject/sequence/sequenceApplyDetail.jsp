@@ -113,7 +113,7 @@
 									${detail.seqFileName} </a></td>
 						</tr>
 					</table>
-					<div class="d-flex justify-content-end">
+					<div class="button-group">
 						<a
 							href="${pageContext.request.contextPath}/sequence/sequenceApplyList"><button
 								class="btn-list">목록</button></a>
