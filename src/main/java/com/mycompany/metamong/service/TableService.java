@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.metamong.daoHr.HrTableDao;
 import com.mycompany.metamong.daoMain.TableDao;
-import com.mycompany.metamong.daoSub1.SrmTableDao;
-import com.mycompany.metamong.daoSub2.PmsTableDao;
-import com.mycompany.metamong.daoSub3.HrTableDao;
+import com.mycompany.metamong.daoPms.PmsTableDao;
+import com.mycompany.metamong.daoSrm.SrmTableDao;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableDto;
 import com.mycompany.metamong.enums.SchemaEnum;

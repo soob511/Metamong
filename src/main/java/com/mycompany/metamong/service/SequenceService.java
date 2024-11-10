@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.metamong.daoHr.HrSequenceDao;
 import com.mycompany.metamong.daoMain.SequenceDao;
-import com.mycompany.metamong.daoSub1.SrmSequenceDao;
-import com.mycompany.metamong.daoSub2.PmsSequenceDao;
-import com.mycompany.metamong.daoSub3.HrSequenceDao;
+import com.mycompany.metamong.daoPms.PmsSequenceDao;
+import com.mycompany.metamong.daoSrm.SrmSequenceDao;
 import com.mycompany.metamong.dto.sequence.ApplySequenceDto;
 import com.mycompany.metamong.dto.sequence.SequenceDetailDto;
 import com.mycompany.metamong.dto.sequence.SequenceDto;

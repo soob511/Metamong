@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mycompany.metamong.daoSub2.PmsSequenceDao">
+<mapper namespace="com.mycompany.metamong.daoHr.HrSequenceDao">
 
 	<select id="selectSequenceList" resultType="Sequence">
 		SELECT SEQUENCE_NAME,MIN_VALUE,MAX_VALUE,INCREMENT_BY,LAST_NUMBER

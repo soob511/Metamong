@@ -1,4 +1,4 @@
-package com.mycompany.metamong.daoSub3;
+package com.mycompany.metamong.daoPms;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.mycompany.metamong.dto.table.TableDto;
 
 @Mapper
-public interface HrTableDao {
+public interface PmsTableDao {
 	
 	public List<TableDto> selectTableName();
 

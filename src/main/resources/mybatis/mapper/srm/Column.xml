@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mycompany.metamong.daoSub2.PmsColumnDao">
-
+<mapper namespace="com.mycompany.metamong.daoSrm.SrmColumnDao">
+	
 	<select id="selectColumnName" parameterType="String" resultType="Column">
 		SELECT 
 		    column_name colNm
@@ -10,7 +10,7 @@
 		WHERE 
 		    table_name = UPPER(#{tableName})
 	</select>
-	
+
 	<select id="selectColumnInfo" parameterType="String" resultType="Column">
 		SELECT 
 			cols.column_name AS col_id, cols.data_type, cols.DATA_LENGTH AS col_length, 
@@ -31,5 +31,6 @@
 	<insert id="updateColumn" parameterType="String">
 		${sql}
 	</insert>
+	
 
 </mapper>

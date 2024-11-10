@@ -1,4 +1,4 @@
-package com.mycompany.metamong.daoSub2;
+package com.mycompany.metamong.daoPms;
 
 import java.util.List;
 

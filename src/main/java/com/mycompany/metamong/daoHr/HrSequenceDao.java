@@ -1,21 +1,18 @@
-package com.mycompany.metamong.daoSub1;
+package com.mycompany.metamong.daoHr;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.sequence.SequenceDto;
 
 @Mapper
-public interface SrmSequenceDao {
+public interface HrSequenceDao {
 
 	public List<SequenceDto> selectSequenceList();
 
-	public List<SequenceDto> selectSearchSequence(String schema);
+	public List<SequenceDto> selectSearchSequence(String keyword);
 
 	public int createSequence(String sql);
-
-
 
 }

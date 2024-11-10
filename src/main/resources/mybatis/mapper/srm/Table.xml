@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mycompany.metamong.daoSub2.PmsTableDao">
-	
+<mapper namespace="com.mycompany.metamong.daoSrm.SrmTableDao">
+
 	<insert id="CreateTable" parameterType="String">
 		${sql}
 	</insert>
-	
+
 	<select id="selectTableName" resultType="Table">
 	    SELECT table_name tableNm
 		FROM user_tables

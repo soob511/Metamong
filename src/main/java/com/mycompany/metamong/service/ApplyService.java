@@ -11,24 +11,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.metamong.daoHr.HrColumnDao;
+import com.mycompany.metamong.daoHr.HrSequenceDao;
+import com.mycompany.metamong.daoHr.HrTableDao;
+import com.mycompany.metamong.daoHr.Sub3IndexDao;
 import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
 import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
-import com.mycompany.metamong.daoSub1.SrmColumnDao;
-import com.mycompany.metamong.daoSub1.SrmSequenceDao;
-import com.mycompany.metamong.daoSub1.SrmTableDao;
-import com.mycompany.metamong.daoSub1.Sub1IndexDao;
-import com.mycompany.metamong.daoSub2.PmsColumnDao;
-import com.mycompany.metamong.daoSub2.PmsSequenceDao;
-import com.mycompany.metamong.daoSub2.PmsTableDao;
-import com.mycompany.metamong.daoSub2.Sub2IndexDao;
-import com.mycompany.metamong.daoSub3.HrColumnDao;
-import com.mycompany.metamong.daoSub3.HrSequenceDao;
-import com.mycompany.metamong.daoSub3.HrTableDao;
-import com.mycompany.metamong.daoSub3.Sub3IndexDao;
+import com.mycompany.metamong.daoPms.PmsColumnDao;
+import com.mycompany.metamong.daoPms.PmsSequenceDao;
+import com.mycompany.metamong.daoPms.PmsTableDao;
+import com.mycompany.metamong.daoPms.Sub2IndexDao;
+import com.mycompany.metamong.daoSrm.SrmColumnDao;
+import com.mycompany.metamong.daoSrm.SrmSequenceDao;
+import com.mycompany.metamong.daoSrm.SrmTableDao;
+import com.mycompany.metamong.daoSrm.Sub1IndexDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
@@ -310,7 +310,7 @@ public class ApplyService {
 	        columns.add(col.toString());
 	    }
 
-	    sql.append(String.join(", ", columns)).append(");");
+	    sql.append(String.join(", ", columns)).append(")");
 
 	    return sql.toString();
 	}

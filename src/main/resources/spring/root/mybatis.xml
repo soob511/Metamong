@@ -19,7 +19,7 @@
 	
 		<property name="dataSource" ref="dataSource1"></property>
 		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mybatis/mapper/sub1/*.xml"></property>
+		<property name="mapperLocations" value="classpath:mybatis/mapper/srm/*.xml"></property>
 		
 	</bean>
 	
@@ -28,7 +28,7 @@
 	
 		<property name="dataSource" ref="dataSource2"></property>
 		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mybatis/mapper/sub2/*.xml"></property>
+		<property name="mapperLocations" value="classpath:mybatis/mapper/pms/*.xml"></property>
 		
 	</bean>
 	
@@ -37,7 +37,7 @@
 	
 		<property name="dataSource" ref="dataSource3"></property>
 		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mybatis/mapper/sub3/*.xml"></property>
+		<property name="mapperLocations" value="classpath:mybatis/mapper/hr/*.xml"></property>
 		
 	</bean>
 	
@@ -67,30 +67,30 @@
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mycompany.metamong.daoSub1"/>
+		<property name="basePackage" value="com.mycompany.metamong.daoSrm"/>
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate1"/>
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mycompany.metamong.daoSub2"/>
+		<property name="basePackage" value="com.mycompany.metamong.daoPms"/>
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate2"/>
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mycompany.metamong.daoSub3"/>
+		<property name="basePackage" value="com.mycompany.metamong.daoHr"/>
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate3"/>
 	</bean>
 	
 	<mybatis-spring:scan base-package="com.mycompany.metamong.daoMain"
 		annotation = "org.apache.ibatis.annotations.Mapper"/> 
 		
-	<mybatis-spring:scan base-package="com.mycompany.metamong.daoSub1"
+	<mybatis-spring:scan base-package="com.mycompany.metamong.daoSrm"
 		annotation = "org.apache.ibatis.annotations.Mapper"/> 
 		
-	<mybatis-spring:scan base-package="com.mycompany.metamong.daoSub2"
+	<mybatis-spring:scan base-package="com.mycompany.metamong.daoPms"
 		annotation = "org.apache.ibatis.annotations.Mapper"/> 
 		
-	<mybatis-spring:scan base-package="com.mycompany.metamong.daoSub3"
+	<mybatis-spring:scan base-package="com.mycompany.metamong.daoHr"
 		annotation = "org.apache.ibatis.annotations.Mapper"/> 
 
 

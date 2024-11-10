@@ -1,4 +1,4 @@
-package com.mycompany.metamong.daoSub1;
+package com.mycompany.metamong.daoSrm;
 
 import java.util.List;
 
