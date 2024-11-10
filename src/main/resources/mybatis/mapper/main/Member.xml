@@ -60,10 +60,10 @@
 	<select id="selectMemberList" parameterType="Pager" resultType="Member">
 		    <![CDATA[
 		        SELECT
-		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, m_approval_status, m_isactive
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, prof_filename, prof_filetype, prof_filedata
 		        FROM (
 		            SELECT 
-		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_approval_status, m.m_isactive
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_approval_status, m.m_isactive, prof_filename, prof_filetype, prof_filedata
 		            FROM 
 		                member m
 		            LEFT OUTER JOIN 
@@ -82,10 +82,10 @@
 	<select id="selectMemberSearch"  resultType="Member" parameterType="Pager">
 	    <![CDATA[
 		        SELECT
-		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel
+		            rnum, m_id, m_name, REPLACE(m_role, 'ROLE_', '') AS m_role, team_id, team_name, m_empid, m_tel, prof_filename, prof_filetype, prof_filedata
 		        FROM (
 		            SELECT 
-		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel
+		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.prof_filename, m.prof_filetype, m.prof_filedata
 		            FROM 
 		                member m
 		            LEFT OUTER JOIN 
@@ -188,9 +188,6 @@
         ORDER BY m_approval_status ASC
 	</select>
 	
-</mapper>
-	
-
 	<select id="selectMemberProf" parameterType="String" resultType="Member">
 		SELECT 
            m.m_id, m.m_empid,m.m_name, t.team_name, m.prof_filename, m.prof_filetype, m.prof_filedata

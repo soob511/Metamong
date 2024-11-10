@@ -149,15 +149,15 @@ p.logo a {
         cursor: pointer;
 }
 .profile-container:hover  .profile-img {
-        opacity: 0.6 ;
+        opacity: 0.5 ;
     }
 
 .edit-icon {
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 24px;
+        font-size: 20px !important;
         color: white;
         cursor: pointer;
         display: none;
