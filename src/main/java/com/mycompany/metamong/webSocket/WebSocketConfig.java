@@ -22,13 +22,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.enableSimpleBroker("/topic", "/queue");
         config.setApplicationDestinationPrefixes("/app");
-        config.setUserDestinationPrefix("/member");
+        config.setUserDestinationPrefix("/user");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
                 .setAllowedOriginPatterns("*")
+                .addInterceptors(new org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor()) // 세션 전달 인터셉터 추가
                 .withSockJS();
     }
 
@@ -43,6 +44,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
                     if (auth != null) {
                         accessor.setUser(auth);
+                        System.out.println("WebSocket 인증 사용자 설정: " + auth.getName());
                     }
                 }
                 return message;

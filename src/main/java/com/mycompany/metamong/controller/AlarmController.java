@@ -39,7 +39,7 @@ public class AlarmController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("content", message);
 		for (String dba : dbaId) {
-			messagingTemplate.convertAndSendToUser(dba, "/member/topic/recieveMessage", jsonObject.toString());
+			messagingTemplate.convertAndSendToUser(dba, "/user/topic/recieveMessage", jsonObject.toString());
 		}
 	}
 
