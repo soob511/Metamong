@@ -56,11 +56,6 @@ $(document).ready(function() {
 
                         $('#sequenceApplyModal').modal('hide');
                         location.href = response;
-
-                 /*       $("#seqName").val("");
-                        $("#schemaInput").val("선택");
-                        $("#seqReason").val("");
-                        $("#inputGroupFile").val("");*/
                     });
                 }
             });

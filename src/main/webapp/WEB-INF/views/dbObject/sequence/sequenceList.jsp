@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 				<div class="sequence-list-header">
-					<p class="sequence-list-title">&gt; 시퀀스  관리</p>
+					<p class="sequence-list-title">&gt; 시퀀스 관리</p>
 				</div>
 
 				<div class="sequence-list-filters">
@@ -63,10 +64,10 @@
 							class="sequence-management-header d-flex justify-content-between align-items-center">
 							<p class="sequence-management-title">시퀀스</p>
 							<sec:authorize
-									access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
-							<button class="btn-apply" data-bs-toggle="modal"
-								data-bs-target="#sequenceApplyModal">생성/삭제</button>
-								</sec:authorize>
+								access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
+								<button class="btn-apply" data-bs-toggle="modal"
+									data-bs-target="#sequenceApplyModal">생성/삭제</button>
+							</sec:authorize>
 						</div>
 						<div class="sequence-list-table">
 							<table class="table sequence-list table-hover">
@@ -140,10 +141,12 @@
 											</select>
 										</div>
 										<div class="input-group">
-											<label for="seqReason" class="input-label">신청사유</label> <input
-												type="text" class="form-control" id="seqReason"
-												aria-label="seqReason" aria-describedby="seqReason">
+											<label for="seqReason" class="input-label">신청사유</label>
+											<textarea class="form-control" id="seqReason"
+												aria-label="seqReason" aria-describedby="seqReason" rows="4"
+												style="resize: none;"></textarea>
 										</div>
+
 
 										<div class="input-group mb-3 file-upload-group">
 											<label class="input-file-label">파일업로드</label> <input
