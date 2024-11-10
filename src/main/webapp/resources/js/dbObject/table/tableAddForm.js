@@ -40,6 +40,7 @@ $(document).ready(function() {
         if (pkSelect.val() === "Y") {
             nullableSelect.val("NOTNULL");
             nullableSelect.prop("disabled", true);
+            updateNullableSelect();
         }
     }
     

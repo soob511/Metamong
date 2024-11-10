@@ -2,7 +2,6 @@ $(document).ready(function() {
     $('.menu-item').removeClass('active');
     $('.menu-item:first').addClass('active');
     
-	
 	getApprovalStatus();
 	searchTable().then(function() {
 		let tableId = $("#tableList tr").data('value');
@@ -11,12 +10,11 @@ $(document).ready(function() {
 	$("#schemaSelect").on("change", function() {
         searchTable();
     });
-	
 });
 
 function getApprovalStatus() {
 	let ctx = document.getElementById('chart').getContext('2d');
-	myChart = new Chart(ctx, {
+	let myChart = new Chart(ctx, {
 	    type: 'doughnut',
 	    data: {
 	    	labels: ['승인대기', '승인', '반려', '반영'],

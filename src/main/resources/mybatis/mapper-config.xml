@@ -7,6 +7,8 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.mycompany.metamong.dto.member.MemberDto" alias="Member"/>
+		<typeAlias type="com.mycompany.metamong.dto.member.ApplyMemberDto" alias="ApplyMember"/>
+		<typeAlias type="com.mycompany.metamong.dto.member.ApprovalMemberStatusDto" alias="ApprovalMemberStatus"/>
 		<typeAlias type="com.mycompany.metamong.dto.notice.NoticeDto" alias="Notice"/>
 		<typeAlias type="com.mycompany.metamong.dto.notice.NoticeUpdateFormDto" alias="NoticeUpdate"/>
 		<typeAlias type="com.mycompany.metamong.dto.team.TeamDto" alias="Team"/>
@@ -25,6 +27,7 @@
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyTableListDto" alias="ApplyTableList"/>
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto" alias="ApplyTableDetail"/>
 		<typeAlias type="com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto" alias="ApprovalStatusCount"/>
+		<typeAlias type="com.mycompany.metamong.dto.applyList.DbObjApprovalStatusDto" alias="DbObjApprovalStatus"/>
 		<typeAlias type="com.mycompany.metamong.dto.code.ApplyCodeDto" alias="ApplyCode"/>
 		<typeAlias type="com.mycompany.metamong.dto.item.ApplyItemDto" alias="ApplyItem"/>
 		<typeAlias type="com.mycompany.metamong.dto.index.ApplyIndexDto" alias="ApplyIndex"/>

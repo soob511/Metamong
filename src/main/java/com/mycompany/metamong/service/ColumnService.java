@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.metamong.daoHr.HrColumnDao;
 import com.mycompany.metamong.daoMain.ColumnDao;
-import com.mycompany.metamong.daoSub1.SrmColumnDao;
-import com.mycompany.metamong.daoSub2.PmsColumnDao;
-import com.mycompany.metamong.daoSub3.HrColumnDao;
+import com.mycompany.metamong.daoPms.PmsColumnDao;
+import com.mycompany.metamong.daoSrm.SrmColumnDao;
 import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.table.TableDto;

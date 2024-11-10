@@ -61,7 +61,7 @@ label{
 }
 
 .sequence-table{
-	margin: 20px 45px;	
+	margin: 10px 45px;	
 }
 
 .sequence-list-table {
@@ -177,10 +177,11 @@ thead{
 }
 
 .form-select  {
- 	width: 150px !important;	s
+ 	width: 150px !important;	
 } 
 
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
 }
+

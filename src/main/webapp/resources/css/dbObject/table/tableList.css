@@ -61,7 +61,7 @@ label{
 }
 
 .table-contanier,.column-contanier{
-	 border-radius: 8px !important; 
+	border-radius: 8px !important; 
     box-shadow: var(--box-shadow);
     overflow-y:scroll;
     height: 580px !important;
@@ -142,4 +142,5 @@ input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
 }
+
 

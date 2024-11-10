@@ -57,7 +57,7 @@
 						</div>
 						<table class="table table-hover">
                     <thead class="table">
-                        <tr class="table-primary">
+                        <tr class="table-secondary">
                             <th scope="col">No.</th>
                             <th scope="col">제목</th>
                             <th scope="col">등록일</th>
@@ -109,7 +109,7 @@
 							<div class="table-box">
 								<table class="table table-hover">
 									<thead class="table">
-										<tr class="table-primary">
+										<tr class="table-secondary">
 											<th scope="col">No.</th>
 											<th scope="col">테이블명(논리)</th>
 											<th scope="col">테이블명(물리)</th>
@@ -123,26 +123,27 @@
 							</div>
 						</div>
 						<div class="col">
-						<p class="board-title">속성(Column) 목록</p>
-						<div class="col-box">
-						<table class="table table-hover">
-                    <thead class="table">
-                        <tr class="table-primary">
-                            <th scope="col">No.</th>
-                            <th scope="col">컬럼명(논리)</th>
-                            <th scope="col">컬럼명(물리)</th>
-                            <th scope="col">데이터타입</th>
-                            <th scope="col">길이</th>
-                            <th scope="col">NULL</th>
-                            <th scope="col">PK</th>
-                        </tr>
-                    </thead>
-                    <tbody id="columnList">
-                        
-                    </tbody>
-                </table></div>
+							<p class="board-title">속성(Column) 목록</p>
+							<div class="col-box">
+								<table class="table table-hover">
+									<thead class="table">
+										<tr class="table-secondary">
+											<th scope="col">No.</th>
+											<th scope="col">컬럼명(논리)</th>
+											<th scope="col">컬럼명(물리)</th>
+											<th scope="col">데이터타입</th>
+											<th scope="col">길이</th>
+											<th scope="col">NULL</th>
+											<th scope="col">PK</th>
+										</tr>
+									</thead>
+									<tbody id="columnList">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>

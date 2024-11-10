@@ -107,7 +107,7 @@ public class SequenceController {
 
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		session.setAttribute("pager", pager);
-		
+		log.info(pager.toString());
 		List<SequenceApplyListDto> list = applyService.getsequenceApplyList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("schemaEnum", SchemaEnum.values());

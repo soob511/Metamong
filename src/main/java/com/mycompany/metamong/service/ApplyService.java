@@ -11,24 +11,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.metamong.daoHr.HrColumnDao;
+import com.mycompany.metamong.daoHr.HrSequenceDao;
+import com.mycompany.metamong.daoHr.HrTableDao;
+import com.mycompany.metamong.daoHr.Sub3IndexDao;
 import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
 import com.mycompany.metamong.daoMain.ColumnDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.ItemDao;
 import com.mycompany.metamong.daoMain.TableDao;
-import com.mycompany.metamong.daoSub1.SrmColumnDao;
-import com.mycompany.metamong.daoSub1.SrmSequenceDao;
-import com.mycompany.metamong.daoSub1.SrmTableDao;
-import com.mycompany.metamong.daoSub1.Sub1IndexDao;
-import com.mycompany.metamong.daoSub2.PmsColumnDao;
-import com.mycompany.metamong.daoSub2.PmsSequenceDao;
-import com.mycompany.metamong.daoSub2.PmsTableDao;
-import com.mycompany.metamong.daoSub2.Sub2IndexDao;
-import com.mycompany.metamong.daoSub3.HrColumnDao;
-import com.mycompany.metamong.daoSub3.HrSequenceDao;
-import com.mycompany.metamong.daoSub3.HrTableDao;
-import com.mycompany.metamong.daoSub3.Sub3IndexDao;
+import com.mycompany.metamong.daoPms.PmsColumnDao;
+import com.mycompany.metamong.daoPms.PmsSequenceDao;
+import com.mycompany.metamong.daoPms.PmsTableDao;
+import com.mycompany.metamong.daoPms.Sub2IndexDao;
+import com.mycompany.metamong.daoSrm.SrmColumnDao;
+import com.mycompany.metamong.daoSrm.SrmSequenceDao;
+import com.mycompany.metamong.daoSrm.SrmTableDao;
+import com.mycompany.metamong.daoSrm.Sub1IndexDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
@@ -37,6 +37,7 @@ import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusCountDto;
 import com.mycompany.metamong.dto.applyList.ApprovalStatusDto;
+import com.mycompany.metamong.dto.applyList.DbObjApprovalStatusDto;
 import com.mycompany.metamong.dto.code.ApplyCodeDto;
 import com.mycompany.metamong.dto.code.CodeApplyDto;
 import com.mycompany.metamong.dto.code.CodeDto;
@@ -309,7 +310,7 @@ public class ApplyService {
 	        columns.add(col.toString());
 	    }
 
-	    sql.append(String.join(", ", columns)).append(");");
+	    sql.append(String.join(", ", columns)).append(")");
 
 	    return sql.toString();
 	}
@@ -496,21 +497,17 @@ public class ApplyService {
 		ApprovalStatusDto approvalStatus = new ApprovalStatusDto();
 
 		for (ApprovalStatusCountDto status : approvalStatusCount) {
-			switch (status.getApprovalStatus()) {
-			case 0:
-				approvalStatus.setAwaitCount(status.getCount());
-				break;
-			case 1:
-				approvalStatus.setApprovedCount(status.getCount());
-				break;
-			case 2:
-				approvalStatus.setRejectedCount(status.getCount());
-				break;
-			case 3:
-				approvalStatus.setReflectCount(status.getCount());
-				break;
-			}
-		}
-		return approvalStatus;
+            switch (status.getApprovalStatus()) {
+                case 0: approvalStatus.setAwaitCount(status.getCount()); break;
+                case 1: approvalStatus.setApprovedCount(status.getCount()); break;
+                case 2: approvalStatus.setRejectedCount(status.getCount()); break;
+                case 3: approvalStatus.setReflectCount(status.getCount()); break;
+            }
+        }
+        return approvalStatus;
+    }
+	
+	public List<DbObjApprovalStatusDto> getDbObjAwaitStatus() {
+		return applyListDao.selectDbObjAwaitStatus();
 	}
 }

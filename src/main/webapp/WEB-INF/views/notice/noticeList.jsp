@@ -59,9 +59,10 @@
 		                            <td scope="row">
 			                            <c:choose>
 											<c:when test="${notice.noticeIsimp == '1'}">
-												<img
-													src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
-													alt="중요도" style="width:33px; height:33px ">
+												
+												<button type="button" class="btn btn-sm">
+									                <i class="bi bi-megaphone">중요</i>
+									              </button>
 											</c:when>
 											<c:otherwise>
 												${pager.totalRows - (pager.pageNo-1) * 10 - status.index}

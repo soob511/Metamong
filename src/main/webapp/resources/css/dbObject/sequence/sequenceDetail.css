@@ -108,8 +108,18 @@ thead {
 	color: white;
 	border-radius: 8px;
 	border: none;
-	width: 75px;
-	height: 40px;
-	font-size: 14px;
+	width: 70px;
+	height: 30px;
+	font-size: 13px;
+	margin-right: 5px;
+	text-align: center;
+	line-height: 2.4;
 	margin-right: 60px;
+}
+
+.button-group {
+	position: fixed;
+	bottom: 30px;
+    right: 5px; 
+	z-index: 1000; 
 }

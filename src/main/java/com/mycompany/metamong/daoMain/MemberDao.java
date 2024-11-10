@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.Pager;
+import com.mycompany.metamong.dto.member.ApplyMemberDto;
+import com.mycompany.metamong.dto.member.ApprovalMemberStatusDto;
 import com.mycompany.metamong.dto.member.MemberDto;
 
 @Mapper
@@ -26,4 +28,17 @@ public interface MemberDao {
 	public int countMembers(@Param("option") String option, @Param("keyword") String keyword, @Param("pageNo") int pageNo);
 
 	public String selectDbaName(String dbaId);
+	
+	public List<MemberDto> selectActiveMember(int rowNumber);
+	
+	public List<ApplyMemberDto> selectApplyMember(String mRole);
+	
+	public List<ApprovalMemberStatusDto> selectApprovalStatus();
+
+	public MemberDto selectMemberProf(String mId);
+
+	public int updateProf(MemberDto member);
+
+	public int deleteProf(MemberDto member);
+
 }

@@ -403,8 +403,19 @@
 <select id="selectApprovalStatus" parameterType="String" resultType="ApprovalStatusCount">
 	SELECT approval_status, COUNT(*) AS count
     FROM apply_list
-    WHERE m_id = #{mId}
-    GROUP BY approval_status
+    <where>
+    	<if test=" mId != '' ">
+	     m_id = #{mId}	
+    	</if>
+    </where>
+    GROUP BY approval_status    
+</select>
+
+<select id="selectDbObjApprovalStatus" resultType="DbObjApprovalStatus">
+	 SELECT apply_obj, count(*) AS count 
+	 FROM apply_list
+	 WHERE approval_status = 0
+	 GROUP BY apply_obj
 </select>
 
 </mapper>
