@@ -13,12 +13,14 @@
 	    FROM apply_item ai
 	    JOIN apply_code ac ON ai.apply_no = ac.apply_no
 	    WHERE ai.apply_no = #{applyNo}
+	    ORDER BY ai.rowid ASC
 	</select>
-	
+
 	<select id="selectApplyItemsByNo" parameterType="int" resultType="ApplyItem">
 	    SELECT item_id, item_nm, item_content, item_isactive, item_isupdate
 	    FROM apply_item
 	    WHERE apply_no = #{applyNo}
+	    ORDER BY rowid ASC
 	</select>
 	
 	<select id="selectItemsExcelByNo" parameterType="int" resultType="Item">

@@ -216,22 +216,20 @@ public class CodeController {
 		int result = 1;
 		String type = applyService.getApplyType(applyNo);
 		List<CodeDto> codes = applyService.getCodeApplyByNo(applyNo);
-		
+
 		if(type.equals("EXCEL")) {
 			for(CodeDto code:codes) {
 				List<ItemDto> items = applyService.getItemsApplyExcelByNo(applyNo, code.getCodeNo());
 				result = codeService.insertCode(applyNo, code, items);
 			}
-			
 		} else {
 			CodeDto code = codes.get(0);
-			List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
-			int itemsLength = items.size();
-			
 			if(type.equals("CREATE")) {
+				List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 				result = codeService.insertCode(applyNo, code, items);
 			} else {
 				List<ApplyItemDto> applyItems = applyService.getApplyItemsByNo(applyNo);
+				int itemsLength = itemService.getItemList(code.getCodeNo()).size();
 				codeService.updateCode(applyNo, code, applyItems, itemsLength);		
 			}
 		}

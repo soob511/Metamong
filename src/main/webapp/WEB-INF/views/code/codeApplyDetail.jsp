@@ -154,8 +154,8 @@
                             <c:forEach items="${applyItems}" var="applyItem"	varStatus="status">
 								<tr>
 									<th>${status.index+1}</th>
-									<td>${applyItem.itemNm}</td>
 									<td>${applyItem.itemId}</td>
+									<td>${applyItem.itemNm}</td>
 									<td>${applyItem.itemIsActive == 1 ? 'Y' : 'N'}</td>
 									<td>${applyItem.itemContent}</td>
 								</tr>

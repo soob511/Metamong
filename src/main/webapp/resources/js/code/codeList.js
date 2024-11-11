@@ -161,7 +161,7 @@ function showItemList(codeNo) {
                     <td>${item.itemId}</td>
                     <td>${item.itemNm}</td>
                     <td>${item.itemIsActive == 1 ? "Y" : "N"}</td>
-                    <td>${!item.itemContent ? '' : item.codeContent}</td>
+                    <td>${!item.itemContent ? '' : item.itemContent}</td>
                 </tr>`;
             });
             $("#itemList").html(html);

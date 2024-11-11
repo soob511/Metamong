@@ -36,8 +36,8 @@
                             <option value="1">Y</option>
                             <option value="0">N</option>
                         </select>
+                        <button class="btn-search">조회</button>
                     </div>
-                    <button class="btn-search">조회</button>
                 </div>
                 <hr />
                 <div class="container code-management">

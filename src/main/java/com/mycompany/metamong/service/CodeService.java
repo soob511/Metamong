@@ -91,7 +91,7 @@ public class CodeService {
 		 	item.setItemIsActive(itm.getItemIsActive());
 		 	
 		 	if(itm.getItemIsUpdate() != 0) {
-		 		if(i < itemsLength-1) {
+		 		if(i < itemsLength) {
 			 		itemDao.updateItem(item);
 			 	} else {
 			 		itemDao.insertItem(item);		 		
