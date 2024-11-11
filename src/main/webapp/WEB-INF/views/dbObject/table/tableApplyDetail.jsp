@@ -42,6 +42,15 @@
 							</c:choose>
 						</div>
 					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<div class="button-groupUSER">
+							<c:choose>
+								<c:when test="${applyList.approvalStatus == 2}">
+									<button class="btn-reapply">재작성</button>
+								</c:when>
+							</c:choose>
+						</div>
+					</sec:authorize>
 				</div>
 				<hr>
 				<div id="applyContainer" class="container"
