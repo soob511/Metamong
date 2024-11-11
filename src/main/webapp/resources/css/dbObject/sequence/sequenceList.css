@@ -185,3 +185,15 @@ input[type="search"]::-webkit-search-cancel-button {
     appearance: none;
 }
 
+#fileLink {
+    margin: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+#btn-file{
+	margin-left: 10px;
+}
+
