@@ -18,4 +18,12 @@ public class DataTypeService {
 		return dataTypeDao.selectDataTypeList();
 	}
 
+	public void addDataType(DataTypeDto dataType) {
+		dataTypeDao.insertDataType(dataType);
+	}
+
+	public void editDataType(DataTypeDto dataType) {
+		dataTypeDao.updateDataType(dataType);	
+	}
+
 }

@@ -148,8 +148,8 @@ public class ApplyService {
 	@Transactional
 	public int addApplyCode(CodeApplyDto form, Authentication auth, int applyNo) {
 		int applyId = 0;
-		
-		if(applyNo==0) {
+
+		if (applyNo == 0) {
 			ApplyListDto apply = new ApplyListDto();
 			apply.setMId(auth.getName());
 			apply.setApplyReason(form.getApplyReason());
@@ -283,38 +283,63 @@ public class ApplyService {
 	}
 
 	public String addCreateTableSql(int applyNo, String type) {
-	    StringBuilder sql = new StringBuilder();
+		StringBuilder sql = new StringBuilder();
 
-	    String tableId = tableDao.selectTableIdByApplyNo(applyNo);
+		String tableId = tableDao.selectTableIdByApplyNo(applyNo);
+		String schema = applyListDao.getSchemaName(applyNo);
 
-	    if (type.equals("UPDATE")) {
-	        sql.append(String.format("DROP TABLE %s;", tableId));
-	    }
+		if (type.equals("UPDATE")) {
+			String tempTableName = String.format("TMP_%s_%d", tableId, applyNo);
 
-	    sql.append("CREATE TABLE ").append(tableId).append(" (");
+			sql.append("CREATE TABLE ").append(tempTableName).append(" AS SELECT * FROM ");
 
-	    List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
-	    List<String> columns = new ArrayList<>();
+			if (schema.equals("SRM")) {
+				sql.append("USER_2024_OTI_FINAL_TEAM1_1.");
+			} else if (schema.equals("PMS")) {
+				sql.append("USER_2024_OTI_FINAL_TEAM1_2.");
+			} else {
+				sql.append("USER_2024_OTI_FINAL_TEAM1_3.");
+			}
 
-	    for (ColumnDto column : list) {
-	        StringBuilder col = new StringBuilder(column.getColId()).append(" ").append(column.getDataType());
+			sql.append(tableId).append(";\n");
 
-	        if (column.getColLength() != null) {
-	            col.append("(").append(column.getColLength()).append(")");
-	        }
+			sql.append(String.format("DROP TABLE %s;\n", tableId));
+		}
 
-	        if (column.getColIspk() == 1) {
-	            col.append(" PRIMARY KEY");
-	        } else {
-	            col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
-	        }
+		sql.append("CREATE TABLE ").append(tableId).append(" (");
 
-	        columns.add(col.toString());
-	    }
+		List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
+		List<String> columns = new ArrayList<>();
+		StringBuilder pksql = new StringBuilder(", CONSTRAINT ").append(tableId).append("_PK PRIMARY KEY (");
+		boolean firstPk = true;
 
-	    sql.append(String.join(", ", columns)).append(")");
+		for (ColumnDto column : list) {
+			StringBuilder col = new StringBuilder(column.getColId()).append(" ").append(column.getDataType());
 
-	    return sql.toString();
+			if (column.getColLength() != null) {
+				col.append("(").append(column.getColLength()).append(")");
+			}
+
+			if (column.getColIspk() == 1) {
+				if (!firstPk) {
+					pksql.append(", ");
+				}
+				pksql.append(column.getColId());
+				firstPk = false;
+			} else {
+				col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
+			}
+
+			columns.add(col.toString());
+		}
+
+		sql.append(String.join(", ", columns));
+		pksql.append(")");
+
+		sql.append(pksql);
+		sql.append(")\n");
+
+		return sql.toString();
 	}
 
 	@Transactional
@@ -499,16 +524,24 @@ public class ApplyService {
 		ApprovalStatusDto approvalStatus = new ApprovalStatusDto();
 
 		for (ApprovalStatusCountDto status : approvalStatusCount) {
-            switch (status.getApprovalStatus()) {
-                case 0: approvalStatus.setAwaitCount(status.getCount()); break;
-                case 1: approvalStatus.setApprovedCount(status.getCount()); break;
-                case 2: approvalStatus.setRejectedCount(status.getCount()); break;
-                case 3: approvalStatus.setReflectCount(status.getCount()); break;
-            }
-        }
-        return approvalStatus;
-    }
-	
+			switch (status.getApprovalStatus()) {
+			case 0:
+				approvalStatus.setAwaitCount(status.getCount());
+				break;
+			case 1:
+				approvalStatus.setApprovedCount(status.getCount());
+				break;
+			case 2:
+				approvalStatus.setRejectedCount(status.getCount());
+				break;
+			case 3:
+				approvalStatus.setReflectCount(status.getCount());
+				break;
+			}
+		}
+		return approvalStatus;
+	}
+
 	public List<DbObjApprovalStatusDto> getDbObjAwaitStatus() {
 		return applyListDao.selectDbObjApprovalStatus();
 	}

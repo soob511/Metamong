@@ -67,6 +67,22 @@
     cursor: default; 
 }
 
+.button-groupUSER {
+	margin-right:40px !important;
+}
+
+.btn-reapply{
+	background-color: white;
+	color: var(--theme);
+	border-radius: 8px;
+	border: 1px solid var(--theme);
+	width: 70px;
+	height: 30px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 2.1;
+}
+
 .table {
 	margin: 45px !important;
 	box-shadow: var(--box-shadow);

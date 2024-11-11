@@ -58,9 +58,8 @@
 		LEFT JOIN 
 		    user_constraints c ON i.index_name = c.index_name
 		<where>
-		    c.constraint_type is null
 	        <if test="indexName != 'NONE' ">
-	            AND i.index_name = UPPER(#{indexName})
+	           	i.index_name = UPPER(#{indexName})
 	        </if>
 	        <if test="tableName != 'NONE' ">
 	            AND i.table_name = UPPER(#{tableName})

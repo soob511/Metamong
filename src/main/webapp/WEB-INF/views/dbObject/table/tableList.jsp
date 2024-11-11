@@ -15,6 +15,8 @@
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container table-list-container">
@@ -179,17 +181,19 @@
                 </tr>
               </table>
               <div class="button-group d-flex justify-content-end gap-2">
-                <button class="btn-add" type="button">추가</button>
-                <button class="btn-edit" type="button" disabled>수정</button>
+                <button class="btn-typeAdd" type="button">추가</button>
+                <button class="btn-typeEdit"  type="button" disabled>수정</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
+      
       <div class="modal-footer">
         <div class="modal-btns">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-primary">저장하기</button>
+          <button id="btn-save" type="button" class="btn btn-primary">저장하기</button>
         </div>
       </div>
     </div>

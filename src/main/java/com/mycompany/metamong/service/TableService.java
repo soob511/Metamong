@@ -79,6 +79,10 @@ public class TableService {
 		return list;
 	}
 	
+	public TableDto getTableInfo(String schemaName, String tableName) {
+		return tableDao.selectTableInfo(tableName, schemaName);
+	}
+	
 	public List<TableDto> getTableInfo(String schemaName) {
 		List<TableDto> tableDic = new ArrayList<>();
 		List<TableDto> newList = new ArrayList<>();

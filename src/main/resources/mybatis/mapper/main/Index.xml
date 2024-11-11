@@ -74,8 +74,8 @@
 	
 	<select id="selectApplyIndexDetail" parameterType="int" resultType="ApplyIndexDetail">
 		SELECT 
-		    a.apply_date, a.compl_date, m.m_name, a.dba_name, 
-		    i.idx_name, a.schema_name, t.table_id, i.ref_column,
+		    a.apply_no, a.apply_date, a.compl_date, m.m_name, a.dba_name, 
+		    i.idx_name, a.schema_name, t.table_id, i.table_no, i.ref_column,
 		    i.is_unique, a.apply_reason, a.reject_reason, a.approval_status, 
 		    a.query
 		FROM

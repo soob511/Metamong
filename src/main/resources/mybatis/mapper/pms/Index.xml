@@ -28,7 +28,6 @@
 		LEFT JOIN 
 		    user_constraints c ON i.index_name = c.index_name
 		<where>
-			owner IN ('USER_2024_OTI_FINAL_TEAM1_2')
 	        <if test="indexName != 'NONE' ">
 	            i.index_name = UPPER(#{indexName})
 	        </if>

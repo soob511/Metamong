@@ -19,7 +19,7 @@ table td.table-secondary {
 	margin-right: 40px!important;
 }
 
-.btn-approve {
+.btn-approve, .btn-reapply{
 	background-color: var(--theme);
 	color: white;
 	border-radius: 8px;
@@ -72,7 +72,6 @@ table td.table-secondary {
 	pointer-events: none; 
     cursor: default; 
 }
-
 
 .table {
 	margin: 45px !important;

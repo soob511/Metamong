@@ -134,13 +134,37 @@ public class SequenceController {
 	}
 	
 	@GetMapping("/sequenceApplyDetail")
-	public String sequenceApplyDetail(int applyNo,int indexNo,Model model) {
+	public String sequenceApplyDetail(int applyNo,int indexNo,Model model,Authentication auth) {
 		
 		SequenceDetailDto detail = sequenceService.getSequenceDetail(applyNo);
 		detail.setIndexNo(indexNo);
 		model.addAttribute("detail", detail);
+
+		String mName = memberService.getDbaNameById(auth.getName());
+		if(detail.getMName().equals(mName)) {
+			model.addAttribute("myApply", true);
+		}
 		
 		return "dbObject/sequence/sequenceApplyDetail";
+	}
+	
+	@GetMapping("/reApplySequence")
+	public String reApplySequence(int applyNo, Model model) {
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+
+		List<SequenceDto> sequence = sequenceService.getSequenceList();
+		model.addAttribute("sequence", sequence);
+		
+		SequenceDetailDto info = sequenceService.getSequenceDetail(applyNo);
+		model.addAttribute("info",info);
+		
+		String type = applyService.getApplyType(applyNo);
+		if(type.equals("CREATE")) {
+			model.addAttribute("CREATE", true);
+		}else {
+			model.addAttribute("CREATE", false);			
+		}
+		return  "dbObject/sequence/sequenceRewrite";
 	}
 	
 	@GetMapping("/downloadFile")

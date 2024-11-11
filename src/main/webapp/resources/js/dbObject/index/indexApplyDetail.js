@@ -16,8 +16,30 @@ $(document).ready(function() {
 	$(".btn-reflect").on("click", function() {
 		indexReflectDba()
 	});
-	
+
+	$(".btn-reapply").on("click", function() {
+		reApply()
+	});
 })
+
+function reApply() {
+	let applyType = $("#detailApplyType").data("value");
+	let applyNo = $("#detailApplyNo").data("value");
+	let refColumn = $('#refColumn').data('value');
+	let isUnique = $('#isUnique').data('value');
+	let schemaName = $('#schemaName').data('value');
+	let tableName = $('#tableId').data('value');
+	let indexName = $('#idxName').data('value').toUpperCase();
+	let columnName = 'NONE';
+	let applyReason = $('#applyReason').data("value");
+	
+	if (applyType == 'CREATE') {
+		document.location.href = '/Metamong/index/indexAddFormReApply?applyNo=' + applyNo + '&schemaName=' + schemaName;
+		} else if (applyType == 'DROP') {
+		document.location.href = '/Metamong/index/indexDeleteForm?schemaName=' + schemaName + '&indexName=' + indexName + '&columnName=' + columnName + '&tableName=' + tableName + '&applyReason=' + applyReason;		
+	}
+
+}
 
 function getSqlBtn(approvalStatus) {
 	if (approvalStatus === '반영') {
