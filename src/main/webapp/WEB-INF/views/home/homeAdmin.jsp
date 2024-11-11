@@ -31,15 +31,15 @@
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
 											<p>접수</p>
-											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>승인</p>
-											<h3><span class="fw-bold">13</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반려</p>
-											<h3><span class="fw-bold">3</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
 								</div>
@@ -89,7 +89,7 @@
 				<div class="row">
 					<div class="col-5">
 						<p class="board-title">가입현황</p>
-						<canvas id="line-chart" width="525" height="275"></canvas>
+						<canvas id="line-chart" width="525" height="315"></canvas>
 					</div>
 						<div class="col ms-4">
 							<p class="board-title">계정 목록</p>
