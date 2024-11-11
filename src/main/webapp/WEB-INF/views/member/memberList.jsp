@@ -65,7 +65,7 @@
 										<td>
 											<c:choose>
 												<c:when test="${not empty member.profFilename}">
-												<img class="profile-img" src="${pageContext.request.contextPath}/member/getMemberProf?MId=${member.MId}">
+												<img class="profile-img" src="${pageContext.request.contextPath}/member/getProf?mId=${member.MId}">
 												</c:when>
 												
 												<c:otherwise>

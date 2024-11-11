@@ -80,4 +80,8 @@ public class MemberService {
 	public int deleteProf(MemberDto member) {
 		return memberDao.deleteProf(member);
 	}
+
+	public MemberDto getProf(String mId) {
+		return memberDao.selectProf(mId);
+	}
 }

@@ -65,7 +65,13 @@
 		            SELECT 
 		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.m_approval_status, m.m_isactive, prof_filename, prof_filetype, prof_filedata
 		            FROM 
-		                member m
+		                (SELECT * 
+		                  FROM member 
+		                  WHERE m_role != 'ROLE_ADMIN' 
+		                  AND m_approval_status = 1 
+		                  AND m_isactive = 1 
+		                 ORDER BY 
+		                 	m_name, m_id) m
 		            LEFT OUTER JOIN 
 		                team t ON m.team_id = t.team_id
 		            WHERE 
@@ -86,8 +92,14 @@
 		        FROM (
 		            SELECT 
 		                rownum AS rnum, m.m_id, m.m_name, REPLACE(m.m_role, 'ROLE_', '') AS m_role, m.team_id, t.team_name, m.m_empid, m.m_tel, m.prof_filename, m.prof_filetype, m.prof_filedata
-		            FROM 
-		                member m
+		           FROM 
+		                (SELECT * 
+		                  FROM member 
+		                  WHERE m_role != 'ROLE_ADMIN' 
+		                  AND m_approval_status = 1 
+		                  AND m_isactive = 1 
+		                 ORDER BY 
+		                 	m_name, m_id) m
 		            LEFT OUTER JOIN 
 		                team t ON m.team_id = t.team_id
 	          ]]>       
@@ -195,6 +207,14 @@
 		                member m
 		            LEFT OUTER JOIN 
 		                team t ON m.team_id = t.team_id
+               WHERE m.M_id = #{MId}
+	</select>
+	
+	<select id="selectProf" resultType="Member">
+		SELECT 
+           m.m_id, m.prof_filename, m.prof_filetype, m.prof_filedata
+        	 FROM 
+		                member m
                WHERE m.M_id = #{MId}
 	</select>
 	
