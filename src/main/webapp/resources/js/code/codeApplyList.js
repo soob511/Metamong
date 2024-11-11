@@ -10,6 +10,10 @@ $('#statusSelect').on('change', function() {
 	codeApplySearch(1);
 });
 
+$('#searchSelect').on('change', function() {
+	codeApplySearch(1);
+});
+
 $("#codeNameSearch").on("keydown", function(e) {
     if (event.keyCode === 13) { 
         e.preventDefault();
