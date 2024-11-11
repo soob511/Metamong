@@ -16,7 +16,7 @@
 
                 <i class="bi bi-pencil edit-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" onclick="document.getElementById('fileInput').click();">프로필 변경</a></li>
+                    <li><a class="dropdown-item" onclick="document.getElementById('fileInputProf').click();">프로필 변경</a></li>
                     <li><a class="dropdown-item" id="deleteProfile" onclick="document.getElementById('deleteProf').click();">기본이미지로 변경</a></li>
                 </ul>
             </c:when>
@@ -27,7 +27,7 @@
                 
                 <i class="bi bi-pencil edit-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" onclick="document.getElementById('fileInput').click();">프로필 변경</a></li>
+                    <li><a class="dropdown-item" onclick="document.getElementById('fileInputProf').click();">프로필 변경</a></li>
                 </ul>
             </c:otherwise>
         </c:choose>

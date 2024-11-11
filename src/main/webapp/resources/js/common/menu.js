@@ -60,7 +60,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 
-            	const mid = $('#fileInput').data('m-id');
+            	const mid = $('#fileInputProf').data('m-id');
                const deleteProf = $("#deleteProf").val();
 
                 const formData = new FormData();
