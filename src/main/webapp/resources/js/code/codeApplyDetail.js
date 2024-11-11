@@ -79,7 +79,7 @@ function getExcelItems(codeNo) {
                     <td>${++count}</td>
                     <td>${item.itemId}</td>
                     <td>${item.itemNm}</td>
-                    <td>${item.itemContent}</td>
+                    <td>${item.itemContent == null ? '' : item.itemContent}</td>
                 </tr>`;
             });
             $(".item-tbody").html(html);

@@ -179,7 +179,7 @@ $(document).ready(function () {
                     <td class="itemNm">${item.itemNm}</td>
                     <td>Y</td>
                     <td class="itemContent">${
-                      item.itemContent ? item.itemContent : "-"
+                      item.itemContent ? item.itemContent : ""
                     }</td>
                     <td><i class="bi bi-trash3"></i></td>
                 </tr>`

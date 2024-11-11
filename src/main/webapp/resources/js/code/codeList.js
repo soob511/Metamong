@@ -130,11 +130,12 @@ function searchCode() {
                 let count = 0;
                 data.forEach((code) => {
                     cHtml += `<tr class="code-row" onclick="showItemList(${code.codeNo})">
-                        <th>${code.codeNo}</th>
+                        <th>${++count}</th>
                         <td>${code.codeNm}</td>
-                        <td>${code.codeId}</td>
+                    	<td>${code.codeId}</td>
+                    	<td>${code.codeLength}</td>
                         <td>${code.codeIsActive == 1 ? "Y" : "N"}</td>
-                        <td>${code.codeContent}</td>
+                        <td>${code.codeContent == null ? '' : code.codeContent}</td>
                     </tr>`;
                 });
             } else {
@@ -160,7 +161,7 @@ function showItemList(codeNo) {
                     <td>${item.itemId}</td>
                     <td>${item.itemNm}</td>
                     <td>${item.itemIsActive == 1 ? "Y" : "N"}</td>
-                    <td>${item.itemContent}</td>
+                    <td>${item.itemContent == null ? '' : item.codeContent}</td>
                 </tr>`;
             });
             $("#itemList").html(html);
