@@ -12,8 +12,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/dbObject/table/tableApplyDetail.css"
 	rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container codeApplyInfo-container">
@@ -42,7 +44,7 @@
 							</c:choose>
 						</div>
 					</sec:authorize>
-					<sec:authorize access="hasRole('ROLE_USER')">
+					<c:if test="${myApply}">
 						<div class="button-groupUSER">
 							<c:choose>
 								<c:when test="${applyList.approvalStatus == 2}">
@@ -50,7 +52,8 @@
 								</c:when>
 							</c:choose>
 						</div>
-					</sec:authorize>
+					</c:if>
+
 				</div>
 				<hr>
 				<div id="applyContainer" class="container"
@@ -155,41 +158,41 @@
 				<div class="item-container">
 					<div class="item-header">컬럼</div>
 					<div id="item-background">
-					<table class="table table-hover  bottom-table">
-						<thead class="table-secondary">
-							<tr>
-								<th scope="col">No.</th>
-								<th scope="col">컬럼(논리)</th>
-								<th scope="col">컬럼(물리)</th>
-								<th scope="col">타입</th>
-								<th scope="col">길이</th>
-								<th scope="col">NULL</th>
-								<th scope="col">PK</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${applyColumn}" var="applyColumn"
-								varStatus="status">
+						<table class="table table-hover  bottom-table">
+							<thead class="table-secondary">
 								<tr>
-									<th>${status.index+1}</th>
-									<td>${applyColumn.colNm}</td>
-									<td>${applyColumn.colId}</td>
-									<td>${applyColumn.dataType}</td>
-									<td>${applyColumn.colLength}</td>
-									<td><c:choose>
-											<c:when test="${applyColumn.colIsnullable == 1}">NULL</c:when>
-											<c:otherwise>NOT NULL</c:otherwise>
-										</c:choose></td>
-
-									<td><c:choose>
-											<c:when test="${applyColumn.colIspk == 1}">Y</c:when>
-											<c:otherwise>N</c:otherwise>
-										</c:choose></td>
-
+									<th scope="col">No.</th>
+									<th scope="col">컬럼(논리)</th>
+									<th scope="col">컬럼(물리)</th>
+									<th scope="col">타입</th>
+									<th scope="col">길이</th>
+									<th scope="col">NULL</th>
+									<th scope="col">PK</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<c:forEach items="${applyColumn}" var="applyColumn"
+									varStatus="status">
+									<tr>
+										<th>${status.index+1}</th>
+										<td>${applyColumn.colNm}</td>
+										<td>${applyColumn.colId}</td>
+										<td>${applyColumn.dataType}</td>
+										<td>${applyColumn.colLength}</td>
+										<td><c:choose>
+												<c:when test="${applyColumn.colIsnullable == 1}">NULL</c:when>
+												<c:otherwise>NOT NULL</c:otherwise>
+											</c:choose></td>
+
+										<td><c:choose>
+												<c:when test="${applyColumn.colIspk == 1}">Y</c:when>
+												<c:otherwise>N</c:otherwise>
+											</c:choose></td>
+
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
 				</div>
 

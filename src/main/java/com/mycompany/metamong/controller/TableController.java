@@ -164,7 +164,7 @@ public class TableController {
 	}
 
 	@GetMapping("/tableListDetail")
-	public String tableListDetail(int applyNo, int indexNo, Model model) {
+	public String tableListDetail(int applyNo, int indexNo, Model model,Authentication auth) {
 
 		ApplyTableDeatilDto applyList = applyService.getTableListDetail(applyNo);
 		model.addAttribute("applyList", applyList);
@@ -175,6 +175,11 @@ public class TableController {
 
 		List<ColumnDto> applyColumnList = columnService.getColumnByApplyNo(applyNo);
 		model.addAttribute("applyColumn", applyColumnList);
+		
+		String mName = memberService.getDbaNameById(auth.getName());
+		if(applyList.getMName().equals(mName)) {
+			model.addAttribute("myApply", true);
+		}
 
 		return "dbObject/table/tableApplyDetail";
 
