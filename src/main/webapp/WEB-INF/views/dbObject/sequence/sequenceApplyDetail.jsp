@@ -51,8 +51,8 @@
 						<c:if test="${myApply}">
 							<div class="button-groupUSER">
 								<c:choose>
-									<c:when test="${applyList.approvalStatus == 2}">
-										<button class="btn-reapply">재작성</button>
+									<c:when test="${detail.approvalStatus == 2}">
+										<button class="btn-reapply" onclick="reapply(${detail.applyNo})">재작성</button>
 									</c:when>
 								</c:choose>
 							</div>

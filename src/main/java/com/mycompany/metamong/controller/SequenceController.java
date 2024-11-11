@@ -148,6 +148,25 @@ public class SequenceController {
 		return "dbObject/sequence/sequenceApplyDetail";
 	}
 	
+	@GetMapping("/reApplySequence")
+	public String reApplySequence(int applyNo, Model model) {
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+
+		List<SequenceDto> sequence = sequenceService.getSequenceList();
+		model.addAttribute("sequence", sequence);
+		
+		SequenceDetailDto info = sequenceService.getSequenceDetail(applyNo);
+		model.addAttribute("info",info);
+		
+		String type = applyService.getApplyType(applyNo);
+		if(type.equals("CREATE")) {
+			model.addAttribute("CREATE", true);
+		}else {
+			model.addAttribute("CREATE", false);			
+		}
+		return  "dbObject/sequence/sequenceRewrite";
+	}
+	
 	@GetMapping("/downloadFile")
 	public ResponseEntity<byte[]> downloadFile(@RequestParam("applyNo") int applyNo) {
 	    SequenceDetailDto detail = sequenceService.getSequenceDetail(applyNo);
