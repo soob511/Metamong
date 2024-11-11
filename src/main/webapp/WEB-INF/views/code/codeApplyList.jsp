@@ -36,8 +36,8 @@
                         </select>
                         <form>
                             <input class="form-control me-2" type="search" id="codeNameSearch" placeholder="Search" aria-label="Search">
-                            <i class="bi bi-search"></i>
                         </form>
+                        	<button class="btn-search">조회</button>
                     </div>
                 </div>
                 <div id="codeContainer">
@@ -57,18 +57,17 @@
                             </thead>
                             <tbody>
 								<c:forEach items="${list}" var="code" varStatus="status">
-								    <c:if test="${code.applyNo != previousApplyNo}">
 								        <tr>
 								            <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
 								            <td>
 								                <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 								            </td>
 								            <td>${code.MName}</td>
-								            <td>${code.codeNm}</td>
-								            <td>${code.codeId}</td>
+								            <td>${code.codeNm}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
+								            <td>${code.codeId}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
 								            <td>${code.applyType}</td>
 								            <td>
-								                <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${status.index + 1}, '${code.applyType}')">상세보기</button>
+								                <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${pager.totalRows - (pager.pageNo-1) * 10 - status.index}, '${code.applyType}')">상세보기</button>
 								            </td>
 								            <td class="code-approve">
 								                <c:choose>
@@ -87,7 +86,6 @@
 								                </c:choose>
 								            </td>
 								        </tr>
-								    </c:if>
 								</c:forEach>                             
                             </tbody>
                         </table>
