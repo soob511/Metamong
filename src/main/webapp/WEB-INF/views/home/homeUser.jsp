@@ -31,19 +31,19 @@
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
 											<p>승인대기</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>승인</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반려</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반영</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
 								</div>

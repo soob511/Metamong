@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
         <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
-        <div class="col-10">
+        <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
                 <div class="content">
