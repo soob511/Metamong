@@ -289,15 +289,15 @@ public class ApplyService {
 		String schema = applyListDao.getSchemaName(applyNo);
 
 		if (type.equals("UPDATE")) {
-			String tempTableName = String.format("TMP_%s_%d", tableId,applyNo);
+			String tempTableName = String.format("TMP_%s_%d", tableId, applyNo);
 
 			sql.append("CREATE TABLE ").append(tempTableName).append(" AS SELECT * FROM ");
 
 			if (schema.equals("SRM")) {
 				sql.append("USER_2024_OTI_FINAL_TEAM1_1.");
-			}else if (schema.equals("SRM")) {
+			} else if (schema.equals("PMS")) {
 				sql.append("USER_2024_OTI_FINAL_TEAM1_2.");
-			}else {
+			} else {
 				sql.append("USER_2024_OTI_FINAL_TEAM1_3.");
 			}
 
@@ -310,6 +310,8 @@ public class ApplyService {
 
 		List<ColumnDto> list = columnDao.selectColumnByApplyNo(applyNo);
 		List<String> columns = new ArrayList<>();
+		StringBuilder pksql = new StringBuilder(", CONSTRAINT ").append(tableId).append("_PK PRIMARY KEY (");
+		boolean firstPk = true;
 
 		for (ColumnDto column : list) {
 			StringBuilder col = new StringBuilder(column.getColId()).append(" ").append(column.getDataType());
@@ -319,7 +321,11 @@ public class ApplyService {
 			}
 
 			if (column.getColIspk() == 1) {
-				col.append(" PRIMARY KEY");
+				if (!firstPk) {
+					pksql.append(", ");
+				}
+				pksql.append(column.getColId());
+				firstPk = false;
 			} else {
 				col.append(column.getColIsnullable() == 1 ? " NULL" : " NOT NULL");
 			}
@@ -327,7 +333,11 @@ public class ApplyService {
 			columns.add(col.toString());
 		}
 
-		sql.append(String.join(", ", columns)).append(")");
+		sql.append(String.join(", ", columns));
+		pksql.append(")");
+
+		sql.append(pksql);
+		sql.append(")\n");
 
 		return sql.toString();
 	}
