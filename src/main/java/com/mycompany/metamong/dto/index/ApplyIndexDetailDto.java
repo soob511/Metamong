@@ -21,4 +21,5 @@ public class ApplyIndexDetailDto {
 	private int approvalStatus;
 	private String query;
 	private String applyType;
+	private int tableNo;
 }

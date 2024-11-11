@@ -28,20 +28,19 @@
 			                  	<select id="schemaSelect" class="form-select" aria-label="select example">
 			                  		<option>선택</option>
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
-								       	<c:if test="${schemaEnum.name() != 'MAIN'}">
-									        <option value="${schemaEnum.name()}">
-									            ${schemaEnum.name()}
-									        </option>
-									    </c:if>
+								        <option value="${schemaEnum.name()}"
+								        	<c:if test="${schemaEnum.name() == schemaName}"> selected</c:if>
+								        >
+								            ${schemaEnum.name()}
+								        </option>
 								    </c:forEach>
 								</select>
 			                </div>
 			                <div class="filter">
 			                  <label for="tableSelect" class="filter-label">참조테이블 선택</label>
 			                  <select id="tableSelect" class="form-select" aria-label="select example">
-			      				<option>
-			      					<c:if test="${tableId != 'NONE'}">${tableId}</c:if>
-			      					선택
+			      				<option value="${table.tableNo}" data-name="${table.tableId}">
+			      					${table.tableId}
 			      				</option>
 			                  </select>
 			                </div>
@@ -69,7 +68,24 @@
 											</tr>
 										</thead>
 										<tbody id="columnTableBody">
-											
+											<c:forEach items="${list}" var="column" varStatus="status">
+												<tr data-value="${column.colId}">
+													<th><input class="form-check-input" type="checkbox"
+														value=""></th>
+													<td>${status.index + 1}</td>
+													<td>${column.colNm}</td>
+													<td data-name="colId" data-value="${column.colId}">${column.colId}</td>
+													<td>${column.dataType}</td>
+													<td>${column.colLength}</td>
+													<td>${column.colIsnullableText}</td>
+													<td>${column.colIspkText}</td>
+													<td data-name="colOrder"><select class="form-select"
+														aria-label="Default select">
+															<option selected>ASC</option>
+															<option>DESC</option>
+													</select></td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -128,12 +144,12 @@
 								
 								<div class="index-apply-reason">
 									<p>인덱스이름</p>
-									<input class="index-name-title" id="indexName"></input>
+									<input class="index-name-title" id="indexName" value="${applyIndexDetail.idxName}"/>
 									<div class="msg" id="nameValidMessage"></div>
 								</div>
 								<div class="index-apply-reason">
 									<p>신청사유</p>
-									<textarea id="indexApplyReason"></textarea>
+									<textarea id="indexApplyReason">${applyIndexDetail.applyReason}</textarea>
 									<div class="msg" id="reasonValidMessage"></div>
 									<div class="d-flex justify-content-end">
 											<button id="btn-apply" class="btn-add">
@@ -149,6 +165,6 @@
 		</div>
 	</div>
 	<script
-		src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexAddForm.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/dbObject/index/indexAddFormReApply.js"></script>
 </body>
 </html>

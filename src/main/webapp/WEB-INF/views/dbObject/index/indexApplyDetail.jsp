@@ -39,6 +39,11 @@
 						</c:choose>
 					</div>
 				</sec:authorize>
+				<sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA') and !hasRole('ROLE_ADMIN')">
+				<c:if test="${detail.approvalStatus == 2 and detail.MName == userName}">
+					<button class="btn-reapply">재작성</button>				
+				</c:if>
+				</sec:authorize>
             </div>
             <hr>
             <table class="table table-bordered">
@@ -84,7 +89,9 @@
               </tr>
               <tr>
                 <td class="table-secondary">신청사유</td>
-                <td class="table-td-width" id="table-contents">${detail.applyReason}</td>
+                <td class="table-td-width" id="applyReason" data-value="${detail.applyReason}">
+                	${detail.applyReason}
+               	</td>
                 <td class="table-secondary">UNIQUE</td>
                 <td id="isUnique" data-value="${detail.isUnique}">
                 	${detail.isUnique}
