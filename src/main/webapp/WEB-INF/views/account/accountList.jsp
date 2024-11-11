@@ -150,7 +150,9 @@
                     <th scope="col">사용여부</th>
                   </tr>
                 </thead>
-                <tbody id="teamList"></tbody>
+                <tbody id="teamList">
+                	
+                </tbody>
               </table>
             </div>
             <div class="col team-form">
