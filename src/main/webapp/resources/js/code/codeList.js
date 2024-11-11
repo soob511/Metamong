@@ -10,7 +10,7 @@ $(document).ready(function () {
 	    $(this).addClass("table-active");
 	}); 
     
-    $(".bi-search").on("click", function () {
+    $(".btn-search").on("click", function () {
         searchCode();
     });
 
@@ -125,7 +125,7 @@ function searchCode() {
         data: { keyword: keyword, option: option },
         success: function (data) {
             let cHtml = "";
-            let iHtml = `<tr class="no-item"><td colspan="5">코드를 선택해 주세요.</td></tr>`;
+            let iHtml = `<tr class="no-item"><th colspan="5">코드를 선택해 주세요.</th></tr>`;
             if (data.length > 0) {
                 let count = 0;
                 data.forEach((code) => {

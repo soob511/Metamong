@@ -36,8 +36,8 @@
                         </select>
                         <form>
                             <input class="form-control me-2" type="search" id="codeNameSearch" placeholder="Search" aria-label="Search">
-                            <i class="bi bi-search"></i>
                         </form>
+                        	<button class="btn-search">조회</button>
                     </div>
                 </div>
                 <div id="codeContainer">

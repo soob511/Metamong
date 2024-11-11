@@ -21,7 +21,7 @@ $("#codeNameSearch").on("keydown", function(e) {
     }
 });
 
-$('.bi-search').on('click', function() {
+$('.btn-search').on('click', function() {
 	codeApplySearch(1);
 });
 
