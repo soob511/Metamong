@@ -57,15 +57,15 @@
                             </thead>
                             <tbody>
 								<c:forEach items="${list}" var="code" varStatus="status">
-								    <c:if test="${code.applyNo != previousApplyNo}">
+								   <%--  <c:if test="${code.applyNo != previousApplyNo}"> --%>
 								        <tr>
 								            <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
 								            <td>
 								                <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 								            </td>
 								            <td>${code.MName}</td>
-								            <td>${code.codeNm}</td>
-								            <td>${code.codeId}</td>
+								            <td>${code.codeNm}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
+								            <td>${code.codeId}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
 								            <td>${code.applyType}</td>
 								            <td>
 								                <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${status.index + 1}, '${code.applyType}')">상세보기</button>
@@ -87,7 +87,7 @@
 								                </c:choose>
 								            </td>
 								        </tr>
-								    </c:if>
+								    <%-- </c:if> --%>
 								</c:forEach>                             
                             </tbody>
                         </table>
