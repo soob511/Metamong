@@ -34,6 +34,7 @@
                                 <select id="schemaSelect" class="form-select" aria-label="Default select example">
                                     <option selected>제목</option>
                                     <option>내용</option>
+                                    <option>제목+내용</option>
                                 </select>
                             </div>
                         </div>
