@@ -36,25 +36,25 @@
 											<div>
 												<p>코드/항목</p>
 												<h3>
-													<span class="fw-bold">15</span><span class="fs-4">건</span>
+													<span class="fw-bold">0</span><span class="fs-4">건</span>
 												</h3>
 											</div>
 											<div>
 												<p>테이블</p>
 												<h3>
-													<span class="fw-bold">10</span><span class="fs-4">건</span>
+													<span class="fw-bold">0</span><span class="fs-4">건</span>
 												</h3>
 											</div>
 											<div>
 												<p>시퀀스</p>
 												<h3>
-													<span class="fw-bold">2</span><span class="fs-4">건</span>
+													<span class="fw-bold">0</span><span class="fs-4">건</span>
 												</h3>
 											</div>
 											<div>
 												<p>인덱스</p>
 												<h3>
-													<span class="fw-bold">3</span><span class="fs-4">건</span>
+													<span class="fw-bold">0</span><span class="fs-4">건</span>
 												</h3>
 											</div>
 										</div>
