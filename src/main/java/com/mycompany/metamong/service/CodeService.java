@@ -139,7 +139,7 @@ public class CodeService {
 	        }
 
 	        for (int i = 0; i < 5; i++) {
-	            arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "-";
+	            arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "";
 	        }
 
 	        CodeExcelDto code = new CodeExcelDto();
@@ -171,7 +171,7 @@ public class CodeService {
 	        }
 
 	        for (int i = 0; i < 4; i++) {
-	        	arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "-";
+	        	arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "";
 	        }
 
 	        ItemExcelDto item = new ItemExcelDto();

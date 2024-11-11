@@ -65,7 +65,7 @@
 		<a href="javascript:codeApplySearch(1)"
 			class="btn btn-outline-secondary btn-sm"><<</a>
 		<c:if test="${pager.groupNo>1}">
-			<a href="javascript:codeApplySearch(${pager.startPageNo-1)"
+			<a href="javascript:codeApplySearch(${pager.startPageNo-1})"
 				class="btn btn-outline-info btn-sm"><</a>
 		</c:if>
 

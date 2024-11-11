@@ -57,7 +57,6 @@
                             </thead>
                             <tbody>
 								<c:forEach items="${list}" var="code" varStatus="status">
-								   <%--  <c:if test="${code.applyNo != previousApplyNo}"> --%>
 								        <tr>
 								            <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
 								            <td>
@@ -87,7 +86,6 @@
 								                </c:choose>
 								            </td>
 								        </tr>
-								    <%-- </c:if> --%>
 								</c:forEach>                             
                             </tbody>
                         </table>

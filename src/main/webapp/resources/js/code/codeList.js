@@ -135,7 +135,7 @@ function searchCode() {
                     	<td>${code.codeId}</td>
                     	<td>${code.codeLength}</td>
                         <td>${code.codeIsActive == 1 ? "Y" : "N"}</td>
-                        <td>${code.codeContent == null ? '' : code.codeContent}</td>
+                        <td>${!code.codeContent ? '' : code.codeContent}</td>
                     </tr>`;
                 });
             } else {
@@ -157,11 +157,11 @@ function showItemList(codeNo) {
             let count = 0;
             data.forEach((item) => {
                 html += `<tr>
-                    <td>${++count}</td>
+                    <th>${++count}</th>
                     <td>${item.itemId}</td>
                     <td>${item.itemNm}</td>
                     <td>${item.itemIsActive == 1 ? "Y" : "N"}</td>
-                    <td>${item.itemContent == null ? '' : item.codeContent}</td>
+                    <td>${!item.itemContent ? '' : item.codeContent}</td>
                 </tr>`;
             });
             $("#itemList").html(html);
