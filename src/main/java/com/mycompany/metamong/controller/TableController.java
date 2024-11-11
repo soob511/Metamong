@@ -53,6 +53,9 @@ public class TableController {
 	@Autowired
 	private MemberService memberService;
 
+	@Autowired
+	private AlarmController alarmController;
+
 	@GetMapping("/tableList")
 	public String tableList(Model model) {
 		List<TableDto> list = tableService.getTableList();
@@ -93,7 +96,8 @@ public class TableController {
 	public ResponseEntity<String> applyTable(@RequestBody TableAddDto form, Authentication auth) {
 
 		applyService.addApplyTable(form, auth);
-
+		 List<String> dbaId = memberService.getDbaIdByRole("ROLE_DBA");
+		alarmController.sendDba("새로운 테이블 신청이 접수되었습니다.", dbaId);
 		return ResponseEntity.ok("/Metamong/table/tableApplyList");
 	}
 
@@ -112,7 +116,6 @@ public class TableController {
 			model.addAttribute("column", session.getAttribute("afterColumn"));
 			model.addAttribute("visit", true);
 		}
-
 
 		return "dbObject/table/tableUpdateForm";
 	}

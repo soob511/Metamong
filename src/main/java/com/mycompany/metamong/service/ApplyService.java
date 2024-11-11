@@ -510,6 +510,6 @@ public class ApplyService {
     }
 	
 	public List<DbObjApprovalStatusDto> getDbObjAwaitStatus() {
-		return applyListDao.selectDbObjAwaitStatus();
+		return applyListDao.selectDbObjApprovalStatus();
 	}
 }

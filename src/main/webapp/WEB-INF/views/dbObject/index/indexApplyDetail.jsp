@@ -48,7 +48,7 @@
               </tr>
               <tr id="detailApplyType" data-value="${detail.applyType}">
                 <td class="table-secondary">신청일자</td>
-                <td id="table-contents">
+                <td class="table-td-width" id="table-contents">
                 	<fmt:formatDate value="${detail.applyDate}" pattern="yyyy-MM-dd"/>
                 </td>
                 <td class="table-secondary">신청자</td>
@@ -56,7 +56,7 @@
               </tr>
               <tr>
                 <td class="table-secondary">처리일자</td>
-                <td id="table-contents">
+                <td class="table-td-width" id="table-contents">
                 	<fmt:formatDate value="${detail.complDate}" pattern="yyyy-MM-dd"/>
                 </td>
                 <td class="table-secondary">처리자</td>
@@ -64,7 +64,7 @@
               </tr>
               <tr>
                 <td class="table-secondary">인덱스명</td>
-                <td id="idxName" data-value="${detail.idxName}">
+                <td class="table-td-width" id="idxName" data-value="${detail.idxName}">
                 	${detail.idxName}
                	</td>
                 <td class="table-secondary">스키마명</td>
@@ -74,7 +74,7 @@
               </tr>
               <tr>
                 <td class="table-secondary">참조테이블</td>
-                <td id="tableId" data-value="${detail.tableId}">
+                <td class="table-td-width" id="tableId" data-value="${detail.tableId}">
                 	${detail.tableId}
                	</td>
                 <td class="table-secondary">참조컬럼</td>
@@ -84,7 +84,7 @@
               </tr>
               <tr>
                 <td class="table-secondary">신청사유</td>
-                <td id="table-contents">${detail.applyReason}</td>
+                <td class="table-td-width" id="table-contents">${detail.applyReason}</td>
                 <td class="table-secondary">UNIQUE</td>
                 <td id="isUnique" data-value="${detail.isUnique}">
                 	${detail.isUnique}

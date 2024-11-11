@@ -163,7 +163,7 @@
 		            </where>
 		            <![CDATA[
 				            ORDER BY 
-				                m.m_applydate DESC
+				                m.m_regdate DESC
 				        	)
 			        WHERE rnum BETWEEN #{pager.startRowNo} AND #{pager.endRowNo}
 	   				 ]]>

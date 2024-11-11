@@ -34,4 +34,12 @@ public interface MemberDao {
 	public List<ApplyMemberDto> selectApplyMember(String mRole);
 	
 	public List<ApprovalMemberStatusDto> selectApprovalStatus();
+
+	public MemberDto selectMemberProf(String mId);
+
+	public int updateProf(MemberDto member);
+
+	public int deleteProf(MemberDto member);
+
+	public List<String> selectDbaIdByRole(String role);
 }

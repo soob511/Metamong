@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,14 @@
 <body>
 <div class="container">
     <div class="row">
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
         <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
+    </sec:authorize>
+    <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+     	<sec:authorize access="!hasRole('ROLE_ADMIN')">
+        <jsp:include page="/WEB-INF/views/common/menu.jsp" />
+        </sec:authorize>
+   </sec:authorize>
         <div class="col-10">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
@@ -66,16 +74,19 @@
                             		<c:when test="${notice.prevNum == 0}">
                             		이전글이 없습니다.
                             		</c:when>
+                            		
                             		<c:otherwise>                         
 	                            	<a href="noticeDetail?noticeId=${notice.prevNum}" style="color:black;">${notice.prevTitle}</a>
 	                            	</c:otherwise>	 
-	                            	</c:choose>                          
+                            	</c:choose>                          
                            </td>
                         </tr>
                     </table>
                     <div class="d-flex justify-content-end mt-3">
+                       <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <button type="button" class="btn-delete me-2" data-notice-id="${notice.noticeId}">삭제</button>
                         <button type="submit" class="btn-add me-2"><a href="noticeUpdateForm?noticeId=${notice.noticeId}" style="color:white;">수정</a></button>
+                        </sec:authorize>
                         <button type="button" class="btn-list" data-page-no="${pager.pageNo}"><a href="noticeList?pageNo=${pager.pageNo}" style="color:white;">목록</a></button>
                     </div>                 
                 </div>

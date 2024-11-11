@@ -1,23 +1,32 @@
 @charset "UTF-8";
 
-.table-container {
+.column-container {
     border-radius: 8px !important;
     box-shadow: var(--box-shadow);
     overflow: hidden;
     overflow-y: auto !important;
-}
-
-.table-container:first-of-type {
     height: 280px;
 }
 
-.table-container-second {
+.index-info-container {
 	border-radius: 8px !important;
     box-shadow: var(--box-shadow);
     overflow: hidden;
     overflow-y: auto !important;
 	margin-top: 20px;
-    height: 240px;
+    height: 230px;
+}
+
+.selected-column-container {
+    border-radius: 8px !important;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    overflow-y: auto !important;
+    height: 250px;
+}
+
+.column-container tr {
+	cursor: pointer;
 }
 
 .table th, .table td {
@@ -53,19 +62,27 @@ thead {
 }
 
 .form-select {
-	 height: 37.3px !important;
+	 height: 33px !important;
+	 font-size: 13px !important;
+}
+
+.filter:nth-of-type(1) .form-select {
+    width: 100px; /* 첫 번째 select 박스의 크기 */
+}
+
+.filter:nth-of-type(2) .form-select {
+    width: 200px; /* 첫 번째 select 박스의 크기 */
 }
 
 .filter {
     display: flex;
-    align-items: center;
-    min-width: 250px !important;
+    align-items: center;    
     margin-left: 10px;
     font-size: 17px;
 }
 
 .filter:first-of-type {
-    margin-left: 30px;
+    margin-left: 38px;
 }
 
 .filter-label {
@@ -81,24 +98,19 @@ hr {
     margin: 0 45px;
 }
 
-.form-select {
-    font-size: 13px !important;
-    height: 30px;
-}
-
 .index-apply-title {
     font-size: 18px;
     font-weight: 600 !important;
     padding-top: 10px;
 }
 
-.index-col-title span {
+.selected-column-title span {
     display: inline-block;
     font-size: 16px;
     padding: 10px 5px 5px 0;
 }
 
-.index-col-title input {
+.selected-column-title input {
     margin-top: 13px;
 }
 
@@ -114,12 +126,8 @@ hr {
     padding: 0;
 }
 
-.index-col-table {
+.selected-column-area {
     margin-right: 45px;
-}
-
-.index-cols {
-    height: 340px;
 }
 
 .index-apply-reason p {
@@ -130,8 +138,7 @@ hr {
 
 .index-apply-reason textarea {
     width: 100%;
-    min-height: 150px;
-    max-height: 150px;
+    height: 130px;
     box-shadow: var(--box-shadow);
     border-radius: 5px;
     border: 1px solid #d9d9d9;
@@ -161,10 +168,6 @@ hr {
 	background-color: rgba(0, 0, 0, 0.075) !important;
 }
 
-.index-apply-table {
-	height: 250px;
-}
-
 .msg {
     font-size: 11px;
     display: block;
@@ -182,3 +185,31 @@ hr {
     opacity: 1;
     color: blue;
 }
+
+.bi-trash3 {
+	cursor: pointer;
+}
+
+.column-container th:nth-child(1), .table-container td:nth-child(1) { width: 3%; }
+.column-container th:nth-child(2), .table-container td:nth-child(2) { width: 10%; }
+.column-container th:nth-child(3), .table-container td:nth-child(3) { width: 17%; }
+.column-container th:nth-child(4), .table-container td:nth-child(4) { width: 17%; }
+.column-container th:nth-child(5), .table-container td:nth-child(5) { width: 17%; }
+.column-container th:nth-child(6), .table-container td:nth-child(6) { width: 10%; }
+.column-container th:nth-child(7), .table-container td:nth-child(7) { width: 5%; }
+.column-container th:nth-child(8), .table-container td:nth-child(8) { width: 5%; }
+.column-container th:nth-child(9), .table-container td:nth-child(9) { width: 15%; }
+
+.index-info-container th:nth-child(1), .index-info-container td:nth-child(1) { width: 5%; }
+.index-info-container th:nth-child(2), .index-info-container td:nth-child(2) { width: 13%; }
+.index-info-container th:nth-child(3), .index-info-container td:nth-child(3) { width: 10%; }
+.index-info-container th:nth-child(4), .index-info-container td:nth-child(4) { width: 13%; }
+.index-info-container th:nth-child(5), .index-info-container td:nth-child(5) { width: 13%; }
+.index-info-container th:nth-child(6), .index-info-container td:nth-child(6) { width: 10%; }
+.index-info-container th:nth-child(7), .index-info-container td:nth-child(7) { width: 10%; }
+.index-info-container th:nth-child(8), .index-info-container td:nth-child(8) { width: 10%; }
+
+.selected-column-container th:nth-child(1), .selected-column-container td:nth-child(1) { width: 20%; }
+.selected-column-container th:nth-child(2), .selected-column-container td:nth-child(2) { width: 40%; }
+.selected-column-container th:nth-child(3), .selected-column-container td:nth-child(3) { width: 20%; }
+.selected-column-container th:nth-child(4), .selected-column-container td:nth-child(4) { width: 20%; }

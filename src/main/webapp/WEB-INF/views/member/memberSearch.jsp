@@ -9,6 +9,7 @@
 					<thead class="table-secondary">
 						<tr>
 							<th scope="col">No.</th>
+							<th scope="col">프로필</th>
 							<th scope="col">ID</th>
 							<th scope="col">이름</th>
 							<th scope="col">권한</th>
@@ -22,6 +23,17 @@
 						<c:forEach items="${list}" var="member" varStatus="status">
 								<tr>
 									<td scope="row">${status.index + 1 + (pager.pageNo - 1) * 10}</td>
+									<td>
+											<c:choose>
+												<c:when test="${not empty member.profFilename}">
+												<img class="profile-img" src="${pageContext.request.contextPath}/member/getMemberProf?MId=${member.MId}">
+												</c:when>
+												
+												<c:otherwise>
+													<img class="profile-img" src="${pageContext.request.contextPath}/resources/image/general_prof.png">
+												</c:otherwise>
+											</c:choose>
+									</td>
 									<td>${member.MId}</td>
 									<td>${member.MName}</td>
 									<td>${member.MRole}</td>

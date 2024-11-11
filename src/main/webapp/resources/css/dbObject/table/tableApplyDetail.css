@@ -80,14 +80,14 @@
 .codeApplyInfo-table {
 	min-width: 660px !important;
 	max-width: 660px !important;
-	height: 230px;
+	height: 250px;
 	margin: 5px 20px 0 40px;;
 }
 
 .code-table {
 	min-width: 660px !important;
 	max-width: 660px !important;
-	height: 230px;
+	height: 250px;
 	margin: 5px 40px 20px 10px;
 }
 
@@ -128,7 +128,14 @@ thead {
 .item-container {
 	min-width: 1360px !important;
 	max-width: 1360px !important;
-	margin: 10px 40px 60px 40px !important;
+	margin: 30px 40px 60px 40px !important;
+}
+
+#item-background {
+   border-radius: 8px !important;
+   box-shadow: var(--box-shadow);
+   overflow-y: scroll;
+   height: 270px !important;
 }
 
 .button-group {
