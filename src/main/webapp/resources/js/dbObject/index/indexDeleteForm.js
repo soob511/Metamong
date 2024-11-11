@@ -59,11 +59,11 @@ function checkCheckBox(checkbox) {
 }
 
 function createRefColumn(dataList) {
-
+	console.log(dataList);
     dataList.sort((a, b) => parseInt(a.columnPosition) - parseInt(b.columnPosition));
 
     let refColumn = dataList.map(data => `${data.refColumn} ${data.descend}`).join(', ');
-
+    console.log(refColumn);
     list = {
             "idxName": dataList[0].idxName,
             "tableName": dataList[0].tableName,

@@ -23,10 +23,12 @@ import com.mycompany.metamong.dto.index.ApplyIndexListDto;
 import com.mycompany.metamong.dto.index.ApplyIndexRequestDto;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.dto.index.RefColumnDto;
+import com.mycompany.metamong.dto.table.TableDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.IndexService;
 import com.mycompany.metamong.service.MemberService;
+import com.mycompany.metamong.service.TableService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +42,8 @@ public class IndexController {
 	private ApplyService applyService;
 	@Autowired
 	private MemberService memberSerivce;
+	@Autowired
+	private TableService tableService;
 	
 	@GetMapping("/indexList")
 	public String indexList(Model model) {
@@ -112,9 +116,11 @@ public class IndexController {
 			@RequestParam String columnName,
 			@RequestParam String tableName,
 			@RequestParam String schemaName,
+			@RequestParam(defaultValue="") String applyReason,
 			Model model) {
 		List<IndexDto> list = 
 				indexService.getIndexList(indexName, columnName, tableName, schemaName);
+		model.addAttribute("applyReason", applyReason);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("list", list);
 		return "dbObject/index/indexDeleteForm";
@@ -159,10 +165,13 @@ public class IndexController {
 			@RequestParam int applyNo, 
 			@RequestParam int indexNo,
 			@RequestParam String applyType,
+			Authentication auth,
 			Model model) {
+		String userName = memberSerivce.getDbaNameById(auth.getName());
 		ApplyIndexDetailDto applyIndexDetail = applyService.getApplyIndexListDetail(applyNo);
 		applyIndexDetail.setApplyNo(applyNo);
 		applyIndexDetail.setApplyType(applyType);
+		model.addAttribute("userName", userName);
 		model.addAttribute("detail", applyIndexDetail);
 		model.addAttribute("no", indexNo);
 		return "dbObject/index/indexApplyDetail";
@@ -198,4 +207,20 @@ public class IndexController {
 		String dbaName = memberSerivce.getDbaNameById(auth.getName());
 		applyService.applyIndexSql(schemaName, applyNo, dbaName);
 	}
+	
+	@GetMapping("/indexAddFormReApply")
+	public String indexListReApply(
+			int applyNo,
+			String schemaName,
+			Model model) {
+		ApplyIndexDetailDto applyIndexDetail = applyService.getApplyIndexListDetail(applyNo);
+		TableDto table = tableService.getTableInfo(schemaName, applyIndexDetail.getTableId());
+		
+		model.addAttribute("table", table);
+		model.addAttribute("applyIndexDetail", applyIndexDetail);
+		model.addAttribute("schemaName", schemaName);
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		return "dbObject/index/indexAddFormReApply";
+	}
+
 }
