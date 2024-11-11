@@ -10,6 +10,10 @@ $('#statusSelect').on('change', function() {
 	codeApplySearch(1);
 });
 
+$('#searchSelect').on('change', function() {
+	codeApplySearch(1);
+});
+
 $("#codeNameSearch").on("keydown", function(e) {
     if (event.keyCode === 13) { 
         e.preventDefault();
@@ -17,7 +21,7 @@ $("#codeNameSearch").on("keydown", function(e) {
     }
 });
 
-$('.bi-search').on('click', function() {
+$('.btn-search').on('click', function() {
 	codeApplySearch(1);
 });
 

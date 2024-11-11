@@ -129,6 +129,7 @@ public class MemberController {
         	return "member/memberSearch";
 			}	    
 		}
+	
 	@RequestMapping("/getMemberProf")
 	public String getMemberProf(HttpServletResponse response, Model model, Authentication auth) throws Exception {
 		
@@ -142,13 +143,24 @@ public class MemberController {
 		out.flush();
 		out.close();
 		
-		log.info("Filename: " + member.getProfFilename());
-	    log.info("Filetype: " + member.getProfFiletype());
-	    log.info("Filedata: " + (member.getProfFiledata() != null ? "Data exists" : "No data"));
-		
 		return "common/header";
 	}
 	
+	@RequestMapping("/getMemberProfileImage")
+	public void getMemberProf(@RequestParam("mId") String mId, HttpServletResponse response) throws Exception {
+	    MemberDto member = memberService.getMemberProfileImage(mId);
+	    
+	    if (member != null && member.getProfFiledata() != null) {
+	        response.setContentType(member.getProfFiletype());
+	        ServletOutputStream out = response.getOutputStream();
+	        out.write(member.getProfFiledata());
+	        out.flush();
+	        out.close();
+	    } else {
+	        response.sendRedirect("/resources/image/general_prof.png");
+	    }
+	}
+
 	@ResponseBody
 	@PostMapping("/updateProf")
 	public int updateProf(

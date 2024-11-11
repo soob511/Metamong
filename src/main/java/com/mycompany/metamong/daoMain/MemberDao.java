@@ -42,4 +42,6 @@ public interface MemberDao {
 	public int deleteProf(MemberDto member);
 
 	public List<String> selectDbaIdByRole(String role);
+
+	public MemberDto selectMemberProfileImage(String mId);
 }

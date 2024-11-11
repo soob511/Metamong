@@ -21,7 +21,6 @@ public class AllControllerAdvice {
     public MemberDto addMemberToModel(Authentication auth) {
         if (auth != null && auth.isAuthenticated()) {
             String mid = auth.getName();
-            log.info("로그인한 사용자 ID: " + mid);
             MemberDto member = memberService.getMemberProf(mid);
             return member;
         }

@@ -418,6 +418,12 @@
 	 GROUP BY apply_obj
 </select>
 
+<update id="updateComplDate" parameterType="int">
+	UPDATE apply_list
+	SET compl_date = null
+	WHERE	apply_no = #{applyNo}
+</update>
+
 </mapper>
 
 		

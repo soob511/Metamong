@@ -5,6 +5,25 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    $.ajax({
+        url: "/Metamong/dataType/dataTypeList",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+    		let count = 0;
+    		let html = "";
+    		
+    		data.forEach((type) => {
+                html += `<tr>
+                    <th>${++count}</th>
+                    <td class="dataType">${type.dataType}</td>
+                    <td class="datatypeIsactive">${type.datatypeIsactive == 1 ? 'Y' : 'N'}</td>
+                </tr>`;
+            });        		
+    		$('#dataTypeList').html(html);
+        }
+    });
+    
     $("#tableList").on("click", ".tableListTr", function() {
 	    $(".tableListTr").removeClass("table-active");
 	    $(this).addClass("table-active");

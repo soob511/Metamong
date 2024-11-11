@@ -10,7 +10,7 @@ $(document).ready(function () {
 	    $(this).addClass("table-active");
 	}); 
     
-    $(".bi-search").on("click", function () {
+    $(".btn-search").on("click", function () {
         searchCode();
     });
 
@@ -125,17 +125,17 @@ function searchCode() {
         data: { keyword: keyword, option: option },
         success: function (data) {
             let cHtml = "";
-            let iHtml = `<tr class="no-item"><td colspan="5">코드를 선택해 주세요.</td></tr>`;
+            let iHtml = `<tr class="no-item"><th colspan="5">코드를 선택해 주세요.</th></tr>`;
             if (data.length > 0) {
                 let count = 0;
                 data.forEach((code) => {
-                    cHtml += `<tr class="code-row" onclick="showItemList(${code.codeNo})">
+                    cHtml += `<tr class="code-row" onclick="showItemList(${code.codeNo})" data-code-no="${code.codeNo}">
                         <th>${++count}</th>
                         <td>${code.codeNm}</td>
                     	<td>${code.codeId}</td>
                     	<td>${code.codeLength}</td>
                         <td>${code.codeIsActive == 1 ? "Y" : "N"}</td>
-                        <td>${code.codeContent == null ? '' : code.codeContent}</td>
+                        <td>${!code.codeContent ? '' : code.codeContent}</td>
                     </tr>`;
                 });
             } else {
@@ -157,11 +157,11 @@ function showItemList(codeNo) {
             let count = 0;
             data.forEach((item) => {
                 html += `<tr>
-                    <td>${++count}</td>
+                    <th>${++count}</th>
                     <td>${item.itemId}</td>
                     <td>${item.itemNm}</td>
                     <td>${item.itemIsActive == 1 ? "Y" : "N"}</td>
-                    <td>${item.itemContent == null ? '' : item.codeContent}</td>
+                    <td>${!item.itemContent ? '' : item.itemContent}</td>
                 </tr>`;
             });
             $("#itemList").html(html);

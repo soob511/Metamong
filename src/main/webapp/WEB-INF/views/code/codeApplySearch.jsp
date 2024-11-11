@@ -26,8 +26,8 @@
 	                            <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 	                        </td>
 	                        <td>${code.MName}</td>
-	                        <td>${code.codeNm}</td>
-	                        <td>${code.codeId}</td>
+	                        <td>${code.codeNm}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
+				            <td>${code.codeId}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
 	                        <td>${code.applyType}</td>
 	                        <td>
 	                            <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${status.index + 1})">상세보기</button>
@@ -65,7 +65,7 @@
 		<a href="javascript:codeApplySearch(1)"
 			class="btn btn-outline-secondary btn-sm"><<</a>
 		<c:if test="${pager.groupNo>1}">
-			<a href="javascript:codeApplySearch(${pager.startPageNo-1)"
+			<a href="javascript:codeApplySearch(${pager.startPageNo-1})"
 				class="btn btn-outline-info btn-sm"><</a>
 		</c:if>
 

@@ -69,4 +69,6 @@ public interface ApplyListDao {
 	public List<ApprovalStatusCountDto> selectApprovalStatus(String mId);
 	
 	public List<DbObjApprovalStatusDto> selectDbObjApprovalStatus();
+
+	public int updateComplDate(int applyNo);
 }
