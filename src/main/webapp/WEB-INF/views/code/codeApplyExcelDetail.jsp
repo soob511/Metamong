@@ -55,7 +55,7 @@
                             </td>
                             <td class="table-secondary">신청 건수</td>
                             <td>
-                                <div class="table-text">총 ${totalCount}건</div>
+                                <div class="table-text">총 ${totalCount} 건</div>
                             </td>
                         </tr>
                         <tr>
