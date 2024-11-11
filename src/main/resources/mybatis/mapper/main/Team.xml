@@ -7,6 +7,25 @@
 		WHERE team_Isactive = 1 AND team_ID>0
 		ORDER BY team_Id
 	</select>
+	
+	<insert id="insertTeam" parameterType="Team">
+    INSERT INTO team (
+    	team_id,
+    	team_name, 
+    	team_isactive
+    )VALUES (
+    		#{teamId},
+		    #{teamName}, 
+		    #{teamIsactive}
+		    )
+	</insert>
+
+<update id="updateTeam" parameterType="Team">
+    UPDATE team
+    SET team_name = #{teamName}, 
+    		team_isactive = #{teamIsactive}
+    WHERE team_id = #{teamId}
+</update>
 
 </mapper>
 	

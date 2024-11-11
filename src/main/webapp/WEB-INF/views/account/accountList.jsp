@@ -150,8 +150,8 @@
                     <th scope="col">사용여부</th>
                   </tr>
                 </thead>
-                <tbody id="teamList">
-                	
+                <tbody id= "teamList">
+             
                 </tbody>
               </table>
             </div>
@@ -160,12 +160,12 @@
               <table class="table" id="teamForm">
                 <tr>
                   <td class="table-secondary">소속명</td>
-                  <td><input type="text" id="teamName" placeholder="내용 입력" required></td>   
+                  <td><input type="text" id="teamName" class="form-control" placeholder="내용 입력" required></td>   
                 </tr>
                 <tr>
                   <td class="table-secondary">사용여부</td>
                   <td>
-                    <select id="teamIsActive" class="form-select use-status-select" aria-label="사용 여부 선택">
+                    <select id="teamIsactive" class="form-select use-status-select" aria-label="사용 여부 선택">
                       <option value="1">Y</option>
                       <option value="0">N</option>
                     </select>
@@ -183,7 +183,7 @@
       <div class="modal-footer">
         <div class="modal-btns">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-primary">저장하기</button>
+          <button type="button" class="btn btn-primary" id="submit">저장하기</button>
         </div>
       </div>
     </div>

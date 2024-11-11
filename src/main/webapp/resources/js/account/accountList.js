@@ -1,91 +1,177 @@
-let teams = [];
-
 $(document).ready(function() {
     $('.menu-team').removeClass('active');
     $('.menu-team:eq(1)').addClass('active');
     $('.sub-menu:eq(0)').addClass('active');
     $('.sub-menu:eq(0) .sub-team').removeClass('active');
     $('.sub-menu:eq(0) .sub-team:first').addClass('active');
+});
 
-    // 팀 목록 가져오기
- $('.btn-team').click(function() {
-        $.ajax({
-            url: "/Metamong/team/getTeamList",
-            type: "GET",
-            success: function(data) {
-                let tHtml = "";
-                data.forEach((team) => {
-                    tHtml += `<tr class="team">
-                        <th class="teamId">${team.teamId}</th>
-                        <td class="teamName">${team.teamName}</td>
-                        <td class="teamIsactive">${team.teamIsactive == 1 ? 'Y' : 'N'}</td>
-                    </tr>`;
-                });
-                $('#teamName').val(teamName);           
-                (teamIsActive == 'Y') ? $('#teamIsActive option:first').prop("selected", true) : $('#teamIsActive option:last').prop("selected", true);   
-               
-                $('#teamList').html(tHtml);
+let num = $('.btn-team').data('team-length');
+let teams = [];
+
+// 팀 목록 가져오기
+$('.btn-team').click(function() {
+    $.ajax({
+        url: "/Metamong/team/getTeamList",
+        type: "GET",
+        success: function(data) {
+            let tHtml = "";
+            data.forEach((team) => {
+                tHtml += `<tr class="team" data-isupdate="0">
+                    <th class="teamId">${team.teamId}</th>
+                    <td class="teamName">${team.teamName}</td>
+                    <td class="teamIsactive">${team.teamIsactive == 1 ? 'Y' : 'N'}</td>
+                </tr>`;
                 
                 
+            });
+           
+            $('#teamList').html(tHtml);
 
-                $('#teamList .team').each(function() {
-                    teams.push({
-                        teamId: $(this).find('.teamId').text(),
-                        teamName: $(this).find('.teamName').text(),
-                        teamIsactive: $(this).find('.teamIsactive').text() === 'Y' ? 1 : 0
-                    });
+            $('#teamList .team').each(function() {
+                teams.push({
+                    teamId: $(this).find('.teamId').text(),
+                    teamName: $(this).find('.teamName').text(),
+                    teamIsactive: $(this).find('.teamIsactive').text() === 'Y' ? 1 : 0,
+                    isupdate: 0
                 });
-            }
-        });
+            });
+        }
     });
 });
 
-    // 팀 항목 클릭 시 오른쪽 폼에 정보 로드
-    $('#teamList').on('click', '.team', function() {
-        $(".team").removeClass("table-active");
-        $(this).addClass("table-active");
-
-        const teamName = $(this).find('.teamName').text();
-        const teamIsActive = $(this).find('.teamIsactive').text();
-
-        $('#teamName').val(teamName);
-        if (teamIsActive === 'Y') {
-            $('#teamIsActive option:first').prop("selected", true);
-        } else {
-            $('#teamIsActive option:last').prop("selected", true);
-        }
-
-        // 버튼 활성화
-        $(".team-edit").prop("disabled", false);
-    });
+/* 팀 추가 */
+$('.team-add').click(function() {
+	
+	const teamId = Math.max(...teams.map(team => team.teamId), 0) + 1;
+    const teamName = $('#teamName').val();
+    const teamIsactive = $("#teamIsactive option:selected").val();
     
+    console.log("선택된 팀 사용여부:", teamIsactive);
+    if(teamCheck(0) != 0) {
+        teams.push({ teamId: teamId, teamName: teamName, teamIsactive: teamIsactive, isupdate: 1 });
+        teamList();
+    }
+});
 
-    // 초기화 시 공백으로 설정
-    $('.btn-init').click(function() {
-        $('#teamName').val('1'); // 소속명 초기화
-        $('#teamIsActive').val('1'); // 사용여부 초기화 (Y 선택)
-        $(".team-edit").prop("disabled", true); // 수정 버튼 비활성화
-        $(".team").removeClass("table-active");
-    });
+//팀 수정
+let teamIndex, updateTeam, teamId;
 
+$('#teamList').on('click', '.team', function() {
+    $(".team").removeClass("table-active");
+    $(this).addClass("table-active");
+    teamId = $(this).find('.teamId').text();
+    const teamName = $(this).find('.teamName').text();
+    const teamIsactive = $(this).find('.teamIsactive').text();
+
+    $('#teamName').val(teamName);
+    if (teamIsactive === 'Y') {
+        $('#teamIsactive option:first').prop("selected", true);
+    } else {
+        $('#teamIsactive option:last').prop("selected", true);
+    }
+
+    teamIndex = teams.findIndex(team => team.teamId === teamId);
+    $(".team-edit").prop("disabled", false);
+});
 
 $('.team-edit').on('click', function() {
-	const teamName = $('#teamName').val();
-    const teamIsActive = $("#teamIsActive option:selected").val();
-    
-  
+    const teamName = $('#teamName').val();
+    const teamIsactive = $("#teamIsactive option:selected").val();
+
+    console.log(teamId);
+    if(teamCheck(1) != 0) {
+    	updateTeam = { teamId: teamId, teamName: teamName, teamIsactive:teamIsactive, isUpdate: 2 };
+    	teams.splice(teamIndex, 1, updateTeam);
+        teamList();
+    }
 });
 
+function teamCheck(isEdit) {
+	
+	const teamName = $('#teamName').val().trim();
+	const teamIsactive = $("#teamIsactive option:selected").val();
+	console.log(teamId);
+	console.log(teamIsactive);
+	 let isExist = false;
+     for (let i = 0; i <  teams.length; i++) {
+    	 if(isEdit == 0) {
+    		 if(teamName == teams[i].teamName)
+                 isExist = true;
+    	 } else {
+    		 if(teamName == teams[i].teamName && i != teamIndex)
+                 isExist = true;
+    	 }
+     }
+     
+     if (!teamName) {
+         Swal.fire({
+             icon: 'warning',
+             title: '소속명을 입력해주세요.'
+         });
+         return 0;
+     } 
+     
+    if (isExist) {
+         Swal.fire({
+             icon: 'warning',
+             title: '동일한 이름의 팀명이 존재합니다.'
+         });
+         return 0;
+     }
+    return 1;
+}
 
+function refresh() {
+	teamIndex = null;
+	
+    $('#teamName').val('');
+    $(".team-edit").prop("disabled", true);
+    $(".team").removeClass("table-active");
+    $('#teamIsactive option:first').prop("selected", true);
+};
 
+function teamList() {
+	console.log("실행");
+    $('#teamList').empty();
+console.log(teams);
+    for (let i = 0; i < teams.length; i++) {
+     $('#teamList').append(
+        	 `<tr class="team">
+                        <th class="teamId">${teams[i].teamId}</th>
+                        <td class="teamName">${teams[i].teamName}</td>
+                        <td class="teamIsactive">${teams[i].teamIsactive == 1 ? 'Y' : 'N'}</td>
+                    </tr>`      
+        );
+    }
+    refresh();
+}
 
+$('#submit').click(function(){
+	
+	const updatedTeams = teams.filter(team => team.isupdate !== 0).map(team => ({
+	    teamId: team.teamId,
+	    teamName: team.teamName,
+	    teamIsactive: team.teamIsactive,
+	    teamIsupdate: team.isupdate  // 자바스크립트의 필드명을 DTO와 일치하게 변경
+	}));
 
+	$.ajax({
+		url:"/Metamong/team/updateTeam",
+		type:"POST",
+		contentType: "application/json",
+		data: JSON.stringify({teams: updatedTeams }),
+		success:function(data){
+			Swal.fire({
+				icon: 'success',
+				title: '소속 수정신청이<br/> 완료되었습니다.'
+			}).then(result=>{
+				location.reload();
+			});
+		}
+	});
+});
 
-
-
-
-
-  
 // 회원 검색
 $("#memberTable").on("click", ".table-row", function() {
     $(".table-row").removeClass("table-active");
