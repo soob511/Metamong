@@ -199,7 +199,7 @@ public class CodeController {
 	
 	@PostMapping("/codeApplyProcess")
 	public ResponseEntity<String> codeApplyProcess(int applyNo, int status, String reason, Authentication auth) {
-		String dbaName = memberService.getDbaNameById(auth.getName());
+		String dbaName = (status != 0) ? memberService.getDbaNameById(auth.getName()) : null;
 	
 		Map<String, Object> params = new HashMap<>();
 		params.put("applyNo", applyNo);  
@@ -208,6 +208,9 @@ public class CodeController {
 		params.put("status", status); 
 		
 		applyService.updateCodeStatus(params);
+		if(status == 0) {
+			applyService.resetComplDate(applyNo);
+		}
 		return ResponseEntity.ok("/Metamong/code/");
 	}
 	

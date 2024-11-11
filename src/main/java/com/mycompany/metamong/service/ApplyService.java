@@ -512,4 +512,8 @@ public class ApplyService {
 	public List<DbObjApprovalStatusDto> getDbObjAwaitStatus() {
 		return applyListDao.selectDbObjApprovalStatus();
 	}
+
+	public void resetComplDate(int applyNo) {
+		applyListDao.updateComplDate(applyNo);
+	}
 }
