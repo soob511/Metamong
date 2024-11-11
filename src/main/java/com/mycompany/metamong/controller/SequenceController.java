@@ -134,11 +134,16 @@ public class SequenceController {
 	}
 	
 	@GetMapping("/sequenceApplyDetail")
-	public String sequenceApplyDetail(int applyNo,int indexNo,Model model) {
+	public String sequenceApplyDetail(int applyNo,int indexNo,Model model,Authentication auth) {
 		
 		SequenceDetailDto detail = sequenceService.getSequenceDetail(applyNo);
 		detail.setIndexNo(indexNo);
 		model.addAttribute("detail", detail);
+
+		String mName = memberService.getDbaNameById(auth.getName());
+		if(detail.getMName().equals(mName)) {
+			model.addAttribute("myApply", true);
+		}
 		
 		return "dbObject/sequence/sequenceApplyDetail";
 	}

@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +13,10 @@
 	href="${pageContext.request.contextPath}/resources/css/dbObject/sequence/sequenceDetail.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dbObject/common/sqlModal.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -21,7 +24,8 @@
 			<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 			<div class="col">
 				<jsp:include page="/WEB-INF/views/common/header.jsp" />
-				<div class="index-container" id="applyContainer" data-applyno="${detail.applyNo}" data-indexno="${detail.indexNo}">
+				<div class="index-container" id="applyContainer"
+					data-applyno="${detail.applyNo}" data-indexno="${detail.indexNo}">
 					<div class="table-list-header">
 						<p class="table-list-title">&gt; DB Object &gt; 신청내역 &gt; 시퀀스
 							상세보기</p>
@@ -29,8 +33,10 @@
 							<div class="button-groupDBA">
 								<c:choose>
 									<c:when test="${detail.approvalStatus == 0}">
-										<button class="btn-approve" onclick="sequenceProcessApproval(1)">승인</button>
-										<button class="btn-reject" onclick="sequenceProcessApproval(2)">반려</button>
+										<button class="btn-approve"
+											onclick="sequenceProcessApproval(1)">승인</button>
+										<button class="btn-reject"
+											onclick="sequenceProcessApproval(2)">반려</button>
 									</c:when>
 									<c:when test="${detail.approvalStatus == 1}">
 										<button class="btn-reflect">반영</button>
@@ -42,6 +48,15 @@
 								</c:choose>
 							</div>
 						</sec:authorize>
+						<c:if test="${myApply}">
+							<div class="button-groupUSER">
+								<c:choose>
+									<c:when test="${applyList.approvalStatus == 2}">
+										<button class="btn-reapply">재작성</button>
+									</c:when>
+								</c:choose>
+							</div>
+						</c:if>
 					</div>
 					<hr>
 					<table class="table table-bordered">
