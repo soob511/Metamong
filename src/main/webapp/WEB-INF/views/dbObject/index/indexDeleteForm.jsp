@@ -47,6 +47,9 @@
 										<tbody id="indexTableBody">
 											<c:forEach items="${list}" var="index" varStatus="status">
 												<tr>
+												<th style="display: none;">
+													<input class="form-check-input" type="checkbox" checked>
+												</th>
 												<td>${status.index + 1}</td>
 												<td data-name="idxName" data-value="${index.indexName}">
 													${index.indexName}
@@ -86,7 +89,7 @@
 							</div>
 							<div class="col index-apply-reason">
 								<p>신청사유</p>
-								<textarea id="indexApplyReason"></textarea>
+								<textarea id="indexApplyReason">${applyReason}</textarea>
 								<div class="msg" id="reasonValidMessage"></div>
 								<button id="btnApply" class="btn-add">신청</button>
 							</div>
