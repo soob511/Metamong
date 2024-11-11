@@ -32,7 +32,7 @@
             </c:otherwise>
         </c:choose>
 
- <input type="file" id="fileInput" data-m-id="${member.MId}" accept="image/*"style="display: none;" onchange="handleFileUpload(event)"> 
+ <input type="file" id="fileInputProf" data-m-id="${member.MId}" accept="image/*"style="display: none;" onchange="handleFileUpload(event)"> 
  <input type="hidden" id="deleteProf" data-m-id="${member.MId}" name="deleteProf" value="${member.profFilename != null ? 0 : 1}" onchange="handleFileUpload(event)">      
        
     </div>
