@@ -67,7 +67,7 @@
 								            <td>${code.codeId}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
 								            <td>${code.applyType}</td>
 								            <td>
-								                <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${status.index + 1}, '${code.applyType}')">상세보기</button>
+								                <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${pager.totalRows - (pager.pageNo-1) * 10 - status.index}, '${code.applyType}')">상세보기</button>
 								            </td>
 								            <td class="code-approve">
 								                <c:choose>
