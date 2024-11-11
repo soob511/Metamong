@@ -58,7 +58,7 @@
 	                	<thead>
 	                        <tr class="table-secondary">
 	                            <th scope="col">No.</th>
-	                            <th scope="col">제목</th>
+	                            <th scope="col" id="title">제목</th>
 	                            <th scope="col">등록일</th>
 	                            <th scope="col">조회수</th>
 	                        </tr>
@@ -79,7 +79,7 @@
 											</c:otherwise>
 									</c:choose>
 									</td>                          
-		                            <td><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
+		                            <td id="title"><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 		                            <td>${notice.noticeHitcount}</td>
 		                        </tr>
