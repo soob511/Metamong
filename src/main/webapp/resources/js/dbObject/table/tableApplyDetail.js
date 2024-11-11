@@ -35,6 +35,20 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$(".btn-reapply").on("click", function() {
+		var applyNo = $("#applyContainer").attr("data-applyno");	
+		$.ajax({
+			url: "/Metamong/table/reApplyTable",
+			type: "POST",
+			data: { applyNo: applyNo}, 
+			success: function(data) {
+				 location.href = data + "?applyNo=" + applyNo;
+			}
+		});
+	});
+	
+	
 });
 
 

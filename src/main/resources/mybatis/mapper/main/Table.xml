@@ -83,5 +83,12 @@ INSERT INTO apply_table (apply_no, table_no, table_nm, table_id, table_content)
 	FROM tables
 	WHERE table_id = #{tableId} AND schema_nm = #{schema}
 </select>
+
+<select id="selectRewriteTable" parameterType="int" resultType="TableRewrite">
+	SELECT a.schema_name, a.apply_Reason, t.table_nm,t.table_no, t.table_id, t.table_content
+	FROM apply_list a
+	JOIN apply_table t ON a.apply_no = t.apply_no
+	WHERE a.apply_no = #{applyNo}
+</select>
 </mapper>
 	
