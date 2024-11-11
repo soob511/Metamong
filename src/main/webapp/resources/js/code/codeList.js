@@ -129,7 +129,7 @@ function searchCode() {
             if (data.length > 0) {
                 let count = 0;
                 data.forEach((code) => {
-                    cHtml += `<tr class="code-row" onclick="showItemList(${code.codeNo})">
+                    cHtml += `<tr class="code-row" onclick="showItemList(${code.codeNo})" data-code-no="${code.codeNo}">
                         <th>${++count}</th>
                         <td>${code.codeNm}</td>
                     	<td>${code.codeId}</td>
