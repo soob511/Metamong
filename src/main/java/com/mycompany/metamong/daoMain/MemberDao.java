@@ -43,5 +43,5 @@ public interface MemberDao {
 
 	public List<String> selectDbaIdByRole(String role);
 
-	public MemberDto selectProf(String mId);
+	public MemberDto selectMemberProfileImage(String mId);
 }

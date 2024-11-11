@@ -143,16 +143,12 @@ public class MemberController {
 		out.flush();
 		out.close();
 		
-		log.info("Filename: " + member.getProfFilename());
-	    log.info("Filetype: " + member.getProfFiletype());
-	    log.info("Filedata: " + (member.getProfFiledata() != null ? "Data exists" : "No data"));
-		
 		return "common/header";
 	}
 	
-	@RequestMapping("/getProf")
+	@RequestMapping("/getMemberProfileImage")
 	public void getMemberProf(@RequestParam("mId") String mId, HttpServletResponse response) throws Exception {
-	    MemberDto member = memberService.getMemberProf(mId);
+	    MemberDto member = memberService.getMemberProfileImage(mId);
 	    
 	    if (member != null && member.getProfFiledata() != null) {
 	        response.setContentType(member.getProfFiletype());

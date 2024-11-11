@@ -81,7 +81,7 @@ public class MemberService {
 		return memberDao.deleteProf(member);
 	}
 
-	public MemberDto getProf(String mId) {
-		return memberDao.selectProf(mId);
+	public MemberDto getMemberProfileImage(String mId) {
+		return memberDao.selectMemberProfileImage(mId);
 	}
 }

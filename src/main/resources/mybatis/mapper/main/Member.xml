@@ -210,7 +210,7 @@
                WHERE m.M_id = #{MId}
 	</select>
 	
-	<select id="selectProf" resultType="Member">
+	<select id="selectMemberProfileImage" resultType="Member">
 		SELECT 
            m.m_id, m.prof_filename, m.prof_filetype, m.prof_filedata
         	 FROM 
