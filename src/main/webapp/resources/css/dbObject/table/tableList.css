@@ -88,7 +88,7 @@ label{
 	padding-top: 10px;
 }
 
-.btn-add{
+.btn-add,.btn-typeAdd{
 	background-color: var(--theme);
 	color: white;
 	border-radius: 8px;
@@ -99,7 +99,7 @@ label{
 	margin-right: 5px;
 }
 
-.btn-edit, .btn-dataType {
+.btn-edit, .btn-dataType,.btn-typeEdit {
 	background-color: white;
 	color:  var(--theme);
 	border-radius: 8px;
