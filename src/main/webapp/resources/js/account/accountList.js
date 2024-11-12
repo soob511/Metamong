@@ -49,7 +49,7 @@ $("#memberSearch").off("keydown").on("keydown", function(event) {
     }
 });
 
-$('.bi-search').off('click').on('click', function() {
+$('.btn-search').off('click').on('click', function() {
     accountSearch(1);
 });
 
