@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mycompany.metamong.daoHr.Sub3IndexDao;
+import com.mycompany.metamong.daoHr.HrIndexDao;
 import com.mycompany.metamong.daoMain.IndexDao;
 import com.mycompany.metamong.daoMain.TableDao;
-import com.mycompany.metamong.daoPms.Sub2IndexDao;
-import com.mycompany.metamong.daoSrm.Sub1IndexDao;
+import com.mycompany.metamong.daoPms.PmsIndexDao;
+import com.mycompany.metamong.daoSrm.SrmIndexDao;
 import com.mycompany.metamong.dto.index.IndexDto;
 import com.mycompany.metamong.dto.table.TableDto;
 
@@ -24,17 +24,17 @@ public class IndexService {
 	@Autowired
 	private TableDao tableDao;
 	@Autowired
-	private Sub1IndexDao sub1IndexDao;
+	private SrmIndexDao srmIndexDao;
 	@Autowired
-	private Sub2IndexDao sub2IndexDao;
+	private PmsIndexDao pmsIndexDao;
 	@Autowired
-	private Sub3IndexDao sub3IndexDao;
+	private HrIndexDao hrIndexDao;
 	
 	public List<IndexDto> getIndexList() {
 		List<IndexDto> list = new ArrayList<>();
-		list.addAll(sub1IndexDao.selectIndex());
-		list.addAll(sub2IndexDao.selectIndex());
-		list.addAll(sub3IndexDao.selectIndex());
+		list.addAll(srmIndexDao.selectIndex());
+		list.addAll(pmsIndexDao.selectIndex());
+		list.addAll(hrIndexDao.selectIndex());
 		return list;
 	}
 
@@ -43,7 +43,7 @@ public class IndexService {
 
 		switch (schemaName) {
 			case "MAIN":
-				list.addAll(sub1IndexDao.selectIndexByDic(indexName, columnName, tableName));
+				list.addAll(srmIndexDao.selectIndexByDic(indexName, columnName, tableName));
 	            for (IndexDto index : list) {
 	                String indexTableName = index.getTableName();
 	                TableDto tableDto = tableDao.selectTableInfo(indexTableName, schemaName);
@@ -51,7 +51,7 @@ public class IndexService {
 	                    index.setTableNo(tableDto.getTableNo());
 	                }
 	            }
-	            list.addAll(sub2IndexDao.selectIndexByDic(indexName, columnName, tableName));
+	            list.addAll(pmsIndexDao.selectIndexByDic(indexName, columnName, tableName));
 	            for (IndexDto index : list) {
 	                String indexTableName = index.getTableName();
 	                TableDto tableDto = tableDao.selectTableInfo(indexTableName, schemaName);
@@ -59,7 +59,7 @@ public class IndexService {
 	                    index.setTableNo(tableDto.getTableNo());
 	                }
 	            }
-	            list.addAll(sub3IndexDao.selectIndexByDic(indexName, columnName, tableName));
+	            list.addAll(hrIndexDao.selectIndexByDic(indexName, columnName, tableName));
 	            for (IndexDto index : list) {
 	                String indexTableName = index.getTableName();
 	                TableDto tableDto = tableDao.selectTableInfo(indexTableName, schemaName);
@@ -69,7 +69,7 @@ public class IndexService {
 	            }
 	            break;
 			case "SRM":
-				list.addAll(sub1IndexDao.selectIndexByDic(indexName, columnName, tableName));
+				list.addAll(srmIndexDao.selectIndexByDic(indexName, columnName, tableName));
 	            for (IndexDto index : list) {
 	                String indexTableName = index.getTableName();
 	                TableDto tableDto = tableDao.selectTableInfo(indexTableName, schemaName);
@@ -79,7 +79,7 @@ public class IndexService {
 	            }
 				break;
 			case "PMS":
-				list.addAll(sub2IndexDao.selectIndexByDic(indexName, columnName, tableName));
+				list.addAll(pmsIndexDao.selectIndexByDic(indexName, columnName, tableName));
 	            for (IndexDto index : list) {
 	                String indexTableName = index.getTableName();
 	                TableDto tableDto = tableDao.selectTableInfo(indexTableName, schemaName);
@@ -89,7 +89,7 @@ public class IndexService {
 	            }
 				break;
 			case "HR":
-				list.addAll(sub3IndexDao.selectIndexByDic(indexName, columnName, tableName));
+				list.addAll(hrIndexDao.selectIndexByDic(indexName, columnName, tableName));
 	            for (IndexDto index : list) {
 	                String indexTableName = index.getTableName();
 	                TableDto tableDto = tableDao.selectTableInfo(indexTableName, schemaName);
@@ -109,15 +109,13 @@ public class IndexService {
 
 		switch (schemaName) {
 			case "SRM":
-				list.addAll(sub1IndexDao.selectIndexNoPk(indexName, columnName, tableName));
+				list.addAll(srmIndexDao.selectIndexNoPk(indexName, columnName, tableName));
 				break;
 			case "PMS":
-				list.addAll(sub2IndexDao.selectIndexNoPk(indexName, columnName, tableName));
+				list.addAll(pmsIndexDao.selectIndexNoPk(indexName, columnName, tableName));
 				break;
 			case "HR":
-				list.addAll(sub3IndexDao.selectIndexNoPk(indexName, columnName, tableName));
-				break;
-			default:
+				list.addAll(hrIndexDao.selectIndexNoPk(indexName, columnName, tableName));
 				break;
 			}
 		return list;
@@ -131,7 +129,20 @@ public class IndexService {
 		return indexDao.selectIndexRows(schemaName, approvalStatus, indexName);
 	}
 
-	public void createIndex(IndexDto indexdto) {
-		
+	public IndexDto checkDuplicateIndexName(String schemaName, String indexName) {
+		IndexDto index = new IndexDto();
+
+		switch (schemaName) {
+			case "SRM":
+				index = srmIndexDao.selectDuplicateIndex(indexName);
+				break;
+			case "PMS":
+				index = pmsIndexDao.selectDuplicateIndex(indexName);
+				break;
+			case "HR":
+				index = hrIndexDao.selectDuplicateIndex(indexName);
+				break;
+			}
+		return index;
 	}
 }

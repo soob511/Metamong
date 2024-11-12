@@ -222,5 +222,16 @@ public class IndexController {
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/index/indexAddFormReApply";
 	}
+	
+	@ResponseBody
+	@GetMapping("/checkDuplicateIndexName")
+	public int checkDuplicateIndexName(String schemaName, String indexName) {
+		IndexDto index = indexService.checkDuplicateIndexName(schemaName, indexName);
+		if (index != null) {
+			return 1;
+		} else {
+			return 0; 			
+		}
+	}
 
 }
