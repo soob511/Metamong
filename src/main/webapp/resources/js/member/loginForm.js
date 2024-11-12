@@ -7,6 +7,44 @@ $(document).ready(function() {
   })
 });
 
+const checkPassword = /^[a-zA-Z0-9]{8,16}$/;
+
+// 비밀번호
+$("#newPassword, #checkPassword").on("input", function() {
+    const password = $("#newPassword").val().trim();
+    const confirmPassword = $("#checkPassword").val().trim();
+    const passwordMsg = $(".password-message");
+    const confirmMsg = $(".password-confirm-message");
+    
+    let isPassword = false;
+    let isConfirmPassword = false;
+    
+    if (password && !checkPassword.test(password)) {
+        passwordMsg.text("비밀번호는 영문 또는 숫자 8~16자로 작성해야 합니다.");
+        passwordMsg.addClass('warn');
+        isPassword = false;
+    } else {
+        passwordMsg.removeClass('warn');
+        isPassword = true;
+    }
+
+    if (!confirmPassword) {
+        confirmMsg.text("");
+    } else if (confirmPassword !== password) {
+        confirmMsg.text("비밀번호가 일치하지 않습니다.");
+        confirmMsg.addClass('warn');
+        isConfirmPassword = false;
+    } else {
+        confirmMsg.removeClass('warn');
+        isConfirmPassword = true;
+    }
+    
+    if( isPassword == true && isConfirmPassword == true) {
+    	$('.modal-btn-submit').prop('disabled', false);    	
+    }
+});
+
+
 function openModal() {
     const modal = document.getElementById('sqlLoadModal');
     modal.setAttribute('aria-hidden', 'false');
@@ -20,14 +58,14 @@ function openModal() {
   }
 
 function checkValidUser () {
-        let mName = $('#mName').val(); 
+        let mId = $('#checkId').val(); 
         let mTel = $('#mTel').val();
         console.log(mId);
         $.ajax({
     		type : 'POST',
     		url : '/Metamong/member/checkValidUser',
     		data : {
-    			mName : mName,
+    			mId : mId,
     			mTel : mTel
     		},
     		success : function(data) {
