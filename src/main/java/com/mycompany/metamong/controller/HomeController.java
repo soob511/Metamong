@@ -47,7 +47,7 @@ public class HomeController {
 	@GetMapping("/homeUser")
 	public String homeUser(Model model, Authentication auth) {
 		String userName = memberService.getDbaNameById(auth.getName());
-		Pager pager = new Pager(7, 5); 
+		Pager pager = new Pager(8, 10, 10, 1); 
 		List<NoticeDto> noticeList = noticeService.getNoticeList(pager);
 
 		model.addAttribute("userName", userName);
