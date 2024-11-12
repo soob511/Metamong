@@ -116,3 +116,7 @@
     color: white!important;
     margin-bottom: 50px;
 }
+
+#modalOpen {
+    cursor: pointer;
+}
