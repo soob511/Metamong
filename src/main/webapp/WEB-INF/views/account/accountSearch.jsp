@@ -6,9 +6,9 @@
 					<div class="d-flex  justify-content-start">
 					<div>총 <span class="form-required" id="memberCount">${totalRows}</span>개의 계정이 있습니다.</div>
 					</div>
-					<table class="table table-hover">
+					<table class="table table-hover table-container">
 						<thead class="table">
-							<tr class="table-secondary">
+							<tr class="table-light">
 								<th scope="col">No.</th>
 								<th scope="col">ID</th>
 								<th scope="col">이름</th>

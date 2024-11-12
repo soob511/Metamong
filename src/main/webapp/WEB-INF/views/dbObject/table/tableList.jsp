@@ -243,7 +243,6 @@ uri="http://www.springframework.org/security/tags" %>
         </div>
       </div>
     </div>
-    <jsp:include page="/WEB-INF/views/common/alarm.jsp" />
     <script src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableList.js"></script>
   </body>
 </html>
