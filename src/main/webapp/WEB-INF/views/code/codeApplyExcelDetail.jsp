@@ -21,56 +21,51 @@
                 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
                 <div class="codeApplyInfo-header">
-                    <p class="codeApplyInfo-title">&gt; 코드/항목 신청 상세보기(EXCEL)</p>
+                    <p class="fw-bold codeApplyInfo-title">&gt; 코드/항목 신청 상세보기(EXCEL)</p>
                     <sec:authorize access="hasRole('ROLE_DBA')">
                         <div class="button-groupDBA">
                             <c:if test="${applyList.approvalStatus == 0}">
-                                <button class="btn-approve" onclick="codeApplyProcess(1, `${applyList.applyType}`)">승인</button>
-                                <button class="btn-reject" onclick="codeApplyProcess(2, `${applyList.applyType}`)">반려</button>
+                                <button class="btn-approve btn-accent" onclick="codeApplyProcess(1, `${applyList.applyType}`)">승인</button>
+                                <button class="btn-reject btn-gray" onclick="codeApplyProcess(2, `${applyList.applyType}`)">반려</button>
                             </c:if>
                             <c:if test="${applyList.approvalStatus == 1}">
-                                <button class="btn-approve" onclick="applyComplete(`${applyList.applyType}`)">반영</button>
-                           		<button class="btn-rollback" onclick="codeApplyProcess(0, `${applyList.applyType}`)">승인취소</button>
+                                <button class="btn-approve btn-accent" onclick="applyComplete(`${applyList.applyType}`)">반영</button>
+                           		<button class="btn-rollback btn-normal" onclick="codeApplyProcess(0, `${applyList.applyType}`)">승인취소</button>
                             </c:if>
                             <c:if test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
-                                <div class="btn-processed">처리완료</div>
+                                <div class="btn-processed btn-light">처리완료</div>
                             </c:if>
                         </div>
                     </sec:authorize>
 
-                    <c:if test="${applyList.approvalStatus == 2 && myApply != null }">
-                        <a href="codeApplyRewrite?applyNo=<%= request.getParameter("applyNo") %>">
-                            <button class="btn-rewrite">재작성</button>
-                        </a>
-                    </c:if>
                 </div>
                 <hr>
 
                 <div class="codeApplyInfo">
                     <div class="codeApplyInfo-subtitle">신청정보</div>
-                    <table class="table table-bordered codeApplyInfo-table">
+                    <table class="table table-bordered codeApplyInfo-table table-container">
                         <tr>
-                            <td class="table-secondary">No.</td>
+                            <td class="table-light">No.</td>
                             <td colspan="3">
                                 <div class="table-text">${indexNo}</div>
                             </td>
-                            <td class="table-secondary">신청 건수</td>
+                            <td class="table-light">신청 건수</td>
                             <td>
                                 <div class="table-text">총 ${totalCount} 건</div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="table-secondary">신청일자</td>
+                            <td class="table-light">신청일자</td>
                             <td>
                                 <div class="table-text">
                                     <fmt:formatDate value="${applyList.applyDate}" pattern="yyyy-MM-dd" />
                                 </div>
                             </td>
-                            <td class="table-secondary">신청자</td>
+                            <td class="table-light">신청자</td>
                             <td>
                                 <div class="table-text">${applyList.MName}</div>
                             </td>
-                            <td class="table-secondary">승인여부</td>
+                            <td class="table-light">승인여부</td>
                             <td>
                                 <div class="table-text">
                                     <c:choose>
@@ -83,15 +78,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="table-secondary">처리일자</td>
+                            <td class="table-light">처리일자</td>
                             <td>
                                 <fmt:formatDate value="${applyList.complDate}" pattern="yyyy-MM-dd" />
                             </td>
-                            <td class="table-secondary">처리자</td>
+                            <td class="table-light">처리자</td>
                             <td>
                                 <div class="table-text">${applyList.dbaName}</div>
                             </td>
-                            <td class="table-secondary">반려사유</td>
+                            <td class="table-light">반려사유</td>
                             <td>
                                 <div class="table-text">${applyList.rejectReason}</div>
                             </td>
@@ -103,9 +98,9 @@
 		        	<div class="row d-flex gap-5">	        		
 	        		<div class="col code-container">
 		                    <div class="code-header">코드</div>
-		                    <div class="code-table-container">
+		                    <div class="code-table-container table-container">
 		                        <table class="table table-hover bottom-table">
-		                            <thead class="table-secondary">
+		                            <thead class="table-light">
 		                                <tr>
 		                                    <th scope="col">No.</th>
 		                                    <th scope="col">코드명(논리)</th>
@@ -117,7 +112,7 @@
 		                            <tbody class="code-tbody">
 		                              <c:forEach items="${applyCodes}" var="applyCode" varStatus="i">
 		                                    <tr class="code" onclick="getExcelItems(${applyCode.codeNo})">
-		                                        <th>${i.index+1}</th>
+		                                        <td>${i.index+1}</td>
 		                                        <td>${applyCode.codeNm}</td>
 		                                        <td>${applyCode.codeId}</td>
 		                                        <td>${applyCode.codeLength}</td>
@@ -131,9 +126,9 @@
 		        	
 		                <div class="col item-container">
 		                    <div class="item-header">항목</div>
-		                    <div class="item-table-container">
+		                    <div class="item-table-container table-container">
 		                        <table class="table table-hover bottom-table">
-		                            <thead class="table-secondary">
+		                            <thead class="table-light">
 		                                <tr>
 		                                    <th scope="col">No.</th>
 		                                    <th scope="col">항목코드</th>
@@ -152,7 +147,7 @@
 
                 <div class="button-group">
                     <a href="codeApplyList">
-                        <button class="btn-list" type="button">목록</button>
+                        <button class="btn-list btn-accent" type="button">목록</button>
                     </a>
                 </div>
             </div>

@@ -1,19 +1,24 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --theme: #003567;
-  --table-header: #f2f6f9;
-  --border-color: #74787e;
-  --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  --border-accent: 2px solid #111;
+  --border-gray: 1px solid #e6e6e6;
+  --text-black: #111111;
+  --text-gray: #888;
+  --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+* {
+	font-family: "Noto Sans KR", sans-serif;
+	font-weight: font-weight: 400;
+	font-style: normal;
 }
 
 .container {
   min-width: 100% !important;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .row > * {
@@ -184,32 +189,151 @@ p.logo a {
   font-size: 13px;
 }
 
+.dropdown-item {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+
+/* form-select, .form-control(input) */
+.form-control, .form-select  {
+	border-radius: 0 !important;
+	height: 35px !important;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* table: 신청내역 */
+.table-container {
+	margin-top:20px;
+    border-top: var(--border-accent) !important;
+	border-bottom: var(--border-gray) !important;
+	text-align:center;
+}
+
+.table thead tr {
+	border-bottom: 1px solid #111 !important;
+}
+
+thead {
+	height: 60px;
+}
+
+tr {
+	height:50px;
+}
+
+td, th{
+	font-size: 16px;
+	text-align: center;
+	vertical-align: middle;
+} 
+
+.table.table-bordered {
+	text-align:left;
+}
+
 .table-hover:hover {
   --bs-table-hover-bg: #f8f9fa !important;
 }
 
-.table-active td,
-.table-active th {
+.table-active td, .table-active th {
   --bs-table-bg-state: #f2f6f9 !important;
 }
 
+.content {
+	margin-top:30px;
+	margin-left:40px;
+	margin-right:40px;
+	font-size:16px;
+}
+
+.btn-history-details {
+	background-color: white;
+	color: #C5C5C5;
+	border-radius: 8px;
+	border: 1px solid #C5C5C5;
+	width: 90px;
+	height: 30px !important;
+	font-size: 14px;
+}
+
+/* pager */
 .page {
   margin-left: 50px;
   text-align: center !important;
   position: fixed;
-  bottom: 40px;
+  bottom: 65px;
   left: calc(50% + 25px);
   z-index: 100;
 }
 
 .pagination {
   position: fixed;
-  bottom: 40px;
+  bottom: 50px;
   left: 50%;
   z-index: 100;
 }
 
-.dropdown-item {
-  padding: 5px 10px;
-  font-size: 12px;
+/* 버튼 */
+.btn, button {
+	border-radius: 0 !important;
+	height: 35px !important;
+	font-size: 14px;
+	text-align: center;
+}
+
+.btn-accent {
+	background-color: var(--theme);
+	color: white;
+	border: none;
+}
+
+.btn-normal {
+	border: 1px solid var(--theme);
+	color: var(--theme);
+	background-color: white;
+}
+
+
+.btn-gray {
+	background-color: gray;
+	color: white;
+	border: none;
+}
+
+.btn-light {
+	color: gray;
+	background-color: white;
+	border: 1px solid gray;
+}
+
+/****** 세부 설정 ******/
+
+.fw-bold {
+	margin-top:30px;
+	margin-bottom: 20px;
+	font-size: 25px;
+}
+
+
+
+/* 상태에 따른 color */
+#status-approve {
+	color: #1db868 !important;
+}
+
+#status-rejected {
+	color: #DC3F3F !important;
+}
+
+#status-await{
+	color: #A5A5A5 !important;
+}
+
+#status-applied{
+	color: #32ADE6 !important;
 }
