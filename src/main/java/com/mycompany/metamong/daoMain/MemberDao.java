@@ -45,7 +45,7 @@ public interface MemberDao {
 
 	public MemberDto selectMemberProfileImage(String mId);
 	
-	public MemberDto selectValidMember(@Param("mName") String mName, @Param("mTel") String mTel);
+	public MemberDto selectValidMember(@Param("mId") String mId, @Param("mTel") String mTel);
 
 	public int updatePassword(MemberDto member);
 }

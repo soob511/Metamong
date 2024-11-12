@@ -196,8 +196,8 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping("/checkValidUser")
-	public int checkValidUser(@RequestParam String mName, @RequestParam String mTel) {
-		MemberDto member = memberService.checkValidMember(mName, mTel);
+	public int checkValidUser(@RequestParam String mId, @RequestParam String mTel) {
+		MemberDto member = memberService.checkValidMember(mId, mTel);
 		if (member != null) {
 			return 1;
 		} else {
@@ -207,11 +207,11 @@ public class MemberController {
 	
 	@PostMapping("/resetUserPassword")
 	public String resetUserPassword(MemberDto member) {
-		MemberDto checkValidMember = memberService.checkValidMember(member.getMName(), member.getMTel());
+//		MemberDto checkValidMember = memberService.checkValidMember(member.getMName(), member.getMTel());
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String password = passwordEncoder.encode(member.getNewPassword());
-		checkValidMember.setMPassword(password);
-		memberService.resetPassword(checkValidMember);
+		member.setMPassword(password);
+		memberService.resetPassword(member);
 		return "member/loginForm";
 	}
 	
