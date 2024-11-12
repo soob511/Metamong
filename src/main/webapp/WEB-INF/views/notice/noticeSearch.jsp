@@ -28,7 +28,7 @@
 									alt="중요도" style="width: 33px; height: 33px">
 							</c:when>
 							<c:otherwise>
-							${pager.totalRows - (pager.pageNo-1) * 10 - status.index}
+							${pager.totalRows - (pager.pageNo-1)*pager.rowsPerPage - status.index}
 						</c:otherwise>
 						</c:choose></td>
 					<td><a href="noticeDetail?noticeId=${notice.noticeId}"
