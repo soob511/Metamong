@@ -21,16 +21,18 @@
 		<c:if test="${totalRows>=1}">
 			<c:forEach items="${list}" var="notice" varStatus="status">
 				<tr class="table-row">
-					<td scope="row"><c:choose>
+					<td scope="row">
+					<c:choose>
 							<c:when test="${notice.noticeIsimp == '1'}">
-								<img
-									src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
-									alt="중요도" style="width: 33px; height: 33px">
+								<button type="button" class="btn btn-sm">
+					                <i class="bi bi-megaphone"></i>
+					              </button>
 							</c:when>
 							<c:otherwise>
 							${pager.totalRows - (pager.pageNo-1)*pager.rowsPerPage - status.index}
 						</c:otherwise>
-						</c:choose></td>
+						</c:choose>
+					</td>
 					<td><a href="noticeDetail?noticeId=${notice.noticeId}"
 						style="color: black;">${notice.noticeTitle}</a></td>
 					<td><fmt:formatDate value="${notice.noticeRegdate}"
