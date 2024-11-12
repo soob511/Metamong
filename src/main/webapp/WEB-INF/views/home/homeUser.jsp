@@ -60,24 +60,23 @@
 								<table class="table table-hover">
 									<thead class="table">
 										<tr class="table-secondary">
-											<th scope="col"></th>
 											<th scope="col">제목</th>
 											<th scope="col">등록일</th>
+											<th scope="col">작성자</th>
 											<th scope="col">조회수</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${noticeList}" var="notice" varStatus="status">           
-		                        <tr class="table-row" >
-		                            <td scope="row">
-											<c:if test="${notice.noticeIsimp == '1'}">
-												<button type="button" class="btn btn-sm">
-									                <i class="bi bi-megaphone"></i>
-									              </button>
+		                        <tr class="table-row" onclick="location.href='notice/noticeDetail?noticeId=${notice.noticeId}'" style="cursor: pointer;">
+		                            <td id="noticeTitle">
+			                            	<c:if test="${notice.noticeIsimp == '1'}">
+									               	 <i class="bi bi-megaphone"></i>
 											</c:if>
-									</td>                          
-		                            <td><a href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
+											${notice.noticeTitle}
+									</td>
 		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+		                            <td>관리자</td>
 		                            <td>${notice.noticeHitcount}</td>
 		                        </tr>
 	                      </c:forEach>    

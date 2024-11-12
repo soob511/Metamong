@@ -142,3 +142,7 @@ table th, table td {
 	font-size:14px;
 	font-weight:bold;
 }
+#noticeTitle {
+	text-align:left !important;
+	padding-left: 30px !important;
+}
