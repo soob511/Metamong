@@ -27,8 +27,8 @@
         <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
-                <div class="content">
                     <h4 class="fw-bold notice-title">> 공지사항 상세</h4>
+                <div class="pt-3 content" >
                     <table class="table table-bordered">
                         <tr>
                             <td class="table-secondary" id="tdth">제목<span class="form-required">(*)</span></td>
@@ -86,8 +86,15 @@
                        <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <button type="button" class="btn-delete me-2" data-notice-id="${notice.noticeId}">삭제</button>
                         <button type="submit" class="btn-add me-2"><a href="noticeUpdateForm?noticeId=${notice.noticeId}" style="color:white;">수정</a></button>
-                        </sec:authorize>
                         <button type="button" class="btn-list" data-page-no="${pager.pageNo}"><a href="noticeList?pageNo=${pager.pageNo}" style="color:white;">목록</a></button>
+                        </sec:authorize>
+                        
+                        <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+						 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+						 <button type="button" class="btn-add"  data-page-no="${pager.pageNo}"><a href="noticeList?pageNo=${pager.pageNo}" style="color:white;"style="color:white;">목록</a></button>
+						 	</sec:authorize>
+						 </sec:authorize>
+                        
                     </div>                 
                 </div>
             </div>
@@ -97,6 +104,14 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <script src="${pageContext.request.contextPath}/resources/js/notice/noticeDelete.js"></script>
+</sec:authorize>
+ <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+ 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+ <script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
+ 	</sec:authorize>
+ </sec:authorize>
 </body>
 </html>

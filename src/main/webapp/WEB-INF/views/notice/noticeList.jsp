@@ -25,8 +25,8 @@
     
         <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
-            <div class="content">
                 <h4 class="fw-bold">> 공지사항</h4>
+            <div class="content">
                	
                	<div class="d-flex justify-content-end">
                         <div class="table-list-filters">
@@ -50,7 +50,7 @@
                     
                 <div id="noticeList">
                		<div class="d-flex justify-content-start">
-                <div class="pt-3">총 <span class="form-required" id="noticeCount">${totalRows}</span>건의 게시물이 있습니다.</div>
+                <div >총 <span class="form-required" id="noticeCount">${totalRows}</span>건의 게시물이 있습니다.</div>
                     
                 </div>
                 
