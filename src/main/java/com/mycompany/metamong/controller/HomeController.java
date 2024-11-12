@@ -1,12 +1,18 @@
 package com.mycompany.metamong.controller;
 
+import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,8 +45,28 @@ public class HomeController {
 	private ApplyService applyService;
 	
 	@RequestMapping("")
-	public String index() {
-		return "member/loginForm";
+	public String index(
+			HttpServletRequest request, 
+			HttpServletResponse response, 
+			Authentication authentication
+			) throws IOException {
+		 if (authentication != null && authentication.isAuthenticated()) {
+		        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		        
+		        for (GrantedAuthority authority : authorities) {
+		            if (authority.getAuthority().equals("ROLE_ADMIN")) {
+		                response.sendRedirect("/Metamong/homeAdmin");
+		                return null;
+		            } else if (authority.getAuthority().equals("ROLE_DBA")) {
+		                response.sendRedirect("/Metamong/homeDBA");
+		                return null;
+		            } else if (authority.getAuthority().equals("ROLE_USER")) {
+		                response.sendRedirect("/Metamong/homeUser");
+		                return null;
+		            }
+		        }
+		    }
+		    return "member/loginForm";
 	}
 
 	@Secured("ROLE_USER")

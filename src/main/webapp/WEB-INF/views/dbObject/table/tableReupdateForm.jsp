@@ -250,7 +250,7 @@
 							</div>
 
 						</div>
-					</div><jsp:include page="/WEB-INF/views/common/alarm.jsp" />
+					</div>
 					<script
 						src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableUpdateForm.js"></script>
 </body>

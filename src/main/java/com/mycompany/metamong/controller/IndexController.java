@@ -6,6 +6,7 @@ import java.util.StringJoiner;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -147,9 +148,16 @@ public class IndexController {
 	        @RequestParam int approvalStatus,
 	        @RequestParam String indexName,
 	        @RequestParam(defaultValue="1") int pageNo,
+	        Authentication auth,
     		HttpSession session,
     		Model model) {
-		int totalRows = indexService.countIndexRows(schemaName, approvalStatus, indexName);
+		int totalRows = 0;
+		log.info("실행#####" + indexName.matches(".*[가-힣].*"));
+		if (!indexName.matches(".*[가-힣].*")) {
+			totalRows = indexService.countIndexRows(schemaName, approvalStatus, indexName);
+		} else {
+			totalRows = indexService.countRowsByApplyMId(schemaName, approvalStatus, auth.getName());			
+		}
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyIndexListDto> list = applyService.getApplyIndexList(
 				schemaName, approvalStatus, indexName, pager.getStartRowNo(), pager.getEndRowNo()
@@ -221,6 +229,23 @@ public class IndexController {
 		model.addAttribute("schemaName", schemaName);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		return "dbObject/index/indexAddFormReApply";
+	}
+	
+	@PostMapping("/rollbackApplyIndex")
+	public ResponseEntity<String> rollbackApplyIndex(int applyNo) {
+		applyService.updateRollbackApply(applyNo);
+		return ResponseEntity.ok("ok");
+	}
+	
+	@ResponseBody
+	@GetMapping("/checkDuplicateIndexName")
+	public int checkDuplicateIndexName(String schemaName, String indexName) {
+		IndexDto index = indexService.checkDuplicateIndexName(schemaName, indexName);
+		if (index != null) {
+			return 1;
+		} else {
+			return 0; 			
+		}
 	}
 
 }

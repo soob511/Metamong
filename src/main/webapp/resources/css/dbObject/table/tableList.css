@@ -1,31 +1,31 @@
 .table-list-header {
-    margin: 30px 20px 0 40px;
-    font-size: 25px;
-    font-weight: bold;
+  margin: 30px 20px 0 40px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .table-list-filters {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .table-search {
-    display: flex;
-    width: 350px;
-    margin: 0 20px;
-    align-items: center;
+  display: flex;
+  width: 350px;
+  margin: 0 20px;
+  align-items: center;
 }
 
 .table-search-label {
-    min-width: 180px !important;
-    text-align: right;
-    align-items: center;
+  min-width: 180px !important;
+  text-align: right;
+  align-items: center;
 }
 
 .search-form input {
-    width: 200px;
+  width: 200px;
 }
 
 .btn-search {
@@ -34,97 +34,103 @@
 }
 
 .schema-filter {
-    display: flex;
-    align-items: center;
-    min-width: 200px !important;
-    margin-left: 10px;
+  display: flex;
+  align-items: center;
+  min-width: 200px !important;
+  margin-left: 10px;
 }
 
 .schema-filter-label {
-    min-width: 100px;
-    margin: 0 12px;
-    text-align: right;
+  min-width: 100px;
+  margin: 0 12px;
+  text-align: right;
 }
 
 .tables-management {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    height: 38px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  height: 38px;
 }
 
 .table-contanier,
 .column-contanier {
-    overflow-y: scroll;
-    height: 580px !important;
+  overflow-y: scroll;
+  height: 580px !important;
 }
 
 .tables-table {
-    min-width: 660px !important;
-    max-width: 660px !important;
-    margin: 20px 20px 20px 45px;
+  min-width: 660px !important;
+  max-width: 660px !important;
+  margin: 20px 20px 20px 45px;
 }
 
 .tables-management-title,
 .column-management-title {
-    font-size: 18px;
-    font-weight: 600 !important;
+  font-size: 18px;
+  font-weight: 600 !important;
 }
 
 .tables-management-title {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .tables-buttons {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .btn-add,
 .btn-typeAdd {
-    width: 50px;
-    margin-right: 5px;
+  width: 50px;
+  margin-right: 5px;
 }
 
 .btn-edit,
 .btn-dataType,
 .btn-typeEdit {
-    width: 50px;
+  width: 50px;
+}
+
+.btn-typeEdit:disabled {
+  background-color: #ebebeb;
+  color: #ffffff;
+  border: none;
 }
 
 .btn-dataType {
-    margin-top: 10px;
-    width: 130px;
+  margin-top: 10px;
+  width: 130px;
 }
 
 .column-management {
-    margin: 20px 0 10px 0;
+  margin: 20px 0 10px 0;
 }
 
 .column-table {
-    min-width: 660px !important;
-    max-width: 660px !important;
-    margin: 20px;
+  min-width: 660px !important;
+  max-width: 660px !important;
+  margin: 20px;
 }
 
 .modal {
-    --bs-modal-width: 850px !important;
+  --bs-modal-width: 850px !important;
 }
 
 .modal-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 .modal-footer {
-    padding-top: 20px !important;
+  padding-top: 20px !important;
 }
 
 #dataTypeTable {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .dataType-subtitle {
-    font-size: 16px;
-    font-weight: 600 !important;
-    padding: 5px;
-    margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600 !important;
+  padding: 5px;
+  margin-bottom: 5px;
 }

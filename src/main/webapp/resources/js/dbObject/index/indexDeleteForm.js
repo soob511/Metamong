@@ -32,7 +32,6 @@ function getCheckedRowsData() {
             selectedRows.push(rowData);
         }
     });
-    console.log(selectedRows);
     return selectedRows;
 }
 
@@ -59,7 +58,6 @@ function checkCheckBox(checkbox) {
 }
 
 function createRefColumn(dataList) {
-	console.log(dataList);
     dataList.sort((a, b) => parseInt(a.columnPosition) - parseInt(b.columnPosition));
 
     let refColumn = dataList.map(data => `${data.refColumn} ${data.descend}`).join(', ');
@@ -72,7 +70,6 @@ function createRefColumn(dataList) {
             "refColumn": refColumn,
             "isUnique": dataList[0].isUnique == 'UNIQUE' ? 1 : 0
         };
-    console.log(list);
     return list;
 }
 
@@ -113,9 +110,7 @@ function applyIndex() {
 		    applyIndexDto: applyIndexDto,
 		    refColumn: []
 	};
-	console.log(applyListDto);
-	console.log(applyIndexDto);
-	console.log(applyRequestDto);
+
 	if (applyListDto.applyReason === '') {
 		Swal.fire({
   		  	icon: 'warning',                  

@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.mycompany.metamong.dto.index.IndexDto;
 
 @Mapper
-public interface Sub2IndexDao {
+public interface PmsIndexDao {
 	
 	public List<IndexDto> selectIndex();
 	
@@ -25,4 +25,6 @@ public interface Sub2IndexDao {
 			);
 	
 	public int createIndex(String sqlSyn);
+	
+	public IndexDto selectDuplicateIndex(String indexName);
 }

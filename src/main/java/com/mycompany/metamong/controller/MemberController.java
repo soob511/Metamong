@@ -193,4 +193,28 @@ public class MemberController {
 		}
 		return memberService.deleteProf(member);
 	}
+	
+	@ResponseBody
+	@PostMapping("/checkValidUser")
+	public int checkValidUser(@RequestParam String mId, @RequestParam String mTel) {
+		MemberDto member = memberService.checkValidMember(mId, mTel);
+		if (member != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
+	@PostMapping("/resetUserPassword")
+	public String resetUserPassword(MemberDto member) {
+//		MemberDto checkValidMember = memberService.checkValidMember(member.getMName(), member.getMTel());
+		log.info("실행" + member);
+		member.setMId(member.getCheckId());
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		String password = passwordEncoder.encode(member.getNewPassword());
+		member.setMPassword(password);
+		memberService.resetPassword(member);
+		return "member/loginForm";
+	}
+	
 }

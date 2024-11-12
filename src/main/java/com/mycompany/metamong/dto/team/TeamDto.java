@@ -9,6 +9,8 @@ public class TeamDto {
 	
 	private String teamName;
 	
-	private String teamIsactive;
+	private int teamIsactive;
+	
+	private int teamIsupdate;
 	
 }

@@ -1,85 +1,87 @@
 .form-required {
-    color: red;
+  color: red;
 }
 
 .notice-header {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .container-fluid {
-    padding-right: 0 !important;
+  padding-right: 0 !important;
 }
 
 .table {
-    margin-top: 50px;
-    width: 100%;
+  margin-top: 50px;
+  width: 100%;
 }
 
 .td detail {
-    text-align: left;
+  text-align: left;
 }
 
 .btn-write {
-    padding: 0 !important;
-    margin-top: 20px;
+  padding: 0 !important;
+  margin-top: 20px;
 }
 
 .btn-write a {
-    background-color: var(--theme);
-    color: white;
-    width: max-content;
-    padding: 8px 10px;
+  background-color: var(--theme);
+  color: white;
+  width: max-content;
+  padding: 8px 10px;
 }
 
 .sub {
-    padding-left: 50px;
+  padding-left: 50px;
 }
 
 h4 {
-    font-size: 25px;
+  font-size: 25px;
 }
 
-#table-contents, #author {
-    vertical-align: middle !important;
-    text-align: left;
+#table-contents,
+#author {
+  vertical-align: middle !important;
+  text-align: left;
 }
 
 #author span {
-    padding-left: 12px;
-    font-size: 16px;
+  padding-left: 12px;
+  font-size: 16px;
 }
 
-.table input, .table textarea {
-    border: none;
+.table input,
+.table textarea {
+  border: none;
 }
 
 .btn-add,
 .btn-lists {
-    background-color: var(--theme);
-    color: white;
-    border: none;
-    width: 50px;
-    margin-top: 10px;
+  background-color: var(--theme);
+  color: white;
+  border: none;
+  width: 50px;
+  margin-top: 10px;
 }
 
 .btn-delete,
 .btn-update,
 .btn-cancel {
-    background-color: white;
-    color: var(--theme);
-    border: 1px solid var(--theme);
-    width: 50px;
-    margin-top: 10px;
+  background-color: white;
+  color: var(--theme);
+  border: 1px solid var(--theme);
+  width: 50px;
+  margin-top: 10px;
 }
 
 .btn-list {
-    background-color: #949494;
-    color: white;
-    border: none;
-    width: 50px;
-    margin-top: 10px;
+  background-color: #949494;
+  color: white;
+  border: none;
+  width: 50px;
+  margin-top: 10px;
 }
 
 .btn-search {
@@ -88,35 +90,35 @@ h4 {
 }
 
 #detailContents {
-    height: 300px;
-    text-align: left;
+  height: 300px;
+  text-align: left;
 }
 
 #noticeContentTd,
 #existingFile,
 #existingRegdate {
-    text-align: left;
+  text-align: left;
 }
 
 #subtdth {
-    vertical-align: middle;
-    width: 8% !important;
+  vertical-align: middle;
+  width: 8% !important;
 }
 
 #removeFileBtn {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 #subTable {
-    margin-top: 40px !important;
+  margin-top: 40px !important;
 }
 
 .table-row .bi-megaphone {
-    color: #003567 !important;
-    font-size: 13px;
-    font-weight: bold;
+  color: #003567 !important;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 #title {
-    text-align: left;
+  text-align: left;
 }

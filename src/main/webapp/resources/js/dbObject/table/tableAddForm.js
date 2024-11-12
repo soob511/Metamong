@@ -37,11 +37,7 @@ $(document).ready(function() {
     	$("#itemForm")[0].reset();
         $("#columnList tr").removeClass("selected");
         $(".btn-update").prop("disabled", true);
-        if (pkSelect.val() === "Y") {
-            nullableSelect.val("NOTNULL");
-            nullableSelect.prop("disabled", true);
-            updateNullableSelect();
-        }
+        updateNullableSelect();
     }
     
     $.ajax({
@@ -191,7 +187,7 @@ $(document).ready(function() {
                 // 새로 추가된 행의 data-change 속성 값을 확인
                 console.log("New row data-change:", $("#columnList tr:last").attr("data-change"));
 
-                $("#itemForm")[0].reset(); 
+                resetAndDisableButton();
             }
         }
     });

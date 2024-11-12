@@ -1,4 +1,24 @@
 $(document).ready(function() {
+	console.log("실행");
+	$.ajax({
+        url: "/Metamong/team/getTeamList",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            var selectBox = $('#teamId');
+            $.each(data, function(index, team) {
+                selectBox.append($('<option>', {
+                    value: team.teamId,
+                    text: team.teamName
+                }));
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("AJAX 요청 실패:", textStatus, errorThrown);
+            console.log("서버 응답 상태:", jqXHR.status);
+        }
+    });
+	
     const checkId = /^[a-zA-Z0-9]{4,12}$/;
     const checkPassword = /^[a-zA-Z0-9]{8,16}$/;
     const checkTelNum = /^\d{2,3}-\d{3,4}-\d{3,4}$/;
@@ -20,21 +40,6 @@ $(document).ready(function() {
 
         $("#btn-signup").prop("disabled", !(idValid && passwordValid && passwordsMatch && name && empId && telValid));
     }
-
-    $.ajax({
-        url: "/Metamong/team/getTeamList",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            var selectBox = $('#teamId');
-            $.each(data, function(index, team) {
-                selectBox.append($('<option>', {
-                    value: team.teamId,
-                    text: team.teamName
-                }));
-            });
-        }
-    });
 
     // 아이디 중복 확인
     $(".btn-confirm").on("click", function() {

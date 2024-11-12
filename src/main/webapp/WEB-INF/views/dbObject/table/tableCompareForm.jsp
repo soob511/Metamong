@@ -97,6 +97,5 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/views/common/alarm.jsp" />
 </body>
 </html>

@@ -48,6 +48,23 @@ $(document).ready(function() {
 		});
 	});
 	
+	$(".btn-rollback").on("click", function() {
+		var applyNo = $("#applyContainer").attr("data-applyno");	
+		$.ajax({
+			url: "/Metamong/table/rollbackApplyTable",
+			type: "POST",
+			data: { applyNo: applyNo}, 
+			success: function(data) {
+				Swal.fire({
+					icon: 'success',
+					title: '테이블 신청이<br/> 승인취소 되었습니다.'
+				}).then(() => {
+				location.reload();
+				});	
+			}
+		});
+	});
+	
 	
 });
 

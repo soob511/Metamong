@@ -12,9 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.metamong.daoHr.HrColumnDao;
+import com.mycompany.metamong.daoHr.HrIndexDao;
 import com.mycompany.metamong.daoHr.HrSequenceDao;
 import com.mycompany.metamong.daoHr.HrTableDao;
-import com.mycompany.metamong.daoHr.Sub3IndexDao;
 import com.mycompany.metamong.daoMain.ApplyListDao;
 import com.mycompany.metamong.daoMain.CodeDao;
 import com.mycompany.metamong.daoMain.ColumnDao;
@@ -24,11 +24,11 @@ import com.mycompany.metamong.daoMain.TableDao;
 import com.mycompany.metamong.daoPms.PmsColumnDao;
 import com.mycompany.metamong.daoPms.PmsSequenceDao;
 import com.mycompany.metamong.daoPms.PmsTableDao;
-import com.mycompany.metamong.daoPms.Sub2IndexDao;
+import com.mycompany.metamong.daoPms.PmsIndexDao;
 import com.mycompany.metamong.daoSrm.SrmColumnDao;
 import com.mycompany.metamong.daoSrm.SrmSequenceDao;
 import com.mycompany.metamong.daoSrm.SrmTableDao;
-import com.mycompany.metamong.daoSrm.Sub1IndexDao;
+import com.mycompany.metamong.daoSrm.SrmIndexDao;
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyCodeDetailDto;
 import com.mycompany.metamong.dto.applyList.ApplyCodeListDto;
@@ -91,11 +91,11 @@ public class ApplyService {
 	@Autowired
 	private HrSequenceDao hrSequenceDao;
 	@Autowired
-	private Sub1IndexDao sub1IndexDao;
+	private SrmIndexDao sub1IndexDao;
 	@Autowired
-	private Sub2IndexDao sub2IndexDao;
+	private PmsIndexDao sub2IndexDao;
 	@Autowired
-	private Sub3IndexDao sub3IndexDao;
+	private HrIndexDao sub3IndexDao;
 
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
@@ -548,5 +548,9 @@ public class ApplyService {
 
 	public void resetComplDate(int applyNo) {
 		applyListDao.updateComplDate(applyNo);
+	}
+
+	public void updateRollbackApply(int applyNo) {
+		applyListDao.updateRollbackApply(applyNo);
 	}
 }

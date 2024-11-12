@@ -24,15 +24,18 @@
 
         <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
-            <div class="content">
                 <h4 class="fw-bold">> 공지사항</h4>
-                <div class="d-flex justify-content-end">
-                    <div class="table-list-filters">
-                        <div class="schema-filter">
-                            <select id="schemaSelect" class="form-select" aria-label="Default select example">
-                                <option selected>제목</option>
-                                <option>내용</option>
-                            </select>
+            <div class="content">
+               	
+               	<div class="d-flex justify-content-end">
+                        <div class="table-list-filters">
+                            <div class="schema-filter">
+                                <select id="schemaSelect" class="form-select" aria-label="Default select example">
+                                    <option selected>제목</option>
+                                    <option>내용</option>
+                                    <option>제목+내용</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="table-search">

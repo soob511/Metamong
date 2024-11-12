@@ -7,13 +7,13 @@ $(document).ready(function() {
     filterIndex();
     
     $('#schemaSelect').change(function() {
-    	filterTable()
     	filterIndex()
+    	filterTable()
     });
     
     $('#tableSelect').change(function() {
-    	filterColumn()
     	filterIndex()
+    	filterColumn()
     });
     
     $('#columnSelect').change(function() {
@@ -52,8 +52,8 @@ function checkCheckBox(checkbox) {
         $('#indexTableBody tr').each(function () {
             const rowCheckBox = $(this).find('.form-check-input');
             rowCheckBox.prop('checked', false);
-            rowCheckBox.css('display', 'block');  // 체크박스를 다시 보이도록
-            rowCheckBox.css('margin', '0 auto');  // 중앙 정렬
+            rowCheckBox.css('display', 'block');
+            rowCheckBox.css('margin', '0 auto');
         });
     } else {
         $('#indexTableBody tr').each(function () {
@@ -62,16 +62,15 @@ function checkCheckBox(checkbox) {
             
             if (rowDataValue === dataValue) {
                 rowCheckBox.prop('checked', isChecked);
-                rowCheckBox.css('display', 'block');  // 체크박스를 보이도록
-                rowCheckBox.css('margin', '0 auto');  // 중앙 정렬
+                rowCheckBox.css('display', 'block');
+                rowCheckBox.css('margin', '0 auto');
             } else {
                 rowCheckBox.prop('checked', false);
-                rowCheckBox.css('display', 'none');  // 체크박스를 숨김
+                rowCheckBox.css('display', 'none');
             }
         });
     }
 }
-
 
 function getSchemaName(schemaName) {
     switch (schemaName) {
@@ -93,7 +92,7 @@ function filterTable() {
 		},
 		success : function(data) {
 			let html = '<option data-name="선택">선택</option>';
-			$('#columnSelect').html(html);
+			
 			data.forEach(function(table) {
 				html += `
 						<option value="${table.tableNo}" data-name="${table.tableId}">
@@ -127,7 +126,7 @@ function filterColumn() {
 		},
 		success : function(data) {
 			let html = '<option>선택</option>';
-			console.log(data);
+			
 			data.forEach(function(column) {
 				html += `
 					<option data-name="colId" data-value="${column.colId}">
@@ -149,7 +148,9 @@ function filterIndex() {
 		$('#tableSelect').find(':selected').data('name') == '선택' ? 'NONE' : $('#tableSelect').find(':selected').data('name');
 	let columnName = $('#columnSelect').val() == '선택' ? 'NONE' : $('#columnSelect').val();
 	let indexName = $('#indexNameSearch').val().toUpperCase() == '' ? 'NONE' :$('#indexNameSearch').val().toUpperCase();
-	console.log(schemaName);
+	if (schemaName == 'MAIN') {
+		tableName = 'NONE';
+	}
 	$.ajax({
 		type : 'GET',
 		url : 'searchIndex',
@@ -162,7 +163,7 @@ function filterIndex() {
 		success : function(data) {
 			let html = '';
 			let count = 1;
-			console.log(data);
+			
 			if (data.length > 0) {
 				data.forEach(function(index) {
 					html += `
@@ -199,7 +200,7 @@ function filterIndex() {
 						</tr>`;
 				});
 			} else {
-				html += '<th colspan="8">해당 조건에 맞는 인덱스가 없습니다</th>'
+				html += '<th colspan="9">해당 조건에 맞는 인덱스가 없습니다</th>'
 			}
 			$('#indexTableBody').html(html);			 
 		},
@@ -220,14 +221,12 @@ function navToDeletePage() {
     if (row.length === 0) {
     	Swal.fire({ 
 			icon: 'warning',
-			title: '인덱스를 다시<br>선택해주세요.',
-			text: '인덱스를 선택해주세요.',
+			title: '삭제할 인덱스를<br>선택해주세요.'
 		})
     } else if (row.length === 1 && pkStatus === 'Y') {
     	Swal.fire({ 
 			icon: 'warning',
-			title: '인덱스를 다시<br>선택해주세요.',
-			text: 'PK는 삭제가 불가합니다.',
+			title: 'PK컬럼에 있는 인덱스는<br>삭제불가합니다.'
 		})
     } else {
     	document.location.href = '/Metamong/index/indexDeleteForm?schemaName=' + schemaName + '&indexName=' + indexName + '&columnName=' + columnName + '&tableName=' + tableName;    	    	

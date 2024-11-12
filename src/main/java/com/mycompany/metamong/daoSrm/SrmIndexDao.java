@@ -1,4 +1,4 @@
-package com.mycompany.metamong.daoHr;
+package com.mycompany.metamong.daoSrm;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.mycompany.metamong.dto.index.IndexDto;
 
 @Mapper
-public interface Sub3IndexDao {
+public interface SrmIndexDao {
 	
 	public List<IndexDto> selectIndex();
 	
@@ -25,4 +25,6 @@ public interface Sub3IndexDao {
 			);
 	
 	public int createIndex(String sqlSyn);
+	
+	public IndexDto selectDuplicateIndex(String indexName);
 }

@@ -28,6 +28,7 @@
 								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 								<select id="schemaSelect" class="form-select"
 									aria-label="Default select example">
+									<option value="MAIN">전체</option>
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
 										<option value="${schemaEnum.name()}">
 								            ${schemaEnum.name()}

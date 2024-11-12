@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,10 @@
 <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/loginForm.css">
-</head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/passwordModal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+</head> 
 <body>
     <div class="container-fluid login-page">
         <div class="row">
@@ -35,6 +40,7 @@
                         <h1>Login</h1>
                         <p>Sign in to your account</p>
                     </div>
+					
 					<form action="${pageContext.request.contextPath}/login" method="post">
 	                    <div class="input-group">
 	                        <label for="mId" class="input-label">UserName</label> 
@@ -50,13 +56,69 @@
 	                        <button type="submit" class="btn btn-login">Login</button>
 	                    </div>					
 					</form>
+					<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+						<div class="alert alert-danger">
+							<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+       							아이디 또는 비밀번호가 틀립니다.
+       						</c:if>
+						</div>
+					</c:if>
 
                     <div class="signup-notice mt-3">
                         <p>New User? <a href="${pageContext.request.contextPath}/member/joinForm">Sign up</a></p>
+                    </div>
+                    <div class="signup-notice mt-3">
+                        <p id="modalOpen" data-bs-toggle="modal" data-bs-target="#sqlLoadModal">
+							Forgot Password?
+						</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="sqlLoadModal" tabindex="-1"
+		aria-labelledby="sqlLoadModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close" id="modalClose"></button>
+				</div>
+				<div class="modal-body">
+					<div class="table-container d-flex justify-content-center">
+						<form action="${pageContext.request.contextPath}/member/resetUserPassword" method="post">
+							<div class="table-header">Reset Your Password</div>
+							<div class="modal-input-group">
+		                        <label for="mId" class="input-label">UserName</label> 
+		                        <input type="text" class="form-control"  id="checkId" name="checkId" aria-label="checkId" placeholder="">
+		                    </div>
+		                    <span></span>
+			               	<div class="modal-input-group">
+			                    <label for="mId" class="input-label">PhoneNumber</label>
+				               	<input type="text" class="form-control"  id="mTel" name="mTel" aria-label="mTel" placeholder="">
+			               	</div>
+			               	<span></span>		                    
+		                    <div class="modal-input-group">
+		                        <label for="mPassword" class="input-label">Password</label> 
+		                        <input type="password" class="form-control"  id="newPassword" name="newPassword" aria-label="newPassword" placeholder="" disabled>
+		                    </div>
+		                    <span class="password-message msg">오류메세지</span>
+		                    <div class="modal-input-group">
+		                        <label for="mPassword" class="input-label">CheckPassword</label> 
+		                        <input type="password" class="form-control"  id="checkPassword" name="checkPassword" aria-label="checkPassword" placeholder="" disabled>
+		                    </div>
+		                    <span class="password-confirm-message msg">오류메세지</span>
+		                  	<div class="d-flex justify-content-center">
+		                        <button type="submit" class="modal-btn-submit" disabled>Confirm</button>		                  	
+		                  	</div>
+							<button type="button" onclick="checkValidUser()" class="modal-btn-check">Check</button>			               	
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="${pageContext.request.contextPath}/resources/js/member/loginForm.js"></script>
 </body>
 </html>

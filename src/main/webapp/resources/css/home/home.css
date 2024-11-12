@@ -136,3 +136,13 @@ table th, table td {
     font-size: 13px !important;
     width: 100px !important;
 }
+
+.table-row .bi-megaphone {
+	color:#003567 !important;
+	font-size:14px;
+	font-weight:bold;
+}
+#noticeTitle {
+	text-align:left !important;
+	padding-left: 30px !important;
+}

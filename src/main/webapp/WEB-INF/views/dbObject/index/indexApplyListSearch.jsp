@@ -56,28 +56,28 @@
 	</table>
 </div>
 <div class="page">
-	<a href="javascript:filterApplyIndexPaging(1)" class="btn btn-outline-primary btn-sm"><<</a>
+	<a href="javascript:filterApplyIndexPaging(1)" class="btn btn-outline-secondary btn-sm"><<</a>
 	<c:if test="${pager.groupNo > 1}">
 		<a href="javascript:filterApplyIndexPaging(${pager.startPageNo - 1})}"
-			class="btn btn-outline-info btn-sm"><</a>
+			class="btn btn-outline-dark btn-sm"><</a>
 	</c:if>
 	<c:if test="${pager.totalRows != 0}">
 	<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 		step="1" var="i">
 		<c:if test="${pager.pageNo == i}">
 			<a href="javascript:filterApplyIndexPaging(${i})"
-				class="btn btn-primary btn-sm">${i}</a>
+				class="btn btn-secondary btn-sm">${i}</a>
 		</c:if>
 		<c:if test="${pager.pageNo != i}">
 			<a href="javascript:filterApplyIndexPaging(${i})"
-				class="btn btn-outline-primary btn-sm">${i}</a>
+				class="btn btn-outline-secondary btn-sm">${i}</a>
 		</c:if>
 	</c:forEach>
 	</c:if>
 	<c:if test="${pager.groupNo < pager.totalGroupNo}">
 		<a href="javascript:filterApplyIndexPaging(${pager.endPageNo + 1})}"
-			class="btn btn-outline-info btn-sm">></a>
+			class="btn btn-outline-dark btn-sm">></a>
 	</c:if>
 	<a href="javascript:filterApplyIndexPaging(${pager.totalPageNo})"
-		class="btn btn-outline-primary btn-sm">>></a>
+		class="btn btn-outline-secondary btn-sm">>></a>
 </div>
