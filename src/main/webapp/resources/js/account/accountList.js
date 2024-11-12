@@ -4,11 +4,11 @@ let teams = [];
 let teamIndex, updateTeam, teamId;
 
 $(document).ready(function() {
-    $('.menu-team').removeClass('active');
-    $('.menu-team:eq(1)').addClass('active');
+    $('.menu-item').removeClass('active');
+    $('.menu-item:eq(1)').addClass('active');
     $('.sub-menu:eq(0)').addClass('active');
-    $('.sub-menu:eq(0) .sub-team').removeClass('active');
-    $('.sub-menu:eq(0) .sub-team:first').addClass('active');
+    $('.sub-menu:eq(0) .sub-item').removeClass('active');
+    $('.sub-menu:eq(0) .sub-item:first').addClass('active');
 
 
 // 팀 목록 가져오기
