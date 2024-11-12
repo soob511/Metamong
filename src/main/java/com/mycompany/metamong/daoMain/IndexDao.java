@@ -38,6 +38,12 @@ public interface IndexDao {
 			@Param("indexName") String indexName
 			);
 	
+	public int selectRowsByMId(
+			@Param("schemaName") String schemaName,
+			@Param("approvalStatus") int approvalStatus,
+			@Param("mId") String mId
+			);
+	
 	public int insertApplyIndex(ApplyIndexDto applyIndexDto);
 	
 }

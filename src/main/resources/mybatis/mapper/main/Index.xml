@@ -62,7 +62,8 @@
 						AND a.approval_status = #{approvalStatus}
 					</if>
 					<if test="indexName != '' ">
-						AND i.idx_name = #{indexName}
+						AND (i.idx_name LIKE '%' || UPPER(#{indexName}) || '%'
+     					OR m.m_name LIKE '%' || UPPER(#{indexName}) || '%')
 					</if>
 				</where>
 				ORDER BY a.apply_date DESC
@@ -106,6 +107,24 @@
 			</if>
 			<if test="indexName != '' ">
 				AND i.idx_name = #{indexName}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectRowsByMId" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM apply_list a
+		JOIN apply_index i ON i.apply_no = a.apply_no
+	    <where>
+	    	a.apply_obj = 'INDEX'
+			<if test="schemaName != 'MAIN' ">
+				AND a.schema_name = #{schemaName}
+			</if>
+			<if test="approvalStatus != -1">
+				AND a.approval_status = #{approvalStatus}
+			</if>
+			<if test="mId != '' ">
+				AND a.m_id = #{mId}
 			</if>
 		</where>
 	</select>

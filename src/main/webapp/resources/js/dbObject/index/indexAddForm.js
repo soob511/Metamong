@@ -183,16 +183,15 @@ function updateCount() {
 }
 
 const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-const checkFirstChar = /^[A-Za-z]/;
-const checkInvalidChars = /[^A-Za-z0-9_]/;
-const checkUpperCase = /^[A-Z]*$/;
+const checkFirstChar = /^[A-Z]/;
+const checkInvalidChars = /[^A-Z_]/;
 
 $(document).on("input", "#indexName", function () {
   let inputId = $("#indexName").val().trim();
   const msg = $("#nameValidMessage");
 
   if (!checkFirstChar.test(inputId)) {
-    msg.text("첫 글자는 영문이어야 합니다.");
+    msg.text("첫 글자는 대문자 영어로 시작해야 합니다.");
     msg.addClass('warn');
   } else if (inputId.length < 1 || inputId.length > 30) {
     msg.text("1~30자 이내로 작성해야 합니다.");
@@ -201,11 +200,8 @@ $(document).on("input", "#indexName", function () {
     msg.text("한글을 사용할 수 없습니다.");
     msg.addClass('warn');
   } else if (checkInvalidChars.test(inputId)) {
-    msg.text("특수문자는 언더스코어(_)만 사용할 수 있습니다.");
+    msg.text("영어 대문자와 언더스코어(_)만 사용할 수 있습니다.");
     msg.addClass('warn');
-  } else if (!checkUpperCase.test(inputId)) {  // 대문자 확인 추가
-	    msg.text("대문자만 사용해야 합니다.");
-	    msg.addClass('warn');
   } else {
     msg.text("");
     msg.removeClass('warn');
