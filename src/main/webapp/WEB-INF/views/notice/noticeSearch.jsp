@@ -12,7 +12,7 @@
 	<thead>
 		<tr class="table-secondary">
 			<th scope="col">No.</th>
-			<th scope="col">제목</th>
+			<th scope="col" id="title">제목</th>
 			<th scope="col">등록일</th>
 			<th scope="col">조회수</th>
 		</tr>
@@ -20,7 +20,7 @@
 	<tbody id="noticeTable">
 		<c:if test="${totalRows>=1}">
 			<c:forEach items="${list}" var="notice" varStatus="status">
-				<tr class="table-row">
+				<tr class="table-row" onclick="location.href='noticeDetail?noticeId=${notice.noticeId}'" style="cursor: pointer;">
 					<td scope="row">
 					<c:choose>
 							<c:when test="${notice.noticeIsimp == '1'}">
@@ -33,8 +33,7 @@
 						</c:otherwise>
 						</c:choose>
 					</td>
-					<td><a href="noticeDetail?noticeId=${notice.noticeId}"
-						style="color: black;">${notice.noticeTitle}</a></td>
+					<td id="title">${notice.noticeTitle}</td>
 					<td><fmt:formatDate value="${notice.noticeRegdate}"
 							pattern="yyyy-MM-dd" /></td>
 					<td>${notice.noticeHitcount}</td>
