@@ -229,5 +229,16 @@ public class IndexController {
 		applyService.updateRollbackApply(applyNo);
 		return ResponseEntity.ok("ok");
 	}
+	
+	@ResponseBody
+	@GetMapping("/checkDuplicateIndexName")
+	public int checkDuplicateIndexName(String schemaName, String indexName) {
+		IndexDto index = indexService.checkDuplicateIndexName(schemaName, indexName);
+		if (index != null) {
+			return 1;
+		} else {
+			return 0; 			
+		}
+	}
 
 }

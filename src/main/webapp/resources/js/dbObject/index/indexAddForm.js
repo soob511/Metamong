@@ -53,7 +53,6 @@ function getCheckedOnePk() {
     }
 }
 
-
 function getSchemaName(schemaName) {
     switch (schemaName) {
         case 'USER_2024_OTI_FINAL_TEAM1_1': return 'SRM';
@@ -186,6 +185,7 @@ function updateCount() {
 const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 const checkFirstChar = /^[A-Za-z]/;
 const checkInvalidChars = /[^A-Za-z0-9_]/;
+const checkUpperCase = /^[A-Z]*$/;
 
 $(document).on("input", "#indexName", function () {
   let inputId = $("#indexName").val().trim();
@@ -203,16 +203,13 @@ $(document).on("input", "#indexName", function () {
   } else if (checkInvalidChars.test(inputId)) {
     msg.text("특수문자는 언더스코어(_)만 사용할 수 있습니다.");
     msg.addClass('warn');
+  } else if (!checkUpperCase.test(inputId)) {  // 대문자 확인 추가
+	    msg.text("대문자만 사용해야 합니다.");
+	    msg.addClass('warn');
   } else {
     msg.text("");
     msg.removeClass('warn');
   }
-});
-
-$(document).on('click', '#indexApplyReason', function () {
-	const msg = $("#reasonValidMessage");
-	msg.text("신청사유를 입력해주세요.");
-	msg.addClass('warn');
 });
 
 $(document).on("input", "#indexApplyReason", function () {
@@ -239,7 +236,6 @@ function filterTable() {
 			schemaName : schemaName
 		},
 		success : function(data) {
-			console.log(data);
 			let html = '<option data-name="선택">선택</option>';
 
 			data.forEach(function(table) {
@@ -270,8 +266,7 @@ function filterColumn() {
 		$('#columnTableBody').html('');
 		return;
 	}
-	console.log(schemaName);
-	console.log(tableName);
+
 	$.ajax({
 		type : 'GET',
 		url : '/Metamong/column/searchColumnInfo',
@@ -323,10 +318,6 @@ function filterIndex(clickColumnName) {
 		$('#tableSelect').find(':selected').data('name') == '선택' ? 'NONE' : $('#tableSelect').find(':selected').data('name');
 	let columnName = clickColumnName;
 	let indexName = 'NONE';
-	console.log(schemaName);
-	console.log(tableName);
-	console.log(columnName);
-	console.log(indexName);
 	
 	$.ajax({
 		type : 'GET',
@@ -340,10 +331,9 @@ function filterIndex(clickColumnName) {
 		success : function(data) {
 			let html = '';
 			let count = 1;
-			console.log(data);
+			
 			if (data.length > 0) {
 				data.forEach(function(index) {
-					console.log(index);
 					html += `
 						<tr>
 						<th>${count++}</th>
@@ -404,42 +394,69 @@ function applyIndex() {
 		Swal.fire({
   		  	icon: 'warning',                  
   		  	title: '필수내역을 공란없이<br/>입력해 주세요.',
-  		  	text: '필수입력사항: 컬럼 선택, 인덱스 제목, 신청사유'
+  		  	text: '필수입력사항: 컬럼 선택, 인덱스 이름, 신청사유'
   		});
 	} else if (checkedOnePkValue == 'Y') {
 		Swal.fire({
 			icon: 'warning',                  
-			title: '인덱스를 다시<br/>확인해 주세요.',
+			title: '인덱스를 다시<br/>선택해 주세요.',
 			text: '오류입력사항: PK는 단일 인덱스 신청이 불가'
 		});
 	} else if ($("#nameValidMessage").hasClass("warn")) {
 		Swal.fire({
 			icon: 'warning',                  
-			title: '인덱스 제목을<br/>확인해 주세요.',
-			text: '오류입력사항: 인덱스 제목'
+			title: '인덱스 이름을<br/>확인해 주세요.',
+			text: '오류입력사항: 인덱스 이름'
 		});
-	} else {		
+	} else {
 		$.ajax({
-			type : 'POST',
-			url : 'applyIndex',
-			contentType: 'application/json',
-			data: JSON.stringify(applyRequestDto),
-			success : function(data) {
-				Swal.fire({ 
-					icon: 'success',
-					title: '인덱스 신청이 완료되었습니다.',
-					text: '인덱스 승인 후, 사용이 가능합니다.',
-				}).then(result=>{
-					location.href="/Metamong/index/indexApplyList";
-				})
+			type : 'GET',
+			url : 'checkDuplicateIndexName',
+			data: {
+				schemaName: $('#schemaSelect').val(),
+				indexName: $('#indexName').val(),
 			},
-			error : function(xhr, status, error) {
-				Swal.fire({ 
-					icon: 'error',
-					title: '인덱스 신청을 실패하였습니다.',
-					text: '확인 후 다시 신청해주세요.',
-				})
-			}
-		});
-	}
-}    
+			success : function(data) {
+				console.log(data)
+				if (data === 1) {
+					Swal.fire({
+                        icon: 'error',
+                        title: '인덱스 신청을<br/> 실패하였습니다.',
+                        text: '해당 스키마에 동일 인덱스 이름이 존재합니다.'
+                    });
+				} else {
+                    // 중복되지 않으면 인덱스 신청
+                    $.ajax({
+                        type: 'POST',
+                        url: 'applyIndex',
+                        contentType: 'application/json',
+                        data: JSON.stringify(applyRequestDto),
+                        success: function(data) {
+                            Swal.fire({ 
+                                icon: 'success',
+                                title: '인덱스 신청이<br/> 완료되었습니다.',
+                                text: '인덱스 승인 후, 사용이 가능합니다.'
+                            }).then(result => {
+                                location.href = "/Metamong/index/indexApplyList";
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({ 
+                                icon: 'error',
+                                title: '인덱스 신청을<br/> 실패하였습니다.',
+                                text: '확인 후 다시 신청해주세요.'
+                            });
+                        }
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({ 
+                    icon: 'error',
+                    title: '인덱스 신청을<br/> 실패하였습니다.',
+                    text: '서버 오류가 발생했습니다. 다시 시도해주세요.'
+                });
+            }
+        });
+    }
+}
