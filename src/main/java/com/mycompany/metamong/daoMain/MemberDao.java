@@ -44,4 +44,8 @@ public interface MemberDao {
 	public List<String> selectDbaIdByRole(String role);
 
 	public MemberDto selectMemberProfileImage(String mId);
+	
+	public MemberDto selectValidMember(@Param("mId") String mId, @Param("mTel") String mTel);
+
+	public int updatePassword(MemberDto member);
 }

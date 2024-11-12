@@ -87,6 +87,11 @@
 						        <if test="keyword != null and keyword != '' and option == '내용'">
 						            notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 						        </if>
+						        <if test="keyword != null and keyword != '' and option == '제목+내용'">
+						            (notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%') 
+                         OR notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%'))
+						        </if>
+						        
 						    </where>
 	     	<![CDATA[
 						ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
@@ -108,6 +113,10 @@
 		        <if test="keyword != null and keyword != '' and option == '내용'">
 		             notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 		        </if>
+		         <if test="keyword != null and keyword != '' and option == '제목+내용'">
+						            (notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%') 
+                         OR notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%'))
+						        </if>
 		    </where>
 	    )
 	</select>

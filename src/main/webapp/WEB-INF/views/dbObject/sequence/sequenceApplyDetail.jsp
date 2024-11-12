@@ -40,6 +40,7 @@
 									</c:when>
 									<c:when test="${detail.approvalStatus == 1}">
 										<button class="btn-reflect">반영</button>
+										<button class="btn-rollback">승인취소</button>
 									</c:when>
 									<c:when
 										test="${detail.approvalStatus == 2 || detail.approvalStatus == 3}">
@@ -52,7 +53,8 @@
 							<div class="button-groupUSER">
 								<c:choose>
 									<c:when test="${detail.approvalStatus == 2}">
-										<button class="btn-reapply" onclick="reapply(${detail.applyNo})">재작성</button>
+										<button class="btn-reapply"
+											onclick="reapply(${detail.applyNo})">재작성</button>
 									</c:when>
 								</c:choose>
 							</div>
@@ -149,7 +151,7 @@
 				<div class="modal-body">
 					<div class="table-container">
 						<div class="table-header d-flex align-items-center">SQL</div>
-						<div class="table-body">${detail.query}</div>
+						<textarea class="table-body" readonly>${detail.query}</textarea>
 					</div>
 				</div>
 			</div>

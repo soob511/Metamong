@@ -43,4 +43,6 @@ public class MemberDto {
 	private int MApprovalStatus;
 	private Date MRegdate;
 	private String teamName;
+	private String newPassword;
+	private String checkId;
 }

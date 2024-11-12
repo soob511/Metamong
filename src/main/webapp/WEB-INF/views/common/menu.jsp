@@ -35,6 +35,6 @@
 		</li>	
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square pe-2"></i>공지사항</a></li>
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/member/memberList"><i class="bi bi-people pe-2"></i>직원목록</a></li>
-		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/member/loginForm"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
+		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
 	</ul>
 </div>

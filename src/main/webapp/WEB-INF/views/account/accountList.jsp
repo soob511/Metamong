@@ -81,6 +81,8 @@
 												<option value="개발1팀" ${member.teamName == '개발1팀' ? 'selected' : ''}>개발1팀</option>
 												<option value="개발2팀" ${member.teamName == '개발2팀' ? 'selected' : ''}>개발2팀</option>
 												<option value="개발3팀" ${member.teamName == '개발3팀' ? 'selected' : ''}>개발3팀</option>
+												<option value="개발4팀" ${member.teamName == '개발4팀' ? 'selected' : ''}>개발4팀</option>
+												<option value="개발5팀" ${member.teamName == '개발5팀' ? 'selected' : ''}>개발5팀</option>
 											</select>
 											</div>
 										</td>
@@ -150,7 +152,9 @@
                     <th scope="col">사용여부</th>
                   </tr>
                 </thead>
-                <tbody id="teamList"></tbody>
+                <tbody id= "teamList">
+             
+                </tbody>
               </table>
             </div>
             <div class="col team-form">
@@ -158,12 +162,12 @@
               <table class="table" id="teamForm">
                 <tr>
                   <td class="table-secondary">소속명</td>
-                  <td><input type="text" id="teamName" placeholder="내용 입력" required></td>   
+                  <td><input type="text" id="teamName" class="form-control" placeholder="내용 입력" required></td>   
                 </tr>
                 <tr>
                   <td class="table-secondary">사용여부</td>
                   <td>
-                    <select id="teamIsActive" class="form-select use-status-select" aria-label="사용 여부 선택">
+                    <select id="teamIsactive" class="form-select use-status-select" aria-label="사용 여부 선택">
                       <option value="1">Y</option>
                       <option value="0">N</option>
                     </select>
@@ -181,7 +185,7 @@
       <div class="modal-footer">
         <div class="modal-btns">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-primary">저장하기</button>
+          <button type="button" class="btn btn-primary" id="submit">저장하기</button>
         </div>
       </div>
     </div>

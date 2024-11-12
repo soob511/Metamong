@@ -20,6 +20,23 @@ $(document).ready(function() {
 	$(".btn-reapply").on("click", function() {
 		reApply()
 	});
+	
+	$(".btn-rollback").on("click", function() {
+		var applyNo = $("#applyContainer").attr("data-applyno");	
+		$.ajax({
+			url: "/Metamong/index/rollbackApplyIndex",
+			type: "POST",
+			data: { applyNo: applyNo}, 
+			success: function(data) {
+				Swal.fire({
+					icon: 'success',
+					title: '인덱스신청이<br/> 승인취소 되었습니다.'
+				}).then(() => {
+				location.reload();
+				});	
+			}
+		});
+	});
 })
 
 function reApply() {

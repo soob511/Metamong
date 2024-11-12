@@ -8,7 +8,10 @@ $(document).ready(function() {
 	    showColumnList(tableId);
 	});
 	$("#schemaSelect").on("change", function() {
-        searchTable();
+		searchTable().then(function() {
+			let tableId = $("#tableList tr").data('value');
+		    showColumnList(tableId);
+		});
     });
 });
 

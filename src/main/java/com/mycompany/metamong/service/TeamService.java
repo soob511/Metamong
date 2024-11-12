@@ -18,4 +18,17 @@ public class TeamService {
 		return teamDao.selectTeamList();
 	}
 
+	public void insertTeam(TeamDto team) {
+		teamDao.insertTeam(team);
+		
+	}
+
+	public void updateTeam(TeamDto team) {
+		teamDao.updateTeam(team);
+		
+	}
+
+
+
 }
+

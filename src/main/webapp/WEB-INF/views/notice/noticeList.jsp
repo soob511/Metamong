@@ -34,6 +34,7 @@
                                 <select id="schemaSelect" class="form-select" aria-label="Default select example">
                                     <option selected>제목</option>
                                     <option>내용</option>
+                                    <option>제목+내용</option>
                                 </select>
                             </div>
                         </div>
@@ -65,7 +66,7 @@
 	                    </thead>
 	                    <tbody id="noticeTable">
 	                        <c:forEach items="${list}" var="notice" varStatus="status">           
-		                        <tr class="table-row">
+		                        <tr class="table-row" onclick="location.href='noticeDetail?noticeId=${notice.noticeId}'" style="cursor: pointer;">
 		                            <td scope="row">
 			                            <c:choose>
 											<c:when test="${notice.noticeIsimp == '1'}">
@@ -79,7 +80,7 @@
 											</c:otherwise>
 									</c:choose>
 									</td>                          
-		                            <td id="title"><a href="noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
+		                            <td id="title">${notice.noticeTitle}</td>
 		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
 		                            <td>${notice.noticeHitcount}</td>
 		                        </tr>
@@ -119,13 +120,8 @@
         </div>
     </div>
 </div>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList_admin.js"></script>
-</sec:authorize>
- <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
- 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+
  <script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
- 	</sec:authorize>
- </sec:authorize>
+
 </body>
 </html>

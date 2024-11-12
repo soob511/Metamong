@@ -11,9 +11,12 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 
 public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 	@Override
-	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+	public void onLogoutSuccess(
+			HttpServletRequest request, 
+			HttpServletResponse response, 
+			Authentication authentication)
 			throws IOException, ServletException {
-		setDefaultTargetUrl("");
+		setDefaultTargetUrl("/member/loginForm");
 		super.onLogoutSuccess(request, response, authentication);
 	}
 }

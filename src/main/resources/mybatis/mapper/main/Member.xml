@@ -246,4 +246,17 @@
 		WHERE m_role = #{role}
 	</select>
 	
+	<select id="selectValidMember" parameterType="map" resultType="Member">
+		SELECT m_id
+		FROM member
+		WHERE m_id = #{mId} AND m_tel = #{mTel}
+	</select>
+	
+	<update id="updatePassword" parameterType="Member">
+	    UPDATE member
+	    SET 
+   			m_password = #{MPassword}
+	    WHERE M_id = #{MId}
+	</update>
+	
 </mapper>

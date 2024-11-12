@@ -11,4 +11,8 @@ public interface TeamDao {
 
 	public List<TeamDto> selectTeamList();
 
+	public void insertTeam(TeamDto team);
+
+	public void updateTeam(TeamDto team);
+
 }

@@ -114,5 +114,13 @@
    	font-size: 25px;
    	background-color: #003567 !important;
     color: white!important;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+#modalOpen {
+    cursor: pointer;
+}
+
+.alert {
+	width: 350px !important;
 }
