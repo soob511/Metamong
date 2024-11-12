@@ -12,7 +12,7 @@
 	<thead>
 		<tr class="table-secondary">
 			<th scope="col">No.</th>
-			<th scope="col">제목</th>
+			<th scope="col" id="title">제목</th>
 			<th scope="col">등록일</th>
 			<th scope="col">조회수</th>
 		</tr>
@@ -20,19 +20,20 @@
 	<tbody id="noticeTable">
 		<c:if test="${totalRows>=1}">
 			<c:forEach items="${list}" var="notice" varStatus="status">
-				<tr class="table-row">
-					<td scope="row"><c:choose>
+				<tr class="table-row" onclick="location.href='noticeDetail?noticeId=${notice.noticeId}'" style="cursor: pointer;">
+					<td scope="row">
+					<c:choose>
 							<c:when test="${notice.noticeIsimp == '1'}">
-								<img
-									src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
-									alt="중요도" style="width: 33px; height: 33px">
+								<button type="button" class="btn btn-sm">
+					                <i class="bi bi-megaphone"></i>
+					              </button>
 							</c:when>
 							<c:otherwise>
 							${pager.totalRows - (pager.pageNo-1)*pager.rowsPerPage - status.index}
 						</c:otherwise>
-						</c:choose></td>
-					<td><a href="noticeDetail?noticeId=${notice.noticeId}"
-						style="color: black;">${notice.noticeTitle}</a></td>
+						</c:choose>
+					</td>
+					<td id="title">${notice.noticeTitle}</td>
 					<td><fmt:formatDate value="${notice.noticeRegdate}"
 							pattern="yyyy-MM-dd" /></td>
 					<td>${notice.noticeHitcount}</td>
