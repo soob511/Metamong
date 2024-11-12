@@ -44,4 +44,5 @@ public class MemberDto {
 	private Date MRegdate;
 	private String teamName;
 	private String newPassword;
+	private String checkId;
 }
