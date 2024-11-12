@@ -67,16 +67,15 @@
 		            FROM 
 		                (SELECT * 
 		                  FROM member 
-		                  WHERE m_role != 'ROLE_ADMIN' 
-		                  AND m_approval_status = 1 
-		                  AND m_isactive = 1 
+		                  WHERE 
+			                  m_approval_status = 1 
+			                  AND m_isactive = 1 
 		                 ORDER BY 
 		                 	m_name, m_id) m
 		            LEFT OUTER JOIN 
 		                team t ON m.team_id = t.team_id
 		            WHERE 
-		                m.m_role != 'ROLE_ADMIN'
-		                AND m.m_approval_status=1
+		                m.m_approval_status=1
 		                AND m.m_isactive = 1
 		            ORDER BY 
 		                m.m_name, m.m_id
@@ -95,9 +94,9 @@
 		           FROM 
 		                (SELECT * 
 		                  FROM member 
-		                  WHERE m_role != 'ROLE_ADMIN' 
-		                  AND m_approval_status = 1 
-		                  AND m_isactive = 1 
+		                  WHERE 
+			                  m_approval_status = 1 
+			                  AND m_isactive = 1 
 		                 ORDER BY 
 		                 	m_name, m_id) m
 		            LEFT OUTER JOIN 
@@ -119,7 +118,6 @@
 			                <if test="keyword != null and keyword != '' and option == '사번'">
 			                    LOWER(m.M_empid) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 			                </if>
-			                AND m_role != 'ROLE_ADMIN'
 				            AND m_approval_status=1
 				            AND m_isactive = 1
 		            </where>

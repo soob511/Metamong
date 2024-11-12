@@ -71,6 +71,7 @@
 											aria-label="Default select example">
 											<option value="ROLE_USER" ${member.MRole == 'USER' ? 'selected' : ''}>USER</option>
 											<option value="ROLE_DBA" ${member.MRole == 'DBA' ? 'selected' : ''}>DBA</option>
+											<option value="ROLE_ADMIN" ${member.MRole == 'ADMIN' ? 'selected' : ''}>ADMIN</option>
 										</select>
 										</div>
 									</td>

@@ -41,8 +41,7 @@
 		SELECT count(*)
 		FROM member
 	    WHERE 
-           m_role != 'ROLE_ADMIN' 
-           AND m_approval_status = '1'
+            m_approval_status = '1'
 	</select>
 	
 	<select id="selectAccountList" parameterType="Pager" resultType="Member">
@@ -59,8 +58,7 @@
 				            LEFT OUTER JOIN 
 				                team t ON m.team_id = t.team_id
 				            WHERE 
-				                m.m_role != 'ROLE_ADMIN'  
-				                AND  m.m_approval_status = '1'
+				                  m.m_approval_status = '1'
 				            ORDER BY 
 				                m.m_regdate DESC, m.m_name
         				) 
@@ -175,7 +173,6 @@
 				            <if test="keyword != null and keyword != '' and option == '사번'">
 				                LOWER(m.m_empid) LIKE LOWER('%' || #{keyword} || '%')
 				            </if>
-				            AND m_role != 'ROLE_ADMIN'
 				            AND m_approval_status = '1'
 		            </where>
 		            <![CDATA[
@@ -207,7 +204,6 @@
 		                <if test="keyword != null and keyword != '' and option == '사번'">
 		                    LOWER(m.m_empid) LIKE LOWER('%' || #{keyword} || '%')
 		                </if>
-		                AND m_role != 'ROLE_ADMIN'
 		                 AND m_approval_status = '1'
 					</where>
 	</select>
