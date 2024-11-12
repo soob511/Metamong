@@ -34,6 +34,7 @@
                                 <select id="schemaSelect" class="form-select" aria-label="Default select example">
                                     <option selected>제목</option>
                                     <option>내용</option>
+                                    <option>제목+내용</option>
                                 </select>
                             </div>
                         </div>
@@ -119,13 +120,8 @@
         </div>
     </div>
 </div>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList_admin.js"></script>
-</sec:authorize>
- <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
- 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+
  <script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
- 	</sec:authorize>
- </sec:authorize>
+
 </body>
 </html>

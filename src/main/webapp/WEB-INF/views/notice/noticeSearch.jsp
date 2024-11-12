@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div class="d-flex justify-content-start">
 	<div>
 		총 <span class="form-required" id="noticeCount">${totalRows}</span>건의
@@ -84,4 +84,11 @@
 
 	</div>
 </c:if>
-<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList_admin.js"></script>
+</sec:authorize>
+ <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+ 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+ <script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
+ 	</sec:authorize>
+ </sec:authorize>
