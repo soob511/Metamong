@@ -5,8 +5,13 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
-    
+    $('.btn-typeEdit').prop('disabled', true);
     //데이터타입
+    $("#dataTypeList").on("click", "tr", function() {
+        $("#dataTypeList tr").removeClass("table-active");
+        $(this).addClass("table-active");
+    });
+    
     $.ajax({
         url: "/Metamong/dataType/dataTypeList",
         type: "GET",
