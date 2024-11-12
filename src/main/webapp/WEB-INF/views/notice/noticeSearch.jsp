@@ -4,13 +4,12 @@
 
 <div class="d-flex justify-content-start">
 	<div>
-		총 <span class="form-required" id="noticeCount">${totalRows}</span>건의
-		게시물이 있습니다.
+		총 <span class="form-required" id="noticeCount">${totalRows}</span>건의 게시물이 있습니다.
 	</div>	
 </div>
-<table class="table table-hover">
+<table class="table table-hover table-container">
 	<thead>
-		<tr class="table-secondary">
+		<tr class="table-light">
 			<th scope="col">No.</th>
 			<th scope="col">제목</th>
 			<th scope="col">등록일</th>
