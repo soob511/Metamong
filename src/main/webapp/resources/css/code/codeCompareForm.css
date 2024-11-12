@@ -1,29 +1,15 @@
-@charset "UTF-8";
-
 .btn-back {
-	margin: 30px 0 15px 45px;
-	background-color: var(--theme);
-	color: white;
-	border-radius: 8px;
-	border: none;
+	margin: 30px 0 15px 35px;
 	width: 70px;
-	height: 30px;
-	font-size: 13px;
-	text-align: center;
-	line-height: 2.4;
 }
 
 .before-management{
-	display: flex;
-	justify-content: space-between;
 	margin: 20px 0 0 0;
 }
 
 .table-container {
-	border-radius: 8px !important; 
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    height: 700px;
+    overflow-y: scroll;
+    height: 662px;
 }
 
 .before-table{
@@ -38,29 +24,13 @@
 }
 
 .after-management{
-	margin: 20px 0 10px 10px;
+	margin: 20px 0 10px 0;
 }
 
 .after-table{
 	min-width: 660px !important;
 	max-width:660px !important;
 	margin: 20px;
-}
-
-.table th, .table td {
-	font-size:14px;
-    text-align: center;
-    vertical-align: middle;
-     padding: 15px 10px;
-}
-
-.table tbody tr {
-    height: 50px; 
-}
-
-thead {
-	height: 45px;
-	padding: 15px 10px;
 }
 
 tr.updated td{

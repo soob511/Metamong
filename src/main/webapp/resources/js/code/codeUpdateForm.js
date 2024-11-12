@@ -211,7 +211,7 @@ $(document).ready(function() {
         for (let i = 0; i < items.length; i++) {
             $('.item-list').append(
                 `<tr class="item ${i < num ? 'oldItem' : null }">
-                    <th>${i+1}</th>
+                    <td>${i+1}</td>
                     <td class="itemId" >${items[i].itemId}</td>
                     <td class="itemNm">${items[i].itemNm}</td>
                     <td class="itemIsActive">${items[i].itemIsActive == 1 ? 'Y' : 'N'}</td>
