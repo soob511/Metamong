@@ -424,6 +424,14 @@
 	WHERE	apply_no = #{applyNo}
 </update>
 
+<update id="updateRollbackApply" parameterType="int">
+UPDATE apply_list
+SET compl_date = NULL,
+    dba_name = NULL,
+    approval_status = 0
+WHERE apply_no = #{applyNo}
+</update>
+
 </mapper>
 
 		
