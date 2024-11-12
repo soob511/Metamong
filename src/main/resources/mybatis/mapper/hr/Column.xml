@@ -17,7 +17,7 @@
 			cols.NULLABLE AS col_isnullable_text,
 	    CASE WHEN cons.constraint_type = 'P' THEN 'Y' ELSE 'N' END AS col_ispk_text
 		FROM
-		    all_tab_columns cols
+		    user_tab_columns cols
 		LEFT JOIN
 		    all_cons_columns cons_col ON cols.table_name = cons_col.table_name 
 		    AND cols.column_name = cons_col.column_name
