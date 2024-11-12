@@ -12,6 +12,10 @@ $(document).ready(function() {
                     text: team.teamName
                 }));
             });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("AJAX 요청 실패:", textStatus, errorThrown);
+            console.log("서버 응답 상태:", jqXHR.status);
         }
     });
 	
