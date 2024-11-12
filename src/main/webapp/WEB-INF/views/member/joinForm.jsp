@@ -30,7 +30,7 @@
                         <div class="id-box">
                             <div class="input-group">
                                 <label for="mId" class="input-label">아이디</label>
-                                <input type="text" class="form-control" placeholder="예) oti123" id="MId" aria-label="mId" aria-describedby="mId">
+                                <input type="text" class="form-control" placeholder="예) oti123" id="MId" aria-label="mId" aria-describedby="mId" maxlength="12">
                                 <button class="btn-confirm" type="submit">중복확인</button>
                             </div>
                             <span class="username-message msg">오류메세지</span>
@@ -38,14 +38,14 @@
                         <div class="id-box">
                             <div class="input-group">
                                 <label for="mPassword" class="input-label">비밀번호</label>
-                                <input type="password" class="form-control" placeholder="영문, 숫자 조합 8~16자" id="MPassword" aria-label="mPassword" aria-describedby="mPassword">
+                                <input type="password" class="form-control" placeholder="영문, 숫자 조합 8~16자" id="MPassword" aria-label="mPassword" aria-describedby="mPassword" required maxlength="16">
                             </div>
                             <span class="password-message msg">오류메세지</span>
                         </div>
                         <div class="pw-box">
                             <div class="input-group">
                                 <label for="MPasswordConfirm" class="input-label">비밀번호 확인</label>
-                                <input type="password" class="form-control" placeholder="비밀번호 재입력" id="MPasswordConfirm" aria-label="MPasswordConfirm" aria-describedby="MPasswordConfirm" required>
+                                <input type="password" class="form-control" placeholder="비밀번호 재입력" id="MPasswordConfirm" aria-label="MPasswordConfirm" aria-describedby="MPasswordConfirm" required maxlength="16">
                             </div>
                             <span class="password-confirm-message msg">오류메세지</span>
                         </div>
@@ -63,9 +63,12 @@
                             <label for="mEmpId" class="input-label">사번</label>
                             <input type="text" class="form-control" placeholder="예) 123456" id="MEmpId" aria-label="mEmpId" aria-describedby="mEmpId">
                         </div>
+                        <div class="id-box">
                         <div class="input-group">
                             <label for="mPhone" class="input-label">연락처</label>
                             <input type="text" class="form-control" placeholder="예) 010-1234-5678" id="MTel" aria-label="mPhone" aria-describedby="mPhone">
+                        </div>
+                        <span class="tel-message msg">오류메세지</span>
                         </div>
                         <div class="input-group">
                             <label for="mRole" class="input-label">계정 권한</label>
