@@ -221,6 +221,11 @@ public class SequenceController {
 		return success;
 	}
 
+	@PostMapping("/rollbackApplySequence")
+	public ResponseEntity<String> rollbackApplySequence(int applyNo) {
+		applyService.updateRollbackApply(applyNo);
+		return ResponseEntity.ok("ok");
+	}
 
 
 }
