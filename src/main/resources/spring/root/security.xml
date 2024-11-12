@@ -25,7 +25,7 @@
 				success-handler-ref ="logoutSuccessHandler"/>
 	
 		<security:csrf disabled="true"/>
-		<security:access-denied-handler error-page="/member/error403"/>
+		<security:access-denied-handler error-page="/"/>
 	</security:http>
 	
 	<security:global-method-security secured-annotations="enabled"/>
