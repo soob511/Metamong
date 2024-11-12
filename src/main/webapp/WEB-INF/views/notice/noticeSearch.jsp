@@ -46,6 +46,13 @@
 		</c:if>
 	</tbody>
 </table>
+ <sec:authorize access="hasRole('ROLE_ADMIN')">
+	                <div class="d-flex justify-content-end">
+                	<div class="btn btn-write" id="btn-write">
+                    	<a href="${pageContext.request.contextPath}/notice/noticeAddForm">작성하기</a>
+                	</div>
+                </div>
+                </sec:authorize>
 
 <c:if test="${totalRows>0 }">
 	<div class="page" id="pagination">
