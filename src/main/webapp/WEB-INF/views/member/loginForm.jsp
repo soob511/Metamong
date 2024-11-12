@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +40,7 @@
                         <h1>Login</h1>
                         <p>Sign in to your account</p>
                     </div>
+					
 					<form action="${pageContext.request.contextPath}/login" method="post">
 	                    <div class="input-group">
 	                        <label for="mId" class="input-label">UserName</label> 
@@ -53,6 +56,13 @@
 	                        <button type="submit" class="btn btn-login">Login</button>
 	                    </div>					
 					</form>
+					<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+						<div class="alert alert-danger">
+							<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+       							아이디 또는 비밀번호가 틀립니다.
+       						</c:if>
+						</div>
+					</c:if>
 
                     <div class="signup-notice mt-3">
                         <p>New User? <a href="${pageContext.request.contextPath}/member/joinForm">Sign up</a></p>

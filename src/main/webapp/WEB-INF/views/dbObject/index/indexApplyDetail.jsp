@@ -131,9 +131,9 @@
 				<div class="modal-body">
 					<div class="table-container">
 						<div class="table-header d-flex align-items-center">SQL</div>
-						<div class="table-body">
+						<textarea class="table-body">
 							${detail.query}
-						</div>
+						</textarea>
 					</div>
 				</div>
 			</div>
