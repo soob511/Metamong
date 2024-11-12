@@ -55,7 +55,7 @@
 						<table class="table table-hover">
                     <thead class="table">
                         <tr class="table-secondary">
-                            <th scope="col">No.</th>
+                          <th scope="col"></th> 
                             <th scope="col">제목</th>
                             <th scope="col">등록일</th>
                             <th scope="col">조회수</th>
@@ -63,18 +63,13 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${noticeList}" var="notice" varStatus="status">           
-		                        <tr class="table-row">
+		                        <tr class="table-row" >
 		                            <td scope="row">
-			                            <c:choose>
-											<c:when test="${notice.noticeIsimp == '1'}">
+											<c:if test="${notice.noticeIsimp == '1'}">
 												<button type="button" class="btn btn-sm">
 									                <i class="bi bi-megaphone"></i>
 									              </button>
-											</c:when>
-											<c:otherwise>
-												${pager.totalRows - (pager.pageNo-1) * 10 - status.index}
-											</c:otherwise>
-									</c:choose>
+											</c:if>
 									</td>                          
 		                            <td><a href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
 		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
