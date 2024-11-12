@@ -81,6 +81,7 @@ public class AccountController {
 		model.addAttribute("totalRows", totalRows);
 		
 		List<MemberDto> list = accountService.getApplyList(pager);
+		log.info(list.toString());
 		model.addAttribute("list", list);
 		return "account/accountApplyList";
 	}

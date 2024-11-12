@@ -68,7 +68,7 @@
 			                            <c:choose>
 											<c:when test="${notice.noticeIsimp == '1'}">
 												<button type="button" class="btn btn-sm">
-									                <i class="bi bi-megaphone">중요</i>
+									                <i class="bi bi-megaphone"></i>
 									              </button>
 											</c:when>
 											<c:otherwise>

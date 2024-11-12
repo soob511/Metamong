@@ -33,6 +33,23 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$(".btn-rollback").on("click", function() {
+		var applyNo = $("#applyContainer").attr("data-applyno");	
+		$.ajax({
+			url: "/Metamong/sequence/rollbackApplySequence",
+			type: "POST",
+			data: { applyNo: applyNo}, 
+			success: function(data) {
+				Swal.fire({
+					icon: 'success',
+					title: '시퀀스 신청이<br/> 승인취소 되었습니다.'
+				}).then(() => {
+				location.reload();
+				});	
+			}
+		});
+	});
 });
 
 function sequenceProcessApproval(status){

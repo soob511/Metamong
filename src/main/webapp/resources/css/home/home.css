@@ -137,8 +137,8 @@ table th, table td {
     width: 100px !important;
 }
 
- .bi-megaphone {
+.table-row .bi-megaphone {
 	color:#003567 !important;
-	font-size:13px;
+	font-size:14px;
 	font-weight:bold;
 }

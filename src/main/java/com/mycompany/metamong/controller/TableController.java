@@ -264,5 +264,11 @@ public class TableController {
 
 		return success;
 	}
+	
+	@PostMapping("/rollbackApplyTable")
+	public ResponseEntity<String> rollbackApplyTable(int applyNo) {
+		applyService.updateRollbackApply(applyNo);
+		return ResponseEntity.ok("ok");
+	}
 
 }

@@ -9,12 +9,22 @@
 .fw-bold {
     margin-top: 30px;
     margin-bottom: 20px;
+    margin-left: 45px;
+    margin-right: 45px;
 }
 
 .notice-title {
 	margin-bottom: 40px;
 }
-
+#noticeList{
+	margin-top: 30px;
+	border-radius: 5px !important; 
+    box-shadow: var(--box-shadow);
+    /* overflow: hidden; */
+    text-align: center;
+   table-layout: fixed; 
+     width: 100%;
+}
 .content {
     margin-top: 30px;
     margin-left: 45px;
@@ -22,6 +32,7 @@
     font-size: 14px;
     
 }
+
 .container-fluid {
     padding-right: 0 !important;
 }
@@ -35,9 +46,9 @@
    margin-top:20px;
 	border-radius: 5px !important; 
     box-shadow: var(--box-shadow);
-    overflow: hidden;
+     overflow: hidden; 
     text-align: center;
-     table-layout: fixed;
+     table-layout: fixed; 
      width: 100%;
 }
 
@@ -217,7 +228,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 .table-row .bi-megaphone {
 	color:#003567 !important;
-	font-size:13px;
+	font-size:15px;
 	font-weight:bold;
 }
 #title {

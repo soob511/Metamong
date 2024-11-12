@@ -549,4 +549,8 @@ public class ApplyService {
 	public void resetComplDate(int applyNo) {
 		applyListDao.updateComplDate(applyNo);
 	}
+
+	public void updateRollbackApply(int applyNo) {
+		applyListDao.updateRollbackApply(applyNo);
+	}
 }

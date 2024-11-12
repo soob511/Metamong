@@ -19,7 +19,7 @@
         <jsp:include page="/WEB-INF/views/common/menu.jsp" />
         <div class="col">
           <jsp:include page="/WEB-INF/views/common/header.jsp" />
-          <div class="index-container">
+          <div class="index-container" id="applyContainer" data-applyno="${detail.applyNo}">
             <div class="table-list-header">
               <p class="table-list-title">&gt; DB Object &gt; 신청내역 &gt; 인덱스 상세보기</p>
               	<sec:authorize access="hasRole('ROLE_DBA')">
@@ -31,6 +31,7 @@
 							</c:when>
 							<c:when test="${detail.approvalStatus == 1}">
 								<button class="btn-reflect">반영</button>
+								<button class="btn-rollback">승인취소</button>
 							</c:when>
 							<c:when
 								test="${detail.approvalStatus == 2 || applyList.approvalStatus == 3}">
