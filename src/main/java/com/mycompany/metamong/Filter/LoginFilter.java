@@ -34,6 +34,11 @@ public class LoginFilter implements Filter {
 	            chain.doFilter(request, response); 
 	            return;
 	        }
+	        
+	        if (requestURI.startsWith(contextPath + "/team/getTeamList")) {
+	            chain.doFilter(request, response); 
+	            return;
+	        }
 	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	        
 	      

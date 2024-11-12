@@ -23,26 +23,21 @@
 						<div class="index-list-header">
 							<p>&gt; 인덱스 관리</p>
 						</div>
-						<div class="index-list-filters">
+						<div class="index-manage-filters">
 							<div class="schema-filter">
 								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
 								<select id="schemaSelect" class="form-select"
 									aria-label="Default select example">
 									<c:forEach items="${schemaEnum}" var="schemaEnum">
 										<option value="${schemaEnum.name()}">
-											<c:if test="${schemaEnum.name() == 'MAIN'}">
-									        	전체
-									        </c:if>
-											<c:if test="${schemaEnum.name() != 'MAIN'}">
-									            ${schemaEnum.name()}
-									        </c:if>
-										</option>
+								            ${schemaEnum.name()}
+								    	</option>
 									</c:forEach>
 								</select>
 							</div>
 							<div class="table-column-filter">
 								<label for="tableSelect" class="schema-filter-label">참조테이블명</label>
-								<select id="tableSelect" class="form-select"
+								<select data-detail="${tableName}" id="tableSelect" class="form-select"
 									aria-label="Default select example">
 									<option data-name="선택">선택</option>
 								</select>

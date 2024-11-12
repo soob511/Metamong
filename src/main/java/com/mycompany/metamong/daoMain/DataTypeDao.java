@@ -11,4 +11,8 @@ public interface DataTypeDao {
 
 	public List<DataTypeDto> selectDataTypeList();
 
+	public int insertDataType(DataTypeDto dataType);
+
+	public int updateDataType(DataTypeDto dataType);
+
 }

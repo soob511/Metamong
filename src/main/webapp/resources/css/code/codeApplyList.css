@@ -7,6 +7,23 @@
 	margin-bottom: 20px;
 }
 
+.btn-search {
+   background-color: var(--theme);
+   color: white;
+   border-radius: 8px;
+   border: none;
+   width: 120px !important;
+   height: 38px !important;
+   margin-left: 15px;
+   font-size: 14px;
+   margin-right: 5px;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
 .content {
 	margin-top:30px;
 	margin-left:40px;
@@ -47,13 +64,6 @@
 .thead{
 	height: 45px;
 	padding: 15px 10px;
-}
-
-.pagination {
-	position: fixed;
-	bottom: 10px;
-	left: 50%;
-	z-index: 1000;
 }
 
 tr{
@@ -109,17 +119,6 @@ td, th{
   background: white;
 }
 
-.search-box .bi-search {
-   position: absolute;
-   right: 15px;
-   top: 10px;
-   font-size: 20px;
-   color: #343a40;
-}
-
-.bi-search:hover {
-	cursor: pointer;
-}
 
 .code-search-label {
 	font-size: 17px !important;

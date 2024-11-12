@@ -31,15 +31,15 @@
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
 											<p>접수</p>
-											<h3><span class="fw-bold">2</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>승인</p>
-											<h3><span class="fw-bold">13</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반려</p>
-											<h3><span class="fw-bold">3</span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
 								</div>
@@ -51,6 +51,7 @@
 							<p class="board-title">공지사항</p>
 							<a href="${pageContext.request.contextPath}/notice/noticeList"><button class="btn-notice">+ 더보기</button></a>
 						</div>
+						<div class="notice-container">
 						<table class="table table-hover">
                     <thead class="table">
                         <tr class="table-secondary">
@@ -82,6 +83,7 @@
 	                      </c:forEach>    
                     </tbody>
                 </table>
+                </div>
 					</div>
 				</div>
 				<div class="row">

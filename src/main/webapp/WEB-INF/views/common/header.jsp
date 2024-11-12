@@ -16,7 +16,7 @@
 
                 <i class="bi bi-pencil edit-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" onclick="document.getElementById('fileInput').click();">프로필 변경</a></li>
+                    <li><a class="dropdown-item" onclick="document.getElementById('fileInputProf').click();">프로필 변경</a></li>
                     <li><a class="dropdown-item" id="deleteProfile" onclick="document.getElementById('deleteProf').click();">기본이미지로 변경</a></li>
                 </ul>
             </c:when>
@@ -27,12 +27,12 @@
                 
                 <i class="bi bi-pencil edit-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" onclick="document.getElementById('fileInput').click();">프로필 변경</a></li>
+                    <li><a class="dropdown-item" onclick="document.getElementById('fileInputProf').click();">프로필 변경</a></li>
                 </ul>
             </c:otherwise>
         </c:choose>
 
- <input type="file" id="fileInput" data-m-id="${member.MId}" accept="image/*"style="display: none;" onchange="handleFileUpload(event)"> 
+ <input type="file" id="fileInputProf" data-m-id="${member.MId}" accept="image/*"style="display: none;" onchange="handleFileUpload(event)"> 
  <input type="hidden" id="deleteProf" data-m-id="${member.MId}" name="deleteProf" value="${member.profFilename != null ? 0 : 1}" onchange="handleFileUpload(event)">      
        
     </div>

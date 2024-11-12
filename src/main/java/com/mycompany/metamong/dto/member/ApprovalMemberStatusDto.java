@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ApprovalMemberStatusDto {
-	private int total;
+	private int count;
 	private int MApprovalStatus;
 }

@@ -32,13 +32,13 @@
     top: 8px;
 }
 .table {
-    margin-top: 20px;
-    text-align: center;
-}
-.table {
-    border-radius: 5px !important;
+   margin-top:20px;
+	border-radius: 5px !important; 
     box-shadow: var(--box-shadow);
     overflow: hidden;
+    text-align: center;
+     table-layout: fixed;
+     width: 100%;
 }
 
 .table th, .table td {
@@ -88,6 +88,9 @@ tr {
 td, th {
     text-align: center;
     vertical-align: middle;
+    overflow: hidden;
+    width: 100px;
+    height: 50px; 
 }
 .sub {
     padding-left: 50px;
@@ -176,10 +179,7 @@ h4 {
     font-size: 14px;
     margin-top: 10px;
 }
-.page{
-	text-align:center !important;
-	
-}
+
 #title {
 	color:black !important;
 }
@@ -201,7 +201,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 #subtdth {
 	vertical-align:middle;
-	width:8.5% !important;
+	width:8% !important;
 }
 #existingFile {
 	text-align:left;
@@ -219,4 +219,7 @@ input[type="search"]::-webkit-search-cancel-button {
 	color:#003567 !important;
 	font-size:13px;
 	font-weight:bold;
+}
+#title {
+	text-align:left;
 }

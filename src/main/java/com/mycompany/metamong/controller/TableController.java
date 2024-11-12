@@ -22,12 +22,14 @@ import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
+import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.column.NewColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableAddDto;
 import com.mycompany.metamong.dto.table.TableCompareDto;
 import com.mycompany.metamong.dto.table.TableDto;
+import com.mycompany.metamong.dto.table.TableRewriteDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 import com.mycompany.metamong.service.ApplyService;
 import com.mycompany.metamong.service.ColumnService;
@@ -52,9 +54,6 @@ public class TableController {
 
 	@Autowired
 	private MemberService memberService;
-
-	@Autowired
-	private AlarmController alarmController;
 
 	@GetMapping("/tableList")
 	public String tableList(Model model) {
@@ -97,7 +96,6 @@ public class TableController {
 
 		applyService.addApplyTable(form, auth);
 		 List<String> dbaId = memberService.getDbaIdByRole("ROLE_DBA");
-		alarmController.sendDba("새로운 테이블 신청이 접수되었습니다.", dbaId);
 		return ResponseEntity.ok("/Metamong/table/tableApplyList");
 	}
 
@@ -162,7 +160,7 @@ public class TableController {
 	}
 
 	@GetMapping("/tableListDetail")
-	public String tableListDetail(int applyNo, int indexNo, Model model) {
+	public String tableListDetail(int applyNo, int indexNo, Model model,Authentication auth) {
 
 		ApplyTableDeatilDto applyList = applyService.getTableListDetail(applyNo);
 		model.addAttribute("applyList", applyList);
@@ -173,16 +171,52 @@ public class TableController {
 
 		List<ColumnDto> applyColumnList = columnService.getColumnByApplyNo(applyNo);
 		model.addAttribute("applyColumn", applyColumnList);
+		
+		String mName = memberService.getDbaNameById(auth.getName());
+		if(applyList.getMName().equals(mName)) {
+			model.addAttribute("myApply", true);
+		}
 
 		return "dbObject/table/tableApplyDetail";
 
+	}
+	
+	@ResponseBody
+	@PostMapping("/reApplyTable")
+	public String reApplyTable(int applyNo) {
+		String applyType = applyService.getApplyType(applyNo);
+		if(applyType.equals("CREATE")) {
+			return "/Metamong/table/tableRewriteForm";
+		}else {
+			return "/Metamong/table/tableReupdateForm";
+		}
+		
+	}
+	
+	@GetMapping("/tableRewriteForm")
+	public String tableRewriteForm(int applyNo,Model model) {
+		model.addAttribute("schemaEnum", SchemaEnum.values());
+		TableRewriteDto table = tableService.getRewriteTable(applyNo);
+		model.addAttribute("table", table);
+		List<ColumnDto> column = columnService.getColumnByApplyNo(applyNo);
+		model.addAttribute("column", column);
+		return "dbObject/table/tableRewriteForm";
+	}
+	
+	@GetMapping("/tableReupdateForm")
+	public String tableReupdateForm(int applyNo,Model model) {
+		TableRewriteDto table = tableService.getRewriteTable(applyNo);
+		model.addAttribute("table", table);
+		List<ColumnDto> column = columnService.getColumnByApplyNo(applyNo);
+		model.addAttribute("column", column);	
+		return "dbObject/table/tableReupdateForm";
 	}
 
 	@GetMapping("/applyTableSearch")
 	public String applyTableSearch(@RequestParam Map<String, String> form, HttpSession session, Model model) {
 		log.info("실행");
 		int searchRows = applyService.getSearchRows(form);
-
+		
 		int pageNo = Integer.parseInt(form.get("pageNo"));
 		Pager pager = new Pager(10, 5, searchRows, pageNo);
 		session.setAttribute("pager", pager);

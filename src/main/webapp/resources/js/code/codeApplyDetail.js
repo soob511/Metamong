@@ -17,13 +17,13 @@ function codeApplyProcess(status, applyType){
 	const applyNo = params.get('applyNo');
 	const indexNo = params.get('indexNo');
 	let reason;
-	
+
 	Swal.fire({
-	    icon: status == 1 ? "success" : "warning",
-	    title: status == 1 ? "코드/항목 신청내역이<br/>승인 되었습니다." : "반려 사유를<br/>입력하세요.",
-	    input: status == 1 ? null : 'text'
+	    icon: status == 2 ? "warning" : "success",
+	    title: status == 2 ? "반려 사유를<br/>입력하세요." : (status == 1 ? "코드/항목 신청내역이<br/>승인 되었습니다." : "코드/항목 신청내역이<br/>승인취소 되었습니다."),
+	    input: status == 2 ? 'text' : null,
 	}).then(result => {
-	    const reason = (status == 1) ? '' : result.value;
+	    const reason = (status == 2) ? result.value : '';
 	    
 	    $.ajax({
 	        url: "/Metamong/code/codeApplyProcess",
@@ -36,6 +36,29 @@ function codeApplyProcess(status, applyType){
 	        }
 	    });
 	});
+};
+
+/* 승인 취소 */
+function applyRollBack(applyType) {
+	const params = new URL(location.href).searchParams;
+	const applyNo = params.get('applyNo');
+	const indexNo = params.get('indexNo');
+	
+	Swal.fire({
+	    icon: "warning",
+	    title: "코드/항목 신청내역이<br/>승인취소 되었습니다.",
+	}).then(result => {
+	    $.ajax({
+	        url: "/Metamong/code/codeApplyRollBack",
+	        type: "POST",
+	        data: { applyNo: applyNo},
+	        success: function(data) {
+	        	location.href = applyType == 'EXCEL' 
+	        		? data +"codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
+	        		: data +"codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+	        }
+	    });
+	})
 };
 
 /* 반영 */
@@ -79,7 +102,7 @@ function getExcelItems(codeNo) {
                     <td>${++count}</td>
                     <td>${item.itemId}</td>
                     <td>${item.itemNm}</td>
-                    <td>${item.itemContent}</td>
+                    <td>${item.itemContent == null ? '' : item.itemContent}</td>
                 </tr>`;
             });
             $(".item-tbody").html(html);

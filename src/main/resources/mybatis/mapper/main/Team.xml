@@ -5,7 +5,7 @@
 		SELECT team_Id,team_Name,team_Isactive
 		FROM Team
 		WHERE team_ID>0
-		ORDER BY team_Id
+		  ORDER BY team_Id
 	</select>
 	
 	<insert id="insertTeam" parameterType="Team">

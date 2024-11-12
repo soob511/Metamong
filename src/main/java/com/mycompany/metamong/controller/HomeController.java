@@ -109,7 +109,8 @@ public class HomeController {
 	@GetMapping("/getSignupStatus")
 	public Map<String, Object> getSignupStatus(@RequestParam String roleUser, @RequestParam String roleDba) {
 		List<ApplyMemberDto> userList = memberService.getApplyMember(roleUser);
-		List<ApplyMemberDto> dbaList = memberService.getApplyMember(roleDba);		
+		List<ApplyMemberDto> dbaList = memberService.getApplyMember(roleDba);
+		log.info("실행" + userList + dbaList);
 		Map<String, Object> memberList = new HashMap<String, Object>();
 		memberList.put("userList", userList);
 		memberList.put("dbaList", dbaList);	

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableDto;
+import com.mycompany.metamong.dto.table.TableRewriteDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 
 @Mapper
@@ -35,6 +36,8 @@ public interface TableDao {
 	public int selectTableNo(@Param("schema")String schema,@Param("tableId") String tableId);
 
 	public int insertApplyTableByTableNo(ApplyTableDto applyTable);
+
+	public TableRewriteDto selectRewriteTable(int applyNo);
 
 
 

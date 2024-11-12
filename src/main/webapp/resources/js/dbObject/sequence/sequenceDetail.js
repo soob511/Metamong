@@ -64,3 +64,6 @@ function sequenceProcessApproval(status){
 			});
 		});
 };
+function reapply(applyNo) {
+    location.href = "/Metamong/sequence/reApplySequence?applyNo=" + applyNo;
+}

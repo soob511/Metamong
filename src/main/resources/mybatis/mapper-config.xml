@@ -15,6 +15,7 @@
 		<typeAlias type="com.mycompany.metamong.dto.dataType.DataTypeDto" alias="DataType"/>
 		<typeAlias type="com.mycompany.metamong.dto.table.TableDto" alias="Table"/>
 		<typeAlias type="com.mycompany.metamong.dto.table.ApplyTableDto" alias="ApplyTable"/>
+		<typeAlias type="com.mycompany.metamong.dto.table.TableRewriteDto" alias="TableRewrite"/>
 		<typeAlias type="com.mycompany.metamong.dto.column.ColumnDto" alias="Column"/>
 		<typeAlias type="com.mycompany.metamong.dto.column.ApplyColumnDto" alias="ApplyColumn"/>
 		<typeAlias type="com.mycompany.metamong.dto.Pager" alias="Pager"/>

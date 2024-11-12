@@ -215,7 +215,7 @@ $(document).ready(function() {
                     <td class="itemId" >${items[i].itemId}</td>
                     <td class="itemNm">${items[i].itemNm}</td>
                     <td class="itemIsActive">${items[i].itemIsActive == 1 ? 'Y' : 'N'}</td>
-                    <td class="itemContent">${items[i].itemContent ? items[i].itemContent : '-'}</td>
+                    <td class="itemContent">${items[i].itemContent ? items[i].itemContent : ''}</td>
                     <td>${i < num ? '-' : '<i class="bi bi-trash3"></i>'}</td>              
                 </tr>`
             );

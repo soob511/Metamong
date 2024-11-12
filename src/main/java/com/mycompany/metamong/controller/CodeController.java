@@ -147,7 +147,7 @@ public class CodeController {
 	@GetMapping("/codeApplyList")
 	public String codeApplyList(@RequestParam(defaultValue="1")int pageNo, Model model, HttpSession session) {
 		int totalRows = applyService.getApplyCodeRows();
-		Pager pager = new Pager(20, 5, totalRows, pageNo);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyCodeListDto> list = applyService.getApplyCodeList(pager);
 		
 		session.setAttribute("pager", pager);
@@ -199,7 +199,7 @@ public class CodeController {
 	
 	@PostMapping("/codeApplyProcess")
 	public ResponseEntity<String> codeApplyProcess(int applyNo, int status, String reason, Authentication auth) {
-		String dbaName = memberService.getDbaNameById(auth.getName());
+		String dbaName = (status != 0) ? memberService.getDbaNameById(auth.getName()) : null;
 	
 		Map<String, Object> params = new HashMap<>();
 		params.put("applyNo", applyNo);  
@@ -208,6 +208,9 @@ public class CodeController {
 		params.put("status", status); 
 		
 		applyService.updateCodeStatus(params);
+		if(status == 0) {
+			applyService.resetComplDate(applyNo);
+		}
 		return ResponseEntity.ok("/Metamong/code/");
 	}
 	
@@ -216,22 +219,20 @@ public class CodeController {
 		int result = 1;
 		String type = applyService.getApplyType(applyNo);
 		List<CodeDto> codes = applyService.getCodeApplyByNo(applyNo);
-		
+
 		if(type.equals("EXCEL")) {
 			for(CodeDto code:codes) {
 				List<ItemDto> items = applyService.getItemsApplyExcelByNo(applyNo, code.getCodeNo());
 				result = codeService.insertCode(applyNo, code, items);
 			}
-			
 		} else {
 			CodeDto code = codes.get(0);
-			List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
-			int itemsLength = items.size();
-			
 			if(type.equals("CREATE")) {
+				List<ItemDto> items = applyService.getItemsApplyByNo(applyNo);
 				result = codeService.insertCode(applyNo, code, items);
 			} else {
 				List<ApplyItemDto> applyItems = applyService.getApplyItemsByNo(applyNo);
+				int itemsLength = itemService.getItemList(code.getCodeNo()).size();
 				codeService.updateCode(applyNo, code, applyItems, itemsLength);		
 			}
 		}
@@ -308,8 +309,6 @@ public class CodeController {
 	
 	@PostMapping("/codeApplyExcel")
 	public ResponseEntity<String> codeApplyExcel(Authentication auth, @RequestBody List<CodeApplyDto> forms) {
-		log.info(forms.toString());
-		
 		CodeApplyDto form = forms.get(0);		
 		int applyNo = applyService.addApplyCode(form, auth, 0);
 		

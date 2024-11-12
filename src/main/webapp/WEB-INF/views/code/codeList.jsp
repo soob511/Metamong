@@ -26,7 +26,6 @@
                         <div class="container-fluid">
                             <form class="d-flex search-form">
                                 <input class="form-control me-2" type="search" id="codeNameSearch" placeholder="Search" aria-label="Search" />
-                                <i class="bi bi-search"></i>
                             </form>
                         </div>
                     </div>
@@ -37,6 +36,7 @@
                             <option value="1">Y</option>
                             <option value="0">N</option>
                         </select>
+                        <button class="btn-search">조회</button>
                     </div>
                 </div>
                 <hr />
@@ -67,9 +67,9 @@
                                         </tr>
                                     </thead>
                                     <tbody id="codeList">
-                                        <c:forEach items="${codeList}" var="code">
+                                        <c:forEach items="${codeList}" var="code" varStatus="status">
                                             <tr class="code-row" onclick="showItemList(${code.codeNo})" data-code-no="${code.codeNo}">
-                                                <th>${code.codeNo}</th>
+                                                <th>${status.index + 1}</th>
                                                 <td>${code.codeNm}</td>
                                                 <td>${code.codeId}</td>
                                                 <td>${code.codeLength}</td>

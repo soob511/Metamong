@@ -15,6 +15,8 @@
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container table-list-container">
@@ -73,6 +75,9 @@
 										</a>
 										<button class="btn-edit">수정</button>
 									</div>
+								</sec:authorize>
+								<sec:authorize access="hasRole('ROLE_DBA')">
+									<button class="btn-dataType" data-bs-toggle="modal"  data-bs-target="#dataTypeModal" >데이터타입 관리</button>
 								</sec:authorize>
 							</div>
 							<div class="table-contanier">
@@ -133,6 +138,68 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 데이터타입 관리 모달 -->
+	<div class="modal fade" tabindex="-1" id="dataTypeModal" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">데이터타입 관리</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container team-container">
+          <div class="row d-flex gap-4">
+            <div class="col team-container">
+              <div class="dataType-subtitle">데이터타입 내역</div>
+              <table class="table" id="dataTypeTable">
+                <thead class="table-secondary">
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">데이터타입</th>
+                    <th scope="col">사용여부</th>
+                  </tr>
+                </thead>
+                <tbody id="dataTypeList"></tbody>
+              </table>
+            </div>
+            <div class="col team-form">
+              <div class="dataType-subtitle">추가/수정</div>
+              <table class="table" id="dataTypeTable">
+                <tr>
+                  <td class="table-secondary">데이터타입</td>
+                  <td><input type="text" id="dataType" class="form-control" placeholder="입력" required></td>   
+                </tr>
+                <tr>
+                  <td class="table-secondary">사용여부</td>
+                  <td>
+                    <select id="dataTypeIsActive" class="form-select use-status-select" aria-label="사용 여부 선택">
+                      <option value="1">Y</option>
+                      <option value="0">N</option>
+                    </select>
+                  </td>   
+                </tr>
+              </table>
+              <div class="button-group d-flex justify-content-end gap-2">
+                <button class="btn-typeAdd" type="button">추가</button>
+                <button class="btn-typeEdit"  type="button" disabled>수정</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="modal-footer">
+        <div class="modal-btns">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button id="btn-save" type="button" class="btn btn-primary">저장하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+	
 <jsp:include page="/WEB-INF/views/common/alarm.jsp" />
 	<script
 		src="${pageContext.request.contextPath}/resources/js/dbObject/table/tableList.js"></script>

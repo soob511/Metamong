@@ -2,7 +2,7 @@
 
 .main-container > .row {
 	padding: 30px 45px 0;
-	margin-bottom: -15px;
+	
 }
 
 .board-title {
@@ -88,6 +88,13 @@ table th, table td {
     font-size: 14px;
     text-align: center;
     vertical-align: middle;
+}
+
+.notice-container{
+    border-radius: 8px !important;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    height: 340px;
 }
 
 .table-box {

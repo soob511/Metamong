@@ -17,7 +17,7 @@
 		        <i class="bi bi-chevron-down"></i>
 		    </a>
 		    <ul class="sub-menu">
-		        <li class="sub-item mt-2"><a href="${pageContext.request.contextPath}/code/codeList">코드/항목 내역</a></li> 
+		        <li class="sub-item mt-2"><a href="${pageContext.request.contextPath}/code/codeList">코드/항목 관리</a></li> 
 		        <li class="sub-item last-item"><a href="${pageContext.request.contextPath}/code/codeApplyList">신청내역</a></li>
 		    </ul>
 		</li>	
@@ -35,6 +35,6 @@
 		</li>	
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/notice/noticeList"><i class="bi bi-check2-square pe-2"></i>공지사항</a></li>
 		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/member/memberList"><i class="bi bi-people pe-2"></i>직원목록</a></li>
-		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/member/loginForm"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
+		<li class="menu-item logout"><a href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right pe-2"></i>Log out</a></li>
 	</ul>
 </div>

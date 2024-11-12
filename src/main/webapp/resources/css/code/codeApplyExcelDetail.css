@@ -26,7 +26,7 @@
 	line-height: 2.4;
 }
 
-.btn-rewrite {
+.btn-rewrite, .btn-rollback {
 	color: var(--theme);
 	background-color: white;
 	border-radius: 8px;
@@ -92,9 +92,6 @@
 	font-size: 14px;
 	text-align: center;
 	vertical-align: middle;
-}
-
-.table-hover tbody tr {
 	height: 40px;
 }
 

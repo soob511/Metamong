@@ -88,7 +88,7 @@ label{
 	padding-top: 10px;
 }
 
-.btn-add{
+.btn-add,.btn-typeAdd{
 	background-color: var(--theme);
 	color: white;
 	border-radius: 8px;
@@ -99,7 +99,7 @@ label{
 	margin-right: 5px;
 }
 
-.btn-edit{
+.btn-edit, .btn-dataType,.btn-typeEdit {
 	background-color: white;
 	color:  var(--theme);
 	border-radius: 8px;
@@ -107,6 +107,11 @@ label{
 	width: 50px;
 	height: 30px;
 	font-size: 14px;
+}
+
+.btn-dataType {
+	margin-top: 10px;
+	width: 130px;
 }
 
 .column-management{
@@ -144,3 +149,29 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 
+.modal {
+	--bs-modal-width: 850px !important;
+}
+
+.modal-content {
+	padding: 20px;
+
+}
+
+.modal-footer {
+	padding-top: 20px !important;
+}
+
+
+#dataTypeTable {
+	border-radius: 8px !important; 
+	box-shadow: var(--box-shadow);
+	overflow: hidden;
+}
+
+.dataType-subtitle {
+ 	font-size:16px;
+	font-weight: 600 !important;
+	padding: 5px;
+	margin-bottom: 5px;
+}

@@ -36,8 +36,8 @@
                         </select>
                         <form>
                             <input class="form-control me-2" type="search" id="codeNameSearch" placeholder="Search" aria-label="Search">
-                            <i class="bi bi-search"></i>
                         </form>
+                        	<button class="btn-search">조회</button>
                     </div>
                 </div>
                 <div id="codeContainer">
@@ -56,20 +56,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:set var="previousApplyNo" value="" />
 								<c:forEach items="${list}" var="code" varStatus="status">
-								    <c:if test="${code.applyNo != previousApplyNo}">
 								        <tr>
-								            <th scope="row">${status.index + 1}</th>
+								            <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
 								            <td>
 								                <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 								            </td>
 								            <td>${code.MName}</td>
-								            <td>${code.codeNm}</td>
-								            <td>${code.codeId}</td>
+								            <td>${code.codeNm}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
+								            <td>${code.codeId}${code.applyType == 'EXCEL' ? ' 등' : ''}</td>
 								            <td>${code.applyType}</td>
 								            <td>
-								                <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${status.index + 1}, '${code.applyType}')">상세보기</button>
+								                <button class="btn-history-details" onclick="codeApplyDetail(${code.applyNo}, ${pager.totalRows - (pager.pageNo-1) * 10 - status.index}, '${code.applyType}')">상세보기</button>
 								            </td>
 								            <td class="code-approve">
 								                <c:choose>
@@ -88,32 +86,39 @@
 								                </c:choose>
 								            </td>
 								        </tr>
-								        <c:set var="previousApplyNo" value="${code.applyNo}" />
-								    </c:if>
 								</c:forEach>                             
                             </tbody>
                         </table>
                     </div>
+                    <c:if test="${pager.totalRows >0 }">
                     <div class="page">
-                        <div class="pagination">
-                            <a href="codeApplyList?pageNo=1" class="btn btn-outline-secondary btn-sm">&lt;&lt;</a>
-                            <c:if test="${pager.groupNo > 1}">
-                                <a href="codeApplyList?pageNo=${pager.startPageNo - 1}" class="btn btn-outline-info btn-sm">&lt;</a>
-                            </c:if>
-                            <c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
-                                <c:if test="${pager.pageNo == i}">
-                                    <a href="codeApplyList?pageNo=${i}" class="btn btn-outline-secondary btn-sm">${i}</a>
-                                </c:if>
-                                <c:if test="${pager.pageNo != i}">
-                                    <a href="codeApplyList?pageNo=${i}" class="btn btn-outline-secondary btn-sm">${i}</a>
-                                </c:if>
-                            </c:forEach>
-                            <c:if test="${pager.groupNo < pager.totalGroupNo}">
-                                <a href="codeApplyList?pageNo=${pager.endPageNo + 1}" class="btn btn-outline-info btn-sm">&gt;</a>
-                            </c:if>
-                            <a href="codeApplyList?pageNo=${pager.totalPageNo}" class="btn btn-outline-secondary btn-sm">&gt;&gt;</a>
-                        </div>
-                    </div>
+							<a href="codeApplyList?pageNo=1"
+								class="btn btn-outline-secondary btn-sm"><<</a>
+							<c:if test="${pager.groupNo>1}">
+								<a href="codeApplyList?pageNo=${pager.startPageNo-1}"
+									class="btn btn-outline-info btn-sm"><</a>
+							</c:if>
+
+							<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
+								step="1" var="i">
+								<c:if test="${pager.pageNo==i}">
+									<a href="codeApplyList?pageNo=${i}"
+										class="btn btn-secondary btn-sm">${i}</a>
+								</c:if>
+								<c:if test="${pager.pageNo!=i}">
+									<a href="codeApplyList?pageNo=${i}"
+										class="btn btn-outline-secondary btn-sm">${i}</a>
+								</c:if>
+							</c:forEach>
+
+							<c:if test="${pager.groupNo<pager.totalGroupNo}">
+								<a href="codeApplyList?pageNo=${pager.endPageNo+1}"
+									class="btn btn-outline-info btn-sm">></a>
+							</c:if>
+							<a href="codeApplyList?pageNo=${pager.totalPageNo}"
+								class="btn btn-outline-secondary btn-sm">>></a>
+						</div>
+						</c:if>
                 </div>
             </div>
         </div>

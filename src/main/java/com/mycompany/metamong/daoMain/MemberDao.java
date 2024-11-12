@@ -42,4 +42,10 @@ public interface MemberDao {
 	public int deleteProf(MemberDto member);
 
 	public List<String> selectDbaIdByRole(String role);
+
+	public MemberDto selectMemberProfileImage(String mId);
+	
+	public MemberDto selectValidMember(@Param("mName") String mName, @Param("mTel") String mTel);
+
+	public int updatePassword(MemberDto member);
 }

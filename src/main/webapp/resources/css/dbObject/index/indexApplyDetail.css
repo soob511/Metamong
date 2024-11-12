@@ -9,11 +9,17 @@
 	justify-content: space-between;
 }
 
+table td.table-secondary {
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .button-groupDBA{
 	margin-right: 40px!important;
 }
 
-.btn-approve {
+.btn-approve, .btn-reapply{
 	background-color: var(--theme);
 	color: white;
 	border-radius: 8px;
@@ -67,7 +73,6 @@
     cursor: default; 
 }
 
-
 .table {
 	margin: 45px !important;
 	box-shadow: var(--box-shadow);
@@ -109,12 +114,16 @@ thead {
 	color: white;
 	border-radius: 8px;
 	border: none;
-	width: 75px;
-	height: 40px;
-	font-size: 14px;
+	width: 70px;
+	height: 30px;
+	font-size: 13px;
+	margin-right: 5px;
+	text-align: center;
+	line-height: 2.4;
 	margin-right: 60px;
 }
 
-.table-primary {
-	text-align: center !important;
+.table-td-width {
+	width: 30%;
+	
 }

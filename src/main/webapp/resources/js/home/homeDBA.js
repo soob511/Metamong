@@ -8,7 +8,10 @@ $(document).ready(function() {
 	    showColumnList(tableId);
 	});
 	$("#schemaSelect").on("change", function() {
-        searchTable();
+		searchTable().then(function() {
+			let tableId = $("#tableList tr").data('value');
+		    showColumnList(tableId);
+		});
     });
 });
 
@@ -19,7 +22,7 @@ function getApprovalStatus() {
 	    data: {
 	    	labels: ['코드/항목', '테이블', '시퀀스', '인덱스'],
 	        datasets: [{
-	            data: [10, 2, 3, 5],
+	            data: [0, 0, 0, 0],
 	            backgroundColor: [
 	                'rgba(255, 175, 163)',
 	                'rgba(128, 202, 255)',
@@ -31,20 +34,13 @@ function getApprovalStatus() {
 	        }]
 	    },
 	    options: {
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: true
-	                }
-	            }]
-	        },
 	        plugins: {
 	            legend: {
 	              position: 'top',
 	            },
 	            title: {
 	              display: true,
-	              text: '전체 30건'
+	              text: '전체 0건'
 	            }
 	          }
 	    }
@@ -53,7 +49,7 @@ function getApprovalStatus() {
 		url : "/Metamong/getDbObjApprovalStatus",
 		type : "GET",
 		success : function(data) {
-			
+			console.log(data);
 			const chartData = [0, 0, 0, 0];
 
 	        const summarySpans = $(".summary-box .fw-bold");
@@ -73,7 +69,7 @@ function getApprovalStatus() {
 	                summarySpans.eq(3).text(item.count);
 	            }
 	        });
-
+	        console.log(chartData);
 	        myChart.data.datasets[0].data = chartData;
 	        myChart.options.plugins.title.text = `전체 ${chartData.reduce((a, b) => a + b)}건`;
 	        myChart.update();

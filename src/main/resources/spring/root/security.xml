@@ -8,6 +8,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<security:http pattern="/resources/**" security="none"/>
+	<security:http pattern="/Metamong/ws/**" security="none"/>
+	
 	
 	<security:http>
 		<security:form-login 

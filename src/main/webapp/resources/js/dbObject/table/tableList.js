@@ -5,10 +5,140 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
-    $("#tableList").on("click", ".tableListTr", function() {
-	    $(".tableListTr").removeClass("table-active");
-	    $(this).addClass("table-active");
-	});
+    
+    //데이터타입
+    $.ajax({
+        url: "/Metamong/dataType/dataTypeList",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+    		let count = 0;
+    		let html = "";
+    		
+    		  data.forEach((type) => {
+    	            html += `<tr data-inupdate="0">
+    	                <th>${++count}</th>
+    	                <td class="dataType">${type.dataType}</td>
+    	                <td class="datatypeIsactive">${type.datatypeIsactive == 1 ? 'Y' : 'N'}</td>
+    	            </tr>`;
+    	        });     		
+    		$('#dataTypeList').html(html);
+        }
+    });
+    
+    let selectedRow = null;
+    
+    $('.btn-typeAdd').on('click', function() {
+    	 const dataType = $('#dataType').val();
+    	    const isActive = $('#dataTypeIsActive').val();
+    	    const isActiveText = isActive == 1 ? 'Y' : 'N';
+    	    
+    	    if (!dataType) {
+    	        Swal.fire({
+    	            icon: 'warning',
+    	            title: '데이터 타입의 이름을 입력해 주세요.',
+    	            text: '데이터 타입 이름을 입력해야 추가할 수 있습니다.'
+    	        });
+    	        return;
+    	    }
+
+    	    let isDuplicate = false;
+    	    $('#dataTypeList .dataType').each(function() {
+    	        if ($(this).text() === dataType) {
+    	            isDuplicate = true;
+    	            return false; 
+    	        }
+    	    });
+
+    	    if (isDuplicate) {
+    	        Swal.fire({
+    	            icon: 'warning',
+    	            title: '같은 이름의 <br/>데이터 타입이 있습니다.',
+    	            text: '중복된 데이터 타입을 추가할 수 없습니다.'
+    	        });
+    	    } else {
+    	        const count = $('#dataTypeList tr').length + 1;
+    	        const newRow = `
+    	            <tr data-isupdate="1">
+    	                <th>${count}</th>
+    	                <td class="dataType">${dataType}</td>
+    	                <td class="datatypeIsactive">${isActiveText}</td>
+    	            </tr>`;
+
+    	        $('#dataTypeList').append(newRow);
+
+    	        $('#dataType').val('');
+    	        $('#dataTypeIsActive').val('1');
+    	    }
+    });
+
+    $('#dataTypeList').on('click', 'tr', function() {
+        selectedRow = $(this);  
+
+        const dataType = selectedRow.find('.dataType').text();
+        const isActiveText = selectedRow.find('.datatypeIsactive').text();
+
+        $('#dataType').val(dataType);
+        $('#dataTypeIsActive').val(isActiveText === 'Y' ? '1' : '0');
+
+        $('.btn-typeEdit').prop('disabled', false);
+    });
+
+    $('.btn-typeEdit').on('click', function() {
+        if (selectedRow) {
+            const updatedDataType = $('#dataType').val();
+            const updatedIsActive = $('#dataTypeIsActive').val();
+            const updatedIsActiveText = updatedIsActive == 1 ? 'Y' : 'N';
+
+            selectedRow.find('.dataType').text(updatedDataType);
+            selectedRow.find('.datatypeIsactive').text(updatedIsActiveText);
+            
+            selectedRow.attr('data-isupdate', '2');
+
+            selectedRow = null;
+            $('#dataType').val('');
+            $('#dataTypeIsActive').val('1');
+            $('.btn-typeEdit').prop('disabled', true);
+        }
+    });
+
+    $('#btn-save').on('click', function() {
+        const dataList = [];
+
+        $('#dataTypeList tr').each(function() {
+            const dataType = $(this).find('.dataType').text();
+            const isActive = $(this).find('.datatypeIsactive').text() === 'Y' ? 1 : 0; // 바로 isActive 설정
+            const isUpdate = $(this).attr('data-isupdate'); 
+
+            dataList.push({
+                dataType: dataType,
+                datatypeIsactive: isActive,
+                isUpdate: isUpdate
+            });
+        });
+
+        $.ajax({
+            url: '/Metamong/dataType/saveData',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(dataList),
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',  
+                    title: '데이터타입이 저장되었습니다.'  
+                }).then(() => {
+                    $('#dataTypeModal').modal('hide');
+                });
+            }
+        });
+    });
+
+    //테이블
+    
+    $("#tableList").on("click", "tr", function() {
+        $("#tableList tr").removeClass("table-active");
+        $(this).addClass("table-active");
+    });
     
     $(".bi-search").on("click", function() {
         searchTable();
@@ -91,7 +221,7 @@ function searchTable() {
         	if(Object.keys(data).length>0){
         		var count = 0;
         		data.forEach(table => {
-        			html += `<tr  onclick="showColumnList(${table.tableNo})">
+        			html += `<tr data-table-no="${table.tableNo}" onclick="showColumnList(${table.tableNo})">
         				<td>${++count}</td>
         				<td>${table.tableNm}</td>
         				<td>${table.tableId}</td>

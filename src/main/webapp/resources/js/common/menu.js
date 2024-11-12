@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 function handleFileUpload(event) {
 	
-	const mid = $('#fileInput').data('m-id');
+	const mid = $('#fileInputProf').data('m-id');
     const file = event.target.files[0]; // 선택된 파일
     if(!file) return;
     
@@ -60,7 +60,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 
-            	const mid = $('#fileInput').data('m-id');
+            	const mid = $('#fileInputProf').data('m-id');
                const deleteProf = $("#deleteProf").val();
 
                 const formData = new FormData();

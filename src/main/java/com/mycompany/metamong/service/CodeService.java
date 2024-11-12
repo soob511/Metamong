@@ -91,7 +91,7 @@ public class CodeService {
 		 	item.setItemIsActive(itm.getItemIsActive());
 		 	
 		 	if(itm.getItemIsUpdate() != 0) {
-		 		if(i < itemsLength-1) {
+		 		if(i < itemsLength) {
 			 		itemDao.updateItem(item);
 			 	} else {
 			 		itemDao.insertItem(item);		 		
@@ -139,7 +139,7 @@ public class CodeService {
 	        }
 
 	        for (int i = 0; i < 5; i++) {
-	            arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "-";
+	            arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "";
 	        }
 
 	        CodeExcelDto code = new CodeExcelDto();
@@ -171,7 +171,7 @@ public class CodeService {
 	        }
 
 	        for (int i = 0; i < 4; i++) {
-	        	arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "-";
+	        	arr[i] = row.getCell(i) != null ? row.getCell(i).getStringCellValue() : "";
 	        }
 
 	        ItemExcelDto item = new ItemExcelDto();

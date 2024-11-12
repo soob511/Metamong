@@ -24,6 +24,16 @@ function getSignupStatus() {
 				borderColor : "#36A2EB",
 				fill : false
 			} ]
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true,  // Y축이 0에서 시작하도록 설정
+					ticks: {
+						stepSize: 1  // Y축 단위를 5로 설정
+					}
+				}
+			}
 		}
 	});
 	$.ajax({
@@ -69,7 +79,7 @@ function getApprovalStatus() {
 		data : {
 			labels : [ '접수', '승인', '반려' ],
 			datasets : [ {
-				data : [ 2, 13, 3 ],
+				data : [ 0, 0, 0 ],
 				backgroundColor : [ 
 					'rgba(255, 175, 163)',
 					'rgba(128, 202, 255)', 
@@ -85,7 +95,7 @@ function getApprovalStatus() {
 		            },
 		            title: {
 		              display: true,
-		              text: '전체 18건'
+		              text: '전체 0건'
 		            }
 		          }
 		}
@@ -94,16 +104,17 @@ function getApprovalStatus() {
 		url : "/Metamong/getApprovalMemberStatus",
 		type : "GET",
 		success : function(data) {
-			console.log(data);
+			
+			const chartData = data.map(item => item.count);
             const summarySpans = $(".summary-box .fw-bold");
 
             summarySpans.eq(0).text(data[0].count);  
             summarySpans.eq(1).text(data[1].count);  
             summarySpans.eq(2).text(data[2].count);  
             
-            myChart.data.datasets[0].data = chartData;
-            myChart.options.plugins.title.text = `전체 ${chartData.reduce((a, b) => a + b)}건`;
-            myChart.update();
+            adminPieChart.data.datasets[0].data = chartData;
+            adminPieChart.options.plugins.title.text = `전체 ${chartData.reduce((a, b) => a + b)}건`;
+            adminPieChart.update();
 		},
 		error : function(xhr, status, error) {
 			console.log('오류: ' + xhr.responseText);

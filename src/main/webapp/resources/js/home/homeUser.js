@@ -8,7 +8,10 @@ $(document).ready(function() {
 	    showColumnList(tableId);
 	});
 	$("#schemaSelect").on("change", function() {
-        searchTable();
+		searchTable().then(function() {
+			let tableId = $("#tableList tr").data('value');
+		    showColumnList(tableId);
+		});
     });
 });
 
@@ -19,7 +22,7 @@ function getApprovalStatus() {
 	    data: {
 	    	labels: ['승인대기', '승인', '반려', '반영'],
 	        datasets: [{
-	            data: [0, 0, 0, 5],
+	            data: [0, 0, 0, 0],
 	            backgroundColor: [
 	                'rgba(255, 175, 163)',
 	                'rgba(128, 202, 255)',
@@ -31,20 +34,13 @@ function getApprovalStatus() {
 	        }]
 	    },
 	    options: {
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: true
-	                }
-	            }]
-	        },
 	        plugins: {
 	            legend: {
 	              position: 'top',
 	            },
 	            title: {
 	              display: true,
-	              text: ''
+	              text: '전체 0건'
 	            }
 	          }
 	    }
@@ -69,7 +65,7 @@ function getApprovalStatus() {
             
             myChart.data.datasets[0].data = chartData;
             myChart.options.plugins.title.text = `전체 ${chartData.reduce((a, b) => a + b)}건`;
-            myChart.update(); // 차트 업데이트
+            myChart.update();
 		},
 		error : function(xhr, status, error) {
 			console.log('오류: ' + xhr.responseText);

@@ -31,79 +31,83 @@
 									<div class="summary-box d-flex justify-content-center align-items-center">
 										<div>
 											<p>승인대기</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>승인</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반려</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 										<div>
 											<p>반영</p>
-											<h3><span class="fw-bold"></span><span class="fs-4">건</span></h3>
+											<h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col notice-box">
-						<div class="d-flex justify-content-between">
-							<p class="board-title">공지사항</p>
-							<a href="${pageContext.request.contextPath}/notice/noticeList"><button class="btn-notice">+ 더보기</button></a>
-						</div>
-						<table class="table table-hover">
-                    <thead class="table">
-                        <tr class="table-secondary">
-                            <th scope="col">No.</th>
-                            <th scope="col">제목</th>
-                            <th scope="col">등록일</th>
-                            <th scope="col">조회수</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${noticeList}" var="notice" varStatus="status">           
-		                        <tr class="table-row">
-		                            <td scope="row">
-			                            <c:choose>
-											<c:when test="${notice.noticeIsimp == '1'}">
-												<img
-													src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
-													alt="중요도" style="width: 20px; height: 20px ">
-											</c:when>
-											<c:otherwise>
+						<div class="col notice-box">
+							<div class="d-flex justify-content-between">
+								<p class="board-title">공지사항</p>
+								<a href="${pageContext.request.contextPath}/notice/noticeList"><button
+										class="btn-notice">+ 더보기</button></a>
+							</div>
+							<div class="notice-container">
+								<table class="table table-hover">
+									<thead class="table">
+										<tr class="table-secondary">
+											<th scope="col">No.</th>
+											<th scope="col">제목</th>
+											<th scope="col">등록일</th>
+											<th scope="col">조회수</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${noticeList}" var="notice"
+											varStatus="status">
+											<tr class="table-row">
+												<td scope="row"><c:choose>
+														<c:when test="${notice.noticeIsimp == '1'}">
+															<img
+																src="${pageContext.request.contextPath}/resources/image/icon_notice.png"
+																alt="중요도" style="width: 20px; height: 20px">
+														</c:when>
+														<c:otherwise>
 												${pager.totalRows - (pager.pageNo-1) * 10 - status.index}
 											</c:otherwise>
-									</c:choose>
-									</td>                          
-		                            <td><a href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}" style="color:black;">${notice.noticeTitle}</a></td>
-		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
-		                            <td>${notice.noticeHitcount}</td>
-		                        </tr>
-	                      </c:forEach>    
-                    </tbody>
-                </table>
+													</c:choose></td>
+												<td><a
+													href="${pageContext.request.contextPath}/notice/noticeDetail?noticeId=${notice.noticeId}"
+													style="color: black;">${notice.noticeTitle}</a></td>
+												<td><fmt:formatDate value="${notice.noticeRegdate}"
+														pattern="yyyy-MM-dd" /></td>
+												<td>${notice.noticeHitcount}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="row">
+					<div class="row">
 						<div class="col-5">
 							<div class="schema-filter">
 								<div class="schema-table-title">테이블 목록</div>
 								<div class="d-flex align-items-center">
-								<label for="schemaSelect" class="schema-filter-label">스키마명</label>
-								<select id="schemaSelect" class="form-select"
-									aria-label="Default select example">
-									<c:forEach items="${schemaEnum}" var="schemaEnum">
+									<label for="schemaSelect" class="schema-filter-label">스키마명</label>
+									<select id="schemaSelect" class="form-select"
+										aria-label="Default select example">
+										<c:forEach items="${schemaEnum}" var="schemaEnum">
 											<c:if test="${schemaEnum.name() != 'MAIN'}">
 												<option value="${schemaEnum.name()}">
-											            ${schemaEnum.name()}
-												</option>
-									        </c:if>
-									</c:forEach>
-								</select>
+													${schemaEnum.name()}</option>
+											</c:if>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="table-box">
@@ -117,7 +121,7 @@
 										</tr>
 									</thead>
 									<tbody id="tableList">
-										
+
 									</tbody>
 								</table>
 							</div>
@@ -144,7 +148,7 @@
 							</div>
 						</div>
 					</div>
-			</div>
+				</div>
 		</div>
 	</div>
 </div> 

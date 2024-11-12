@@ -12,6 +12,7 @@ import com.mycompany.metamong.daoPms.PmsTableDao;
 import com.mycompany.metamong.daoSrm.SrmTableDao;
 import com.mycompany.metamong.dto.table.ApplyTableDto;
 import com.mycompany.metamong.dto.table.TableDto;
+import com.mycompany.metamong.dto.table.TableRewriteDto;
 import com.mycompany.metamong.enums.SchemaEnum;
 
 import lombok.extern.slf4j.Slf4j;
@@ -78,6 +79,10 @@ public class TableService {
 		return list;
 	}
 	
+	public TableDto getTableInfo(String schemaName, String tableName) {
+		return tableDao.selectTableInfo(tableName, schemaName);
+	}
+	
 	public List<TableDto> getTableInfo(String schemaName) {
 		List<TableDto> tableDic = new ArrayList<>();
 		List<TableDto> newList = new ArrayList<>();
@@ -111,6 +116,10 @@ public class TableService {
 				break;
 		}	
 		return newList;
+	}
+
+	public TableRewriteDto getRewriteTable(int applyNo) {
+		return tableDao.selectRewriteTable(applyNo);
 	}
 
 }

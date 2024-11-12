@@ -30,6 +30,7 @@
                             </c:if>
                             <c:if test="${applyList.approvalStatus == 1}">
                                 <button class="btn-approve" onclick="applyComplete(`${applyList.applyType}`)">반영</button>
+                           		<button class="btn-rollback" onclick="codeApplyProcess(0, `${applyList.applyType}`)">승인취소</button>
                             </c:if>
                             <c:if test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
                                 <div class="btn-processed">처리완료</div>
@@ -55,7 +56,7 @@
                             </td>
                             <td class="table-secondary">신청 건수</td>
                             <td>
-                                <div class="table-text">총 ${totalCount}건</div>
+                                <div class="table-text">총 ${totalCount} 건</div>
                             </td>
                         </tr>
                         <tr>
