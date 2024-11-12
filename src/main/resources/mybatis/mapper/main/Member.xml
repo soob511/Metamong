@@ -249,7 +249,7 @@
 	<select id="selectValidMember" parameterType="map" resultType="Member">
 		SELECT m_id
 		FROM member
-		WHERE m_name = #{mName} AND m_tel = #{mTel}
+		WHERE m_id = #{mId} AND m_tel = #{mTel}
 	</select>
 	
 	<update id="updatePassword" parameterType="Member">
