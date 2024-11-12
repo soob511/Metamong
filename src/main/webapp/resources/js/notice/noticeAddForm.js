@@ -64,12 +64,14 @@ $(".btn-add").on("click", function () {
     var noticeRegdate = $(this).data('notice-regdate'); 
     var noticeContent = $("#noticeContent").val();
     var fileInput = $("#noticeFile")[0].files;
+    var MId = $("#MId").val();
 
     var formData = new FormData();
     formData.append("noticeTitle", noticeTitle);
     formData.append("noticeIsimp", noticeIsimp);
     formData.append("noticeRegdate", noticeRegdate);
     formData.append("noticeContent", noticeContent);
+    formData.append("MId", MId);
  
     if (fileInput.length > 0) {
         formData.append("noticeFile", fileInput[0]);

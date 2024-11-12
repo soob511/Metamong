@@ -22,6 +22,7 @@ public class NoticeDto {
 	public int nextNum;
 	private String prevTitle;
 	private String nextTitle;
+	private String MId;
 	}
 
 

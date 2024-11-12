@@ -10,4 +10,5 @@ public class NoticeAddFormDto {
 	private String noticeContent;
 	private int noticeIsimp;
 	private MultipartFile noticeFile;
+	private String MId;
 }

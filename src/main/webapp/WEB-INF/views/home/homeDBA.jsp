@@ -88,7 +88,7 @@
 											${notice.noticeTitle}
 									</td>
 		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
-		                            <td>관리자</td>
+		                            <td>${notice.MId}</td>
 		                            <td>${notice.noticeHitcount}</td>
 		                        </tr>
 	                      </c:forEach>    

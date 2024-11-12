@@ -42,9 +42,14 @@ $(".btn-delete").click(function () {
     			  }).then(result => {
     				  location.href = "/Metamong/notice/noticeList?pageNo=" + pageNo;
 		         });
-    			}
-    		  }
-    	   });
-      	}
-    });
-  });
+    			} else {
+    	              Swal.fire({
+    	                icon: 'error',
+    	                title: '본인이 작성한 글만 삭제할 수 있습니다.'
+    	              });
+    	            }
+    	          }
+    	        });
+    	      }
+    	    });
+    	});
