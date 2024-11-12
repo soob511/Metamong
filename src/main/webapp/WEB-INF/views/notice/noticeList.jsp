@@ -120,13 +120,8 @@
         </div>
     </div>
 </div>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-<script src="${pageContext.request.contextPath}/resources/js/notice/noticeList_admin.js"></script>
-</sec:authorize>
- <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
- 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+
  <script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
- 	</sec:authorize>
- </sec:authorize>
+
 </body>
 </html>
