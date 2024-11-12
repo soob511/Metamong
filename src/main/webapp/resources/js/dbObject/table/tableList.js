@@ -5,6 +5,8 @@ $(document).ready(function() {
     $('.sub-menu:eq(1) .sub-item').removeClass('active');
     $('.sub-menu:eq(1) .sub-item:first').addClass('active');
     
+    
+    //데이터타입
     $.ajax({
         url: "/Metamong/dataType/dataTypeList",
         type: "GET",
@@ -131,10 +133,12 @@ $(document).ready(function() {
         });
     });
 
-    $("#tableList").on("click", ".tableListTr", function() {
-	    $(".tableListTr").removeClass("table-active");
-	    $(this).addClass("table-active");
-	});
+    //테이블
+    
+    $("#tableList").on("click", "tr", function() {
+        $("#tableList tr").removeClass("table-active");
+        $(this).addClass("table-active");
+    });
     
     $(".bi-search").on("click", function() {
         searchTable();
@@ -217,7 +221,7 @@ function searchTable() {
         	if(Object.keys(data).length>0){
         		var count = 0;
         		data.forEach(table => {
-        			html += `<tr  onclick="showColumnList(${table.tableNo})">
+        			html += `<tr data-table-no="${table.tableNo}" onclick="showColumnList(${table.tableNo})">
         				<td>${++count}</td>
         				<td>${table.tableNm}</td>
         				<td>${table.tableId}</td>
