@@ -84,4 +84,12 @@ public class MemberService {
 	public MemberDto getMemberProfileImage(String mId) {
 		return memberDao.selectMemberProfileImage(mId);
 	}
+	
+	public MemberDto checkValidMember(String mName, String mTel) {
+		return memberDao.selectValidMember(mName, mTel);
+	}
+	
+	public void resetPassword(MemberDto member) {
+		memberDao.updatePassword(member);
+	}
 }
