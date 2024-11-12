@@ -1,13 +1,15 @@
+
+let num = $('.btn-team').data('team-length');
+let teams = [];
+let teamIndex, updateTeam, teamId;
+
 $(document).ready(function() {
     $('.menu-team').removeClass('active');
     $('.menu-team:eq(1)').addClass('active');
     $('.sub-menu:eq(0)').addClass('active');
     $('.sub-menu:eq(0) .sub-team').removeClass('active');
     $('.sub-menu:eq(0) .sub-team:first').addClass('active');
-});
 
-let num = $('.btn-team').data('team-length');
-let teams = [];
 
 // 팀 목록 가져오기
 $('.btn-team').click(function() {
@@ -21,11 +23,8 @@ $('.btn-team').click(function() {
                     <th class="teamId">${team.teamId}</th>
                     <td class="teamName">${team.teamName}</td>
                     <td class="teamIsactive">${team.teamIsactive == 1 ? 'Y' : 'N'}</td>
-                </tr>`;
-                
-                
+                </tr>`;            
             });
-           
             $('#teamList').html(tHtml);
 
             $('#teamList .team').each(function() {
@@ -33,7 +32,7 @@ $('.btn-team').click(function() {
                     teamId: $(this).find('.teamId').text(),
                     teamName: $(this).find('.teamName').text(),
                     teamIsactive: $(this).find('.teamIsactive').text() === 'Y' ? 1 : 0,
-                    isupdate: 0
+                    teamIsupdate: 0
                 });
             });
         }
@@ -46,16 +45,15 @@ $('.team-add').click(function() {
 	const teamId = Math.max(...teams.map(team => team.teamId), 0) + 1;
     const teamName = $('#teamName').val();
     const teamIsactive = $("#teamIsactive option:selected").val();
-    
-    console.log("선택된 팀 사용여부:", teamIsactive);
+
     if(teamCheck(0) != 0) {
-        teams.push({ teamId: teamId, teamName: teamName, teamIsactive: teamIsactive, isupdate: 1 });
+        teams.push({ teamId: teamId, teamName: teamName, teamIsactive: teamIsactive, teamIsupdate: 1 });
+        console.log("추가",teams);
         teamList();
     }
 });
 
 //팀 수정
-let teamIndex, updateTeam, teamId;
 
 $('#teamList').on('click', '.team', function() {
     $(".team").removeClass("table-active");
@@ -81,18 +79,21 @@ $('.team-edit').on('click', function() {
 
     console.log(teamId);
     if(teamCheck(1) != 0) {
-    	updateTeam = { teamId: teamId, teamName: teamName, teamIsactive:teamIsactive, isUpdate: 2 };
+    	updateTeam = { teamId: teamId, teamName: teamName, teamIsactive:teamIsactive, teamIsupdate: 2 };
     	teams.splice(teamIndex, 1, updateTeam);
+    	console.log("수정",teams);
         teamList();
     }
 });
-
+});
+//수정여부체크
 function teamCheck(isEdit) {
 	
 	const teamName = $('#teamName').val().trim();
 	const teamIsactive = $("#teamIsactive option:selected").val();
 	console.log(teamId);
 	console.log(teamIsactive);
+	
 	 let isExist = false;
      for (let i = 0; i <  teams.length; i++) {
     	 if(isEdit == 0) {
@@ -147,46 +148,52 @@ console.log(teams);
     refresh();
 }
 
-$('#submit').click(function(){
+$(document).ready(function() {
+	$('#submit').click(function(){
+		const updatedTeams = teams.filter(team => team.teamIsupdate !== 0).map(team => ({
+		    teamId: team.teamId,
+		    teamName: team.teamName,
+		    teamIsactive: team.teamIsactive,
+		    teamIsupdate: team.teamIsupdate  
+		}));
 	
-	const updatedTeams = teams.filter(team => team.isupdate !== 0).map(team => ({
-	    teamId: team.teamId,
-	    teamName: team.teamName,
-	    teamIsactive: team.teamIsactive,
-	    teamIsupdate: team.isupdate  // 자바스크립트의 필드명을 DTO와 일치하게 변경
-	}));
-
-	$.ajax({
-		url:"/Metamong/team/updateTeam",
-		type:"POST",
-		contentType: "application/json",
-		data: JSON.stringify({teams: updatedTeams }),
-		success:function(data){
-			Swal.fire({
-				icon: 'success',
-				title: '소속 수정신청이<br/> 완료되었습니다.'
-			}).then(result=>{
-				location.reload();
+		if(updatedTeams.length != 0) {
+			$.ajax({
+				url:"/Metamong/team/updateTeam",
+				type:"POST",
+				contentType: "application/json",
+				data: JSON.stringify(updatedTeams),
+				success:function(data){
+					Swal.fire({
+						icon: 'success',
+						title: '소속 수정신청이<br/> 완료되었습니다.'
+					}).then(result=>{
+						$('#teamModal').modal('hide');
+						
+					});
+				}
 			});
+		} else {
+			console.log("수정되거나 추가된 내용이 없습니다.");
 		}
 	});
-});
 
-// 회원 검색
-$("#memberTable").on("click", ".table-row", function() {
-    $(".table-row").removeClass("table-active");
-    $(this).addClass("table-active");
-});
-
-$("#memberSearch").off("keydown").on("keydown", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        accountSearch(1);
-    }
-});
-
-$('.bi-search').off('click').on('click', function() {
-    accountSearch(1);
+	// 회원 검색
+	$("#memberTable").on("click", ".table-row", function() {
+	    $(".table-row").removeClass("table-active");
+	    $(this).addClass("table-active");
+	});
+	
+	$("#memberSearch").off("keydown").on("keydown", function(event) {
+	    if (event.keyCode === 13) {
+	        event.preventDefault();
+	        accountSearch(1);
+	    }
+	});
+	
+	$('.bi-search').off('click').on('click', function() {
+	    accountSearch(1);
+	});
 });
 
 // 계정 검색 함수
@@ -207,52 +214,54 @@ function accountSearch(pageNo) {
 }
 
 // 회원 정보 승인
-$(".btn-approve").on("click", function() {
-    var mId = $(this).data('m-id');
-    var mRole = $(`#mRole-${mId}`).val();
-    var teamName = $(`#teamName-${mId}`).val();
-    var mEmpId = $(`#mEmpId-${mId}`).val();
-    var mTel = $(`#mTel-${mId}`).val();
-    var mIsactive = $(`#mIsactive-${mId} option:selected`).val();
-
-    var formData = new FormData();
-    formData.append("mId", mId);
-    formData.append("mRole", mRole);
-    formData.append("teamName", teamName);
-    formData.append("mEmpId", mEmpId);
-    formData.append("mTel", mTel);
-    formData.append("mIsactive", mIsactive);
-
-    if (!mEmpId || !mTel) {
-        Swal.fire({
-            icon: "warning",
-            title: "필수내역을 공란없이<br/>입력해 주세요.",
-            text: "필수입력사항: 사번, 연락처",
-        });
-        return;
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const pageNo = params.get('pageNo');
-
-    $.ajax({
-        url: "/Metamong/account/updateAccount",
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-            Swal.fire({
-                icon: 'success',
-                title: '회원정보 수정이 완료되었습니다.',
-                text: '수정된 사항을 확인해주세요.'
-            }).then(result => {
-                if (pageNo) {
-                    location.href = `/Metamong/account/accountList?pageNo=${pageNo}`;
-                } else {
-                    location.href = `/Metamong/account/accountList`;
-                }
-            });
-        }
-    });
+$(document).ready(function() {
+	$(".btn-approve").on("click", function() {
+	    var mId = $(this).data('m-id');
+	    var mRole = $(`#mRole-${mId}`).val();
+	    var teamName = $(`#teamName-${mId}`).val();
+	    var mEmpId = $(`#mEmpId-${mId}`).val();
+	    var mTel = $(`#mTel-${mId}`).val();
+	    var mIsactive = $(`#mIsactive-${mId} option:selected`).val();
+	
+	    var formData = new FormData();
+	    formData.append("mId", mId);
+	    formData.append("mRole", mRole);
+	    formData.append("teamName", teamName);
+	    formData.append("mEmpId", mEmpId);
+	    formData.append("mTel", mTel);
+	    formData.append("mIsactive", mIsactive);
+	
+	    if (!mEmpId || !mTel) {
+	        Swal.fire({
+	            icon: "warning",
+	            title: "필수내역을 공란없이<br/>입력해 주세요.",
+	            text: "필수입력사항: 사번, 연락처",
+	        });
+	        return;
+	    }
+	
+	    const params = new URLSearchParams(window.location.search);
+	    const pageNo = params.get('pageNo');
+	
+	    $.ajax({
+	        url: "/Metamong/account/updateAccount",
+	        type: "POST",
+	        data: formData,
+	        processData: false,
+	        contentType: false,
+	        success: function(data) {
+	            Swal.fire({
+	                icon: 'success',
+	                title: '회원정보 수정이 완료되었습니다.',
+	                text: '수정된 사항을 확인해주세요.'
+	            }).then(result => {
+	                if (pageNo) {
+	                    location.href = `/Metamong/account/accountList?pageNo=${pageNo}`;
+	                } else {
+	                    location.href = `/Metamong/account/accountList`;
+	                }
+	            });
+	        }
+	    });
+	});
 });

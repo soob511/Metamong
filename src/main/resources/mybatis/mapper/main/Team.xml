@@ -4,20 +4,20 @@
 	<select id="selectTeamList" resultType="Team">
 		SELECT team_Id,team_Name,team_Isactive
 		FROM Team
-		WHERE team_Isactive = 1 AND team_ID>0
+		WHERE team_ID>0
 		ORDER BY team_Id
 	</select>
 	
 	<insert id="insertTeam" parameterType="Team">
-    INSERT INTO team (
-    	team_id,
-    	team_name, 
-    	team_isactive
-    )VALUES (
-    		#{teamId},
-		    #{teamName}, 
-		    #{teamIsactive}
-		    )
+	    INSERT INTO team (
+	    	team_id,
+	    	team_name, 
+	    	team_isactive
+	    )VALUES (
+	    		#{teamId},
+			    #{teamName}, 
+			    #{teamIsactive}
+			    )
 	</insert>
 
 <update id="updateTeam" parameterType="Team">

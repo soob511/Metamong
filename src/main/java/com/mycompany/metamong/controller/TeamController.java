@@ -40,6 +40,7 @@ public class TeamController {
 	    	team.setTeamId(teams.getTeamId());
 	    	team.setTeamName(teams.getTeamName());
 	    	team.setTeamIsactive(teams.getTeamIsactive());
+	    	team.setTeamIsupdate(teams.getTeamIsupdate());
 	    	
 	    	if(teams.getTeamIsupdate() == 1) {
 	    		teamService.insertTeam(teams);
@@ -48,6 +49,5 @@ public class TeamController {
 	    	}
 	    }
 	    return ResponseEntity.ok("ok");
-
 }
 }

@@ -81,6 +81,8 @@
 												<option value="개발1팀" ${member.teamName == '개발1팀' ? 'selected' : ''}>개발1팀</option>
 												<option value="개발2팀" ${member.teamName == '개발2팀' ? 'selected' : ''}>개발2팀</option>
 												<option value="개발3팀" ${member.teamName == '개발3팀' ? 'selected' : ''}>개발3팀</option>
+												<option value="개발4팀" ${member.teamName == '개발4팀' ? 'selected' : ''}>개발4팀</option>
+												<option value="개발5팀" ${member.teamName == '개발5팀' ? 'selected' : ''}>개발5팀</option>
 											</select>
 											</div>
 										</td>
