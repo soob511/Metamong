@@ -55,12 +55,11 @@
 								<div class="container-fluid">
 									<div class="d-flex index-form">
 										<input class="form-control" type="search" id="indexNameSearch"
-											placeholder="Search" aria-label="Search"> <i
-											id="biSearch" class="bi bi-search"></i>
+											placeholder="Search" aria-label="Search">
 									</div>
 								</div>
 							</div>
-							<div class="d-flex align-items-center ms-4">
+							<div class="d-flex align-items-center">
 								<button class="btn-search" id="indexSearchBtn">조회</button>
 							</div>
 						</div>
@@ -80,7 +79,7 @@
 							</div>
 							<div class="table-container">
 								<table class="table table-hover">
-									<thead class="table-secondary">
+									<thead class="table-light">
 										<tr>
 											<th scope="col"></th>
 											<th scope="col">No.</th>

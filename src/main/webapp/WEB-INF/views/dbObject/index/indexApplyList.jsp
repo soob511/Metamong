@@ -57,9 +57,9 @@
 							</div>
 							<div class="schema-filter">
 							<label for="indexNameSearch" class="table-search-label">인덱스명/신청자</label>
-								<input class="form-control me-2" type="search"
+								<input class="form-control" type="search"
 									id="indexNameSearch" placeholder="Search" aria-label="Search">
-								<i id="biSearch" class="bi bi-search"></i>
+								<button class="btn-search btn-accent">조회</button>
 							</div>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 						<div class="table-container">
 						<table class="table table-hover">
 							<thead class="table">
-								<tr class="table-secondary">
+								<tr class="table-light">
 									<th scope="col">No.</th>
 									<th scope="col">신청일자</th>
 									<th scope="col">신청자</th>

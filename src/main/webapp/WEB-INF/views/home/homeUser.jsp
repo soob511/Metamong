@@ -59,7 +59,7 @@
 							<div class="notice-container">
 								<table class="table table-hover">
 									<thead class="table">
-										<tr class="table-secondary">
+										<tr class="table-light">
 											<th scope="col">No.</th>
 											<th scope="col">제목</th>
 											<th scope="col">등록일</th>
@@ -113,7 +113,7 @@
 							<div class="table-box">
 								<table class="table table-hover">
 									<thead class="table">
-										<tr class="table-secondary">
+										<tr class="table-light">
 											<th scope="col">No.</th>
 											<th scope="col">테이블명(논리)</th>
 											<th scope="col">테이블명(물리)</th>
@@ -131,7 +131,7 @@
 							<div class="col-box">
 								<table class="table table-hover">
 									<thead class="table">
-										<tr class="table-secondary">
+										<tr class="table-light">
 											<th scope="col">No.</th>
 											<th scope="col">컬럼명(논리)</th>
 											<th scope="col">컬럼명(물리)</th>

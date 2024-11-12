@@ -55,16 +55,16 @@
 							</div>
 							<div class="schema-filter">
 								<label for="tableNameSearch" class="table-search-label">테이블명/신청자</label>
-								<input class="form-control me-2" type="search"
+								<input class="form-control" type="search"
 									id="tableNameSearch" placeholder="Search" aria-label="Search">
-								<i class="bi bi-search"></i>
+								<button class="btn-search btn-accent">조회</button>
 							</div>
 						</div>
 					</div>
 					<div id="searchTableList">
 						<div class="table-container">
 							<table class="table table-hover">
-								<thead class="table-secondary">
+								<thead class="table-light">
 									<tr>
 										<th scope="col">No.</th>
 										<th scope="col">신청일자</th>

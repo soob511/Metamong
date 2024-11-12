@@ -346,3 +346,7 @@ button:hover {
 #status-applied{
 	color: #32ADE6 !important;
 }
+
+hr {
+    color: var(--border-color) !important;
+}

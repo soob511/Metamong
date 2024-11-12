@@ -136,7 +136,7 @@ $(document).ready(function() {
 	    $(this).addClass("table-active");
 	});
     
-    $(".bi-search").on("click", function() {
+    $(".btn-search").on("click", function() {
         searchTable();
     });
 

@@ -13,7 +13,7 @@ $(document).ready(function() {
     $('#statusSelect').change(function() {
         filterApplyIndexPaging(1);
     });
-    $('#biSearch').click(function() {
+    $('#btn-search').click(function() {
     	filterApplyIndexPaging(1);
     });
     $('#indexNameSearch').on('keyup', function(event) {

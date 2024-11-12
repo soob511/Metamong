@@ -46,9 +46,10 @@
 						<label for="sequenceNameSearch" class="sequence-search-label">시퀀스명</label>
 						<div class="container-fluid">
 							<form class="d-flex search-form">
-								<input class="form-control me-2" type="search"
+								<input class="form-control" type="search"
 									id="sequenceNameSearch" placeholder="Search"
-									aria-label="Search"> <i class="bi bi-search"></i>
+									aria-label="Search">
+									<button class="btn-search btn-accent">조회</button>
 							</form>
 						</div>
 					</div>
@@ -69,9 +70,9 @@
 									data-bs-target="#sequenceApplyModal">생성/삭제</button>
 							</sec:authorize>
 						</div>
-						<div class="sequence-list-table">
+						<div class="sequence-list-table table-container">
 							<table class="table sequence-list table-hover">
-								<thead class="table-secondary">
+								<thead class="table-light">
 									<tr>
 										<th scope="col">No.</th>
 										<th scope="col">시퀀스명</th>
@@ -86,7 +87,7 @@
 									<c:forEach items="${sequence}" var="sequence"
 										varStatus="status">
 										<tr>
-											<th>${status.index+1}</th>
+											<td>${status.index+1}</td>
 											<td>${sequence.sequenceName}</td>
 											<td>${sequence.schemaName}</td>
 											<td>${sequence.minValue}</td>
@@ -108,7 +109,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<p class="sequence-create-delete-title">시퀀스 생성/삭제</p>
+									<h4 class="sequence-create-delete-title">시퀀스 생성/삭제</h4>
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>
 								</div>
