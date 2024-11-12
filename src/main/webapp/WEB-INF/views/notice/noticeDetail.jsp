@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <sec:authorize access="hasRole('ROLE_ADMIN') ">
         <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
     </sec:authorize>
     <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
@@ -36,7 +36,7 @@
                         </tr>
                         <tr>
                             <td class="table-secondary" id="tdth">작성자</td>
-                            <td id="table-contents" style="width:20%">관리자</td>
+                            <td id="table-contents" style="width:20%">${notice.MId}</td>
                             <td class="table-secondary" style="width:16.66%" id="tdth">작성일자</td>
                             <td id="table-contents" style="width:16.66%"><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
                             <td class="table-secondary" style="width:16.66%" id="tdth">조회수</td>
@@ -83,14 +83,14 @@
                         </tr>
                     </table>
                     <div class="d-flex justify-content-end mt-3">
-                       <sec:authorize access="hasRole('ROLE_ADMIN')">
+                       <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')">
                         <button type="button" class="btn-delete me-2" data-notice-id="${notice.noticeId}">삭제</button>
                         <button type="submit" class="btn-add me-2"><a href="noticeUpdateForm?noticeId=${notice.noticeId}" style="color:white;">수정</a></button>
                         <button type="button" class="btn-list" data-page-no="${pager.pageNo}"><a href="noticeList?pageNo=${pager.pageNo}" style="color:white;">목록</a></button>
                         </sec:authorize>
                         
-                        <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
-						 	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                        <sec:authorize access="hasRole('ROLE_USER')">
+						 	 <sec:authorize access="!hasRole('ROLE_ADMIN') and !hasRole('ROLE_DBA')">
 						 <button type="button" class="btn-add"  data-page-no="${pager.pageNo}"><a href="noticeList?pageNo=${pager.pageNo}" style="color:white;"style="color:white;">목록</a></button>
 						 	</sec:authorize>
 						 </sec:authorize>
@@ -108,9 +108,9 @@
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 <script src="${pageContext.request.contextPath}/resources/js/notice/noticeDelete.js"></script>
 </sec:authorize>
- <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+ <sec:authorize access="hasRole('ROLE_DBA')">
  	 <sec:authorize access="!hasRole('ROLE_ADMIN')">
- <script src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"></script>
+ <script src="${pageContext.request.contextPath}/resources/js/notice/noticeDBA.js"></script>
  	</sec:authorize>
  </sec:authorize>
 </body>

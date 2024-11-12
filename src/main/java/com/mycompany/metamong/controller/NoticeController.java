@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -124,12 +125,13 @@ public class NoticeController {
 	
 	@ResponseBody
 	@PostMapping("/insertNotice")
-	public int insertNotice(@ModelAttribute NoticeAddFormDto form) throws Exception {
+	public int insertNotice(@ModelAttribute NoticeAddFormDto form,Authentication auth) throws Exception {
 		NoticeDto notice = new NoticeDto();
 		
 		notice.setNoticeTitle(form.getNoticeTitle());
 		notice.setNoticeIsimp(form.getNoticeIsimp());
 		notice.setNoticeContent(form.getNoticeContent());
+		notice.setMId(auth.getName());
 
 		MultipartFile noticeFile = form.getNoticeFile();
 		if(noticeFile!=null && !noticeFile.isEmpty()) {
@@ -142,17 +144,20 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/noticeUpdateForm")
-	public String noticeUpdateForm(Model model, int noticeId) {
+	public String noticeUpdateForm(Model model, int noticeId, Authentication auth) {
 		NoticeDto notice = noticeService.getNoticeDetail(noticeId);
-		model.addAttribute("notice", notice);
 		
+		if (!auth.getName().equals(notice.getMId())) {
+	        return "redirect:/accessDenied";
+	    }
+	    model.addAttribute("notice", notice);
 		return "notice/noticeUpdateForm";
 	}
 	
 	@ResponseBody
 	@PostMapping("/updateNotice")
 	public int updateNotice(
-			@ModelAttribute NoticeUpdateFormDto form) throws Exception {
+			@ModelAttribute NoticeUpdateFormDto form, Authentication auth) throws Exception {
 		log.info("실행");
 		NoticeDto notice = new NoticeDto();
 		
@@ -160,6 +165,7 @@ public class NoticeController {
 		notice.setNoticeTitle(form.getNoticeTitle());
 		notice.setNoticeIsimp(form.getNoticeIsimp());
 		notice.setNoticeContent(form.getNoticeContent());
+		notice.setMId(auth.getName());
 		
 		MultipartFile noticeFile = form.getNoticeFile();
         if(noticeFile != null && !noticeFile.isEmpty()) {
@@ -192,13 +198,17 @@ public class NoticeController {
 	
 	@ResponseBody
 	@GetMapping("/deleteNotice")
-	public int deleteNotice(@RequestParam("noticeId") int noticeId, HttpSession session) {
-		 noticeService.deleteNotice(noticeId);
-		 
-		 Pager pager = (Pager)session.getAttribute("pager");
-		 int pageNo = pager.getPageNo();
-	 
-		 return pageNo;	
-	}
+	public int deleteNotice(@RequestParam("noticeId") int noticeId, HttpSession session,Authentication auth ) {
 	
+		NoticeDto notice = noticeService.getNoticeDetail(noticeId);
+		
+	    if (auth.getName().equals(notice.getMId())) {
+	        noticeService.deleteNotice(noticeId);
+	        Pager pager = (Pager) session.getAttribute("pager");
+	        int pageNo = pager.getPageNo();
+	        return pageNo;
+	    } else {	       
+	        return -1;
+	    }
+	}
 }

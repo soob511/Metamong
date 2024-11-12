@@ -15,10 +15,17 @@
     
 </head>
 <body>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
+<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')">
 <div class="container">
     <div class="row">
-        <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
+         <sec:authorize access="hasRole('ROLE_ADMIN') ">
+	        <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
+	    </sec:authorize>
+	    <sec:authorize access="hasRole('ROLE_DBA')">
+	     	<sec:authorize access="!hasRole('ROLE_ADMIN')">
+	        <jsp:include page="/WEB-INF/views/common/menu.jsp" />
+	        </sec:authorize>
+	   </sec:authorize>
         <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div>
@@ -45,8 +52,9 @@
                             </tr>
                             <tr>
                                 <td class="table-secondary form-label" id="tdth">작성자</td>
-                                <td id="author"><span>관리자</span></td>
+                                <td id="author"><span>${member.MId}</span></td>
                             </tr>
+                            <input type="hidden" name="MId" id="MId" value="${member.MId}">
                             <tr>
                                 <td class="table-secondary form-label" id="tdth">내용<span class="form-required">(*)</span></td>
                                 <td id="noticeContentTd">                                   
@@ -75,6 +83,15 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <script src="${pageContext.request.contextPath}/resources/js/notice/noticeAddForm.js"></script>
+</sec:authorize>
+
+<sec:authorize access="hasRole('ROLE_DBA')">
+	<sec:authorize access="!hasRole('ROLE_ADMIN')">
+<script src="${pageContext.request.contextPath}/resources/js/notice/noticeDBA.js"></script>
+	</sec:authorize>
+</sec:authorize>
+
 </body>
 </html>

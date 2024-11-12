@@ -35,6 +35,7 @@
                                     <option selected>제목</option>
                                     <option>내용</option>
                                     <option>제목+내용</option>
+                                    <option>작성자</option>
                                 </select>
                             </div>
                         </div>
@@ -61,6 +62,7 @@
 	                            <th scope="col">No.</th>
 	                            <th scope="col" id="title">제목</th>
 	                            <th scope="col">등록일</th>
+	                             <th scope="col">작성자</th>
 	                            <th scope="col">조회수</th>
 	                        </tr>
 	                    </thead>
@@ -82,13 +84,14 @@
 									</td>                          
 		                            <td id="title">${notice.noticeTitle}</td>
 		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+		                            <td>${notice.MId}</td>
 		                            <td>${notice.noticeHitcount}</td>
 		                        </tr>
 	                      </c:forEach> 
 	                   </tbody>                     
 	                </table>
 	                
-	                <sec:authorize access="hasRole('ROLE_ADMIN')">
+	                <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')">
 	                <div class="d-flex justify-content-end">
                 	<div class="btn btn-write" id="btn-write">
                     	<a href="${pageContext.request.contextPath}/notice/noticeAddForm">작성하기</a>

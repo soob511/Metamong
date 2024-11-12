@@ -5,13 +5,13 @@
 	<select id="selectNoticeList"  parameterType="Pager" resultType="Notice">
 		<![CDATA[
 			SELECT 
-				rnum, notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp
+				rnum, notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp, M_id
 			FROM(
 				SELECT 
-					rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp
+					rownum as rnum, notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp, M_id
 				FROM (
 		        	SELECT 
-		        		notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp
+		        		notice_id, notice_title, notice_regdate, notice_hitcount, notice_isimp, M_id
 		        	FROM notice
 		        	ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
 					)
@@ -28,7 +28,7 @@
 	
 	<select id="selectNoticeDetail" parameterType="int" resultType="Notice">
 		SELECT 
-			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_filename
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_filename, M_id
 		FROM notice
 		WHERE notice_id = #{noticeId}
 	</select>
@@ -74,24 +74,26 @@
 	<select id="selectNoticeSearch" parameterType="Pager" resultType="Notice">
 			 <![CDATA[
 				    SELECT 
-				        rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp
+				        rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp,M_id
 			        FROM (
 			            	SELECT
-			            		rownum as  rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp
+			            		rownum as  rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp, M_id
 					    	FROM notice
      				]]> 
 						    <where>
-						        <if test="keyword != null and keyword != '' and option == '제목'">
-						            notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+						       <if test="keyword != null and keyword != '' and option == '제목'">
+						            LOWER(notice_title) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 						        </if>
 						        <if test="keyword != null and keyword != '' and option == '내용'">
-						            notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+						             LOWER(notice_content) LIKE CONCAT(CONCAT('%',LOWER(#{keyword})), '%')
 						        </if>
-						        <if test="keyword != null and keyword != '' and option == '제목+내용'">
-						            (notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%') 
-                         OR notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%'))
+						         <if test="keyword != null and keyword != '' and option == '제목+내용'">
+										            LOWER((notice_title LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%') 
+				                         OR notice_content LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')))
 						        </if>
-						        
+						         <if test="keyword != null and keyword != '' and option == '작성자'">
+						             LOWER(M_id) LIKE CONCAT(CONCAT('%',LOWER(#{keyword})), '%')
+						        </if>
 						    </where>
 	     	<![CDATA[
 						ORDER BY (CASE WHEN notice_isimp = '1' THEN 1 ELSE 2 END), notice_regdate DESC, notice_id DESC
@@ -104,19 +106,22 @@
 	    SELECT COUNT(*) 
 	    FROM(
 	    	SELECT 
-	    		rownum as  rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp
+	    		rownum as  rnum, notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp, M_id
 	    	FROM notice
 		    <where>
 		        <if test="keyword != null and keyword != '' and option == '제목'">
-		            notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+		            LOWER(notice_title) LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')
 		        </if>
 		        <if test="keyword != null and keyword != '' and option == '내용'">
-		             notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+		             LOWER(notice_content) LIKE CONCAT(CONCAT('%',LOWER(#{keyword})), '%')
 		        </if>
 		         <if test="keyword != null and keyword != '' and option == '제목+내용'">
-						            (notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%') 
-                         OR notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%'))
-						        </if>
+						            LOWER((notice_title LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%') 
+                         OR notice_content LIKE CONCAT(CONCAT('%', LOWER(#{keyword})), '%')))
+		        </if>
+		         <if test="keyword != null and keyword != '' and option == '작성자'">
+		             LOWER(M_id) LIKE CONCAT(CONCAT('%',LOWER(#{keyword})), '%')
+		        </if>
 		    </where>
 	    )
 	</select>
@@ -127,13 +132,13 @@
 			FROM DUAL 
 		</selectKey>
 		INSERT INTO notice (
-			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp
+			notice_id, notice_title, notice_content, notice_regdate, notice_hitcount, notice_isimp, M_id
 			<if test="noticeFilename != null">
             , notice_filename, notice_filetype, notice_filedata
         	</if>
 		)
 		VALUES (
-			#{noticeId}, #{noticeTitle}, #{noticeContent}, sysdate, #{noticeHitcount},#{noticeIsimp}
+			#{noticeId}, #{noticeTitle}, #{noticeContent}, sysdate, #{noticeHitcount},#{noticeIsimp},#{MId}
 			<if test="noticeFilename != null">
             , #{noticeFilename}, #{noticeFiletype}, #{noticeFiledata}
         	</if>
