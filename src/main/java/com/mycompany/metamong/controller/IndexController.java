@@ -148,9 +148,16 @@ public class IndexController {
 	        @RequestParam int approvalStatus,
 	        @RequestParam String indexName,
 	        @RequestParam(defaultValue="1") int pageNo,
+	        Authentication auth,
     		HttpSession session,
     		Model model) {
-		int totalRows = indexService.countIndexRows(schemaName, approvalStatus, indexName);
+		int totalRows = 0;
+		log.info("실행#####" + indexName.matches(".*[가-힣].*"));
+		if (!indexName.matches(".*[가-힣].*")) {
+			totalRows = indexService.countIndexRows(schemaName, approvalStatus, indexName);
+		} else {
+			totalRows = indexService.countRowsByApplyMId(schemaName, approvalStatus, auth.getName());			
+		}
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyIndexListDto> list = applyService.getApplyIndexList(
 				schemaName, approvalStatus, indexName, pager.getStartRowNo(), pager.getEndRowNo()
