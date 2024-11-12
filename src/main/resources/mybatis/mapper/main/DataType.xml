@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoMain.DataTypeDao">
-<select id="selectDataTypeList" resultType="DataType">
-	SELECT data_type, datatype_isactive
-	FROM DATA_TYPE
-	WHERE datatype_isactive =1
+	<select id="selectDataTypeList" resultType="DataType">
+		SELECT data_type, datatype_isactive
+		FROM data_type
+		WHERE datatype_isactive =1
+	</select>
 
-</select>
+	<insert id="insertDataType" parameterType="DataType">
+		INSERT INTO data_type (data_type, datatype_isactive)
+		VALUES (#{dataType}, #{datatypeIsactive})
+	</insert>
+
+	<update id="updateDataType" parameterType="DataType">
+		UPDATE data_type
+		SET data_type = #{dataType},
+		datatype_isactive = #{datatypeIsactive}
+		WHERE data_type = #{dataType}
+	</update>
 </mapper>
 	
