@@ -29,7 +29,7 @@ uri="http://www.springframework.org/security/tags" %>
   <body>
     <div class="container">
       <div class="row">
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <sec:authorize access="hasRole('ROLE_ADMIN') ">
           <jsp:include page="/WEB-INF/views/common/menuAdmin.jsp" />
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
@@ -40,11 +40,9 @@ uri="http://www.springframework.org/security/tags" %>
         <div class="col">
           <jsp:include page="/WEB-INF/views/common/header.jsp" />
           <div>
-            <div class="content">
-              <div class="notice-header">
-                <p class="notice-title">&gt; 공지사항 상세</p>
-              </div>
-              <table class="table table-bordered table-container">
+            <h4 class="fw-bold notice-title">> 공지사항 상세</h4>
+            <div class="pt-3 content">
+              <table class="table table-bordered">
                 <tr>
                   <td class="table-light" id="tdth">
                     제목<span class="form-required">(*)</span>
@@ -52,21 +50,27 @@ uri="http://www.springframework.org/security/tags" %>
                   <td id="table-contents" colspan="5">${notice.noticeTitle}</td>
                 </tr>
                 <tr>
-                  <td class="table-light">작성자</td>
-                  <td id="table-contents">관리자</td>
-                  <td class="table-light">작성일자</td>
-                  <td id="table-contents">
+                  <td class="table-secondary" id="tdth">작성자</td>
+                  <td id="table-contents" style="width: 20%">${notice.MId}</td>
+                  <td class="table-secondary" style="width: 16.66%" id="tdth">
+                    작성일자
+                  </td>
+                  <td id="table-contents" style="width: 16.66%">
                     <fmt:formatDate
                       value="${notice.noticeRegdate}"
                       pattern="yyyy-MM-dd"
                     />
                   </td>
-                  <td class="table-light">조회수</td>
-                  <td id="table-contents">${notice.noticeHitcount + 1}</td>
+                  <td class="table-secondary" style="width: 16.66%" id="tdth">
+                    조회수
+                  </td>
+                  <td id="table-contents" style="width: 16.66%">
+                    ${notice.noticeHitcount+1}
+                  </td>
                 </tr>
                 <c:if test="${notice.noticeFilename != null}">
                   <tr>
-                    <td class="table-light">첨부파일</td>
+                    <td class="table-secondary" id="tdth">첨부파일</td>
                     <td id="table-contents" colspan="5">
                       <a
                         href="fileDownload?noticeId=${notice.noticeId}"
@@ -77,20 +81,20 @@ uri="http://www.springframework.org/security/tags" %>
                   </tr>
                 </c:if>
                 <tr>
-                  <td class="table-light">내용</td>
+                  <td class="table-secondary" id="tdth">내용</td>
                   <td colspan="5" id="detailContents">
                     ${notice.noticeContent}
                   </td>
                 </tr>
               </table>
-              <table class="table table-bordered table-container" id="subTable">
+              <table class="table table-bordered" id="subTable">
                 <tr>
-                  <td class="table-light" id="subtdth">다음글</td>
+                  <td class="table-secondary" id="subtdth">다음글</td>
                   <td id="table-contents">
                     <c:choose>
-                      <c:when test="${notice.nextNum == 0}"
-                        >다음글이 없습니다.</c:when
-                      >
+                      <c:when test="${notice.nextNum == 0}">
+                        다음글이 없습니다.
+                      </c:when>
                       <c:otherwise>
                         <a
                           href="noticeDetail?noticeId=${notice.nextNum}"
@@ -102,12 +106,13 @@ uri="http://www.springframework.org/security/tags" %>
                   </td>
                 </tr>
                 <tr>
-                  <td class="table-light" id="subtdth">이전글</td>
+                  <td class="table-secondary" id="subtdth">이전글</td>
                   <td id="table-contents">
                     <c:choose>
-                      <c:when test="${notice.prevNum == 0}"
-                        >이전글이 없습니다.</c:when
-                      >
+                      <c:when test="${notice.prevNum == 0}">
+                        이전글이 없습니다.
+                      </c:when>
+
                       <c:otherwise>
                         <a
                           href="noticeDetail?noticeId=${notice.prevNum}"
@@ -120,7 +125,9 @@ uri="http://www.springframework.org/security/tags" %>
                 </tr>
               </table>
               <div class="d-flex justify-content-end mt-3">
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <sec:authorize
+                  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')"
+                >
                   <button
                     type="button"
                     class="btn-delete me-2"
@@ -148,10 +155,10 @@ uri="http://www.springframework.org/security/tags" %>
                   </button>
                 </sec:authorize>
 
-                <sec:authorize
-                  access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')"
-                >
-                  <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                <sec:authorize access="hasRole('ROLE_USER')">
+                  <sec:authorize
+                    access="!hasRole('ROLE_ADMIN') and !hasRole('ROLE_DBA')"
+                  >
                     <button
                       type="button"
                       class="btn-add"
@@ -181,10 +188,10 @@ uri="http://www.springframework.org/security/tags" %>
         src="${pageContext.request.contextPath}/resources/js/notice/noticeDelete.js"
       ></script>
     </sec:authorize>
-    <sec:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_DBA')">
+    <sec:authorize access="hasRole('ROLE_DBA')">
       <sec:authorize access="!hasRole('ROLE_ADMIN')">
         <script
-          src="${pageContext.request.contextPath}/resources/js/notice/noticeList.js"
+          src="${pageContext.request.contextPath}/resources/js/notice/noticeDBA.js"
         ></script>
       </sec:authorize>
     </sec:authorize>

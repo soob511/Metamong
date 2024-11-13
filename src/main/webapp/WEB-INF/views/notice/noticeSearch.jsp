@@ -13,6 +13,7 @@
 			<th scope="col">No.</th>
 			<th scope="col" id="title">제목</th>
 			<th scope="col">등록일</th>
+			<th scope="col">작성자</th>
 			<th scope="col">조회수</th>
 		</tr>
 	</thead>
@@ -35,6 +36,7 @@
 					<td id="title">${notice.noticeTitle}</td>
 					<td><fmt:formatDate value="${notice.noticeRegdate}"
 							pattern="yyyy-MM-dd" /></td>
+							 <td>${notice.MId}</td>
 					<td>${notice.noticeHitcount}</td>
 				</tr>
 			</c:forEach>

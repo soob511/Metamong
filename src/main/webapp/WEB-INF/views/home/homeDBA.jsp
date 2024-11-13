@@ -81,8 +81,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <div class="notice-container">
                   <table class="table table-hover">
                     <thead class="table">
-                      <tr class="table-light">
-                        <th scope="col">No.</th>
+                      <tr class="table-secondary">
                         <th scope="col">제목</th>
                         <th scope="col">등록일</th>
                         <th scope="col">작성자</th>
@@ -112,7 +111,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                               pattern="yyyy-MM-dd"
                             />
                           </td>
-                          <td>관리자</td>
+                          <td>${notice.MId}</td>
                           <td>${notice.noticeHitcount}</td>
                         </tr>
                       </c:forEach>
@@ -147,7 +146,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <div class="table-box">
                   <table class="table table-hover">
                     <thead class="table">
-                      <tr class="table-light">
+                      <tr class="table-secondary">
                         <th scope="col">No.</th>
                         <th scope="col">테이블명(논리)</th>
                         <th scope="col">테이블명(물리)</th>
@@ -163,7 +162,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <div class="col-box">
                   <table class="table table-hover">
                     <thead class="table">
-                      <tr class="table-light">
+                      <tr class="table-secondary">
                         <th scope="col">No.</th>
                         <th scope="col">컬럼명</th>
                         <th scope="col">데이터타입</th>

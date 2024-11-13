@@ -15,4 +15,5 @@ public class NoticeUpdateFormDto {
 	private byte[] noticeFiledata;
 	private MultipartFile noticeFile;
 	public int deleteFile;
+	private String MId;
 }

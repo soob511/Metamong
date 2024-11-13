@@ -34,6 +34,7 @@
                                     <option selected>제목</option>
                                     <option>내용</option>
                                     <option>제목+내용</option>
+                                    <option>작성자</option>
                                 </select>
                             </div>
                         </div>
@@ -111,6 +112,70 @@
                         <a href="noticeList?pageNo=${pager.totalPageNo}" class="btn btn-outline-secondary btn-sm">>></a>
                     </div>
                 </div>
+                
+              <table class="table table-hover">
+	                	<thead>
+	                        <tr class="table-light">
+	                            <th scope="col">No.</th>
+	                            <th scope="col" id="title">제목</th>
+	                            <th scope="col">등록일</th>
+	                             <th scope="col">작성자</th>
+	                            <th scope="col">조회수</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody id="noticeTable">
+	                        <c:forEach items="${list}" var="notice" varStatus="status">           
+		                        <tr class="table-row" onclick="location.href='noticeDetail?noticeId=${notice.noticeId}'" style="cursor: pointer;">
+		                            <td scope="row">
+			                            <c:choose>
+											<c:when test="${notice.noticeIsimp == '1'}">
+												
+												<button type="button" class="btn btn-sm">
+									                <i class="bi bi-megaphone"></i>
+									              </button>
+											</c:when>
+											<c:otherwise>
+												${pager.totalRows - (pager.pageNo-1)*pager.rowsPerPage - status.index}
+											</c:otherwise>
+									</c:choose>
+									</td>                          
+		                            <td id="title">${notice.noticeTitle}</td>
+		                            <td><fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd"/></td>
+		                            <td>${notice.MId}</td>
+		                            <td>${notice.noticeHitcount}</td>
+		                        </tr>
+	                      </c:forEach> 
+	                   </tbody>                     
+	                </table>
+	                
+	                <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')">
+	                <div class="d-flex justify-content-end">
+                	<div class="btn btn-write" id="btn-write">
+                    	<a href="${pageContext.request.contextPath}/notice/noticeAddForm">작성하기</a>
+                	</div>
+                </div>
+                </sec:authorize>
+	                <div class="page">
+		           			<a href="noticeList?pageNo=1" class="btn btn-outline-secondary btn-sm"><<</a>
+		           			<c:if test="${pager.groupNo>1}">
+		           				<a href="noticeList?pageNo=${pager.startPageNo-1}" class="btn btn-outline-dark btn-sm"><</a>
+		           			</c:if>
+		           			
+		           			<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
+		           				<c:if test="${pager.pageNo==i}">
+		           					<a href="noticeList?pageNo=${i}" class="btn btn-secondary btn-sm">${i}</a>
+		           				</c:if>
+		           				<c:if test="${pager.pageNo!=i}">
+		           					<a href="noticeList?pageNo=${i}" class="btn btn-outline-secondary btn-sm">${i}</a>
+		           				</c:if>
+		           			</c:forEach>
+		           			
+		           			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+		           				<a href="noticeList?pageNo=${pager.endPageNo+1}" class="btn btn-outline-dark btn-sm">></a>
+		           			</c:if>
+		           			<a href="noticeList?pageNo=${pager.totalPageNo}" class="btn btn-outline-secondary btn-sm">>></a>
+		           	</div>
+	           	</div>
             </div>
         </div>
     </div>

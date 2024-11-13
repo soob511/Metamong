@@ -105,7 +105,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                               pattern="yyyy-MM-dd"
                             />
                           </td>
-                          <td>관리자</td>
+                          <td>${notice.MId}</td>
                           <td>${notice.noticeHitcount}</td>
                         </tr>
                       </c:forEach>
