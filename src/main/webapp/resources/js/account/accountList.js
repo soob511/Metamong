@@ -21,7 +21,7 @@ $(document).ready(function () {
                     <th class="teamId">${team.teamId}</th>
                     <td class="teamName">${team.teamName}</td>
                     <td class="teamIsactive">${
-                      team.teamIsactive == 1 ? "Y" : "N"
+                      team.teamIsactive == 1 ? 'Y' : 'N'
                     }</td>
                 </tr>`;
         });
@@ -32,10 +32,10 @@ $(document).ready(function () {
             teamId: $(this).find(".teamId").text(),
             teamName: $(this).find(".teamName").text(),
             teamIsactive: $(this).find(".teamIsactive").text() === "Y" ? 1 : 0,
-            teamIsupdate: 0,
+            teamIsupdate: 0
           });
         });
-      },
+      }
     });
   });
 
@@ -50,7 +50,7 @@ $(document).ready(function () {
         teamId: teamId,
         teamName: teamName,
         teamIsactive: teamIsactive,
-        teamIsupdate: 1,
+        teamIsupdate: 1
       });
       console.log("추가", teams);
       teamList();
@@ -92,7 +92,7 @@ $(document).ready(function () {
         teamId: teamId,
         teamName: teamName,
         teamIsactive: teamIsactive,
-        teamIsupdate: 2,
+        teamIsupdate: 2
       };
       teams.splice(teamIndex, 1, updateTeam);
       console.log("수정", teams);
@@ -164,12 +164,12 @@ function teamList() {
 $(document).ready(function () {
   $("#submit").click(function () {
     const updatedTeams = teams
-      .filter((team) => team.teamIsupdate !== 0)
-      .map((team) => ({
+      .filter(team => team.teamIsupdate !== 0)
+      .map(team => ({
         teamId: team.teamId,
         teamName: team.teamName,
         teamIsactive: team.teamIsactive,
-        teamIsupdate: team.teamIsupdate,
+        teamIsupdate: team.teamIsupdate
       }));
 
     if (updatedTeams.length != 0) {
