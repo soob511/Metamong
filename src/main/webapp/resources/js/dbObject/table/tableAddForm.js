@@ -73,7 +73,7 @@ $(document).ready(function() {
                                 <td>${code.codeNm}</td>
                                 <td>${code.codeId}</td>
                                  <td>${code.codeLength}</td>
-                                <td>${code.codeContent}</td>
+                               <td>${code.codeContent != null ? code.codeContent : ''}</td>
                              </tr>`;
                 });
                 $('#codeList').html(html);
@@ -122,7 +122,7 @@ $(document).ready(function() {
                                     <td>${code.codeNm}</td>
                                     <td>${code.codeId}</td>
                                     <td>${code.codeLength}</td>
-                                    <td>${code.codeContent}</td>
+                                   <td>${code.codeContent != null ? code.codeContent : ''}</td>
                                  </tr>`;
                     });
                 } else {
