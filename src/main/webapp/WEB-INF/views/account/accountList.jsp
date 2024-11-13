@@ -122,63 +122,6 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" tabindex="-1" id="teamModal" data-bs-backdrop="static">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">회원 소속 관리</h4>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<div class="container team-container">
-					<div class="row d-flex gap-4">
-						<div class="col team-container">
-							<div class="team-subtitle">소속 내역</div>
-							<table class="table table-container" id="teamTable">
-								<thead class="table-light">
-									<tr>
-										<th scope="col">No.</th>
-										<th scope="col">회원 소속명</th>
-										<th scope="col">사용여부</th>
-									</tr>
-								</thead>
-								<tbody id="teamList"></tbody>
-							</table>
-						</div>
-						<div class="col team-form">
-							<div class="team-subtitle">소속 추가/수정</div>
-							<table class="table table-container" id="teamForm">
-								<tr>
-									<td class="table-light">소속명</td>
-									<td><input type="text" id="teamName" class="form-control" placeholder="내용 입력" required></td>
-								</tr>
-								<tr>
-									<td class="table-light">사용여부</td>
-									<td>
-										<select id="teamIsActive" class="form-select use-status-select" aria-label="사용 여부 선택">
-											<option value="1">Y</option>
-											<option value="0">N</option>
-										</select>
-									</td>
-								</tr>
-							</table>
-							<div class="button-group d-flex justify-content-end gap-2">
-								<button class="team-add" type="button">추가</button>
-								<button class="team-edit" type="button" disabled>수정</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<div class="modal-btns">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary">저장하기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
 
 <div class="modal fade" tabindex="-1" id="teamModal" data-bs-backdrop="static">
   <div class="modal-dialog">

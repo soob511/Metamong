@@ -85,7 +85,8 @@
                 </tr>
               </table>
               <div class="d-flex justify-content-end mt-3">
-                <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')">
+              <c:choose>
+                <c:when test="${writer}">
                   <button type="button" class="btn-delete me-2" data-notice-id="${notice.noticeId}">삭제</button>
                   <button type="submit" class="btn-add me-2">
                     <a href="noticeUpdateForm?noticeId=${notice.noticeId}" style="color: white">수정</a>
@@ -93,14 +94,13 @@
                   <button type="button" class="btn-list" data-page-no="${pager.pageNo}">
                     <a href="noticeList?pageNo=${pager.pageNo}" style="color: white">목록</a>
                   </button>
-                </sec:authorize>
-                <sec:authorize access="hasRole('ROLE_USER')">
-                  <sec:authorize access="!hasRole('ROLE_ADMIN') and !hasRole('ROLE_DBA')">
+                </c:when>
+                <c:otherwise>
                     <button type="button" class="btn-add" data-page-no="${pager.pageNo}">
                       <a href="noticeList?pageNo=${pager.pageNo}" style="color: white">목록</a>
                     </button>
-                  </sec:authorize>
-                </sec:authorize>
+                  </c:otherwise>
+                  </c:choose>
               </div>
             </div>
           </div>

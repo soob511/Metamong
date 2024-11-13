@@ -13,7 +13,8 @@
 		member
 		WHERE
 		m_id = #{mId} AND
-		m_isactive = 1
+		m_isactive = 1 AND
+		m_approval_status = 1
 	</select>
 
 	<insert id="insertJoin" parameterType="Member">

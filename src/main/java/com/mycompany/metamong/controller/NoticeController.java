@@ -84,7 +84,7 @@ public class NoticeController {
     }	
 	
 	@GetMapping("/noticeDetail")
-	public String noticeDetail(int noticeId, Model model) {
+	public String noticeDetail(int noticeId, Model model, Authentication auth) {
 		
 		NoticeDto notice = noticeService.getNoticeDetail(noticeId);
 		model.addAttribute("notice", notice);
@@ -98,6 +98,8 @@ public class NoticeController {
 		notice.setNextTitle(prevNext.getNextTitle());
 		
 		model.addAttribute("prevNext", prevNext);
+		
+		model.addAttribute("writer", auth.getName().equals(notice.getMId()));
 		return "notice/noticeDetail";
 	}
 	
@@ -139,17 +141,13 @@ public class NoticeController {
 			notice.setNoticeFiletype(noticeFile.getContentType());
 			notice.setNoticeFiledata(noticeFile.getBytes());
 		}
-		
 		return noticeService.insertNotice(notice);	
 	}
 	
 	@GetMapping("/noticeUpdateForm")
-	public String noticeUpdateForm(Model model, int noticeId, Authentication auth) {
+	public String noticeUpdateForm(Model model, int noticeId) {
 		NoticeDto notice = noticeService.getNoticeDetail(noticeId);
 		
-		if (!auth.getName().equals(notice.getMId())) {
-	        return "redirect:/accessDenied";
-	    }
 	    model.addAttribute("notice", notice);
 		return "notice/noticeUpdateForm";
 	}
@@ -198,17 +196,11 @@ public class NoticeController {
 	
 	@ResponseBody
 	@GetMapping("/deleteNotice")
-	public int deleteNotice(@RequestParam("noticeId") int noticeId, HttpSession session,Authentication auth ) {
+	public int deleteNotice(@RequestParam("noticeId") int noticeId, HttpSession session) {
 	
-		NoticeDto notice = noticeService.getNoticeDetail(noticeId);
-		
-	    if (auth.getName().equals(notice.getMId())) {
 	        noticeService.deleteNotice(noticeId);
 	        Pager pager = (Pager) session.getAttribute("pager");
 	        int pageNo = pager.getPageNo();
 	        return pageNo;
-	    } else {	       
-	        return -1;
-	    }
 	}
 }
