@@ -22,7 +22,6 @@ import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.applyList.ApplyListDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableDeatilDto;
 import com.mycompany.metamong.dto.applyList.ApplyTableListDto;
-import com.mycompany.metamong.dto.column.ApplyColumnDto;
 import com.mycompany.metamong.dto.column.ColumnDto;
 import com.mycompany.metamong.dto.column.NewColumnDto;
 import com.mycompany.metamong.dto.table.ApplyTableDto;

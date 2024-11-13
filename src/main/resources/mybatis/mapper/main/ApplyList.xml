@@ -428,7 +428,8 @@
 UPDATE apply_list
 SET compl_date = NULL,
     dba_name = NULL,
-    approval_status = 0
+    approval_status = 0,
+    query=NULL
 WHERE apply_no = #{applyNo}
 </update>
 

@@ -73,7 +73,7 @@ $(document).ready(function() {
                                 <td>${code.codeNm}</td>
                                 <td>${code.codeId}</td>
                                  <td>${code.codeLength}</td>
-                                <td>${code.codeContent}</td>
+                               <td>${code.codeContent != null ? code.codeContent : ''}</td>
                              </tr>`;
                 });
                 $('#codeList').html(html);
@@ -122,7 +122,7 @@ $(document).ready(function() {
                                     <td>${code.codeNm}</td>
                                     <td>${code.codeId}</td>
                                     <td>${code.codeLength}</td>
-                                    <td>${code.codeContent}</td>
+                                   <td>${code.codeContent != null ? code.codeContent : ''}</td>
                                  </tr>`;
                     });
                 } else {
@@ -162,8 +162,8 @@ $(document).ready(function() {
             if (isDuplicate) {
                 Swal.fire({
                     icon: 'warning',
-                    title: '이미 존재하는 colId입니다.',
-                    text: '다른 colId를 입력해 주세요.'
+                    title: '이미 존재하는 컬럼(물리)이름입니다.',
+                    text: '다른 컬럼(물리)이름를 입력해 주세요.'
                 });
             } else {
                 // 중복이 없는 경우에만 행 추가

@@ -82,9 +82,9 @@
 }
 
 .item-container {
-  min-width: 1367px !important;
-  max-width: 1367px !important;
-  margin: 0 40px 20px 40px !important;
+  min-width: 1370px !important;
+  max-width: 1370px !important;
+  margin: 0 30px 20px 40px !important;
 }
 
 .item-table-container, .update-table-container {

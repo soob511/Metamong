@@ -34,7 +34,7 @@
                     	</c:if>
                     	
                     	<c:if test="${applyList.approvalStatus == 2 || applyList.approvalStatus == 3}">
-                    		<div class="btn-processed btn-light">처리완료</div>
+                    		<div class="btn-processed btn-gray">처리완료</div>
                     	</c:if>
 	                    </div> 
 					</sec:authorize>
