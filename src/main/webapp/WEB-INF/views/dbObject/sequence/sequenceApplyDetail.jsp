@@ -61,7 +61,7 @@
 						</c:if>
 					</div>
 					<hr>
-					<table class="table table-bordered">
+					<table class="table table-bordered table-container">
 						<tr>
 							<td class="table-light">No.</td>
 							<td id="table-contents" colspan="3">${detail.indexNo}</td>
