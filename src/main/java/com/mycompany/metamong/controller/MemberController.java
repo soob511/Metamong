@@ -207,8 +207,6 @@ public class MemberController {
 	
 	@PostMapping("/resetUserPassword")
 	public String resetUserPassword(MemberDto member) {
-//		MemberDto checkValidMember = memberService.checkValidMember(member.getMName(), member.getMTel());
-		log.info("실행" + member);
 		member.setMId(member.getCheckId());
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String password = passwordEncoder.encode(member.getNewPassword());
