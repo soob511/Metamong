@@ -74,7 +74,7 @@
   cursor: pointer;
 }
 
-.btn-add, .btn-search {
+.btn-add {
   width: 50px !important;
   margin-right: 5px;
 }

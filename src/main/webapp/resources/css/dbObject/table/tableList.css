@@ -14,7 +14,7 @@
 .table-search {
   display: flex;
   width: 350px;
-  margin: 0 20px;
+  margin: 0 15px;
   align-items: center;
 }
 
@@ -30,7 +30,11 @@
 
 .btn-search {
   margin-left: 15px;
-  width: 60px !important;
+  width: 50px !important;
+}
+
+#schemaSelect {
+	width: 100px;
 }
 
 .schema-filter {
