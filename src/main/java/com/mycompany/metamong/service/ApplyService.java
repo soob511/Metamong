@@ -395,7 +395,9 @@ public class ApplyService {
 						columnDao.insertColumn(col);
 					}
 				} else {
+
 					applyListDao.updateStatus(applyNo, 3);
+					tableDao.updateTableContent(table.getTableNo(),table.getTableContent());
 					List<ColumnDto> precolumn = columnDao.selectColumnBytableNo(table.getTableNo());
 					for (ColumnDto col : precolumn) {
 						col.setTableNo(table.getTableNo());

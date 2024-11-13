@@ -90,5 +90,11 @@ INSERT INTO apply_table (apply_no, table_no, table_nm, table_id, table_content)
 	JOIN apply_table t ON a.apply_no = t.apply_no
 	WHERE a.apply_no = #{applyNo}
 </select>
+
+<update id="updateTableContent" >
+	UPDATE tables
+	SET table_content = #{tableContent}
+	WHERE table_no = #{tableNo}
+</update>
 </mapper>
 	

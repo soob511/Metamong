@@ -73,4 +73,6 @@ public interface ApplyListDao {
 	public int updateComplDate(int applyNo);
 
 	public int updateRollbackApply(int applyNo);
+
+
 }

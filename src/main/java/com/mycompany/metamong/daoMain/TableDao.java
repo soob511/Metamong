@@ -39,6 +39,8 @@ public interface TableDao {
 
 	public TableRewriteDto selectRewriteTable(int applyNo);
 
+	public int updateTableContent(@Param("tableNo") int tableNo,@Param("tableContent") String tableContent);
+
 
 
 }
