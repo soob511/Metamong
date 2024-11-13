@@ -4,10 +4,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <div class="header d-flex justify-content-end gap-3">
-    <div class="bell">
-        <i class="bi bi-bell"></i>
-        <div class="alarm">5</div>
-    </div>
     <div class="profile-container">
         <c:choose>
             <c:when test="${not empty member.profFilename}">
