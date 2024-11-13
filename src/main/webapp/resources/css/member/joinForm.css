@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+	font-family: "Montserrat", sans-serif;
+	font-weight: font-weight: 400;
+	font-style: normal;
+}
+
 h1 {
     font-weight: bold !important;
     font-size: 50px;
@@ -32,22 +40,23 @@ h1 {
 
 .form-control, .form-select {
     max-width: 270px !important;
-    height: 40px;
+    height: 40px !important;
     margin: 0 20px !important;
-    border-radius: 10px !important;
+    border-radius: 0 !important;
 }
 
 .btn-confirm, .btn-join {
     background-color: #003567;
     color: white;
     border: none;
+    border-radius: 0 !important!
 }
 
 .btn-confirm {
     height: 40px !important;
-    width: 100px;
-    border-radius: 10px !important;
+    width: 80px;
     margin-left: 10px;
+    border-radius: 0 !important!
 }
 
 .form-check-label {
@@ -64,12 +73,12 @@ h1 {
 
 .btn-join {
     width: 270px;
-    height: 55px;
+    height: 45px !important;
     margin-top: 0;
     margin-right: 50px;
-    border-radius: 10px !important;
     border: none;
     font-size: 25px;
+    border-radius: 0 !important!
 }
 
 .swal2-styled.swal2-confirm {

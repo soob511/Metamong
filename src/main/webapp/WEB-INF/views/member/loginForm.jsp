@@ -73,29 +73,29 @@
 				<div class="modal-body">
 					<div class="table-container d-flex justify-content-center">
 						<form action="${pageContext.request.contextPath}/member/resetUserPassword" method="post">
-							<div class="table-header">Reset Your Password</div>
+							<div class="table-header">비밀번호 초기화</div>
 							<div class="modal-input-group">
-		                        <label for="mId" class="input-label">UserName</label> 
+		                        <label for="mId" class="input-label">회원 ID</label> 
 		                        <input type="text" class="form-control"  id="checkId" name="checkId" aria-label="checkId" placeholder="">
 		                    </div>
 		                    <span></span>
 			               	<div class="modal-input-group">
-			                    <label for="mId" class="input-label">PhoneNumber</label>
+			                    <label for="mId" class="input-label">전화번호</label>
 				               	<input type="text" class="form-control"  id="mTel" name="mTel" aria-label="mTel" placeholder="">
 			               	</div>
 			               	<span></span>		                    
 		                    <div class="modal-input-group">
-		                        <label for="mPassword" class="input-label">Password</label> 
+		                        <label for="mPassword" class="input-label">비밀번호</label> 
 		                        <input type="password" class="form-control"  id="newPassword" name="newPassword" aria-label="newPassword" placeholder="" disabled>
 		                    </div>
 		                    <span class="password-message msg">오류메세지</span>
 		                    <div class="modal-input-group">
-		                        <label for="mPassword" class="input-label">CheckPassword</label> 
+		                        <label for="mPassword" class="input-label">비밀번호 확인</label> 
 		                        <input type="password" class="form-control"  id="checkPassword" name="checkPassword" aria-label="checkPassword" placeholder="" disabled>
 		                    </div>
 		                    <span class="password-confirm-message msg">오류메세지</span>
 		                  	<div class="d-flex justify-content-center">
-		                        <button type="submit" class="modal-btn-submit" disabled>Confirm</button>		                  	
+		                        <button type="submit" class="modal-btn-submit" disabled>확인</button>		                  	
 		                  	</div>
 							<button type="button" onclick="checkValidUser()" class="modal-btn-check">Check</button>			               	
 						</form>
