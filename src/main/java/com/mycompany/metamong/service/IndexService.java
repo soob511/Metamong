@@ -129,8 +129,8 @@ public class IndexService {
 		return indexDao.selectIndexRows(schemaName, approvalStatus, indexName);
 	}
 	
-	public int countRowsByApplyMId(String schemaName, int approvalStatus, String mId) {
-		return indexDao.selectRowsByMId(schemaName, approvalStatus, mId);
+	public int countRowsByApplyMId(String schemaName, int approvalStatus, String mName) {
+		return indexDao.selectRowsByMId(schemaName, approvalStatus, mName);
 	}
 
 	public IndexDto checkDuplicateIndexName(String schemaName, String indexName) {
