@@ -78,16 +78,8 @@
 												<option value="개발3팀" ${member.teamName == '개발3팀' ? 'selected' : ''}>개발3팀</option>
 												<option value="개발4팀" ${member.teamName == '개발4팀' ? 'selected' : ''}>개발4팀</option>
 												<option value="개발5팀" ${member.teamName == '개발5팀' ? 'selected' : ''}>개발5팀</option>
+												<option value="개발6팀" ${member.teamName == '개발6팀' ? 'selected' : ''}>개발6팀</option>
 											</select>
-											</div>
-										</td>
-										<td>
-											<div>
-												<select id="teamName-${member.MId}" class="form-select" aria-label="Default select example">
-													<option value="개발1팀" ${member.teamName == '개발1팀' ? 'selected' : ''}>개발1팀</option>
-													<option value="개발2팀" ${member.teamName == '개발2팀' ? 'selected' : ''}>개발2팀</option>
-													<option value="개발3팀" ${member.teamName == '개발3팀' ? 'selected' : ''}>개발3팀</option>
-												</select>
 											</div>
 										</td>
 										<td id="edit"><input type="text" class="form-control" id="mEmpId-${member.MId}" value="${member.MEmpId}"></td>

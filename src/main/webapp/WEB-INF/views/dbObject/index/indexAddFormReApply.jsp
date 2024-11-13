@@ -51,7 +51,7 @@
 						<div class="row">
 							<div class="col-7 index-table">
 								<p class="index-apply-title">컬럼</p>
-								<div class="column-container">
+								<div class="column-container table-container">
 									<table class="table table-hover">
 										<thead class="table-light">
 											<tr>
@@ -90,7 +90,7 @@
 									</table>
 								</div>
 								<div></div>
-								<div class="index-info-container">
+								<div class="index-info-container table-container">
 					                <table class="table">
 					                  <thead class="table-light">
 					                    <tr>
@@ -126,7 +126,7 @@
 										</button>
 									</div>
 								</div>
-								<div class="selected-column-container">
+								<div class="selected-column-container table-container">
 									<table class="table">
 										<thead class="table-light">
 											<tr>
