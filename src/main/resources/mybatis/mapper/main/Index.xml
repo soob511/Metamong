@@ -114,6 +114,7 @@
 	<select id="selectRowsByMId" parameterType="map" resultType="int">
 		SELECT count(*)
 		FROM apply_list a
+		JOIN member m ON a.m_id = m.m_id
 		JOIN apply_index i ON i.apply_no = a.apply_no
 	    <where>
 	    	a.apply_obj = 'INDEX'
@@ -123,8 +124,8 @@
 			<if test="approvalStatus != -1">
 				AND a.approval_status = #{approvalStatus}
 			</if>
-			<if test="mId != '' ">
-				AND a.m_id = #{mId}
+			<if test="mName != '' ">
+				AND m.m_name = #{mName}
 			</if>
 		</where>
 	</select>

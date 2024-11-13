@@ -152,11 +152,10 @@ public class IndexController {
     		HttpSession session,
     		Model model) {
 		int totalRows = 0;
-		log.info("실행#####" + indexName.matches(".*[가-힣].*"));
 		if (!indexName.matches(".*[가-힣].*")) {
 			totalRows = indexService.countIndexRows(schemaName, approvalStatus, indexName);
 		} else {
-			totalRows = indexService.countRowsByApplyMId(schemaName, approvalStatus, auth.getName());			
+			totalRows = indexService.countRowsByApplyMId(schemaName, approvalStatus, indexName);			
 		}
 		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		List<ApplyIndexListDto> list = applyService.getApplyIndexList(
