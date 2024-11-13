@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 .table-list-header {
 	margin: 30px 20px 20px 40px;
 	font-size: 25px;
@@ -9,12 +7,6 @@
 	justify-content: space-between;
 }
 
-table td.table-secondary {
-  font-size: 14px;
-  text-align: center;
-  vertical-align: middle;
-}
-
 .button-groupDBA{
 	margin-right: 40px!important;
 }
@@ -22,63 +14,44 @@ table td.table-secondary {
 .btn-approve, .btn-reapply{
 	background-color: var(--theme);
 	color: white;
-	border-radius: 8px;
 	border: none;
 	width: 70px;
-	height: 30px;
-	font-size: 13px;
 	margin-right: 5px;
-	text-align: center;
-	line-height: 2.4;
+}
+
+.btn-reapply {
+	margin-right: 40px;
 }
 
 .btn-reject {
 	background-color: gray;
 	color: white;
-	border-radius: 8px;
 	border: none;
 	width: 70px;
-	height: 30px;
-	font-size: 13px;
 	margin-right: 5px;
-	text-align: center;
-	line-height: 2.4;
 }
 
 .btn-reflect {
 	background-color: var(--theme);
 	color: white;
-	border-radius: 8px;
 	border: none;
 	width: 70px;
-	height: 30px;
-	font-size: 13px;
 	margin-right: 5px;
-	text-align: center;
-	line-height: 2.4;
 }
 
 .btn-complete{
 	background-color: gray;
 	color: white;
-	border-radius: 8px;
 	border: none;
 	width: 70px;
-	height: 30px;
-	font-size: 13px;
 	margin-right: 5px;
-	text-align: center;
-	line-height: 2.4;
 	pointer-events: none; 
     cursor: default; 
 }
 
 .table {
 	margin: 45px !important;
-	box-shadow: var(--box-shadow);
 	width: 1350px !important;
-	border-radius: 5px !important;
-	overflow: hidden;
 }
 
 thead {
@@ -102,28 +75,24 @@ thead {
 .btn-sql {
 	background-color: white;
 	color: var(--theme);
-	border-radius: 8px;
 	border: 1px solid var(--theme);
 	width: 65px;
-	height: 30px;
-	font-size: 14px;
 }
 
 .btn-list {
 	background-color: var(--theme);
 	color: white;
-	border-radius: 8px;
 	border: none;
 	width: 70px;
-	height: 30px;
-	font-size: 13px;
 	margin-right: 5px;
-	text-align: center;
-	line-height: 2.4;
 	margin-right: 60px;
 }
 
 .table-td-width {
 	width: 30%;
-	
+}
+
+.table-contents {
+	padding-left: 15px;
+	text-align: left;
 }

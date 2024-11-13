@@ -343,7 +343,7 @@ function filterIndex(clickColumnName) {
 						</tr>`;
 				});
 			} else {
-				html += '<th colspan="8">해당 조건에 맞는 인덱스가 없습니다</th>'
+				html += '<tr><th colspan="8">해당 조건에 맞는 인덱스가 없습니다</th></tr>'
 			}
 			$('#indexTableBody').html(html);			 
 		},
