@@ -7,8 +7,8 @@
 .code-table {
    min-width: 660px !important;
    max-width: 660px !important;
-   margin: 5px 20px 20px 40px;
    height: 310px !important;
+   margin: 5px 20px 20px 40px;
 }
 
 .codeAdd-subtitle, .itemAdd-subtitle, .item-header {
@@ -51,7 +51,7 @@
 .button-group {
    display: flex;
    gap: 10px;
-   margin-right: 45px;
+   margin-right: 47px;
    justify-content: flex-end;
 }
 
@@ -89,24 +89,28 @@
    cursor: not-allowed;
 }
 
-#item-background {
+ #item-background {
    overflow-y: scroll;
    height: 230px !important;
 }
 
 .item-header {
-   margin: 5px;
+   margin-left: 0px;
 }
 
 .item-container {
-   min-width: 1360px !important;
-   max-width: 1360px !important;
+   min-width: 1369px !important;
+   max-width: 1369px !important;
    margin: 0 30px 20px 40px !important;
 }
 
 .item-icon {
    display: flex;
    justify-content: space-between;
+   align-items: flex-end;
+   height: 30px;
+   margin-top: 10px;
+   margin-bottom: 10px;
 }
 
 .index-btns button {
@@ -114,9 +118,12 @@
    background: none;
    color: var(--theme);
    width: 25px;
-   height: 25px;
-   margin: 18px 5px 10px 0;
+   height: 25px !important;
    padding: 0;
+}
+
+.item-container .table-container {
+	margin-top: 0 !important;
 }
 
 .selected {
@@ -139,3 +146,18 @@
         .item-container table td:nth-child(7) { width: 10%; }
         .item-container table th:nth-child(8),
         .item-container table td:nth-child(8) { width: 5%; }  
+        
+.modal-header {
+	border: none !important;
+	padding-bottom: 0 !important;
+	padding-left: 0 !important;
+}
+
+.modal-body {
+	padding-top: 0px !important;
+}
+
+.btn-search {
+	width: 50px;
+	margin-left: 10px;
+}

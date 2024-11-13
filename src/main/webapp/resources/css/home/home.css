@@ -1,29 +1,32 @@
-@charset "UTF-8";
-
 .main-container > .row {
 	padding: 30px 45px 0;
-	
 }
 
 .board-title {
 	font-size: 20px;
 	font-weight: 600;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
+}
+
+.table-container {
+	margin-top: 0 !important;
+}
+
+thead, tr, td {
+	height: 42px !important;
 }
 
 .table-board-title {
 	font-weight: 600;
 }
-/* 신청현황 */
-.col-6 {
+.col-6, .col-5 {
 	margin-right: 40px !important;
 	height: 340px;
 }
 
 .dash-board {
-	border-radius: 8px;
 	height: 100%;
-	box-shadow: var(--box-shadow);
+	border: 1px solid #d9d9d9;
 }
 
 #chart {
@@ -71,6 +74,11 @@
 	margin-bottom: 0;
 }
 
+.notice-container {
+	height: 340px;
+	overflow: hidden;
+}
+
 .notice-box .btn-notice {
 	background: none;
     border: none;
@@ -78,39 +86,14 @@
     padding-top: 12px;
 }
 
-.notice-box table, .table-box, .col-box {
-	border-radius: 8px !important;
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-}
-
-table th, table td {
-    font-size: 14px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.notice-container{
-    border-radius: 8px !important;
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    height: 340px;
-}
-
-.table-box {
-	height: 100%;
-	margin-right: 40px;
-}
-
 .table-box, .col-box {
 	height: 340px;
+	overflow: hidden;
 }
 
 #line-chart {
 	padding: 10px;
-	border-radius: 8px;
 	border: 1px solid #d9d9d9;
-	box-shadow: var(--box-shadow);
 }
 
 .schema-filter-label {
@@ -123,8 +106,7 @@ table th, table td {
     justify-content: space-between;
     align-items: center;
     min-width: 200px !important;
-    margin-bottom: 5px;
-    margin-right: 40px;
+    margin-bottom: 4px;
 }
 
 .schema-table-title {
@@ -133,7 +115,6 @@ table th, table td {
 }
 
 .form-select {
-    font-size: 13px !important;
     width: 100px !important;
 }
 
@@ -142,6 +123,7 @@ table th, table td {
 	font-size:14px;
 	font-weight:bold;
 }
+
 #noticeTitle {
 	text-align:left !important;
 	padding-left: 30px !important;

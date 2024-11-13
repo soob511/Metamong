@@ -1,17 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
-uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>HOME</title>
-    <link
-      href="${pageContext.request.contextPath}/resources/css/home/home.css"
-      rel="stylesheet"
-    />
+    <link href="${pageContext.request.contextPath}/resources/css/home/home.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.5/dist/chart.umd.min.js"></script>
   </head>
   <body>
@@ -31,40 +27,23 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     </div>
                     <div class="col">
                       <p class="project-title"># MetaMong 프로젝트</p>
-                      <h4 class="project-user">
-                        반가워요! <span class="fw-bold">${userName}</span
-                        ><span class="fs-5">님</span>
-                      </h4>
-                      <div
-                        class="summary-box d-flex justify-content-center align-items-center"
-                      >
+                      <h4 class="project-user">반가워요! <span class="fw-bold">${userName}</span><span class="fs-5">님</span></h4>
+                      <div class="summary-box d-flex justify-content-center align-items-center">
                         <div>
                           <p>코드/항목</p>
-                          <h3>
-                            <span class="fw-bold">0</span
-                            ><span class="fs-4">건</span>
-                          </h3>
+                          <h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
                         </div>
                         <div>
                           <p>테이블</p>
-                          <h3>
-                            <span class="fw-bold">0</span
-                            ><span class="fs-4">건</span>
-                          </h3>
+                          <h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
                         </div>
                         <div>
                           <p>시퀀스</p>
-                          <h3>
-                            <span class="fw-bold">0</span
-                            ><span class="fs-4">건</span>
-                          </h3>
+                          <h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
                         </div>
                         <div>
                           <p>인덱스</p>
-                          <h3>
-                            <span class="fw-bold">0</span
-                            ><span class="fs-4">건</span>
-                          </h3>
+                          <h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
                         </div>
                       </div>
                     </div>
@@ -74,14 +53,12 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               <div class="col notice-box">
                 <div class="d-flex justify-content-between">
                   <p class="board-title">공지사항</p>
-                  <a href="${pageContext.request.contextPath}/notice/noticeList"
-                    ><button class="btn-notice">+ 더보기</button></a
-                  >
+                  <a href="${pageContext.request.contextPath}/notice/noticeList"><button class="btn-notice">+ 더보기</button></a>
                 </div>
                 <div class="notice-container">
-                  <table class="table table-hover">
+                  <table class="table table-hover table-container">
                     <thead class="table">
-                      <tr class="table-secondary">
+                      <tr class="table-light">
                         <th scope="col">제목</th>
                         <th scope="col">등록일</th>
                         <th scope="col">작성자</th>
@@ -89,16 +66,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach
-                        items="${noticeList}"
-                        var="notice"
-                        varStatus="status"
-                      >
-                        <tr
-                          class="table-row"
-                          onclick="location.href='notice/noticeDetail?noticeId=${notice.noticeId}'"
-                          style="cursor: pointer"
-                        >
+                      <c:forEach items="${noticeList}" var="notice" varStatus="status">
+                        <tr class="table-row" onclick="location.href='notice/noticeDetail?noticeId=${notice.noticeId}'" style="cursor: pointer">
                           <td id="noticeTitle">
                             <c:if test="${notice.noticeIsimp == '1'}">
                               <i class="bi bi-megaphone"></i>
@@ -106,10 +75,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                             ${notice.noticeTitle}
                           </td>
                           <td>
-                            <fmt:formatDate
-                              value="${notice.noticeRegdate}"
-                              pattern="yyyy-MM-dd"
-                            />
+                            <fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd" />
                           </td>
                           <td>${notice.MId}</td>
                           <td>${notice.noticeHitcount}</td>
@@ -125,28 +91,20 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <div class="schema-filter">
                   <div class="schema-table-title">테이블 목록</div>
                   <div class="d-flex align-items-center">
-                    <label for="schemaSelect" class="schema-filter-label"
-                      >스키마명</label
-                    >
-                    <select
-                      id="schemaSelect"
-                      class="form-select"
-                      aria-label="Default select example"
-                    >
+                    <label for="schemaSelect" class="schema-filter-label">스키마명</label>
+                    <select id="schemaSelect" class="form-select" aria-label="Default select example">
                       <c:forEach items="${schemaEnum}" var="schemaEnum">
                         <c:if test="${schemaEnum.name() != 'MAIN'}">
-                          <option value="${schemaEnum.name()}">
-                            ${schemaEnum.name()}
-                          </option>
+                          <option value="${schemaEnum.name()}">${schemaEnum.name()}</option>
                         </c:if>
                       </c:forEach>
                     </select>
                   </div>
                 </div>
-                <div class="table-box">
+                <div class="table-box table-container">
                   <table class="table table-hover">
                     <thead class="table">
-                      <tr class="table-secondary">
+                      <tr class="table-light">
                         <th scope="col">No.</th>
                         <th scope="col">테이블명(논리)</th>
                         <th scope="col">테이블명(물리)</th>
@@ -159,10 +117,10 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               </div>
               <div class="col">
                 <p class="board-title">속성(Column) 목록</p>
-                <div class="col-box">
+                <div class="col-box table-container">
                   <table class="table table-hover">
                     <thead class="table">
-                      <tr class="table-secondary">
+                      <tr class="table-light">
                         <th scope="col">No.</th>
                         <th scope="col">컬럼명</th>
                         <th scope="col">데이터타입</th>

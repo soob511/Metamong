@@ -21,7 +21,7 @@
 			<c:if test="${pager.totalRows > 0}">
 				<c:forEach items="${list}" var="tableList" varStatus="status">
 					<tr>
-						<th scope="row">${status.index+1}</th>
+						<td scope="row">${status.index+1}</td>
 						<td><fmt:formatDate value="${tableList.applyDate}"
 								pattern="yyyy-MM-dd" /></td>
 						<td>${tableList.MName}</td>
@@ -59,7 +59,7 @@
   	<c:if test="${pager.totalRows > 0}">
 <div class="page">
 	<a href="javascript:tableSearch(1)"
-		class="btn btn-outline-primary btn-sm"><<</a>
+		class="btn btn-outline-secondary btn-sm"><<</a>
 	<c:if test="${pager.groupNo > 1}">
 		<a href="javascript:tableSearch(${pager.startPageNo - 1})"
 			class="btn btn-outline-info btn-sm"><</a>
@@ -68,11 +68,11 @@
 	<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 		step="1" var="i">
 		<c:if test="${pager.pageNo == i}">
-			<a href="javascript:tableSearch(${i})" class="btn btn-primary btn-sm">${i}</a>
+			<a href="javascript:tableSearch(${i})" class="btn btn-secondary btn-sm">${i}</a>
 		</c:if>
 		<c:if test="${pager.pageNo != i}">
 			<a href="javascript:tableSearch(${i})"
-				class="btn btn-outline-primary btn-sm">${i}</a>
+				class="btn btn-outline-secondary btn-sm">${i}</a>
 		</c:if>
 	</c:forEach>
 
@@ -81,7 +81,7 @@
 			class="btn btn-outline-info btn-sm">></a>
 	</c:if>
 	<a href="javascript:tableSearch(${pager.totalPageNo})"
-		class="btn btn-outline-primary btn-sm">>></a>
+		class="btn btn-outline-secondary btn-sm">>></a>
 </div>
 </c:if>
 

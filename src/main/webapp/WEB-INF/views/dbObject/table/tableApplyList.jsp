@@ -79,7 +79,7 @@
 								<tbody>
 									<c:forEach items="${list}" var="tableList" varStatus="status">
 										<tr>
-											<th scope="row">${status.index+1}</th>
+											<td scope="row">${status.index+1}</td>
 											<td><fmt:formatDate value="${tableList.applyDate}"
 													pattern="yyyy-MM-dd" /></td>
 											<td>${tableList.MName}</td>

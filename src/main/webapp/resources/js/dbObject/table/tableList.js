@@ -22,7 +22,7 @@ $(document).ready(function() {
     		
     		  data.forEach((type) => {
     	            html += `<tr data-inupdate="0">
-    	                <th>${++count}</th>
+    	                <td>${++count}</td>
     	                <td class="dataType">${type.dataType}</td>
     	                <td class="datatypeIsactive">${type.datatypeIsactive == 1 ? 'Y' : 'N'}</td>
     	            </tr>`;
@@ -65,7 +65,7 @@ $(document).ready(function() {
     	        const count = $('#dataTypeList tr').length + 1;
     	        const newRow = `
     	            <tr data-isupdate="1">
-    	                <th>${count}</th>
+    	                <td>${count}</td>
     	                <td class="dataType">${dataType}</td>
     	                <td class="datatypeIsactive">${isActiveText}</td>
     	            </tr>`;
@@ -222,7 +222,7 @@ function searchTable() {
         			schema:schema},
         success: function(data) {
         	var html = "";
-        	var cHtml=`<th colspan="7">테이블을 선택해 주세요.</th>`; 
+        	var cHtml=`<tr><th colspan="7">테이블을 선택해 주세요.</th><tr>`; 
         	if(Object.keys(data).length>0){
         		var count = 0;
         		data.forEach(table => {

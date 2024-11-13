@@ -8,8 +8,8 @@
   margin-bottom: 30px;
 }
 
-.container-fluid {
-  padding-right: 0 !important;
+#noticeSearch {
+	width: 240px;
 }
 
 .table {

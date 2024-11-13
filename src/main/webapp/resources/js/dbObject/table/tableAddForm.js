@@ -81,7 +81,7 @@ $(document).ready(function() {
         });
     });
 
-    $(".bi-search").on("click", function() {
+    $(".btn-search").on("click", function() {
         searchCode();
     });
     

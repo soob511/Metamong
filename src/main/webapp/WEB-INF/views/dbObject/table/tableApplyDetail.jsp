@@ -62,7 +62,7 @@
 					<div class="row">
 						<div class="col codeApplyInfo">
 							<div class="codeApplyInfo-subtitle">신청정보</div>
-							<table class="table table-bordered codeApplyInfo-table">
+							<table class="table table-bordered codeApplyInfo-table table-container">
 								<tr data-indexno="${indexNo}">
 									<td class="table-light">No.</td>
 									<td colspan="5">
@@ -117,7 +117,7 @@
 						</div>
 						<div class="col code">
 							<div class="codeAdd-subtitle">테이블</div>
-							<table class="table table-bordered code-table">
+							<table class="table table-bordered code-table table-container">
 								<tr>
 									<td class="table-light">스키마명</td>
 									<td colspan="5">
@@ -158,7 +158,7 @@
 
 				<div class="item-container">
 					<div class="item-header">컬럼</div>
-					<div id="item-background">
+					<div id="item-background" class="table-container">
 						<table class="table table-hover  bottom-table">
 							<thead class="table-light">
 								<tr>
@@ -199,7 +199,7 @@
 
 				<div class="button-group">
 					<a href="tableApplyList">
-						<div class="btn-list" type="button">목록</div>
+						<button class="btn-list" type="button">목록</button>
 					</a>
 				</div>
 			</div>
