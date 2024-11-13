@@ -1,21 +1,16 @@
-
 .btn-back {
-	margin: 30px 0 15px 45px;
+	margin: 30px 0 15px 40px;
 	background-color: var(--theme);
 	color: white;
-	border-radius: 8px;
 	border: none;
 	width: 70px;
-	height: 30px;
-	font-size: 13px;
-	text-align: center;
-	line-height: 2.4;
 }
 
 .before-management,.after-management{
 	display: flex;
 	justify-content: space-between;
 	margin: 0 0 0 0;
+	height: 50px;
 }
 
 .before-table{
@@ -27,13 +22,6 @@
 .table-container {
 	margin-top:20px;
 	height: 600px;
-	border-radius: 8px !important; 
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-}
-
-.table {
-	text-align:center;
 }
 
 .before-management-title,.after-management-title{
@@ -42,20 +30,10 @@
 	margin-top: 30px !important;
 }
 
-/* .after-management{
-	margin: 20px 0 10px 10px;
-}
- */
 .after-table{
 	min-width: 660px !important;
 	max-width:660px !important;
 	margin: 20px;
-}
-
-.table th, .table td {
-	font-size:14px;
-    text-align: center;
-    vertical-align: middle;
 }
 
 .tablecompare tbody tr {
@@ -66,14 +44,6 @@
     padding: 15px 10px;
 }
 
-thead {
-	height: 45px;
-	padding: 15px 10px;
-}
-
-
 tr.changed td{
 	background-color: rgba(198, 211, 232, 0.2);
 }
-
-

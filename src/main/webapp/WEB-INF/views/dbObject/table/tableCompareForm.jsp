@@ -24,8 +24,8 @@
 					<div class="row">
 						<div class="col-6 before-table">
 							<div class="before-management">
-								<p class="before-management-title">>
-									${table.tableId}(${table.tableNm}) 테이블 수정전</p>
+								<p class="before-management-title">
+									[기존] ${table.tableId}(${table.tableNm})</p>
 							</div>
 							<div class="table-container">
 								<table class="table tablecompare">
@@ -59,8 +59,8 @@
 						</div>
 						<div class="col-6 after-table">
 							<div class="after-management">
-								<p class="after-management-title">>
-									${table.tableId}(${table.tableNm}) 테이블 수정후</p>
+								<p class="after-management-title">
+									[변경] ${table.tableId}(${table.tableNm})</p>
 							</div>
 							<div class="table-container">
 								<table class="table tablecompare">
