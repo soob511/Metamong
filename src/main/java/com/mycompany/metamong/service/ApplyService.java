@@ -496,7 +496,6 @@ public class ApplyService {
 		ApplyListDto applyList = new ApplyListDto();
 		applyList.setApplyNo(applyNo);
 		applyList.setDbaName(dbaName);
-		log.info("실행" + query);
 		try {
 			switch (schemaName) {
 			case "SRM":
