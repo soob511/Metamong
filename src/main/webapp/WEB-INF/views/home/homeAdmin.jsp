@@ -1,17 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
-uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>HOME</title>
-    <link
-      href="${pageContext.request.contextPath}/resources/css/home/home.css"
-      rel="stylesheet"
-    />
+    <link href="${pageContext.request.contextPath}/resources/css/home/home.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.5/dist/chart.umd.min.js"></script>
   </head>
   <body>
@@ -32,32 +28,20 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                     <div class="col">
                       <p class="project-title"># MetaMong 프로젝트</p>
                       <h4 class="project-user">
-                        반가워요! <span class="fw-bold">${userName}</span
-                        ><span class="fs-5">님</span>
+                        반가워요! <span class="fw-bold">${userName}</span><span class="fs-5">님</span>
                       </h4>
-                      <div
-                        class="summary-box d-flex justify-content-center align-items-center"
-                      >
+                      <div class="summary-box d-flex justify-content-center align-items-center">
                         <div>
                           <p>접수</p>
-                          <h3>
-                            <span class="fw-bold">0</span
-                            ><span class="fs-4">건</span>
-                          </h3>
+                          <h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
                         </div>
                         <div>
                           <p>승인</p>
-                          <h3>
-                            <span class="fw-bold">0</span
-                            ><span class="fs-4">건</span>
-                          </h3>
+                          <h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
                         </div>
                         <div>
                           <p>반려</p>
-                          <h3>
-                            <span class="fw-bold">0</span
-                            ><span class="fs-4">건</span>
-                          </h3>
+                          <h3><span class="fw-bold">0</span><span class="fs-4">건</span></h3>
                         </div>
                       </div>
                     </div>
@@ -67,15 +51,12 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               <div class="col notice-box">
                 <div class="d-flex justify-content-between">
                   <p class="board-title">공지사항</p>
-                  <a href="${pageContext.request.contextPath}/notice/noticeList"
-                    ><button class="btn-notice">+ 더보기</button></a
-                  >
+                  <a href="${pageContext.request.contextPath}/notice/noticeList"><button class="btn-notice">+ 더보기</button></a>
                 </div>
                 <div class="notice-container">
-                  <table class="table table-hover">
+                  <table class="table table-hover table-container">
                     <thead class="table">
                       <tr class="table-light">
-                        <th scope="col">No.</th>
                         <th scope="col">제목</th>
                         <th scope="col">등록일</th>
                         <th scope="col">작성자</th>
@@ -83,16 +64,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach
-                        items="${noticeList}"
-                        var="notice"
-                        varStatus="status"
-                      >
-                        <tr
-                          class="table-row"
-                          onclick="location.href='notice/noticeDetail?noticeId=${notice.noticeId}'"
-                          style="cursor: pointer"
-                        >
+                      <c:forEach items="${noticeList}" var="notice" varStatus="status">
+                        <tr class="table-row" onclick="location.href='notice/noticeDetail?noticeId=${notice.noticeId}'" style="cursor: pointer">
                           <td id="noticeTitle">
                             <c:if test="${notice.noticeIsimp == '1'}">
                               <i class="bi bi-megaphone"></i>
@@ -100,10 +73,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                             ${notice.noticeTitle}
                           </td>
                           <td>
-                            <fmt:formatDate
-                              value="${notice.noticeRegdate}"
-                              pattern="yyyy-MM-dd"
-                            />
+                            <fmt:formatDate value="${notice.noticeRegdate}" pattern="yyyy-MM-dd" />
                           </td>
                           <td>${notice.MId}</td>
                           <td>${notice.noticeHitcount}</td>
@@ -119,10 +89,10 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 <p class="board-title">가입현황</p>
                 <canvas id="line-chart" width="525" height="315"></canvas>
               </div>
-              <div class="col ms-4">
+              <div class="col">
                 <p class="board-title">계정 목록</p>
                 <div class="col-box">
-                  <table class="table table-hover">
+                  <table class="table table-hover table-container">
                     <thead class="table">
                       <tr class="table-light">
                         <th scope="col">No.</th>
@@ -135,11 +105,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach
-                        items="${memberList}"
-                        var="list"
-                        varStatus="status"
-                      >
+                      <c:forEach items="${memberList}" var="list" varStatus="status">
                         <tr>
                           <th scope="row">${status.index + 1}</th>
                           <td>${list.MId}</td>
@@ -148,10 +114,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                           <td>${list.teamName}</td>
                           <td>${list.MEmpId}</td>
                           <td>
-                            <fmt:formatDate
-                              value="${list.MRegdate}"
-                              pattern="yyyy-MM-dd"
-                            />
+                            <fmt:formatDate value="${list.MRegdate}" pattern="yyyy-MM-dd" />
                           </td>
                         </tr>
                       </c:forEach>
