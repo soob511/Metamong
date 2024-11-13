@@ -19,18 +19,18 @@
 				<div class="container table-management">
 				<div>
 				<a href="codeUpdateForm?codeNo=${oldCode.codeNo}&isUpdated=1">
-					<button class="btn-back">뒤로가기</button>
+					<button class="btn-back btn-accent">뒤로가기</button>
 				</a>
 					
 				</div>
 					<div class="row">
 						<div class="col-6 before-table">
 								<div class="before-management">
-									<p class="before-management-title">> ${oldCode.codeId}(${oldCode.codeNm}) 코드 수정전</p>
+									<p class="before-management-title">[기존] ${oldCode.codeId}(${oldCode.codeNm})</p>
 								</div>
 								<div class="table-container">
 									<table class="table">
-										<thead class="table-secondary">
+										<thead class="table-light">
 											<tr>
 												<th scope="col">No.</th>
 												<th scope="col">항목코드</th>
@@ -55,11 +55,11 @@
 						</div>
 						<div class="col-6 after-table">
 								<div class="after-management">
-									<p class="after-management-title">> ${newCode.codeId}(${newCode.codeNm}) 코드 수정후</p>
+									<p class="after-management-title">[변경]${newCode.codeId}(${newCode.codeNm})</p>
 								</div>
 								<div class="table-container">
 									<table class="table">
-										<thead class="table-secondary">
+										<thead class="table-light">
 											<tr>
 												<th scope="col">No.</th>
 												<th scope="col">항목코드</th>

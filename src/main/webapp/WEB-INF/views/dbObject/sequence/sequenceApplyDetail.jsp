@@ -63,40 +63,40 @@
 					<hr>
 					<table class="table table-bordered">
 						<tr>
-							<td class="table-secondary">No.</td>
+							<td class="table-light">No.</td>
 							<td id="table-contents" colspan="3">${detail.indexNo}</td>
 						</tr>
 						<tr>
-							<td class="table-secondary">신청일자</td>
+							<td class="table-light">신청일자</td>
 							<td id="table-contents" style="width: 38%"><fmt:formatDate
 									value="${detail.applyDate}" pattern="yyyy-MM-dd" /></td>
-							<td class="table-secondary">신청자</td>
+							<td class="table-light">신청자</td>
 							<td id="table-contents" style="width: 38%">${detail.MName}</td>
 						</tr>
 						<tr>
-							<td class="table-secondary">처리일자</td>
+							<td class="table-light">처리일자</td>
 							<td id="table-contents" style="width: 38%"><fmt:formatDate
 									value="${detail.complDate}" pattern="yyyy-MM-dd" /></td>
-							<td class="table-secondary">처리자</td>
+							<td class="table-light">처리자</td>
 							<td id="table-contents" style="width: 38%">${detail.dbaName}</td>
 						</tr>
 						<tr>
-							<td class="table-secondary">시퀀스명</td>
+							<td class="table-light">시퀀스명</td>
 							<td id="table-contents" colspan="3">${detail.seqName}</td>
 
 						</tr>
 						<tr>
-							<td class="table-secondary">스키마명</td>
+							<td class="table-light">스키마명</td>
 							<td id="table-contents" colspan="3">${detail.schemaName}</td>
 
 						</tr>
 						<tr>
-							<td class="table-secondary">신청사유</td>
+							<td class="table-light">신청사유</td>
 							<td id="table-contents" colspan="3">${detail.applyReason}</td>
 
 						</tr>
 						<tr>
-							<td class="table-secondary">상태</td>
+							<td class="table-light">상태</td>
 							<td id="table-contents" colspan="3"><c:choose>
 									<c:when test="${detail.approvalStatus == 0}">
 										<span id="status-await">승인대기</span>
@@ -113,18 +113,18 @@
 								</c:choose></td>
 						</tr>
 						<tr>
-							<td class="table-secondary">반려사유</td>
+							<td class="table-light">반려사유</td>
 							<td id="table-contents" colspan="3">${detail.rejectReason}</td>
 						</tr>
 						<tr>
-							<td class="table-secondary">쿼리문</td>
+							<td class="table-light">쿼리문</td>
 							<td id="table-contents" colspan="3">
 								<button class="btn-sql" data-bs-toggle="modal"
 									data-bs-target="#sqlLoadModal">SQL</button>
 							</td>
 						</tr>
 						<tr>
-							<td class="table-secondary">첨부파일</td>
+							<td class="table-light">첨부파일</td>
 							<td id="table-contents" colspan="3"><a
 								href="${pageContext.request.contextPath}/sequence/downloadFile?applyNo=${detail.applyNo}">
 									${detail.seqFileName} </a></td>

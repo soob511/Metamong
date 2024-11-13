@@ -77,7 +77,7 @@ $(document).ready(function () {
 
                 data.codeList.forEach((code) => {
                     cHtml += `<tr class="code-row" onclick="getExcelItems(${code.id})">
-                        <th>${code.id}</th>
+                        <td>${code.id}</td>
                         <td class="codeNm">${code.codeNm}</td>
                         <td class="codeId">${code.codeId}</td>
                         <td class="codeLength">${code.codeLength}</td>
@@ -87,7 +87,7 @@ $(document).ready(function () {
 
                 data.itemList.forEach((item) => {
                     iHtml += `<tr class="code-row" style="display: none;">
-                        <th>${item.id}</th>
+                        <td>${item.id}</td>
                         <td class="itemId">${item.itemId}</td>
                         <td class="itemNm">${item.itemNm}</td>
                         <td class="itemContent">${item.itemContent}</td>
@@ -110,7 +110,7 @@ $(document).ready(function () {
 function getExcelItems(id) {
     $('.no-file').hide();
     $('.excel-items .code-row').each(function () {
-        let clickId = $(this).find('th').text();
+        let clickId = $(this).find('td:eq(0)').text();
         (clickId == id) ? $(this).show() : $(this).hide();
     });
 }
@@ -130,7 +130,7 @@ function searchCode() {
                 let count = 0;
                 data.forEach((code) => {
                     cHtml += `<tr class="code-row" onclick="showItemList(${code.codeNo})" data-code-no="${code.codeNo}">
-                        <th>${++count}</th>
+                        <td>${++count}</td>
                         <td>${code.codeNm}</td>
                     	<td>${code.codeId}</td>
                     	<td>${code.codeLength}</td>
@@ -157,7 +157,7 @@ function showItemList(codeNo) {
             let count = 0;
             data.forEach((item) => {
                 html += `<tr>
-                    <th>${++count}</th>
+                    <td>${++count}</td>
                     <td>${item.itemId}</td>
                     <td>${item.itemNm}</td>
                     <td>${item.itemIsActive == 1 ? "Y" : "N"}</td>
@@ -175,7 +175,7 @@ function codeApplyExcel() {
 	let applyReason = $('.applyReason').val().trim();
 	console.log(applyReason);
 	$('.excel-codes .code-row').each(function() {
-		let id = $(this).find('th').text()
+		let id = $(this).find('td:eq(0)').text()
 		let codeNm = $(this).find('.codeNm').text();
 		let codeId = $(this).find('.codeId').text();
 		let codeLength = $(this).find('.codeLength').text();
@@ -187,7 +187,7 @@ function codeApplyExcel() {
 		    let itemNm = $(this).find('.itemNm').text();
 		    let itemContent = $(this).find('.itemContent').text();
 
-		    if (id == $(this).find('th').text()) {
+		    if (id == $(this).find('td:eq(0)').text()) {
 		        items.push({
 		            itemId: itemId,
 		            itemNm: itemNm,

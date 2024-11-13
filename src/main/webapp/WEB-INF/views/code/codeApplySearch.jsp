@@ -6,7 +6,7 @@
     <div class="table-container">
         <table class="table table-hover">
             <thead class="table">
-                <tr class="table-secondary">
+                <tr class="table-light">
                     <th scope="col">No.</th>
                     <th scope="col">신청일자</th>
                     <th scope="col">신청자</th>
@@ -21,7 +21,7 @@
             	<c:if test="${pager.totalRows > 0}">
 	                <c:forEach items="${list}" var="code" varStatus="status">
 	                    <tr>
-	                        <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
+	                        <td scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</td>
 	                        <td>
 	                            <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 	                        </td>

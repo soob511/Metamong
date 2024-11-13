@@ -31,7 +31,7 @@
 								<p class="index-apply-title">인덱스</p>
 								<div class="table-container">
 									<table class="table table-hover">
-										<thead class="table-secondary">
+										<thead class="table-light">
 											<tr>
 												<th scope="col">No.</th>
 												<th scope="col">인덱스명</th>

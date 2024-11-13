@@ -5,7 +5,7 @@
 
 <div class="table-container">
 	<table class="table table-hover">
-		<thead class="table-secondary">
+		<thead class="table-light">
 			<tr>
 				<th scope="col">No.</th>
 				<th scope="col">신청일자</th>

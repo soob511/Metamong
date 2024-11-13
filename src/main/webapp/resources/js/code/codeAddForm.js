@@ -174,7 +174,7 @@ $(document).ready(function () {
     items.forEach((item, index) => {
       $(".item-list").append(
         `<tr class="item">
-                    <th>${index + 1}</th>
+                    <td>${index + 1}</td>
                     <td class="itemId">${item.itemId}</td>
                     <td class="itemNm">${item.itemNm}</td>
                     <td>Y</td>

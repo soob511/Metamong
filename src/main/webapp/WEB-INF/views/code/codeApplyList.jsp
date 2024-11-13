@@ -16,9 +16,8 @@
         <div class="col">
             <jsp:include page="/WEB-INF/views/common/header.jsp" />
             <div class="content">
-                <div class="fw-bold code-applyList-title">코드/항목 신청내역</div>
-                <hr>
-                <div class="d-flex justify-content-end">
+                <div class="fw-bold code-applyList-title">> 코드/항목 신청내역</div>
+                <div class="search-container d-flex justify-content-end">
                     <div class="d-flex align-items-center">
                         <label for="statusSelect" class="status-filter-label">상태</label>
                         <select id="statusSelect" class="form-select" aria-label="Default select">
@@ -37,14 +36,14 @@
                         <form>
                             <input class="form-control me-2" type="search" id="codeNameSearch" placeholder="Search" aria-label="Search">
                         </form>
-                        	<button class="btn-search">조회</button>
+                        	<button class="btn-accent  btn-search">조회</button>
                     </div>
                 </div>
                 <div id="codeContainer">
                     <div class="table-container">
                         <table class="table table-hover">
                             <thead class="table">
-                                <tr class="table-secondary">
+                                <tr class="table-light">
                                     <th scope="col">No.</th>
                                     <th scope="col">신청일자</th>
                                     <th scope="col">신청자</th>
@@ -58,7 +57,7 @@
                             <tbody>
 								<c:forEach items="${list}" var="code" varStatus="status">
 								        <tr>
-								            <th scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</th>
+								            <td scope="row">${pager.totalRows - (pager.pageNo-1) * 10 - status.index}</td>
 								            <td>
 								                <fmt:formatDate value="${code.applyDate}" pattern="yyyy-MM-dd" />
 								            </td>
@@ -96,7 +95,7 @@
 								class="btn btn-outline-secondary btn-sm"><<</a>
 							<c:if test="${pager.groupNo>1}">
 								<a href="codeApplyList?pageNo=${pager.startPageNo-1}"
-									class="btn btn-outline-info btn-sm"><</a>
+									class="btn btn-outline-secondary btn-sm"><</a>
 							</c:if>
 
 							<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
@@ -113,7 +112,7 @@
 
 							<c:if test="${pager.groupNo<pager.totalGroupNo}">
 								<a href="codeApplyList?pageNo=${pager.endPageNo+1}"
-									class="btn btn-outline-info btn-sm">></a>
+									class="btn btn-outline-secondary btn-sm">></a>
 							</c:if>
 							<a href="codeApplyList?pageNo=${pager.totalPageNo}"
 								class="btn btn-outline-secondary btn-sm">>></a>

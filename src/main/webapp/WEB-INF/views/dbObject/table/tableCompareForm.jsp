@@ -29,7 +29,7 @@
 							</div>
 							<div class="table-container">
 								<table class="table tablecompare">
-									<thead class="table-secondary">
+									<thead class="table-light">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">항목코드</th>
@@ -64,7 +64,7 @@
 							</div>
 							<div class="table-container">
 								<table class="table tablecompare">
-									<thead class="table-secondary">
+									<thead class="table-light">
 										<tr>
 											<th scope="col">No.</th>
 											<th scope="col">항목코드</th>

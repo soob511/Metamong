@@ -1,236 +1,124 @@
 .form-required {
-    color: red;
-}
-.form-label {
-    width: 8%;
-    text-align: center;
-    
-}
-.fw-bold {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    margin-left: 45px;
-    margin-right: 45px;
+  color: red;
 }
 
-.notice-title {
-	margin-bottom: 40px;
-}
-#noticeList{
-	margin-top: 30px;
-	border-radius: 5px !important; 
-    box-shadow: var(--box-shadow);
-    /* overflow: hidden; */
-    text-align: center;
-   table-layout: fixed; 
-     width: 100%;
-}
-.content {
-    margin-top: 30px;
-    margin-left: 45px;
-    margin-right: 45px;
-    font-size: 14px;
-    
+.notice-header {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .container-fluid {
-    padding-right: 0 !important;
-}
-.search-form i {
-    margin-left: -25px;
-    z-index: 1;
-    position: relative;
-    top: 8px;
-}
-.table {
-   margin-top:20px;
-	border-radius: 5px !important; 
-    box-shadow: var(--box-shadow);
-     overflow: hidden; 
-    text-align: center;
-     table-layout: fixed; 
-     width: 100%;
+  padding-right: 0 !important;
 }
 
-.table th, .table td {
-    font-size: 14px;
-    text-align: center;
-    vertical-align: middle;
+.table {
+  margin-top: 50px;
+  width: 100%;
 }
+
 .td detail {
-    text-align: left;
+  text-align: left;
 }
-.table-hover tbody tr {
-    height: 50px;
-}
-.table-hover td, .table-hover th {
-    padding: 15px 10px;
-}
-thead {
-    height: 45px;
-    padding: 15px 10px;
-}
-.pagination {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    z-index: 100;
-}
-.subtitle {
-    width: 8%;
-}
+
 .btn-write {
-    font-size: 14px;
-    padding: 0 !important;
-    margin-top: 20px;
+  padding: 0 !important;
+  margin-top: 20px;
 }
-.btn-write a{
-   background-color: var(--theme);
-    color: white;
-    border-radius: 8px;
-    width: max-content;
-    height: 30px;
-    line-height: 18px;
-    padding: 8px 10px;
+
+.btn-write a {
+  background-color: var(--theme);
+  color: white;
+  width: max-content;
+  padding: 8px 10px;
 }
-tr {
-    height: 50px;
-}
-td, th {
-    text-align: center;
-    vertical-align: middle;
-    overflow: hidden;
-    width: 100px;
-    height: 50px; 
-}
+
 .sub {
-    padding-left: 50px;
+  padding-left: 50px;
 }
+
 h4 {
-    font-size: 25px;
+  font-size: 25px;
 }
-.table-secondary {
-    width: 8%;
-    text-align: center;
-}
-#table-contents, #author {
-	vertical-align:middle !important;
-    text-align: left;
-   
+
+#table-contents,
+#author {
+  vertical-align: middle !important;
+  text-align: left;
 }
 
 #author span {
-	padding-left: 12px;
-	font-size: 16px;
-}
-.table input, .table textarea {
-	border: none;
+  padding-left: 12px;
+  font-size: 16px;
 }
 
-.btn-add {
-    background-color: var(--theme);
-    color: white;
-    border-radius: 8px;
-    border: none;
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
-    margin-top: 10px;
+.table input,
+.table textarea {
+  border: none;
 }
 
+.btn-add,
 .btn-lists {
-    background-color: var(--theme);
-    color: white;
-    border-radius: 8px;
-    border: none;
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
-    margin-top: 10px;
-}
-.btn-delete {
-    background-color: white;
-    color: var(--theme);
-    border-radius: 8px;
-    border: 1px solid var(--theme);
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
-    margin-top: 10px;
+  background-color: var(--theme);
+  color: white;
+  border: none;
+  width: 50px;
+  margin-top: 10px;
 }
 
-.btn-update {
-    background-color: white;
-    color: var(--theme);
-    border-radius: 8px;
-    border: 1px solid var(--theme);
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
-    margin-top: 10px;
-}
+.btn-delete,
+.btn-update,
 .btn-cancel {
-    background-color: white;
-    color: var(--theme);
-    border-radius: 8px;
-    border: 1px solid var(--theme);
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
-    margin-top: 10px;
+  background-color: white;
+  color: var(--theme);
+  border: 1px solid var(--theme);
+  width: 50px;
+  margin-top: 10px;
 }
 
 .btn-list {
-	background-color: #949494;
-    color: white;
-    border-radius: 8px;
-    border: none;
-    width: 50px;
-    height: 30px;
-    font-size: 14px;
-    margin-top: 10px;
+  background-color: #949494;
+  color: white;
+  border: none;
+  width: 50px;
+  margin-top: 10px;
 }
 
-#title {
-	color:black !important;
+.btn-search {
+  margin-left: 15px;
+  width: 60px !important;
 }
+
 #detailContents {
-	height:300px;
-	text-align:left;
-	
+  height: 300px;
+  text-align: left;
 }
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-#noticeContentTd {
-	text-align:left;
-}
-#tdth{
-	vertical-align:middle;
+
+#noticeContentTd,
+#existingFile,
+#existingRegdate {
+  text-align: left;
 }
 
 #subtdth {
-	vertical-align:middle;
-	width:8% !important;
+  vertical-align: middle;
+  width: 8% !important;
 }
-#existingFile {
-	text-align:left;
-}
-#existingRegdate {
-	text-align:left;
-}
+
 #removeFileBtn {
-	margin-left:10px;
+  margin-left: 10px;
 }
+
 #subTable {
-	margin-top:30px !important;
+  margin-top: 40px !important;
 }
+
 .table-row .bi-megaphone {
-	color:#003567 !important;
-	font-size:15px;
-	font-weight:bold;
+  color: #003567 !important;
+  font-size: 13px;
+  font-weight: bold;
 }
+
 #title {
-	text-align:left;
+  text-align: left;
 }

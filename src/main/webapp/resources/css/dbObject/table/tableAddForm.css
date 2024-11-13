@@ -1,22 +1,14 @@
-@charset "UTF-8";
-
 .codeAdd-header {
-   margin: 20px 20px 0 40px;
-   font-size: 25px;
-   font-weight: bold;
+  margin: 30px 20px 0 40px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .code-table {
    min-width: 660px !important;
    max-width: 660px !important;
-   height: 330px;
    margin: 5px 20px 20px 40px;
-}
-
-.table {
-   border-radius: 8px !important;
-   box-shadow: var(--box-shadow);
-   overflow: hidden;
+   height: 310px !important;
 }
 
 .codeAdd-subtitle, .itemAdd-subtitle, .item-header {
@@ -27,6 +19,7 @@
 
 .codeAdd-subtitle {
    margin-left: 40px;
+   height: 35px;
 }
 
 .item-management {
@@ -36,27 +29,8 @@
 .item-table {
    min-width: 660px !important;
    max-width: 660px !important;
-   height: 300px;
-   margin: 5px 20px;;
-}
-
-.table th, .table td {
-   font-size: 14px;
-   text-align: center;
-   vertical-align: middle;
-}
-
-.table-hover tbody tr {
-   height: 40px;
-}
-
-.table-hover td, .table-hover th {
-   padding: 15px 10px;
-}
-
-thead {
-   height: 40px;
-   padding: 15px 10px;
+   margin: 5px 20px;
+   height: 300px !important;
 }
 
 .content-input {
@@ -98,25 +72,15 @@ thead {
 .btn-load, .btn-reset {
    background-color: white;
    color: var(--theme);
-   border-radius: 8px;
    border: 1px solid var(--theme);
    width: 70px;
-   height: 30px;
-   font-size: 14px;
-   text-align: center;
-   line-height: 2.1;
 }
 
 .btn-add, .btn-update, .btn-apply {
    background-color: var(--theme);
    color: white;
-   border-radius: 8px;
    border: none;
    width: 70px;
-   height: 30px;
-   font-size: 13px;
-   text-align: center;
-   line-height: 2.4;
 }
 
 .btn-update:disabled {
@@ -126,8 +90,6 @@ thead {
 }
 
 #item-background {
-   border-radius: 8px !important;
-   box-shadow: var(--box-shadow);
    overflow-y: scroll;
    height: 230px !important;
 }
@@ -139,7 +101,7 @@ thead {
 .item-container {
    min-width: 1360px !important;
    max-width: 1360px !important;
-   margin: 10px 30px 20px 40px !important;
+   margin: 0 30px 20px 40px !important;
 }
 
 .item-icon {
@@ -148,19 +110,13 @@ thead {
 }
 
 .index-btns button {
-   border: 1.5px solid var(--theme);
-   border-radius: 3px;
+   border: 1px solid var(--theme);
    background: none;
    color: var(--theme);
-   font-size: 14px;
    width: 25px;
    height: 25px;
    margin: 18px 5px 10px 0;
    padding: 0;
-}
-
-#move-up,#move-down{
-   margin-top: 2px;
 }
 
 .selected {

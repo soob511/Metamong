@@ -27,7 +27,7 @@ $("#noticeSearch").on("keydown", function(event) {
     }
 });
 
-$('.bi-search').on('click', function() {
+$('.btn-search').on('click', function() {
 	noticeSearch();
 });
 

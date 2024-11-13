@@ -22,7 +22,7 @@ $('#statusSelect').off('change').on('change', function() {
     accountApplySearch(1);
 });
 
-$('.bi-search').off('click').on('click', function() {
+$('.btn-search').off('click').on('click', function() {
     accountApplySearch(1);
 });
 

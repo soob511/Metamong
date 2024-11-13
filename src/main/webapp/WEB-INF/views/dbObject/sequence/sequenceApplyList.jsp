@@ -56,9 +56,9 @@
 							</div>
 							<div class="schema-filter">
 								<label for="tableNameSearch" class="table-search-label">시퀀스명/신청자</label>
-								<input class="form-control me-2" type="search"
+								<input class="form-control" type="search"
 									id="tableNameSearch" placeholder="Search" aria-label="Search">
-								<i class="bi bi-search"></i>
+								<button class="btn-search btn-accent">조회</button>
 							</div>
 						</div>
 					</div>
@@ -66,7 +66,7 @@
 						<div class="table-container">
 							<table class="table table-hover">
 								<thead class="table">
-									<tr class="table-secondary">
+									<tr class="table-light">
 										<th scope="col">No.</th>
 										<th scope="col">신청일자</th>
 										<th scope="col">신청자</th>
@@ -80,7 +80,7 @@
 								<tbody id="searchSequenceList">
 									<c:forEach items="${list}" var="seq" varStatus="status">
 										<tr>
-											<th scope="row">${status.index+1}</th>
+											<td scope="row">${status.index+1}</td>
 											<td><fmt:formatDate value="${seq.applyDate}"
 													pattern="yyyy-MM-dd" /></td>
 											<td>${seq.MName}</td>

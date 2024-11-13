@@ -54,7 +54,7 @@
 								<p class="index-apply-title">컬럼</p>
 								<div class="column-container">
 									<table class="table table-hover">
-										<thead class="table-secondary">
+										<thead class="table-light">
 											<tr>
 												<th scope="col"><input class="form-check-input"
 													type="checkbox" value="" id="flexCheckDefault"></th>
@@ -76,7 +76,7 @@
 								<div></div>
 								<div class="index-info-container">
 					                <table class="table">
-					                  <thead class="table-secondary">
+					                  <thead class="table-light">
 					                    <tr>
 					                      <th scope="col">No.</th>
 					                      <th scope="col">인덱스명</th>
@@ -112,7 +112,7 @@
 								</div>
 								<div class="selected-column-container">
 									<table class="table">
-										<thead class="table-secondary">
+										<thead class="table-light">
 											<tr>
 												<th scope="col">No.</th>
 												<th>컬럼명(물리)</th>

@@ -18,7 +18,7 @@
             <div class="col code-list-main">
                 <jsp:include page="/WEB-INF/views/common/header.jsp" />
                 <div class="code-list-header">
-                    <p class="code-list-title">&gt; 코드/항목 관리</p>
+                    <p class="fw-bold  code-list-title">&gt; 코드/항목 관리</p>
                 </div>
                 <div class="code-list-filters">
                     <div class="code-search">
@@ -36,7 +36,7 @@
                             <option value="1">Y</option>
                             <option value="0">N</option>
                         </select>
-                        <button class="btn-search">조회</button>
+                        <button class="btn-search btn-accent">조회</button>
                     </div>
                 </div>
                 <hr />
@@ -48,15 +48,15 @@
                                 
                                 <sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_DBA')">
 									<div class="code-buttons d-flex gap-1">
-										<button data-bs-toggle="modal" data-bs-target="#excelModal" class="btn-excel">EXCEL 업로드</button>
-	                                    <a href="codeAddForm"><button class="btn-add">추가</button></a>
+										<button data-bs-toggle="modal" data-bs-target="#excelModal" class="btn-excel btn-normal">EXCEL 업로드</button>
+	                                    <a href="codeAddForm"><button class="btn-add btn-accent">추가</button></a>
 	                                    <button class="btn-edit">수정</button>
 	                                </div>
 								</sec:authorize>								
                             </div>
-                            <div class="code-table-container">
+                            <div class="code-table-container table-container">
                                 <table class="table table-hover" id="codeTable">
-                                    <thead class="table-secondary">
+                                    <thead class="table-light">
                                         <tr>
                                             <th scope="col">No.</th>
                                             <th scope="col">코드(논리)</th>
@@ -69,7 +69,7 @@
                                     <tbody id="codeList">
                                         <c:forEach items="${codeList}" var="code" varStatus="status">
                                             <tr class="code-row" onclick="showItemList(${code.codeNo})" data-code-no="${code.codeNo}">
-                                                <th>${status.index + 1}</th>
+                                                <td>${status.index + 1}</td>
                                                 <td>${code.codeNm}</td>
                                                 <td>${code.codeId}</td>
                                                 <td>${code.codeLength}</td>
@@ -82,12 +82,12 @@
                             </div>
                         </div>
                         <div class="col-6 item-table">
-                            <div class="item-management">
-                                <p class="item-management-title">항목</p>
+                        <div class="code-management">
+                                <p class="item-management-title">항목</p>						
                             </div>
-                            <div class="item-table-container">
+                            <div class="item-table-container table-container">
                                 <table class="table table-hover" id="itemTable">
-                                    <thead class="table-secondary">
+                                    <thead class="table-light">
                                         <tr>
                                             <th scope="col">No.</th>
                                             <th scope="col">항목코드</th>
@@ -122,10 +122,10 @@
 	      	<div class="excel-btns d-flex  justify-content-end gap-1 ms-2 ps-1">
 			<form id="uploadForm" enctype="multipart/form-data" class="d-flex">
 			    <input type="file" name="file" id="fileInput" accept=".xlsx, .xls" style="display: none;" />
-			    <label for="fileInput" class="btn-excel modal-btn-excel">EXCEL 업로드</label>
+			    <label for="fileInput" class="btn-excel modal-btn-excel btn-normal">EXCEL 업로드</label>
 			</form>
-	      	<a href="codeExcelDownload"><button class="btn-download">양식 다운로드</button></a>
-			<button class="btn-refresh">초기화</button>
+	      	<a href="codeExcelDownload"><button class="btn-download btn-accent">양식 다운로드</button></a>
+			<button class="btn-refresh btn-normal">초기화</button>
 			</div>
 	        <div class="container-fluid">
 	        	<div class="row">
@@ -133,9 +133,9 @@
 	        			<div class="code-management">
                                 <p class="code-management-title">코드</p>
                             </div>
-                            <div class="code-table-container">
+                            <div class="code-table-container table-container">
                                 <table class="table table-hover" id="codeTable">
-                                    <thead class="table-secondary">
+                                    <thead class="table-light">
                                         <tr>
                                            <th scope="col">ID</th>
                                             <th scope="col">코드(논리)</th>
@@ -153,12 +153,13 @@
                             </div>
 	        		</div>
 	        		<div class="col modal-item-table">
-	        			<div class="item-management">
-                                <p class="item-management-title">항목</p>
+	        		<div class="code-management">
+                                <p class="code-management-title">항목</p>
                             </div>
-                            <div class="item-table-container">
+
+                            <div class="item-table-container table-container">
                                 <table class="table table-hover" id="itemTable">
-                                    <thead class="table-secondary">
+                                    <thead class="table-light">
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">항목코드</th>

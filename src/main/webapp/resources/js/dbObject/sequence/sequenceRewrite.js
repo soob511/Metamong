@@ -83,7 +83,7 @@ function searchSequence() {
             response.forEach((sequence, index) => {
                 html += `
                     <tr>
-                        <th>${index + 1}</th>
+                        <td>${index + 1}</td>
                         <td>${sequence.sequenceName}</td>
                         <td>${sequence.schemaName}</td>
                         <td>${sequence.minValue}</td>

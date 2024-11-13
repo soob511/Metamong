@@ -49,65 +49,65 @@
             <hr>
             <table class="table table-bordered">
               <tr id="detailApplyNo" data-value="${detail.applyNo}">
-                <td class="table-secondary">No.</td>
+                <td class="table-light">No.</td>
                 <td id="table-contents" colspan="3">${no}</td>
               </tr>
               <tr id="detailApplyType" data-value="${detail.applyType}">
-                <td class="table-secondary">신청일자</td>
+                <td class="table-light">신청일자</td>
                 <td class="table-td-width" id="table-contents">
                 	<fmt:formatDate value="${detail.applyDate}" pattern="yyyy-MM-dd"/>
                 </td>
-                <td class="table-secondary">신청자</td>
+                <td class="table-light">신청자</td>
                 <td id="table-contents">${detail.MName}</td>
               </tr>
               <tr>
-                <td class="table-secondary">처리일자</td>
+                <td class="table-light">처리일자</td>
                 <td class="table-td-width" id="table-contents">
                 	<fmt:formatDate value="${detail.complDate}" pattern="yyyy-MM-dd"/>
                 </td>
-                <td class="table-secondary">처리자</td>
+                <td class="table-light">처리자</td>
                 <td id="table-contents">${detail.dbaName}</td>
               </tr>
               <tr>
-                <td class="table-secondary">인덱스명</td>
+                <td class="table-light">인덱스명</td>
                 <td class="table-td-width" id="idxName" data-value="${detail.idxName}">
                 	${detail.idxName}
                	</td>
-                <td class="table-secondary">스키마명</td>
+                <td class="table-light">스키마명</td>
                 <td id="schemaName" data-value="${detail.schemaName}">
                 	${detail.schemaName}
                	</td>
               </tr>
               <tr>
-                <td class="table-secondary">참조테이블</td>
+                <td class="table-light">참조테이블</td>
                 <td class="table-td-width" id="tableId" data-value="${detail.tableId}">
                 	${detail.tableId}
                	</td>
-                <td class="table-secondary">참조컬럼</td>
+                <td class="table-light">참조컬럼</td>
                 <td id="refColumn" data-value="${detail.refColumn}">
                 	${detail.refColumn}
                 </td>
               </tr>
               <tr>
-                <td class="table-secondary">신청사유</td>
+                <td class="table-light">신청사유</td>
                 <td class="table-td-width" id="applyReason" data-value="${detail.applyReason}">
                 	${detail.applyReason}
                	</td>
-                <td class="table-secondary">UNIQUE</td>
+                <td class="table-light">UNIQUE</td>
                 <td id="isUnique" data-value="${detail.isUnique}">
                 	${detail.isUnique}
                 </td>
               </tr>
               <tr>
-                <td class="table-secondary">상태</td>
+                <td class="table-light">상태</td>
                 <td id="approvalStatus" colspan="3">${detail.approvalStatus}</td>
               </tr>
               <tr>
-                <td class="table-secondary">반려사유</td>
+                <td class="table-light">반려사유</td>
                 <td id="rejectReason" colspan="3">${detail.rejectReason}</td>
               </tr>
               <tr>
-                <td class="table-secondary">쿼리문</td>
+                <td class="table-light">쿼리문</td>
                 <td id="sqlContents" colspan="3">
                 	
                	</td>
