@@ -334,8 +334,8 @@ function filterIndex(clickColumnName) {
 					html += `
 						<tr>
 						<th>${count++}</th>
-						<td>${index.indexName}</td>
 						<td>${getSchemaName(index.schemaName)}</td>
+						<td>${index.indexName}</td>
 						<td>${index.tableName}</td>
 						<td>${index.columnName}</td>
 	                    <td>${index.columnPosition}</td>
@@ -422,7 +422,6 @@ function applyIndex() {
                         text: '해당 스키마에 동일 인덱스 이름이 존재합니다.'
                     });
 				} else {
-                    // 중복되지 않으면 인덱스 신청
                     $.ajax({
                         type: 'POST',
                         url: 'applyIndex',

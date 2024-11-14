@@ -118,9 +118,9 @@ function searchTable() {
 	        			<tr data-value="${table.tableNo}" 
 	        			onclick="showColumnList(${table.tableNo})">
         				<td>${++count}</td>
+        				<td>${table.schemaNm}</td>
         				<td>${table.tableId}</td>
         				<td>${table.tableNm}</td>
-        				<td>${table.schemaNm}</td>
         				</tr>`;
         		});
         	}else{

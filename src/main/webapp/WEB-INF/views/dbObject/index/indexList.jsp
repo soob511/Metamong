@@ -84,8 +84,8 @@
 										<tr>
 											<th scope="col"></th>
 											<th scope="col">No.</th>
-											<th scope="col">인덱스명</th>
 											<th scope="col">스키마명</th>
+											<th scope="col">인덱스명</th>
 											<th scope="col">참조테이블명</th>
 											<th scope="col">참조컬럼명</th>
 											<th scope="col">컬럼순서</th>
