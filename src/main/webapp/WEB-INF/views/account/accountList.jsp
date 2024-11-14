@@ -37,7 +37,18 @@
 					<div class="d-flex justify-content-start">
 						<div>총 <span class="form-required" id="memberCount">${totalRows}</span>개의 계정이 있습니다.</div>
 					</div>
-					<table class="table table-hover table-container">
+					<table class="table table-hover table-container" style="table-layout: fixed;">
+						  <colgroup>
+						    <col style="width: 50px;">
+						    <col style="width: 170px;">
+						    <col style="width: 75px;">
+						    <col style="width: 140px;">
+						    <col style="width: 140px;">
+						    <col style="width: 250px;">
+						    <col style="width: 250px;">
+						    <col style="width: 115px;">
+						    <col style="width: 95px;">
+						  </colgroup>
 						<thead class="table">
 							<tr class="table-light">
 								<th scope="col">No.</th>
