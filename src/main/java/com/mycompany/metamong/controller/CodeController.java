@@ -309,13 +309,8 @@ public class CodeController {
 	
 	@PostMapping("/codeApplyExcel")
 	public ResponseEntity<String> codeApplyExcel(Authentication auth, @RequestBody List<CodeApplyDto> forms) {
-		CodeApplyDto form = forms.get(0);		
-		int applyNo = applyService.addApplyCode(form, auth, 0);
-		
-		for (int i = 1; i < forms.size(); i++) {
-			applyService.addApplyCode(forms.get(i), auth, applyNo);
-		}
-	return ResponseEntity.ok("/Metamong/code/codeApplyList");
+		applyService.addApplyCodeExcel(forms, auth);
+		return ResponseEntity.ok().body("{\"redirectUrl\": \"/Metamong/code/codeApplyList\"}");
 	}
 	
 	@GetMapping("/codeApplyExcelDetail")

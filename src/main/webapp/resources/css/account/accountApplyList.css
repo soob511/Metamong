@@ -81,6 +81,10 @@
     width: 240px !important;
 }
 
+.modal .form-control, .modal .form-select {
+    width: 260px !important;
+}
+
 #edit {
     width: 170px !important;
 }

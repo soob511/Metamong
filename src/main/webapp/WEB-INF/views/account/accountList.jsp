@@ -37,7 +37,18 @@
 					<div class="d-flex justify-content-start">
 						<div>총 <span class="form-required" id="memberCount">${totalRows}</span>개의 계정이 있습니다.</div>
 					</div>
-					<table class="table table-hover table-container">
+					<table class="table table-hover table-container" style="table-layout: fixed;">
+						  <colgroup>
+						    <col style="width: 50px;">
+						    <col style="width: 170px;">
+						    <col style="width: 75px;">
+						    <col style="width: 140px;">
+						    <col style="width: 140px;">
+						    <col style="width: 250px;">
+						    <col style="width: 250px;">
+						    <col style="width: 115px;">
+						    <col style="width: 95px;">
+						  </colgroup>
 						<thead class="table">
 							<tr class="table-light">
 								<th scope="col">No.</th>
@@ -135,8 +146,8 @@
           <div class="row d-flex gap-4">
             <div class="col team-container">
               <div class="team-subtitle">소속 내역</div>
-              <table class="table" id="teamTable">
-                <thead class="table-secondary">
+              <table class="table table-container" id="teamTable">
+                <thead class="table-light">
                   <tr>
                     <th scope="col">No.</th>
                     <th scope="col">회원 소속명</th>
@@ -150,13 +161,13 @@
             </div>
             <div class="col team-form">
               <div class="team-subtitle">소속 추가/수정</div>
-              <table class="table" id="teamForm">
+              <table class="table table-container" id="teamForm">
                 <tr>
-                  <td class="table-secondary">소속명</td>
+                  <td class="table-light">소속명</td>
                   <td><input type="text" id="teamName" class="form-control" placeholder="내용 입력" required></td>   
                 </tr>
                 <tr>
-                  <td class="table-secondary">사용여부</td>
+                  <td class="table-light">사용여부</td>
                   <td>
                     <select id="teamIsactive" class="form-select use-status-select" aria-label="사용 여부 선택">
                       <option value="1">Y</option>

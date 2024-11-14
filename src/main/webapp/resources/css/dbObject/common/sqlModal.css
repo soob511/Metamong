@@ -1,5 +1,13 @@
-.modal-footer {
+.modal-header, .modal-footer {
 	border: none !important;
+}
+
+.modal-header {
+	padding-bottom: 0 !important; 
+}
+
+.modal-content {
+	padding-top: 10px !important; 
 }
 
 .modal {
