@@ -83,8 +83,8 @@ function searchSequence() {
                 html += `
                     <tr>
                         <td>${index + 1}</td>
+                	<td>${sequence.schemaName}</td>
                         <td>${sequence.sequenceName}</td>
-                        <td>${sequence.schemaName}</td>
                         <td>${sequence.minValue}</td>
                         <td>${sequence.maxValue}</td>
                         <td>${sequence.incrementBy}</td>
