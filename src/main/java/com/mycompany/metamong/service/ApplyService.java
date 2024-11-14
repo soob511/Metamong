@@ -184,6 +184,16 @@ public class ApplyService {
 		}
 		return applyId;
 	}
+	
+	@Transactional
+	public void addApplyCodeExcel(List<CodeApplyDto> forms, Authentication auth) {
+		CodeApplyDto form = forms.get(0);		
+		int applyNo = addApplyCode(form, auth, 0);
+		
+		for (int i = 1; i < forms.size(); i++) {
+			addApplyCode(forms.get(i), auth, applyNo);
+		}
+	}
 
 	@Transactional
 	public void addApplyIndex(ApplyListDto applyListDto, ApplyIndexDto applyIndexDto) {
