@@ -46,8 +46,8 @@ $(document).ready(function() {
 
 function checkCheckBox(checkbox) {
     const isChecked = $(checkbox).is(':checked');
-    const dataValue = $(checkbox).closest('tr').find('td:nth-child(3)').text().trim();
-    
+    const dataValue = $(checkbox).closest('tr').find('td:nth-child(4)').text().trim();
+
     if (!isChecked) {
         $('#indexTableBody tr').each(function () {
             const rowCheckBox = $(this).find('.form-check-input');
@@ -57,7 +57,7 @@ function checkCheckBox(checkbox) {
         });
     } else {
         $('#indexTableBody tr').each(function () {
-            const rowDataValue = $(this).find('td:nth-child(3)').text().trim();
+            const rowDataValue = $(this).find('td:nth-child(4)').text().trim();
             const rowCheckBox = $(this).find('.form-check-input');
             
             if (rowDataValue === dataValue) {
@@ -168,35 +168,35 @@ function filterIndex() {
 				data.forEach(function(index) {
 					html += `
 						<tr>
-						<th>
-							<input class="form-check-input" type="checkbox">
-						</th>
-						<td>${count++}</td>
-						<td data-name="idxName" data-value="${index.indexName}">
-							${index.indexName}
-						</td>
-						<td data-name="schemaName" data-value="${getSchemaName(index.schemaName)}">
+							<th>
+								<input class="form-check-input" type="checkbox">
+							</th>
+							<td>${count++}</td>
+							<td data-name="schemaName" data-value="${getSchemaName(index.schemaName)}">
 							${getSchemaName(index.schemaName)}
-						</td>
-						<td data-name="tableName" data-value="${index.tableName}">
-							${index.tableName}
-						</td>
-						<td data-name="refColumn" data-value="${index.columnName}">
-							${index.columnName}
-						</td>
-						<td data-name="columnPosition" data-value="${index.columnPosition}">
-							${index.columnPosition}
-						</td>
-						<td data-name="isUnique" data-value="${index.uniqueness}">
-							${index.uniqueness}
-						</td>
-						<td data-name="descend" data-value="${index.descend}">
-							${index.descend}
-						</td>
-						<td data-name="pkStatus" data-value="${index.pkStatus}">
-							${index.pkStatus}
-						</td>
-						<td data-name="tableNo" data-value="${index.tableNo}" style="display: none;"></td>
+							</td>
+							<td data-name="idxName" data-value="${index.indexName}">
+								${index.indexName}
+							</td>
+							<td data-name="tableName" data-value="${index.tableName}">
+								${index.tableName}
+							</td>
+							<td data-name="refColumn" data-value="${index.columnName}">
+								${index.columnName}
+							</td>
+							<td data-name="columnPosition" data-value="${index.columnPosition}">
+								${index.columnPosition}
+							</td>
+							<td data-name="isUnique" data-value="${index.uniqueness}">
+								${index.uniqueness}
+							</td>
+							<td data-name="descend" data-value="${index.descend}">
+								${index.descend}
+							</td>
+							<td data-name="pkStatus" data-value="${index.pkStatus}">
+								${index.pkStatus}
+							</td>
+							<td data-name="tableNo" data-value="${index.tableNo}" style="display: none;"></td>
 						</tr>`;
 				});
 			} else {
@@ -226,7 +226,7 @@ function navToDeletePage() {
     } else if (row.length === 1 && pkStatus === 'Y') {
     	Swal.fire({ 
 			icon: 'warning',
-			title: 'PK컬럼에 있는 인덱스는<br>삭제불가합니다.'
+			title: 'PK컬럼을 참조하고 있는 인덱스는<br>삭제불가합니다.'
 		})
     } else {
     	document.location.href = '/Metamong/index/indexDeleteForm?schemaName=' + schemaName + '&indexName=' + indexName + '&columnName=' + columnName + '&tableName=' + tableName;    	    	

@@ -34,8 +34,8 @@
 										<thead class="table-light">
 											<tr>
 												<th scope="col">No.</th>
-												<th scope="col">인덱스명</th>
 												<th scope="col">스키마명</th>
+												<th scope="col">인덱스명</th>
 												<th scope="col">참조테이블명</th>
 												<th scope="col">참조컬럼명</th>
 												<th scope="col">컬럼순서</th>
@@ -51,9 +51,6 @@
 													<input class="form-check-input" type="checkbox" checked>
 												</th>
 												<td>${status.index + 1}</td>
-												<td data-name="idxName" data-value="${index.indexName}">
-													${index.indexName}
-												</td>
 												<td data-name="schemaName" data-value="${index.schemaName}">
 							                      	<c:choose>
 									                    <c:when test="${index.schemaName == 'USER_2024_OTI_FINAL_TEAM1_1'}">SPM</c:when>
@@ -62,6 +59,9 @@
 									                    <c:otherwise></c:otherwise>
 									                </c:choose>
 							                	</td>
+												<td data-name="idxName" data-value="${index.indexName}">
+													${index.indexName}
+												</td>
 												<td data-name="tableName" data-value="${index.tableName}">
 													${index.tableName}
 												</td>

@@ -46,10 +46,10 @@ function getSchemaName(schemaName) {
 
 function checkCheckBox(checkbox) {
     const isChecked = $(checkbox).is(':checked');
-    const dataValue = $(checkbox).closest('tr').find('td:nth-child(3)').text().trim();
+    const dataValue = $(checkbox).closest('tr').find('td:nth-child(4)').text().trim();
     
     $('#indexTableBody tr').each(function () {
-        const rowDataValue = $(this).find('td:nth-child(3)').text().trim();
+        const rowDataValue = $(this).find('td:nth-child(4)').text().trim();
         
         if (rowDataValue === dataValue) {
             $(this).find('.form-check-input').prop('checked', isChecked);
