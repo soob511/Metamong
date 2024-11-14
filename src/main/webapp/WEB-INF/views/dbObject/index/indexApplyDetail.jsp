@@ -132,7 +132,7 @@
 				<div class="modal-body">
 					<div class="table-container">
 						<div class="table-header d-flex align-items-center">SQL</div>
-						<textarea class="table-body">
+						<textarea class="table-body" id="sqlTextArea">
 							${detail.query}
 						</textarea>
 					</div>

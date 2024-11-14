@@ -41,7 +41,7 @@ public interface IndexDao {
 	public int selectRowsByMId(
 			@Param("schemaName") String schemaName,
 			@Param("approvalStatus") int approvalStatus,
-			@Param("mId") String mId
+			@Param("mName") String mName
 			);
 	
 	public int insertApplyIndex(ApplyIndexDto applyIndexDto);

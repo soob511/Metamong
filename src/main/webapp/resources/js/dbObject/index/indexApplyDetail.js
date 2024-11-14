@@ -37,6 +37,16 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+    const textarea = document.getElementById('sqlTextArea');
+    const originalText = textarea.value;
+
+    const formattedText = originalText
+        .trim()
+        .replace(/\s*\(\s*/g, '\n(')
+        .replace(/\s*\)\s*/g, ')\n');
+
+    textarea.value = formattedText;
 })
 
 function reApply() {

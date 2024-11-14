@@ -7,10 +7,12 @@ $(document).ready(function() {
         success: function(data) {
             var selectBox = $('#teamId');
             $.each(data, function(index, team) {
-                selectBox.append($('<option>', {
-                    value: team.teamId,
-                    text: team.teamName
-                }));
+            	if (team.teamName != 'ADMIN') {
+            		selectBox.append($('<option>', {
+            			value: team.teamId,
+            			text: team.teamName
+            		}));            		
+            	}
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
