@@ -79,6 +79,7 @@ function searchSequence() {
         },
         success: function(response) {
             let html = "";
+           	if(Object.keys(response).length>0){
             response.forEach((sequence, index) => {
                 html += `
                     <tr>
@@ -92,7 +93,13 @@ function searchSequence() {
                     </tr>
                 `;
             });
-            $("#searchSequenceList").html(html);
+           	}else{
+        		html+= `<tr>
+    				<th colspan="7">해당 조건에 맞는 시퀀스가 없습니다.</th>
+    		
+    				</tr>`;
+        	}
+           	$("#searchSequenceList").html(html);
         }
     });
 }
