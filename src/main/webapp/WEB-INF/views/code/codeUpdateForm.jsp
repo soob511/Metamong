@@ -93,7 +93,14 @@
                 <div class="item-container">
                     <div class="item-header">항목</div>
                     <div class="update-table-container table-container">
-                        <table class="table table-hover bottom-table">
+                        <table class="table table-hover bottom-table" style="table-layout: fixed;">
+                          <colgroup>
+						    <col style="width: 60px;">
+						    <col style="width: 290px;">
+						    <col style="width: 290px;">
+						    <col style="width: 180px;">
+						    <col style="width: 420px;">
+						  </colgroup>
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">No.</th>
