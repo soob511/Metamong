@@ -106,9 +106,9 @@
                     <thead class="table">
                       <tr class="table-light">
                         <th scope="col">No.</th>
+                        <th scope="col">스키마</th>
                         <th scope="col">테이블명(논리)</th>
                         <th scope="col">테이블명(물리)</th>
-                        <th scope="col">스키마</th>
                       </tr>
                     </thead>
                     <tbody id="tableList"></tbody>
