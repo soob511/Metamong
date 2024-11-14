@@ -45,7 +45,13 @@
                         <div class="d-flex justify-content-start">
                             <div>총 <span class="form-required" id="noticeCount">${totalRows}</span>건의 게시물이 있습니다.</div>
                         </div>
-                        <table class="table table-hover table-container">
+                        <table class="table table-hover table-container" style="table-layout: fixed;">
+	                          <colgroup>
+							    <col style="width: 100px;">
+							    <col style="width: 750px;">
+							    <col style="width: 200px;">
+							    <col style="width: 200px;">
+							  </colgroup>
                             <thead>
                                 <tr class="table-light">
                                     <th scope="col">No.</th>
