@@ -61,9 +61,9 @@
                     <thead class="table-light">
                       <tr>
                         <th scope="col">No.</th>
+                        <th scope="col">스키마</th>
                         <th scope="col">테이블(논리)</th>
                         <th scope="col">테이블(물리)</th>
-                        <th scope="col">스키마</th>
                         <th scope="col">내용</th>
                       </tr>
                     </thead>
@@ -71,9 +71,9 @@
                       <c:forEach items="${list}" var="table" varStatus="status">
                         <tr class="tableListTr" data-table-no="${table.tableNo}" onclick="showColumnList(${table.tableNo})">
                           <td>${status.index+1}</td>
+                          <td>${table.schemaNm}</td>
                           <td>${table.tableNm}</td>
                           <td>${table.tableId}</td>
-                          <td>${table.schemaNm}</td>
                           <td>${table.tableContent}</td>
                         </tr>
                       </c:forEach>

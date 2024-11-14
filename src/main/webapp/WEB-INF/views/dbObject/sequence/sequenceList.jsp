@@ -75,8 +75,8 @@
 								<thead class="table-light">
 									<tr>
 										<th scope="col">No.</th>
-										<th scope="col">시퀀스명</th>
 										<th scope="col">스키마명</th>
+										<th scope="col">시퀀스명</th>
 										<th scope="col">최솟값</th>
 										<th scope="col">최댓값</th>
 										<th scope="col">증감값</th>
@@ -88,8 +88,8 @@
 										varStatus="status">
 										<tr>
 											<td>${status.index+1}</td>
-											<td>${sequence.sequenceName}</td>
 											<td>${sequence.schemaName}</td>
+											<td>${sequence.sequenceName}</td>
 											<td>${sequence.minValue}</td>
 											<td>${sequence.maxValue}</td>
 											<td>${sequence.incrementBy}</td>
