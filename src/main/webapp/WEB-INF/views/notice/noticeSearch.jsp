@@ -9,7 +9,13 @@
     </div>    
 </div>
 
-<table class="table table-hover table-container">
+<table class="table table-hover table-container" style="table-layout: fixed;">
+  <colgroup>
+    <col style="width: 100px;">
+    <col style="width: 750px;">
+    <col style="width: 200px;">
+    <col style="width: 200px;">
+  </colgroup>
     <thead>
         <tr class="table-light">
             <th scope="col">No.</th>

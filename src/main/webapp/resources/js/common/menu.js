@@ -25,7 +25,7 @@ function handleFileUpload(event) {
             if (data > 0) { 
                 Swal.fire({
                     icon: 'success',
-                    title: '프로필이 성공적으로 변경되었습니다.',
+                    title: '프로필이 성공적으로<br>변경되었습니다.',
                 }).then(() => {
                     location.reload(); 
                 });
@@ -41,7 +41,7 @@ function handleFileUpload(event) {
             Swal.fire({
                 icon: 'error',
                 title: '오류 발생',
-                text: '프로필 업데이트 중 오류가 발생했습니다. 다시 시도해 주세요.',
+                text: '프로필 업데이트 중<br>오류가 발생했습니다. <br>다시 시도해 주세요.',
             });
         }
     });
@@ -94,7 +94,7 @@ $(document).ready(function() {
                         Swal.fire({
                             icon: 'error',
                             title: '오류 발생',
-                            text: '프로필 업데이트 중 오류가 발생했습니다. 다시 시도해 주세요.',
+                            text: '프로필 업데이트 중 <br>오류가 발생했습니다. <br>다시 시도해 주세요.',
                         });
                     }
                 });

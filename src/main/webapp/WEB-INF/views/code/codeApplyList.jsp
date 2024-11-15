@@ -41,7 +41,16 @@
                 </div>
                 <div id="codeContainer">
                     <div class="table-container">
-                        <table class="table table-hover">
+                        <table class="table table-hover" style="table-layout: fixed;">
+				    	  <colgroup>
+						    <col style="width: 60px;">
+						    <col style="width: 160px;">
+						    <col style="width: 160px;">
+						    <col style="width: 260px;">
+						    <col style="width: 260px;">
+						    <col style="width: 180px;">
+						    <col style="width: 180px;">
+						  </colgroup>
                             <thead class="table">
                                 <tr class="table-light">
                                     <th scope="col">No.</th>

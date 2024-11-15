@@ -126,12 +126,12 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
+					<h3>SQL</h3>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<div class="table-container">
-						<div class="table-header d-flex align-items-center">SQL</div>
+					<div>
 						<textarea class="table-body" id="sqlTextArea">
 							${detail.query}
 						</textarea>

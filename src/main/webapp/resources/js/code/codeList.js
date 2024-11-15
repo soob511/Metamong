@@ -173,7 +173,6 @@ function showItemList(codeNo) {
 function codeApplyExcel() {
 	let codeDatas = [];	
 	let applyReason = $('.applyReason').val().trim();
-	console.log(applyReason);
 	$('.excel-codes .code-row').each(function() {
 		let id = $(this).find('td:eq(0)').text()
 		let codeNm = $(this).find('.codeNm').text();
@@ -237,8 +236,15 @@ function codeApplyExcel() {
 	          title: "코드/항목 생성 신청이<br/>완료되었습니다.",
 	          text: "신청 승인 후, 코드 사용이 가능합니다.",
 	        }).then(() => {
-	         location.href = data;
+	         location.href = data.redirectUrl;
 	        });
 	      },
+	      error: function() {
+	    	  Swal.fire({
+		          icon: "error",
+		          title: "코드/항목 신청이 실패하였습니다.",
+		          text: "필수값 입력여부 및 최대길이를 확인해주세요.",
+		        })
+	      }
     });
 }
