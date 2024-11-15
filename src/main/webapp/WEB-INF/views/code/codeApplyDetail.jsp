@@ -144,7 +144,13 @@
                 <div class="item-container">
                     <div class="item-header">항목</div>
                     <div class="item-table-container table-container">
-                    <table class="table table-hover bottom-table">
+                   <table class="table table-hover bottom-table" style="table-layout: fixed;">
+                          <colgroup>
+						    <col style="width: 60px;">
+						    <col style="width: 295px;">
+						    <col style="width: 295px;">
+						    <col style="width: 190px;">
+						  </colgroup>
                         <thead class="table-light">
                             <tr>
                                 <th scope="col">No.</th>

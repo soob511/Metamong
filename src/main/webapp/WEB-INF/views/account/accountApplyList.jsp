@@ -77,7 +77,17 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   >건의 신청이 있습니다.
                 </div>
               </div>
-              <table class="table table-hover table-container">
+              <table class="table table-hover table-container" style="table-layout: fixed;">
+				  <colgroup>
+				    <col style="width: 70px;">
+				    <col style="width: 170px;">
+				    <col style="width: 220px;">
+				    <col style="width: 120px;">
+				    <col style="width: 120px;">
+				    <col style="width: 120px;">
+				    <col style="width: 150px;">
+				    <col style="width: 210px;">
+				  </colgroup>
                 <thead class="table-light">
                   <tr>
                     <th scope="col">No.</th>

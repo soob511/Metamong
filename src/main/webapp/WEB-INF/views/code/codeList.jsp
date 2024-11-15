@@ -55,7 +55,14 @@
 								</sec:authorize>								
                             </div>
                             <div class="code-table-container table-container">
-                                <table class="table table-hover" id="codeTable">
+                                <table class="table table-hover" id="codeTable" style="table-layout: fixed;">
+	                                <colgroup>
+									    <col style="width: 45px;">
+									    <col style="width: 140px;">
+									    <col style="width: 140px;">
+									    <col style="width: 80px;">
+									    <col style="width: 80px;">
+									  </colgroup>
                                     <thead class="table-light">
                                         <tr>
                                             <th scope="col">No.</th>
@@ -86,7 +93,13 @@
                                 <p class="item-management-title">항목</p>						
                             </div>
                             <div class="item-table-container table-container">
-                                <table class="table table-hover" id="itemTable">
+                                <table class="table table-hover" id="itemTable" style="table-layout: fixed;">
+	                                <colgroup>
+									    <col style="width: 45px;">
+									    <col style="width: 150px;">
+									    <col style="width: 150px;">
+									    <col style="width: 80px;">
+									  </colgroup>
                                     <thead class="table-light">
                                         <tr>
                                             <th scope="col">No.</th>
@@ -134,7 +147,13 @@
                                 <p class="code-management-title">코드</p>
                             </div>
                             <div class="code-table-container table-container">
-                                <table class="table table-hover" id="codeTable">
+                                <table class="table table-hover" id="codeTable" style="table-layout: fixed;">
+                                	<colgroup>
+									    <col style="width: 45px;">
+									    <col style="width: 170px;">
+									    <col style="width: 170px;">
+									    <col style="width: 100px;">
+									  </colgroup>
                                     <thead class="table-light">
                                         <tr>
                                            <th scope="col">ID</th>
@@ -158,7 +177,12 @@
                             </div>
 
                             <div class="item-table-container table-container">
-                                <table class="table table-hover" id="itemTable">
+                                <table class="table table-hover" id="itemTable" style="table-layout: fixed;">
+                                	<colgroup>
+									    <col style="width: 45px;">
+									    <col style="width: 180px;">
+									    <col style="width: 180px;">
+									  </colgroup>
                                     <thead class="table-light">
                                         <tr>
                                             <th scope="col">ID</th>

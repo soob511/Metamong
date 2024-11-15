@@ -91,11 +91,11 @@ public class ApplyService {
 	@Autowired
 	private HrSequenceDao hrSequenceDao;
 	@Autowired
-	private SrmIndexDao sub1IndexDao;
+	private SrmIndexDao srmIndexDao;
 	@Autowired
-	private PmsIndexDao sub2IndexDao;
+	private PmsIndexDao pmsIndexDao;
 	@Autowired
-	private HrIndexDao sub3IndexDao;
+	private HrIndexDao hrIndexDao;
 
 	public int getApplyCodeRows() {
 		return applyListDao.selectApplyCodeRows();
@@ -183,6 +183,16 @@ public class ApplyService {
 			itemDao.insertApplyItem(item);
 		}
 		return applyId;
+	}
+	
+	@Transactional
+	public void addApplyCodeExcel(List<CodeApplyDto> forms, Authentication auth) {
+		CodeApplyDto form = forms.get(0);		
+		int applyNo = addApplyCode(form, auth, 0);
+		
+		for (int i = 1; i < forms.size(); i++) {
+			addApplyCode(forms.get(i), auth, applyNo);
+		}
 	}
 
 	@Transactional
@@ -499,13 +509,13 @@ public class ApplyService {
 		try {
 			switch (schemaName) {
 			case "SRM":
-				sub1IndexDao.createIndex(query);
+				srmIndexDao.createIndex(query);
 				break;
 			case "PMS":
-				sub2IndexDao.createIndex(query);
+				pmsIndexDao.createIndex(query);
 				break;
 			case "HR":
-				sub3IndexDao.createIndex(query);
+				hrIndexDao.createIndex(query);
 				break;
 			default:
 				break;

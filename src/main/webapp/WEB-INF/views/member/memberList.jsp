@@ -36,7 +36,16 @@
                         <div class="d-flex justify-content-start">
                             <div>총 <span class="form-required" id="memberCount">${totalRows}</span>명의 회원이 있습니다.</div>
                         </div>
-                        <table class="table table-hover table-container">
+                        <table class="table table-hover table-container" style="table-layout: fixed;">
+							  <colgroup>
+							    <col style="width: 85px;">
+							    <col style="width: 150px;">
+							    <col style="width: 250px;">
+							    <col style="width: 150px;">
+							    <col style="width: 150px;">
+							    <col style="width: 150px;">
+							    <col style="width: 250px;">
+							  </colgroup>
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">No.</th>

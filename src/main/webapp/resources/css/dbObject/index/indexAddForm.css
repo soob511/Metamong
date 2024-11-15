@@ -170,8 +170,8 @@ hr {
 .column-container th:nth-child(9), .column-container td:nth-child(9) { width: 12%; }
 
 .index-info-container th:nth-child(1), .index-info-container td:nth-child(1) { width: 10%; }
-.index-info-container th:nth-child(2), .index-info-container td:nth-child(2) { width: 16%; }
-.index-info-container th:nth-child(3), .index-info-container td:nth-child(3) { width: 10%; }
+.index-info-container th:nth-child(2), .index-info-container td:nth-child(2) { width: 10%; }
+.index-info-container th:nth-child(3), .index-info-container td:nth-child(3) { width: 16%; }
 .index-info-container th:nth-child(4), .index-info-container td:nth-child(4) { width: 17%; }
 .index-info-container th:nth-child(5), .index-info-container td:nth-child(5) { width: 17%; }
 .index-info-container th:nth-child(6), .index-info-container td:nth-child(6) { width: 10%; }

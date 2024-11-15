@@ -99,7 +99,13 @@
 	        		<div class="col code-container">
 		                    <div class="code-header">코드</div>
 		                    <div class="code-table-container table-container">
-		                        <table class="table table-hover bottom-table">
+		                        <table class="table table-hover bottom-table" style="table-layout: fixed;">
+		                          <colgroup>
+								    <col style="width: 50px;">
+								    <col style="width: 165px;">
+								    <col style="width: 165px;">
+								    <col style="width: 80px;">
+								  </colgroup>
 		                            <thead class="table-light">
 		                                <tr>
 		                                    <th scope="col">No.</th>
@@ -127,7 +133,12 @@
 		                <div class="col item-container">
 		                    <div class="item-header">항목</div>
 		                    <div class="item-table-container table-container">
-		                        <table class="table table-hover bottom-table">
+		                        <table class="table table-hover bottom-table" style="table-layout: fixed;">
+				                          <colgroup>
+										    <col style="width: 60px;">
+										    <col style="width: 165px;">
+										    <col style="width: 165px;">
+										  </colgroup>
 		                            <thead class="table-light">
 		                                <tr>
 		                                    <th scope="col">No.</th>

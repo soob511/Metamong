@@ -29,7 +29,13 @@
 									<p class="before-management-title">[기존] ${oldCode.codeId}(${oldCode.codeNm})</p>
 								</div>
 								<div class="table-container">
-									<table class="table">
+									<table class="table" style="table-layout: fixed;">
+				                          <colgroup>
+										    <col style="width: 45px;">
+										    <col style="width: 160px;">
+										    <col style="width: 160px;">
+										    <col style="width: 80px;">
+										  </colgroup>
 										<thead class="table-light">
 											<tr>
 												<th scope="col">No.</th>
@@ -58,7 +64,13 @@
 									<p class="after-management-title">[변경]${newCode.codeId}(${newCode.codeNm})</p>
 								</div>
 								<div class="table-container">
-									<table class="table">
+									<table class="table" style="table-layout: fixed;">
+				                          <colgroup>
+										    <col style="width: 45px;">
+										    <col style="width: 160px;">
+										    <col style="width: 160px;">
+										    <col style="width: 80px;">
+										  </colgroup>
 										<thead class="table-light">
 											<tr>
 												<th scope="col">No.</th>
