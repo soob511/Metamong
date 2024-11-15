@@ -25,11 +25,11 @@ public class ColumnService {
 	@Autowired
 	private ColumnDao columnDao;
 	@Autowired
-	private SrmColumnDao sub1ColumnDao;
+	private SrmColumnDao srmColumnDao;
 	@Autowired
-	private PmsColumnDao sub2ColumnDao;
+	private PmsColumnDao pmsColumnDao;
 	@Autowired
-	private HrColumnDao sub3ColumnDao;
+	private HrColumnDao hrColumnDao;
 	
 	public List<ColumnDto> getColumnList(int tableId) {
 		return columnDao.selectColumnList(tableId);
@@ -52,17 +52,17 @@ public class ColumnService {
 
 		switch (schemaName) {
 			case "ALL":
-				list.addAll(sub1ColumnDao.selectColumnName(tableName));
-				list.addAll(sub2ColumnDao.selectColumnName(tableName));
-				list.addAll(sub3ColumnDao.selectColumnName(tableName));
+				list.addAll(srmColumnDao.selectColumnName(tableName));
+				list.addAll(pmsColumnDao.selectColumnName(tableName));
+				list.addAll(hrColumnDao.selectColumnName(tableName));
 			case "SRM":
-				list.addAll(sub1ColumnDao.selectColumnName(tableName));
+				list.addAll(srmColumnDao.selectColumnName(tableName));
 				break;
 			case "PMS":
-				list.addAll(sub2ColumnDao.selectColumnName(tableName));
+				list.addAll(pmsColumnDao.selectColumnName(tableName));
 				break;
 			case "HR":
-				list.addAll(sub3ColumnDao.selectColumnName(tableName));
+				list.addAll(hrColumnDao.selectColumnName(tableName));
 				break;
 			default:
 				break;
@@ -75,7 +75,7 @@ public class ColumnService {
 
 		switch (schemaName) {
 			case "SRM":
-				list.addAll(sub1ColumnDao.selectColumnInfo(tableName));
+				list.addAll(srmColumnDao.selectColumnInfo(tableName));
 				for (ColumnDto col : list) {
 			        String colId = col.getColId();
 			        String colNm = columnDao.selectColumnName(tableNo, colId);
@@ -83,7 +83,7 @@ public class ColumnService {
 			    }
 				break;
 			case "PMS":
-				list.addAll(sub2ColumnDao.selectColumnInfo(tableName));
+				list.addAll(pmsColumnDao.selectColumnInfo(tableName));
 				for (ColumnDto col : list) {
 			        String colId = col.getColId();
 			        String colNm = columnDao.selectColumnName(tableNo, colId);
@@ -91,7 +91,7 @@ public class ColumnService {
 			    }
 				break;
 			case "HR":
-				list.addAll(sub3ColumnDao.selectColumnInfo(tableName));
+				list.addAll(hrColumnDao.selectColumnInfo(tableName));
 				for (ColumnDto col : list) {
 			        String colId = col.getColId();
 			        String colNm = columnDao.selectColumnName(tableNo, colId);
