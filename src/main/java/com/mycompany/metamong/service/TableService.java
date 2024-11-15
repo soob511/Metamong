@@ -24,11 +24,11 @@ public class TableService {
 	@Autowired
 	private TableDao tableDao;
 	@Autowired
-	private SrmTableDao sub1TableDao;
+	private SrmTableDao srmTableDao;
 	@Autowired
-	private PmsTableDao sub2TableDao;
+	private PmsTableDao pmsTableDao;
 	@Autowired
-	private HrTableDao sub3TableDao;
+	private HrTableDao hrTableDao;
 	
 	public List<TableDto> getTableList() {
 		return tableDao.selectTableList();
@@ -60,18 +60,18 @@ public class TableService {
 
 		switch (schemaName) {
 			case "ALL":
-				list.addAll(sub1TableDao.selectTableName());
-				list.addAll(sub2TableDao.selectTableName());
-				list.addAll(sub3TableDao.selectTableName());
+				list.addAll(srmTableDao.selectTableName());
+				list.addAll(pmsTableDao.selectTableName());
+				list.addAll(hrTableDao.selectTableName());
 				break;
 			case "SRM":
-				list.addAll(sub1TableDao.selectTableName());
+				list.addAll(srmTableDao.selectTableName());
 				break;
 			case "PMS":
-				list.addAll(sub2TableDao.selectTableName());
+				list.addAll(pmsTableDao.selectTableName());
 				break;
 			case "HR":
-				list.addAll(sub3TableDao.selectTableName());
+				list.addAll(hrTableDao.selectTableName());
 				break;
 			default:
 				break;
@@ -89,7 +89,7 @@ public class TableService {
 
 		switch (schemaName) {
 			case "SRM":
-				tableDic.addAll(sub1TableDao.selectTableName());
+				tableDic.addAll(srmTableDao.selectTableName());
 				for (TableDto table : tableDic) {
 			        String tableName = table.getTableNm();
 			        TableDto newTableDto = tableDao.selectTableInfo(tableName, schemaName);
@@ -97,7 +97,7 @@ public class TableService {
 			    }
 				break;
 			case "PMS":
-				tableDic.addAll(sub2TableDao.selectTableName());
+				tableDic.addAll(pmsTableDao.selectTableName());
 				for (TableDto table : tableDic) {
 			        String tableName = table.getTableNm();
 			        TableDto newTableDto = tableDao.selectTableInfo(tableName, schemaName);
@@ -105,7 +105,7 @@ public class TableService {
 			    }
 				break;
 			case "HR":
-				tableDic.addAll(sub3TableDao.selectTableName());
+				tableDic.addAll(hrTableDao.selectTableName());
 				for (TableDto table : tableDic) {
 			        String tableName = table.getTableNm();
 			        TableDto newTableDto = tableDao.selectTableInfo(tableName, schemaName);
