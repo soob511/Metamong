@@ -21,6 +21,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 
 		MemberDetails memberDetails = (MemberDetails) authentication.getPrincipal();
         Collection<? extends GrantedAuthority> authorities = memberDetails.getAuthorities();
+        request.getSession().removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
         
         for (GrantedAuthority authority : authorities) {
             if (authority.getAuthority().equals("ROLE_ADMIN")) {
