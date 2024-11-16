@@ -290,6 +290,7 @@ td {
 	height: 35px !important;
 	font-size: 14px;
 	text-align: center;
+	line-height: 1 !important;
 }
 
 button:hover {
