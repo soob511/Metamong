@@ -13,7 +13,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.DriverSpy" />
 		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl" />
+			value="jdbc:log4jdbc:oracle:thin:@kosa402.iptime.org:1521:orcl" />
 		<property name="username" value="user_2024_oti_final_team1" />
 		<property name="password" value="oracle" />
 
@@ -36,7 +36,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.DriverSpy" />
 		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl" />
+			value="jdbc:log4jdbc:oracle:thin:@kosa402.iptime.org:1521:orcl" />
 		<property name="username" value="user_2024_oti_final_team1_1" />
 		<property name="password" value="oracle" />
 
@@ -60,7 +60,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.DriverSpy" />
 		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl" />
+			value="jdbc:log4jdbc:oracle:thin:@kosa402.iptime.org:1521:orcl" />
 		<property name="username" value="user_2024_oti_final_team1_2" />
 		<property name="password" value="oracle" />
 
@@ -83,7 +83,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.DriverSpy" />
 		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl" />
+			value="jdbc:log4jdbc:oracle:thin:@kosa402.iptime.org:1521:orcl" />
 		<property name="username" value="user_2024_oti_final_team1_3" />
 		<property name="password" value="oracle" />
 
