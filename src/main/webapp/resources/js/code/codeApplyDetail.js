@@ -17,26 +17,40 @@ function codeApplyProcess(status, applyType){
 	const applyNo = params.get('applyNo');
 	const indexNo = params.get('indexNo');
 	let reason;
-
+	
 	Swal.fire({
 	    icon: status == 2 ? "warning" : "success",
-	    title: status == 2 ? "반려 사유를<br/>입력하세요." : (status == 1 ? "코드/항목 신청내역이<br/>승인 되었습니다." : "코드/항목 신청내역이<br/>승인취소 되었습니다."),
+	    title: status == 2 ? "반려 사유를<br/>입력하세요." : 
+	           (status == 1 ? "코드/항목 신청내역이<br/>승인 되었습니다." : 
+	            "코드/항목 신청내역이<br/>승인취소 되었습니다."),
 	    input: status == 2 ? 'text' : null,
-	}).then(result => {
-	    const reason = (status == 2) ? result.value : '';
-	    
-	    $.ajax({
-	        url: "/Metamong/code/codeApplyProcess",
-	        type: "POST",
-	        data: { applyNo: applyNo, status: status, reason: reason },
-	        success: function(data) {
-	        	location.href = applyType == 'EXCEL' 
-	        		? data +"codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
-	        		: data +"codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+	    inputValidator: (value) => {
+	        if (status == 2 && !value) {
+	            return '반려 사유를 입력하세요.';
 	        }
-	    });
+	        return null;
+	    },
+	    allowEscapeKey: false,
+	    showCancelButton: true,
+	    confirmButtonText: "확인",
+	    cancelButtonText: "취소"
+	}).then(result => {
+	    if (result.isConfirmed) {
+	        const reason = (status == 2) ? result.value : '';
+
+	        $.ajax({
+	            url: "/Metamong/code/codeApplyProcess",
+	            type: "POST",
+	            data: { applyNo: applyNo, status: status, reason: reason },
+	            success: function(data) {
+	                location.href = applyType == 'EXCEL' 
+	                    ? data + "codeApplyExcelDetail?applyNo=" + applyNo + "&indexNo=" + indexNo
+	                    : data + "codeApplyDetail?applyNo=" + applyNo + "&indexNo=" + indexNo;
+	            }
+	        });
+	    }
 	});
-};
+}
 
 /* 승인 취소 */
 function applyRollBack(applyType) {

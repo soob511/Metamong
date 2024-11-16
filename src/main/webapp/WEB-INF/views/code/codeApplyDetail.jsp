@@ -102,6 +102,11 @@
                         <div class="col code">
                             <div class="codeAdd-subtitle">코드</div>
                             <table class="table table-bordered code-table  table-container">
+                            <colgroup>
+		                    	<col style="width: 180px;">
+							    <col style="width: 150px;">
+							    <col style="width: 180px;">
+		                    </colgroup>
                                 <tr>
                                     <td class="table-light">코드명(논리)</td>
                                     <td colspan="3">
