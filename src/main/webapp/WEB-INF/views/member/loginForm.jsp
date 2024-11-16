@@ -44,11 +44,9 @@
 	                    </div>					
 					</form>
 					<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-						<div class="alert alert-danger">
-							<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
-       							아이디 또는 비밀번호가 틀립니다.
-       						</c:if>
-						</div>
+						<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+							<div id="loginAlertMessage"></div>
+   						</c:if>
 					</c:if>
 
                     <div class="signup-notice mt-3">
@@ -72,7 +70,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="table-container d-flex justify-content-center">
-						<form action="${pageContext.request.contextPath}/member/resetUserPassword" method="post">
+						<form id="resetPasswordForm" >
 							<div class="table-header">비밀번호 초기화</div>
 							<div class="modal-input-group">
 		                        <label for="mId" class="input-label">회원 ID</label> 
@@ -95,7 +93,7 @@
 		                    </div>
 		                    <span class="password-confirm-message msg">오류메세지</span>
 		                  	<div class="d-flex justify-content-center">
-		                        <button type="submit" class="modal-btn-submit" disabled>확인</button>		                  	
+		                        <button type="button" onclick="resetPassword()" class="modal-btn-submit" disabled>확인</button>		                  	
 		                  	</div>
 							<button type="button" onclick="checkValidUser()" class="modal-btn-check">Check</button>			               	
 						</form>

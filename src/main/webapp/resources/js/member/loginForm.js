@@ -5,11 +5,17 @@ $(document).ready(function() {
   $('#closeModal').on('click', function() {
 	  closeModal();
   })
+  console.log(('#loginAlertMessage'))
+  if($('#loginAlertMessage').length > 0) {
+	  Swal.fire({
+			icon: 'error',
+			title: '아이디 또는 비밀번호를<br>확인해주세요'
+		})
+  }
 });
 
 const checkPassword = /^[a-zA-Z0-9]{8,16}$/;
 
-// 비밀번호
 $("#newPassword, #checkPassword").on("input", function() {
     const password = $("#newPassword").val().trim();
     const confirmPassword = $("#checkPassword").val().trim();
@@ -48,13 +54,13 @@ $("#newPassword, #checkPassword").on("input", function() {
 function openModal() {
     const modal = document.getElementById('sqlLoadModal');
     modal.setAttribute('aria-hidden', 'false');
-    modal.style.display = 'block'; // 모달을 보여주는 스타일 추가
+    modal.style.display = 'block';
   }
 
   function closeModal() {
     const modal = document.getElementById('sqlLoadModal');
     modal.setAttribute('aria-hidden', 'true');
-    modal.style.display = 'none'; // 모달을 숨기는 스타일 추가
+    modal.style.display = 'none';
   }
 
 function checkValidUser () {
@@ -82,7 +88,7 @@ function checkValidUser () {
 				} else {
 					Swal.fire({
 						icon: 'error',
-						title: '아이디 또는 핸드폰 번호를 확인해주세요'
+						title: '아이디 또는 핸드폰 번호를<br>확인해주세요'
 					})
 				}
     		},
@@ -91,3 +97,31 @@ function checkValidUser () {
     		}
     	});
 };
+
+function resetPassword() {
+
+	  var form = $('#resetPasswordForm')[0];
+	  var formData = new FormData(form);
+
+	  $.ajax({
+	    url: '/Metamong/member/resetUserPassword',
+	    type: 'POST',
+	    data: formData,
+	    processData: false,
+	    contentType: false,
+	    success: function(response) {
+	        Swal.fire({
+	          icon: 'success',
+	          title: '비밀번호를 재설정하였습니다!'
+	        }).then(() => {
+	        	 $('#sqlLoadModal').modal('hide');
+			});		
+	    },
+	    error: function(xhr, status, error) {
+	      Swal.fire({
+	        icon: 'error',
+	        title: '비밀번호 재설정을 실패하였습니다'
+	      });
+	    }
+	  });
+	}
