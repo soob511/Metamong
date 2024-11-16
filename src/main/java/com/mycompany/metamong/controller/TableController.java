@@ -94,7 +94,7 @@ public class TableController {
 	public ResponseEntity<String> applyTable(@RequestBody TableAddDto form, Authentication auth) {
 
 		applyService.addApplyTable(form, auth);
-		 List<String> dbaId = memberService.getDbaIdByRole("ROLE_DBA");
+		
 		return ResponseEntity.ok("/Metamong/table/tableApplyList");
 	}
 
