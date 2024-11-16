@@ -4,6 +4,7 @@
 <select id="selectTableList" resultType="Table">
 	SELECT table_no,table_nm,table_id,table_content,schema_nm
 	FROM "TABLES"
+	ORDER BY table_no
 </select>
 
 <select id="selectTableSearch" parameterType="map" resultType="Table">
@@ -25,6 +26,7 @@
             schema_nm = #{schema}
         </if>
     </where>
+    ORDER BY table_no
 </select>
 
 <insert id="insertApplyTable" parameterType="ApplyTable">
