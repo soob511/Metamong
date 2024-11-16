@@ -44,14 +44,32 @@
                 <div class="codeApplyInfo">
                     <div class="codeApplyInfo-subtitle">신청정보</div>
                     <table class="table table-bordered codeApplyInfo-table table-container">
+                    <colgroup>
+                    	<col style="width: 180px;">
+					    <col style="width: 220px;">
+					    <col style="width: 180px;">
+					    <col style="width: 220px;">
+					    <col style="width: 180px;">
+                    </colgroup>
                         <tr>
                             <td class="table-light">No.</td>
-                            <td colspan="3">
+                            <td>
                                 <div class="table-text">${indexNo}</div>
                             </td>
                             <td class="table-light">신청 건수</td>
                             <td>
                                 <div class="table-text">총 ${totalCount} 건</div>
+                            </td>
+                            <td class="table-light">승인여부</td>
+                            <td>
+                                <div class="table-text">
+                                    <c:choose>
+                                        <c:when test="${applyList.approvalStatus == 0}">승인대기</c:when>
+                                        <c:when test="${applyList.approvalStatus == 1}">승인</c:when>
+                                        <c:when test="${applyList.approvalStatus == 2}">반려</c:when>
+                                        <c:when test="${applyList.approvalStatus == 3}">반영</c:when>
+                                    </c:choose>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -65,16 +83,9 @@
                             <td>
                                 <div class="table-text">${applyList.MName}</div>
                             </td>
-                            <td class="table-light">승인여부</td>
+                            <td class="table-light">신청사유</td>
                             <td>
-                                <div class="table-text">
-                                    <c:choose>
-                                        <c:when test="${applyList.approvalStatus == 0}">승인대기</c:when>
-                                        <c:when test="${applyList.approvalStatus == 1}">승인</c:when>
-                                        <c:when test="${applyList.approvalStatus == 2}">반려</c:when>
-                                        <c:when test="${applyList.approvalStatus == 3}">반영</c:when>
-                                    </c:choose>
-                                </div>
+                                <div class="table-text">${applyList.applyReason}</div>
                             </td>
                         </tr>
                         <tr>
