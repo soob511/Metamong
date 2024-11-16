@@ -231,7 +231,7 @@ function searchTable() {
         				<td>${table.schemaNm}</td>
         				<td>${table.tableNm}</td>
         				<td>${table.tableId}</td>
-        				<td>${table.tableContent}</td>
+        				<td>${table.tableContent==null? "":table.tableContent}</td>
         				</tr>`;
         		});
         	}else{
