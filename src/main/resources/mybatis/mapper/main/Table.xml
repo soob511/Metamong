@@ -1,102 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mycompany.metamong.daoMain.TableDao">
-<select id="selectTableList" resultType="Table">
-	SELECT table_no,table_nm,table_id,table_content,schema_nm
-	FROM "TABLES"
-	ORDER BY table_no
-</select>
+	<select id="selectTableList" resultType="Table">
+		SELECT table_no,table_nm,table_id,table_content,schema_nm
+		FROM "TABLES"
+		ORDER BY table_no
+	</select>
 
-<select id="selectTableSearch" parameterType="map" resultType="Table">
-    SELECT table_no, table_nm, table_id, table_content, schema_nm
-    FROM "TABLES"
-    <where>
-     
-        <if test="content != null and content != '' and (schema == null or schema == '')">
-            (table_nm = #{content} OR table_id = #{content})
-        </if>
-        
+	<select id="selectTableSearch" parameterType="map"
+		resultType="Table">
+		SELECT table_no, table_nm, table_id, table_content, schema_nm
+		FROM "TABLES"
+		<where>
+			<if
+				test="content != null and content != '' and (schema == null or schema == '')">
+				(table_nm LIKE '%' || #{content} || '%' OR table_id LIKE '%' || #{content} ||'%')
+			</if>
+			<if
+				test="content != null and content != '' and schema != null and schema != ''">
+				(table_nm LIKE '%' || #{content} || '%' OR table_id LIKE '%' || #{content} ||'%')
+				AND schema_nm LIKE '%' || #{schema} || '%'
+			</if>
+			<if
+				test="(content == null or content == '') and schema != null and schema != ''">
+				schema_nm LIKE '%' || #{schema} || '%'
+			</if>
 
-        <if test="content != null and content != '' and schema != null and schema != ''">
-            (table_nm = #{content} OR table_id = #{content}) AND schema_nm = #{schema}
-        </if>
-        
+		</where>
+		ORDER BY table_no
+	</select>
 
-        <if test="(content == null or content == '') and schema != null and schema != ''">
-            schema_nm = #{schema}
-        </if>
-    </where>
-    ORDER BY table_no
-</select>
+	<insert id="insertApplyTable" parameterType="ApplyTable">
+		INSERT INTO apply_table (apply_no, table_no, table_nm, table_id,
+		table_content)
+		VALUES (#{applyNo}, seq_table_no.NEXTVAL, #{tableNm}, #{tableId},
+		#{tableContent})
+	</insert>
 
-<insert id="insertApplyTable" parameterType="ApplyTable">
-    INSERT INTO apply_table (apply_no, table_no, table_nm, table_id, table_content)
-    VALUES (#{applyNo}, seq_table_no.NEXTVAL, #{tableNm}, #{tableId}, #{tableContent})
-</insert>
+	<insert id="insertApplyTableByTableNo"
+		parameterType="ApplyTable">
+		INSERT INTO apply_table (apply_no, table_no, table_nm, table_id,
+		table_content)
+		VALUES (#{applyNo}, #{tableNo}, #{tableNm}, #{tableId}, #{tableContent})
+	</insert>
 
-<insert id="insertApplyTableByTableNo" parameterType="ApplyTable">
-INSERT INTO apply_table (apply_no, table_no, table_nm, table_id, table_content)
-    VALUES (#{applyNo}, #{tableNo}, #{tableNm}, #{tableId}, #{tableContent})
-</insert>
+	<select id="selectTableListBySchema" resultType="Table">
+		SELECT table_no, table_id, schema_nm
+		FROM tables
+		WHERE schema_nm = #{schemaName}
+	</select>
 
-<select id="selectTableListBySchema" resultType="Table">
-    SELECT table_no, table_id, schema_nm
-    FROM tables
-    WHERE schema_nm = #{schemaName}
-</select>
+	<select id="selectTableByApplyNo" resultType="Table"
+		parameterType="int">
+		SELECT table_no, table_nm, table_id, table_content
+		FROM apply_table
+		WHERE apply_no = #{applyNo}
+	</select>
 
-<select id="selectTableByApplyNo" resultType="Table" parameterType="int">
-	 SELECT table_no, table_nm, table_id, table_content
-     FROM apply_table
-     WHERE apply_no = #{applyNo}
-</select>
+	<select id="selectTable" parameterType="int" resultType="Table">
+		SELECT table_no,table_nm,table_id,table_content,schema_nm
+		FROM tables
+		WHERE table_no = #{tableNo}
+	</select>
 
-<select id="selectTable" parameterType="int" resultType="Table">
-	SELECT table_no,table_nm,table_id,table_content,schema_nm
-	FROM tables
-	WHERE table_no = #{tableNo}
-</select>
+	<select id="selectTableIdByApplyNo" parameterType="int"
+		resultType="String">
+		SELECT table_id
+		FROM apply_table
+		WHERE apply_no = #{applyNo}
+	</select>
 
-<select id="selectTableIdByApplyNo" parameterType="int" resultType="String">
-	SELECT table_id
-	FROM apply_table
-	WHERE apply_no = #{applyNo}
-</select>
+	<select id="selectApplyTable" parameterType="int"
+		resultType="Table">
+		SELECT table_no,table_id,table_nm,table_content
+		FROM apply_table
+		WHERE apply_no = #{applyNo}
+	</select>
 
-<select id="selectApplyTable" parameterType="int" resultType="Table">
- SELECT table_no,table_id,table_nm,table_content
- FROM apply_table
- WHERE apply_no = #{applyNo}
-</select>
+	<insert id="insertTable" parameterType="Table">
+		INSERT INTO tables (table_no, table_nm, table_id, table_content, schema_nm)
+		VALUES (#{tableNo}, #{tableNm}, #{tableId}, #{tableContent},
+		#{schemaNm})
+	</insert>
 
-<insert id="insertTable" parameterType="Table">
-    INSERT INTO tables (table_no, table_nm, table_id, table_content, schema_nm)
-    VALUES (#{tableNo}, #{tableNm}, #{tableId}, #{tableContent}, #{schemaNm})
-</insert>
+	<select id="selectTableInfo" parameterType="map"
+		resultType="Table">
+		SELECT table_no, table_nm, table_id, schema_nm
+		FROM tables
+		WHERE table_id = #{tableName} AND schema_nm = #{schemaName}
+	</select>
 
-<select id="selectTableInfo" parameterType="map" resultType="Table">
-    SELECT table_no, table_nm, table_id, schema_nm
-    FROM tables
-    WHERE table_id = #{tableName} AND schema_nm = #{schemaName}
-</select>
+	<select id="selectTableNo" resultType="int">
+		SELECT table_no
+		FROM tables
+		WHERE table_id = #{tableId} AND schema_nm = #{schema}
+	</select>
 
-<select id="selectTableNo" resultType="int">
-	SELECT table_no
-	FROM tables
-	WHERE table_id = #{tableId} AND schema_nm = #{schema}
-</select>
+	<select id="selectRewriteTable" parameterType="int"
+		resultType="TableRewrite">
+		SELECT a.schema_name, a.apply_Reason, t.table_nm,t.table_no, t.table_id,
+		t.table_content
+		FROM apply_list a
+		JOIN apply_table t ON a.apply_no = t.apply_no
+		WHERE a.apply_no = #{applyNo}
+	</select>
 
-<select id="selectRewriteTable" parameterType="int" resultType="TableRewrite">
-	SELECT a.schema_name, a.apply_Reason, t.table_nm,t.table_no, t.table_id, t.table_content
-	FROM apply_list a
-	JOIN apply_table t ON a.apply_no = t.apply_no
-	WHERE a.apply_no = #{applyNo}
-</select>
-
-<update id="updateTableContent" >
-	UPDATE tables
-	SET table_content = #{tableContent}
-	WHERE table_no = #{tableNo}
-</update>
+	<update id="updateTableContent">
+		UPDATE tables
+		SET table_content = #{tableContent}
+		WHERE table_no = #{tableNo}
+	</update>
 </mapper>
 	
