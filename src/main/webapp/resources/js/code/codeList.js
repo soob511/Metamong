@@ -236,7 +236,7 @@ function codeApplyExcel() {
 	          title: "코드/항목 생성 신청이<br/>완료되었습니다.",
 	          text: "신청 승인 후, 코드 사용이 가능합니다.",
 	        }).then(() => {
-	         location.href = data.redirectUrl;
+	         location.href = data;
 	        });
 	      },
 	      error: function() {
