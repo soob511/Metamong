@@ -39,8 +39,8 @@
 											onclick="sequenceProcessApproval(2)">반려</button>
 									</c:when>
 									<c:when test="${detail.approvalStatus == 1}">
-										<button class="btn-rollback btn-light" >승인취소</button>
 										<button class="btn-reflect">반영</button>
+										<button class="btn-rollback btn-light" >승인취소</button>
 									</c:when>
 									<c:when
 										test="${detail.approvalStatus == 2 || detail.approvalStatus == 3}">
