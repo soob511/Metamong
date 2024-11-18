@@ -26,14 +26,13 @@
 .schema-filter {
   display: flex;
   align-items: center;
-  min-width: 200px !important;
   margin-left: 38px;
 }
 
 .table-column-filter {
   display: flex;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 25px;
 }
 
 .index-search-label {
@@ -44,7 +43,7 @@
 .index-search {
   display: flex;
   width: max-content;
-  margin-left: 42px;
+  margin-left: 37px;
   align-items: center;
 }
 

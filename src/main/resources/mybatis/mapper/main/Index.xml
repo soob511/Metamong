@@ -106,7 +106,7 @@
 				AND a.approval_status = #{approvalStatus}
 			</if>
 			<if test="indexName != '' ">
-				AND i.idx_name = #{indexName}
+				AND i.idx_name LIKE '%' || UPPER(#{indexName}) || '%'
 			</if>
 		</where>
 	</select>
@@ -125,7 +125,7 @@
 				AND a.approval_status = #{approvalStatus}
 			</if>
 			<if test="mName != '' ">
-				AND m.m_name = #{mName}
+				AND m.m_name LIKE '%' || UPPER(#{mName}) || '%'
 			</if>
 		</where>
 	</select>
