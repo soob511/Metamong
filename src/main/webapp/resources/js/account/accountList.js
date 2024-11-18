@@ -231,7 +231,7 @@ function accountSearch(pageNo) {
   });
 }
 
-// 회원 정보 승인
+// 회원 정보 수정
 $(document).ready(function () {
   $(".btn-approve").on("click", function () {
     var mId = $(this).data("m-id");
