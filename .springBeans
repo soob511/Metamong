@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.11.201912160804-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+	</configs>
+	<autoconfigs>
+		<config>src/main/resources/spring/dispatcher/aop.xml</config>
+		<config>src/main/resources/spring/dispatcher/multipart_resolver.xml</config>
+		<config>src/main/resources/spring/dispatcher/static_resources.xml</config>
+		<config>src/main/resources/spring/dispatcher/component_scan.xml</config>
+		<config>src/main/resources/spring/dispatcher/view_resolver.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

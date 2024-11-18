@@ -89,7 +89,7 @@
             <div class="row">
               <div class="col-5">
                 <div class="schema-filter">
-                  <div class="schema-table-title">테이블 목록</div>
+                  <div class="schema-table-title">Table 목록</div>
                   <div class="d-flex align-items-center">
                     <label for="schemaSelect" class="schema-filter-label">스키마명</label>
                     <select id="schemaSelect" class="form-select" aria-label="Default select example">
@@ -116,7 +116,7 @@
                 </div>
               </div>
               <div class="col">
-                <p class="board-title">속성(Column) 목록</p>
+                <p class="board-title">Column 목록</p>
                 <div class="col-box table-container">
                   <table class="table table-hover">
                     <thead class="table">
