@@ -50,7 +50,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option value="All" data-status="">전체</option>
                   <option value="ID">ID</option>
                   <option>이름</option>
                   <option>권한</option>

@@ -22,7 +22,6 @@
 					<div class="d-flex align-items-center">
 						<button data-bs-toggle="modal" data-bs-target="#teamModal" class="btn-team">소속 관리</button>
 						<select id="searchSelect" class="form-select" aria-label="Default select example">
-							<option value="All" data-status="">전체</option>
 							<option>ID</option>
 							<option>이름</option>
 							<option>권한</option>
