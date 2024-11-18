@@ -396,7 +396,7 @@ function applyIndex() {
 		Swal.fire({
 			icon: 'warning',                  
 			title: '인덱스를 다시<br/>선택해 주세요.',
-			text: '오류입력사항: PK는 단일 인덱스 신청이 불가'
+			text: '오류입력사항: PK컬럼에는 단일 인덱스 신청이 불가합니다'
 		});
 	} else if ($("#nameValidMessage").hasClass("warn")) {
 		Swal.fire({
@@ -416,8 +416,8 @@ function applyIndex() {
 				console.log(data)
 				if (data === 1) {
 					Swal.fire({
-                        icon: 'error',
-                        title: '인덱스 신청을<br/> 실패하였습니다.',
+                        icon: 'warning',
+                        title: '인덱스 이름을<br/>확인해 주세요.',
                         text: '해당 스키마에 동일 인덱스 이름이 존재합니다.'
                     });
 				} else {

@@ -77,7 +77,7 @@
 							<tbody id="indexApplyTable">
 								<c:forEach items="${list}" var="index" varStatus="status">
 			                  		<tr>
-				                      <th>${status.index + 1}</th>
+				                      <th>${pager.totalRows - (pager.pageNo - 1) * pager.rowsPerPage - status.index}</th>
 				                      <td>
 				                      	<fmt:formatDate value="${index.applyDate}" pattern="yyyy-MM-dd"/>
 				                      </td>
@@ -86,7 +86,7 @@
 				                      <td>${index.idxName}</td>
 				                      <td>${index.applyType}</td>
 				                      	<td>
-				                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&indexNo=${status.index + 1}&applyType=${index.applyType}"><button class="btn-history-details">상세보기</button></a>
+				                      		<a href="indexApplyDetail?applyNo=${index.applyNo}&indexNo=${pager.totalRows - (pager.pageNo - 1) * pager.rowsPerPage - status.index}&applyType=${index.applyType}"><button class="btn-history-details">상세보기</button></a>
 			                  			</td>
 				                      <td>
 				                      	<c:choose>

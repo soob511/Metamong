@@ -2,17 +2,20 @@ package com.mycompany.metamong.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+
+import com.mycompany.metamong.coolsms.SmsUtil;
 
 import com.mycompany.metamong.dto.Pager;
 import com.mycompany.metamong.dto.member.JoinFormDto;
@@ -36,6 +42,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private SmsUtil smsUtil;
 	
 	@GetMapping("loginForm")
 	public String loginForm() {
@@ -214,5 +222,18 @@ public class MemberController {
 		memberService.resetPassword(member);
 		return "member/loginForm";
 	}
+	
+	@PostMapping("/sendSms")
+	public ResponseEntity<?> sendSmsToFindEmail(MemberDto requestDto) {
+        
+        MemberDto member = memberService.checkValidMember(requestDto.getMId(), requestDto.getMTel());
+        if (member == null) throw new NoSuchElementException("회원이 존재하지 않습니다.");
+        String MTel = requestDto.getMTel().replaceAll("-","");
+		
+        String verificationCode = Integer.toString((int)(Math.random() * (999999 - 100000 + 1)) + 100000);
+        smsUtil.sendOne(MTel, verificationCode);
+        
+        return ResponseEntity.ok().body(verificationCode);
+    }
 	
 }

@@ -226,7 +226,7 @@ function navToDeletePage() {
     } else if (row.length === 1 && pkStatus === 'Y') {
     	Swal.fire({ 
 			icon: 'warning',
-			title: 'PK컬럼을 참조하고 있는 인덱스는<br>삭제불가합니다.'
+			title: 'PK컬럼을 단일 참조하고 있는<br>인덱스는 삭제 불가합니다.'
 		})
     } else {
     	document.location.href = '/Metamong/index/indexDeleteForm?schemaName=' + schemaName + '&indexName=' + indexName + '&columnName=' + columnName + '&tableName=' + tableName;    	    	

@@ -15,7 +15,7 @@ $(document).ready(function() {
         const colId = $(this).find("td:eq(2)").text();
         const dataType = $(this).find("td:eq(3)").text();
         const colLength = $(this).find("td:eq(4)").text();
-        const colNullable = $(this).find("td:eq(5)").text();
+        const colIsnullable = $(this).find("td:eq(5)").text();
         const colPk = $(this).find("td:eq(6)").text();
         
         $("#colNm").val(colNm);
@@ -158,7 +158,7 @@ $(document).ready(function() {
         var colId = $("#colId").val();
         var dataType = $("#dataType").val(); 
         var colLength = $("#dataLength").val();
-        var colNullable = $("#nullable").val();
+        var colIsnullable = $("#nullable").val();
         var colPk = $("#isUse").val();
 
         if (colNm === "" || colId === "") {
@@ -193,7 +193,7 @@ $(document).ready(function() {
                         <td>${colId}</td>
                         <td>${dataType}</td>
                         <td>${colLength}</td>
-                        <td>${colNullable}</td>
+                        <td>${colIsnullable}</td>
                         <td>${colPk}</td>
                         <td><i class="bi bi-trash3 delete-row"></i></td>
                     </tr>
@@ -217,7 +217,7 @@ $(document).ready(function() {
             var colId = $("#colId").val();
             var dataType = $("#dataType").val();
             var colLength = $("#dataLength").val();
-            var colNullable = $("#nullable").val();
+            var colIsnullable = $("#nullable").val();
             var colPk = $("#isUse").val();
 
             if (colNm === "" || colId === "") {
@@ -230,7 +230,7 @@ $(document).ready(function() {
                 selectedRow.find("td:eq(2)").text(colId);
                 selectedRow.find("td:eq(3)").text(dataType);
                 selectedRow.find("td:eq(4)").text(colLength);
-                selectedRow.find("td:eq(5)").text(colNullable);
+                selectedRow.find("td:eq(5)").text(colIsnullable);
                 selectedRow.find("td:eq(6)").text(colPk);
 
                 selectedRow.data("change", 1).attr("data-change", 1); 
@@ -316,7 +316,7 @@ $(document).ready(function() {
                 colId: $(this).find("td:eq(2)").text(),
                 dataType: $(this).find("td:eq(3)").text(),
                 colLength: $(this).find("td:eq(4)").text(),
-                colNullable: $(this).find("td:eq(5)").text(),
+                colIsnullable: $(this).find("td:eq(5)").text(),
                 colPk: $(this).find("td:eq(6)").text(),
                 colIsupdate: $(this).data("change") 
             };
@@ -380,7 +380,7 @@ $(document).ready(function() {
                 colId: $(this).find("td:eq(2)").text(),
                 dataType: $(this).find("td:eq(3)").text(),
                 colLength: $(this).find("td:eq(4)").text(),
-                colNullable: $(this).find("td:eq(5)").text().trim() === "NULL" ? 1 : 0, 
+                colIsnullable: $(this).find("td:eq(5)").text().trim() === "NULL" ? 1 : 0, 
                 	colIspk: $(this).find("td:eq(6)").text().trim() === "Y" ? 1 : 0,       
                 isChange: $(this).data("change") || "0" 
             };
