@@ -89,6 +89,7 @@ thead, tr, td {
 .table-box, .col-box {
 	height: 340px;
 	overflow: hidden;
+	overfloy-y: scroll;
 }
 
 #line-chart {
