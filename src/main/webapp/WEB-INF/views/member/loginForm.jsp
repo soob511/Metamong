@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="modal fade" id="sqlLoadModal" tabindex="-1"
-		aria-labelledby="sqlLoadModal" aria-hidden="true">
+		aria-labelledby="sqlLoadModal" aria-hidden="false" aria-role="none" aria-modal="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
