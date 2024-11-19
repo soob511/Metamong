@@ -20,7 +20,7 @@
         
             <div class="col-lg-5 main-area">
                 <div class="content-top">
-                <img class="main-img" src="${pageContext.request.contextPath}/resources/image/login.png">
+                <img class="main-img" src="${pageContext.request.contextPath}/resources/image/main.png">
                 </div>
             </div>
 
