@@ -1,11 +1,5 @@
 $(document).ready(function() {
-/*  $('#openModal').on('click', function() {
-	  openModal();
-  })
-  $('#closeModal').on('click', function() {
-	  closeModal();
-  })*/
-  console.log(('#loginAlertMessage'))
+
   if($('#loginAlertMessage').length > 0) {
 	  Swal.fire({
 			icon: 'error',
@@ -49,31 +43,6 @@ $("#newPassword, #checkPassword").on("input", function() {
     	$('.modal-btn-submit').prop('disabled', false);    	
     }
 });
-
-
-/*function openModal() {
-	document.getElementById('formContainer').removeAttribute('inert');
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('sqlLoadModal');
-    modal.setAttribute('aria-hidden', 'true');
-    modal.style.display = 'none';
-  }
-
-const observer = new MutationObserver(() => {
-    const popup = Swal.getPopup();
-    if (popup && popup.getAttribute('aria-hidden') === 'true') {
-        popup.setAttribute('aria-hidden', 'false'); // aria-hidden을 false로 설정
-    }
-});
-
-// Observer 시작
-observer.observe(document.body, {
-    attributes: true,
-    childList: true,
-    subtree: true
-});*/
 
 function checkValidUser () {
     const modal = document.getElementById('sqlLoadModal');

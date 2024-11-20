@@ -95,7 +95,7 @@
 		                  	<div class="d-flex justify-content-center">
 		                        <button type="button" onclick="resetPassword()" class="modal-btn-submit" disabled>확인</button>		                  	
 		                  	</div>
-							<button type="button" onclick="checkValidUser()" class="modal-btn-check">Check</button>			               	
+							<button type="button" onclick="checkValidUser()" class="modal-btn-check">휴대폰 인증</button>			               	
 						</form>
 						
 					</div>
