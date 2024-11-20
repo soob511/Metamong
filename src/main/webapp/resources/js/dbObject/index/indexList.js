@@ -7,6 +7,7 @@ $(document).ready(function() {
     filterIndex();
     
     $('#schemaSelect').change(function() {
+    	$('#columnSelect').html('<option>선택</option>');
     	filterIndex()
     	filterTable()
     });
@@ -91,7 +92,7 @@ function filterTable() {
 			schemaName : schemaName
 		},
 		success : function(data) {
-			let html = '<option data-name="선택">선택</option>';
+			let html = '<option value="-1" data-name="선택">선택</option>';
 			
 			data.forEach(function(table) {
 				html += `
@@ -112,9 +113,6 @@ function filterColumn() {
 	let schemaName = $('#schemaSelect').val();
 	let tableName = $('#tableSelect').find(':selected').data('name');
 	let tableNo = $('#tableSelect').val();
-	if (tableNo === '선택') {
-		return;
-	}
 
 	$.ajax({
 		type : 'GET',
