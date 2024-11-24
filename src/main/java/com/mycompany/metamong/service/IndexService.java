@@ -135,7 +135,9 @@ public class IndexService {
 
 	public IndexDto checkDuplicateIndexName(String schemaName, String indexName) {
 		IndexDto index = new IndexDto();
-
+		index = indexDao.selectDuplicateIndex(schemaName, indexName);
+		
+		if (index != null) return index; 
 		switch (schemaName) {
 			case "SRM":
 				index = srmIndexDao.selectDuplicateIndex(indexName);

@@ -46,4 +46,6 @@ public interface IndexDao {
 	
 	public int insertApplyIndex(ApplyIndexDto applyIndexDto);
 	
+	public IndexDto selectDuplicateIndex(@Param("schemaName") String schemaName, @Param("indexName") String indexName);
+	
 }
