@@ -66,6 +66,7 @@ public class AccountController {
 			List<MemberDto> list = accountService.searchAccountMember(option, keyword, pager);
 			model.addAttribute("list", list);
 			model.addAttribute("option", option);
+			model.addAttribute("keyword", keyword);
 			session.setAttribute("pager", pager);
 
 			return "account/accountSearch";
