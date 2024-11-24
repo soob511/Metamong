@@ -127,7 +127,7 @@ public class HomeController {
 		model.addAttribute("pager", pager);
 		model.addAttribute("schemaEnum", SchemaEnum.values());
 		model.addAttribute("noticeList", noticeList);
-		model.addAttribute("memberList" ,memberList);
+		model.addAttribute("memberList", memberList);
 		return "home/homeAdmin";
 	}
 	

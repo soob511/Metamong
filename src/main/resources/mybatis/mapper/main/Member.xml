@@ -173,8 +173,9 @@
 		FROM
 			member m
 		JOIN team t ON t.team_id = m.team_id
-		WHERE m.m_isactive = 1 AND ROWNUM &lt;= #{rowNumber}
+		WHERE m.m_isactive = 1 AND m.m_approval_status = 1
 		ORDER BY m.m_regdate DESC
+		FETCH FIRST #{rowNumber} ROWS ONLY
 	</select>
 	
 	<select id="selectApplyMember" parameterType="String" resultType="ApplyMember">
