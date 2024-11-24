@@ -49,7 +49,7 @@ function getApprovalStatus() {
 		url : "/Metamong/getDbObjApprovalStatus",
 		type : "GET",
 		success : function(data) {
-			console.log(data);
+			
 			const chartData = [0, 0, 0, 0];
 
 	        const summarySpans = $(".summary-box .fw-bold");

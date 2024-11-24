@@ -69,7 +69,7 @@ function reApply() {
 }
 
 function getSqlBtn(approvalStatus) {
-	if (approvalStatus === '반영') {
+	if (approvalStatus === '승인' || approvalStatus === '반영') {
 		let html = `
 			<button class="btn-sql" data-bs-toggle="modal" data-bs-target="#sqlLoadModal">
 				SQL

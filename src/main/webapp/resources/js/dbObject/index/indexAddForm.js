@@ -413,7 +413,7 @@ function applyIndex() {
 				indexName: $('#indexName').val(),
 			},
 			success : function(data) {
-				console.log(data)
+				
 				if (data === 1) {
 					Swal.fire({
                         icon: 'warning',

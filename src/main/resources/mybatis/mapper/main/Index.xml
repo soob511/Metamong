@@ -140,5 +140,16 @@
 			#{isUnique}, #{refColumn}
 		)	
 	</insert>
+	
+	<select id="selectDuplicateIndex" parameterType="Map" resultType="Index">
+		SELECT
+		    i.idx_name index_name
+		FROM apply_list a
+		JOIN apply_index i ON i.apply_no = a.apply_no
+		WHERE
+			a.apply_obj = 'INDEX' AND
+			(a.approval_status = 0 OR a.approval_status = 1)
+			AND a.schema_name = #{schemaName} AND i.idx_name = #{indexName}
+	</select>
 
 </mapper>

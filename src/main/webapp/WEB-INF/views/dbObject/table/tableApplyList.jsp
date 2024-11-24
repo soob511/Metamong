@@ -129,7 +129,7 @@
 
 							<c:if test="${pager.groupNo<pager.totalGroupNo}">
 								<a href="tableApplyList?pageNo=${pager.endPageNo+1}"
-									class="btn btn-outline-info btn-sm">></a>
+									class="btn btn-outline-secondary btn-sm">></a>
 							</c:if>
 							<a href="tableApplyList?pageNo=${pager.totalPageNo}"
 								class="btn btn-outline-secondary btn-sm">>></a>
