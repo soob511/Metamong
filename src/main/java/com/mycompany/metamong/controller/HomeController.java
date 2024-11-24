@@ -54,13 +54,24 @@ public class HomeController {
 		        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		        
 		        for (GrantedAuthority authority : authorities) {
-		            if (authority.getAuthority().equals("ROLE_ADMIN")) {
+		            String role = authority.getAuthority();
+		            if (role.equals("ROLE_ADMIN")) {
 		                response.sendRedirect("/Metamong/homeAdmin");
 		                return null;
-		            } else if (authority.getAuthority().equals("ROLE_DBA")) {
+		            }
+		        }
+
+		        for (GrantedAuthority authority : authorities) {
+		            String role = authority.getAuthority();
+		            if (role.equals("ROLE_DBA")) {
 		                response.sendRedirect("/Metamong/homeDBA");
 		                return null;
-		            } else if (authority.getAuthority().equals("ROLE_USER")) {
+		            }
+		        }
+
+		        for (GrantedAuthority authority : authorities) {
+		            String role = authority.getAuthority();
+		            if (role.equals("ROLE_USER")) {
 		                response.sendRedirect("/Metamong/homeUser");
 		                return null;
 		            }
