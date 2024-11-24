@@ -8,9 +8,9 @@
 <script src="${pageContext.request.contextPath}/resources/js/common/menu.js"></script>
 
 <div class="menu">
-	<p class="logo"><a href="${pageContext.request.contextPath}/homeUser">@meta-mong</a></p>
+	<p class="logo"><a href="${pageContext.request.contextPath}/">@meta-mong</a></p>
 	<ul>
-		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/homeUser"><i class="bi bi-house-door pe-2"></i>HOME</a></li>
+		<li class="menu-item"><a class="item" href="${pageContext.request.contextPath}/"><i class="bi bi-house-door pe-2"></i>HOME</a></li>
 		<li class="menu-item">
 		    <a href="#" class="toggle-menu item d-flex justify-content-between">
 		        <span><i class="bi bi-bar-chart-steps pe-2"></i>코드/항목</span>
