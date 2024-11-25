@@ -112,7 +112,7 @@
 								class="btn btn-outline-secondary btn-sm"><<</a>
 							<c:if test="${pager.groupNo>1}">
 								<a href="tableApplyList?pageNo=${pager.startPageNo-1}"
-									class="btn btn-outline-info btn-sm"><</a>
+									class="btn btn-outline-secondary btn-sm"><</a>
 							</c:if>
 
 							<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
